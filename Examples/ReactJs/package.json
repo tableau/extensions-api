@@ -68,6 +68,8 @@
     "prop-types": "^15.5.10",
     "react": "^15.0.0",
     "react-bootstrap": "^0.31.0",
-    "react-dom": "^15.0.0"
+    "react-dom": "^15.0.0",
+    "react-select": "^1.0.0-rc.5",
+    "react-virtualized": "^9.8.0"
   }
 }

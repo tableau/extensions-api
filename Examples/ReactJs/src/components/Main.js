@@ -53,9 +53,7 @@ class AppComponent extends React.Component {
         );
       case '#getData':
         return (
-          <div className="container">
-            <GetDataDemoComponent />
-          </div>
+          <GetDataDemoComponent />
         )
       default:
         return (<h1>Unknown hash {this.props.hash}</h1>);

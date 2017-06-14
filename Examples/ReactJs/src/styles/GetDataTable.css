@@ -1,0 +1,16 @@
+.cell {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  line-height: 30px;
+  vertical-align: middle;
+  padding-left: 3px;
+}
+
+.header {
+  font-weight: bold;
+}
+
+.odd {
+  background: #EEEEEE;
+}

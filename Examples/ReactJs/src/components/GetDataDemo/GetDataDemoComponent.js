@@ -1,8 +1,8 @@
 'use strict';
 
 import React from 'react';
-import { Column, Table, AutoSizer } from 'react-virtualized';
 import GetDataConfigurationComponent from './GetDataConfigurationComponent';
+import GetDataTableComponent from './GetDataTableComponent';
 
 import { Button } from 'react-bootstrap'
 
@@ -72,14 +72,7 @@ class GetDataDemoComponent extends React.Component {
         dataKey: 'formattedValue'
       }));
 
-      const rows = dataTable.getData().map((row) => {
-        let cells = {};
-        for (let i = 0; i < columns.length; i++) {
-          cells[columns[i].label] = row[i].formattedValue;
-        }
-
-        return cells;
-      });
+      const rows = dataTable.getData() ;
 
       this.setState({
         columns: columns,
@@ -148,20 +141,10 @@ class GetDataDemoComponent extends React.Component {
           </div>
 
           <div className='dataTable'>
-            <AutoSizer>
-              {({ height, width }) => (
-                  <Table
-                    width={width}
-                    height={height}
-                    headerHeight={40}
-                    rowHeight={30}
-                    rowCount={this.state.rows.length}
-                    rowGetter={({ index }) => this.state.rows[index]}
-                  >
-                  {this.buildColumns()}
-                </Table>
-              )}
-            </AutoSizer>
+            <GetDataTableComponent
+              rows={this.state.rows}
+              headers={this.state.columns}
+            />
           </div>
         </div>
       );
@@ -170,8 +153,5 @@ class GetDataDemoComponent extends React.Component {
 }
 
 GetDataDemoComponent.displayName = 'GetDataDemoComponent';
-
-// Uncomment properties you need
-// GetDataDemoComponent.propTypes = {};
 
 export default GetDataDemoComponent;
