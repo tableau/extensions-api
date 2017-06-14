@@ -132,9 +132,9 @@ class GetDataDemoComponent extends React.Component {
           <div className='description'>
             {'Displaying '}
             <span className='interesting'>{this.state.rows.length}</span>
-            {' rows from the \''}
+            {' rows from the '}
             <span className='interesting'>{this.state.settings.sheetName}</span>
-            {'\' worksheet'}
+            {' worksheet'}
           </div>
           <Button bsSize='link' onClick={this.onConfigureClicked.bind(this)}>Configure</Button>
           
