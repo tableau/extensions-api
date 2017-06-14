@@ -2,9 +2,9 @@
 }
 
 .getDataSummary {
-  height: 50px;
+  height: 40px;
 }
 
 .dataTable {
-  height: calc(100vh - 50px);
+  height: calc(100vh - 40px);
 }

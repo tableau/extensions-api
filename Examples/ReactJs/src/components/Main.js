@@ -18,6 +18,8 @@ class AppComponent extends React.Component {
   }
 
   componentWillMount() {
+    debugger;
+    debugger;
     // Once we have mounted, we call to initialize our add-in
     let initialziePromise = tableau.addIn.initializeAsync();
     if (initialziePromise) {

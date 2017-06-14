@@ -14,3 +14,15 @@
 .odd {
   background: #EEEEEE;
 }
+
+.grid {
+  outline: none;
+}
+
+.interesting {
+  font-weight: 700;
+}
+
+.getDataSummary {
+  padding-left: 5px;
+}

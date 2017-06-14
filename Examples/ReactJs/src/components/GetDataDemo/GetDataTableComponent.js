@@ -7,7 +7,7 @@ import { AutoSizer, Grid, CellMeasurer, CellMeasurerCache } from 'react-virtuali
 require('styles//GetDataTable.css');
 
 const cache = new CellMeasurerCache({
-  defaultWidth: 100,
+  defaultWidth: 150,
   minWidth: 75,
   fixedHeight: true
 });
@@ -43,11 +43,12 @@ class GetDataTableComponent extends React.Component {
       <AutoSizer>
       {({ height, width }) => (
         <Grid
+          className='grid'
           cellRenderer={cellRenderer}
           columnCount={this.props.headers.length}
           columnWidth={cache.columnWidth}
           height={height}
-          rowCount={this.props.rows.length}
+          rowCount={this.props.rows.length + 1}
           rowHeight={30}
           width={width}
         />

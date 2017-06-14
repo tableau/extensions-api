@@ -4,7 +4,7 @@ import React from 'react';
 import GetDataConfigurationComponent from './GetDataConfigurationComponent';
 import GetDataTableComponent from './GetDataTableComponent';
 
-import { Button } from 'react-bootstrap'
+import { Button, Glyphicon } from 'react-bootstrap'
 
 require('react-virtualized/styles.css');
 require('styles//GetDataDemo.css');
@@ -126,6 +126,21 @@ class GetDataDemoComponent extends React.Component {
     if (this.state.loading) {
       return(<div>Loading</div>)
     } else {
+      const summary = (this.state.settings && this.state.settings.sheetName) ? (
+        <div className='getDataSummary'>
+          <Button bsSize='link' onClick={() => this.getData(this.state.settings)}><Glyphicon glyph='refresh'/></Button>
+          <div className='description'>
+            {'Displaying '}
+            <span className='interesting'>{this.state.rows.length}</span>
+            {' rows from the \''}
+            <span className='interesting'>{this.state.settings.sheetName}</span>
+            {'\' worksheet'}
+          </div>
+          <Button bsSize='link' onClick={this.onConfigureClicked.bind(this)}>Configure</Button>
+          
+        </div>
+      ) : null;
+
     return (
         <div className="getdatademo-component">
           <GetDataConfigurationComponent
@@ -135,10 +150,7 @@ class GetDataDemoComponent extends React.Component {
             initialSettings={this.state.settings}
             sheetNames={this.state.sheets} />
 
-          <div className='getDataSummary'>
-            <Button onClick={this.onConfigureClicked.bind(this)}>Configure</Button>
-            <Button onClick={() => this.getData(this.state.settings)}>Refresh</Button>
-          </div>
+          {summary}
 
           <div className='dataTable'>
             <GetDataTableComponent
