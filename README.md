@@ -3,11 +3,11 @@
 ![Image of T-Flex the T-Rex](./assets/tflx.png)
 
 ## Docs and Example Code
-This repository contains a [wiki](./wiki) which contains developer documentation. You are encouraged to use it and also contribute.  
+This repository contains a [wiki](https://github.com/tableau/ProjectFrelard/wiki) which contains developer documentation. You are encouraged to use it and also contribute.  
 
 Example code can be found in the folder called [./tree/master/Examples/ReactJs](https://github.com/tableau/ProjectFrelard/tree/master/Examples/ReactJs). Note: running the examples requires you to have [Node.js](http://nodejs.org) installed.
 
-Use [Issues](./issues) to log any problems or bugs you encounter in the docs or example code. 
+Use [Issues](https://github.com/tableau/ProjectFrelard/issues) to log any problems or bugs you encounter in the docs or example code. 
 
 
 ## Known Issues (as of June 14, 2017)
