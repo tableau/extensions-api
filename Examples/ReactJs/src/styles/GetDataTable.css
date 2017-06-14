@@ -9,7 +9,7 @@
 
 .header {
   font-weight: bold;
-  border-bottom: black;
+  border-bottom: 1px solid #888888;
 }
 
 .odd {
