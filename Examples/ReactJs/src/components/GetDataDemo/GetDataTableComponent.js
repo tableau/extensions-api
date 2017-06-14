@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { AutoSizer, Grid, CellMeasurer, CellMeasurerCache } from 'react-virtualized';
+import { AutoSizer, MultiGrid, CellMeasurer, CellMeasurerCache } from 'react-virtualized';
 
 require('styles//GetDataTable.css');
 
@@ -42,7 +42,8 @@ class GetDataTableComponent extends React.Component {
     return (
       <AutoSizer>
       {({ height, width }) => (
-        <Grid
+        <MultiGrid
+          fixedRowCount={1}
           className='grid'
           cellRenderer={cellRenderer}
           columnCount={this.props.headers.length}
