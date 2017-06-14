@@ -2,7 +2,15 @@
 
 ![Image of T-Flex the T-Rex](./assets/tflx.png)
 
-## Known Issues
+## Docs and Example Code
+This repository contains a [wiki](https://github.com/tableau/ProjectFrelard/wiki) which contains developer documentation. You are encouraged to use it and also contribute.  
+
+Example code can be found in the folder called [Examples/ReactJs](https://github.com/tableau/ProjectFrelard/tree/master/Examples/ReactJs). Note: running the examples requires you to have [Node.js](http://nodejs.org) installed.
+
+Use [Issues](https://github.com/tableau/ProjectFrelard/issues) to log any problems or bugs you encounter in the docs or example code. 
+
+
+## Known Issues (as of June 14, 2017)
 
 ### Unhanded Exceptions During Interop (Qt Browser)
 When invoking something from JS over to the C++ code, if there is an unhanded exception the Qt browser seems to become completely messed up and will not set up the web channel communications correctly any more until the process is restarted. This means if you get an exception which escapes, you might need to restart tableau in order to get things working again.
