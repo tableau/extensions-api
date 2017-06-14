@@ -7,7 +7,7 @@
     <addin-type>
       <dashboard-addin/>
     </addin-type>
-    <author name="sdesmond" email="sdesmond@tableau.com" organization="tableau" website="www.tableau.com"/>
+    <author name="tableau" email="projectfrelard@tableau.com" organization="tableau" website="www.tableau.com"/>
     <min-api-version>1.1</min-api-version>
     <source-location>
       <url>http://localhost:8000#settings</url>
