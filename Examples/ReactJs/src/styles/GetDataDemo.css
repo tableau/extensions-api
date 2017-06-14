@@ -1,0 +1,10 @@
+.getdatademo-component {
+}
+
+.getDataSummary {
+  height: 50px;
+}
+
+.dataTable {
+  height: calc(100vh - 50px);
+}

@@ -1,0 +1,177 @@
+'use strict';
+
+import React from 'react';
+import { Column, Table, AutoSizer } from 'react-virtualized';
+import GetDataConfigurationComponent from './GetDataConfigurationComponent';
+
+import { Button } from 'react-bootstrap'
+
+require('react-virtualized/styles.css');
+require('styles//GetDataDemo.css');
+
+/*global tableau*/
+
+class GetDataDemoComponent extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      showingDialog: false,
+      loading: false,
+      sheets: [],
+      columns: [],
+      rows: []
+    };
+  }
+
+  loadFromTableau() {
+    let allSheets = tableau.addIn.dashboardContent.getDashboard().getWorksheets();
+    const sheetNames = allSheets.map((sheet) => sheet.getName());
+    var settingsString = tableau.addIn.settings.get('getDataSettings');
+    if (!!settingsString) {
+      const settings = JSON.parse(settingsString);
+      this.setState({
+        settings: settings,
+        sheets: sheetNames
+      });
+
+      // Trigger getting data
+      this.getData(settings);
+    } else {
+      // If we don't have valid configuration, show the config dialog
+      this.setState({
+        showingDialog: true,
+        sheets: sheetNames
+      });
+    }
+  }
+
+  componentDidMount() {
+    this.loadFromTableau();
+  }
+
+  getData(settings) {
+    // Here's where we actually use the getData API
+
+    // First find the worksheet in the list of worksheets
+    const sheet = tableau.addIn.dashboardContent.getDashboard().getWorksheets().find(
+      (sheet) => sheet.getName() == settings.sheetName);
+
+    if (!sheet) {
+      // TODO - error
+    }
+
+    this.setState({
+      loading: true
+    });
+    const params = Object.assign({}, settings); // Just copy over all of these to get the properties
+    let promise = settings.type == 'summary' ? sheet.getSummaryDataAsync(params) : sheet.getUnderlyingDataAsync(params);
+    promise.then((dataTable) => {
+      const columns = dataTable.getColumns().map((col) => ({
+        label: col.getFieldName(),
+        dataKey: 'formattedValue'
+      }));
+
+      const rows = dataTable.getData().map((row) => {
+        let cells = {};
+        for (let i = 0; i < columns.length; i++) {
+          cells[columns[i].label] = row[i].formattedValue;
+        }
+
+        return cells;
+      });
+
+      this.setState({
+        columns: columns,
+        rows: rows,
+        loading: false
+      });
+    })
+  }
+
+  onConfigureClicked() {
+    this.setState({
+      showingDialog: true
+    });
+  }
+
+  onCancelDialog() {
+    this.setState({
+      showingDialog: false
+    });
+  }
+
+  onSaveDialog(settings) {
+    // Persist the saved settings into the workbook
+    tableau.addIn.settings.set('getDataSettings', JSON.stringify(settings));
+    this.setState({
+      showingDialog: false,
+      loading: true,
+      settings: settings
+    });
+
+    tableau.addIn.settings.saveAsync().then(() => {
+      // After we save, we should reload the data table with our settings
+      this.getData(settings);
+    });
+  }
+
+  buildColumns() {
+    return this.state.columns.map((col) => {
+      return (<Column
+        key={col.label}
+        label={col.label}
+        dataKey={col.label}
+        width={100}
+        flexGrow={1}
+        flexShrink={0}
+      />);
+    });
+  }
+
+  render() {
+    if (this.state.loading) {
+      return(<div>Loading</div>)
+    } else {
+    return (
+        <div className="getdatademo-component">
+          <GetDataConfigurationComponent
+            show={this.state.showingDialog}
+            onCancelClick={this.onCancelDialog.bind(this)}
+            onSaveClick={this.onSaveDialog.bind(this)}
+            initialSettings={this.state.settings}
+            sheetNames={this.state.sheets} />
+
+          <div className='getDataSummary'>
+            <Button onClick={this.onConfigureClicked.bind(this)}>Configure</Button>
+            <Button onClick={() => this.getData(this.state.settings)}>Refresh</Button>
+          </div>
+
+          <div className='dataTable'>
+            <AutoSizer>
+              {({ height, width }) => (
+                  <Table
+                    width={width}
+                    height={height}
+                    headerHeight={40}
+                    rowHeight={30}
+                    rowCount={this.state.rows.length}
+                    rowGetter={({ index }) => this.state.rows[index]}
+                  >
+                  {this.buildColumns()}
+                </Table>
+              )}
+            </AutoSizer>
+          </div>
+        </div>
+      );
+    }
+  }
+}
+
+GetDataDemoComponent.displayName = 'GetDataDemoComponent';
+
+// Uncomment properties you need
+// GetDataDemoComponent.propTypes = {};
+
+export default GetDataDemoComponent;

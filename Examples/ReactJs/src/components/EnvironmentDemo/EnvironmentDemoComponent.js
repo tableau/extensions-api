@@ -1,9 +1,11 @@
 'use strict';
 
 import React from 'react';
-import { Grid, Row, Col, Table } from 'react-bootstrap';
+import { Table } from 'react-bootstrap';
 
 require('styles//EnvironmentDemo.css');
+
+/*global tableau*/
 
 class EnvironmentDemoComponent extends React.Component {
   componentWillMount() {
@@ -17,7 +19,7 @@ class EnvironmentDemoComponent extends React.Component {
       'Tableau Version' : tableau.addIn.environment.getTableauVersion()
     };
 
-    this.setState((prevState, props) => {
+    this.setState(() => {
       return { properties: properties };
     })
   }
@@ -26,7 +28,7 @@ class EnvironmentDemoComponent extends React.Component {
     return (<tr>
       <td>{label}</td>
       <td>{value}</td>
-    </tr>);  
+    </tr>);
   }
 
   render() {

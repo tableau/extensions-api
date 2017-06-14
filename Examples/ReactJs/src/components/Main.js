@@ -4,6 +4,7 @@ require('styles/App.css');
 import React from 'react';
 import SettingsDemoComponent from './SettingsDemo/SettingsDemoComponent';
 import EnvironmentDemoComponent from './EnvironmentDemo/EnvironmentDemoComponent'
+import GetDataDemoComponent from './GetDataDemo/GetDataDemoComponent';
 
 /*global tableau*/
 
@@ -18,11 +19,16 @@ class AppComponent extends React.Component {
 
   componentWillMount() {
     // Once we have mounted, we call to initialize our add-in
-    tableau.addIn.initializeAsync().then(() => {
-      this.setState({
-        isInitializing: false
+    let initialziePromise = tableau.addIn.initializeAsync();
+    if (initialziePromise) {
+      initialziePromise.then(() => {
+        this.setState({
+          isInitializing: false
+        });
       });
-    });
+    } else {
+      // Not running inside of Tableau
+    }
   }
 
   render() {
@@ -45,6 +51,12 @@ class AppComponent extends React.Component {
             <EnvironmentDemoComponent />
           </div>
         );
+      case '#getData':
+        return (
+          <div className="container">
+            <GetDataDemoComponent />
+          </div>
+        )
       default:
         return (<h1>Unknown hash {this.props.hash}</h1>);
     }
