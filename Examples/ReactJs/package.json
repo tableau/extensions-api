@@ -70,6 +70,7 @@
     "react-bootstrap": "^0.31.0",
     "react-dom": "^15.0.0",
     "react-select": "^1.0.0-rc.5",
+    "react-spinkit": "^3.0.0",
     "react-virtualized": "^9.8.0"
   }
 }

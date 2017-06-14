@@ -3,8 +3,9 @@
 import React from 'react';
 import GetDataConfigurationComponent from './GetDataConfigurationComponent';
 import GetDataTableComponent from './GetDataTableComponent';
-
 import { Button, Glyphicon } from 'react-bootstrap'
+
+import LoadIndicatorComponent from '../LoadIndicatorComponent';
 
 require('react-virtualized/styles.css');
 require('styles//GetDataDemo.css');
@@ -25,6 +26,7 @@ class GetDataDemoComponent extends React.Component {
   }
 
   loadFromTableau() {
+    debugger;
     let allSheets = tableau.addIn.dashboardContent.getDashboard().getWorksheets();
     const sheetNames = allSheets.map((sheet) => sheet.getName());
     var settingsString = tableau.addIn.settings.get('getDataSettings');
@@ -124,7 +126,7 @@ class GetDataDemoComponent extends React.Component {
 
   render() {
     if (this.state.loading) {
-      return(<div>Loading</div>)
+      return(<LoadIndicatorComponent msg='Loading Data' />);
     } else {
       const summary = (this.state.settings && this.state.settings.sheetName) ? (
         <div className='getDataSummary'>
@@ -136,8 +138,7 @@ class GetDataDemoComponent extends React.Component {
             <span className='interesting'>{this.state.settings.sheetName}</span>
             {' worksheet'}
           </div>
-          <Button bsSize='link' onClick={this.onConfigureClicked.bind(this)}>Configure</Button>
-          
+          <Button bsStyle='link' onClick={this.onConfigureClicked.bind(this)}>Configure</Button>
         </div>
       ) : null;
 

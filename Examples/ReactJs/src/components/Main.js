@@ -5,6 +5,7 @@ import React from 'react';
 import SettingsDemoComponent from './SettingsDemo/SettingsDemoComponent';
 import EnvironmentDemoComponent from './EnvironmentDemo/EnvironmentDemoComponent'
 import GetDataDemoComponent from './GetDataDemo/GetDataDemoComponent';
+import LoadIndicatorComponent from './LoadIndicatorComponent';
 
 /*global tableau*/
 
@@ -18,8 +19,6 @@ class AppComponent extends React.Component {
   }
 
   componentWillMount() {
-    debugger;
-    debugger;
     // Once we have mounted, we call to initialize our add-in
     let initialziePromise = tableau.addIn.initializeAsync();
     if (initialziePromise) {
@@ -36,7 +35,7 @@ class AppComponent extends React.Component {
   render() {
     if (this.state.isInitializing) {
       return (<div className="container">
-        <h1>Initializing</h1>
+        <LoadIndicatorComponent msg={'Initializing'} />
       </div>)
     }
 
