@@ -11,7 +11,7 @@ class LoadIndicatorComponent extends React.Component {
     return (
       <div className='loadingIndicator'>
         <h3>{this.props.msg}</h3>
-        <Spinner name='three-bounce'  fadeIn='none' />
+        <Spinner name='three-bounce' fadeIn='none' />
       </div>
     );
   }
@@ -19,6 +19,6 @@ class LoadIndicatorComponent extends React.Component {
 
 LoadIndicatorComponent.displayName = 'LoadIndicatorComponent';
 
-LoadIndicatorComponent.propTypes = {msg: PropTypes.string.isRequired};
+LoadIndicatorComponent.propTypes = { msg: PropTypes.string.isRequired };
 
 export default LoadIndicatorComponent;

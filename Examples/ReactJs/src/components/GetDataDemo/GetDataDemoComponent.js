@@ -26,7 +26,6 @@ class GetDataDemoComponent extends React.Component {
   }
 
   loadFromTableau() {
-    debugger;
     let allSheets = tableau.addIn.dashboardContent.getDashboard().getWorksheets();
     const sheetNames = allSheets.map((sheet) => sheet.getName());
     var settingsString = tableau.addIn.settings.get('getDataSettings');
@@ -74,7 +73,7 @@ class GetDataDemoComponent extends React.Component {
         dataKey: 'formattedValue'
       }));
 
-      const rows = dataTable.getData() ;
+      const rows = dataTable.getData();
 
       this.setState({
         columns: columns,
@@ -126,11 +125,11 @@ class GetDataDemoComponent extends React.Component {
 
   render() {
     if (this.state.loading) {
-      return(<LoadIndicatorComponent msg='Loading Data' />);
+      return (<LoadIndicatorComponent msg='Loading Data' />);
     } else {
       const summary = (this.state.settings && this.state.settings.sheetName) ? (
         <div className='getDataSummary'>
-          <Button bsSize='link' onClick={() => this.getData(this.state.settings)}><Glyphicon glyph='refresh'/></Button>
+          <Button bsSize='link' onClick={() => this.getData(this.state.settings)}><Glyphicon glyph='refresh' /></Button>
           <div className='description'>
             {'Displaying '}
             <span className='interesting'>{this.state.rows.length}</span>
@@ -142,7 +141,7 @@ class GetDataDemoComponent extends React.Component {
         </div>
       ) : null;
 
-    return (
+      return (
         <div className="getdatademo-component">
           <GetDataConfigurationComponent
             show={this.state.showingDialog}

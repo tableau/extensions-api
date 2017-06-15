@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Table, Button} from 'react-bootstrap';
+import { Table, Button } from 'react-bootstrap';
 
 require('styles//SettingsTable.css');
 
@@ -10,11 +10,11 @@ class SettingsTableComponent extends React.Component {
   buildSettings() {
     var settingsRows = this.props.settingsValues.map((pair, index) => {
       return (
-      <tr key={index}>
-        <td>{pair.key}</td>
-        <td>{pair.value}</td>
-        <td><Button bsStyle='danger' onClick={this.props.onDeleteClicked.bind(null, pair.key)}>Delete</Button></td>
-      </tr>
+        <tr key={index}>
+          <td>{pair.key}</td>
+          <td>{pair.value}</td>
+          <td><Button bsStyle='danger' onClick={this.props.onDeleteClicked.bind(null, pair.key)}>Delete</Button></td>
+        </tr>
       )
     });
 
@@ -44,9 +44,9 @@ class SettingsTableComponent extends React.Component {
 
 SettingsTableComponent.displayName = 'SettingsTableComponent';
 
-// Uncomment properties you need
 SettingsTableComponent.propTypes = {
   settingsValues: PropTypes.array.isRequired,
-  onDeleteClicked: PropTypes.func.isRequired };
+  onDeleteClicked: PropTypes.func.isRequired
+};
 
 export default SettingsTableComponent;

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest manifest-version="0.1" xmlns="http://wwww.tableau.com/xml/addin_manifest">
-  <tableau-addin id="com.tableau.addin.localtest" addin-version="0.1.0">
+  <tableau-addin id="com.tableau.addin.hellofrelard" addin-version="0.1.0">
     <default-locale>en_US</default-locale>
     <name resource-id="name"/>
     <description>Simple Initialization Sample</description>

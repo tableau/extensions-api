@@ -23,12 +23,12 @@ class SettingsDemoComponent extends React.Component {
     var allSettings = tableau.addIn.settings.getAll();
     var rows = [];
     for (var key in allSettings) {
-        rows.push({
-            key: key,
-            value: allSettings[key]
-        });
+      rows.push({
+        key: key,
+        value: allSettings[key]
+      });
     }
-    
+
     this.setState({
       settingsValues: rows,
       isModified: tableau.addIn.settings.isModified()
@@ -58,19 +58,19 @@ class SettingsDemoComponent extends React.Component {
   render() {
     return (
       <div className="container">
-            <div>
-            <h2>Frelard Settings Demo</h2>
-            <p>This sample demonstrates the ability to add, update, delete, and save the settings values of an add-in instance.</p>
-            </div>
-            <SettingsTableComponent settingsValues={this.state.settingsValues} onDeleteClicked={this.deleteSetting.bind(this)} />
-          
-            <AddSettingsComponent onAddOrUpdateSetting={this.addOrUpdateNewSetting.bind(this)} />
-          
-          <br />
-            <Button bsStyle='primary' onClick={this.saveSettings.bind(this)} block disabled={!this.state.isModified}>
-              {this.state.isModified ? 'Save Changes' : 'No Changes To Save'}
-            </Button>
-          
+        <div>
+          <h2>Frelard Settings Demo</h2>
+          <p>This sample demonstrates the ability to add, update, delete, and save the settings values of an add-in instance.</p>
+        </div>
+        <SettingsTableComponent settingsValues={this.state.settingsValues} onDeleteClicked={this.deleteSetting.bind(this)} />
+
+        <AddSettingsComponent onAddOrUpdateSetting={this.addOrUpdateNewSetting.bind(this)} />
+
+        <br />
+        <Button bsStyle='primary' onClick={this.saveSettings.bind(this)} block disabled={!this.state.isModified}>
+          {this.state.isModified ? 'Save Changes' : 'No Changes To Save'}
+        </Button>
+
       </div>
     );
   }

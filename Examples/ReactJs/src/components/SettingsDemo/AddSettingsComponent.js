@@ -16,7 +16,7 @@ class AddSettingsComponent extends React.Component {
   }
 
   handleChange(e) {
-     const name = e.target.name;
+    const name = e.target.name;
 
     this.setState({
       [name]: e.target.value

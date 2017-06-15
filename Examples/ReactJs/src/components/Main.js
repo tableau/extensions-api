@@ -59,7 +59,6 @@ class AppComponent extends React.Component {
       default:
         return (<h1>Unknown hash {this.props.hash}</h1>);
     }
-
   }
 }
 

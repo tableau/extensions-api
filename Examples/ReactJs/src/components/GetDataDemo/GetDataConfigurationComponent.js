@@ -57,7 +57,7 @@ class GetDataConfigurationComponent extends React.Component {
   }
 
   render() {
-    const sheetNames = this.props.sheetNames.map((name) => ({'value': name, 'label': name}));
+    const sheetNames = this.props.sheetNames.map((name) => ({ 'value': name, 'label': name }));
 
     return (
       <Modal show={this.props.show} >
@@ -74,13 +74,13 @@ class GetDataConfigurationComponent extends React.Component {
                 value={this.state.sheetName}
                 options={sheetNames}
                 onChange={this.sheetNameChange.bind(this)}
-                />
+              />
             </FormGroup>
             <FormGroup controlId="formInlineType">
               <ControlLabel>Data Type:</ControlLabel>
               <FormGroup>
                 <Radio name="dataType" value='summary' onChange={this.typeChange.bind(this)} inline checked={this.state.type == 'summary'}>Summary Data</Radio>
-                  {' '}
+                {' '}
                 <Radio name="dataType" value='underlying' onChange={this.typeChange.bind(this)} inline checked={this.state.type == 'underlying'}>Underlying Data</Radio>
               </FormGroup>
             </FormGroup>
@@ -91,19 +91,19 @@ class GetDataConfigurationComponent extends React.Component {
             </FormGroup>
             <FormGroup controlId="maxRows">
               <ControlLabel>Max Rows</ControlLabel>
-                <FormControl
-                  
-                  type="number"
-                  placeholder="10000"
-                  value={this.state.maxRows == '0' ? '' : this.state.maxRows}
-                  onChange={this.maxRowsChanged.bind(this)}
-                />
-              </FormGroup>
+              <FormControl
+
+                type="number"
+                placeholder="10000"
+                value={this.state.maxRows == '0' ? '' : this.state.maxRows}
+                onChange={this.maxRowsChanged.bind(this)}
+              />
+            </FormGroup>
           </Form>
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={this.props.onCancelClick}>Close</Button>
-          <Button bsStyle='primary' onClick={this.saveClicked.bind(this)}  disabled={!this.getAndValidateSettings()}>Save</Button>
+          <Button bsStyle='primary' onClick={this.saveClicked.bind(this)} disabled={!this.getAndValidateSettings()}>Save</Button>
         </Modal.Footer>
       </Modal>
     );
