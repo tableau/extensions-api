@@ -5,6 +5,7 @@ import React from 'react';
 import SettingsDemoComponent from './SettingsDemo/SettingsDemoComponent';
 import EnvironmentDemoComponent from './EnvironmentDemo/EnvironmentDemoComponent'
 import GetDataDemoComponent from './GetDataDemo/GetDataDemoComponent';
+import SelectedMarksDemoComponent from './SelectedMarksDemo/SelectedMarksDemoComponent'
 import LoadIndicatorComponent from './LoadIndicatorComponent';
 
 /*global tableau*/
@@ -20,7 +21,7 @@ class AppComponent extends React.Component {
 
   componentWillMount() {
     // Once we have mounted, we call to initialize our add-in
-    let initialziePromise = tableau.addIn.initializeAsync();
+    let initialziePromise = tabEx.addIn.initializeAsync();
     if (initialziePromise) {
       initialziePromise.then(() => {
         this.setState({
@@ -55,6 +56,10 @@ class AppComponent extends React.Component {
       case '#getData':
         return (
           <GetDataDemoComponent />
+        )
+      case '#selectedMarks':
+        return (
+          <SelectedMarksDemoComponent />
         )
       default:
         return (<h1>Unknown hash {this.props.hash}</h1>);
