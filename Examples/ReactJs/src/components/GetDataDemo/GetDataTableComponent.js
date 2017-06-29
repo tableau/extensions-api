@@ -43,6 +43,7 @@ class GetDataTableComponent extends React.Component {
       <AutoSizer>
         {({ height, width }) => (
           <MultiGrid
+            key={this.props.dataKey || -1}
             fixedRowCount={1}
             className='grid'
             cellRenderer={cellRenderer}
@@ -63,7 +64,8 @@ GetDataTableComponent.displayName = 'GetDataTableComponent';
 
 GetDataTableComponent.propTypes = {
   rows: PropTypes.array.isRequired,
-  headers: PropTypes.array.isRequired
+  headers: PropTypes.array.isRequired,
+  dataKey: PropTypes.number
 };
 
 export default GetDataTableComponent;

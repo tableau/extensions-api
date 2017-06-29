@@ -27,7 +27,8 @@ class SelectedMarksDemoComponent extends React.Component {
 
     const result = {
       rows: rows,
-      cols: cols
+      cols: cols,
+      dataKey: Math.random()
     };
 
     this.setState({
@@ -73,9 +74,11 @@ class SelectedMarksDemoComponent extends React.Component {
     let markCount = 0;
     let rows = [];
     let cols = [];
+    let dataKey = -1;
     if (sheetState) {
       rows = sheetState.rows;
       cols = sheetState.cols;
+      dataKey = sheetState.dataKey;
       markCount = rows.length;
     }
 
@@ -87,7 +90,7 @@ class SelectedMarksDemoComponent extends React.Component {
       // const cols = selectedMarks[0].getPairs().map((pair => { return { 'label' : pair.fieldName}; }));
       table = (
         <div className='dataTable'>
-          <GetDataTableComponent rows={rows} headers={cols} />
+          <GetDataTableComponent dataKey={dataKey} rows={rows} headers={cols} />
         </div>);
     } else {
       table = (<div className='dataTable'><p>No Marks Selected</p></div>);
