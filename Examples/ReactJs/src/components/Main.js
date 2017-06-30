@@ -21,7 +21,7 @@ class AppComponent extends React.Component {
 
   componentWillMount() {
     // Once we have mounted, we call to initialize our add-in
-    let initialziePromise = tabEx.addIn.initializeAsync();
+    let initialziePromise = tableau.addIn.initializeAsync();
     if (initialziePromise) {
       initialziePromise.then(() => {
         this.setState({

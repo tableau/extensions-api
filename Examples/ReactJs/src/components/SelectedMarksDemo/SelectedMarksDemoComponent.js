@@ -7,7 +7,7 @@ import GetDataTableComponent from '../GetDataDemo/GetDataTableComponent';
 
 require('styles//SelectedMarksDemo.css');
 
-/*global tabEx*/
+/*global tableau*/
 
 class SelectedMarksDemoComponent extends React.Component {
   constructor(props) {
@@ -46,7 +46,7 @@ class SelectedMarksDemoComponent extends React.Component {
   }
 
   reload() {
-    let allSheets = tabEx.addIn.dashboardContent.getDashboard().getWorksheets();
+    let allSheets = tableau.addIn.dashboardContent.getDashboard().getWorksheets();
     const sheets = allSheets.map((sheet) => sheet.getName());
 
     console.log(sheets);
@@ -62,7 +62,7 @@ class SelectedMarksDemoComponent extends React.Component {
         this.handleSelectedMarks(selectedMarks, sheetName, false);
       });
 
-      sheet.getEventListenerManager().addEventListener(tabEx.TableauEventName.MARKS_SELECTION, this.selectionChangedEvent);
+      sheet.getEventListenerManager().addEventListener(tableau.TableauEventName.MARKS_SELECTION, this.selectionChangedEvent);
     }
   }
 

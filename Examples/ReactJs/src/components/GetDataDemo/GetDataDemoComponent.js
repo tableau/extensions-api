@@ -10,7 +10,7 @@ import LoadIndicatorComponent from '../LoadIndicatorComponent';
 require('react-virtualized/styles.css');
 require('styles//GetDataDemo.css');
 
-/*global tabEx*/
+/*global tableau*/
 
 class GetDataDemoComponent extends React.Component {
   constructor(props) {
@@ -26,9 +26,9 @@ class GetDataDemoComponent extends React.Component {
   }
 
   loadFromTableau() {
-    let allSheets = tabEx.addIn.dashboardContent.getDashboard().getWorksheets();
+    let allSheets = tableau.addIn.dashboardContent.getDashboard().getWorksheets();
     const sheetNames = allSheets.map((sheet) => sheet.getName());
-    var settingsString = tabEx.addIn.settings.get('getDataSettings');
+    var settingsString = tableau.addIn.settings.get('getDataSettings');
     if (!!settingsString) {
       const settings = JSON.parse(settingsString);
       this.setState({
@@ -55,7 +55,7 @@ class GetDataDemoComponent extends React.Component {
     // Here's where we actually use the getData API
 
     // First find the worksheet in the list of worksheets
-    const sheet = tabEx.addIn.dashboardContent.getDashboard().getWorksheets().find(
+    const sheet = tableau.addIn.dashboardContent.getDashboard().getWorksheets().find(
       (sheet) => sheet.getName() == settings.sheetName);
 
     if (!sheet) {
@@ -97,14 +97,14 @@ class GetDataDemoComponent extends React.Component {
 
   onSaveDialog(settings) {
     // Persist the saved settings into the workbook
-    tabEx.addIn.settings.set('getDataSettings', JSON.stringify(settings));
+    tableau.addIn.settings.set('getDataSettings', JSON.stringify(settings));
     this.setState({
       showingDialog: false,
       loading: true,
       settings: settings
     });
 
-    tabEx.addIn.settings.saveAsync().then(() => {
+    tableau.addIn.settings.saveAsync().then(() => {
       // After we save, we should reload the data table with our settings
       this.getData(settings);
     });
