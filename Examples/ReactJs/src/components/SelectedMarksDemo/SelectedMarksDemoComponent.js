@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import { Button, Tabs, Tab } from 'react-bootstrap'
+import { Tabs, Tab } from 'react-bootstrap'
 
 import GetDataTableComponent from '../GetDataDemo/GetDataTableComponent';
 
@@ -38,7 +38,6 @@ class SelectedMarksDemoComponent extends React.Component {
   }
 
   onSelectionChanged(marksEvent) {
-    console.log("changed");
     const sheetName = marksEvent.getWorksheet().getName();
     marksEvent.getMarksAsync().then((selectedMarks) => {
       this.handleSelectedMarks(selectedMarks, sheetName, true);
@@ -48,8 +47,6 @@ class SelectedMarksDemoComponent extends React.Component {
   reload() {
     let allSheets = tableau.addIn.dashboardContent.getDashboard().getWorksheets();
     const sheets = allSheets.map((sheet) => sheet.getName());
-
-    console.log(sheets);
 
     this.setState({
       sheets: sheets
@@ -97,7 +94,7 @@ class SelectedMarksDemoComponent extends React.Component {
     }
 
     return (
-      <Tab key={sheetName} eventKey={sheetName} title={sheetName + " (" + markCount + ")"}>
+      <Tab key={sheetName} eventKey={sheetName} title={sheetName + ' (' + markCount + ')'}>
         {table}
       </Tab>);
   }
