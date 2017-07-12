@@ -435,6 +435,7 @@ if (typeof module === 'object') {
 
 (function() {
 
+  // Core requires jquery to be included
 /*! jQuery v3.0.0 | (c) jQuery Foundation | jquery.org/license */
 !function(a,b){"use strict";"object"==typeof module&&"object"==typeof module.exports?module.exports=a.document?b(a,!0):function(a){if(!a.document)throw new Error("jQuery requires a window with a document");return b(a)}:b(a)}("undefined"!=typeof window?window:this,function(a,b){"use strict";var c=[],d=a.document,e=Object.getPrototypeOf,f=c.slice,g=c.concat,h=c.push,i=c.indexOf,j={},k=j.toString,l=j.hasOwnProperty,m=l.toString,n=m.call(Object),o={};function p(a,b){b=b||d;var c=b.createElement("script");c.text=a,b.head.appendChild(c).parentNode.removeChild(c)}var q="3.0.0",r=function(a,b){return new r.fn.init(a,b)},s=/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g,t=/^-ms-/,u=/-([a-z])/g,v=function(a,b){return b.toUpperCase()};r.fn=r.prototype={jquery:q,constructor:r,length:0,toArray:function(){return f.call(this)},get:function(a){return null!=a?0>a?this[a+this.length]:this[a]:f.call(this)},pushStack:function(a){var b=r.merge(this.constructor(),a);return b.prevObject=this,b},each:function(a){return r.each(this,a)},map:function(a){return this.pushStack(r.map(this,function(b,c){return a.call(b,c,b)}))},slice:function(){return this.pushStack(f.apply(this,arguments))},first:function(){return this.eq(0)},last:function(){return this.eq(-1)},eq:function(a){var b=this.length,c=+a+(0>a?b:0);return this.pushStack(c>=0&&b>c?[this[c]]:[])},end:function(){return this.prevObject||this.constructor()},push:h,sort:c.sort,splice:c.splice},r.extend=r.fn.extend=function(){var a,b,c,d,e,f,g=arguments[0]||{},h=1,i=arguments.length,j=!1;for("boolean"==typeof g&&(j=g,g=arguments[h]||{},h++),"object"==typeof g||r.isFunction(g)||(g={}),h===i&&(g=this,h--);i>h;h++)if(null!=(a=arguments[h]))for(b in a)c=g[b],d=a[b],g!==d&&(j&&d&&(r.isPlainObject(d)||(e=r.isArray(d)))?(e?(e=!1,f=c&&r.isArray(c)?c:[]):f=c&&r.isPlainObject(c)?c:{},g[b]=r.extend(j,f,d)):void 0!==d&&(g[b]=d));return g},r.extend({expando:"jQuery"+(q+Math.random()).replace(/\D/g,""),isReady:!0,error:function(a){throw new Error(a)},noop:function(){},isFunction:function(a){return"function"===r.type(a)},isArray:Array.isArray,isWindow:function(a){return null!=a&&a===a.window},isNumeric:function(a){var b=r.type(a);return("number"===b||"string"===b)&&!isNaN(a-parseFloat(a))},isPlainObject:function(a){var b,c;return a&&"[object Object]"===k.call(a)?(b=e(a))?(c=l.call(b,"constructor")&&b.constructor,"function"==typeof c&&m.call(c)===n):!0:!1},isEmptyObject:function(a){var b;for(b in a)return!1;return!0},type:function(a){return null==a?a+"":"object"==typeof a||"function"==typeof a?j[k.call(a)]||"object":typeof a},globalEval:function(a){p(a)},camelCase:function(a){return a.replace(t,"ms-").replace(u,v)},nodeName:function(a,b){return a.nodeName&&a.nodeName.toLowerCase()===b.toLowerCase()},each:function(a,b){var c,d=0;if(w(a)){for(c=a.length;c>d;d++)if(b.call(a[d],d,a[d])===!1)break}else for(d in a)if(b.call(a[d],d,a[d])===!1)break;return a},trim:function(a){return null==a?"":(a+"").replace(s,"")},makeArray:function(a,b){var c=b||[];return null!=a&&(w(Object(a))?r.merge(c,"string"==typeof a?[a]:a):h.call(c,a)),c},inArray:function(a,b,c){return null==b?-1:i.call(b,a,c)},merge:function(a,b){for(var c=+b.length,d=0,e=a.length;c>d;d++)a[e++]=b[d];return a.length=e,a},grep:function(a,b,c){for(var d,e=[],f=0,g=a.length,h=!c;g>f;f++)d=!b(a[f],f),d!==h&&e.push(a[f]);return e},map:function(a,b,c){var d,e,f=0,h=[];if(w(a))for(d=a.length;d>f;f++)e=b(a[f],f,c),null!=e&&h.push(e);else for(f in a)e=b(a[f],f,c),null!=e&&h.push(e);return g.apply([],h)},guid:1,proxy:function(a,b){var c,d,e;return"string"==typeof b&&(c=a[b],b=a,a=c),r.isFunction(a)?(d=f.call(arguments,2),e=function(){return a.apply(b||this,d.concat(f.call(arguments)))},e.guid=a.guid=a.guid||r.guid++,e):void 0},now:Date.now,support:o}),"function"==typeof Symbol&&(r.fn[Symbol.iterator]=c[Symbol.iterator]),r.each("Boolean Number String Function Array Date RegExp Object Error Symbol".split(" "),function(a,b){j["[object "+b+"]"]=b.toLowerCase()});function w(a){var b=!!a&&"length"in a&&a.length,c=r.type(a);return"function"===c||r.isWindow(a)?!1:"array"===c||0===b||"number"==typeof b&&b>0&&b-1 in a}var x=function(a){var b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u="sizzle"+1*new Date,v=a.document,w=0,x=0,y=ha(),z=ha(),A=ha(),B=function(a,b){return a===b&&(l=!0),0},C={}.hasOwnProperty,D=[],E=D.pop,F=D.push,G=D.push,H=D.slice,I=function(a,b){for(var c=0,d=a.length;d>c;c++)if(a[c]===b)return c;return-1},J="checked|selected|async|autofocus|autoplay|controls|defer|disabled|hidden|ismap|loop|multiple|open|readonly|required|scoped",K="[\\x20\\t\\r\\n\\f]",L="(?:\\\\.|[\\w-]|[^\x00-\\xa0])+",M="\\["+K+"*("+L+")(?:"+K+"*([*^$|!~]?=)"+K+"*(?:'((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\"|("+L+"))|)"+K+"*\\]",N=":("+L+")(?:\\((('((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\")|((?:\\\\.|[^\\\\()[\\]]|"+M+")*)|.*)\\)|)",O=new RegExp(K+"+","g"),P=new RegExp("^"+K+"+|((?:^|[^\\\\])(?:\\\\.)*)"+K+"+$","g"),Q=new RegExp("^"+K+"*,"+K+"*"),R=new RegExp("^"+K+"*([>+~]|"+K+")"+K+"*"),S=new RegExp("="+K+"*([^\\]'\"]*?)"+K+"*\\]","g"),T=new RegExp(N),U=new RegExp("^"+L+"$"),V={ID:new RegExp("^#("+L+")"),CLASS:new RegExp("^\\.("+L+")"),TAG:new RegExp("^("+L+"|[*])"),ATTR:new RegExp("^"+M),PSEUDO:new RegExp("^"+N),CHILD:new RegExp("^:(only|first|last|nth|nth-last)-(child|of-type)(?:\\("+K+"*(even|odd|(([+-]|)(\\d*)n|)"+K+"*(?:([+-]|)"+K+"*(\\d+)|))"+K+"*\\)|)","i"),bool:new RegExp("^(?:"+J+")$","i"),needsContext:new RegExp("^"+K+"*[>+~]|:(even|odd|eq|gt|lt|nth|first|last)(?:\\("+K+"*((?:-\\d)?\\d*)"+K+"*\\)|)(?=[^-]|$)","i")},W=/^(?:input|select|textarea|button)$/i,X=/^h\d$/i,Y=/^[^{]+\{\s*\[native \w/,Z=/^(?:#([\w-]+)|(\w+)|\.([\w-]+))$/,$=/[+~]/,_=new RegExp("\\\\([\\da-f]{1,6}"+K+"?|("+K+")|.)","ig"),aa=function(a,b,c){var d="0x"+b-65536;return d!==d||c?b:0>d?String.fromCharCode(d+65536):String.fromCharCode(d>>10|55296,1023&d|56320)},ba=/([\0-\x1f\x7f]|^-?\d)|^-$|[^\x80-\uFFFF\w-]/g,ca=function(a,b){return b?"\x00"===a?"\ufffd":a.slice(0,-1)+"\\"+a.charCodeAt(a.length-1).toString(16)+" ":"\\"+a},da=function(){m()},ea=ta(function(a){return a.disabled===!0},{dir:"parentNode",next:"legend"});try{G.apply(D=H.call(v.childNodes),v.childNodes),D[v.childNodes.length].nodeType}catch(fa){G={apply:D.length?function(a,b){F.apply(a,H.call(b))}:function(a,b){var c=a.length,d=0;while(a[c++]=b[d++]);a.length=c-1}}}function ga(a,b,d,e){var f,h,j,k,l,o,r,s=b&&b.ownerDocument,w=b?b.nodeType:9;if(d=d||[],"string"!=typeof a||!a||1!==w&&9!==w&&11!==w)return d;if(!e&&((b?b.ownerDocument||b:v)!==n&&m(b),b=b||n,p)){if(11!==w&&(l=Z.exec(a)))if(f=l[1]){if(9===w){if(!(j=b.getElementById(f)))return d;if(j.id===f)return d.push(j),d}else if(s&&(j=s.getElementById(f))&&t(b,j)&&j.id===f)return d.push(j),d}else{if(l[2])return G.apply(d,b.getElementsByTagName(a)),d;if((f=l[3])&&c.getElementsByClassName&&b.getElementsByClassName)return G.apply(d,b.getElementsByClassName(f)),d}if(c.qsa&&!A[a+" "]&&(!q||!q.test(a))){if(1!==w)s=b,r=a;else if("object"!==b.nodeName.toLowerCase()){(k=b.getAttribute("id"))?k=k.replace(ba,ca):b.setAttribute("id",k=u),o=g(a),h=o.length;while(h--)o[h]="#"+k+" "+sa(o[h]);r=o.join(","),s=$.test(a)&&qa(b.parentNode)||b}if(r)try{return G.apply(d,s.querySelectorAll(r)),d}catch(x){}finally{k===u&&b.removeAttribute("id")}}}return i(a.replace(P,"$1"),b,d,e)}function ha(){var a=[];function b(c,e){return a.push(c+" ")>d.cacheLength&&delete b[a.shift()],b[c+" "]=e}return b}function ia(a){return a[u]=!0,a}function ja(a){var b=n.createElement("fieldset");try{return!!a(b)}catch(c){return!1}finally{b.parentNode&&b.parentNode.removeChild(b),b=null}}function ka(a,b){var c=a.split("|"),e=c.length;while(e--)d.attrHandle[c[e]]=b}function la(a,b){var c=b&&a,d=c&&1===a.nodeType&&1===b.nodeType&&a.sourceIndex-b.sourceIndex;if(d)return d;if(c)while(c=c.nextSibling)if(c===b)return-1;return a?1:-1}function ma(a){return function(b){var c=b.nodeName.toLowerCase();return"input"===c&&b.type===a}}function na(a){return function(b){var c=b.nodeName.toLowerCase();return("input"===c||"button"===c)&&b.type===a}}function oa(a){return function(b){return"label"in b&&b.disabled===a||"form"in b&&b.disabled===a||"form"in b&&b.disabled===!1&&(b.isDisabled===a||b.isDisabled!==!a&&("label"in b||!ea(b))!==a)}}function pa(a){return ia(function(b){return b=+b,ia(function(c,d){var e,f=a([],c.length,b),g=f.length;while(g--)c[e=f[g]]&&(c[e]=!(d[e]=c[e]))})})}function qa(a){return a&&"undefined"!=typeof a.getElementsByTagName&&a}c=ga.support={},f=ga.isXML=function(a){var b=a&&(a.ownerDocument||a).documentElement;return b?"HTML"!==b.nodeName:!1},m=ga.setDocument=function(a){var b,e,g=a?a.ownerDocument||a:v;return g!==n&&9===g.nodeType&&g.documentElement?(n=g,o=n.documentElement,p=!f(n),v!==n&&(e=n.defaultView)&&e.top!==e&&(e.addEventListener?e.addEventListener("unload",da,!1):e.attachEvent&&e.attachEvent("onunload",da)),c.attributes=ja(function(a){return a.className="i",!a.getAttribute("className")}),c.getElementsByTagName=ja(function(a){return a.appendChild(n.createComment("")),!a.getElementsByTagName("*").length}),c.getElementsByClassName=Y.test(n.getElementsByClassName),c.getById=ja(function(a){return o.appendChild(a).id=u,!n.getElementsByName||!n.getElementsByName(u).length}),c.getById?(d.find.ID=function(a,b){if("undefined"!=typeof b.getElementById&&p){var c=b.getElementById(a);return c?[c]:[]}},d.filter.ID=function(a){var b=a.replace(_,aa);return function(a){return a.getAttribute("id")===b}}):(delete d.find.ID,d.filter.ID=function(a){var b=a.replace(_,aa);return function(a){var c="undefined"!=typeof a.getAttributeNode&&a.getAttributeNode("id");return c&&c.value===b}}),d.find.TAG=c.getElementsByTagName?function(a,b){return"undefined"!=typeof b.getElementsByTagName?b.getElementsByTagName(a):c.qsa?b.querySelectorAll(a):void 0}:function(a,b){var c,d=[],e=0,f=b.getElementsByTagName(a);if("*"===a){while(c=f[e++])1===c.nodeType&&d.push(c);return d}return f},d.find.CLASS=c.getElementsByClassName&&function(a,b){return"undefined"!=typeof b.getElementsByClassName&&p?b.getElementsByClassName(a):void 0},r=[],q=[],(c.qsa=Y.test(n.querySelectorAll))&&(ja(function(a){o.appendChild(a).innerHTML="<a id='"+u+"'></a><select id='"+u+"-\r\\' msallowcapture=''><option selected=''></option></select>",a.querySelectorAll("[msallowcapture^='']").length&&q.push("[*^$]="+K+"*(?:''|\"\")"),a.querySelectorAll("[selected]").length||q.push("\\["+K+"*(?:value|"+J+")"),a.querySelectorAll("[id~="+u+"-]").length||q.push("~="),a.querySelectorAll(":checked").length||q.push(":checked"),a.querySelectorAll("a#"+u+"+*").length||q.push(".#.+[+~]")}),ja(function(a){a.innerHTML="<a href='' disabled='disabled'></a><select disabled='disabled'><option/></select>";var b=n.createElement("input");b.setAttribute("type","hidden"),a.appendChild(b).setAttribute("name","D"),a.querySelectorAll("[name=d]").length&&q.push("name"+K+"*[*^$|!~]?="),2!==a.querySelectorAll(":enabled").length&&q.push(":enabled",":disabled"),o.appendChild(a).disabled=!0,2!==a.querySelectorAll(":disabled").length&&q.push(":enabled",":disabled"),a.querySelectorAll("*,:x"),q.push(",.*:")})),(c.matchesSelector=Y.test(s=o.matches||o.webkitMatchesSelector||o.mozMatchesSelector||o.oMatchesSelector||o.msMatchesSelector))&&ja(function(a){c.disconnectedMatch=s.call(a,"*"),s.call(a,"[s!='']:x"),r.push("!=",N)}),q=q.length&&new RegExp(q.join("|")),r=r.length&&new RegExp(r.join("|")),b=Y.test(o.compareDocumentPosition),t=b||Y.test(o.contains)?function(a,b){var c=9===a.nodeType?a.documentElement:a,d=b&&b.parentNode;return a===d||!(!d||1!==d.nodeType||!(c.contains?c.contains(d):a.compareDocumentPosition&&16&a.compareDocumentPosition(d)))}:function(a,b){if(b)while(b=b.parentNode)if(b===a)return!0;return!1},B=b?function(a,b){if(a===b)return l=!0,0;var d=!a.compareDocumentPosition-!b.compareDocumentPosition;return d?d:(d=(a.ownerDocument||a)===(b.ownerDocument||b)?a.compareDocumentPosition(b):1,1&d||!c.sortDetached&&b.compareDocumentPosition(a)===d?a===n||a.ownerDocument===v&&t(v,a)?-1:b===n||b.ownerDocument===v&&t(v,b)?1:k?I(k,a)-I(k,b):0:4&d?-1:1)}:function(a,b){if(a===b)return l=!0,0;var c,d=0,e=a.parentNode,f=b.parentNode,g=[a],h=[b];if(!e||!f)return a===n?-1:b===n?1:e?-1:f?1:k?I(k,a)-I(k,b):0;if(e===f)return la(a,b);c=a;while(c=c.parentNode)g.unshift(c);c=b;while(c=c.parentNode)h.unshift(c);while(g[d]===h[d])d++;return d?la(g[d],h[d]):g[d]===v?-1:h[d]===v?1:0},n):n},ga.matches=function(a,b){return ga(a,null,null,b)},ga.matchesSelector=function(a,b){if((a.ownerDocument||a)!==n&&m(a),b=b.replace(S,"='$1']"),c.matchesSelector&&p&&!A[b+" "]&&(!r||!r.test(b))&&(!q||!q.test(b)))try{var d=s.call(a,b);if(d||c.disconnectedMatch||a.document&&11!==a.document.nodeType)return d}catch(e){}return ga(b,n,null,[a]).length>0},ga.contains=function(a,b){return(a.ownerDocument||a)!==n&&m(a),t(a,b)},ga.attr=function(a,b){(a.ownerDocument||a)!==n&&m(a);var e=d.attrHandle[b.toLowerCase()],f=e&&C.call(d.attrHandle,b.toLowerCase())?e(a,b,!p):void 0;return void 0!==f?f:c.attributes||!p?a.getAttribute(b):(f=a.getAttributeNode(b))&&f.specified?f.value:null},ga.escape=function(a){return(a+"").replace(ba,ca)},ga.error=function(a){throw new Error("Syntax error, unrecognized expression: "+a)},ga.uniqueSort=function(a){var b,d=[],e=0,f=0;if(l=!c.detectDuplicates,k=!c.sortStable&&a.slice(0),a.sort(B),l){while(b=a[f++])b===a[f]&&(e=d.push(f));while(e--)a.splice(d[e],1)}return k=null,a},e=ga.getText=function(a){var b,c="",d=0,f=a.nodeType;if(f){if(1===f||9===f||11===f){if("string"==typeof a.textContent)return a.textContent;for(a=a.firstChild;a;a=a.nextSibling)c+=e(a)}else if(3===f||4===f)return a.nodeValue}else while(b=a[d++])c+=e(b);return c},d=ga.selectors={cacheLength:50,createPseudo:ia,match:V,attrHandle:{},find:{},relative:{">":{dir:"parentNode",first:!0}," ":{dir:"parentNode"},"+":{dir:"previousSibling",first:!0},"~":{dir:"previousSibling"}},preFilter:{ATTR:function(a){return a[1]=a[1].replace(_,aa),a[3]=(a[3]||a[4]||a[5]||"").replace(_,aa),"~="===a[2]&&(a[3]=" "+a[3]+" "),a.slice(0,4)},CHILD:function(a){return a[1]=a[1].toLowerCase(),"nth"===a[1].slice(0,3)?(a[3]||ga.error(a[0]),a[4]=+(a[4]?a[5]+(a[6]||1):2*("even"===a[3]||"odd"===a[3])),a[5]=+(a[7]+a[8]||"odd"===a[3])):a[3]&&ga.error(a[0]),a},PSEUDO:function(a){var b,c=!a[6]&&a[2];return V.CHILD.test(a[0])?null:(a[3]?a[2]=a[4]||a[5]||"":c&&T.test(c)&&(b=g(c,!0))&&(b=c.indexOf(")",c.length-b)-c.length)&&(a[0]=a[0].slice(0,b),a[2]=c.slice(0,b)),a.slice(0,3))}},filter:{TAG:function(a){var b=a.replace(_,aa).toLowerCase();return"*"===a?function(){return!0}:function(a){return a.nodeName&&a.nodeName.toLowerCase()===b}},CLASS:function(a){var b=y[a+" "];return b||(b=new RegExp("(^|"+K+")"+a+"("+K+"|$)"))&&y(a,function(a){return b.test("string"==typeof a.className&&a.className||"undefined"!=typeof a.getAttribute&&a.getAttribute("class")||"")})},ATTR:function(a,b,c){return function(d){var e=ga.attr(d,a);return null==e?"!="===b:b?(e+="","="===b?e===c:"!="===b?e!==c:"^="===b?c&&0===e.indexOf(c):"*="===b?c&&e.indexOf(c)>-1:"$="===b?c&&e.slice(-c.length)===c:"~="===b?(" "+e.replace(O," ")+" ").indexOf(c)>-1:"|="===b?e===c||e.slice(0,c.length+1)===c+"-":!1):!0}},CHILD:function(a,b,c,d,e){var f="nth"!==a.slice(0,3),g="last"!==a.slice(-4),h="of-type"===b;return 1===d&&0===e?function(a){return!!a.parentNode}:function(b,c,i){var j,k,l,m,n,o,p=f!==g?"nextSibling":"previousSibling",q=b.parentNode,r=h&&b.nodeName.toLowerCase(),s=!i&&!h,t=!1;if(q){if(f){while(p){m=b;while(m=m[p])if(h?m.nodeName.toLowerCase()===r:1===m.nodeType)return!1;o=p="only"===a&&!o&&"nextSibling"}return!0}if(o=[g?q.firstChild:q.lastChild],g&&s){m=q,l=m[u]||(m[u]={}),k=l[m.uniqueID]||(l[m.uniqueID]={}),j=k[a]||[],n=j[0]===w&&j[1],t=n&&j[2],m=n&&q.childNodes[n];while(m=++n&&m&&m[p]||(t=n=0)||o.pop())if(1===m.nodeType&&++t&&m===b){k[a]=[w,n,t];break}}else if(s&&(m=b,l=m[u]||(m[u]={}),k=l[m.uniqueID]||(l[m.uniqueID]={}),j=k[a]||[],n=j[0]===w&&j[1],t=n),t===!1)while(m=++n&&m&&m[p]||(t=n=0)||o.pop())if((h?m.nodeName.toLowerCase()===r:1===m.nodeType)&&++t&&(s&&(l=m[u]||(m[u]={}),k=l[m.uniqueID]||(l[m.uniqueID]={}),k[a]=[w,t]),m===b))break;return t-=e,t===d||t%d===0&&t/d>=0}}},PSEUDO:function(a,b){var c,e=d.pseudos[a]||d.setFilters[a.toLowerCase()]||ga.error("unsupported pseudo: "+a);return e[u]?e(b):e.length>1?(c=[a,a,"",b],d.setFilters.hasOwnProperty(a.toLowerCase())?ia(function(a,c){var d,f=e(a,b),g=f.length;while(g--)d=I(a,f[g]),a[d]=!(c[d]=f[g])}):function(a){return e(a,0,c)}):e}},pseudos:{not:ia(function(a){var b=[],c=[],d=h(a.replace(P,"$1"));return d[u]?ia(function(a,b,c,e){var f,g=d(a,null,e,[]),h=a.length;while(h--)(f=g[h])&&(a[h]=!(b[h]=f))}):function(a,e,f){return b[0]=a,d(b,null,f,c),b[0]=null,!c.pop()}}),has:ia(function(a){return function(b){return ga(a,b).length>0}}),contains:ia(function(a){return a=a.replace(_,aa),function(b){return(b.textContent||b.innerText||e(b)).indexOf(a)>-1}}),lang:ia(function(a){return U.test(a||"")||ga.error("unsupported lang: "+a),a=a.replace(_,aa).toLowerCase(),function(b){var c;do if(c=p?b.lang:b.getAttribute("xml:lang")||b.getAttribute("lang"))return c=c.toLowerCase(),c===a||0===c.indexOf(a+"-");while((b=b.parentNode)&&1===b.nodeType);return!1}}),target:function(b){var c=a.location&&a.location.hash;return c&&c.slice(1)===b.id},root:function(a){return a===o},focus:function(a){return a===n.activeElement&&(!n.hasFocus||n.hasFocus())&&!!(a.type||a.href||~a.tabIndex)},enabled:oa(!1),disabled:oa(!0),checked:function(a){var b=a.nodeName.toLowerCase();return"input"===b&&!!a.checked||"option"===b&&!!a.selected},selected:function(a){return a.parentNode&&a.parentNode.selectedIndex,a.selected===!0},empty:function(a){for(a=a.firstChild;a;a=a.nextSibling)if(a.nodeType<6)return!1;return!0},parent:function(a){return!d.pseudos.empty(a)},header:function(a){return X.test(a.nodeName)},input:function(a){return W.test(a.nodeName)},button:function(a){var b=a.nodeName.toLowerCase();return"input"===b&&"button"===a.type||"button"===b},text:function(a){var b;return"input"===a.nodeName.toLowerCase()&&"text"===a.type&&(null==(b=a.getAttribute("type"))||"text"===b.toLowerCase())},first:pa(function(){return[0]}),last:pa(function(a,b){return[b-1]}),eq:pa(function(a,b,c){return[0>c?c+b:c]}),even:pa(function(a,b){for(var c=0;b>c;c+=2)a.push(c);return a}),odd:pa(function(a,b){for(var c=1;b>c;c+=2)a.push(c);return a}),lt:pa(function(a,b,c){for(var d=0>c?c+b:c;--d>=0;)a.push(d);return a}),gt:pa(function(a,b,c){for(var d=0>c?c+b:c;++d<b;)a.push(d);return a})}},d.pseudos.nth=d.pseudos.eq;for(b in{radio:!0,checkbox:!0,file:!0,password:!0,image:!0})d.pseudos[b]=ma(b);for(b in{submit:!0,reset:!0})d.pseudos[b]=na(b);function ra(){}ra.prototype=d.filters=d.pseudos,d.setFilters=new ra,g=ga.tokenize=function(a,b){var c,e,f,g,h,i,j,k=z[a+" "];if(k)return b?0:k.slice(0);h=a,i=[],j=d.preFilter;while(h){c&&!(e=Q.exec(h))||(e&&(h=h.slice(e[0].length)||h),i.push(f=[])),c=!1,(e=R.exec(h))&&(c=e.shift(),f.push({value:c,type:e[0].replace(P," ")}),h=h.slice(c.length));for(g in d.filter)!(e=V[g].exec(h))||j[g]&&!(e=j[g](e))||(c=e.shift(),f.push({value:c,type:g,matches:e}),h=h.slice(c.length));if(!c)break}return b?h.length:h?ga.error(a):z(a,i).slice(0)};function sa(a){for(var b=0,c=a.length,d="";c>b;b++)d+=a[b].value;return d}function ta(a,b,c){var d=b.dir,e=b.next,f=e||d,g=c&&"parentNode"===f,h=x++;return b.first?function(b,c,e){while(b=b[d])if(1===b.nodeType||g)return a(b,c,e)}:function(b,c,i){var j,k,l,m=[w,h];if(i){while(b=b[d])if((1===b.nodeType||g)&&a(b,c,i))return!0}else while(b=b[d])if(1===b.nodeType||g)if(l=b[u]||(b[u]={}),k=l[b.uniqueID]||(l[b.uniqueID]={}),e&&e===b.nodeName.toLowerCase())b=b[d]||b;else{if((j=k[f])&&j[0]===w&&j[1]===h)return m[2]=j[2];if(k[f]=m,m[2]=a(b,c,i))return!0}}}function ua(a){return a.length>1?function(b,c,d){var e=a.length;while(e--)if(!a[e](b,c,d))return!1;return!0}:a[0]}function va(a,b,c){for(var d=0,e=b.length;e>d;d++)ga(a,b[d],c);return c}function wa(a,b,c,d,e){for(var f,g=[],h=0,i=a.length,j=null!=b;i>h;h++)(f=a[h])&&(c&&!c(f,d,e)||(g.push(f),j&&b.push(h)));return g}function xa(a,b,c,d,e,f){return d&&!d[u]&&(d=xa(d)),e&&!e[u]&&(e=xa(e,f)),ia(function(f,g,h,i){var j,k,l,m=[],n=[],o=g.length,p=f||va(b||"*",h.nodeType?[h]:h,[]),q=!a||!f&&b?p:wa(p,m,a,h,i),r=c?e||(f?a:o||d)?[]:g:q;if(c&&c(q,r,h,i),d){j=wa(r,n),d(j,[],h,i),k=j.length;while(k--)(l=j[k])&&(r[n[k]]=!(q[n[k]]=l))}if(f){if(e||a){if(e){j=[],k=r.length;while(k--)(l=r[k])&&j.push(q[k]=l);e(null,r=[],j,i)}k=r.length;while(k--)(l=r[k])&&(j=e?I(f,l):m[k])>-1&&(f[j]=!(g[j]=l))}}else r=wa(r===g?r.splice(o,r.length):r),e?e(null,g,r,i):G.apply(g,r)})}function ya(a){for(var b,c,e,f=a.length,g=d.relative[a[0].type],h=g||d.relative[" "],i=g?1:0,k=ta(function(a){return a===b},h,!0),l=ta(function(a){return I(b,a)>-1},h,!0),m=[function(a,c,d){var e=!g&&(d||c!==j)||((b=c).nodeType?k(a,c,d):l(a,c,d));return b=null,e}];f>i;i++)if(c=d.relative[a[i].type])m=[ta(ua(m),c)];else{if(c=d.filter[a[i].type].apply(null,a[i].matches),c[u]){for(e=++i;f>e;e++)if(d.relative[a[e].type])break;return xa(i>1&&ua(m),i>1&&sa(a.slice(0,i-1).concat({value:" "===a[i-2].type?"*":""})).replace(P,"$1"),c,e>i&&ya(a.slice(i,e)),f>e&&ya(a=a.slice(e)),f>e&&sa(a))}m.push(c)}return ua(m)}function za(a,b){var c=b.length>0,e=a.length>0,f=function(f,g,h,i,k){var l,o,q,r=0,s="0",t=f&&[],u=[],v=j,x=f||e&&d.find.TAG("*",k),y=w+=null==v?1:Math.random()||.1,z=x.length;for(k&&(j=g===n||g||k);s!==z&&null!=(l=x[s]);s++){if(e&&l){o=0,g||l.ownerDocument===n||(m(l),h=!p);while(q=a[o++])if(q(l,g||n,h)){i.push(l);break}k&&(w=y)}c&&((l=!q&&l)&&r--,f&&t.push(l))}if(r+=s,c&&s!==r){o=0;while(q=b[o++])q(t,u,g,h);if(f){if(r>0)while(s--)t[s]||u[s]||(u[s]=E.call(i));u=wa(u)}G.apply(i,u),k&&!f&&u.length>0&&r+b.length>1&&ga.uniqueSort(i)}return k&&(w=y,j=v),t};return c?ia(f):f}return h=ga.compile=function(a,b){var c,d=[],e=[],f=A[a+" "];if(!f){b||(b=g(a)),c=b.length;while(c--)f=ya(b[c]),f[u]?d.push(f):e.push(f);f=A(a,za(e,d)),f.selector=a}return f},i=ga.select=function(a,b,e,f){var i,j,k,l,m,n="function"==typeof a&&a,o=!f&&g(a=n.selector||a);if(e=e||[],1===o.length){if(j=o[0]=o[0].slice(0),j.length>2&&"ID"===(k=j[0]).type&&c.getById&&9===b.nodeType&&p&&d.relative[j[1].type]){if(b=(d.find.ID(k.matches[0].replace(_,aa),b)||[])[0],!b)return e;n&&(b=b.parentNode),a=a.slice(j.shift().value.length)}i=V.needsContext.test(a)?0:j.length;while(i--){if(k=j[i],d.relative[l=k.type])break;if((m=d.find[l])&&(f=m(k.matches[0].replace(_,aa),$.test(j[0].type)&&qa(b.parentNode)||b))){if(j.splice(i,1),a=f.length&&sa(j),!a)return G.apply(e,f),e;break}}}return(n||h(a,o))(f,b,!p,e,!b||$.test(a)&&qa(b.parentNode)||b),e},c.sortStable=u.split("").sort(B).join("")===u,c.detectDuplicates=!!l,m(),c.sortDetached=ja(function(a){return 1&a.compareDocumentPosition(n.createElement("fieldset"))}),ja(function(a){return a.innerHTML="<a href='#'></a>","#"===a.firstChild.getAttribute("href")})||ka("type|href|height|width",function(a,b,c){return c?void 0:a.getAttribute(b,"type"===b.toLowerCase()?1:2)}),c.attributes&&ja(function(a){return a.innerHTML="<input/>",a.firstChild.setAttribute("value",""),""===a.firstChild.getAttribute("value")})||ka("value",function(a,b,c){return c||"input"!==a.nodeName.toLowerCase()?void 0:a.defaultValue}),ja(function(a){return null==a.getAttribute("disabled")})||ka(J,function(a,b,c){var d;return c?void 0:a[b]===!0?b.toLowerCase():(d=a.getAttributeNode(b))&&d.specified?d.value:null}),ga}(a);r.find=x,r.expr=x.selectors,r.expr[":"]=r.expr.pseudos,r.uniqueSort=r.unique=x.uniqueSort,r.text=x.getText,r.isXMLDoc=x.isXML,r.contains=x.contains,r.escapeSelector=x.escape;var y=function(a,b,c){var d=[],e=void 0!==c;while((a=a[b])&&9!==a.nodeType)if(1===a.nodeType){if(e&&r(a).is(c))break;d.push(a)}return d},z=function(a,b){for(var c=[];a;a=a.nextSibling)1===a.nodeType&&a!==b&&c.push(a);return c},A=r.expr.match.needsContext,B=/^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i,C=/^.[^:#\[\.,]*$/;function D(a,b,c){if(r.isFunction(b))return r.grep(a,function(a,d){return!!b.call(a,d,a)!==c});if(b.nodeType)return r.grep(a,function(a){return a===b!==c});if("string"==typeof b){if(C.test(b))return r.filter(b,a,c);b=r.filter(b,a)}return r.grep(a,function(a){return i.call(b,a)>-1!==c&&1===a.nodeType})}r.filter=function(a,b,c){var d=b[0];return c&&(a=":not("+a+")"),1===b.length&&1===d.nodeType?r.find.matchesSelector(d,a)?[d]:[]:r.find.matches(a,r.grep(b,function(a){return 1===a.nodeType}))},r.fn.extend({find:function(a){var b,c,d=this.length,e=this;if("string"!=typeof a)return this.pushStack(r(a).filter(function(){for(b=0;d>b;b++)if(r.contains(e[b],this))return!0}));for(c=this.pushStack([]),b=0;d>b;b++)r.find(a,e[b],c);return d>1?r.uniqueSort(c):c},filter:function(a){return this.pushStack(D(this,a||[],!1))},not:function(a){return this.pushStack(D(this,a||[],!0))},is:function(a){return!!D(this,"string"==typeof a&&A.test(a)?r(a):a||[],!1).length}});var E,F=/^(?:\s*(<[\w\W]+>)[^>]*|#([\w-]+))$/,G=r.fn.init=function(a,b,c){var e,f;if(!a)return this;if(c=c||E,"string"==typeof a){if(e="<"===a[0]&&">"===a[a.length-1]&&a.length>=3?[null,a,null]:F.exec(a),!e||!e[1]&&b)return!b||b.jquery?(b||c).find(a):this.constructor(b).find(a);if(e[1]){if(b=b instanceof r?b[0]:b,r.merge(this,r.parseHTML(e[1],b&&b.nodeType?b.ownerDocument||b:d,!0)),B.test(e[1])&&r.isPlainObject(b))for(e in b)r.isFunction(this[e])?this[e](b[e]):this.attr(e,b[e]);return this}return f=d.getElementById(e[2]),f&&(this[0]=f,this.length=1),this}return a.nodeType?(this[0]=a,this.length=1,this):r.isFunction(a)?void 0!==c.ready?c.ready(a):a(r):r.makeArray(a,this)};G.prototype=r.fn,E=r(d);var H=/^(?:parents|prev(?:Until|All))/,I={children:!0,contents:!0,next:!0,prev:!0};r.fn.extend({has:function(a){var b=r(a,this),c=b.length;return this.filter(function(){for(var a=0;c>a;a++)if(r.contains(this,b[a]))return!0})},closest:function(a,b){var c,d=0,e=this.length,f=[],g="string"!=typeof a&&r(a);if(!A.test(a))for(;e>d;d++)for(c=this[d];c&&c!==b;c=c.parentNode)if(c.nodeType<11&&(g?g.index(c)>-1:1===c.nodeType&&r.find.matchesSelector(c,a))){f.push(c);break}return this.pushStack(f.length>1?r.uniqueSort(f):f)},index:function(a){return a?"string"==typeof a?i.call(r(a),this[0]):i.call(this,a.jquery?a[0]:a):this[0]&&this[0].parentNode?this.first().prevAll().length:-1},add:function(a,b){return this.pushStack(r.uniqueSort(r.merge(this.get(),r(a,b))))},addBack:function(a){return this.add(null==a?this.prevObject:this.prevObject.filter(a))}});function J(a,b){while((a=a[b])&&1!==a.nodeType);return a}r.each({parent:function(a){var b=a.parentNode;return b&&11!==b.nodeType?b:null},parents:function(a){return y(a,"parentNode")},parentsUntil:function(a,b,c){return y(a,"parentNode",c)},next:function(a){return J(a,"nextSibling")},prev:function(a){return J(a,"previousSibling")},nextAll:function(a){return y(a,"nextSibling")},prevAll:function(a){return y(a,"previousSibling")},nextUntil:function(a,b,c){return y(a,"nextSibling",c)},prevUntil:function(a,b,c){return y(a,"previousSibling",c)},siblings:function(a){return z((a.parentNode||{}).firstChild,a)},children:function(a){return z(a.firstChild)},contents:function(a){return a.contentDocument||r.merge([],a.childNodes)}},function(a,b){r.fn[a]=function(c,d){var e=r.map(this,b,c);return"Until"!==a.slice(-5)&&(d=c),d&&"string"==typeof d&&(e=r.filter(d,e)),this.length>1&&(I[a]||r.uniqueSort(e),H.test(a)&&e.reverse()),this.pushStack(e)}});var K=/\S+/g;function L(a){var b={};return r.each(a.match(K)||[],function(a,c){b[c]=!0}),b}r.Callbacks=function(a){a="string"==typeof a?L(a):r.extend({},a);var b,c,d,e,f=[],g=[],h=-1,i=function(){for(e=a.once,d=b=!0;g.length;h=-1){c=g.shift();while(++h<f.length)f[h].apply(c[0],c[1])===!1&&a.stopOnFalse&&(h=f.length,c=!1)}a.memory||(c=!1),b=!1,e&&(f=c?[]:"")},j={add:function(){return f&&(c&&!b&&(h=f.length-1,g.push(c)),function d(b){r.each(b,function(b,c){r.isFunction(c)?a.unique&&j.has(c)||f.push(c):c&&c.length&&"string"!==r.type(c)&&d(c)})}(arguments),c&&!b&&i()),this},remove:function(){return r.each(arguments,function(a,b){var c;while((c=r.inArray(b,f,c))>-1)f.splice(c,1),h>=c&&h--}),this},has:function(a){return a?r.inArray(a,f)>-1:f.length>0},empty:function(){return f&&(f=[]),this},disable:function(){return e=g=[],f=c="",this},disabled:function(){return!f},lock:function(){return e=g=[],c||b||(f=c=""),this},locked:function(){return!!e},fireWith:function(a,c){return e||(c=c||[],c=[a,c.slice?c.slice():c],g.push(c),b||i()),this},fire:function(){return j.fireWith(this,arguments),this},fired:function(){return!!d}};return j};function M(a){return a}function N(a){throw a}function O(a,b,c){var d;try{a&&r.isFunction(d=a.promise)?d.call(a).done(b).fail(c):a&&r.isFunction(d=a.then)?d.call(a,b,c):b.call(void 0,a)}catch(a){c.call(void 0,a)}}r.extend({Deferred:function(b){var c=[["notify","progress",r.Callbacks("memory"),r.Callbacks("memory"),2],["resolve","done",r.Callbacks("once memory"),r.Callbacks("once memory"),0,"resolved"],["reject","fail",r.Callbacks("once memory"),r.Callbacks("once memory"),1,"rejected"]],d="pending",e={state:function(){return d},always:function(){return f.done(arguments).fail(arguments),this},"catch":function(a){return e.then(null,a)},pipe:function(){var a=arguments;return r.Deferred(function(b){r.each(c,function(c,d){var e=r.isFunction(a[d[4]])&&a[d[4]];f[d[1]](function(){var a=e&&e.apply(this,arguments);a&&r.isFunction(a.promise)?a.promise().progress(b.notify).done(b.resolve).fail(b.reject):b[d[0]+"With"](this,e?[a]:arguments)})}),a=null}).promise()},then:function(b,d,e){var f=0;function g(b,c,d,e){return function(){var h=this,i=arguments,j=function(){var a,j;if(!(f>b)){if(a=d.apply(h,i),a===c.promise())throw new TypeError("Thenable self-resolution");j=a&&("object"==typeof a||"function"==typeof a)&&a.then,r.isFunction(j)?e?j.call(a,g(f,c,M,e),g(f,c,N,e)):(f++,j.call(a,g(f,c,M,e),g(f,c,N,e),g(f,c,M,c.notifyWith))):(d!==M&&(h=void 0,i=[a]),(e||c.resolveWith)(h,i))}},k=e?j:function(){try{j()}catch(a){r.Deferred.exceptionHook&&r.Deferred.exceptionHook(a,k.stackTrace),b+1>=f&&(d!==N&&(h=void 0,i=[a]),c.rejectWith(h,i))}};b?k():(r.Deferred.getStackHook&&(k.stackTrace=r.Deferred.getStackHook()),a.setTimeout(k))}}return r.Deferred(function(a){c[0][3].add(g(0,a,r.isFunction(e)?e:M,a.notifyWith)),c[1][3].add(g(0,a,r.isFunction(b)?b:M)),c[2][3].add(g(0,a,r.isFunction(d)?d:N))}).promise()},promise:function(a){return null!=a?r.extend(a,e):e}},f={};return r.each(c,function(a,b){var g=b[2],h=b[5];e[b[1]]=g.add,h&&g.add(function(){d=h},c[3-a][2].disable,c[0][2].lock),g.add(b[3].fire),f[b[0]]=function(){return f[b[0]+"With"](this===f?void 0:this,arguments),this},f[b[0]+"With"]=g.fireWith}),e.promise(f),b&&b.call(f,f),f},when:function(a){var b=arguments.length,c=b,d=Array(c),e=f.call(arguments),g=r.Deferred(),h=function(a){return function(c){d[a]=this,e[a]=arguments.length>1?f.call(arguments):c,--b||g.resolveWith(d,e)}};if(1>=b&&(O(a,g.done(h(c)).resolve,g.reject),"pending"===g.state()||r.isFunction(e[c]&&e[c].then)))return g.then();while(c--)O(e[c],h(c),g.reject);return g.promise()}});var P=/^(Eval|Internal|Range|Reference|Syntax|Type|URI)Error$/;r.Deferred.exceptionHook=function(b,c){a.console&&a.console.warn&&b&&P.test(b.name)&&a.console.warn("jQuery.Deferred exception: "+b.message,b.stack,c)};var Q=r.Deferred();r.fn.ready=function(a){return Q.then(a),this},r.extend({isReady:!1,readyWait:1,holdReady:function(a){a?r.readyWait++:r.ready(!0)},ready:function(a){(a===!0?--r.readyWait:r.isReady)||(r.isReady=!0,a!==!0&&--r.readyWait>0||Q.resolveWith(d,[r]))}}),r.ready.then=Q.then;function R(){d.removeEventListener("DOMContentLoaded",R),a.removeEventListener("load",R),r.ready()}"complete"===d.readyState||"loading"!==d.readyState&&!d.documentElement.doScroll?a.setTimeout(r.ready):(d.addEventListener("DOMContentLoaded",R),a.addEventListener("load",R));var S=function(a,b,c,d,e,f,g){var h=0,i=a.length,j=null==c;if("object"===r.type(c)){e=!0;for(h in c)S(a,b,h,c[h],!0,f,g)}else if(void 0!==d&&(e=!0,r.isFunction(d)||(g=!0),j&&(g?(b.call(a,d),b=null):(j=b,b=function(a,b,c){
 return j.call(r(a),c)})),b))for(;i>h;h++)b(a[h],c,g?d:d.call(a[h],h,b(a[h],c)));return e?a:j?b.call(a):i?b(a[0],c):f},T=function(a){return 1===a.nodeType||9===a.nodeType||!+a.nodeType};function U(){this.expando=r.expando+U.uid++}U.uid=1,U.prototype={cache:function(a){var b=a[this.expando];return b||(b={},T(a)&&(a.nodeType?a[this.expando]=b:Object.defineProperty(a,this.expando,{value:b,configurable:!0}))),b},set:function(a,b,c){var d,e=this.cache(a);if("string"==typeof b)e[r.camelCase(b)]=c;else for(d in b)e[r.camelCase(d)]=b[d];return e},get:function(a,b){return void 0===b?this.cache(a):a[this.expando]&&a[this.expando][r.camelCase(b)]},access:function(a,b,c){return void 0===b||b&&"string"==typeof b&&void 0===c?this.get(a,b):(this.set(a,b,c),void 0!==c?c:b)},remove:function(a,b){var c,d=a[this.expando];if(void 0!==d){if(void 0!==b){r.isArray(b)?b=b.map(r.camelCase):(b=r.camelCase(b),b=b in d?[b]:b.match(K)||[]),c=b.length;while(c--)delete d[b[c]]}(void 0===b||r.isEmptyObject(d))&&(a.nodeType?a[this.expando]=void 0:delete a[this.expando])}},hasData:function(a){var b=a[this.expando];return void 0!==b&&!r.isEmptyObject(b)}};var V=new U,W=new U,X=/^(?:\{[\w\W]*\}|\[[\w\W]*\])$/,Y=/[A-Z]/g;function Z(a,b,c){var d;if(void 0===c&&1===a.nodeType)if(d="data-"+b.replace(Y,"-$&").toLowerCase(),c=a.getAttribute(d),"string"==typeof c){try{c="true"===c?!0:"false"===c?!1:"null"===c?null:+c+""===c?+c:X.test(c)?JSON.parse(c):c}catch(e){}W.set(a,b,c)}else c=void 0;return c}r.extend({hasData:function(a){return W.hasData(a)||V.hasData(a)},data:function(a,b,c){return W.access(a,b,c)},removeData:function(a,b){W.remove(a,b)},_data:function(a,b,c){return V.access(a,b,c)},_removeData:function(a,b){V.remove(a,b)}}),r.fn.extend({data:function(a,b){var c,d,e,f=this[0],g=f&&f.attributes;if(void 0===a){if(this.length&&(e=W.get(f),1===f.nodeType&&!V.get(f,"hasDataAttrs"))){c=g.length;while(c--)g[c]&&(d=g[c].name,0===d.indexOf("data-")&&(d=r.camelCase(d.slice(5)),Z(f,d,e[d])));V.set(f,"hasDataAttrs",!0)}return e}return"object"==typeof a?this.each(function(){W.set(this,a)}):S(this,function(b){var c;if(f&&void 0===b){if(c=W.get(f,a),void 0!==c)return c;if(c=Z(f,a),void 0!==c)return c}else this.each(function(){W.set(this,a,b)})},null,b,arguments.length>1,null,!0)},removeData:function(a){return this.each(function(){W.remove(this,a)})}}),r.extend({queue:function(a,b,c){var d;return a?(b=(b||"fx")+"queue",d=V.get(a,b),c&&(!d||r.isArray(c)?d=V.access(a,b,r.makeArray(c)):d.push(c)),d||[]):void 0},dequeue:function(a,b){b=b||"fx";var c=r.queue(a,b),d=c.length,e=c.shift(),f=r._queueHooks(a,b),g=function(){r.dequeue(a,b)};"inprogress"===e&&(e=c.shift(),d--),e&&("fx"===b&&c.unshift("inprogress"),delete f.stop,e.call(a,g,f)),!d&&f&&f.empty.fire()},_queueHooks:function(a,b){var c=b+"queueHooks";return V.get(a,c)||V.access(a,c,{empty:r.Callbacks("once memory").add(function(){V.remove(a,[b+"queue",c])})})}}),r.fn.extend({queue:function(a,b){var c=2;return"string"!=typeof a&&(b=a,a="fx",c--),arguments.length<c?r.queue(this[0],a):void 0===b?this:this.each(function(){var c=r.queue(this,a,b);r._queueHooks(this,a),"fx"===a&&"inprogress"!==c[0]&&r.dequeue(this,a)})},dequeue:function(a){return this.each(function(){r.dequeue(this,a)})},clearQueue:function(a){return this.queue(a||"fx",[])},promise:function(a,b){var c,d=1,e=r.Deferred(),f=this,g=this.length,h=function(){--d||e.resolveWith(f,[f])};"string"!=typeof a&&(b=a,a=void 0),a=a||"fx";while(g--)c=V.get(f[g],a+"queueHooks"),c&&c.empty&&(d++,c.empty.add(h));return h(),e.promise(b)}});var $=/[+-]?(?:\d*\.|)\d+(?:[eE][+-]?\d+|)/.source,_=new RegExp("^(?:([+-])=|)("+$+")([a-z%]*)$","i"),aa=["Top","Right","Bottom","Left"],ba=function(a,b){return a=b||a,"none"===a.style.display||""===a.style.display&&r.contains(a.ownerDocument,a)&&"none"===r.css(a,"display")},ca=function(a,b,c,d){var e,f,g={};for(f in b)g[f]=a.style[f],a.style[f]=b[f];e=c.apply(a,d||[]);for(f in b)a.style[f]=g[f];return e};function da(a,b,c,d){var e,f=1,g=20,h=d?function(){return d.cur()}:function(){return r.css(a,b,"")},i=h(),j=c&&c[3]||(r.cssNumber[b]?"":"px"),k=(r.cssNumber[b]||"px"!==j&&+i)&&_.exec(r.css(a,b));if(k&&k[3]!==j){j=j||k[3],c=c||[],k=+i||1;do f=f||".5",k/=f,r.style(a,b,k+j);while(f!==(f=h()/i)&&1!==f&&--g)}return c&&(k=+k||+i||0,e=c[1]?k+(c[1]+1)*c[2]:+c[2],d&&(d.unit=j,d.start=k,d.end=e)),e}var ea={};function fa(a){var b,c=a.ownerDocument,d=a.nodeName,e=ea[d];return e?e:(b=c.body.appendChild(c.createElement(d)),e=r.css(b,"display"),b.parentNode.removeChild(b),"none"===e&&(e="block"),ea[d]=e,e)}function ga(a,b){for(var c,d,e=[],f=0,g=a.length;g>f;f++)d=a[f],d.style&&(c=d.style.display,b?("none"===c&&(e[f]=V.get(d,"display")||null,e[f]||(d.style.display="")),""===d.style.display&&ba(d)&&(e[f]=fa(d))):"none"!==c&&(e[f]="none",V.set(d,"display",c)));for(f=0;g>f;f++)null!=e[f]&&(a[f].style.display=e[f]);return a}r.fn.extend({show:function(){return ga(this,!0)},hide:function(){return ga(this)},toggle:function(a){return"boolean"==typeof a?a?this.show():this.hide():this.each(function(){ba(this)?r(this).show():r(this).hide()})}});var ha=/^(?:checkbox|radio)$/i,ia=/<([a-z][^\/\0>\x20\t\r\n\f]+)/i,ja=/^$|\/(?:java|ecma)script/i,ka={option:[1,"<select multiple='multiple'>","</select>"],thead:[1,"<table>","</table>"],col:[2,"<table><colgroup>","</colgroup></table>"],tr:[2,"<table><tbody>","</tbody></table>"],td:[3,"<table><tbody><tr>","</tr></tbody></table>"],_default:[0,"",""]};ka.optgroup=ka.option,ka.tbody=ka.tfoot=ka.colgroup=ka.caption=ka.thead,ka.th=ka.td;function la(a,b){var c="undefined"!=typeof a.getElementsByTagName?a.getElementsByTagName(b||"*"):"undefined"!=typeof a.querySelectorAll?a.querySelectorAll(b||"*"):[];return void 0===b||b&&r.nodeName(a,b)?r.merge([a],c):c}function ma(a,b){for(var c=0,d=a.length;d>c;c++)V.set(a[c],"globalEval",!b||V.get(b[c],"globalEval"))}var na=/<|&#?\w+;/;function oa(a,b,c,d,e){for(var f,g,h,i,j,k,l=b.createDocumentFragment(),m=[],n=0,o=a.length;o>n;n++)if(f=a[n],f||0===f)if("object"===r.type(f))r.merge(m,f.nodeType?[f]:f);else if(na.test(f)){g=g||l.appendChild(b.createElement("div")),h=(ia.exec(f)||["",""])[1].toLowerCase(),i=ka[h]||ka._default,g.innerHTML=i[1]+r.htmlPrefilter(f)+i[2],k=i[0];while(k--)g=g.lastChild;r.merge(m,g.childNodes),g=l.firstChild,g.textContent=""}else m.push(b.createTextNode(f));l.textContent="",n=0;while(f=m[n++])if(d&&r.inArray(f,d)>-1)e&&e.push(f);else if(j=r.contains(f.ownerDocument,f),g=la(l.appendChild(f),"script"),j&&ma(g),c){k=0;while(f=g[k++])ja.test(f.type||"")&&c.push(f)}return l}!function(){var a=d.createDocumentFragment(),b=a.appendChild(d.createElement("div")),c=d.createElement("input");c.setAttribute("type","radio"),c.setAttribute("checked","checked"),c.setAttribute("name","t"),b.appendChild(c),o.checkClone=b.cloneNode(!0).cloneNode(!0).lastChild.checked,b.innerHTML="<textarea>x</textarea>",o.noCloneChecked=!!b.cloneNode(!0).lastChild.defaultValue}();var pa=d.documentElement,qa=/^key/,ra=/^(?:mouse|pointer|contextmenu|drag|drop)|click/,sa=/^([^.]*)(?:\.(.+)|)/;function ta(){return!0}function ua(){return!1}function va(){try{return d.activeElement}catch(a){}}function wa(a,b,c,d,e,f){var g,h;if("object"==typeof b){"string"!=typeof c&&(d=d||c,c=void 0);for(h in b)wa(a,h,c,d,b[h],f);return a}if(null==d&&null==e?(e=c,d=c=void 0):null==e&&("string"==typeof c?(e=d,d=void 0):(e=d,d=c,c=void 0)),e===!1)e=ua;else if(!e)return a;return 1===f&&(g=e,e=function(a){return r().off(a),g.apply(this,arguments)},e.guid=g.guid||(g.guid=r.guid++)),a.each(function(){r.event.add(this,b,e,d,c)})}r.event={global:{},add:function(a,b,c,d,e){var f,g,h,i,j,k,l,m,n,o,p,q=V.get(a);if(q){c.handler&&(f=c,c=f.handler,e=f.selector),e&&r.find.matchesSelector(pa,e),c.guid||(c.guid=r.guid++),(i=q.events)||(i=q.events={}),(g=q.handle)||(g=q.handle=function(b){return"undefined"!=typeof r&&r.event.triggered!==b.type?r.event.dispatch.apply(a,arguments):void 0}),b=(b||"").match(K)||[""],j=b.length;while(j--)h=sa.exec(b[j])||[],n=p=h[1],o=(h[2]||"").split(".").sort(),n&&(l=r.event.special[n]||{},n=(e?l.delegateType:l.bindType)||n,l=r.event.special[n]||{},k=r.extend({type:n,origType:p,data:d,handler:c,guid:c.guid,selector:e,needsContext:e&&r.expr.match.needsContext.test(e),namespace:o.join(".")},f),(m=i[n])||(m=i[n]=[],m.delegateCount=0,l.setup&&l.setup.call(a,d,o,g)!==!1||a.addEventListener&&a.addEventListener(n,g)),l.add&&(l.add.call(a,k),k.handler.guid||(k.handler.guid=c.guid)),e?m.splice(m.delegateCount++,0,k):m.push(k),r.event.global[n]=!0)}},remove:function(a,b,c,d,e){var f,g,h,i,j,k,l,m,n,o,p,q=V.hasData(a)&&V.get(a);if(q&&(i=q.events)){b=(b||"").match(K)||[""],j=b.length;while(j--)if(h=sa.exec(b[j])||[],n=p=h[1],o=(h[2]||"").split(".").sort(),n){l=r.event.special[n]||{},n=(d?l.delegateType:l.bindType)||n,m=i[n]||[],h=h[2]&&new RegExp("(^|\\.)"+o.join("\\.(?:.*\\.|)")+"(\\.|$)"),g=f=m.length;while(f--)k=m[f],!e&&p!==k.origType||c&&c.guid!==k.guid||h&&!h.test(k.namespace)||d&&d!==k.selector&&("**"!==d||!k.selector)||(m.splice(f,1),k.selector&&m.delegateCount--,l.remove&&l.remove.call(a,k));g&&!m.length&&(l.teardown&&l.teardown.call(a,o,q.handle)!==!1||r.removeEvent(a,n,q.handle),delete i[n])}else for(n in i)r.event.remove(a,n+b[j],c,d,!0);r.isEmptyObject(i)&&V.remove(a,"handle events")}},dispatch:function(a){var b=r.event.fix(a),c,d,e,f,g,h,i=new Array(arguments.length),j=(V.get(this,"events")||{})[b.type]||[],k=r.event.special[b.type]||{};for(i[0]=b,c=1;c<arguments.length;c++)i[c]=arguments[c];if(b.delegateTarget=this,!k.preDispatch||k.preDispatch.call(this,b)!==!1){h=r.event.handlers.call(this,b,j),c=0;while((f=h[c++])&&!b.isPropagationStopped()){b.currentTarget=f.elem,d=0;while((g=f.handlers[d++])&&!b.isImmediatePropagationStopped())b.rnamespace&&!b.rnamespace.test(g.namespace)||(b.handleObj=g,b.data=g.data,e=((r.event.special[g.origType]||{}).handle||g.handler).apply(f.elem,i),void 0!==e&&(b.result=e)===!1&&(b.preventDefault(),b.stopPropagation()))}return k.postDispatch&&k.postDispatch.call(this,b),b.result}},handlers:function(a,b){var c,d,e,f,g=[],h=b.delegateCount,i=a.target;if(h&&i.nodeType&&("click"!==a.type||isNaN(a.button)||a.button<1))for(;i!==this;i=i.parentNode||this)if(1===i.nodeType&&(i.disabled!==!0||"click"!==a.type)){for(d=[],c=0;h>c;c++)f=b[c],e=f.selector+" ",void 0===d[e]&&(d[e]=f.needsContext?r(e,this).index(i)>-1:r.find(e,this,null,[i]).length),d[e]&&d.push(f);d.length&&g.push({elem:i,handlers:d})}return h<b.length&&g.push({elem:this,handlers:b.slice(h)}),g},addProp:function(a,b){Object.defineProperty(r.Event.prototype,a,{enumerable:!0,configurable:!0,get:r.isFunction(b)?function(){return this.originalEvent?b(this.originalEvent):void 0}:function(){return this.originalEvent?this.originalEvent[a]:void 0},set:function(b){Object.defineProperty(this,a,{enumerable:!0,configurable:!0,writable:!0,value:b})}})},fix:function(a){return a[r.expando]?a:new r.Event(a)},special:{load:{noBubble:!0},focus:{trigger:function(){return this!==va()&&this.focus?(this.focus(),!1):void 0},delegateType:"focusin"},blur:{trigger:function(){return this===va()&&this.blur?(this.blur(),!1):void 0},delegateType:"focusout"},click:{trigger:function(){return"checkbox"===this.type&&this.click&&r.nodeName(this,"input")?(this.click(),!1):void 0},_default:function(a){return r.nodeName(a.target,"a")}},beforeunload:{postDispatch:function(a){void 0!==a.result&&a.originalEvent&&(a.originalEvent.returnValue=a.result)}}}},r.removeEvent=function(a,b,c){a.removeEventListener&&a.removeEventListener(b,c)},r.Event=function(a,b){return this instanceof r.Event?(a&&a.type?(this.originalEvent=a,this.type=a.type,this.isDefaultPrevented=a.defaultPrevented||void 0===a.defaultPrevented&&a.returnValue===!1?ta:ua,this.target=a.target&&3===a.target.nodeType?a.target.parentNode:a.target,this.currentTarget=a.currentTarget,this.relatedTarget=a.relatedTarget):this.type=a,b&&r.extend(this,b),this.timeStamp=a&&a.timeStamp||r.now(),void(this[r.expando]=!0)):new r.Event(a,b)},r.Event.prototype={constructor:r.Event,isDefaultPrevented:ua,isPropagationStopped:ua,isImmediatePropagationStopped:ua,isSimulated:!1,preventDefault:function(){var a=this.originalEvent;this.isDefaultPrevented=ta,a&&!this.isSimulated&&a.preventDefault()},stopPropagation:function(){var a=this.originalEvent;this.isPropagationStopped=ta,a&&!this.isSimulated&&a.stopPropagation()},stopImmediatePropagation:function(){var a=this.originalEvent;this.isImmediatePropagationStopped=ta,a&&!this.isSimulated&&a.stopImmediatePropagation(),this.stopPropagation()}},r.each({altKey:!0,bubbles:!0,cancelable:!0,changedTouches:!0,ctrlKey:!0,detail:!0,eventPhase:!0,metaKey:!0,pageX:!0,pageY:!0,shiftKey:!0,view:!0,"char":!0,charCode:!0,key:!0,keyCode:!0,button:!0,buttons:!0,clientX:!0,clientY:!0,offsetX:!0,offsetY:!0,pointerId:!0,pointerType:!0,screenX:!0,screenY:!0,targetTouches:!0,toElement:!0,touches:!0,which:function(a){var b=a.button;return null==a.which&&qa.test(a.type)?null!=a.charCode?a.charCode:a.keyCode:!a.which&&void 0!==b&&ra.test(a.type)?1&b?1:2&b?3:4&b?2:0:a.which}},r.event.addProp),r.each({mouseenter:"mouseover",mouseleave:"mouseout",pointerenter:"pointerover",pointerleave:"pointerout"},function(a,b){r.event.special[a]={delegateType:b,bindType:b,handle:function(a){var c,d=this,e=a.relatedTarget,f=a.handleObj;return e&&(e===d||r.contains(d,e))||(a.type=f.origType,c=f.handler.apply(this,arguments),a.type=b),c}}}),r.fn.extend({on:function(a,b,c,d){return wa(this,a,b,c,d)},one:function(a,b,c,d){return wa(this,a,b,c,d,1)},off:function(a,b,c){var d,e;if(a&&a.preventDefault&&a.handleObj)return d=a.handleObj,r(a.delegateTarget).off(d.namespace?d.origType+"."+d.namespace:d.origType,d.selector,d.handler),this;if("object"==typeof a){for(e in a)this.off(e,b,a[e]);return this}return b!==!1&&"function"!=typeof b||(c=b,b=void 0),c===!1&&(c=ua),this.each(function(){r.event.remove(this,a,c,b)})}});var xa=/<(?!area|br|col|embed|hr|img|input|link|meta|param)(([a-z][^\/\0>\x20\t\r\n\f]*)[^>]*)\/>/gi,ya=/<script|<style|<link/i,za=/checked\s*(?:[^=]|=\s*.checked.)/i,Aa=/^true\/(.*)/,Ba=/^\s*<!(?:\[CDATA\[|--)|(?:\]\]|--)>\s*$/g;function Ca(a,b){return r.nodeName(a,"table")&&r.nodeName(11!==b.nodeType?b:b.firstChild,"tr")?a.getElementsByTagName("tbody")[0]||a:a}function Da(a){return a.type=(null!==a.getAttribute("type"))+"/"+a.type,a}function Ea(a){var b=Aa.exec(a.type);return b?a.type=b[1]:a.removeAttribute("type"),a}function Fa(a,b){var c,d,e,f,g,h,i,j;if(1===b.nodeType){if(V.hasData(a)&&(f=V.access(a),g=V.set(b,f),j=f.events)){delete g.handle,g.events={};for(e in j)for(c=0,d=j[e].length;d>c;c++)r.event.add(b,e,j[e][c])}W.hasData(a)&&(h=W.access(a),i=r.extend({},h),W.set(b,i))}}function Ga(a,b){var c=b.nodeName.toLowerCase();"input"===c&&ha.test(a.type)?b.checked=a.checked:"input"!==c&&"textarea"!==c||(b.defaultValue=a.defaultValue)}function Ha(a,b,c,d){b=g.apply([],b);var e,f,h,i,j,k,l=0,m=a.length,n=m-1,q=b[0],s=r.isFunction(q);if(s||m>1&&"string"==typeof q&&!o.checkClone&&za.test(q))return a.each(function(e){var f=a.eq(e);s&&(b[0]=q.call(this,e,f.html())),Ha(f,b,c,d)});if(m&&(e=oa(b,a[0].ownerDocument,!1,a,d),f=e.firstChild,1===e.childNodes.length&&(e=f),f||d)){for(h=r.map(la(e,"script"),Da),i=h.length;m>l;l++)j=e,l!==n&&(j=r.clone(j,!0,!0),i&&r.merge(h,la(j,"script"))),c.call(a[l],j,l);if(i)for(k=h[h.length-1].ownerDocument,r.map(h,Ea),l=0;i>l;l++)j=h[l],ja.test(j.type||"")&&!V.access(j,"globalEval")&&r.contains(k,j)&&(j.src?r._evalUrl&&r._evalUrl(j.src):p(j.textContent.replace(Ba,""),k))}return a}function Ia(a,b,c){for(var d,e=b?r.filter(b,a):a,f=0;null!=(d=e[f]);f++)c||1!==d.nodeType||r.cleanData(la(d)),d.parentNode&&(c&&r.contains(d.ownerDocument,d)&&ma(la(d,"script")),d.parentNode.removeChild(d));return a}r.extend({htmlPrefilter:function(a){return a.replace(xa,"<$1></$2>")},clone:function(a,b,c){var d,e,f,g,h=a.cloneNode(!0),i=r.contains(a.ownerDocument,a);if(!(o.noCloneChecked||1!==a.nodeType&&11!==a.nodeType||r.isXMLDoc(a)))for(g=la(h),f=la(a),d=0,e=f.length;e>d;d++)Ga(f[d],g[d]);if(b)if(c)for(f=f||la(a),g=g||la(h),d=0,e=f.length;e>d;d++)Fa(f[d],g[d]);else Fa(a,h);return g=la(h,"script"),g.length>0&&ma(g,!i&&la(a,"script")),h},cleanData:function(a){for(var b,c,d,e=r.event.special,f=0;void 0!==(c=a[f]);f++)if(T(c)){if(b=c[V.expando]){if(b.events)for(d in b.events)e[d]?r.event.remove(c,d):r.removeEvent(c,d,b.handle);c[V.expando]=void 0}c[W.expando]&&(c[W.expando]=void 0)}}}),r.fn.extend({detach:function(a){return Ia(this,a,!0)},remove:function(a){return Ia(this,a)},text:function(a){return S(this,function(a){return void 0===a?r.text(this):this.empty().each(function(){1!==this.nodeType&&11!==this.nodeType&&9!==this.nodeType||(this.textContent=a)})},null,a,arguments.length)},append:function(){return Ha(this,arguments,function(a){if(1===this.nodeType||11===this.nodeType||9===this.nodeType){var b=Ca(this,a);b.appendChild(a)}})},prepend:function(){return Ha(this,arguments,function(a){if(1===this.nodeType||11===this.nodeType||9===this.nodeType){var b=Ca(this,a);b.insertBefore(a,b.firstChild)}})},before:function(){return Ha(this,arguments,function(a){this.parentNode&&this.parentNode.insertBefore(a,this)})},after:function(){return Ha(this,arguments,function(a){this.parentNode&&this.parentNode.insertBefore(a,this.nextSibling)})},empty:function(){for(var a,b=0;null!=(a=this[b]);b++)1===a.nodeType&&(r.cleanData(la(a,!1)),a.textContent="");return this},clone:function(a,b){return a=null==a?!1:a,b=null==b?a:b,this.map(function(){return r.clone(this,a,b)})},html:function(a){return S(this,function(a){var b=this[0]||{},c=0,d=this.length;if(void 0===a&&1===b.nodeType)return b.innerHTML;if("string"==typeof a&&!ya.test(a)&&!ka[(ia.exec(a)||["",""])[1].toLowerCase()]){a=r.htmlPrefilter(a);try{for(;d>c;c++)b=this[c]||{},1===b.nodeType&&(r.cleanData(la(b,!1)),b.innerHTML=a);b=0}catch(e){}}b&&this.empty().append(a)},null,a,arguments.length)},replaceWith:function(){var a=[];return Ha(this,arguments,function(b){var c=this.parentNode;r.inArray(this,a)<0&&(r.cleanData(la(this)),c&&c.replaceChild(b,this))},a)}}),r.each({appendTo:"append",prependTo:"prepend",insertBefore:"before",insertAfter:"after",replaceAll:"replaceWith"},function(a,b){r.fn[a]=function(a){for(var c,d=[],e=r(a),f=e.length-1,g=0;f>=g;g++)c=g===f?this:this.clone(!0),r(e[g])[b](c),h.apply(d,c.get());return this.pushStack(d)}});var Ja=/^margin/,Ka=new RegExp("^("+$+")(?!px)[a-z%]+$","i"),La=function(b){var c=b.ownerDocument.defaultView;return c&&c.opener||(c=a),c.getComputedStyle(b)};!function(){function b(){if(i){i.style.cssText="box-sizing:border-box;position:relative;display:block;margin:auto;border:1px;padding:1px;top:1%;width:50%",i.innerHTML="",pa.appendChild(h);var b=a.getComputedStyle(i);c="1%"!==b.top,g="2px"===b.marginLeft,e="4px"===b.width,i.style.marginRight="50%",f="4px"===b.marginRight,pa.removeChild(h),i=null}}var c,e,f,g,h=d.createElement("div"),i=d.createElement("div");i.style&&(i.style.backgroundClip="content-box",i.cloneNode(!0).style.backgroundClip="",o.clearCloneStyle="content-box"===i.style.backgroundClip,h.style.cssText="border:0;width:8px;height:0;top:0;left:-9999px;padding:0;margin-top:1px;position:absolute",h.appendChild(i),r.extend(o,{pixelPosition:function(){return b(),c},boxSizingReliable:function(){return b(),e},pixelMarginRight:function(){return b(),f},reliableMarginLeft:function(){return b(),g}}))}();function Ma(a,b,c){var d,e,f,g,h=a.style;return c=c||La(a),c&&(g=c.getPropertyValue(b)||c[b],""!==g||r.contains(a.ownerDocument,a)||(g=r.style(a,b)),!o.pixelMarginRight()&&Ka.test(g)&&Ja.test(b)&&(d=h.width,e=h.minWidth,f=h.maxWidth,h.minWidth=h.maxWidth=h.width=g,g=c.width,h.width=d,h.minWidth=e,h.maxWidth=f)),void 0!==g?g+"":g}function Na(a,b){return{get:function(){return a()?void delete this.get:(this.get=b).apply(this,arguments)}}}var Oa=/^(none|table(?!-c[ea]).+)/,Pa={position:"absolute",visibility:"hidden",display:"block"},Qa={letterSpacing:"0",fontWeight:"400"},Ra=["Webkit","Moz","ms"],Sa=d.createElement("div").style;function Ta(a){if(a in Sa)return a;var b=a[0].toUpperCase()+a.slice(1),c=Ra.length;while(c--)if(a=Ra[c]+b,a in Sa)return a}function Ua(a,b,c){var d=_.exec(b);return d?Math.max(0,d[2]-(c||0))+(d[3]||"px"):b}function Va(a,b,c,d,e){for(var f=c===(d?"border":"content")?4:"width"===b?1:0,g=0;4>f;f+=2)"margin"===c&&(g+=r.css(a,c+aa[f],!0,e)),d?("content"===c&&(g-=r.css(a,"padding"+aa[f],!0,e)),"margin"!==c&&(g-=r.css(a,"border"+aa[f]+"Width",!0,e))):(g+=r.css(a,"padding"+aa[f],!0,e),"padding"!==c&&(g+=r.css(a,"border"+aa[f]+"Width",!0,e)));return g}function Wa(a,b,c){var d,e=!0,f=La(a),g="border-box"===r.css(a,"boxSizing",!1,f);if(a.getClientRects().length&&(d=a.getBoundingClientRect()[b]),0>=d||null==d){if(d=Ma(a,b,f),(0>d||null==d)&&(d=a.style[b]),Ka.test(d))return d;e=g&&(o.boxSizingReliable()||d===a.style[b]),d=parseFloat(d)||0}return d+Va(a,b,c||(g?"border":"content"),e,f)+"px"}r.extend({cssHooks:{opacity:{get:function(a,b){if(b){var c=Ma(a,"opacity");return""===c?"1":c}}}},cssNumber:{animationIterationCount:!0,columnCount:!0,fillOpacity:!0,flexGrow:!0,flexShrink:!0,fontWeight:!0,lineHeight:!0,opacity:!0,order:!0,orphans:!0,widows:!0,zIndex:!0,zoom:!0},cssProps:{"float":"cssFloat"},style:function(a,b,c,d){if(a&&3!==a.nodeType&&8!==a.nodeType&&a.style){var e,f,g,h=r.camelCase(b),i=a.style;return b=r.cssProps[h]||(r.cssProps[h]=Ta(h)||h),g=r.cssHooks[b]||r.cssHooks[h],void 0===c?g&&"get"in g&&void 0!==(e=g.get(a,!1,d))?e:i[b]:(f=typeof c,"string"===f&&(e=_.exec(c))&&e[1]&&(c=da(a,b,e),f="number"),null!=c&&c===c&&("number"===f&&(c+=e&&e[3]||(r.cssNumber[h]?"":"px")),o.clearCloneStyle||""!==c||0!==b.indexOf("background")||(i[b]="inherit"),g&&"set"in g&&void 0===(c=g.set(a,c,d))||(i[b]=c)),void 0)}},css:function(a,b,c,d){var e,f,g,h=r.camelCase(b);return b=r.cssProps[h]||(r.cssProps[h]=Ta(h)||h),g=r.cssHooks[b]||r.cssHooks[h],g&&"get"in g&&(e=g.get(a,!0,c)),void 0===e&&(e=Ma(a,b,d)),"normal"===e&&b in Qa&&(e=Qa[b]),""===c||c?(f=parseFloat(e),c===!0||isFinite(f)?f||0:e):e}}),r.each(["height","width"],function(a,b){r.cssHooks[b]={get:function(a,c,d){return c?!Oa.test(r.css(a,"display"))||a.getClientRects().length&&a.getBoundingClientRect().width?Wa(a,b,d):ca(a,Pa,function(){return Wa(a,b,d)}):void 0},set:function(a,c,d){var e,f=d&&La(a),g=d&&Va(a,b,d,"border-box"===r.css(a,"boxSizing",!1,f),f);return g&&(e=_.exec(c))&&"px"!==(e[3]||"px")&&(a.style[b]=c,c=r.css(a,b)),Ua(a,c,g)}}}),r.cssHooks.marginLeft=Na(o.reliableMarginLeft,function(a,b){return b?(parseFloat(Ma(a,"marginLeft"))||a.getBoundingClientRect().left-ca(a,{marginLeft:0},function(){return a.getBoundingClientRect().left}))+"px":void 0}),r.each({margin:"",padding:"",border:"Width"},function(a,b){r.cssHooks[a+b]={expand:function(c){for(var d=0,e={},f="string"==typeof c?c.split(" "):[c];4>d;d++)e[a+aa[d]+b]=f[d]||f[d-2]||f[0];return e}},Ja.test(a)||(r.cssHooks[a+b].set=Ua)}),r.fn.extend({css:function(a,b){return S(this,function(a,b,c){var d,e,f={},g=0;if(r.isArray(b)){for(d=La(a),e=b.length;e>g;g++)f[b[g]]=r.css(a,b[g],!1,d);return f}return void 0!==c?r.style(a,b,c):r.css(a,b)},a,b,arguments.length>1)}});function Xa(a,b,c,d,e){return new Xa.prototype.init(a,b,c,d,e)}r.Tween=Xa,Xa.prototype={constructor:Xa,init:function(a,b,c,d,e,f){this.elem=a,this.prop=c,this.easing=e||r.easing._default,this.options=b,this.start=this.now=this.cur(),this.end=d,this.unit=f||(r.cssNumber[c]?"":"px")},cur:function(){var a=Xa.propHooks[this.prop];return a&&a.get?a.get(this):Xa.propHooks._default.get(this)},run:function(a){var b,c=Xa.propHooks[this.prop];return this.options.duration?this.pos=b=r.easing[this.easing](a,this.options.duration*a,0,1,this.options.duration):this.pos=b=a,this.now=(this.end-this.start)*b+this.start,this.options.step&&this.options.step.call(this.elem,this.now,this),c&&c.set?c.set(this):Xa.propHooks._default.set(this),this}},Xa.prototype.init.prototype=Xa.prototype,Xa.propHooks={_default:{get:function(a){var b;return 1!==a.elem.nodeType||null!=a.elem[a.prop]&&null==a.elem.style[a.prop]?a.elem[a.prop]:(b=r.css(a.elem,a.prop,""),b&&"auto"!==b?b:0)},set:function(a){r.fx.step[a.prop]?r.fx.step[a.prop](a):1!==a.elem.nodeType||null==a.elem.style[r.cssProps[a.prop]]&&!r.cssHooks[a.prop]?a.elem[a.prop]=a.now:r.style(a.elem,a.prop,a.now+a.unit)}}},Xa.propHooks.scrollTop=Xa.propHooks.scrollLeft={set:function(a){a.elem.nodeType&&a.elem.parentNode&&(a.elem[a.prop]=a.now)}},r.easing={linear:function(a){return a},swing:function(a){return.5-Math.cos(a*Math.PI)/2},_default:"swing"},r.fx=Xa.prototype.init,r.fx.step={};var Ya,Za,$a=/^(?:toggle|show|hide)$/,_a=/queueHooks$/;function ab(){Za&&(a.requestAnimationFrame(ab),r.fx.tick())}function bb(){return a.setTimeout(function(){Ya=void 0}),Ya=r.now()}function cb(a,b){var c,d=0,e={height:a};for(b=b?1:0;4>d;d+=2-b)c=aa[d],e["margin"+c]=e["padding"+c]=a;return b&&(e.opacity=e.width=a),e}function db(a,b,c){for(var d,e=(gb.tweeners[b]||[]).concat(gb.tweeners["*"]),f=0,g=e.length;g>f;f++)if(d=e[f].call(c,b,a))return d}function eb(a,b,c){var d,e,f,g,h,i,j,k,l="width"in b||"height"in b,m=this,n={},o=a.style,p=a.nodeType&&ba(a),q=V.get(a,"fxshow");c.queue||(g=r._queueHooks(a,"fx"),null==g.unqueued&&(g.unqueued=0,h=g.empty.fire,g.empty.fire=function(){g.unqueued||h()}),g.unqueued++,m.always(function(){m.always(function(){g.unqueued--,r.queue(a,"fx").length||g.empty.fire()})}));for(d in b)if(e=b[d],$a.test(e)){if(delete b[d],f=f||"toggle"===e,e===(p?"hide":"show")){if("show"!==e||!q||void 0===q[d])continue;p=!0}n[d]=q&&q[d]||r.style(a,d)}if(i=!r.isEmptyObject(b),i||!r.isEmptyObject(n)){l&&1===a.nodeType&&(c.overflow=[o.overflow,o.overflowX,o.overflowY],j=q&&q.display,null==j&&(j=V.get(a,"display")),k=r.css(a,"display"),"none"===k&&(j?k=j:(ga([a],!0),j=a.style.display||j,k=r.css(a,"display"),ga([a]))),("inline"===k||"inline-block"===k&&null!=j)&&"none"===r.css(a,"float")&&(i||(m.done(function(){o.display=j}),null==j&&(k=o.display,j="none"===k?"":k)),o.display="inline-block")),c.overflow&&(o.overflow="hidden",m.always(function(){o.overflow=c.overflow[0],o.overflowX=c.overflow[1],o.overflowY=c.overflow[2]})),i=!1;for(d in n)i||(q?"hidden"in q&&(p=q.hidden):q=V.access(a,"fxshow",{display:j}),f&&(q.hidden=!p),p&&ga([a],!0),m.done(function(){p||ga([a]),V.remove(a,"fxshow");for(d in n)r.style(a,d,n[d])})),i=db(p?q[d]:0,d,m),d in q||(q[d]=i.start,p&&(i.end=i.start,i.start=0))}}function fb(a,b){var c,d,e,f,g;for(c in a)if(d=r.camelCase(c),e=b[d],f=a[c],r.isArray(f)&&(e=f[1],f=a[c]=f[0]),c!==d&&(a[d]=f,delete a[c]),g=r.cssHooks[d],g&&"expand"in g){f=g.expand(f),delete a[d];for(c in f)c in a||(a[c]=f[c],b[c]=e)}else b[d]=e}function gb(a,b,c){var d,e,f=0,g=gb.prefilters.length,h=r.Deferred().always(function(){delete i.elem}),i=function(){if(e)return!1;for(var b=Ya||bb(),c=Math.max(0,j.startTime+j.duration-b),d=c/j.duration||0,f=1-d,g=0,i=j.tweens.length;i>g;g++)j.tweens[g].run(f);return h.notifyWith(a,[j,f,c]),1>f&&i?c:(h.resolveWith(a,[j]),!1)},j=h.promise({elem:a,props:r.extend({},b),opts:r.extend(!0,{specialEasing:{},easing:r.easing._default},c),originalProperties:b,originalOptions:c,startTime:Ya||bb(),duration:c.duration,tweens:[],createTween:function(b,c){var d=r.Tween(a,j.opts,b,c,j.opts.specialEasing[b]||j.opts.easing);return j.tweens.push(d),d},stop:function(b){var c=0,d=b?j.tweens.length:0;if(e)return this;for(e=!0;d>c;c++)j.tweens[c].run(1);return b?(h.notifyWith(a,[j,1,0]),h.resolveWith(a,[j,b])):h.rejectWith(a,[j,b]),this}}),k=j.props;for(fb(k,j.opts.specialEasing);g>f;f++)if(d=gb.prefilters[f].call(j,a,k,j.opts))return r.isFunction(d.stop)&&(r._queueHooks(j.elem,j.opts.queue).stop=r.proxy(d.stop,d)),d;return r.map(k,db,j),r.isFunction(j.opts.start)&&j.opts.start.call(a,j),r.fx.timer(r.extend(i,{elem:a,anim:j,queue:j.opts.queue})),j.progress(j.opts.progress).done(j.opts.done,j.opts.complete).fail(j.opts.fail).always(j.opts.always)}r.Animation=r.extend(gb,{tweeners:{"*":[function(a,b){var c=this.createTween(a,b);return da(c.elem,a,_.exec(b),c),c}]},tweener:function(a,b){r.isFunction(a)?(b=a,a=["*"]):a=a.match(K);for(var c,d=0,e=a.length;e>d;d++)c=a[d],gb.tweeners[c]=gb.tweeners[c]||[],gb.tweeners[c].unshift(b)},prefilters:[eb],prefilter:function(a,b){b?gb.prefilters.unshift(a):gb.prefilters.push(a)}}),r.speed=function(a,b,c){var e=a&&"object"==typeof a?r.extend({},a):{complete:c||!c&&b||r.isFunction(a)&&a,duration:a,easing:c&&b||b&&!r.isFunction(b)&&b};return r.fx.off||d.hidden?e.duration=0:e.duration="number"==typeof e.duration?e.duration:e.duration in r.fx.speeds?r.fx.speeds[e.duration]:r.fx.speeds._default,null!=e.queue&&e.queue!==!0||(e.queue="fx"),e.old=e.complete,e.complete=function(){r.isFunction(e.old)&&e.old.call(this),e.queue&&r.dequeue(this,e.queue)},e},r.fn.extend({fadeTo:function(a,b,c,d){return this.filter(ba).css("opacity",0).show().end().animate({opacity:b},a,c,d)},animate:function(a,b,c,d){var e=r.isEmptyObject(a),f=r.speed(b,c,d),g=function(){var b=gb(this,r.extend({},a),f);(e||V.get(this,"finish"))&&b.stop(!0)};return g.finish=g,e||f.queue===!1?this.each(g):this.queue(f.queue,g)},stop:function(a,b,c){var d=function(a){var b=a.stop;delete a.stop,b(c)};return"string"!=typeof a&&(c=b,b=a,a=void 0),b&&a!==!1&&this.queue(a||"fx",[]),this.each(function(){var b=!0,e=null!=a&&a+"queueHooks",f=r.timers,g=V.get(this);if(e)g[e]&&g[e].stop&&d(g[e]);else for(e in g)g[e]&&g[e].stop&&_a.test(e)&&d(g[e]);for(e=f.length;e--;)f[e].elem!==this||null!=a&&f[e].queue!==a||(f[e].anim.stop(c),b=!1,f.splice(e,1));!b&&c||r.dequeue(this,a)})},finish:function(a){return a!==!1&&(a=a||"fx"),this.each(function(){var b,c=V.get(this),d=c[a+"queue"],e=c[a+"queueHooks"],f=r.timers,g=d?d.length:0;for(c.finish=!0,r.queue(this,a,[]),e&&e.stop&&e.stop.call(this,!0),b=f.length;b--;)f[b].elem===this&&f[b].queue===a&&(f[b].anim.stop(!0),f.splice(b,1));for(b=0;g>b;b++)d[b]&&d[b].finish&&d[b].finish.call(this);delete c.finish})}}),r.each(["toggle","show","hide"],function(a,b){var c=r.fn[b];r.fn[b]=function(a,d,e){return null==a||"boolean"==typeof a?c.apply(this,arguments):this.animate(cb(b,!0),a,d,e)}}),r.each({slideDown:cb("show"),slideUp:cb("hide"),slideToggle:cb("toggle"),fadeIn:{opacity:"show"},fadeOut:{opacity:"hide"},fadeToggle:{opacity:"toggle"}},function(a,b){r.fn[a]=function(a,c,d){return this.animate(b,a,c,d)}}),r.timers=[],r.fx.tick=function(){var a,b=0,c=r.timers;for(Ya=r.now();b<c.length;b++)a=c[b],a()||c[b]!==a||c.splice(b--,1);c.length||r.fx.stop(),Ya=void 0},r.fx.timer=function(a){r.timers.push(a),a()?r.fx.start():r.timers.pop()},r.fx.interval=13,r.fx.start=function(){Za||(Za=a.requestAnimationFrame?a.requestAnimationFrame(ab):a.setInterval(r.fx.tick,r.fx.interval))},r.fx.stop=function(){a.cancelAnimationFrame?a.cancelAnimationFrame(Za):a.clearInterval(Za),Za=null},r.fx.speeds={slow:600,fast:200,_default:400},r.fn.delay=function(b,c){return b=r.fx?r.fx.speeds[b]||b:b,c=c||"fx",this.queue(c,function(c,d){var e=a.setTimeout(c,b);d.stop=function(){a.clearTimeout(e)}})},function(){var a=d.createElement("input"),b=d.createElement("select"),c=b.appendChild(d.createElement("option"));a.type="checkbox",o.checkOn=""!==a.value,o.optSelected=c.selected,a=d.createElement("input"),a.value="t",a.type="radio",o.radioValue="t"===a.value}();var hb,ib=r.expr.attrHandle;r.fn.extend({attr:function(a,b){return S(this,r.attr,a,b,arguments.length>1)},removeAttr:function(a){return this.each(function(){r.removeAttr(this,a)})}}),r.extend({attr:function(a,b,c){var d,e,f=a.nodeType;if(3!==f&&8!==f&&2!==f)return"undefined"==typeof a.getAttribute?r.prop(a,b,c):(1===f&&r.isXMLDoc(a)||(e=r.attrHooks[b.toLowerCase()]||(r.expr.match.bool.test(b)?hb:void 0)),void 0!==c?null===c?void r.removeAttr(a,b):e&&"set"in e&&void 0!==(d=e.set(a,c,b))?d:(a.setAttribute(b,c+""),c):e&&"get"in e&&null!==(d=e.get(a,b))?d:(d=r.find.attr(a,b),null==d?void 0:d))},attrHooks:{type:{set:function(a,b){if(!o.radioValue&&"radio"===b&&r.nodeName(a,"input")){var c=a.value;return a.setAttribute("type",b),c&&(a.value=c),b}}}},removeAttr:function(a,b){var c,d=0,e=b&&b.match(K);if(e&&1===a.nodeType)while(c=e[d++])a.removeAttribute(c);
@@ -4086,9 +4087,1171 @@ global.ss = ss;
 
   var ss = global.ss;
 
+  // Define a few namespaces here which we don't want to include directly
   global.tableauSoftware = global.tableauSoftware || {};
   var tab = global.tab = {};
   var tsConfig = global.tsConfig || {};
+  var tabBootstrap = global.tabBootstrap || {};
+
+  // Include english strings so that static classes get initialized properly (they're not used)
+// ---------------------------------------------------------------------------------------------------------------------
+// jsstrings_en.js
+//   This file is the copyrighted property of Tableau Software and is protected by registered patents and other
+//   applicable U.S. and international laws and regulations.
+//
+//   Unlicensed use of the contents of this file is prohibited. Please refer to the NOTICES.txt file for further details.
+// ---------------------------------------------------------------------------------------------------------------------
+// WARNING: Computer generated file.  Do not hand modify.
+// DEPENDS ON: ['codegen\\resx-strings-js.template', u'D:/dev/cpp_sdesmond7/workgroup/vqlweb/scriptsharp/src/Resources/Strings/Strings.en.resx', u'D:/dev/cpp_sdesmond7/workgroup/vqlweb/scriptsharp/src/Resources/Strings/Strings.en.resx']
+
+(function(w) {
+  var s = {
+    AODialogBandTabTitle: "Band",
+    AODialogCellScope: "Cell",
+    AODialogComputationLabel: "Computation",
+    AODialogCustomLabelLabel: "Custom Label",
+    AODialogDistributionTabTitle: "Distribution",
+    AODialogFactorsLabel: "Factors",
+    AODialogFromValueLabel: "Value (From)",
+    AODialogInstantAnalyticsBandLabel: "Recalculate band for selected data",
+    AODialogInstantAnalyticsLineLabel: "Recalculate line for selected data",
+    AODialogLabelLabel: "Label",
+    AODialogLineTabTitle: "Line",
+    AODialogNumberOfTilesLabel: "Number Of Tiles",
+    AODialogPaneScope: "Pane",
+    AODialogPercentOfLabel: "Percent Of",
+    AODialogPercentagesLabel: "Percentages",
+    AODialogPercentilesLabel: "Percentiles",
+    AODialogQuantiles: "Quantiles",
+    AODialogStandardDeviation: "Standard Deviation",
+    AODialogTableScope: "Table",
+    AODialogTitleString: "Edit {0}",
+    AODialogToValueLabel: "Value (To)",
+    AODialogValueLabel: "Value",
+    AccessbilityNotificationButtonDismissLabel: "Dismiss Notification",
+    AccessibilityClearSelectionInstructions: "Press ESC to clear any mark selections.",
+    AccessibilityDataVisualizationTitleAttr: "Data Visualization",
+    AccessibilityScrollSheetTabsLeft: "Scroll Sheet Tabs Left",
+    AccessibilityScrollSheetTabsRight: "Scroll Sheet Tabs Right",
+    AccessibilityViewDataDisabled: "Access to the View Data window is not enabled.",
+    AccessibilityViewDataInstructions: "To open the View Data window, press Control-Shift-Enter.",
+    AddDataConnectionAdd: "Add",
+    AddDataConnectionCancel: "Cancel",
+    AddDataExplanation: "Select a published data source to add it to your workbook.",
+    AddDataLearnMore: "Learn more.",
+    AddDataLearnToPublish: "Learn how to publish data sources to Tableau Server.",
+    AddDataNoPublishedDataSources: "There are no data sources available.",
+    AddDataNoSearchMatches: "No data sources matched your search term.",
+    AddDataPublishRequirements: "To publish a new data source, you must be a Publisher for {0}.",
+    AddDataSearchBrowseSuggestion: "Scroll to browse the list of available data sources.",
+    AddDataSearchDifferentTermsSuggestion: "Try again with different terms.",
+    AddDataSearchSpellingSuggestion: "Check your spelling.",
+    AddDataSearchSuggestions: "Search suggestions:",
+    AddSubscribers: "Add",
+    AddSubscribersHeader: "Add Subscribers",
+    AliasDialogHasAliasColumn: "Has Alias",
+    AliasDialogMemberColumn: "Member",
+    AliasDialogValueColumn: "Value (Alias)",
+    April: "April",
+    AprilShort: "Apr",
+    AreYouSureCancel: "Cancel",
+    AreYouSureDelete: "Delete",
+    AreYouSureText: "Are you sure?",
+    August: "August",
+    AugustShort: "Aug",
+    AuthAutoRecoveredSessionMessage: "Initial workbook edits for the session were recovered. Click Save or Save As to save all edits. Click Revert to open the saved workbook.",
+    AuthAutoRecoveredSessionMessageNoPublish: "Initial workbook edits for the session were recovered. Click Revert to open the saved workbook.",
+    AuthAutoRecoveredSessionMessageNoSave: "Initial workbook edits for the session were recovered. Click Save As to save all edits. Click Revert to open the saved workbook.",
+    AuthAutoSavedRecoveredMessage: "Previous edits have been automatically recovered. Click Revert to return to the saved workbook. (From auto-save. Reverting not implemented.)",
+    AuthCardCollapsedTitle: "{0} &middot; {1}",
+    AuthCardTitleColumns: "Columns",
+    AuthCardTitleFilters: "Filters",
+    AuthCardTitleMarks: "Marks",
+    AuthCardTitleMeasureValues: "Measure Values",
+    AuthCardTitlePages: "Pages",
+    AuthCardTitleRows: "Rows",
+    AuthColorEditingDisabled: "Combine legends to edit colors here or edit the colors for each individual legend.",
+    AuthColorPaletteAutomatic: "Automatic",
+    AuthColorPaletteLegacy: "Discontinued",
+    AuthColorPaletteMoreColors: "More Colors...",
+    AuthColorPaletteNone: "None",
+    AuthColorTransparencyLabel: "Opacity",
+    AuthConnectToDataSource: "Connect to a Data Source on {0}",
+    AuthCustomHexColorLabel: "Custom Color",
+    AuthDashboardPaneBlankZone: "Blank",
+    AuthDashboardPaneFloatingButton: "Floating",
+    AuthDashboardPaneHorizontalZone: "Horizontal",
+    AuthDashboardPaneNewObjects: "New Objects:",
+    AuthDashboardPaneSheets: "Sheets",
+    AuthDashboardPaneSize: "Size",
+    AuthDashboardPaneTextZone: "Text",
+    AuthDashboardPaneTiledButton: "Tiled",
+    AuthDashboardPaneTitleCheckbox: "Show dashboard title",
+    AuthDashboardPaneVerticalZone: "Vertical",
+    AuthDashboardPaneWebZone: "Web Page",
+    AuthDashboardPaneZoneObjects: "Objects",
+    AuthFontFamilyAndSize: "{0} {1}",
+    AuthFontListLoading: "Loading…",
+    AuthFormatLineVisibilityAutomatic: "Automatic",
+    AuthFormatLineVisibilityOff: "Off",
+    AuthFormatLineVisibilityOn: "On",
+    AuthFormatSectionCollapse: "Less",
+    AuthFormatSectionExpand: "More",
+    AuthIncludeTotalsLabel: "Include Totals",
+    AuthLeftContentPaneLabel: "Content",
+    AuthLeftLayoutPaneLabel: "Layout",
+    AuthLeftPaneLabelDashboard: "Dashboard",
+    AuthLeftPaneTabLabelAnalytics: "Analytics",
+    AuthLineAutomaticPreview: "Automatic",
+    AuthLineOffPreview: "Off",
+    AuthLineSizePixels: "{0} px",
+    AuthMarkSizeLabel: "Mark Size",
+    AuthMarksCardChooseField: "More Fields",
+    AuthMarksCardEncodingTooltipBasic: "Drag dimensions or measures here.",
+    AuthMarksCardEncodingTooltipOptions: "Drag dimensions or measures here, or click for more options.",
+    AuthMastheadDone: "Done",
+    AuthMastheadDone_Confirm_CanLogin: "Do you want to save your changes to the workbook? <br><br>You will need to sign in before you can finish saving your changes.",
+    AuthMastheadDone_Confirm_CanLogin_Confirm: "Sign In and Save",
+    AuthMastheadDone_Confirm_CanLogin_Deny: "Don\'t Save",
+    AuthMastheadDone_Confirm_CanSave: "Do you want to save your changes to the workbook?",
+    AuthMastheadDone_Confirm_CanSaveAs: "Do you want to save your changes in a new workbook?",
+    AuthMastheadDone_Confirm_CanSaveAs_Confirm: "Save a Copy",
+    AuthMastheadDone_Confirm_CanSaveAs_Deny: "Don\'t Save",
+    AuthMastheadDone_Confirm_CanSave_Confirm: "Save",
+    AuthMastheadDone_Confirm_CanSave_Deny: "Don\'t Save",
+    AuthMastheadDone_Confirm_Title: "Save Workbook",
+    AuthMastheadHelp: "Help",
+    AuthMastheadHelpSearch: "Search Support",
+    AuthMastheadLogin: "Sign In",
+    AuthMastheadLogout: "Sign Out",
+    AuthMastheadRevert: "Revert",
+    AuthMastheadSave: "Save",
+    AuthMastheadSaveAs: "Save As",
+    AuthMastheadUserPrefs: "User Preferences",
+    AuthMenuBarAnalysis: "Analysis",
+    AuthMenuBarDashboard: "Dashboard",
+    AuthMenuBarData: "Data",
+    AuthMenuBarExit: "Close",
+    AuthMenuBarFile: "File",
+    AuthMenuBarFormat: "Format",
+    AuthMenuBarMap: "Map",
+    AuthMenuBarStory: "Story",
+    AuthMenuBarWorksheet: "Worksheet",
+    AuthNumberFormatDecimalLabel: "Decimal Places",
+    AuthNumberFormatSeparatorLabel: "Include separators",
+    AuthNumberFormatTypeAuto: "Automatic",
+    AuthNumberFormatTypeCurrency: "Currency",
+    AuthNumberFormatTypeLabel: "Number Type",
+    AuthNumberFormatTypeNumber: "Number",
+    AuthNumberFormatTypePercentage: "Percentage",
+    AuthNumberFormatTypeScientific: "Scientific",
+    AuthNumberFormatUnitsBillionsEnglish: "Billions (B)",
+    AuthNumberFormatUnitsBillionsStandard: "Billions (G)",
+    AuthNumberFormatUnitsLabel: "Units",
+    AuthNumberFormatUnitsMillions: "Millions (M)",
+    AuthNumberFormatUnitsNone: "None",
+    AuthNumberFormatUnitsThousands: "Thousands (K)",
+    AuthOffLabel: "OFF",
+    AuthOnLabel: "ON",
+    AuthPillRemove: "Remove",
+    AuthRenameDataSource: "Rename Datasource",
+    AuthRenameDatasourceError: "Please rename the Datasource to a new unique name",
+    AuthRenameField: "Rename Field",
+    AuthRenameSheet: "Rename Sheet",
+    AuthRenameSheetError: "Please rename the sheet to a new unique name",
+    AuthResetTooltip: "Reset Tooltip",
+    AuthReverseColorLabel: "Reverse",
+    AuthSaveButtonCancel: "Cancel",
+    AuthSaveButtonSave: "Save",
+    AuthSaveConfirmOverwrite: "{0} Overwrite it?",
+    AuthSaveErrorTitle: "Error Saving",
+    AuthSaveLabelEmbedPassword: "Embed password for data source",
+    AuthSaveLabelName: "Name:",
+    AuthSaveLabelProject: "Project:",
+    AuthSaveLabelShowTabs: "Show sheets as tabs",
+    AuthSaveTitle: "Save Workbook",
+    AuthSaveWorkbookSavedMessage: "Workbook saved",
+    AuthSchemaViewerHeaderData: "Data",
+    AuthSchemaViewerHeaderDimensions: "Dimensions",
+    AuthSchemaViewerHeaderMeaures: "Measures",
+    AuthSchemaViewerHeaderParameters: "Parameters",
+    AuthSchemaViewerHeaderSets: "Sets",
+    AuthShowMeApply: "Apply",
+    AuthShowMeCantApply: "Can\'t Apply",
+    AuthShowMeMultipleDimensions: "Dimensions",
+    AuthShowMeMultipleMeasures: "Measures",
+    AuthShowMeRecommended: "Recommended",
+    AuthShowMeSingleDimension: "Dimension",
+    AuthShowMeSingleMeasure: "Measure",
+    AuthSteppedColorLabel: "Steps",
+    AuthStepsLabel: "steps",
+    AuthToolbarAddAllSubtotals: "Add All Subtotals",
+    AuthToolbarCellSize: "Cell Size",
+    AuthToolbarCellSizeBigger: "Bigger",
+    AuthToolbarCellSizeNarrower: "Narrower",
+    AuthToolbarCellSizeShorter: "Shorter",
+    AuthToolbarCellSizeSmaller: "Smaller",
+    AuthToolbarCellSizeTaller: "Taller",
+    AuthToolbarCellSizeWider: "Wider",
+    AuthToolbarCellTypeSquare: "Square",
+    AuthToolbarCellTypeText: "Text",
+    AuthToolbarExport: "Download",
+    AuthToolbarFont: "Font",
+    AuthToolbarFontDecrease: "Decrease Font Size",
+    AuthToolbarFontIncrease: "Increase Font Size",
+    AuthToolbarFormatWorkbook: "Format Workbook",
+    AuthToolbarMarkHideLabels: "Hide Labels",
+    AuthToolbarMarkShowLabels: "Show Labels",
+    AuthToolbarPauseUpdates: "Pause Updates",
+    AuthToolbarRedo: "Redo",
+    AuthToolbarRemoveAllSubtotals: "Remove All Subtotals",
+    AuthToolbarResumeUpdates: "Resume Updates",
+    AuthToolbarShare: "Share",
+    AuthToolbarShowColumnGrandTotals: "Show Row Grand Totals",
+    AuthToolbarShowMe: "Show Me",
+    AuthToolbarShowRowGrandTotals: "Show Column Grand Totals",
+    AuthToolbarSubscribe: "Subscribe",
+    AuthToolbarSwap: "Swap",
+    AuthToolbarTotals: "Totals",
+    AuthToolbarUndo: "Undo",
+    AuthToolbarWorksheet: "Worksheet",
+    AuthToolbarZoomLevel: "Fit",
+    AuthWorkbookFormatPaneClear: "Reset to Defaults",
+    AuthWorkbookFormatPaneClearOne: "Clear",
+    AuthWorkbookFormatPaneClearTooltip: "Resets the above workbook formatting to its default settings",
+    AuthWorkbookFormatPaneCloseTooltip: "Close formatting pane",
+    AuthWorkbookFormatPaneTitle: "Format workbook",
+    AuthenticationRequired: "Authentication required",
+    AuthorBylineText: "See more by this author",
+    AuthoringAutoRecoveredSessionMessage: "Initial workbook edits for the session were recovered. To save all edits, click File, and then click Save or Save As. To open the saved workbook, click File, and then click Revert.",
+    AuthoringAutoRecoveredSessionMessageNoPublish: "Initial workbook edits for the session were recovered. To open the saved workbook, click File, and then click Revert.",
+    AuthoringAutoRecoveredSessionMessageNoSave: "Initial workbook edits for the session were recovered. To save all edits, click File, and then click Save As. To open the saved workbook, click file, and then click Revert.",
+    AuthoringAutoSavedRecoveredMessage: "Previous edits have been automatically recovered. To return to the saved workbook, click File, and then click Revert. (From auto-save. Reverting not implemented.)",
+    AutomaticDashboardSizeText: "The dashboard will resize to fit any screen it is displayed on",
+    BaseClientAllAxisRanges: "All Axis Ranges",
+    BaseClientAllChanges: "All Changes",
+    BaseClientAllFilters: "All Filters",
+    BaseClientAllSorts: "All Sorts",
+    BaseClientColumns: "Columns",
+    BaseClientInvalidSheet: "Unable to display view for the sheet \'{0}\'. The sheet is invalid.",
+    BaseClientRows: "Rows",
+    BaseClientSessionExpiredDialogMessage: "Your viewer session has expired. You must refresh your browser.",
+    BaseClientSessionExpiredDialogTitle: "Session Expired",
+    BrowserErrorProcessing: "Browser Processing Error",
+    BrowserErrorProcessingMessage: "An error occurred processing the server response.",
+    CalcEditorAffectedSheets: "Affected Sheets",
+    CalcEditorApply: "Apply",
+    CalcEditorApplyTooltip: "Apply(Ctrl+Enter)",
+    CalcEditorApplyTooltipMac: "Apply(Cmd+Enter)",
+    CalcEditorCalcError: "The calculation contains errors.",
+    CalcEditorCalcOk: "The calculation is valid.",
+    CalcEditorDependenciesPrefix: "Changes to this calculation might change the following:",
+    CalcEditorOkButtonTooltip: "Apply and Close",
+    ChromeDropdownButtonTooltip: "More Options",
+    ClearAliases: "Clear Aliases",
+    ClearAllButtonText: "Clear List",
+    CloseDataSourceErrorDialogEpilogue: "Make sure these sheets are no longer using the data source and then try again.",
+    CloseDataSourceErrorDialogMessage: "The \'{0}\' data source cannot be closed because the following sheets are using it:",
+    CloseDataSourceErrorDialogTitle: "Cannot close data source",
+    CollapseSchemaPane: "Click to collapse",
+    CommentingToolbarButtonLabel: "Comments",
+    ConfirmationButtonConfirm: "Yes",
+    ConfirmationButtonDeny: "No",
+    ConfirmationTitle: "Confirm",
+    CreateConnectionOnTableauServer: "On this Server",
+    CreateConnectionToAFile: "To a File",
+    CreateConnectionToDatabase: "In the Cloud",
+    CurrentPagePanelShowHistory: "Show History",
+    CurrentSubscribers: "Current Subscribers",
+    CustomPaletteGroupUnselectedNote: "A custom palette is selected. If you select a different palette you won’t be able to select this custom palette for this view again.",
+    CustomViewsAddYourOwnCustomView: "Add your own custom view",
+    CustomViewsCancel: "Cancel",
+    CustomViewsCannotChangeDefault: "Cannot change default to an unlisted custom view",
+    CustomViewsChangeDefaultTo: "Change default to \"{0}\"",
+    CustomViewsCurrentDefaultIs: "Current default is \"{0}\"",
+    CustomViewsDialogTitle: "Custom Views",
+    CustomViewsDone: "Done",
+    CustomViewsManageCustomViews: "Manage Custom Views",
+    CustomViewsManageHeader: "Advertise, rename, and delete my custom views",
+    CustomViewsMyCustomViews: "My Custom Views",
+    CustomViewsNameYourCustomView: "Name your custom view",
+    CustomViewsOriginalName: "Original Name: \"{0}\"",
+    CustomViewsOriginalView: "Original",
+    CustomViewsOtherCustomViews: "Other Custom Views",
+    CustomViewsRemember: "Remember",
+    CustomViewsRememberMyChanges: "Remember my changes",
+    CustomViewsSelectCustomView: "Select Custom View",
+    CustomViewsStartManage: "Manage Custom Views",
+    CustomViewsUndo: "Undo",
+    CustomViewsUnlistedCustomView: "Unlisted Custom View",
+    DSDAuthoringWarning: "Wait...this dashboard has device-specific layouts that may be affected by changes you make here. To avoid problems, download this workbook from its page on Tableau Server and edit the dashboard in Tableau Desktop instead.",
+    DashboardAuthZoneHeightDisplay: "h {0}",
+    DashboardAuthZoneLeftPositionDisplay: "x {0}",
+    DashboardAuthZoneTopPositionDisplay: "y {0}",
+    DashboardAuthZoneWidthDisplay: "w {0}",
+    DashboardAuthoringCustomSizeName: "Custom",
+    DashboardAuthoringDeviceLayoutDefault: "Default",
+    DashboardAuthoringDeviceLayoutDesktop: "Desktop",
+    DashboardAuthoringDeviceLayoutPhone: "Phone",
+    DashboardAuthoringDeviceLayoutTablet: "Tablet",
+    DashboardAuthoringHeightSpinnerLabel: "Height",
+    DashboardAuthoringMaximumSizeLabel: "Maximum",
+    DashboardAuthoringMinimumSizeLabel: "Minimum",
+    DashboardAuthoringWidthSpinnerLabel: "Width",
+    DashboardSpacingNone: "None",
+    DataAlertCondition: "Condition",
+    DataAlertCreateButton: "Create Alert",
+    DataAlertCreateButtonSaving: "Saving...",
+    DataAlertCreateFailure: "Failed to create an alert.",
+    DataAlertCreateSuccess: "Alert successfully created.",
+    DataAlertDatasourceError: "Unable to create alert, because this workbook uses a data source that requires a password.",
+    DataAlertDialogTitle: "Create Alert",
+    DataAlertDialogTitleEditMode: "Edit Alert",
+    DataAlertErrorDialogTitle: "Error Editing Alert",
+    DataAlertErrorDialogViewChanged: "The view \"{0}\" has changed, and the alert you are trying to edit is no longer valid.",
+    DataAlertErrorDialogViewChangedWithSubject: "The view \"{0}\" has changed, and the alert \"{1}\" is no longer valid.",
+    DataAlertInitFailure: "Alert creation dialog could not be generated.",
+    DataAlertLoadForEditFailure: "Could not load data alert for editing.",
+    DataAlertNoSubjectErrorMessage: "Enter a subject for alert emails",
+    DataAlertNoUsersMatchSearch: "No users match this search",
+    DataAlertNotificationInterval: "When the condition is true, send email:",
+    DataAlertOnConstantThreshold: "Send email if \'{0}\' for any bar is:",
+    DataAlertOnConstantThreshold2: "Send email if \'{0}\' is:",
+    DataAlertRecipientWithNoEmail: "Users must have email addresses in Tableau before you can add them as recipients",
+    DataAlertRecipients: "Recipients",
+    DataAlertSubject: "Subject",
+    DataAlertSubjectTemplate: "Data alert - {0}",
+    DataAlertThreshold: "Threshold",
+    DataAlertThresholdConditionMet: "Condition currently true",
+    DataAlertThresholdConditionUnmet: "Condition not currently true",
+    DataAlertThresholdErrorDouble: "Value must be a number",
+    DataAlertThresholdErrorGeneric: "Value must be a number",
+    DataAlertThresholdErrorIntegerInputDouble: "Value can’t include a decimal",
+    DataAlertThresholdErrorIntegerInputNonNumeric: "Value must be a whole number",
+    DataAlertUpdateButton: "Save Alert",
+    DataAlertUpdateFailure: "Failed to update alert.",
+    DataAlertUpdateSuccess: "Alert successfully updated.",
+    DataAlertsRecipientsSearchPlaceholder: "Recipient name or username",
+    DataGridBooleanFalseKeyword: "False",
+    DataGridBooleanTrueKeyword: "True",
+    DataGridCancelButton: "Cancel",
+    DataGridErrorButton: "Dismiss",
+    DataGridErrorText: "An error occurred.",
+    DataGridNullKeyword: "null",
+    DataGridUpdateButton: "Update Now",
+    DataInterpreterDataLoss: "Data Interpreter removed some data.",
+    DataInterpreterDescription: "Data Interpreter may be able to clean your {0} workbook.",
+    DataInterpreterFinished: "Cleaned with Data Interpreter",
+    DataInterpreterLoading: "Loading...",
+    DataInterpreterReady: "Use Data Interpreter",
+    DataInterpreterUndo: "To undo changes, clear the check box.",
+    DataSourceCreationInProgress: "Data source creation in progress",
+    DataSourceGenericErrorButtonLabel: "Try Again",
+    DataSourceGenericErrorMsg: "Unable to connect to the data source.",
+    DataSourceGenericErrorSubMsg: "Try connecting again. If the problem persists, disconnect from the data source and contact the data source owner.",
+    DataSourceGenericTitle: "Data Source Error",
+    DataTabConnectionsHeader: "Connections",
+    DataTabDataGridButtonTooltip: "Preview data source",
+    DataTabEditDialogTitle: "Join",
+    DataTabEditJoinAddJoinPlaceholder: "Add new join clause",
+    DataTabEditJoinClauseHeaderTitle: "Data Source",
+    DataTabEditJoinClauseRemoveTooltip: "Remove join clause",
+    DataTabEditJoinDisabledTooltip: "This join type is not available for this connection.",
+    DataTabEditJoinFull: "Full Outer",
+    DataTabEditJoinFullTooltip: "Includes all values from both tables. Members without matches show up as null.",
+    DataTabEditJoinInner: "Inner",
+    DataTabEditJoinInnerTooltip: "Includes only values with matches in both tables.",
+    DataTabEditJoinLeft: "Left",
+    DataTabEditJoinLeftTooltip: "Includes all members in left table and all matches from right table. Members without matches will show up as nulls on the right.",
+    DataTabEditJoinRight: "Right",
+    DataTabEditJoinRightTooltip: "Includes all members in right table and all matches from left table. Members without matches will show up as nulls on the left.",
+    DataTabFilePropertiesCharset: "Character set:",
+    DataTabFilePropertiesLocale: "Locale:",
+    DataTabFilePropertiesQualifier: "Text qualifier:",
+    DataTabFilePropertiesSeparator: "Field separator:",
+    DataTabLiveExtractLabel: "Connection",
+    DataTabMetadataGridButtonTooltip: "Manage metadata",
+    DataTabName: "Data Source",
+    DataTabQualifierAutomatic: "Automatic",
+    DataTabQualifierNone: "None",
+    DataTabSearchContains: "Contains",
+    DataTabSearchExact: "Exact",
+    DataTabSearchStartsWith: "Starts with",
+    DataTabSeparatorComma: "Comma",
+    DataTabSeparatorOther: "Other",
+    DataTabSeparatorSemicolon: "Semicolon",
+    DataTabSeparatorSpace: "Space",
+    DataTabSeparatorTab: "Tab",
+    DataTabSeparatorVerticalBar: "Vertical Bar",
+    DataTabViewDataTooltip: "View data",
+    December: "December",
+    DecemberShort: "Dec",
+    DeleteSheetWithVizInTooltipDialogButton: "Delete Worksheet",
+    DeleteSheetWithVizInTooltipDialogMessage: "This worksheet is displayed in the tooltips of other worksheets. Deleting this worksheet will also remove it from those tooltips.<br><br>Are you sure you want to delete it?",
+    DeleteSheetWithVizInTooltipDialogTitle: "Delete Worksheet",
+    DialogButtonCancel: "Cancel",
+    DialogButtonDownload: "Download",
+    DialogButtonExport: "Generate",
+    DialogButtonOK: "OK",
+    DialogButtonReset: "Reset to original field name",
+    DialogNoButtonText: "No",
+    DialogYesButtonText: "Yes",
+    DisabledDataTabTooltipDetails: "Select another data source or download and then open this workbook using Tableau Desktop.",
+    DisabledDataTabTooltipInfo: "The current data source can\'t be viewed from the data source page.",
+    DropFieldHintText: "Drop field here",
+    EditConnectionDialogTitle: "Edit Connection",
+    EmptyDashboardMessage: "Add sheets here",
+    EmptyDashboardSubMessage: "Drag and drop or double-click from the list on the left.",
+    EmptyFloatingLayoutMessage: "Drag sheets here",
+    EnterFullscreen: "Full Screen",
+    ExitFullscreen: "Exit Full Screen",
+    ExpandSchemaPane: "Click to expand",
+    ExportCrosstabDialogMessage: "The crosstab has been generated.",
+    ExportCrosstabDialogTitle: "Download Crosstab",
+    ExportDataDialogMessage: "The data has been generated.",
+    ExportDataDialogTitle: "Download Data",
+    ExportImageDialogMessage: "The image has been generated.",
+    ExportImageDialogTitle: "Download Image",
+    February: "February",
+    FebruaryShort: "Feb",
+    FileUploadButtonCancel: "Cancel",
+    FileUploadButtonCancelUpload: "Cancel upload",
+    FileUploadButtonClose: "Close",
+    FileUploadButtonLess: "Less",
+    FileUploadButtonMore: "More",
+    FileUploadButtonRetry: "Retry",
+    FileUploadButtonSkipPlural: "Skip these files and proceed",
+    FileUploadButtonSkipSingular: "Skip this file and proceed",
+    FileUploadErrorInfosCompletedHeader: "Completed",
+    FileUploadErrorInfosFailedHeader: "Failed",
+    FileUploadErrorTitle: "Upload Failed",
+    FileUploadErrorTitleMultiComplete: "Upload Complete: {0}",
+    FileUploadErrorTitleMultiFailed: "Upload Failed: {0}",
+    FileUploadFailureTextPlural: "Upload of {0} files failed",
+    FileUploadFailureTextSingular: "Upload of {0} failed",
+    FileUploadFatalErrorUnsupportedFileTypeSubtitle: "Tableau web authoring does not currently support the upload of this file type",
+    FileUploadFatalErrorUnsupportedFileTypeTitle: "Unsupported file type",
+    FileUploadFileTypeAccess: "Access",
+    FileUploadFileTypeExcel: "Excel",
+    FileUploadFileTypeJson: "JSON file",
+    FileUploadFileTypeOther: "Other file",
+    FileUploadFileTypeSpatial: "Spatial file",
+    FileUploadFileTypeStatistical: "Statistical file",
+    FileUploadFileTypeText: "Text file",
+    FileUploadInstructionsPart1: "Drag and drop a file into this window or {0} it from your computer.",
+    FileUploadInstructionsPart2: "upload",
+    FileUploadProgressIndicator: "{0} {2} of {1} {2} uploaded",
+    FileUploadTitle: "Uploading Files: {0}",
+    Filter: "Filter",
+    FirstEnding: "{0}st",
+    Friday: "Friday",
+    FridayShort: "Fri",
+    FunctionTypeAggregate: "Aggregate",
+    FunctionTypeAll: "All",
+    FunctionTypeClearTooltip: "Clear",
+    FunctionTypeDate: "Date",
+    FunctionTypeLogical: "Logical",
+    FunctionTypeNumber: "Number",
+    FunctionTypeSearchHint: "Enter text to search",
+    FunctionTypeString: "String",
+    FunctionTypeTableCalculation: "Table Calculation",
+    FunctionTypeType: "Type",
+    FunctionTypeUser: "User",
+    GlassPaneLoading: "Loading...",
+    GlassPaneSessionExpired: "Session Expired",
+    GlassPaneUpdating: "Updating...",
+    GoToSheet: "Go to Sheet",
+    GotoMyLocationPermissionDeniedError: "Tableau does not have permission to use your location. Check your location settings and try again.",
+    GotoMyLocationPermissionDeniedUnsecureConnection: "Tableau does not have permission to use your location. Check your location settings and verify you are using a secure (https) connection.",
+    GotoMyLocationPositionUnavailableError: "Tableau is unable to find your location. Check your internet connection and try again.",
+    GotoMyLocationTimeoutError: "Our attempt to find your location timed out.",
+    GotoMyLocationTooltip: "Go To My Location",
+    GroupDialogGroupButtonLabel: "Group",
+    GroupDialogRenameButtonLabel: "Rename",
+    GroupDialogUngroupButtonLabel: "Ungroup",
+    HelpMenuItemAllHelpTopics: "Open Installed Help",
+    HelpMenuItemContactSupport: "Contact Support",
+    HelpMenuItemGetHelpAndSupport: "Get Help & Support",
+    HelpMenuItemWebAuthor1: "Who can edit and create workbooks",
+    HelpMenuItemWebAuthor2: "Edit and create views",
+    HelpMenuItemWebAuthor3: "Create a workbook and build a view",
+    Hour: "hour",
+    Hours: "{0} hours",
+    IncludeOtherLabel: "Include \'Other\'",
+    January: "January",
+    JanuaryShort: "Jan",
+    JoinIndicatorTooltipUnknownError: "Unknown join error",
+    JoinTypeCrossJoin: "Cross Join",
+    JoinTypeFullJoin: "Full Join",
+    JoinTypeInnerJoin: "Inner Join",
+    JoinTypeLeftJoin: "Left Join",
+    JoinTypeRightJoin: "Right Join",
+    July: "July",
+    JulyShort: "Jul",
+    June: "June",
+    JuneShort: "Jun",
+    LayoutPaneBackgroundColorTitle: "Background",
+    LayoutPaneBorderButtonTitle: "Border",
+    LayoutPaneFloatingCheckbox: "Floating",
+    LayoutPaneHSizeSpinner: "h",
+    LayoutPaneMarginButtonTitle: "Outer Padding",
+    LayoutPanePaddingButtonTitle: "Inner Padding",
+    LayoutPanePositionSpinnersTitle: "Position",
+    LayoutPaneSelectedItemTitle: "Selected item",
+    LayoutPaneSizeSpinnersTitle: "Size",
+    LayoutPaneSpacingAllSidesEqual: "All sides equal",
+    LayoutPaneSpacingBottom: "Bottom",
+    LayoutPaneSpacingLeft: "Left",
+    LayoutPaneSpacingRight: "Right",
+    LayoutPaneSpacingTop: "Top",
+    LayoutPaneWSizeSpinner: "w",
+    LayoutPaneXPositionSpinner: "x",
+    LayoutPaneYPositionSpinner: "y",
+    LayoutPaneZoneTitleCheckbox: "Show title",
+    LayoutTreeSectionTitle: "Item hierarchy",
+    LeftPaneDSDWarningMsg: "Device layouts cannot be edited on the web. To edit, open the workbook in Tableau Desktop.",
+    LegacyPaletteUnselectedNote: "This palette is discontinued. If you select a different palette, you won’t be able to select this palette again.",
+    Legend: "Legend",
+    LegendPanelHighlightSelectedItems: "Highlight Selected Items",
+    LinePatternNone: "None",
+    LineTypeHeading: "Line Type",
+    ListLengthFive: "{0}, {1}, {2}, {3}, and {4}",
+    ListLengthFour: "{0}, {1}, {2}, and {3}",
+    ListLengthSeven: "{0}, {1}, {2}, {3}, {4}, {5}, and {6}",
+    ListLengthSix: "{0}, {1}, {2}, {3}, {4}, and {5}",
+    ListLengthThree: "{0}, {1}, and {2}",
+    ListLengthTwo: "{0} and {1}",
+    LogOnButton: "Sign In to Continue",
+    ManageCustomViewsDisabledExplanation: "There are no custom views to manage.",
+    ManageSubscriptions: "Manage",
+    MapAutoDrillCheckBox: "Enable Automatic Drill",
+    MapFloatingToolbarVizCheckBox: "Show View Toolbar",
+    MapGeoSearchVizCheckBox: "Show Map Search",
+    MapOptionsDialogTitle: "Map Options",
+    MapOptionsDropDownLabel: "Units:",
+    MapOptionsUnitAutomatic: "Automatic",
+    MapOptionsUnitMetric: "Metric",
+    MapOptionsUnitUS: "U.S.",
+    MapScaleVizibilityCheckBox: "Show Map Scale",
+    MapVizNavCheckBox: "Allow Pan And Zoom",
+    MapsSearchViewInitialText: "Search Map",
+    March: "March",
+    MarchShort: "Mar",
+    May: "May",
+    MayShort: "May",
+    MenuBackButton: "Back",
+    MetaDataGrid_ConnectionColor: "Connection Color",
+    MetaDataGrid_DataType: "Data Type",
+    MetaDataGrid_FieldName: "Field Name",
+    MetaDataGrid_RemoteFieldName: "Remote Field Name",
+    MetaDataGrid_Table: "Table",
+    Minutes: "{0} minutes",
+    Monday: "Monday",
+    MondayShort: "Mon",
+    NewDataSource: "New Data Source",
+    NotificationIntervalDaily: "Daily at most",
+    NotificationIntervalEveryTime: "As frequently as possible",
+    NotificationIntervalHourly: "Hourly at most",
+    NotificationIntervalOnlyOnce: "Once—the first time it’s true",
+    NotificationIntervalWeekly: "Weekly at most",
+    November: "November",
+    NovemberShort: "Nov",
+    NumberEnding: "{0}th",
+    NumericBinsBinSizeLabel: "Size of bins:",
+    NumericBinsCntDLabel: "Count Distinct:",
+    NumericBinsDiffLabel: "Difference:",
+    NumericBinsFieldNameLabel: "New field name: ",
+    NumericBinsMaxLabel: "Maximum:",
+    NumericBinsMinLabel: "Minimum:",
+    NumericBinsRangeOfValuesLabel: "Range of Values:",
+    October: "October",
+    OctoberShort: "Oct",
+    OldGroupWarning: "The group was created in an old version of Tableau and cannot be used in calculations. ",
+    OldGroupWarningLink: "Create a copy.",
+    OpenInTableauMobile: "Open in Tableau Mobile",
+    OperatorAbove: "Above",
+    OperatorAboveOrEqual: "Above or equal to",
+    OperatorBelow: "Below",
+    OperatorBelowOrEqual: "Below or equal to",
+    OperatorEqual: "Equal to",
+    PanZoomSelectToolsLassoSelectionTooltip: "Lasso (D)",
+    PanZoomSelectToolsPanTooltip: "Pan (Shift+Drag)",
+    PanZoomSelectToolsRadialSelectionTooltip: "Radial (S)",
+    PanZoomSelectToolsRectangularSelectionTooltip: "Rectangle (A)",
+    PanZoomSelectToolsZoomAreaTooltip: "Zoom Area (Ctrl+Shift+Drag)",
+    PanZoomSelectToolsZoomAreaTooltipMac: "Zoom Area (Cmd+Shift+Drag)",
+    PanZoomSelectToolsZoomHomeTooltip: "Zoom Home",
+    PanZoomSelectToolsZoomInTooltip: "Zoom In (Double-Click)",
+    PanZoomSelectToolsZoomOutTooltip: "Zoom Out (Shift+Double-Click)",
+    PdfDialogContentDashboard: "This Dashboard",
+    PdfDialogContentDashboardSheets: "Sheets in Dashboard",
+    PdfDialogContentStory: "This Story",
+    PdfDialogContentTopSheets: "Sheets in Workbook",
+    PdfDialogContentWorksheet: "This Sheet",
+    PdfDialogImageSize: "Image Size (px)",
+    PdfDialogPaperSize: "Paper Size",
+    PdfDialogScalingLabel: "Scaling",
+    PdfDialogSectionContent: "Content",
+    PdfDialogSectionLayout: "Layout",
+    PdfDialogSelectSheetToChangePrintScaling: "Sheets to Download",
+    PdfDialogThumbnailPageSizeLabel: "Page Size",
+    PdfDialogThumbnailScalingLabel: "Scale:",
+    PdfExportFitHigh: "At most {0} high",
+    PdfExportFitOneHigh: "At most 1 page high",
+    PdfExportFitOneWide: "At most 1 page wide",
+    PdfExportFitTwoHigh: "At most 2 pages high",
+    PdfExportFitTwoWide: "At most 2 pages wide",
+    PdfExportFitWide: "At most {0} wide",
+    PdfExportFitWideByHigh: "At most {0}x{1}",
+    PdfExportMessageError: "Error producing PDF!",
+    PdfExportMessageErrorPng: "Error downloading PNG",
+    PdfExportMessageExporting: "Processing...",
+    PdfExportMessageSettings: "Getting PDF settings from server.",
+    PdfExportMessageSettingsError: "Error: Could not retrieve PDF settings from server.",
+    PdfExportPageOrientationLandscape: "Landscape",
+    PdfExportPageOrientationPortrait: "Portrait",
+    PdfExportPageOrientationPrinter: "Printer",
+    PdfExportPageScaleAuto: "Automatic",
+    PdfExportPageScalePercent: "{0}%",
+    PdfExportPageSizeA3: "A3",
+    PdfExportPageSizeA4: "A4",
+    PdfExportPageSizeA5: "A5",
+    PdfExportPageSizeB4: "B4",
+    PdfExportPageSizeB5: "B5",
+    PdfExportPageSizeExecutive: "Executive",
+    PdfExportPageSizeFolio: "Folio",
+    PdfExportPageSizeLedger: "Ledger",
+    PdfExportPageSizeLegal: "Legal",
+    PdfExportPageSizeLetter: "Letter",
+    PdfExportPageSizeNote: "Note",
+    PdfExportPageSizeQuarto: "Quarto",
+    PdfExportPageSizeStatement: "Statement",
+    PdfExportPageSizeTabloid: "Tabloid",
+    PdfExportPageSizeUnspecified: "Unspecified",
+    PdfExportTitlePDF: "Download PDF",
+    PdfExportTitlePNG: "Download PNG",
+    PressBackButtonMessage: "Use the back button to return to a valid view.",
+    PrintPdfDialogContentRequired: "Select at least one sheet to download.",
+    PrintPdfDialogMessage: "The PDF file has been generated.",
+    PrintPdfDialogTitle: "Download PDF",
+    QuantitativeColorCenter: "Center",
+    QuantitativeColorDialogTitle: "Edit Colors {0}",
+    QuantitativeColorEnableSteps: "Stepped color",
+    QuantitativeColorEnd: "End",
+    QuantitativeColorEndSwatch: "End color, custom color {0}",
+    QuantitativeColorFullColorRange: "Use full color range",
+    QuantitativeColorHideAdvanced: "Hide Advanced",
+    QuantitativeColorIncludeTotals: "Include totals",
+    QuantitativeColorPaletteLabel: "Palette",
+    QuantitativeColorReset: "Reset",
+    QuantitativeColorReverse: "Reverse",
+    QuantitativeColorShowAdvanced: "Show Advanced",
+    QuantitativeColorStart: "Start",
+    QuantitativeColorStartSwatch: "Start color, custom color {0}",
+    QuantitativeColorSteps: "steps",
+    QuickFilterAll: "(All)",
+    QuickFilterAllValues: "All Values",
+    QuickFilterApply: "Apply",
+    QuickFilterCancel: "Cancel",
+    QuickFilterClearDisabled: "Showing All Values",
+    QuickFilterClearEnabled: "Click to Show All Values",
+    QuickFilterConditionalsCondition: "Condition",
+    QuickFilterConditionalsLimit: "Limit",
+    QuickFilterDomainShowFewerValues: "Show Fewer Values",
+    QuickFilterDomainShowMoreValues: "Show More Values",
+    QuickFilterExclusive: "Exclusive",
+    QuickFilterInclusive: "Inclusive",
+    QuickFilterMultiSelect: "Multiple",
+    QuickFilterMultipleValues: "(Multiple values)",
+    QuickFilterNoItems: "No Items.",
+    QuickFilterNonNullValues: "Non-Null Values",
+    QuickFilterNone: "(None)",
+    QuickFilterOnlyNullValues: "Only Null Values",
+    QuickFilterSearch: "Search",
+    QuickFilterSearchAddItemCtrlEnter: "Add Item (Ctrl+Enter)",
+    QuickFilterSearchAddItemEnter: "Add Item (Enter)",
+    QuickFilterSearchCancel: "Cancel Search",
+    QuickFilterSearchClearTooltip: "Clear (Esc)",
+    QuickFilterSearchCloseTooltip: "Close (Esc)",
+    QuickFilterSearchDataIsCaseSensitive: "Data is case sensitive.",
+    QuickFilterSearchFoundMatches: "Found {0} matches",
+    QuickFilterSearchHint: "Enter Text to Search",
+    QuickFilterSearchInvalidDataMemberSingular: "\"{0}\" is not a valid member of the filter.",
+    QuickFilterSearchInvalidDataMembersDialogTitle: "Invalid Data Members",
+    QuickFilterSearchInvalidDataMembersPlural: "The following values are not valid members of the filter:",
+    QuickFilterSearchNoMatches: "No matches.",
+    QuickFilterSearchTooltip: "Search (Enter)",
+    QuickFilterShowContextMenu: "Show Quick Filter Context Menu",
+    QuickFilterShowLargerRange: "Show Larger Range",
+    QuickFilterShowSmallerRange: "Show Smaller Range",
+    QuickFilterSingleSelect: "Single",
+    QuickFilterTitleBarExclusive: "{0} (Exclusive)",
+    QuickFilterUnknown: "<unknown>",
+    QuickFilterValuesInRange: "Values in Range",
+    QuickFilterValuesInRangeOrNull: "Values in Range or Null",
+    RedirectToApp: "Redirect to App Store?",
+    RefLineEditorInputTitle: "Value:",
+    RefreshDataSourceListLabel: "Refresh list",
+    RelDateAnchored_curr_day: "Anchor day",
+    RelDateAnchored_curr_hour: "Anchor hour",
+    RelDateAnchored_curr_minute: "Anchor minute",
+    RelDateAnchored_curr_month: "Anchor month",
+    RelDateAnchored_curr_quarter: "Anchor quarter",
+    RelDateAnchored_curr_second: "Anchor second",
+    RelDateAnchored_curr_week: "Anchor week",
+    RelDateAnchored_curr_year: "Anchor year",
+    RelDateAnchored_last_day: "Yesterday",
+    RelDateAnchored_last_hour: "Previous hour",
+    RelDateAnchored_last_minute: "Previous minute",
+    RelDateAnchored_last_month: "Previous month",
+    RelDateAnchored_last_quarter: "Previous quarter",
+    RelDateAnchored_last_second: "Previous second",
+    RelDateAnchored_last_week: "Previous week",
+    RelDateAnchored_last_year: "Previous year",
+    RelDateAnchored_lastn_day: "Last % days",
+    RelDateAnchored_lastn_hour: "Last % hours",
+    RelDateAnchored_lastn_minute: "Last % minutes",
+    RelDateAnchored_lastn_month: "Last % months",
+    RelDateAnchored_lastn_quarter: "Last % quarters",
+    RelDateAnchored_lastn_second: "Last % seconds",
+    RelDateAnchored_lastn_week: "Last % weeks",
+    RelDateAnchored_lastn_year: "Last % years",
+    RelDateAnchored_next_day: "Tomorrow",
+    RelDateAnchored_next_hour: "Next hour",
+    RelDateAnchored_next_minute: "Next minute",
+    RelDateAnchored_next_month: "Next month",
+    RelDateAnchored_next_quarter: "Next quarter",
+    RelDateAnchored_next_second: "Next second",
+    RelDateAnchored_next_week: "Next week",
+    RelDateAnchored_next_year: "Next year",
+    RelDateAnchored_nextn_day: "Next % days",
+    RelDateAnchored_nextn_hour: "Next % hours",
+    RelDateAnchored_nextn_minute: "Next % minutes",
+    RelDateAnchored_nextn_month: "Next % months",
+    RelDateAnchored_nextn_quarter: "Next % quarters",
+    RelDateAnchored_nextn_second: "Next % seconds",
+    RelDateAnchored_nextn_week: "Next % weeks",
+    RelDateAnchored_nextn_year: "Next % years",
+    RelDateAnchored_todate_day: "Day to anchor",
+    RelDateAnchored_todate_hour: "Hour to anchor",
+    RelDateAnchored_todate_minute: "Minute to anchor",
+    RelDateAnchored_todate_month: "Month to anchor",
+    RelDateAnchored_todate_quarter: "Quarter to anchor",
+    RelDateAnchored_todate_second: "Second to anchor",
+    RelDateAnchored_todate_week: "Week to anchor",
+    RelDateAnchored_todate_year: "Year to anchor",
+    RelDateFilterDays: "Days",
+    RelDateFilterHours: "Hours",
+    RelDateFilterMinutes: "Minutes",
+    RelDateFilterMonths: "Months",
+    RelDateFilterPreview: "{0} to {1}",
+    RelDateFilterQuarters: "Quarters",
+    RelDateFilterWeeks: "Weeks",
+    RelDateFilterYears: "Years",
+    RelDatePickerFiveYears: "5 years",
+    RelDatePickerFiveYearsAbbrev: "5y",
+    RelDatePickerOneDay: "1 day",
+    RelDatePickerOneDayAbbrev: "1d",
+    RelDatePickerOneMonth: "1 month",
+    RelDatePickerOneMonthAbbrev: "1m",
+    RelDatePickerOneWeek: "1 week",
+    RelDatePickerOneWeekAbbrev: "1w",
+    RelDatePickerOneYear: "1 year",
+    RelDatePickerOneYearAbbrev: "1y",
+    RelDatePickerThreeMonths: "3 months",
+    RelDatePickerThreeMonthsAbbrev: "3m",
+    RelDate_curr_day: "Today",
+    RelDate_curr_hour: "This hour",
+    RelDate_curr_minute: "This minute",
+    RelDate_curr_month: "This month",
+    RelDate_curr_quarter: "This quarter",
+    RelDate_curr_second: "This second",
+    RelDate_curr_week: "This week",
+    RelDate_curr_year: "This year",
+    RelDate_last_day: "Yesterday",
+    RelDate_last_hour: "Previous hour",
+    RelDate_last_minute: "Previous minute",
+    RelDate_last_month: "Previous month",
+    RelDate_last_quarter: "Previous quarter",
+    RelDate_last_second: "Previous second",
+    RelDate_last_week: "Previous week",
+    RelDate_last_year: "Previous year",
+    RelDate_lastn_day: "Last % days",
+    RelDate_lastn_hour: "Last % hours",
+    RelDate_lastn_minute: "Last % minutes",
+    RelDate_lastn_month: "Last % months",
+    RelDate_lastn_quarter: "Last % quarters",
+    RelDate_lastn_second: "Last % seconds",
+    RelDate_lastn_week: "Last % weeks",
+    RelDate_lastn_year: "Last % years",
+    RelDate_next_day: "Tomorrow",
+    RelDate_next_hour: "Next hour",
+    RelDate_next_minute: "Next minute",
+    RelDate_next_month: "Next month",
+    RelDate_next_quarter: "Next quarter",
+    RelDate_next_second: "Next second",
+    RelDate_next_week: "Next week",
+    RelDate_next_year: "Next year",
+    RelDate_nextn_day: "Next % days",
+    RelDate_nextn_hour: "Next % hours",
+    RelDate_nextn_minute: "Next % minutes",
+    RelDate_nextn_month: "Next % months",
+    RelDate_nextn_quarter: "Next % quarters",
+    RelDate_nextn_second: "Next % seconds",
+    RelDate_nextn_week: "Next % weeks",
+    RelDate_nextn_year: "Next % years",
+    RelDate_todate_day: "Day to date",
+    RelDate_todate_hour: "Hour to date",
+    RelDate_todate_minute: "Minute to date",
+    RelDate_todate_month: "Month to date",
+    RelDate_todate_quarter: "Quarter to date",
+    RelDate_todate_second: "Second to date",
+    RelDate_todate_week: "Week to date",
+    RelDate_todate_year: "Year to date",
+    RequestAbortedByBrowser: "Request Aborted by Browser",
+    RowCountLabel: "rows",
+    Saturday: "Saturday",
+    SaturdayShort: "Sat",
+    SaveIncompleteWorkbookWarning: "Not all views were shared when this workbook was published. Saving the workbook will overwrite the original workbook, and the unshared views will be lost. Consider using Save As instead.",
+    SaveNoPublishedSheetsBody: "A workbook must have at least one published sheet to be saved.  Right-click on a tab to publish a sheet.",
+    SaveNoPublishedSheetsTitle: "Cannot Save",
+    ScheduleDailyDescription: "Daily at {0}",
+    ScheduleEvery30MinutesDescription: "Every 30 minutes at 15 and 45 minutes after the hour",
+    ScheduleEveryOneHourAtXMinutesPastDescription: "Every hour at {0} minutes after the hour",
+    ScheduleEveryOneHourDescription: "Every hour",
+    ScheduleEveryXHoursStartingAtYDescription: "Every {0} hours starting at {1}",
+    ScheduleEveryXMinutesDescription: "Every {0} minutes",
+    ScheduleHourlyDescription: "Every {0} from {1} to {2}",
+    ScheduleMonthlyDescription: "On the {0} day of the month at {1}",
+    ScheduleMonthlyDescriptionLast: "On the last day of the month at {0}",
+    ScheduleMonthlyDescriptionSecondToLast: "On the second to last day of the month at {0}",
+    ScheduleWeeklyDescription: "Weekly at {0} on {1}",
+    SearchResultsNotShownPlural: "{0} results not shown",
+    SearchResultsNotShownSingular: "1 result not shown",
+    SearchResultsNotShownZero: "0 results not shown",
+    SecondEnding: "{0}nd",
+    SecurityBlockedURLActionHeader: "URL Blocked",
+    SecurityBlockedURLActionMessage: "A potentially unsafe URL has been blocked.",
+    SelectText: "Select",
+    SelectionToolsLockTooltip: "Press Shift to Lock",
+    September: "September",
+    SeptemberShort: "Sep",
+    SerialScheduleDescription: "{0} - {1}",
+    SerialScheduleDescriptionSuffix: "Sequential (slower)",
+    ServerDataSourceConnectedWorkbooks: "Workbooks",
+    ServerDataSourceConnectedWorkbooksTooltip: "Number of workbooks connected to a data source",
+    ServerDataSourceConnectionType: "Connection Type",
+    ServerDataSourceConnectsTo: "Connects To",
+    ServerDataSourceConnectsToSeveral: "{0} + {1}",
+    ServerDataSourceExtract: "Extract",
+    ServerDataSourceLive: "Live",
+    ServerDataSourceLiveOrLastExtract: "Live / Last extract",
+    ServerDataSourceName: "Name",
+    ServerDataSourceOwner: "Owner",
+    ServerDataSourceProject: "Project",
+    ServerDataSourceTotalViews: "Views: All",
+    ServerErrorGeneral: "An error occurred communicating with the server ({0}).<br>This may be a temporary network condition.  Please retry the operation.<br>If this condition persists, contact your system administrator.",
+    ServerErrorInvalidJSON: "An error occurred communicating with the server (Invalid JSON).",
+    ServerErrorRejected: "Request Rejected by Server",
+    ServerErrorRejectedMessage: "The server could not respond due to a malformed request.<br>This may be a temporary network condition.  Please retry the operation.<br>If this condition persists, contact your system administrator.",
+    ServerErrorTitle: "Server Error",
+    ServerErrorUnexpected: "Unexpected Server Error",
+    SessionEndedAlertMessage: "Would you like to reset the view?",
+    SessionEndedAlertTitle: "Session Ended by Server",
+    SessionForbiddenActionMsg: "You are not authorized to perform this action.",
+    SessionForbiddenActionTitle: "Forbidden Action",
+    SessionUnknownErrorTitle: "Unknown Server Error",
+    ShareDialogAndroidLinkText: "Tap icon to open link",
+    ShareDialogDisplayOptions: "Display Options",
+    ShareDialogDoneButton: "Done",
+    ShareDialogEmail: "Email:",
+    ShareDialogEmailHelp: "Copy and Paste link into your email message",
+    ShareDialogEmailLink: "Email Link",
+    ShareDialogEmbed: "Embed:",
+    ShareDialogEmbedCodeTableauText: "Learn About Tableau",
+    ShareDialogEmbedHelp: "Copy and Paste HTML code to embed the view in your website",
+    ShareDialogEnterUriForBlogEntry: "Enter the URI for the blog entry",
+    ShareDialogEnterValueBetween: "Enter a value between {0} and {1}",
+    ShareDialogHeight: "Height:",
+    ShareDialogInvalidHeight: "Invalid height.",
+    ShareDialogInvalidWidth: "Invalid width.",
+    ShareDialogLink: "Link:",
+    ShareDialogMobileEmailText: "Tap icon to send the link by email",
+    ShareDialogMobileLinkText: "Tap and hold icon to access other sharing options",
+    ShareDialogPleaseEnterIntegerBetween: "Please enter an integer between {0} and {1}",
+    ShareDialogShowTabs: "Show Tabs",
+    ShareDialogShowToolbar: "Show Toolbar",
+    ShareDialogTitle: "Share View",
+    ShareDialogUrlForRssLinks: "URL for RSS links:",
+    ShareDialogWaitingEmbedMessage: "creating your custom embed code ...",
+    ShareDialogWaitingLinkMessage: "creating your custom link ...",
+    ShareDialogWidth: "Width:",
+    ShowAliases: "Show aliases",
+    ShowHiddenFields: "Show hidden fields",
+    SignOutFailedMessage: "Failed to sign out. Please try again.",
+    SizeLegendTextMarkSwatch: "Abc",
+    SnapshotApplicationErrorMessage: "Couldn\'t apply snapshot from {0} to this view",
+    SortAtoZAscending: "A to Z ascending",
+    SortAtoZAscendingPerTable: "A to Z ascending per table",
+    SortDataSourceOrder: "Data source order",
+    SortFields: "Sort fields",
+    SortZtoADescending: "Z to A descending",
+    SortZtoADescendingPerTable: "Z to A descending per table",
+    SpecialAll: "All",
+    SpecialError: "#Error",
+    SpecialManyValues: "*",
+    SpecialMissing: "#Missing",
+    SpecialNoAccess: "#NoAccess",
+    SpecialRagged: "#Ragged",
+    SpecialSkipped: "#Skipped",
+    SpecialValuesHeading: "Special Values (e.g. NULL)",
+    SpecialValuesMarkLabel: "Marks",
+    SpecialValuesMarksHideBreakLines: "Hide (break lines)",
+    SpecialValuesMarksHideConnectLines: "Hide (connect lines)",
+    SpecialValuesMarksShowAtDefaultValue: "Show at Default Value",
+    SpecialValuesMarksShowAtIndicator: "Show at Indicator",
+    SpecialValuesTextLabel: "Text",
+    SpecialValuesTextPlaceholder: "(Blank)",
+    SpecialWildcard: "Wildcard",
+    StopUsingAsLinkingField: "Stop using {0} as linking field",
+    StoryContentPaneBlankButton: "Blank",
+    StoryContentPaneDuplicateButton: "Duplicate",
+    StoryContentPaneSaveAsNewPointButton: "Save as New",
+    StoryContentPaneTitle: "Story",
+    StoryContentShowCaptions: "Show captions",
+    StoryContentShowTitles: "Show title",
+    StoryEmptyCaptionText: "Add a caption",
+    StoryEmptyDashboardStoryPointSubtitle: "Add worksheets to the dashboard.",
+    StoryEmptyDashboardStoryPointTitle: "This dashboard is empty.",
+    StoryEmptyFlipboardSubtitle: "To add a sheet here",
+    StoryEmptyFlipboardTitle: "Double-click from the list on the left",
+    StoryEmptyWorksheetStoryPointSubtitle: "Create a viz in the worksheet.",
+    StoryEmptyWorksheetStoryPointTitle: "This worksheet is empty.",
+    StoryNavigatorStyle: "Navigator Style",
+    StoryNavigatorTypeCaption: "Caption boxes",
+    StoryNavigatorTypeDot: "Dots",
+    StoryNavigatorTypeNumber: "Numbers",
+    StoryNavigatorUpdated: "Updated",
+    StoryNewPointSectionTitle: "New story point",
+    StoryPointDeleteTooltip: "Delete",
+    StoryPointNavigatorLocationBottom: "Bottom",
+    StoryPointNavigatorLocationTitle: "Navigator Location",
+    StoryPointNavigatorLocationTop: "Top",
+    StoryPointNavigatorShowArrows: "Show arrows",
+    StoryPointRevertTooltip: "Revert",
+    StoryPointSaveAsNewTooltip: "Save as new point",
+    StoryPointUpdateButton: "Update",
+    SubscribeButtonTooltip: "Subscribe",
+    SubscribeCancel: "Cancel",
+    SubscribeContent: "Content:",
+    SubscribeEnterAddress: "To receive subscriptions enter your email address.",
+    SubscribeFailure: "Subscription failed.",
+    SubscribeInvalidAddress: "Please enter a valid email address. ",
+    SubscribeNext: "Next",
+    SubscribeOthers: "Subscribe Others",
+    SubscribeOthersFailed: "Could not complete subscription for {0} subscribers.",
+    SubscribeOthersSearchPlaceholder: "Subscriber name or username",
+    SubscribeOthersSuccess: "Created {0} subscriptions.",
+    SubscribeSelf: "Subscribe me",
+    SubscribeSelfLabel: "I want to subscribe",
+    SubscribeSheet: "This Sheet",
+    SubscribeSubject: "Subject:",
+    SubscribeSubscribe: "Subscribe",
+    SubscribeSuccess: "Subscription successfully saved.",
+    SubscribeTitle: "Subscribe",
+    SubscribeTo: "To:",
+    SubscribeViewsToggleLabel: "Subscribe to",
+    SubscribeWorkbook: "Sheets in Workbook",
+    SuggestBinSizeButtonText: "Suggest",
+    SumOf: "SUM of",
+    Sunday: "Sunday",
+    SundayShort: "Sun",
+    TabAuthCategoricalColorEditorAssignPalette: "Assign Palette",
+    TabAuthCategoricalColorEditorReset: "Reset",
+    TabAuthCategoricalColorEditorSelectItem: "Select Data Item",
+    TabAuthCategoricalColorEditorSelectPalette: "Select Color Palette",
+    TabAuthColorEditButton: "Edit Colors...",
+    TabAuthColorEditLabel: "Color",
+    TabAuthColorEditLegendButtonTooltip: "Edit Colors...",
+    TabAuthColorEditorDialogTitle: "Edit Colors [{0}]",
+    TabAuthMarksColorBorderLabel: "Border",
+    TabAuthMarksColorHaloLabel: "Halo",
+    TabAuthSaveDatasourceConfirmMsg: "Save the data source \"{0}\" for shared use on the server?",
+    TabAuthSaveDatasourceDialogTitle: "Confirm Save Data Source",
+    TabAuthSaveDatasourceErrorDialogTitle: "Save Data Source Error",
+    TabAuthSaveDatasourceNotReplacedSuccessMessage: "The data source \"{0}\" was saved, but a problem occurred while replacing this workbook\'s connection.",
+    TabAuthSaveDatasourceNotReplacedSuccessTitle: "Save and Replace Data Source",
+    TabAuthSaveDatasourceReplaceCheckboxLabel: "Update workbook to connect to the saved data source",
+    TabAuthSaveDatasourceReplacedSuccessMessage: "Your data source has been saved.",
+    TabAuthSaveDatasourceReplacedSuccessTitle: "Save and Replace Data Source",
+    TabAuthSaveDatasourceSuccessDialogTitle: "Save Data Source Success",
+    TabAuthSaveDatasourceSuccessMessage: "Your data source has been saved. The project settings determine \"Connect to\" and other permissions for this data source. Browse to the Data Sources page to see this data source and its properties.",
+    TableCalcAddSecondary: "Add secondary calculation",
+    TableCalcAtTheLevel: "At the level",
+    TableCalcComputeCompoundedRate: "Compute compounded rate",
+    TableCalcComputeTotalAcrossPages: "Compute total across all pages",
+    TableCalcComputeUsing: "Compute Using",
+    TableCalcDialogTitle: "Table Calculation",
+    TableCalcInvalidRestartEveryField: "<invalid>",
+    TableCalcMissingSortField: "<missing>",
+    TableCalcNestedCalculations: "Nested Calculations",
+    TableCalcPrimaryTitle: "Primary Calculation Type",
+    TableCalcRelativeTo: "Relative to",
+    TableCalcRestartingEvery: "Restarting every",
+    TableCalcSecondaryTitle: "Secondary Calculation Type",
+    TableCalcShowCalculationAssistance: "Show calculation assistance",
+    TableCalcSingleTitle: "Calculation Type",
+    TableCalcSortAscending: "Ascending",
+    TableCalcSortAutomatic: "Specific dimensions",
+    TableCalcSortCustom: "Custom",
+    TableCalcSortDescending: "Descending",
+    TableCalcSortOrder: "Sort order",
+    TableCalcSpecificDimensions: "Specific Dimensions",
+    TableCalcVisualStructure: "Visual Structure",
+    TableCalcWindowCurrentValue: "Current Value",
+    TableCalcWindowNullSetting: "Null if there are not enough values",
+    ThirdEnding: "{0}rd",
+    Thursday: "Thursday",
+    ThursdayShort: "Thu",
+    TimeLimitExceededTitle: "Session Time Limit Exceeded",
+    TimeLimitExceededWarning: "Computing the current visualization has exceeded the session time limit.",
+    ToolbarAboutTableau: "About Tableau",
+    ToolbarConnectToDataSource: "Add New Data Source",
+    ToolbarCurrentView: "Current View",
+    ToolbarCustomViewsDefault: "{0} (default)",
+    ToolbarCustomViewsDeleteButtonTooltip: "Delete this view",
+    ToolbarCustomViewsEmptyPlaceholder: "Nothing saved yet",
+    ToolbarCustomViewsEnterManageButtonText: "Manage",
+    ToolbarCustomViewsErrorChangingPublicPrivateState: "Error updating the public/private state on the custom view.",
+    ToolbarCustomViewsErrorDeleting: "Error deleting the custom view.",
+    ToolbarCustomViewsErrorInvalidName: "Please enter a valid custom view name.",
+    ToolbarCustomViewsErrorRenaming: "Error renaming the custom view.",
+    ToolbarCustomViewsErrorSavingView: "Error saving custom view.",
+    ToolbarCustomViewsErrorSettingDefault: "Error setting the default custom view.",
+    ToolbarCustomViewsExitManageButtonText: "Done",
+    ToolbarCustomViewsHideViewButtonTooltipWhenPrivate: "This view is private",
+    ToolbarCustomViewsHideViewButtonTooltipWhenPublic: "This view is public",
+    ToolbarCustomViewsMakeItMyDefault: "Make it my default",
+    ToolbarCustomViewsMyViews: "My Views",
+    ToolbarCustomViewsOriginalView: "Original",
+    ToolbarCustomViewsOtherViews: "Other Views",
+    ToolbarCustomViewsRenameButtonTooltip: "Rename this view",
+    ToolbarCustomViewsRenameUIClearButtonTooltip: "Cancel",
+    ToolbarCustomViewsRenameUIPlaceholderText: "Rename this view",
+    ToolbarCustomViewsSave: "Save",
+    ToolbarCustomViewsSaveAreaFillerTextManage: "Manage",
+    ToolbarCustomViewsSaveAreaFillerTextSelect: "Select Custom View",
+    ToolbarCustomViewsSaveButtonDisabledTitle: "Please enter a name for the Custom View in the text field.",
+    ToolbarCustomViewsSetDefaultButtonTooltip: "Set this view as your default",
+    ToolbarCustomViewsSetDefaultButtonTooltipWhenCurrent: "This is your current default",
+    ToolbarCustomViewsShareItWithOthers: "Make it public",
+    ToolbarCustomViewsTemplate: "View: {0}",
+    ToolbarCustomViewsViewNamePlaceholder: "Name this view",
+    ToolbarDisabledCrosstabDownloadExplanation: "The crosstab is not available for download.",
+    ToolbarDisabledDataDownloadExplanation: "The data is not available for download.",
+    ToolbarDisabledDownloadExplanation: "Click the view to enable data and crosstab download",
+    ToolbarDisabledWorkbookDownloadExplanation: "Permissions are required to download the workbook.",
+    ToolbarDownload: "Download",
+    ToolbarEdit: "Edit",
+    ToolbarEmbedTitle: "Embed Code",
+    ToolbarEnterFullscreen: "Full Screen",
+    ToolbarExitFullscreen: "Exit Full Screen",
+    ToolbarExport: "Download",
+    ToolbarExportCrosstab: "Crosstab",
+    ToolbarExportData: "Data",
+    ToolbarExportImage: "Image",
+    ToolbarMoreByAuthor: "more by this author",
+    ToolbarOriginalView: "Original View",
+    ToolbarPauseAutomaticUpdates: "Pause Automatic Updates",
+    ToolbarPrintToPdf: "PDF",
+    ToolbarPublicAvailablePlatforms: "Available for {0} and {1}",
+    ToolbarPublicDownloadLabelMobile: "Learn More",
+    ToolbarPublicDownloadLabelWeb: "Get the App",
+    ToolbarPublicExplanationText: "Create interactive graphs, maps, dashboards and apps. Publish them anywhere on the web. Anyone can do it. And it’s free.",
+    ToolbarPublicExplanationTitle: "What\'s Tableau Public?",
+    ToolbarRefreshData: "Refresh data for this view",
+    ToolbarResumeAutomaticUpdates: "Resume Automatic Updates",
+    ToolbarRevertAll: "Revert All",
+    ToolbarSendTitle: "Link",
+    ToolbarSetCurrentPage: "Set the current page",
+    ToolbarShare: "Share",
+    ToolbarShowPerformanceRecording: "Performance",
+    ToolbarSubscribeAllView: "Entire Workbook",
+    ToolbarSubscribeDataPresentCheckbox: "Don’t send if view is empty",
+    ToolbarSubscribeEmailPlaceholder: "Email",
+    ToolbarSubscribeSchedule: "Schedule",
+    ToolbarSubscribeSubjectPlaceholder: "Subject",
+    ToolbarSubscribeSubmitButton: "Subscribe",
+    ToolbarSubscribeSubmitDisabledTitle: "Please make sure you have a valid schedule, email address, and subject to subscribe.",
+    ToolbarSubscribeThisView: "This View",
+    ToolbarToggleAutoUpdate: "Toggle Auto Update",
+    ToolbarViewCount: "{0} views",
+    ToolbarWorkbook: "Tableau Workbook",
+    TooltipPanZoomMessage: "Double-click to zoom / Press-and-hold to pan",
+    Tuesday: "Tuesday",
+    TuesdayShort: "Tue",
+    UbertipClearSelection: "Clear<br/>Selection",
+    UbertipCommand1Mobile: "Clear<br/>Selection",
+    UbertipCommand7Mobile: "View Data",
+    UbertipItemsSelected: "items selected",
+    UbertipTooltip_Action_DownMobile: "Drill Down",
+    UbertipTooltip_Action_UpMobile: "Drill Up",
+    UbertipTooltip_ExcludeMobile: "Exclude",
+    UbertipTooltip_GroupMobile: "Group Members",
+    UbertipTooltip_KeepOnlyMobile: "Keep Only",
+    UbertipTooltip_SortAscendingMobile: "Sort Ascending",
+    UbertipTooltip_SortDescendingMobile: "Sort Descending",
+    UbertipTooltip_SplitMobile: "Ungroup Members",
+    UbertipTooltip_ViewData: "View Data",
+    UnhandledExceptionMessage: "An unexpected error occurred. If you continue to receive this error please contact your Tableau Server Administrator.<br>Session ID: {0}<br>{1}",
+    UnhandledExceptionTitle: "Unexpected Error",
+    UploadBytes: "bytes",
+    UploadGB: "GB",
+    UploadKB: "KB",
+    UploadMB: "MB",
+    UseAsLinkingField: "Use {0} as linking field",
+    UserHasNoEmailAddressWarning: "User has no email address in Tableau",
+    VizObjectTypeReferenceLine: "Reference Line",
+    WarningTitle: "Warning",
+    WebZoneHttpsEmbedHttpAuthoring: "Because the server is running HTTPS, the URL for this web page object must be specified using https:// instead of http://",
+    WebZoneHttpsEmbedHttpView: "Unable to display web page object (URL must start with https://)",
+    WebZoneUrlDialogTitle: "Edit URL",
+    Wednesday: "Wednesday",
+    WednesdayShort: "Wed",
+    WindowTableCalcNextValuesLabel: "Next values",
+    WindowTableCalcPreviousValuesLabel: "Previous values",
+    WindowTableCalcSummarizeUsing: "Summarize values using"
+  };
+
+  function replaceAll(s, oldValue, newValue) {
+    newValue = (newValue === undefined || newValue === null) ? '' : newValue;
+    return s.split(oldValue).join(newValue);
+  }
+
+  w.tab = w.tab || {};
+  if (!tab.Strings) {
+    tab.Strings = {
+      noLoc: function(str) { return str; },
+      getString: function(strKey) { return typeof (tab.Strings[strKey]) === 'undefined' ? '!' + strKey + '!': tab.Strings[strKey]; }
+    };
+    for (var key in s) {
+      if (s.hasOwnProperty(key)) {
+        tab.Strings[key] = function() {
+          var k = key, hasParams = /{[^}{]+}/.test(s[k]);
+          return hasParams ?
+            function() {
+              var formattedString = s[k];
+              for (var i = 0, len = arguments.length; i < len; i++) {
+                formattedString = replaceAll(formattedString, '{' + i + '}', arguments[i]);
+              }
+              return formattedString;
+            } :
+            s[k];
+        }();
+      }
+    }
+  }
+}(window));
 
 /*! BEGIN Core */
 
@@ -5677,6 +6840,12 @@ global.ss = ss;
 			return element.id;
 		}).get();
 	};
+	$tab_DomUtil.asID = function DomUtil$AsID(selector) {
+		return '#' + selector;
+	};
+	$tab_DomUtil.asClass = function DomUtil$AsClass(selector) {
+		return '.' + selector;
+	};
 	global.tab.DomUtil = $tab_DomUtil;
 	////////////////////////////////////////////////////////////////////////////////
 	// Tableau.JavaScript.Vql.Core.DoubleRectXYUtil
@@ -6729,6 +7898,9 @@ global.ss = ss;
 		}
 		return $tab_MetricsLogger.$instance;
 	};
+	$tab_MetricsLogger.$timeForNewRelic = function MetricsLogger$TimeForNewRelic(time) {
+		return time + tabBootstrap.MetricsController.recordingStart;
+	};
 	$tab_MetricsLogger.$formatEvent = function MetricsLogger$FormatEvent(evt, verbose) {
 		var delimiter = (verbose ? ', ' : ',');
 		var strBuilder = new ss.StringBuilder();
@@ -7067,7 +8239,7 @@ global.ss = ss;
 	};
 	$tab_NavigationMetricsCollector.__typeName = 'tab.NavigationMetricsCollector';
 	$tab_NavigationMetricsCollector.collectMetrics = function NavigationMetricsCollector$CollectMetrics() {
-		if (typeof(window) !== 'undefined' && typeof(window.performance) !== 'undefined' && typeof(window.performance.timing) !== 'undefined' && false) {
+		if (typeof(window) !== 'undefined' && typeof(window.performance) !== 'undefined' && typeof(window.performance.timing) !== 'undefined' && typeof(tabBootstrap.MetricsEvent) !== 'undefined') {
 			$tab_NavigationMetricsCollector.$navMetrics = window.performance.timing;
 			if ('navigationStart' in $tab_NavigationMetricsCollector.$navMetrics) {
 				var start = $tab_NavigationMetricsCollector.$navMetrics[$tab_NavigationMetricsCollector.$navigationMetricsOrder[0]];
@@ -8140,12 +9312,7 @@ global.ss = ss;
 	$tab_UriUtil.get_$helpVersion = function UriUtil$get_HelpVersion() {
 		var regex = new RegExp('^(\\d+\\.\\d+)');
 		var matches = regex.exec(tsConfig.version);
-		if (ss.isValue(matches)) {
-			return matches[1];
-		}
-		else {
-			return '0.0';
-		}
+		return (ss.isValue(matches) ? matches[1] : '0.0');
 	};
 	$tab_UriUtil.get_$helpEdition = function UriUtil$get_HelpEdition() {
 		return (tsConfig.is_saas ? 'online' : 'server');
@@ -8154,7 +9321,7 @@ global.ss = ss;
 		if (ss.isNullOrUndefined(tsConfig.language)) {
 			return 'en-us';
 		}
-		switch (tsConfig.language.toString()) {
+		switch (tsConfig.language) {
 			case 'de': {
 				return 'de-de';
 			}
@@ -8192,7 +9359,8 @@ global.ss = ss;
 		}
 		else {
 			ss.Debug.assert(!ss.isNullOrEmptyString(helpToken), '!string.IsNullOrEmpty(helpToken)');
-			helpUri = ss.formatString('{0}/{1}/app/{2}?edition={3}&lang={1}&version={4}', $tab_UriUtil.onlineHelpOrigin, $tab_UriUtil.get_$helpLang(), helpToken, $tab_UriUtil.get_$helpEdition(), $tab_UriUtil.get_$helpVersion());
+			var platform = (!ss.isNullOrEmptyString(tsConfig.serverPlatform) ? ss.formatString('platform={0}&', tsConfig.serverPlatform.toLowerCase()) : '');
+			helpUri = ss.formatString('{0}/{1}/app/{2}?edition={3}&lang={1}&{5}version={4}', $tab_UriUtil.onlineHelpOrigin, $tab_UriUtil.get_$helpLang(), helpToken, $tab_UriUtil.get_$helpEdition(), $tab_UriUtil.get_$helpVersion(), platform);
 		}
 		ss.Debug.assert(!ss.isNullOrEmptyString(helpUri), '!string.IsNullOrEmpty(helpUri)');
 		return helpUri;
@@ -8206,10 +9374,10 @@ global.ss = ss;
 		if (tsConfig.useOfflineHelp) {
 			return $tab_UriUtil.getOfflineHelpHref(ss.formatString('search-{0}', escapedQuery));
 		}
-		else {
-			var lang = $tab_UriUtil.get_$helpLang();
-			return ((lang === 'en-us') ? ss.formatString('{0}/search/support/{1}', $tab_UriUtil.onlineHelpOrigin, escapedQuery) : ss.formatString('{0}/{1}/search/support/{2}', $tab_UriUtil.onlineHelpOrigin, lang, escapedQuery));
-		}
+		return (($tab_UriUtil.get_$helpLang() === 'en-us') ? ss.formatString('{0}/search/support/{1}', $tab_UriUtil.onlineHelpOrigin, escapedQuery) : ss.formatString('{0}/{1}/search/support/{2}', $tab_UriUtil.onlineHelpOrigin, $tab_UriUtil.get_$helpLang(), escapedQuery));
+	};
+	$tab_UriUtil.makeSupportUri = function UriUtil$MakeSupportUri() {
+		return (tsConfig.useOfflineHelp ? $tab_UriUtil.getOfflineHelpHref('support') : $tab_UriUtil.onlineHelpOrigin) + '/support';
 	};
 	global.tab.UriUtil = $tab_UriUtil;
 	////////////////////////////////////////////////////////////////////////////////
@@ -10015,7 +11183,29 @@ global.ss = ss;
 				this.$eventBuffer.shift();
 			}
 			this.$eventBuffer.push(evt);
-			this.$startProcessingTimer();
+			this.$notifyNewRelic(evt);
+			this.$startProcessingTimer(250);
+		},
+		$notifyNewRelic: function MetricsLogger$NotifyNewRelic(evt) {
+			if (!('newrelic' in window)) {
+				return;
+			}
+			var description = evt.parameters['d'];
+			if (ss.isNullOrUndefined(description)) {
+				return;
+			}
+			var traceVals = new Object();
+			traceVals.name = ss.coalesce($tab_MetricsLogger.$betterDescriptionLookup[description], description);
+			var eventTimeForNR = $tab_MetricsLogger.$timeForNewRelic(evt.parameters['t']);
+			var elapsed = evt.parameters['e'];
+			if (ss.isValue(elapsed)) {
+				traceVals.end = eventTimeForNR;
+				traceVals.start = eventTimeForNR - elapsed;
+			}
+			else {
+				traceVals.start = eventTimeForNR;
+			}
+			newrelic.addToTrace(traceVals);
 		},
 		attach: function MetricsLogger$Attach() {
 			tabBootstrap.MetricsController.setEventLogger(ss.mkdel(this, this.logEvent));
@@ -10024,7 +11214,6 @@ global.ss = ss;
 			if (ss.isValue(this.$bufferProcessTimerId)) {
 				return;
 			}
-			delay = ss.coalesce(delay, $tab_MetricsLogger.$defaultProcessingDelay);
 			this.$bufferProcessTimerId = window.setTimeout(ss.mkdel(this, this.$processBufferedEvents), delay);
 		},
 		$processBufferedEvents: function MetricsLogger$ProcessBufferedEvents() {
@@ -10517,6 +11706,10 @@ global.ss = ss;
 	(function() {
 		$tableau_types.ExportDialogType = null;
 		var exportDialogType = {};
+		exportDialogType['ExportImage'] = ss.mkdict(['title', tab.Strings.ExportImageDialogTitle, 'mimeType', 'image/png', 'message', tab.Strings.ExportImageDialogMessage]);
+		exportDialogType['ExportData'] = ss.mkdict(['title', tab.Strings.ExportDataDialogTitle, 'mimeType', 'text/csv', 'message', tab.Strings.ExportDataDialogMessage]);
+		exportDialogType['ExportCrosstab'] = ss.mkdict(['title', tab.Strings.ExportCrosstabDialogTitle, 'message', tab.Strings.ExportCrosstabDialogMessage]);
+		exportDialogType['PrintPDF'] = ss.mkdict(['title', tab.Strings.PrintPdfDialogTitle, 'mimeType', 'application/pdf', 'message', tab.Strings.PrintPdfDialogMessage, 'noping', true]);
 		$tableau_types.ExportDialogType = exportDialogType;
 	})();
 	(function() {
@@ -10644,6 +11837,7 @@ global.ss = ss;
 		$tab_MetricsLogger.$beaconCleanupDelay = 250;
 		$tab_MetricsLogger.$debugParamNames = null;
 		$tab_MetricsLogger.$debugEventNames = null;
+		$tab_MetricsLogger.$betterDescriptionLookup = null;
 		$tab_MetricsLogger.$instance = null;
 		$tab_MetricsLogger.$debugParamNames = {};
 		$tab_MetricsLogger.$debugParamNames['d'] = 'DESC';
@@ -10662,6 +11856,7 @@ global.ss = ss;
 		$tab_MetricsLogger.$debugEventNames['wp'] = 'ProfileEnd';
 		$tab_MetricsLogger.$debugEventNames['gen'] = 'Generic';
 		$tab_MetricsLogger.$debugEventNames['init'] = 'SessionInit';
+		$tab_MetricsLogger.$betterDescriptionLookup = ss.mkdict(['BTSTRP', 'Bootstrap Request', 'PROPRI', 'Process Primary Payload', 'PROSEC', 'Process Secondary Payload', 'MDLINI', 'Initialize Models', 'MDLEVT', 'Handle Model Events', 'EXELOC', 'Execute Local Command', 'EXEREM', 'Execute Remote Command', 'PROLOC', 'Process Local Command Response', 'PROREM', 'Process Remote Command Response', 'RNDRPT', 'Render Panetable', 'RNDRRG', 'Render Region', 'RTCONV', 'Runtime model presmodel conversion', 'CLNTLD', 'Client Loaded', 'APPSTR', 'Application Startup', 'APPINT', 'Application Interactive', 'ALLZNS', 'All Zones Loaded', 'TBRLAY', 'Toolbar Layout', 'TBRHNT', 'Toolbar HandleNewToolbar', 'TBRADD', 'Toolbar AddToolbar', 'TBRHRE', 'Toolbar HandleResize', 'MDLOAD', 'JavaScript Module loaded asynchronously']);
 	})();
 	(function() {
 		$tab_NavigationMetricsCollector.$navigationMetricsOrder = ['navigationStart', 'unloadEventStart', 'unloadEventEnd', 'redirectStart', 'redirectEnd', 'fetchStart', 'domainLookupStart', 'domainLookupEnd', 'connectStart', 'connectEnd', 'secureConnectionStart', 'requestStart', 'responseStart', 'responseEnd', 'domLoading', 'domInteractive', 'domContentLoadedEventStart', 'domContentLoadedEventEnd', 'domComplete', 'loadEventStart', 'loadEventEnd'];
@@ -10769,7 +11964,7 @@ global.ss = ss;
 		$tableau_format.$pm = new RegExp('^(p|p\\.?m\\.?|㏘|µ\\.?µ\\.?|午後)$', 'i');
 		$tableau_format.$positiveScientificNotation = new RegExp('(\\d)(?:\\.(\\d+))?e\\+(\\d+)');
 		$tableau_format.$icuToOleMap = ss.mkdict(['yyyyy', 'yyyyy', 'yyyy', 'yyyy', 'yyy', 'yyyy', 'yy', 'yy', 'y', 'yyyy', 'L', 'm', 'LL', 'mm', 'LLL', 'mmm', 'LLLL', 'mmmm']);
-		$tableau_format.$defaultLocaleStrings = null;
+		$tableau_format.$defaultLocaleStrings = { day: ['', tab.Strings.Sunday, tab.Strings.Monday, tab.Strings.Tuesday, tab.Strings.Wednesday, tab.Strings.Thursday, tab.Strings.Friday, tab.Strings.Saturday, tab.Strings.Sunday], shortDay: ['', tab.Strings.SundayShort, tab.Strings.MondayShort, tab.Strings.TuesdayShort, tab.Strings.WednesdayShort, tab.Strings.ThursdayShort, tab.Strings.FridayShort, tab.Strings.SaturdayShort, tab.Strings.SundayShort], shortMonth: [tab.Strings.JanuaryShort, tab.Strings.FebruaryShort, tab.Strings.MarchShort, tab.Strings.AprilShort, tab.Strings.MayShort, tab.Strings.JuneShort, tab.Strings.JulyShort, tab.Strings.AugustShort, tab.Strings.SeptemberShort, tab.Strings.OctoberShort, tab.Strings.NovemberShort, tab.Strings.DecemberShort], month: [tab.Strings.January, tab.Strings.February, tab.Strings.March, tab.Strings.April, tab.Strings.May, tab.Strings.June, tab.Strings.July, tab.Strings.August, tab.Strings.September, tab.Strings.October, tab.Strings.November, tab.Strings.December] };
 		$tableau_format.$baseTimestamp = ss.mkdict(['t', 't', 'v', $tableau_types.OleDateFromJsDate(Date.UTC(1918, 10, 11, 11, 11, 0))]);
 		$tableau_format.$specialValues = null;
 		$tableau_format.$fullwidthToAscii = ss.mkdict(['０', '0', '１', '1', '２', '2', '３', '3', '４', '4', '５', '5', '６', '6', '７', '7', '８', '8', '９', '9', '－', '-', '．', '.', '。', '.']);
@@ -12074,6 +13269,12 @@ global.ss = ss;
 	};
 	global.tab.DataValue = $tab_DataValue;
 	////////////////////////////////////////////////////////////////////////////////
+	// Tableau.JavaScript.Vql.ApiShared.FilterCommandsBuilder
+	var $tab_FilterCommandsBuilder = function() {
+	};
+	$tab_FilterCommandsBuilder.__typeName = 'tab.FilterCommandsBuilder';
+	global.tab.FilterCommandsBuilder = $tab_FilterCommandsBuilder;
+	////////////////////////////////////////////////////////////////////////////////
 	// Tableau.JavaScript.Vql.ApiShared.GetDataCommandsBuilder
 	var $tab_GetDataCommandsBuilder = function() {
 	};
@@ -12808,6 +14009,231 @@ global.ss = ss;
 	});
 	ss.initEnum($tab_DataType, $asm, { float: 'float', integer: 'integer', string: 'string', boolean: 'boolean', date: 'date', datetime: 'datetime' }, true);
 	ss.initClass($tab_DataValue, $asm, {}, Object);
+	ss.initClass($tab_FilterCommandsBuilder, $asm, {
+		buildApplyFiltersCommandParams: function FilterCommandsBuilder$BuildApplyFiltersCommandParams(fieldName, values, updateType, options) {
+			if ($tab__Utility.isNullOrEmpty(fieldName)) {
+				throw $tab__TableauException.createNullOrEmptyParameter('fieldName');
+			}
+			updateType = $tab_PublicEnums.normalizeEnum($tab_ApiFilterUpdateType).call(null, updateType, 'updateType');
+			var fieldValues = [];
+			if ($tab__jQueryShim.isArray(values)) {
+				for (var i = 0; i < values.length; i++) {
+					fieldValues.push(values[i].toString());
+				}
+			}
+			else if (ss.isValue(values)) {
+				fieldValues.push(values.toString());
+			}
+			var commandParameters = {};
+			commandParameters['api.fieldCaption'] = fieldName;
+			commandParameters['api.filterUpdateType'] = updateType;
+			commandParameters['api.exclude'] = ((ss.isValue(options) && options.isExcludeMode) ? true : false);
+			if (updateType !== 'all') {
+				commandParameters['api.filterCategoricalValues'] = fieldValues;
+			}
+			return commandParameters;
+		},
+		buildRangeFilterCommandParams: function FilterCommandsBuilder$BuildRangeFilterCommandParams(fieldName, filterOptions) {
+			if ($tab__Utility.isNullOrEmpty(fieldName)) {
+				throw $tab__TableauException.createNullOrEmptyParameter('fieldName');
+			}
+			if (ss.isNullOrUndefined(filterOptions)) {
+				throw $tab__TableauException.createNullOrEmptyParameter('filterOptions');
+			}
+			var commandParameters = {};
+			commandParameters['api.fieldCaption'] = fieldName;
+			if (ss.isValue(filterOptions.min)) {
+				if ($tab__Utility.isDate(filterOptions.min)) {
+					var dt = ss.cast(filterOptions.min, ss.JsDate);
+					if ($tab__Utility.isDateValid(dt)) {
+						commandParameters['api.filterRangeMin'] = $tab__Utility.serializeDateForServer(dt);
+					}
+					else {
+						throw $tab__TableauException.createInvalidDateParameter('filterOptions.min');
+					}
+				}
+				else {
+					commandParameters['api.filterRangeMin'] = filterOptions.min;
+				}
+			}
+			if (ss.isValue(filterOptions.max)) {
+				if ($tab__Utility.isDate(filterOptions.max)) {
+					var dt1 = ss.cast(filterOptions.max, ss.JsDate);
+					if ($tab__Utility.isDateValid(dt1)) {
+						commandParameters['api.filterRangeMax'] = $tab__Utility.serializeDateForServer(dt1);
+					}
+					else {
+						throw $tab__TableauException.createInvalidDateParameter('filterOptions.max');
+					}
+				}
+				else {
+					commandParameters['api.filterRangeMax'] = filterOptions.max;
+				}
+			}
+			if (ss.isValue(filterOptions.nullOption)) {
+				commandParameters['api.filterRangeNullOption'] = filterOptions.nullOption;
+			}
+			return commandParameters;
+		},
+		buildRelativeDateFilterCommandParams: function FilterCommandsBuilder$BuildRelativeDateFilterCommandParams(fieldName, filterOptions) {
+			if ($tab__Utility.isNullOrEmpty(fieldName)) {
+				throw $tab__TableauException.createInvalidParameter('fieldName');
+			}
+			else if (ss.isNullOrUndefined(filterOptions)) {
+				throw $tab__TableauException.createInvalidParameter('filterOptions');
+			}
+			var commandParameters = {};
+			commandParameters['api.fieldCaption'] = fieldName;
+			if (ss.isValue(filterOptions)) {
+				commandParameters['api.filterPeriodType'] = filterOptions.periodType;
+				commandParameters['api.filterDateRangeType'] = filterOptions.rangeType;
+				if (filterOptions.rangeType === 'lastn' || filterOptions.rangeType === 'nextn') {
+					if (ss.isNullOrUndefined(filterOptions.rangeN)) {
+						throw $tab__TableauException.create('missingRangeNForRelativeDateFilters', 'Missing rangeN field for a relative date filter of LASTN or NEXTN.');
+					}
+					commandParameters['api.filterDateRange'] = filterOptions.rangeN;
+				}
+				if (ss.isValue(filterOptions.anchorDate)) {
+					commandParameters['api.filterDateArchorValue'] = $tab__Utility.serializeDateForServer(filterOptions.anchorDate);
+				}
+			}
+			return commandParameters;
+		},
+		buildHierarchicalFilterCommandParams: function FilterCommandsBuilder$BuildHierarchicalFilterCommandParams(fieldName, values, updateType, options) {
+			if ($tab__Utility.isNullOrEmpty(fieldName)) {
+				throw $tab__TableauException.createNullOrEmptyParameter('fieldName');
+			}
+			updateType = $tab_PublicEnums.normalizeEnum($tab_ApiFilterUpdateType).call(null, updateType, 'updateType');
+			var fieldValues = null;
+			var levelValues = null;
+			if ($tab__jQueryShim.isArray(values)) {
+				fieldValues = [];
+				var arr = values;
+				for (var i = 0; i < arr.length; i++) {
+					fieldValues.push(arr[i].toString());
+				}
+			}
+			else if ($tab__Utility.isString(values)) {
+				fieldValues = [];
+				fieldValues.push(values.toString());
+			}
+			else if (ss.isValue(values) && ss.isValue(values['levels'])) {
+				var levelValue = values['levels'];
+				levelValues = [];
+				if ($tab__jQueryShim.isArray(levelValue)) {
+					var levels = levelValue;
+					for (var i1 = 0; i1 < levels.length; i1++) {
+						levelValues.push(levels[i1].toString());
+					}
+				}
+				else {
+					levelValues.push(levelValue.toString());
+				}
+			}
+			else if (ss.isValue(values)) {
+				throw $tab__TableauException.createInvalidParameter('values');
+			}
+			var commandParameters = {};
+			commandParameters['api.fieldCaption'] = fieldName;
+			commandParameters['api.filterUpdateType'] = updateType;
+			commandParameters['api.exclude'] = ((ss.isValue(options) && options.isExcludeMode) ? true : false);
+			if (ss.isValue(fieldValues)) {
+				commandParameters['api.filterHierarchicalValues'] = JSON.stringify(fieldValues);
+			}
+			if (ss.isValue(levelValues)) {
+				commandParameters['api.filterHierarchicalLevels'] = JSON.stringify(levelValues);
+			}
+			return commandParameters;
+		},
+		buildClearFilterCommandsParam: function FilterCommandsBuilder$BuildClearFilterCommandsParam(fieldName) {
+			if ($tab__Utility.isNullOrEmpty(fieldName)) {
+				throw $tab__TableauException.createNullOrEmptyParameter('fieldName');
+			}
+			var commandParameters = {};
+			commandParameters['api.fieldCaption'] = fieldName;
+			return commandParameters;
+		},
+		filterCommandError: function FilterCommandsBuilder$FilterCommandError(rawPm) {
+			var commandError = rawPm;
+			if (ss.isValue(commandError) && ss.isValue(commandError.errorCode)) {
+				var additionalInfo = (ss.isValue(commandError.additionalInformation) ? commandError.additionalInformation.toString() : '');
+				switch (commandError.errorCode) {
+					case 'invalidFilterFieldName': {
+						return $tab__TableauException.create('invalidFilterFieldName', additionalInfo);
+					}
+					case 'invalidFilterFieldValue': {
+						return $tab__TableauException.create('invalidFilterFieldValue', additionalInfo);
+					}
+					case 'invalidAggregationFieldName': {
+						return $tab__TableauException.createInvalidAggregationFieldName(additionalInfo);
+					}
+					default: {
+						return $tab__TableauException.createServerError(additionalInfo);
+					}
+				}
+			}
+			return null;
+		},
+		normalizeRangeFilterOption: function FilterCommandsBuilder$NormalizeRangeFilterOption(filterOptions) {
+			if (ss.isNullOrUndefined(filterOptions)) {
+				throw $tab__TableauException.createNullOrEmptyParameter('filterOptions');
+			}
+			if (ss.isNullOrUndefined(filterOptions.min) && ss.isNullOrUndefined(filterOptions.max)) {
+				throw $tab__TableauException.create('invalidParameter', 'At least one of filterOptions.min or filterOptions.max must be specified.');
+			}
+			var fixedUpFilterOptions = new Object();
+			if (ss.isValue(filterOptions.min)) {
+				fixedUpFilterOptions.min = filterOptions.min;
+			}
+			if (ss.isValue(filterOptions.max)) {
+				fixedUpFilterOptions.max = filterOptions.max;
+			}
+			if (ss.isValue(filterOptions.nullOption)) {
+				fixedUpFilterOptions.nullOption = $tab_PublicEnums.normalizeEnum($tab_ApiNullOption).call(null, filterOptions.nullOption, 'filterOptions.nullOption');
+			}
+			return fixedUpFilterOptions;
+		},
+		normalizeRelativeDateFilterOptions: function FilterCommandsBuilder$NormalizeRelativeDateFilterOptions(filterOptions) {
+			if (ss.isNullOrUndefined(filterOptions)) {
+				throw $tab__TableauException.createNullOrEmptyParameter('filterOptions');
+			}
+			var fixedUpFilterOptions = new Object();
+			fixedUpFilterOptions.rangeType = $tab_PublicEnums.normalizeEnum($tab_ApiDateRangeType).call(null, filterOptions.rangeType, 'filterOptions.rangeType');
+			fixedUpFilterOptions.periodType = $tab_PublicEnums.normalizeEnum($tab_ApiPeriodType).call(null, filterOptions.periodType, 'filterOptions.periodType');
+			if (fixedUpFilterOptions.rangeType === 'lastn' || fixedUpFilterOptions.rangeType === 'nextn') {
+				if (ss.isNullOrUndefined(filterOptions.rangeN)) {
+					throw $tab__TableauException.create('missingRangeNForRelativeDateFilters', 'Missing rangeN field for a relative date filter of LASTN or NEXTN.');
+				}
+				fixedUpFilterOptions.rangeN = $tab__Utility.toInt(filterOptions.rangeN);
+			}
+			if (ss.isValue(filterOptions.anchorDate)) {
+				if (!$tab__Utility.isDate(filterOptions.anchorDate) || !$tab__Utility.isDateValid(filterOptions.anchorDate)) {
+					throw $tab__TableauException.createInvalidDateParameter('filterOptions.anchorDate');
+				}
+				fixedUpFilterOptions.anchorDate = filterOptions.anchorDate;
+			}
+			return fixedUpFilterOptions;
+		},
+		createFilterCommandReturnHandler: function FilterCommandsBuilder$CreateFilterCommandReturnHandler(commandName, fieldName, deferred) {
+			return new (ss.makeGenericType($tab_CommandReturnHandler$1, [Object]))(commandName, 1, ss.mkdel(this, function(result) {
+				var error = this.filterCommandError(result);
+				if (ss.isNullOrUndefined(error)) {
+					deferred.resolve(fieldName);
+				}
+				else {
+					deferred.reject(error);
+				}
+			}), function(remoteError, message) {
+				if (remoteError) {
+					deferred.reject($tab__TableauException.createInvalidFilterFieldNameOrValue(fieldName));
+				}
+				else {
+					var error1 = $tab__TableauException.create('filterCannotBePerformed', message);
+					deferred.reject(error1);
+				}
+			});
+		}
+	});
 	ss.initClass($tab_GetDataCommandsBuilder, $asm, {
 		getSummaryDataCommandParams: function GetDataCommandsBuilder$GetSummaryDataCommandParams(options) {
 			var commandParameters = {};
@@ -13362,6 +14788,30 @@ global.ss = ss;
 	};
 	global.tab.ApiCrossDomainEnumConverter = $tab_ApiCrossDomainEnumConverter;
 	////////////////////////////////////////////////////////////////////////////////
+	// Tableau.JavaScript.Vql.ApiDomain.ApiCrossDomainParamConverter
+	var $tab_ApiCrossDomainParamConverter = function() {
+	};
+	$tab_ApiCrossDomainParamConverter.__typeName = 'tab.ApiCrossDomainParamConverter';
+	$tab_ApiCrossDomainParamConverter.convertFilterUpdateType = function ApiCrossDomainParamConverter$ConvertFilterUpdateType(apiFilterUpdateType) {
+		var inputType = apiFilterUpdateType.toString();
+		if (inputType.toLowerCase() === 'replace') {
+			return 'filter-replace'.toString();
+		}
+		else if (inputType.toLowerCase() === 'all') {
+			return 'filter-all'.toString();
+		}
+		else if (inputType.toLowerCase() === 'add') {
+			return 'filter-add'.toString();
+		}
+		else if (inputType.toLowerCase() === 'remove') {
+			return 'filter-remove'.toString();
+		}
+		else {
+			return 'filter-replace'.toString();
+		}
+	};
+	global.tab.ApiCrossDomainParamConverter = $tab_ApiCrossDomainParamConverter;
+	////////////////////////////////////////////////////////////////////////////////
 	// Tableau.JavaScript.Vql.ApiDomain.ApiCrossDomainPresModelsFactory
 	var $tab_ApiCrossDomainPresModelsFactory = function() {
 	};
@@ -13611,6 +15061,260 @@ global.ss = ss;
 	};
 	global.tab.ApiCrossDomainPresModelsFactory = $tab_ApiCrossDomainPresModelsFactory;
 	////////////////////////////////////////////////////////////////////////////////
+	// Tableau.JavaScript.Vql.ApiDomain.ApiFilterHandler
+	var $tab_ApiFilterHandler = function() {
+	};
+	$tab_ApiFilterHandler.__typeName = 'tab.ApiFilterHandler';
+	$tab_ApiFilterHandler.processFilters = function ApiFilterHandler$ProcessFilters(pm) {
+		var filterList = ss.cast(JSON.parse(pm.toString()), Array);
+		var filters = [];
+		if (ss.isValue(filterList)) {
+			for (var $t1 = 0; $t1 < filterList.length; $t1++) {
+				var p = filterList[$t1];
+				var filter = $tab_ApiFilterHandler.$extractOneFilter(p);
+				if (ss.isValue(filter)) {
+					filters.push(filter);
+				}
+			}
+		}
+		var retVal = new Object();
+		retVal.filters = Array.prototype.slice.call(filters);
+		return retVal;
+	};
+	$tab_ApiFilterHandler.processFilterCommandReturningFieldName = function ApiFilterHandler$ProcessFilterCommandReturningFieldName(serverPm) {
+		var errorPm = $tab_ApiFilterHandler.$checkForCommandError(serverPm);
+		if (ss.isValue(errorPm)) {
+			return errorPm;
+		}
+		return serverPm;
+	};
+	$tab_ApiFilterHandler.processSingleFilter = function ApiFilterHandler$ProcessSingleFilter(serverPm) {
+		var errorPm = $tab_ApiFilterHandler.$checkForCommandError(serverPm);
+		if (ss.isValue(errorPm)) {
+			return errorPm;
+		}
+		var filterList = JSON.parse(serverPm.toString());
+		if (ss.isValue(filterList)) {
+			return $tab_ApiFilterHandler.$extractOneFilter(filterList);
+		}
+		return null;
+	};
+	$tab_ApiFilterHandler.$checkForCommandError = function ApiFilterHandler$CheckForCommandError(serverPm) {
+		var errorData = serverPm;
+		if (ss.keyExists(errorData, 'parameterError')) {
+			if (ss.isValue(errorData['invalidFieldCaption'])) {
+				return $tab_ApiCrossDomainPresModelsFactory.newCommandError('invalidFilterFieldName', errorData['invalidFieldCaption']);
+			}
+			else if (ss.isValue(errorData['invalidValues'])) {
+				return $tab_ApiCrossDomainPresModelsFactory.newCommandError('invalidFilterFieldValue', errorData['invalidValues']);
+			}
+			else if (ss.isValue(errorData['invalidAggFieldName'])) {
+				return $tab_ApiCrossDomainPresModelsFactory.newCommandError('invalidAggregationFieldName', errorData['fieldCaption']);
+			}
+			else {
+				return $tab_ApiCrossDomainPresModelsFactory.newCommandError('serverError', null);
+			}
+		}
+		return null;
+	};
+	$tab_ApiFilterHandler.$convertFilterPresModelTypeToApiFilterType = function ApiFilterHandler$ConvertFilterPresModelTypeToApiFilterType(filterPresModelType) {
+		switch (filterPresModelType) {
+			case 'C': {
+				return 'categorical';
+			}
+			case 'H': {
+				return 'hierarchical';
+			}
+			case 'Q': {
+				return 'quantitative';
+			}
+			case 'RD': {
+				return 'relativedate';
+			}
+			default: {
+				throw new ss.Exception('Unknown filter type: ' + filterPresModelType);
+			}
+		}
+	};
+	$tab_ApiFilterHandler.$extractOneFilter = function ApiFilterHandler$ExtractOneFilter(serverPm) {
+		var filterType = $tab_ApiFilterHandler.$convertFilterPresModelTypeToApiFilterType(serverPm.type);
+		switch (filterType) {
+			case 'categorical': {
+				return $tab_ApiFilterHandler.$processCategoricalFilter(serverPm);
+			}
+			case 'relativedate': {
+				return $tab_ApiFilterHandler.$processRelativeDateFilter(serverPm);
+			}
+			case 'hierarchical': {
+				return $tab_ApiFilterHandler.$processHierarchicalFilter(serverPm);
+			}
+			case 'quantitative': {
+				return $tab_ApiFilterHandler.$processQuantitativeFilter(serverPm);
+			}
+			default: {
+				throw new ss.Exception('Unknown FilterType: ' + filterType);
+			}
+		}
+	};
+	$tab_ApiFilterHandler.$processBaseFilter = function ApiFilterHandler$ProcessBaseFilter(serverPm, concreteFilterCreator) {
+		var fieldName = serverPm.fieldName;
+		var caption = serverPm.fieldCaption;
+		var filterType = $tab_ApiFilterHandler.$convertFilterPresModelTypeToApiFilterType(serverPm.type);
+		var dataSourceName = null;
+		var fieldRole = null;
+		var fieldAggregation = null;
+		if (ss.isValue(serverPm.fieldDetailsJson) && ss.isValue(serverPm.fieldDatasource)) {
+			dataSourceName = serverPm.fieldDatasource;
+			var fieldJson = JSON.parse(serverPm.fieldDetailsJson);
+			var fieldColumn = fieldJson['genFieldColumnPresModel'];
+			fieldRole = $tab_ApiCrossDomainEnumConverter.convertFieldRole(fieldColumn.fieldRole);
+			fieldAggregation = $tab_ApiCrossDomainEnumConverter.convertFieldAggregation(fieldColumn.aggregation);
+		}
+		return concreteFilterCreator(fieldName, filterType, caption, dataSourceName, fieldRole, fieldAggregation);
+	};
+	$tab_ApiFilterHandler.$processCategoricalFilter = function ApiFilterHandler$ProcessCategoricalFilter(serverPm) {
+		var isExclude = serverPm.exclude || false;
+		var appliedValues = null;
+		if (ss.isValue(serverPm.table)) {
+			var table = serverPm.table;
+			if (ss.isValue(table.tuples)) {
+				var allChecked = ss.coalesce(serverPm.all, false) || ss.coalesce(serverPm.allChecked, false);
+				var tuples = table.tuples;
+				var list = [];
+				for (var $t1 = 0; $t1 < tuples.length; $t1++) {
+					var tuple = tuples[$t1];
+					if (allChecked || ss.isValue(tuple.s) && tuple.s) {
+						var t = tuple.t[0];
+						var displayName = tuple.d;
+						list.push($tab_ApiFilterHandler.$createDataValueFromStruct(serverPm, t, displayName));
+					}
+				}
+				appliedValues = Array.prototype.slice.call(list);
+			}
+		}
+		var createCategoricalFilter = function(fieldName, filterType, caption, dataSourceName, fieldRole, fieldAggregation) {
+			return $tab_ApiCrossDomainPresModelsFactory.newCategoricalFilter(fieldName, filterType, caption, dataSourceName, fieldRole, fieldAggregation, isExclude, appliedValues);
+		};
+		return $tab_ApiFilterHandler.$processBaseFilter(serverPm, createCategoricalFilter);
+	};
+	$tab_ApiFilterHandler.$processQuantitativeFilter = function ApiFilterHandler$ProcessQuantitativeFilter(serverPm) {
+		var domainMinValue = null;
+		var domainMaxValue = null;
+		var minValue = null;
+		var maxValue = null;
+		var includeNullValues = false;
+		if (ss.isValue(serverPm.range)) {
+			var range = serverPm.range;
+			if (ss.isValue(range.min) && ss.isValue(range.min.v)) {
+				domainMinValue = $tab_ApiFilterHandler.$createDataValue(serverPm, range.min, null);
+			}
+			if (ss.isValue(range.max) && ss.isValue(range.max.v)) {
+				domainMaxValue = $tab_ApiFilterHandler.$createDataValue(serverPm, range.max, null);
+			}
+		}
+		if (ss.isValue(serverPm.table)) {
+			var table = serverPm.table;
+			if (ss.isValue(table.min) && ss.isValue(table.min.v)) {
+				minValue = $tab_ApiFilterHandler.$createDataValue(serverPm, table.min, null);
+			}
+			if (ss.isValue(table.max) && ss.isValue(table.max.v)) {
+				maxValue = $tab_ApiFilterHandler.$createDataValue(serverPm, table.max, null);
+			}
+			if (ss.isValue(table.included)) {
+				var inclValue = table.included;
+				includeNullValues = inclValue === 'include-all' || inclValue === 'include-null' || inclValue === 'include-range-or-null';
+			}
+		}
+		var createQuantitativeFilter = function(fieldName, filterType, caption, dataSourceName, fieldRole, fieldAggregation) {
+			return $tab_ApiCrossDomainPresModelsFactory.newQuantitativeFilter(fieldName, filterType, caption, dataSourceName, fieldRole, fieldAggregation, domainMinValue, domainMaxValue, minValue, maxValue, includeNullValues);
+		};
+		return $tab_ApiFilterHandler.$processBaseFilter(serverPm, createQuantitativeFilter);
+	};
+	$tab_ApiFilterHandler.$processRelativeDateFilter = function ApiFilterHandler$ProcessRelativeDateFilter(serverPm) {
+		var periodType = null;
+		var rangeType = null;
+		var rangeN = null;
+		var table = serverPm.table;
+		if (ss.isValue(table)) {
+			if (ss.isValue(table.periodType)) {
+				periodType = $tab_ApiCrossDomainEnumConverter.convertPeriodType(table.periodType);
+			}
+			if (ss.isValue(table.rangeType)) {
+				rangeType = $tab_ApiCrossDomainEnumConverter.convertRangeType(table.rangeType);
+			}
+			if (ss.isValue(table.rangeN)) {
+				rangeN = table.rangeN;
+			}
+		}
+		var createRelativeDateFilter = function(fieldName, filterType, caption, dataSourceName, fieldRole, fieldAggregation) {
+			return $tab_ApiCrossDomainPresModelsFactory.newRelativeDateFilter(fieldName, filterType, caption, dataSourceName, fieldRole, fieldAggregation, periodType, rangeType, rangeN);
+		};
+		return $tab_ApiFilterHandler.$processBaseFilter(serverPm, createRelativeDateFilter);
+	};
+	$tab_ApiFilterHandler.$createDataValueFromStruct = function ApiFilterHandler$CreateDataValueFromStruct(f, s, displayName) {
+		return $tab_ApiFilterHandler.$createDataValue(f, s, displayName);
+	};
+	$tab_ApiFilterHandler.$createDataValue = function ApiFilterHandler$CreateDataValue(filterPm, filterValue, displayName) {
+		var dataValue = new Object();
+		if (ss.isNullOrUndefined(filterValue)) {
+			return dataValue;
+		}
+		var dataType = $tab_ApiFilterHandler.$convertDataValueTypeToDataType(filterValue.t);
+		var values = [filterValue];
+		if (ss.isValue(filterPm.range)) {
+			values.push(filterPm.range.min, filterPm.range.max);
+		}
+		if (ss.isValue(filterPm.table)) {
+			values.push(filterPm.table.min, filterPm.table.max);
+		}
+		var timeFormatMode = tab.QuickFilterDateFormatUtil.getDateTimeFormatMode(values, 'none', filterPm.date_format, null);
+		dataValue.type = $tab_ApiCrossDomainEnumConverter.convertDataType(dataType);
+		var format = ((dataType === 'date' || dataType === 'datetime') ? filterPm.date_format : filterPm.format);
+		dataValue.formattedValue = tableau.format.formatDataValue(filterValue, filterPm.role, format, null, timeFormatMode);
+		if (ss.isValue(displayName)) {
+			dataValue.aliasedValue = displayName;
+		}
+		dataValue.value = $tab_ApiPresModelsConverter.serializeDataValue(filterValue.v, dataType);
+		return dataValue;
+	};
+	$tab_ApiFilterHandler.$convertDataValueTypeToDataType = function ApiFilterHandler$ConvertDataValueTypeToDataType(t) {
+		switch (t) {
+			case 'b': {
+				return ss.cast('boolean', String);
+			}
+			case 'd': {
+				return 'date';
+			}
+			case 'i': {
+				return 'integer';
+			}
+			case 'r': {
+				return 'real';
+			}
+			case 's': {
+				return 'cstring';
+			}
+			case 't': {
+				return 'datetime';
+			}
+			case null: {
+				return 'unknown';
+			}
+		}
+		return 'unknown';
+	};
+	$tab_ApiFilterHandler.$processHierarchicalFilter = function ApiFilterHandler$ProcessHierarchicalFilter(serverPm) {
+		var levels = 0;
+		if (ss.isValue(serverPm.levels)) {
+			levels = serverPm.levels.length;
+		}
+		var createHierarchicalFilter = function(fieldName, filterType, caption, dataSourceName, fieldRole, fieldAggregation) {
+			return $tab_ApiCrossDomainPresModelsFactory.newHierarchicalFilter(fieldName, filterType, caption, dataSourceName, fieldRole, fieldAggregation, levels);
+		};
+		return $tab_ApiFilterHandler.$processBaseFilter(serverPm, createHierarchicalFilter);
+	};
+	global.tab.ApiFilterHandler = $tab_ApiFilterHandler;
+	////////////////////////////////////////////////////////////////////////////////
 	// Tableau.JavaScript.Vql.ApiDomain.ApiParamMappingRegistry
 	var $tab_ApiParamMappingRegistry = function() {
 		ss.makeGenericType($tab_MappingRegistryBase$2, [Object, $tab_ApiToDocParameter]).call(this);
@@ -13671,11 +15375,48 @@ global.ss = ss;
 		var vizData = selectionDataPm.vizData;
 		return $tab_ApiPresModelsConverter.$processActiveMarks(dataDictionaryPM, vizData);
 	};
-	$tab_ApiPresModelsConverter.processHighlightedMarks = function ApiPresModelsConverter$ProcessHighlightedMarks(pm) {
-		var selectionDataPm = pm;
-		var dataDictionaryPM = selectionDataPm.dataDictionary;
-		var vizData = selectionDataPm.vizData;
+	$tab_ApiPresModelsConverter.processHighlightedMarks = function ApiPresModelsConverter$ProcessHighlightedMarks(highledMarksPm) {
+		var dataDictionaryPM = highledMarksPm.dataDictionary;
+		var vizData = highledMarksPm.vizData;
 		return $tab_ApiPresModelsConverter.$processActiveMarks(dataDictionaryPM, vizData);
+	};
+	$tab_ApiPresModelsConverter.getAddInLocatorPresModel = function ApiPresModelsConverter$GetAddInLocatorPresModel(apiAddInLocator) {
+		return $tab_NativePresModelsFactory.newAddInLocatorPresModel(apiAddInLocator);
+	};
+	$tab_ApiPresModelsConverter.$processActiveMarks = function ApiPresModelsConverter$ProcessActiveMarks(dataDictionaryPM, vizData) {
+		var returnPm = new Object();
+		var dataDictionary = new tab.DataDictionaryModel(null);
+		dataDictionary.update(dataDictionaryPM);
+		var vizDataModel = new tab.VizDataModel(null);
+		vizDataModel.update(vizData, tab.NoopModelEventsHandler.get_noopContext());
+		var marks = [];
+		returnPm.marks = marks;
+		if (ss.isNullOrUndefined(dataDictionary) || dataDictionary.get_isEmpty()) {
+			return returnPm;
+		}
+		vizDataModel.forEachTupleId(function(tupleId) {
+			var mark = new Object();
+			mark.tupleId = tupleId;
+			var pairs = [];
+			mark.pairs = pairs;
+			marks.push(mark);
+			vizDataModel.forEachVizDataField(function(dataField, colIdx) {
+				var pair = new Object();
+				pair.fieldName = dataField.get_fieldCaption();
+				pair.formattedValue = tab.VizDataLookup.lookupAlias(tupleId, dataField, dataDictionary);
+				pair.valueDataType = $tab_ApiCrossDomainEnumConverter.convertDataType(dataField.get_dataType());
+				var dataValue = null;
+				if (!tab.VizDataLookup.isSpecial(tupleId, dataField, dataDictionary, null) && dataField.get_hasDataValues() && dataField.isTupleIdValid(tupleId)) {
+					dataValue = tab.VizDataLookup.lookupRawDataValue(tupleId, dataField, dataDictionary);
+				}
+				var jsonValue = $tab_ApiPresModelsConverter.serializeDataValue(dataValue, dataField.get_dataType());
+				pair.value = jsonValue;
+				pairs.push(pair);
+				return true;
+			});
+			return true;
+		});
+		return returnPm;
 	};
 	$tab_ApiPresModelsConverter.serializeDataValue = function ApiPresModelsConverter$SerializeDataValue(rawValue, dataType) {
 		if (dataType === 'boolean') {
@@ -13737,44 +15478,6 @@ global.ss = ss;
 				return rawValue.toString();
 			}
 		}
-	};
-	$tab_ApiPresModelsConverter.getAddInLocatorPresModel = function ApiPresModelsConverter$GetAddInLocatorPresModel(apiAddInLocator) {
-		return $tab_NativePresModelsFactory.newAddInLocatorPresModel(apiAddInLocator);
-	};
-	$tab_ApiPresModelsConverter.$processActiveMarks = function ApiPresModelsConverter$ProcessActiveMarks(dataDictionaryPM, vizData) {
-		var returnPm = new Object();
-		var dataDictionary = new tab.DataDictionaryModel(null);
-		dataDictionary.update(dataDictionaryPM);
-		var vizDataModel = new tab.VizDataModel(null);
-		vizDataModel.update(vizData, tab.NoopModelEventsHandler.get_noopContext());
-		var marks = [];
-		returnPm.marks = marks;
-		if (ss.isNullOrUndefined(dataDictionary) || dataDictionary.get_isEmpty()) {
-			return returnPm;
-		}
-		vizDataModel.forEachTupleId(function(tupleId) {
-			var mark = new Object();
-			mark.tupleId = tupleId;
-			var pairs = [];
-			mark.pairs = pairs;
-			marks.push(mark);
-			vizDataModel.forEachVizDataField(function(dataField, colIdx) {
-				var pair = new Object();
-				pair.fieldName = dataField.get_fieldCaption();
-				pair.formattedValue = tab.VizDataLookup.lookupAlias(tupleId, dataField, dataDictionary);
-				pair.valueDataType = $tab_ApiCrossDomainEnumConverter.convertDataType(dataField.get_dataType());
-				var dataValue = null;
-				if (!tab.VizDataLookup.isSpecial(tupleId, dataField, dataDictionary, null) && dataField.get_hasDataValues() && dataField.isTupleIdValid(tupleId)) {
-					dataValue = tab.VizDataLookup.lookupRawDataValue(tupleId, dataField, dataDictionary);
-				}
-				var jsonValue = $tab_ApiPresModelsConverter.serializeDataValue(dataValue, dataField.get_dataType());
-				pair.value = jsonValue;
-				pairs.push(pair);
-				return true;
-			});
-			return true;
-		});
-		return returnPm;
 	};
 	$tab_ApiPresModelsConverter.$buildHeaders = function ApiPresModelsConverter$BuildHeaders(columns) {
 		var apiColumns = [];
@@ -13929,6 +15632,9 @@ global.ss = ss;
 			this.$mappings = null;
 		};
 		ss.registerGenericClassInstance($type, $tab_MappingRegistryBase$2, [TEnumType, TMappingType], {
+			get_registeredKeys: function MappingRegistryBase$get_RegisteredKeys() {
+				return Object.keys(this.$mappings);
+			},
 			initialize: function MappingRegistryBase$Initialize() {
 				this.$mappings = {};
 				this.initialize$1(this.$mappings);
@@ -13943,9 +15649,6 @@ global.ss = ss;
 				else {
 					throw new ss.KeyNotFoundException('Key not found: ' + key.toString());
 				}
-			},
-			getKeys: function MappingRegistryBase$GetKeys() {
-				return Object.keys(this.$mappings);
 			},
 			initialize$1: null
 		}, function() {
@@ -14038,7 +15741,9 @@ global.ss = ss;
 		}
 	});
 	ss.initClass($tab_ApiCrossDomainEnumConverter, $asm, {});
+	ss.initClass($tab_ApiCrossDomainParamConverter, $asm, {});
 	ss.initClass($tab_ApiCrossDomainPresModelsFactory, $asm, {});
+	ss.initClass($tab_ApiFilterHandler, $asm, {});
 	ss.initClass($tab_ApiParamMappingRegistry, $asm, {
 		initialize$1: function ApiParamMappingRegistry$Initialize(mappingsToInitialize) {
 			mappingsToInitialize['api.AddInLocator'] = $tab_ApiToDocParameter.create(Object, Object).call(null, 'api.AddInLocator', $tab_NativePresModelsFactory.newAddInLocatorPresModel);
@@ -14050,6 +15755,46 @@ global.ss = ss;
 			mappingsToInitialize['api.includeAllColumns'] = $tab_ApiToDocParameter.create(Boolean, Boolean).call(null, 'api.includeAllColumns', null);
 			mappingsToInitialize['api.maxRows'] = $tab_ApiToDocParameter.create(ss.Int32, ss.Int32).call(null, 'api.maxRows', null);
 			mappingsToInitialize['api.visualId'] = $tab_ApiToDocParameter.create(Object, Object).call(null, 'api.visualId', $tab_NativePresModelsFactory.newVisualIdPresModel);
+			mappingsToInitialize['api.fieldCaption'] = $tab_ApiToDocParameter.create(String, String).call(null, 'api.fieldCaption', null);
+			mappingsToInitialize['api.exclude'] = $tab_ApiToDocParameter.create(Boolean, String).call(null, 'api.exclude', function(apiExclude) {
+				return apiExclude.toString();
+			});
+			mappingsToInitialize['api.filterUpdateType'] = $tab_ApiToDocParameter.create(Object, String).call(null, 'api.filterUpdateType', $tab_ApiCrossDomainParamConverter.convertFilterUpdateType);
+			mappingsToInitialize['api.filterCategoricalValues'] = $tab_ApiToDocParameter.create(Object, Object).call(null, 'api.filterCategoricalValues', function(filterValues) {
+				if (ss.isValue(filterValues)) {
+					return filterValues;
+				}
+				else {
+					return ['\\"\\"'];
+				}
+			});
+			mappingsToInitialize['api.filterRangeMax'] = $tab_ApiToDocParameter.create(String, String).call(null, 'api.filterRangeMax', null);
+			mappingsToInitialize['api.filterRangeMin'] = $tab_ApiToDocParameter.create(String, String).call(null, 'api.filterRangeMin', null);
+			mappingsToInitialize['api.filterRangeNullOption'] = $tab_ApiToDocParameter.create(String, String).call(null, 'api.filterRangeNullOption', function(nullOption) {
+				if (nullOption === 'NULL_VALUES') {
+					return 'include-null'.toString();
+				}
+				else if (nullOption === 'NON_NULL_VALUES') {
+					return 'include-non-null'.toString();
+				}
+				else {
+					return 'include-all'.toString();
+				}
+			});
+			mappingsToInitialize['api.filterDateArchorValue'] = $tab_ApiToDocParameter.create(String, String).call(null, 'api.filterDateArchorValue', null);
+			mappingsToInitialize['api.filterPeriodType'] = $tab_ApiToDocParameter.create(String, String).call(null, 'api.filterPeriodType', function(filterPeriodType) {
+				return filterPeriodType.toLowerCase();
+			});
+			mappingsToInitialize['api.filterDateRangeType'] = $tab_ApiToDocParameter.create(String, String).call(null, 'api.filterDateRangeType', function(filterDateRangeType) {
+				return filterDateRangeType.toLowerCase();
+			});
+			mappingsToInitialize['api.filterDateRange'] = $tab_ApiToDocParameter.create(ss.Int32, ss.Int32).call(null, 'api.filterDateRange', null);
+			mappingsToInitialize['api.filterHierarchicalValues'] = $tab_ApiToDocParameter.create(String, Object).call(null, 'api.filterHierarchicalValues', function(filterValues1) {
+				return JSON.parse(filterValues1);
+			});
+			mappingsToInitialize['api.filterHierarchicalLevels'] = $tab_ApiToDocParameter.create(String, Object).call(null, 'api.filterHierarchicalLevels', function(filterLevels) {
+				return JSON.parse(filterLevels);
+			});
 		}
 	}, ss.makeGenericType($tab_MappingRegistryBase$2, [Object, $tab_ApiToDocParameter]));
 	ss.initClass($tab_ApiPresModelsConverter, $asm, {});
@@ -14126,6 +15871,55 @@ global.ss = ss;
 			var $t5 = [];
 			$t5.push(new $tab_$CommandInputMapping(this.$apiToDocMappings.get('api.visualId'), 'visualIdPresModel', false));
 			mappingsToInitialize['api.FetchSelectedMarksCommand'] = new $tab_CommandMapping('get-selection', 'api.FetchSelectedMarksCommand', $t5, this.$docToApiMappings.get('selectionData'));
+			var $t6 = [];
+			$t6.push(new $tab_$CommandInputMapping(this.$apiToDocMappings.get('api.worksheetName'), 'worksheet', false));
+			$t6.push(new $tab_$CommandInputMapping(this.$apiToDocMappings.get('api.dashboardName'), 'dashboard', false));
+			$t6.push(new $tab_$CommandInputMapping(this.$apiToDocMappings.get('api.fieldCaption'), 'qualifiedFieldCaption', false));
+			$t6.push(new $tab_$CommandInputMapping(this.$apiToDocMappings.get('api.exclude'), 'exclude', false));
+			$t6.push(new $tab_$CommandInputMapping(this.$apiToDocMappings.get('api.filterUpdateType'), 'filterUpdateType', false));
+			$t6.push(new $tab_$CommandInputMapping(this.$apiToDocMappings.get('api.filterCategoricalValues'), 'filterValues', false));
+			mappingsToInitialize['api.ApplyCategoricalFilterCommand'] = new $tab_CommandMapping('categorical-filter', 'api.ApplyCategoricalFilterCommand', $t6, $tab_DocToApiParameter.create(Object, Object).call(null, 'fn', function(pm2) {
+				return $tab_ApiFilterHandler.processFilterCommandReturningFieldName(pm2);
+			}));
+			var $t7 = [];
+			$t7.push(new $tab_$CommandInputMapping(this.$apiToDocMappings.get('api.worksheetName'), 'worksheet', false));
+			$t7.push(new $tab_$CommandInputMapping(this.$apiToDocMappings.get('api.dashboardName'), 'dashboard', false));
+			$t7.push(new $tab_$CommandInputMapping(this.$apiToDocMappings.get('api.fieldCaption'), 'qualifiedFieldCaption', false));
+			mappingsToInitialize['api.ClearFilterCommand'] = new $tab_CommandMapping('clear-existing-filter', 'api.ClearFilterCommand', $t7, $tab_DocToApiParameter.create(Object, Object).call(null, 'fn', function(pm3) {
+				return $tab_ApiFilterHandler.processFilterCommandReturningFieldName(pm3);
+			}));
+			var $t8 = [];
+			$t8.push(new $tab_$CommandInputMapping(this.$apiToDocMappings.get('api.worksheetName'), 'worksheet', false));
+			$t8.push(new $tab_$CommandInputMapping(this.$apiToDocMappings.get('api.dashboardName'), 'dashboard', false));
+			$t8.push(new $tab_$CommandInputMapping(this.$apiToDocMappings.get('api.fieldCaption'), 'qualifiedFieldCaption', false));
+			$t8.push(new $tab_$CommandInputMapping(this.$apiToDocMappings.get('api.filterRangeMax'), 'rangeMax', false));
+			$t8.push(new $tab_$CommandInputMapping(this.$apiToDocMappings.get('api.filterRangeMin'), 'rangeMin', false));
+			$t8.push(new $tab_$CommandInputMapping(this.$apiToDocMappings.get('api.filterRangeNullOption'), 'included', false));
+			mappingsToInitialize['api.ApplyRangeFilterCommand'] = new $tab_CommandMapping('range-filter', 'api.ApplyRangeFilterCommand', $t8, $tab_DocToApiParameter.create(Object, Object).call(null, 'fn', function(pm4) {
+				return $tab_ApiFilterHandler.processFilterCommandReturningFieldName(pm4);
+			}));
+			var $t9 = [];
+			$t9.push(new $tab_$CommandInputMapping(this.$apiToDocMappings.get('api.worksheetName'), 'worksheet', false));
+			$t9.push(new $tab_$CommandInputMapping(this.$apiToDocMappings.get('api.dashboardName'), 'dashboard', false));
+			$t9.push(new $tab_$CommandInputMapping(this.$apiToDocMappings.get('api.fieldCaption'), 'qualifiedFieldCaption', false));
+			$t9.push(new $tab_$CommandInputMapping(this.$apiToDocMappings.get('api.filterDateArchorValue'), 'anchorDate', false));
+			$t9.push(new $tab_$CommandInputMapping(this.$apiToDocMappings.get('api.filterPeriodType'), 'datePeriodType', false));
+			$t9.push(new $tab_$CommandInputMapping(this.$apiToDocMappings.get('api.filterDateRangeType'), 'dateRangeType', false));
+			$t9.push(new $tab_$CommandInputMapping(this.$apiToDocMappings.get('api.filterDateRange'), 'rangeN', false));
+			mappingsToInitialize['api.ApplyRelativeDateFilterCommand'] = new $tab_CommandMapping('relative-date-filter', 'api.ApplyRelativeDateFilterCommand', $t9, $tab_DocToApiParameter.create(Object, Object).call(null, 'fn', function(pm5) {
+				return $tab_ApiFilterHandler.processFilterCommandReturningFieldName(pm5);
+			}));
+			var $t10 = [];
+			$t10.push(new $tab_$CommandInputMapping(this.$apiToDocMappings.get('api.worksheetName'), 'worksheet', false));
+			$t10.push(new $tab_$CommandInputMapping(this.$apiToDocMappings.get('api.dashboardName'), 'dashboard', false));
+			$t10.push(new $tab_$CommandInputMapping(this.$apiToDocMappings.get('api.fieldCaption'), 'qualifiedFieldCaption', false));
+			$t10.push(new $tab_$CommandInputMapping(this.$apiToDocMappings.get('api.exclude'), 'exclude', false));
+			$t10.push(new $tab_$CommandInputMapping(this.$apiToDocMappings.get('api.filterUpdateType'), 'filterUpdateType', false));
+			$t10.push(new $tab_$CommandInputMapping(this.$apiToDocMappings.get('api.filterHierarchicalValues'), 'filterValues', false));
+			$t10.push(new $tab_$CommandInputMapping(this.$apiToDocMappings.get('api.filterHierarchicalLevels'), 'filterLevels', false));
+			mappingsToInitialize['api.ApplyHierarchicalFilterCommand'] = new $tab_CommandMapping('hierarchical-filter', 'api.ApplyHierarchicalFilterCommand', $t10, $tab_DocToApiParameter.create(Object, Object).call(null, 'fn', function(pm6) {
+				return $tab_ApiFilterHandler.processFilterCommandReturningFieldName(pm6);
+			}));
 		}
 	}, ss.makeGenericType($tab_MappingRegistryBase$2, [Object, $tab_CommandMapping]));
 	ss.initClass($tab_DocEventMapping, $asm, {
@@ -17585,6 +19379,45 @@ global.ss = ss;
 	$tab_DashboardNewObjectsModel.__typeName = 'tab.DashboardNewObjectsModel';
 	global.tab.DashboardNewObjectsModel = $tab_DashboardNewObjectsModel;
 	////////////////////////////////////////////////////////////////////////////////
+	// Tableau.JavaScript.Vql.Domain.Utility.DashboardSizeCalculator
+	var $tab_DashboardSizeCalculator = function() {
+	};
+	$tab_DashboardSizeCalculator.__typeName = 'tab.DashboardSizeCalculator';
+	$tab_DashboardSizeCalculator.get_vizClientContainerSize = function DashboardSizeCalculator$get_VizClientContainerSize() {
+		var vizClientContainerElement = document.getElementById('viz-client-container');
+		return { w: vizClientContainerElement.clientWidth, h: vizClientContainerElement.clientHeight };
+	};
+	$tab_DashboardSizeCalculator.get_dashboardViewportSize = function DashboardSizeCalculator$get_DashboardViewportSize() {
+		var dashboardViewportSize = $tab_DashboardSizeCalculator.get_dashboardViewportSizeWithTabs();
+		dashboardViewportSize.h -= tabBootstrap.VizLayoutConstants.get_tabsHeight();
+		return dashboardViewportSize;
+	};
+	$tab_DashboardSizeCalculator.get_dashboardViewportSizeWithTabs = function DashboardSizeCalculator$get_DashboardViewportSizeWithTabs() {
+		var viewportElement = document.getElementById('dashboard-viewport');
+		var dashboardViewportSize = { w: viewportElement.offsetWidth, h: viewportElement.offsetHeight };
+		return dashboardViewportSize;
+	};
+	$tab_DashboardSizeCalculator.calculateContainerSize = function DashboardSizeCalculator$CalculateContainerSize(dashboardSize) {
+		var actualDashboardSize = (tabBootstrap.VizLayoutConstants.get_shouldShowTabs() ? $tab_DashboardSizeCalculator.calculateDashboardSize() : dashboardSize);
+		var dashboardContainerSize = { w: actualDashboardSize.w, h: actualDashboardSize.h + tabBootstrap.VizLayoutConstants.get_tabsHeight() };
+		return dashboardContainerSize;
+	};
+	$tab_DashboardSizeCalculator.calculateDashboardSize = function DashboardSizeCalculator$CalculateDashboardSize() {
+		var dashboardViewportSize = $tab_DashboardSizeCalculator.get_dashboardViewportSize();
+		var compositeDashboardSize = tabBootstrap.ViewerBootstrap.get_instance().adjustForMinMaxDashboardSizes(dashboardViewportSize);
+		return compositeDashboardSize;
+	};
+	$tab_DashboardSizeCalculator.asSizePresModel = function DashboardSizeCalculator$AsSizePresModel(metric) {
+		return { w: metric.w, h: metric.h };
+	};
+	$tab_DashboardSizeCalculator.asMetric = function DashboardSizeCalculator$AsMetric(presModel) {
+		return { w: presModel.w, h: presModel.h };
+	};
+	$tab_DashboardSizeCalculator.asRect = function DashboardSizeCalculator$AsRect(metric) {
+		return { l: 0, t: 0, w: metric.w, h: metric.h };
+	};
+	global.tab.DashboardSizeCalculator = $tab_DashboardSizeCalculator;
+	////////////////////////////////////////////////////////////////////////////////
 	// Tableau.JavaScript.Vql.Domain.DashboardSizeControlModel
 	var $tab_DashboardSizeControlModel = function(parent) {
 		this.$2$SizeInfoUpdatedField = null;
@@ -20375,6 +22208,29 @@ global.ss = ss;
 		}
 		$tab_ModuleManager.$moduleTrackerInstance.registerModulesLoadedCallback(callback);
 	};
+	$tab_ModuleManager.isCssLoaded = function ModuleManager$IsCssLoaded(src) {
+		if ($tab_ModuleManager.$loadedCssFiles.has(src)) {
+			return true;
+		}
+		var links = document.getElementsByTagName('link');
+		for (var $t1 = 0; $t1 < links.length; $t1++) {
+			var link = links[$t1];
+			if (ss.referenceEquals(link.getAttribute('href'), src) && link.getAttribute('rel') === 'stylesheet') {
+				return true;
+			}
+		}
+		return false;
+	};
+	$tab_ModuleManager.isScriptLoaded = function ModuleManager$IsScriptLoaded(src) {
+		var scripts = document.getElementsByTagName('script');
+		for (var $t1 = 0; $t1 < scripts.length; $t1++) {
+			var script = scripts[$t1];
+			if (ss.referenceEquals(script.getAttribute('src'), src)) {
+				return true;
+			}
+		}
+		return false;
+	};
 	$tab_ModuleManager.loadCss = function ModuleManager$LoadCss(cssFileUrl) {
 		if ($tab_ModuleManager.$loadedCssFiles.has(cssFileUrl)) {
 			return;
@@ -21634,6 +23490,44 @@ global.ss = ss;
 	$tab_QuantitativeFilterData.__typeName = 'tab.QuantitativeFilterData';
 	global.tab.QuantitativeFilterData = $tab_QuantitativeFilterData;
 	////////////////////////////////////////////////////////////////////////////////
+	// Tableau.JavaScript.Vql.Domain.QuickFilterDateFormatUtil
+	var $tab_QuickFilterDateFormatUtil = function() {
+	};
+	$tab_QuickFilterDateFormatUtil.__typeName = 'tab.QuickFilterDateFormatUtil';
+	$tab_QuickFilterDateFormatUtil.$truncLevelRequiresDateSelection = function QuickFilterDateFormatUtil$TruncLevelRequiresDateSelection(aggType) {
+		return aggType === 'trunc-day' || aggType === 'trunc-week' || aggType === 'trunc-month' || aggType === 'trunc-qtr' || aggType === 'trunc-year';
+	};
+	$tab_QuickFilterDateFormatUtil.getDateTimeFormatMode = function QuickFilterDateFormatUtil$GetDateTimeFormatMode(values, aggType, format, previousShowMode) {
+		if (ss.isNullOrUndefined(format) || ss.isNullOrUndefined(format.isAutoFormat) || !format.isAutoFormat) {
+			return 0;
+		}
+		if ($tab_QuickFilterDateFormatUtil.$truncLevelRequiresDateSelection(aggType)) {
+			return 0;
+		}
+		if ($tab_QuickFilterDateFormatUtil.isPureTime(values, aggType)) {
+			return 1;
+		}
+		if (previousShowMode === 2) {
+			return 2;
+		}
+		for (var $t1 = 0; $t1 < values.length; $t1++) {
+			var val = values[$t1];
+			if (ss.isNullOrUndefined(val) || !ss.isValue(val.v)) {
+				continue;
+			}
+			var dv = { t: val.t, v: ss.unbox(val.v) };
+			if (tableau.format.isDateTimeWithNonMidnightTime(dv)) {
+				return 2;
+			}
+		}
+		return 0;
+	};
+	$tab_QuickFilterDateFormatUtil.isPureTime = function QuickFilterDateFormatUtil$IsPureTime(values, aggType) {
+		var valuesHaveSameDate = $tab_LegacyFilterModel.timestampsWithSameDateOrNull(values);
+		return valuesHaveSameDate && !$tab_QuickFilterDateFormatUtil.$truncLevelRequiresDateSelection(aggType);
+	};
+	global.tab.QuickFilterDateFormatUtil = $tab_QuickFilterDateFormatUtil;
+	////////////////////////////////////////////////////////////////////////////////
 	// Tableau.JavaScript.Vql.Domain.QuickFilterDisplayModel
 	var $tab_QuickFilterDisplayModel = function(parent) {
 		this.$2$FilterUpdatedField = null;
@@ -22137,7 +24031,6 @@ global.ss = ss;
 	var $tab_Schedule = function(model) {
 		this.$schedulePresModel = null;
 		this.$scheduleFrequencyDescription = null;
-		this.$dayMap = ss.mkdict(['Sun', tab.Strings.Sunday, 'Mon', tab.Strings.Monday, 'Tue', tab.Strings.Tuesday, 'Wed', tab.Strings.Wednesday, 'Thu', tab.Strings.Thursday, 'Fri', tab.Strings.Friday, 'Sat', tab.Strings.Saturday]);
 		this.$schedulePresModel = model;
 		this.$scheduleFrequencyDescription = this.generateFrequencyDescription();
 	};
@@ -23594,11 +25487,11 @@ global.ss = ss;
 		var args = { type: 'GET', url: url.get_path(), headers: ss.mkdict(['Accept', 'text/javascript']), dataType: 'json', data: newQueryParams };
 		var session = $tab_CommandController.get().get_legacySession();
 		var handler = session.$createHandler(null, function(o, s, r) {
-			$tab_SessionServerCommands.$destroySession(function() {
-			});
 			$tab_CommandController.get().switchViz(o, url);
 		}, null, 'immediately');
-		session.$request(args, handler);
+		$tab_SessionServerCommands.$destroySession(function() {
+			session.$request(args, handler);
+		});
 	};
 	global.tab.SessionServerCommands = $tab_SessionServerCommands;
 	////////////////////////////////////////////////////////////////////////////////
@@ -23827,11 +25720,18 @@ global.ss = ss;
 		var cmd = $tab_CommandUtils.newCommand$1('set-port-size', null);
 		cmd.commandParams = {};
 		cmd.commandParams['sheet'] = tsConfig.current_sheet_name;
-		var dashSize = tabBootstrap.ViewerBootstrap.get_instance().getWebClientPortSize('dashboard');
-		var worksheetSize = tabBootstrap.ViewerBootstrap.get_instance().getWebClientPortSize('worksheet');
-		cmd.commandParams['worksheetPort'] = $tab_SheetClientCommands.$sanitizeSizePresModel({ h: worksheetSize.h, w: worksheetSize.w });
-		cmd.commandParams['dashboardPort'] = $tab_SheetClientCommands.$sanitizeSizePresModel({ h: dashSize.h, w: dashSize.w });
-		cmd.commandParams['storyPort'] = $tab_SheetClientCommands.$sanitizeSizePresModel({ h: dashSize.h, w: dashSize.w });
+		var dashboardPortSize, worksheetPortSize;
+		if (tsConfig.is_authoring) {
+			dashboardPortSize = tabBootstrap.ViewerBootstrap.get_instance().getWebClientPortSize('dashboard');
+			worksheetPortSize = tabBootstrap.ViewerBootstrap.get_instance().getWebClientPortSize('worksheet');
+		}
+		else {
+			dashboardPortSize = (tab.FeatureFlags.isEnabled('IframeSizedToWindow') ? $tab_DashboardSizeCalculator.calculateDashboardSize() : tabBootstrap.ViewerBootstrap.get_instance().getWebClientPortSize('dashboard'));
+			worksheetPortSize = dashboardPortSize;
+		}
+		cmd.commandParams['worksheetPort'] = $tab_SheetClientCommands.$sanitizeSizePresModel({ h: worksheetPortSize.h, w: worksheetPortSize.w });
+		cmd.commandParams['dashboardPort'] = $tab_SheetClientCommands.$sanitizeSizePresModel({ h: dashboardPortSize.h, w: dashboardPortSize.w });
+		cmd.commandParams['storyPort'] = $tab_SheetClientCommands.$sanitizeSizePresModel({ h: dashboardPortSize.h, w: dashboardPortSize.w });
 		$tab_ServerCommands.executeServerCommand(cmd, 'immediately');
 		$tab_ApplicationModel.get_instance().get_workbook().withOuterDashboard(function(d) {
 			d.set_portSize(portSize);
@@ -25588,6 +27488,7 @@ global.ss = ss;
 			for (var i = 0; i < length; i++) {
 				vizInTooltips[i].style.width = $tab_VizDataUtils.lastWidthAndHeightForVizInTooltips[i].item1;
 				vizInTooltips[i].style.height = $tab_VizDataUtils.lastWidthAndHeightForVizInTooltips[i].item2;
+				vizInTooltips[i].style.display = 'inline-block';
 			}
 		}
 	};
@@ -26687,6 +28588,11 @@ global.ss = ss;
 		c.commandParams = {};
 		$tab_CommandController.SendCommand($tab_RemoteClientCommand.create(c, 'immediately'));
 	};
+	$tab_WorksheetServerCommands.undo$1 = function WorksheetServerCommands$Undo(success, failure) {
+		var c = $tab_CommandUtils.newCommand('undo', null);
+		c.commandParams = {};
+		$tab_CommandController.SendCommand($tab_RemoteClientCommand.create(c, 'immediately', success, failure));
+	};
 	$tab_WorksheetServerCommands.undoToPosition = function WorksheetServerCommands$UndoToPosition(historyPosition) {
 		var c = $tab_CommandUtils.newCommand('undo', null);
 		c.commandParams = $tab_WorksheetServerCommands.$createHistoryParam(historyPosition);
@@ -26696,6 +28602,11 @@ global.ss = ss;
 		var c = $tab_CommandUtils.newCommand('redo', null);
 		c.commandParams = {};
 		$tab_CommandController.SendCommand($tab_RemoteClientCommand.create(c, 'immediately'));
+	};
+	$tab_WorksheetServerCommands.redo$1 = function WorksheetServerCommands$Redo(success, failure) {
+		var c = $tab_CommandUtils.newCommand('redo', null);
+		c.commandParams = {};
+		$tab_CommandController.SendCommand($tab_RemoteClientCommand.create(c, 'immediately', success, failure));
 	};
 	$tab_WorksheetServerCommands.redoToPosition = function WorksheetServerCommands$RedoToPosition(historyPosition) {
 		var c = $tab_CommandUtils.newCommand('redo', null);
@@ -28961,12 +30872,34 @@ global.ss = ss;
 			this.$bootstrapComplete = false;
 			$tab_StartupUtils.reset();
 			tabBootstrap.ViewerBootstrap.resetInstance();
+			var staticAssetVersionPrev = tsConfig.staticAssetVersion;
 			$tab_StartupUtils.resetTsConfig(config);
+			var hasNewResources = this.$hasNewResources(tsConfig.cssStaticAssetFiles, tsConfig.jsStaticAssetFiles);
+			var staticAssetsUpgraded = !ss.referenceEquals(staticAssetVersionPrev, tsConfig.staticAssetVersion);
+			if (staticAssetsUpgraded || hasNewResources) {
+				url.setWindowLocation(null);
+				return;
+			}
 			url.updateForViewingSheet(tsConfig.repositoryUrl).replaceState(null);
 			tabBootstrap.ViewerBootstrap.get_instance().bootstrap();
 			if (!ss.staticEquals($tab_CommandController.$1$SwitchedVizField, null)) {
 				$tab_CommandController.$1$SwitchedVizField();
 			}
+		},
+		$hasNewResources: function CommandController$HasNewResources(cssFiles, scriptFiles) {
+			for (var $t1 = 0; $t1 < cssFiles.length; $t1++) {
+				var cssFile = cssFiles[$t1];
+				if (!$tab_ModuleManager.isCssLoaded(cssFile)) {
+					return true;
+				}
+			}
+			for (var $t2 = 0; $t2 < scriptFiles.length; $t2++) {
+				var scriptFile = scriptFiles[$t2];
+				if (!$tab_ModuleManager.isScriptLoaded(scriptFile)) {
+					return true;
+				}
+			}
+			return false;
 		},
 		refreshLayout: function CommandController$RefreshLayout() {
 			$tab_CommandController.get_$log().debug('RefreshLayout', []);
@@ -30084,19 +32017,20 @@ global.ss = ss;
 			}
 		},
 		sendVizqlRequest: function CommentingServer$SendVizqlRequest(request) {
-			var deferred = $.Deferred();
-			var onSuccess = function(data, textStatus, xhr) {
+			var deferred = { $: $.Deferred() };
+			var onSuccess = ss.mkdel({ deferred: deferred, $this: this }, function(data, textStatus, xhr) {
 				var resultJson = data;
 				delete resultJson['msg'];
 				delete resultJson['status'];
-				deferred.resolve(resultJson);
-			};
-			var onError = function(xhr1, status, e) {
+				this.$this.$resolveIfNoErrors(this.deferred, resultJson);
+			});
+			var onError = ss.mkdel({ deferred: deferred }, function(xhr1, status, e) {
 				ss.Debug.fail(ss.formatString("Request to '{0}' failed with status '{1}'", request.method, xhr1.status));
-			};
+				this.deferred.$.reject();
+			});
 			var requestParams = new $tab_VizqlSessionRequest(request.method, request.params, onSuccess, onError);
 			this.$sendVizqlSessionRequest(requestParams);
-			return deferred;
+			return deferred.$;
 		},
 		$sendVizqlSessionRequest: function CommentingServer$SendVizqlSessionRequest(request) {
 			var args = {};
@@ -30993,6 +32927,7 @@ global.ss = ss;
 			this.$oldRenderMode = this.get_renderMode();
 			dashboardPresModel.isStory = dashboardPresModel.isStory || false;
 			dashboardPresModel.hasTitle = dashboardPresModel.hasTitle || false;
+			dashboardPresModel.hasUserSpecificContent = dashboardPresModel.hasUserSpecificContent || false;
 			this.$storyContentDashboard = null;
 			if (ss.isValue(dashboardPresModel.zones)) {
 				this.zonesModel.update(dashboardPresModel.zones, context);
@@ -31169,6 +33104,7 @@ global.ss = ss;
 			this.$addNewZoneAsFloating = value;
 		}
 	}, $tab_Model);
+	ss.initClass($tab_DashboardSizeCalculator, $asm, {});
 	ss.initClass($tab_DashboardSizeControlModel, $asm, {
 		add_sizeInfoUpdated: function DashboardSizeControlModel$add_SizeInfoUpdated(value) {
 			this.$2$SizeInfoUpdatedField = ss.delegateCombine(this.$2$SizeInfoUpdatedField, value);
@@ -35927,6 +37863,7 @@ global.ss = ss;
 			return valInRange;
 		}
 	});
+	ss.initClass($tab_QuickFilterDateFormatUtil, $asm, {});
 	ss.initClass($tab_QuickFilterDisplayModel, $asm, {
 		add_filterUpdated: function QuickFilterDisplayModel$add_FilterUpdated(value) {
 			this.$2$FilterUpdatedField = ss.delegateCombine(this.$2$FilterUpdatedField, value);
@@ -36558,25 +38495,25 @@ global.ss = ss;
 		$formatDays: function Schedule$FormatDays(recurrenceDaysOfWeek) {
 			switch (recurrenceDaysOfWeek.length) {
 				case 1: {
-					return this.$dayMap[recurrenceDaysOfWeek[0]];
+					return $tab_Schedule.$dayMap[recurrenceDaysOfWeek[0]];
 				}
 				case 2: {
-					return tab.Strings.ListLengthTwo(this.$dayMap[recurrenceDaysOfWeek[0]], this.$dayMap[recurrenceDaysOfWeek[1]]);
+					return tab.Strings.ListLengthTwo($tab_Schedule.$dayMap[recurrenceDaysOfWeek[0]], $tab_Schedule.$dayMap[recurrenceDaysOfWeek[1]]);
 				}
 				case 3: {
-					return tab.Strings.ListLengthThree(this.$dayMap[recurrenceDaysOfWeek[0]], this.$dayMap[recurrenceDaysOfWeek[1]], this.$dayMap[recurrenceDaysOfWeek[2]]);
+					return tab.Strings.ListLengthThree($tab_Schedule.$dayMap[recurrenceDaysOfWeek[0]], $tab_Schedule.$dayMap[recurrenceDaysOfWeek[1]], $tab_Schedule.$dayMap[recurrenceDaysOfWeek[2]]);
 				}
 				case 4: {
-					return tab.Strings.ListLengthFour(this.$dayMap[recurrenceDaysOfWeek[0]], this.$dayMap[recurrenceDaysOfWeek[1]], this.$dayMap[recurrenceDaysOfWeek[2]], this.$dayMap[recurrenceDaysOfWeek[3]]);
+					return tab.Strings.ListLengthFour($tab_Schedule.$dayMap[recurrenceDaysOfWeek[0]], $tab_Schedule.$dayMap[recurrenceDaysOfWeek[1]], $tab_Schedule.$dayMap[recurrenceDaysOfWeek[2]], $tab_Schedule.$dayMap[recurrenceDaysOfWeek[3]]);
 				}
 				case 5: {
-					return tab.Strings.ListLengthFive(this.$dayMap[recurrenceDaysOfWeek[0]], this.$dayMap[recurrenceDaysOfWeek[1]], this.$dayMap[recurrenceDaysOfWeek[2]], this.$dayMap[recurrenceDaysOfWeek[3]], this.$dayMap[recurrenceDaysOfWeek[4]]);
+					return tab.Strings.ListLengthFive($tab_Schedule.$dayMap[recurrenceDaysOfWeek[0]], $tab_Schedule.$dayMap[recurrenceDaysOfWeek[1]], $tab_Schedule.$dayMap[recurrenceDaysOfWeek[2]], $tab_Schedule.$dayMap[recurrenceDaysOfWeek[3]], $tab_Schedule.$dayMap[recurrenceDaysOfWeek[4]]);
 				}
 				case 6: {
-					return tab.Strings.ListLengthSix(this.$dayMap[recurrenceDaysOfWeek[0]], this.$dayMap[recurrenceDaysOfWeek[1]], this.$dayMap[recurrenceDaysOfWeek[2]], this.$dayMap[recurrenceDaysOfWeek[3]], this.$dayMap[recurrenceDaysOfWeek[4]], this.$dayMap[recurrenceDaysOfWeek[5]]);
+					return tab.Strings.ListLengthSix($tab_Schedule.$dayMap[recurrenceDaysOfWeek[0]], $tab_Schedule.$dayMap[recurrenceDaysOfWeek[1]], $tab_Schedule.$dayMap[recurrenceDaysOfWeek[2]], $tab_Schedule.$dayMap[recurrenceDaysOfWeek[3]], $tab_Schedule.$dayMap[recurrenceDaysOfWeek[4]], $tab_Schedule.$dayMap[recurrenceDaysOfWeek[5]]);
 				}
 				case 7: {
-					return tab.Strings.ListLengthSeven(this.$dayMap[recurrenceDaysOfWeek[0]], this.$dayMap[recurrenceDaysOfWeek[1]], this.$dayMap[recurrenceDaysOfWeek[2]], this.$dayMap[recurrenceDaysOfWeek[3]], this.$dayMap[recurrenceDaysOfWeek[4]], this.$dayMap[recurrenceDaysOfWeek[5]], this.$dayMap[recurrenceDaysOfWeek[6]]);
+					return tab.Strings.ListLengthSeven($tab_Schedule.$dayMap[recurrenceDaysOfWeek[0]], $tab_Schedule.$dayMap[recurrenceDaysOfWeek[1]], $tab_Schedule.$dayMap[recurrenceDaysOfWeek[2]], $tab_Schedule.$dayMap[recurrenceDaysOfWeek[3]], $tab_Schedule.$dayMap[recurrenceDaysOfWeek[4]], $tab_Schedule.$dayMap[recurrenceDaysOfWeek[5]], $tab_Schedule.$dayMap[recurrenceDaysOfWeek[6]]);
 				}
 				default: {
 					throw new ss.Exception('Unknown list length: ' + recurrenceDaysOfWeek.length);
@@ -40209,8 +42146,8 @@ global.ss = ss;
 		}
 	});
 	ss.initClass($tab_WorkgroupDataSource, $asm, {
-		get_isCertified: function WorkgroupDataSource$get_IsCertified() {
-			return this.$presModel.isCertified;
+		get_certificationDetails: function WorkgroupDataSource$get_CertificationDetails() {
+			return this.$presModel.certificationDetails;
 		},
 		get_name: function WorkgroupDataSource$get_Name() {
 			return this.$presModel.name;
@@ -40250,6 +42187,9 @@ global.ss = ss;
 		},
 		get_connectionDetails: function WorkgroupDataSource$get_ConnectionDetails() {
 			return this.$presModel.connectionDetails;
+		},
+		get_lastRefreshedAt: function WorkgroupDataSource$get_LastRefreshedAt() {
+			return this.$presModel.lastRefreshedAt;
 		},
 		get_lastRefreshedDescription: function WorkgroupDataSource$get_LastRefreshedDescription() {
 			if (tab.MiscUtil.isNullOrEmpty$1(this.$presModel.lastRefreshedAt)) {
@@ -40781,7 +42721,7 @@ global.ss = ss;
 							hadCachedContent = true;
 							this.$zoneContentModel = contentModel;
 							this.$zoneContentModel.reparent(this.$contentWrapperModel);
-							this.$raiseNewZoneContent(this.$zoneContentModel, context);
+							this.raiseNewZoneContent(this.$zoneContentModel, context);
 						}
 					}
 					if (!hadCachedContent) {
@@ -40816,7 +42756,7 @@ global.ss = ss;
 				var visual = $tab_ZoneModel.getContent(zonePresModel, $tab_ZoneModel.$visualField);
 				if (ss.isNullOrUndefined(this.$zoneContentModel)) {
 					this.$zoneContentModel = new $tab_VisualModel(this.$contentWrapperModel);
-					this.$raiseNewZoneContent(this.$zoneContentModel, context);
+					this.raiseNewZoneContent(this.$zoneContentModel, context);
 				}
 				var visualModel = ss.cast(this.$zoneContentModel, $tab_VisualModel);
 				visualModel.update(visual, context);
@@ -40825,7 +42765,7 @@ global.ss = ss;
 				var title = $tab_ZoneModel.getContent(zonePresModel, $tab_ZoneModel.$titleField);
 				if (ss.isNullOrUndefined(this.$zoneContentModel)) {
 					this.$zoneContentModel = new $tab_TextRegionModel(this.$contentWrapperModel, $tab_ZoneModel.$titleField);
-					this.$raiseNewZoneContent(this.$zoneContentModel, context);
+					this.raiseNewZoneContent(this.$zoneContentModel, context);
 				}
 				var textRegionModel = ss.cast(this.$zoneContentModel, $tab_TextRegionModel);
 				textRegionModel.update(title, context);
@@ -40834,7 +42774,7 @@ global.ss = ss;
 				var text = $tab_ZoneModel.getContent(zonePresModel, $tab_ZoneModel.$textField);
 				if (ss.isNullOrUndefined(this.$zoneContentModel)) {
 					this.$zoneContentModel = new $tab_TextRegionModel(this.$contentWrapperModel, $tab_ZoneModel.$textField);
-					this.$raiseNewZoneContent(this.$zoneContentModel, context);
+					this.raiseNewZoneContent(this.$zoneContentModel, context);
 				}
 				var textRegionModel1 = ss.cast(this.$zoneContentModel, $tab_TextRegionModel);
 				textRegionModel1.update(text, context);
@@ -40846,7 +42786,7 @@ global.ss = ss;
 					this.$containsLegacyQuickFilter = false;
 					if (ss.isNullOrUndefined(this.$zoneContentModel) || containedLegacyQuickFilter) {
 						this.$zoneContentModel = new $tab_QuickFilterDisplayModel(this.$contentWrapperModel);
-						this.$raiseNewZoneContent(this.$zoneContentModel, context);
+						this.raiseNewZoneContent(this.$zoneContentModel, context);
 					}
 					var quickFilterDisplayModel = ss.cast(this.$zoneContentModel, $tab_QuickFilterDisplayModel);
 					quickFilterDisplayModel.update(quickFilterDisplay, context);
@@ -40855,7 +42795,7 @@ global.ss = ss;
 					this.$containsLegacyQuickFilter = true;
 					if (ss.isNullOrUndefined(this.$zoneContentModel) || !containedLegacyQuickFilter) {
 						this.$zoneContentModel = new $tab_LegacyQuickFilterDisplayModel(this.$contentWrapperModel);
-						this.$raiseNewZoneContent(this.$zoneContentModel, context);
+						this.raiseNewZoneContent(this.$zoneContentModel, context);
 					}
 					var frame = $tab_ZoneModel.$parseJson(zonePresModel.frameJson);
 					var quickFilterDisplayModel1 = ss.cast(this.$zoneContentModel, $tab_LegacyQuickFilterDisplayModel);
@@ -40867,7 +42807,7 @@ global.ss = ss;
 					var quantColorLegendPM = $tab_ZoneModel.getContent(zonePresModel, contentType);
 					if (ss.isNullOrUndefined(this.$zoneContentModel)) {
 						this.$zoneContentModel = new $tab_QuantitativeColorLegendModel(this.$contentWrapperModel, contentType);
-						this.$raiseNewZoneContent(this.$zoneContentModel, context);
+						this.raiseNewZoneContent(this.$zoneContentModel, context);
 					}
 					var quantLegendModel = ss.cast(this.$zoneContentModel, $tab_QuantitativeColorLegendModel);
 					quantLegendModel.update(quantColorLegendPM, context);
@@ -40879,7 +42819,7 @@ global.ss = ss;
 					if (ss.isNullOrUndefined(this.$zoneContentModel)) {
 						var zt = this.$zoneCommonModel.get_zoneType();
 						this.$zoneContentModel = new $tab_CategoricalLegendModel(this.$contentWrapperModel, contentType, $tab_ZoneModel.$getLegendTypeFromZoneType(zt));
-						this.$raiseNewZoneContent(this.$zoneContentModel, context);
+						this.raiseNewZoneContent(this.$zoneContentModel, context);
 					}
 					var catLegendModel = ss.cast(this.$zoneContentModel, $tab_CategoricalLegendModel);
 					catLegendModel.update(catLegendPM, context);
@@ -40894,7 +42834,7 @@ global.ss = ss;
 					this.$containsLegacyParameter = false;
 					if (ss.isNullOrUndefined(this.$zoneContentModel) || containedLegacyParameter) {
 						this.$zoneContentModel = new $tab_ParameterFilterDisplayModel(this.$contentWrapperModel);
-						this.$raiseNewZoneContent(this.$zoneContentModel, context);
+						this.raiseNewZoneContent(this.$zoneContentModel, context);
 					}
 					var parameterDisplayModel = ss.cast(this.$zoneContentModel, $tab_ParameterFilterDisplayModel);
 					parameterDisplayModel.update(paramCtrl, context);
@@ -40903,7 +42843,7 @@ global.ss = ss;
 					this.$containsLegacyParameter = true;
 					if (ss.isNullOrUndefined(this.$zoneContentModel) || !containedLegacyParameter) {
 						this.$zoneContentModel = new $tab_ParameterCtrlModel(this.$contentWrapperModel);
-						this.$raiseNewZoneContent(this.$zoneContentModel, context);
+						this.raiseNewZoneContent(this.$zoneContentModel, context);
 					}
 					var frame1 = $tab_ZoneModel.$parseJson(zonePresModel.frameJson);
 					var paramCtrlModel = ss.cast(this.$zoneContentModel, $tab_ParameterCtrlModel);
@@ -40914,7 +42854,7 @@ global.ss = ss;
 				var page = $tab_ZoneModel.getContent(zonePresModel, $tab_ZoneModel.$pageField);
 				if (ss.isNullOrUndefined(this.$zoneContentModel)) {
 					this.$zoneContentModel = new $tab_PageModel(this.$contentWrapperModel);
-					this.$raiseNewZoneContent(this.$zoneContentModel, context);
+					this.raiseNewZoneContent(this.$zoneContentModel, context);
 				}
 				var fireEvent = !didZoneSizeChange || ss.isNullOrUndefined(this.pm);
 				var frame2 = $tab_ZoneModel.$parseJson(zonePresModel.frameJson);
@@ -40925,7 +42865,7 @@ global.ss = ss;
 				var nav = $tab_ZoneModel.getContent(zonePresModel, $tab_ZoneModel.$flipboardNavField);
 				if (ss.isNullOrUndefined(this.$zoneContentModel)) {
 					this.$zoneContentModel = new $tab_FlipboardNavigatorModel(this.$contentWrapperModel);
-					this.$raiseNewZoneContent(this.$zoneContentModel, context);
+					this.raiseNewZoneContent(this.$zoneContentModel, context);
 				}
 				var navModel = ss.cast(this.$zoneContentModel, $tab_FlipboardNavigatorModel);
 				navModel.update(nav, context);
@@ -40934,7 +42874,7 @@ global.ss = ss;
 				var flip = $tab_ZoneModel.getContent(zonePresModel, $tab_ZoneModel.$flipboardField);
 				if (ss.isNullOrUndefined(this.$zoneContentModel)) {
 					this.$zoneContentModel = new $tab_FlipboardModel(this.$contentWrapperModel);
-					this.$raiseNewZoneContent(this.$zoneContentModel, context);
+					this.raiseNewZoneContent(this.$zoneContentModel, context);
 				}
 				var navModel1 = ss.cast(this.$zoneContentModel, $tab_FlipboardModel);
 				navModel1.update(flip, context);
@@ -40943,7 +42883,7 @@ global.ss = ss;
 				var legacyLegendPM = $tab_ZoneModel.getContent(zonePresModel, $tab_ZoneModel.$serverRenderedLegendField);
 				if (ss.isNullOrUndefined(this.$zoneContentModel)) {
 					this.$zoneContentModel = new $tab_LegacyLegendModel(this.$contentWrapperModel);
-					this.$raiseNewZoneContent(this.$zoneContentModel, context);
+					this.raiseNewZoneContent(this.$zoneContentModel, context);
 				}
 				var legacyLegendModel = ss.cast(this.$zoneContentModel, $tab_LegacyLegendModel);
 				legacyLegendModel.update(legacyLegendPM, context);
@@ -40952,7 +42892,7 @@ global.ss = ss;
 				var webZone = $tab_ZoneModel.getContent(zonePresModel, $tab_ZoneModel.$webZoneField);
 				if (ss.isNullOrUndefined(this.$zoneContentModel)) {
 					this.$zoneContentModel = new $tab_WebZoneModel(this.$contentWrapperModel);
-					this.$raiseNewZoneContent(this.$zoneContentModel, context);
+					this.raiseNewZoneContent(this.$zoneContentModel, context);
 				}
 				var webZoneModel = ss.cast(this.$zoneContentModel, $tab_WebZoneModel);
 				webZoneModel.update(webZone, context);
@@ -40961,7 +42901,7 @@ global.ss = ss;
 				var imageZone = $tab_ZoneModel.getContent(zonePresModel, $tab_ZoneModel.$imageZoneField);
 				if (ss.isNullOrUndefined(this.$zoneContentModel)) {
 					this.$zoneContentModel = new $tab_ImageZoneModel(this.$contentWrapperModel);
-					this.$raiseNewZoneContent(this.$zoneContentModel, context);
+					this.raiseNewZoneContent(this.$zoneContentModel, context);
 				}
 				var imageZoneModel = ss.cast(this.$zoneContentModel, $tab_ImageZoneModel);
 				imageZoneModel.update(imageZone, context);
@@ -40970,7 +42910,7 @@ global.ss = ss;
 				var dataHighlighterPresModel = $tab_ZoneModel.getContent(zonePresModel, $tab_ZoneModel.$dataHighlighterField);
 				if (ss.isNullOrUndefined(this.$zoneContentModel)) {
 					this.$zoneContentModel = new $tab_DataHighlighterModel(this.$contentWrapperModel);
-					this.$raiseNewZoneContent(this.$zoneContentModel, context);
+					this.raiseNewZoneContent(this.$zoneContentModel, context);
 				}
 				var dataHighlighterModel = ss.cast(this.$zoneContentModel, $tab_DataHighlighterModel);
 				dataHighlighterModel.update(dataHighlighterPresModel, context);
@@ -40979,7 +42919,7 @@ global.ss = ss;
 		contentBorderWidth: function ZoneModel$ContentBorderWidth() {
 			return this.$zoneCommonModel.get_contentBorderWidth();
 		},
-		$raiseNewZoneContent: function ZoneModel$RaiseNewZoneContent(newZoneModel, context) {
+		raiseNewZoneContent: function ZoneModel$RaiseNewZoneContent(newZoneModel, context) {
 			this.raiseEvent$1($tab_Model).call(this, this.$2$NewZoneContentField, newZoneModel, context);
 		}
 	}, $tab_Model);
@@ -41260,6 +43200,7 @@ global.ss = ss;
 		$tab_Schedule.$scheduleSecondToLastDayOfMonth = 'SecondToLast';
 		$tab_Schedule.$minutesPerDay = 1440;
 		$tab_Schedule.$dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+		$tab_Schedule.$dayMap = ss.mkdict(['Sun', tab.Strings.Sunday, 'Mon', tab.Strings.Monday, 'Tue', tab.Strings.Tuesday, 'Wed', tab.Strings.Wednesday, 'Thu', tab.Strings.Thursday, 'Fri', tab.Strings.Friday, 'Sat', tab.Strings.Saturday]);
 	})();
 	(function() {
 		$tab_WorldUpdateInterceptor.$instance = new ss.Lazy(function() {
@@ -41411,6 +43352,9 @@ global.ss = ss;
 		$tab_DeferredConnectionsCommandHandler.$badPasswordError = 'badpassword';
 		$tab_DeferredConnectionsCommandHandler.$badOauthPasswordError = 'badoauthcredentials';
 		$tab_DeferredConnectionsCommandHandler.$noAssociatedCustomOAuthKeyError = 'NoAssociatedCustomOAuthKey';
+	})();
+	(function() {
+		$tab_WaitHandler.waitGlassId = 'loadingGlassPane';
 	})();
 	(function() {
 		$tab_ModuleManager.$jsPrefix = 'vql';
@@ -41688,6 +43632,7 @@ global.ss = ss;
 		$tab_TabResources.$resourceMap['TQRC_ANALYTICSPANE_DROP_CELL'] = 'tableau-1.3/res/analyticspane/drop/cell.png';
 		$tab_TabResources.$resourceMap['TQRC_ANALYTICSPANE_DROP_LINEAR'] = 'tableau-1.3/res/analyticspane/drop/trend-linear.png';
 		$tab_TabResources.$resourceMap['TQRC_ANALYTICSPANE_DROP_POLY'] = 'tableau-1.3/res/analyticspane/drop/trend-polynomial.png';
+		$tab_TabResources.$resourceMap['TQRC_ANALYTICSPANE_DROP_POWER'] = 'tableau-1.3/res/analyticspane/drop/trend-power.png';
 		$tab_TabResources.$resourceMap['TQRC_ANALYTICSPANE_DROP_LOG'] = 'tableau-1.3/res/analyticspane/drop/trend-logarithmic.png';
 		$tab_TabResources.$resourceMap['TQRC_ANALYTICSPANE_DROP_EXP'] = 'tableau-1.3/res/analyticspane/drop/trend-exponential.png';
 		$tab_TabResources.$resourceMap['TQRC_ANALYTICSPANE_DROP_SUBTOTAL'] = 'tableau-1.3/res/analyticspane/drop/sub-total.png';
@@ -41885,7 +43830,7 @@ global.ss = ss;
 								}
 							}
 						}));
-						var $t2 = ss.getEnumerator(this.$docEventMappingRegistry.getKeys());
+						var $t2 = ss.getEnumerator(this.$docEventMappingRegistry.get_registeredKeys());
 						try {
 							while ($t2.moveNext()) {
 								var eventId = $t2.current();
@@ -45452,6 +47397,12 @@ global.ss = ss;
 	};
 	global.tab.DataValue = $tab_DataValue;
 	////////////////////////////////////////////////////////////////////////////////
+	// Tableau.JavaScript.Vql.ApiShared.FilterCommandsBuilder
+	var $tab_FilterCommandsBuilder = function() {
+	};
+	$tab_FilterCommandsBuilder.__typeName = 'tab.FilterCommandsBuilder';
+	global.tab.FilterCommandsBuilder = $tab_FilterCommandsBuilder;
+	////////////////////////////////////////////////////////////////////////////////
 	// Tableau.JavaScript.Vql.ApiShared.GetDataCommandsBuilder
 	var $tab_GetDataCommandsBuilder = function() {
 	};
@@ -46186,6 +48137,231 @@ global.ss = ss;
 	});
 	ss.initEnum($tab_DataType, $asm, { float: 'float', integer: 'integer', string: 'string', boolean: 'boolean', date: 'date', datetime: 'datetime' }, true);
 	ss.initClass($tab_DataValue, $asm, {}, Object);
+	ss.initClass($tab_FilterCommandsBuilder, $asm, {
+		buildApplyFiltersCommandParams: function FilterCommandsBuilder$BuildApplyFiltersCommandParams(fieldName, values, updateType, options) {
+			if ($tab__Utility.isNullOrEmpty(fieldName)) {
+				throw $tab__TableauException.createNullOrEmptyParameter('fieldName');
+			}
+			updateType = $tab_PublicEnums.normalizeEnum($tab_ApiFilterUpdateType).call(null, updateType, 'updateType');
+			var fieldValues = [];
+			if ($tab__jQueryShim.isArray(values)) {
+				for (var i = 0; i < values.length; i++) {
+					fieldValues.push(values[i].toString());
+				}
+			}
+			else if (ss.isValue(values)) {
+				fieldValues.push(values.toString());
+			}
+			var commandParameters = {};
+			commandParameters['api.fieldCaption'] = fieldName;
+			commandParameters['api.filterUpdateType'] = updateType;
+			commandParameters['api.exclude'] = ((ss.isValue(options) && options.isExcludeMode) ? true : false);
+			if (updateType !== 'all') {
+				commandParameters['api.filterCategoricalValues'] = fieldValues;
+			}
+			return commandParameters;
+		},
+		buildRangeFilterCommandParams: function FilterCommandsBuilder$BuildRangeFilterCommandParams(fieldName, filterOptions) {
+			if ($tab__Utility.isNullOrEmpty(fieldName)) {
+				throw $tab__TableauException.createNullOrEmptyParameter('fieldName');
+			}
+			if (ss.isNullOrUndefined(filterOptions)) {
+				throw $tab__TableauException.createNullOrEmptyParameter('filterOptions');
+			}
+			var commandParameters = {};
+			commandParameters['api.fieldCaption'] = fieldName;
+			if (ss.isValue(filterOptions.min)) {
+				if ($tab__Utility.isDate(filterOptions.min)) {
+					var dt = ss.cast(filterOptions.min, ss.JsDate);
+					if ($tab__Utility.isDateValid(dt)) {
+						commandParameters['api.filterRangeMin'] = $tab__Utility.serializeDateForServer(dt);
+					}
+					else {
+						throw $tab__TableauException.createInvalidDateParameter('filterOptions.min');
+					}
+				}
+				else {
+					commandParameters['api.filterRangeMin'] = filterOptions.min;
+				}
+			}
+			if (ss.isValue(filterOptions.max)) {
+				if ($tab__Utility.isDate(filterOptions.max)) {
+					var dt1 = ss.cast(filterOptions.max, ss.JsDate);
+					if ($tab__Utility.isDateValid(dt1)) {
+						commandParameters['api.filterRangeMax'] = $tab__Utility.serializeDateForServer(dt1);
+					}
+					else {
+						throw $tab__TableauException.createInvalidDateParameter('filterOptions.max');
+					}
+				}
+				else {
+					commandParameters['api.filterRangeMax'] = filterOptions.max;
+				}
+			}
+			if (ss.isValue(filterOptions.nullOption)) {
+				commandParameters['api.filterRangeNullOption'] = filterOptions.nullOption;
+			}
+			return commandParameters;
+		},
+		buildRelativeDateFilterCommandParams: function FilterCommandsBuilder$BuildRelativeDateFilterCommandParams(fieldName, filterOptions) {
+			if ($tab__Utility.isNullOrEmpty(fieldName)) {
+				throw $tab__TableauException.createInvalidParameter('fieldName');
+			}
+			else if (ss.isNullOrUndefined(filterOptions)) {
+				throw $tab__TableauException.createInvalidParameter('filterOptions');
+			}
+			var commandParameters = {};
+			commandParameters['api.fieldCaption'] = fieldName;
+			if (ss.isValue(filterOptions)) {
+				commandParameters['api.filterPeriodType'] = filterOptions.periodType;
+				commandParameters['api.filterDateRangeType'] = filterOptions.rangeType;
+				if (filterOptions.rangeType === 'lastn' || filterOptions.rangeType === 'nextn') {
+					if (ss.isNullOrUndefined(filterOptions.rangeN)) {
+						throw $tab__TableauException.create('missingRangeNForRelativeDateFilters', 'Missing rangeN field for a relative date filter of LASTN or NEXTN.');
+					}
+					commandParameters['api.filterDateRange'] = filterOptions.rangeN;
+				}
+				if (ss.isValue(filterOptions.anchorDate)) {
+					commandParameters['api.filterDateArchorValue'] = $tab__Utility.serializeDateForServer(filterOptions.anchorDate);
+				}
+			}
+			return commandParameters;
+		},
+		buildHierarchicalFilterCommandParams: function FilterCommandsBuilder$BuildHierarchicalFilterCommandParams(fieldName, values, updateType, options) {
+			if ($tab__Utility.isNullOrEmpty(fieldName)) {
+				throw $tab__TableauException.createNullOrEmptyParameter('fieldName');
+			}
+			updateType = $tab_PublicEnums.normalizeEnum($tab_ApiFilterUpdateType).call(null, updateType, 'updateType');
+			var fieldValues = null;
+			var levelValues = null;
+			if ($tab__jQueryShim.isArray(values)) {
+				fieldValues = [];
+				var arr = values;
+				for (var i = 0; i < arr.length; i++) {
+					fieldValues.push(arr[i].toString());
+				}
+			}
+			else if ($tab__Utility.isString(values)) {
+				fieldValues = [];
+				fieldValues.push(values.toString());
+			}
+			else if (ss.isValue(values) && ss.isValue(values['levels'])) {
+				var levelValue = values['levels'];
+				levelValues = [];
+				if ($tab__jQueryShim.isArray(levelValue)) {
+					var levels = levelValue;
+					for (var i1 = 0; i1 < levels.length; i1++) {
+						levelValues.push(levels[i1].toString());
+					}
+				}
+				else {
+					levelValues.push(levelValue.toString());
+				}
+			}
+			else if (ss.isValue(values)) {
+				throw $tab__TableauException.createInvalidParameter('values');
+			}
+			var commandParameters = {};
+			commandParameters['api.fieldCaption'] = fieldName;
+			commandParameters['api.filterUpdateType'] = updateType;
+			commandParameters['api.exclude'] = ((ss.isValue(options) && options.isExcludeMode) ? true : false);
+			if (ss.isValue(fieldValues)) {
+				commandParameters['api.filterHierarchicalValues'] = JSON.stringify(fieldValues);
+			}
+			if (ss.isValue(levelValues)) {
+				commandParameters['api.filterHierarchicalLevels'] = JSON.stringify(levelValues);
+			}
+			return commandParameters;
+		},
+		buildClearFilterCommandsParam: function FilterCommandsBuilder$BuildClearFilterCommandsParam(fieldName) {
+			if ($tab__Utility.isNullOrEmpty(fieldName)) {
+				throw $tab__TableauException.createNullOrEmptyParameter('fieldName');
+			}
+			var commandParameters = {};
+			commandParameters['api.fieldCaption'] = fieldName;
+			return commandParameters;
+		},
+		filterCommandError: function FilterCommandsBuilder$FilterCommandError(rawPm) {
+			var commandError = rawPm;
+			if (ss.isValue(commandError) && ss.isValue(commandError.errorCode)) {
+				var additionalInfo = (ss.isValue(commandError.additionalInformation) ? commandError.additionalInformation.toString() : '');
+				switch (commandError.errorCode) {
+					case 'invalidFilterFieldName': {
+						return $tab__TableauException.create('invalidFilterFieldName', additionalInfo);
+					}
+					case 'invalidFilterFieldValue': {
+						return $tab__TableauException.create('invalidFilterFieldValue', additionalInfo);
+					}
+					case 'invalidAggregationFieldName': {
+						return $tab__TableauException.createInvalidAggregationFieldName(additionalInfo);
+					}
+					default: {
+						return $tab__TableauException.createServerError(additionalInfo);
+					}
+				}
+			}
+			return null;
+		},
+		normalizeRangeFilterOption: function FilterCommandsBuilder$NormalizeRangeFilterOption(filterOptions) {
+			if (ss.isNullOrUndefined(filterOptions)) {
+				throw $tab__TableauException.createNullOrEmptyParameter('filterOptions');
+			}
+			if (ss.isNullOrUndefined(filterOptions.min) && ss.isNullOrUndefined(filterOptions.max)) {
+				throw $tab__TableauException.create('invalidParameter', 'At least one of filterOptions.min or filterOptions.max must be specified.');
+			}
+			var fixedUpFilterOptions = new Object();
+			if (ss.isValue(filterOptions.min)) {
+				fixedUpFilterOptions.min = filterOptions.min;
+			}
+			if (ss.isValue(filterOptions.max)) {
+				fixedUpFilterOptions.max = filterOptions.max;
+			}
+			if (ss.isValue(filterOptions.nullOption)) {
+				fixedUpFilterOptions.nullOption = $tab_PublicEnums.normalizeEnum($tab_ApiNullOption).call(null, filterOptions.nullOption, 'filterOptions.nullOption');
+			}
+			return fixedUpFilterOptions;
+		},
+		normalizeRelativeDateFilterOptions: function FilterCommandsBuilder$NormalizeRelativeDateFilterOptions(filterOptions) {
+			if (ss.isNullOrUndefined(filterOptions)) {
+				throw $tab__TableauException.createNullOrEmptyParameter('filterOptions');
+			}
+			var fixedUpFilterOptions = new Object();
+			fixedUpFilterOptions.rangeType = $tab_PublicEnums.normalizeEnum($tab_ApiDateRangeType).call(null, filterOptions.rangeType, 'filterOptions.rangeType');
+			fixedUpFilterOptions.periodType = $tab_PublicEnums.normalizeEnum($tab_ApiPeriodType).call(null, filterOptions.periodType, 'filterOptions.periodType');
+			if (fixedUpFilterOptions.rangeType === 'lastn' || fixedUpFilterOptions.rangeType === 'nextn') {
+				if (ss.isNullOrUndefined(filterOptions.rangeN)) {
+					throw $tab__TableauException.create('missingRangeNForRelativeDateFilters', 'Missing rangeN field for a relative date filter of LASTN or NEXTN.');
+				}
+				fixedUpFilterOptions.rangeN = $tab__Utility.toInt(filterOptions.rangeN);
+			}
+			if (ss.isValue(filterOptions.anchorDate)) {
+				if (!$tab__Utility.isDate(filterOptions.anchorDate) || !$tab__Utility.isDateValid(filterOptions.anchorDate)) {
+					throw $tab__TableauException.createInvalidDateParameter('filterOptions.anchorDate');
+				}
+				fixedUpFilterOptions.anchorDate = filterOptions.anchorDate;
+			}
+			return fixedUpFilterOptions;
+		},
+		createFilterCommandReturnHandler: function FilterCommandsBuilder$CreateFilterCommandReturnHandler(commandName, fieldName, deferred) {
+			return new (ss.makeGenericType($tab_CommandReturnHandler$1, [Object]))(commandName, 1, ss.mkdel(this, function(result) {
+				var error = this.filterCommandError(result);
+				if (ss.isNullOrUndefined(error)) {
+					deferred.resolve(fieldName);
+				}
+				else {
+					deferred.reject(error);
+				}
+			}), function(remoteError, message) {
+				if (remoteError) {
+					deferred.reject($tab__TableauException.createInvalidFilterFieldNameOrValue(fieldName));
+				}
+				else {
+					var error1 = $tab__TableauException.create('filterCannotBePerformed', message);
+					deferred.reject(error1);
+				}
+			});
+		}
+	});
 	ss.initClass($tab_GetDataCommandsBuilder, $asm, {
 		getSummaryDataCommandParams: function GetDataCommandsBuilder$GetSummaryDataCommandParams(options) {
 			var commandParameters = {};
@@ -46407,1139 +48583,6 @@ global.ss = ss;
 	})();
 })();
 // END ApiShared
-/*! BEGIN ApiDomain */
-
-(function() {
-	'dont use strict';
-	var $asm = {};
-	global.tab = global.tab || {};
-	ss.initAssembly($asm, 'vqlapidomain');
-	////////////////////////////////////////////////////////////////////////////////
-	// Tableau.JavaScript.Vql.ApiDomain.CommandInputMapping
-	var $tab_$CommandInputMapping = function(toDoc, param, isOptional) {
-		this.$1$MappingField = null;
-		this.$1$DocParamField = null;
-		this.$1$IsOptionalField = false;
-		this.set_$mapping(toDoc);
-		this.set_$docParam(param);
-		this.set_$isOptional(isOptional);
-	};
-	$tab_$CommandInputMapping.__typeName = 'tab.$CommandInputMapping';
-	////////////////////////////////////////////////////////////////////////////////
-	// Tableau.JavaScript.Vql.ApiDomain.ApiCrossDomainEnumConverter
-	var $tab_ApiCrossDomainEnumConverter = function() {
-	};
-	$tab_ApiCrossDomainEnumConverter.__typeName = 'tab.ApiCrossDomainEnumConverter';
-	$tab_ApiCrossDomainEnumConverter.convertDataType = function ApiCrossDomainEnumConverter$ConvertDataType(dataType) {
-		switch (dataType) {
-			case 'boolean': {
-				return 'bool';
-			}
-			case 'date':
-			case 'datetime': {
-				return 'date';
-			}
-			case 'integer':
-			case 'real':
-			case 'tuple': {
-				return 'number';
-			}
-			case 'cstring': {
-				return 'string';
-			}
-			case 'unknown':
-			default: {
-				return 'string';
-			}
-		}
-	};
-	$tab_ApiCrossDomainEnumConverter.convertUnderlyingDataType = function ApiCrossDomainEnumConverter$ConvertUnderlyingDataType(dataType) {
-		switch (dataType) {
-			case 'boolean': {
-				return 'boolean';
-			}
-			case 'date': {
-				return 'date';
-			}
-			case 'datetime': {
-				return 'datetime';
-			}
-			case 'integer': {
-				return 'integer';
-			}
-			case 'real':
-			case 'tuple': {
-				return 'float';
-			}
-			case 'cstring':
-			case 'unknown':
-			default: {
-				return 'string';
-			}
-		}
-	};
-	$tab_ApiCrossDomainEnumConverter.convertFieldAggregation = function ApiCrossDomainEnumConverter$ConvertFieldAggregation(aggregation) {
-		switch (aggregation) {
-			case 'attr': {
-				return 'ATTR';
-			}
-			case 'average': {
-				return 'AVG';
-			}
-			case 'count': {
-				return 'COUNT';
-			}
-			case 'count-d': {
-				return 'COUNTD';
-			}
-			case 'day': {
-				return 'DAY';
-			}
-			case 'end': {
-				return 'END';
-			}
-			case 'hour': {
-				return 'HOUR';
-			}
-			case 'in-out': {
-				return 'INOUT';
-			}
-			case 'kurtosis': {
-				return 'KURTOSIS';
-			}
-			case 'max': {
-				return 'MAX';
-			}
-			case 'mdy': {
-				return 'MDY';
-			}
-			case 'median': {
-				return 'MEDIAN';
-			}
-			case 'min': {
-				return 'MIN';
-			}
-			case 'minute': {
-				return 'MINUTE';
-			}
-			case 'month': {
-				return 'MONTH';
-			}
-			case 'month-year': {
-				return 'MONTHYEAR';
-			}
-			case 'none': {
-				return 'NONE';
-			}
-			case 'percentile': {
-				return 'PERCENTILE';
-			}
-			case 'qtr': {
-				return 'QTR';
-			}
-			case 'quart1': {
-				return 'QUART1';
-			}
-			case 'quart3': {
-				return 'QUART3';
-			}
-			case 'second': {
-				return 'SECOND';
-			}
-			case 'skewness': {
-				return 'SKEWNESS';
-			}
-			case 'std-dev': {
-				return 'STDEV';
-			}
-			case 'std-dev-p': {
-				return 'STDEVP';
-			}
-			case 'sum': {
-				return 'SUM';
-			}
-			case 'sum-xsqr': {
-				return 'SUM_XSQR';
-			}
-			case 'trunc-day': {
-				return 'TRUNC_DAY';
-			}
-			case 'trunc-hour': {
-				return 'TRUNC_HOUR';
-			}
-			case 'trunc-month': {
-				return 'TRUNC_MONTH';
-			}
-			case 'trunc-qtr': {
-				return 'TRUNC_QTR';
-			}
-			case 'trunc-second': {
-				return 'TRUNC_SECOND';
-			}
-			case 'trunc-week': {
-				return 'TRUNC_WEEK';
-			}
-			case 'trunc-year': {
-				return 'TRUNC_YEAR';
-			}
-			case 'user': {
-				return 'USER';
-			}
-			case 'var': {
-				return 'VAR';
-			}
-			case 'var-p': {
-				return 'VARP';
-			}
-			case 'week': {
-				return 'WEEK';
-			}
-			case 'weekday': {
-				return 'WEEKDAY';
-			}
-			case 'year': {
-				return 'YEAR';
-			}
-			default: {
-				throw new ss.Exception('Unknown AggType: ' + aggregation);
-			}
-		}
-	};
-	$tab_ApiCrossDomainEnumConverter.convertFieldRole = function ApiCrossDomainEnumConverter$ConvertFieldRole(role) {
-		switch (role) {
-			case 'dimension': {
-				return 'dimension';
-			}
-			case 'measure': {
-				return 'measure';
-			}
-			case 'unknown': {
-				return 'unknown';
-			}
-			default: {
-				throw new ss.Exception('Unknown FieldRole type: ' + role);
-			}
-		}
-	};
-	$tab_ApiCrossDomainEnumConverter.convertParameterDomainType = function ApiCrossDomainEnumConverter$ConvertParameterDomainType(domainType) {
-		switch (domainType) {
-			case 'any': {
-				return 'all';
-			}
-			case 'list': {
-				return 'list';
-			}
-			case 'range': {
-				return 'range';
-			}
-			default: {
-				throw new ss.Exception('Unknown ParameterTypesDomainType: ' + domainType);
-			}
-		}
-	};
-	$tab_ApiCrossDomainEnumConverter.convertPeriodType = function ApiCrossDomainEnumConverter$ConvertPeriodType(periodType) {
-		switch (periodType) {
-			case 'year': {
-				return 'year';
-			}
-			case 'day': {
-				return 'day';
-			}
-			case 'hour': {
-				return 'hour';
-			}
-			case 'minute': {
-				return 'minute';
-			}
-			case 'month': {
-				return 'month';
-			}
-			case 'quarter': {
-				return 'quarter';
-			}
-			case 'second': {
-				return 'second';
-			}
-			case 'week': {
-				return 'week';
-			}
-			default: {
-				throw new ss.Exception('Unknown DatePeriodType: ' + periodType);
-			}
-		}
-	};
-	$tab_ApiCrossDomainEnumConverter.convertRangeType = function ApiCrossDomainEnumConverter$ConvertRangeType(relativeDateRange) {
-		switch (relativeDateRange) {
-			case 'curr': {
-				return 'curr';
-			}
-			case 'last': {
-				return 'last';
-			}
-			case 'lastn': {
-				return 'lastn';
-			}
-			case 'next': {
-				return 'next';
-			}
-			case 'nextn': {
-				return 'nextn';
-			}
-			case 'todate': {
-				return 'todate';
-			}
-			case 'invalid':
-			default: {
-				throw new ss.Exception('Unknown or invalid Filters.RelativeDateRangeType: ' + relativeDateRange);
-			}
-		}
-	};
-	$tab_ApiCrossDomainEnumConverter.convertZoneType = function ApiCrossDomainEnumConverter$ConvertZoneType(zoneType) {
-		switch (zoneType) {
-			case 'color':
-			case 'shape':
-			case 'size': {
-				return 'legend';
-			}
-			case 'map': {
-				return 'legend';
-			}
-			case 'filter': {
-				return 'quickFilter';
-			}
-			case 'viz': {
-				return 'worksheet';
-			}
-			case 'paramctrl': {
-				return 'parameterControl';
-			}
-			case 'empty': {
-				return 'blank';
-			}
-			case 'title': {
-				return 'title';
-			}
-			case 'text': {
-				return 'text';
-			}
-			case 'bitmap': {
-				return 'image';
-			}
-			case 'web': {
-				return 'webPage';
-			}
-			case 'layout-basic':
-			case 'layout-flow':
-			case 'layout-free-form': {
-				return null;
-			}
-			default: {
-				return 'blank';
-			}
-		}
-	};
-	global.tab.ApiCrossDomainEnumConverter = $tab_ApiCrossDomainEnumConverter;
-	////////////////////////////////////////////////////////////////////////////////
-	// Tableau.JavaScript.Vql.ApiDomain.ApiCrossDomainPresModelsFactory
-	var $tab_ApiCrossDomainPresModelsFactory = function() {
-	};
-	$tab_ApiCrossDomainPresModelsFactory.__typeName = 'tab.ApiCrossDomainPresModelsFactory';
-	$tab_ApiCrossDomainPresModelsFactory.newClientInfo = function ApiCrossDomainPresModelsFactory$NewClientInfo(isAutoUpdate, isDownloadAllowed, workbookName, currentSheetName, instanceId, publishedSheets, dashboardZones, story) {
-		var pm = new Object();
-		pm.isAutoUpdate = isAutoUpdate;
-		pm.isDownloadAllowed = isDownloadAllowed;
-		pm.workbookName = workbookName;
-		pm.instanceId = instanceId;
-		pm.currentSheetName = currentSheetName;
-		pm.publishedSheets = publishedSheets;
-		pm.dashboardZones = dashboardZones;
-		pm.story = story;
-		return pm;
-	};
-	$tab_ApiCrossDomainPresModelsFactory.newAutoUpdateState = function ApiCrossDomainPresModelsFactory$NewAutoUpdateState(isAutoUpdate) {
-		var pm = new Object();
-		pm.isAutoUpdate = isAutoUpdate;
-		return pm;
-	};
-	$tab_ApiCrossDomainPresModelsFactory.newCommandError = function ApiCrossDomainPresModelsFactory$NewCommandError(errorCode, additionalInformation) {
-		var pm = new Object();
-		pm.errorCode = errorCode;
-		pm.additionalInformation = additionalInformation;
-		return pm;
-	};
-	$tab_ApiCrossDomainPresModelsFactory.newSheetInfo = function ApiCrossDomainPresModelsFactory$NewSheetInfo(name, sheetType, minWidth, minHeight, maxWidth, maxHeight, repositoryUrl) {
-		var sizeConstraints = new Object();
-		sizeConstraints.maxHeight = maxHeight;
-		sizeConstraints.maxWidth = maxWidth;
-		sizeConstraints.minHeight = minHeight;
-		sizeConstraints.minWidth = minWidth;
-		var pm = new Object();
-		pm.name = name;
-		pm.sizeConstraints = sizeConstraints;
-		pm.repositoryUrl = repositoryUrl;
-		pm.sheetType = sheetType;
-		return pm;
-	};
-	$tab_ApiCrossDomainPresModelsFactory.newContainedSheetInfo = function ApiCrossDomainPresModelsFactory$NewContainedSheetInfo(name, sheetType, zoneId, dashboardZones) {
-		var pm = new Object();
-		pm.name = name;
-		pm.sheetType = sheetType;
-		pm.zoneId = zoneId;
-		pm.dashboardZones = dashboardZones;
-		return pm;
-	};
-	$tab_ApiCrossDomainPresModelsFactory.newDashboardZone = function ApiCrossDomainPresModelsFactory$NewDashboardZone(name, zoneId, zoneType, height, width, x, y) {
-		var pm = new Object();
-		pm.name = name;
-		pm.zoneId = zoneId;
-		pm.zoneType = zoneType;
-		pm.height = height;
-		pm.width = width;
-		pm.x = x;
-		pm.y = y;
-		return pm;
-	};
-	$tab_ApiCrossDomainPresModelsFactory.newStory = function ApiCrossDomainPresModelsFactory$NewStory(activeStoryPointIndex, storyPoints) {
-		var pm = new Object();
-		pm.activeStoryPointIndex = activeStoryPointIndex;
-		pm.storyPoints = storyPoints;
-		return pm;
-	};
-	$tab_ApiCrossDomainPresModelsFactory.newStoryPoint = function ApiCrossDomainPresModelsFactory$NewStoryPoint(caption, index, storyPointId, isUpdated, containedSheetInfo) {
-		var pm = new Object();
-		pm.caption = caption;
-		pm.index = index;
-		pm.storyPointId = storyPointId;
-		pm.isUpdated = isUpdated;
-		pm.containedSheetInfo = containedSheetInfo;
-		return pm;
-	};
-	$tab_ApiCrossDomainPresModelsFactory.$newFilter = function ApiCrossDomainPresModelsFactory$NewFilter(fieldName, filterType, caption, dataSourceName, fieldRole, fieldAggregation) {
-		var pm = new Object();
-		pm.fieldName = fieldName;
-		pm.filterType = filterType;
-		pm.caption = caption;
-		pm.dataSourceName = dataSourceName;
-		pm.fieldRole = fieldRole;
-		pm.fieldAggregation = fieldAggregation;
-		return pm;
-	};
-	$tab_ApiCrossDomainPresModelsFactory.newCategoricalFilter = function ApiCrossDomainPresModelsFactory$NewCategoricalFilter(fieldName, filterType, caption, dataSourceName, fieldRole, fieldAggregation, isExclude, appliedValues) {
-		var pm = $tab_ApiCrossDomainPresModelsFactory.$newFilter(fieldName, filterType, caption, dataSourceName, fieldRole, fieldAggregation);
-		pm.isExclude = isExclude;
-		pm.appliedValues = appliedValues;
-		return pm;
-	};
-	$tab_ApiCrossDomainPresModelsFactory.newQuantitativeFilter = function ApiCrossDomainPresModelsFactory$NewQuantitativeFilter(fieldName, filterType, caption, dataSourceName, fieldRole, fieldAggregation, domainMinValue, domainMaxValue, minValue, maxValue, includeNullValues) {
-		var pm = $tab_ApiCrossDomainPresModelsFactory.$newFilter(fieldName, filterType, caption, dataSourceName, fieldRole, fieldAggregation);
-		pm.domainMinValue = domainMinValue;
-		pm.domainMaxValue = domainMaxValue;
-		pm.minValue = minValue;
-		pm.maxValue = maxValue;
-		pm.includeNullValues = includeNullValues;
-		return pm;
-	};
-	$tab_ApiCrossDomainPresModelsFactory.newHierarchicalFilter = function ApiCrossDomainPresModelsFactory$NewHierarchicalFilter(fieldName, filterType, caption, dataSourceName, fieldRole, fieldAggregation, levels) {
-		var pm = $tab_ApiCrossDomainPresModelsFactory.$newFilter(fieldName, filterType, caption, dataSourceName, fieldRole, fieldAggregation);
-		pm.levels = levels;
-		return pm;
-	};
-	$tab_ApiCrossDomainPresModelsFactory.newRelativeDateFilter = function ApiCrossDomainPresModelsFactory$NewRelativeDateFilter(fieldName, filterType, caption, dataSourceName, fieldRole, fieldAggregation, periodType, rangeType, rangeN) {
-		var pm = $tab_ApiCrossDomainPresModelsFactory.$newFilter(fieldName, filterType, caption, dataSourceName, fieldRole, fieldAggregation);
-		pm.periodType = periodType;
-		pm.rangeType = rangeType;
-		pm.rangeN = rangeN;
-		return pm;
-	};
-	$tab_ApiCrossDomainPresModelsFactory.newDataSourcesForWorksheet = function ApiCrossDomainPresModelsFactory$NewDataSourcesForWorksheet(worksheetName, dataSources) {
-		var pm = new Object();
-		pm.worksheetName = worksheetName;
-		pm.dataSources = dataSources;
-		return pm;
-	};
-	$tab_ApiCrossDomainPresModelsFactory.newDataSource = function ApiCrossDomainPresModelsFactory$NewDataSource(name, fields, isPrimary) {
-		var pm = new Object();
-		pm.name = name;
-		pm.fields = fields;
-		pm.isPrimary = isPrimary;
-		return pm;
-	};
-	$tab_ApiCrossDomainPresModelsFactory.newField = function ApiCrossDomainPresModelsFactory$NewField(name, role, aggregation) {
-		var pm = new Object();
-		pm.name = name;
-		pm.role = role;
-		pm.aggregation = aggregation;
-		return pm;
-	};
-	$tab_ApiCrossDomainPresModelsFactory.newCustomViewsInfo = function ApiCrossDomainPresModelsFactory$NewCustomViewsInfo(customViewLoaded, defaultCustomViewId, currentView, customViews) {
-		var pm = new Object();
-		pm.customViewLoaded = customViewLoaded;
-		pm.defaultCustomViewId = defaultCustomViewId;
-		pm.currentView = currentView;
-		pm.customViews = customViews;
-		return pm;
-	};
-	$tab_ApiCrossDomainPresModelsFactory.newCustomView = function ApiCrossDomainPresModelsFactory$NewCustomView(id, name, urlId, url, startViewId, isPublic, owner) {
-		var pm = new Object();
-		pm.id = id;
-		pm.name = name;
-		pm.urlId = urlId;
-		pm.url = url;
-		pm.startViewId = startViewId;
-		pm.isPublic = isPublic;
-		pm.owner = owner;
-		return pm;
-	};
-	$tab_ApiCrossDomainPresModelsFactory.newUser = function ApiCrossDomainPresModelsFactory$NewUser(id, friendlyName, username) {
-		var pm = new Object();
-		pm.id = id;
-		pm.friendlyName = friendlyName;
-		pm.username = username;
-		return pm;
-	};
-	$tab_ApiCrossDomainPresModelsFactory.newUnderlyingDataTablePM = function ApiCrossDomainPresModelsFactory$NewUnderlyingDataTablePM(dataTable, headers, isSummary) {
-		var pm = new Object();
-		pm.dataTable = dataTable;
-		pm.headers = headers;
-		pm.isSummary = isSummary;
-		return pm;
-	};
-	$tab_ApiCrossDomainPresModelsFactory.newUnderlyingDataColumnsPM = function ApiCrossDomainPresModelsFactory$NewUnderlyingDataColumnsPM(dataType, fieldName, isReferenced, index) {
-		var pm = new Object();
-		pm.dataType = dataType;
-		pm.fieldName = fieldName;
-		pm.isReferenced = isReferenced;
-		pm.index = index;
-		return pm;
-	};
-	$tab_ApiCrossDomainPresModelsFactory.newToolbarStatePM = function ApiCrossDomainPresModelsFactory$NewToolbarStatePM(canUndo, canRedo, canRevert, isPaused, canRefreshData, canShowCustomViews, canShowPerformance, canShowDataAlert, canShowSubscribe, canShowShare, canShowDownload) {
-		var pm = new Object();
-		pm.canUndo = canUndo;
-		pm.canRedo = canRedo;
-		pm.canRevert = canRevert;
-		pm.isPaused = isPaused;
-		pm.canRefreshData = canRefreshData;
-		pm.canShowCustomViews = canShowCustomViews;
-		pm.canShowPerformance = canShowPerformance;
-		pm.canShowDataAlert = canShowDataAlert;
-		pm.canShowSubscribe = canShowSubscribe;
-		pm.canShowShare = canShowShare;
-		pm.canShowDownload = canShowDownload;
-		return pm;
-	};
-	$tab_ApiCrossDomainPresModelsFactory.newAddInInstancePM = function ApiCrossDomainPresModelsFactory$NewAddInInstancePM(instancePm) {
-		var pm = new Object();
-		pm.locator = $tab_ApiCrossDomainPresModelsFactory.newAddInLocatorPM(instancePm.addInLocatorPresModel);
-		pm.url = instancePm.addInRegistrationPresModel.url;
-		return pm;
-	};
-	$tab_ApiCrossDomainPresModelsFactory.newAddInLocatorPM = function ApiCrossDomainPresModelsFactory$NewAddInLocatorPM(locator) {
-		var pm = new Object();
-		pm.dashboardPath = $tab_ApiCrossDomainPresModelsFactory.newSheetPathPM(locator.sheetPath);
-		pm.instanceId = locator.addInInstanceId;
-		return pm;
-	};
-	$tab_ApiCrossDomainPresModelsFactory.newSheetPathPM = function ApiCrossDomainPresModelsFactory$NewSheetPathPM(sheetPathPm) {
-		var pm = new Object();
-		pm.flipboardZoneID = sheetPathPm.flipboardZoneId;
-		pm.storyPointID = sheetPathPm.storyPointId;
-		pm.storyboard = sheetPathPm.storyboard;
-		pm.sheetName = sheetPathPm.sheetName;
-		pm.isDashboard = sheetPathPm.isDashboard;
-		return pm;
-	};
-	$tab_ApiCrossDomainPresModelsFactory.newVisualIdPM = function ApiCrossDomainPresModelsFactory$NewVisualIdPM(visualIdPm) {
-		var pm = new Object();
-		pm.worksheet = visualIdPm.worksheet;
-		pm.dashboard = visualIdPm.dashboard;
-		pm.storyboard = visualIdPm.storyboard;
-		pm.flipboardZoneID = visualIdPm.flipboardZoneId;
-		pm.storyPointID = visualIdPm.storyPointId;
-		return pm;
-	};
-	$tab_ApiCrossDomainPresModelsFactory.newAddInBootstrapInfoPM = function ApiCrossDomainPresModelsFactory$NewAddInBootstrapInfoPM(bootstrapPm) {
-		var pm = new Object();
-		pm.addinDashboardInfo = $tab_ApiCrossDomainPresModelsFactory.newAddInDashboardInfoPM(bootstrapPm.addInDashboardInfoPresModel);
-		pm.addInSettingsInfo = $tab_ApiCrossDomainPresModelsFactory.newAddInSettingsInfoPM(bootstrapPm.addInSettingsInfo);
-		pm.addInEnvironment = $tab_ApiCrossDomainPresModelsFactory.newAddInEnvironmentInfoPM(bootstrapPm.addInEnvironmentPresModel);
-		return pm;
-	};
-	$tab_ApiCrossDomainPresModelsFactory.newAddInDashboardInfoPM = function ApiCrossDomainPresModelsFactory$NewAddInDashboardInfoPM(dashboardInfoPm) {
-		var pm = new Object();
-		pm.name = dashboardInfoPm.dashboardPresModel.sheetPath.sheetName;
-		pm.addInZoneId = dashboardInfoPm.zoneId;
-		pm.zones = $tab_ApiPresModelsConverter.getApiDashboardZonePresModels(dashboardInfoPm.dashboardPresModel.zones);
-		return pm;
-	};
-	$tab_ApiCrossDomainPresModelsFactory.newAddInSettingsInfoPM = function ApiCrossDomainPresModelsFactory$NewAddInSettingsInfoPM(settingsInfoPm) {
-		var pm = new Object();
-		pm.settingsValues = settingsInfoPm.addInSettings || {};
-		return pm;
-	};
-	$tab_ApiCrossDomainPresModelsFactory.newAddInEnvironmentInfoPM = function ApiCrossDomainPresModelsFactory$NewAddInEnvironmentInfoPM(environmentPresModel) {
-		var pm = new Object();
-		pm.addInContext = environmentPresModel.addInContext;
-		pm.addInMode = environmentPresModel.addInMode;
-		pm.addInLanguage = environmentPresModel.addInLanguage;
-		pm.addInLocale = environmentPresModel.addInLocale;
-		pm.tableauVersion = environmentPresModel.tableauVersion;
-		pm.operatingSystem = environmentPresModel.operatingSystem;
-		pm.apiVersion = environmentPresModel.apiVersion || '0.0.1';
-		return pm;
-	};
-	global.tab.ApiCrossDomainPresModelsFactory = $tab_ApiCrossDomainPresModelsFactory;
-	////////////////////////////////////////////////////////////////////////////////
-	// Tableau.JavaScript.Vql.ApiDomain.ApiParamMappingRegistry
-	var $tab_ApiParamMappingRegistry = function() {
-		ss.makeGenericType($tab_MappingRegistryBase$2, [Object, $tab_ApiToDocParameter]).call(this);
-	};
-	$tab_ApiParamMappingRegistry.__typeName = 'tab.ApiParamMappingRegistry';
-	global.tab.ApiParamMappingRegistry = $tab_ApiParamMappingRegistry;
-	////////////////////////////////////////////////////////////////////////////////
-	// Tableau.JavaScript.Vql.ApiDomain.ApiPresModelsConverter
-	var $tab_ApiPresModelsConverter = function() {
-	};
-	$tab_ApiPresModelsConverter.__typeName = 'tab.ApiPresModelsConverter';
-	$tab_ApiPresModelsConverter.getApiAddInInstancePresModel = function ApiPresModelsConverter$GetApiAddInInstancePresModel(addInInstance) {
-		return $tab_ApiCrossDomainPresModelsFactory.newAddInInstancePM(addInInstance);
-	};
-	$tab_ApiPresModelsConverter.getApiAddInBootstrapInfoPresModel = function ApiPresModelsConverter$GetApiAddInBootstrapInfoPresModel(addInBootstrapInfo) {
-		return $tab_ApiCrossDomainPresModelsFactory.newAddInBootstrapInfoPM(addInBootstrapInfo);
-	};
-	$tab_ApiPresModelsConverter.getApiUnderlyingDataTablePresModel = function ApiPresModelsConverter$GetApiUnderlyingDataTablePresModel(underlyingDataTable, isSummary) {
-		var dataDictionary = underlyingDataTable.dataDictionary;
-		var columns = underlyingDataTable.underlyingDataTableColumns;
-		var apiColumns = $tab_ApiPresModelsConverter.$buildHeaders(columns);
-		var dataTable = $tab_ApiPresModelsConverter.$buildDataTable(dataDictionary, columns);
-		var apiPM = $tab_ApiCrossDomainPresModelsFactory.newUnderlyingDataTablePM(dataTable, apiColumns, isSummary);
-		return apiPM;
-	};
-	$tab_ApiPresModelsConverter.getApiDashboardZonePresModels = function ApiPresModelsConverter$GetApiDashboardZonePresModels(zones) {
-		var zonePms = [];
-		if (ss.isNullOrUndefined(zones) || ss.getKeyCount(zones) === 0) {
-			return zonePms;
-		}
-		var zoneKeys = Object.keys(zones);
-		zoneKeys.sort(function(a, b) {
-			return parseInt(a, 10) - parseInt(b, 10);
-		});
-		for (var $t1 = 0; $t1 < zoneKeys.length; $t1++) {
-			var key = zoneKeys[$t1];
-			var zone = zones[key];
-			if (ss.isNullOrUndefined(zone)) {
-				continue;
-			}
-			var zoneType = $tab_ApiCrossDomainEnumConverter.convertZoneType(zone.zoneCommon.zoneType);
-			if (!ss.isValue(zoneType)) {
-				continue;
-			}
-			var name = (ss.isValue(zone.worksheet) ? zone.worksheet : null);
-			var x = zone.zoneCommon.x;
-			var y = zone.zoneCommon.y;
-			var width = zone.zoneCommon.w;
-			var height = zone.zoneCommon.h;
-			var zoneId = zone.zoneCommon.zoneId;
-			var pm = $tab_ApiCrossDomainPresModelsFactory.newDashboardZone(name, zoneId, ss.unbox(zoneType), height, width, x, y);
-			zonePms.push(pm);
-		}
-		return zonePms;
-	};
-	$tab_ApiPresModelsConverter.processSelectedMarks = function ApiPresModelsConverter$ProcessSelectedMarks(selectionDataPm) {
-		var dataDictionaryPM = selectionDataPm.dataDictionary;
-		var vizData = selectionDataPm.vizData;
-		return $tab_ApiPresModelsConverter.$processActiveMarks(dataDictionaryPM, vizData);
-	};
-	$tab_ApiPresModelsConverter.processHighlightedMarks = function ApiPresModelsConverter$ProcessHighlightedMarks(pm) {
-		var selectionDataPm = pm;
-		var dataDictionaryPM = selectionDataPm.dataDictionary;
-		var vizData = selectionDataPm.vizData;
-		return $tab_ApiPresModelsConverter.$processActiveMarks(dataDictionaryPM, vizData);
-	};
-	$tab_ApiPresModelsConverter.serializeDataValue = function ApiPresModelsConverter$SerializeDataValue(rawValue, dataType) {
-		if (dataType === 'boolean') {
-			if (_.isBoolean(rawValue)) {
-				return rawValue;
-			}
-			return (ss.isValue(rawValue) ? (rawValue.toString().toLowerCase() === 'true') : false);
-		}
-		if (ss.isNullOrUndefined(rawValue)) {
-			return null;
-		}
-		switch (dataType) {
-			case 'boolean': {
-				if (_.isBoolean(rawValue)) {
-					return rawValue;
-				}
-				return (ss.isValue(rawValue) ? (rawValue.toString().toLowerCase() === 'true') : false);
-			}
-			case 'date':
-			case 'datetime': {
-				var d = null;
-				if (_.isDate(rawValue)) {
-					d = ss.cast(rawValue, ss.JsDate);
-				}
-				else if (_.isNumber(rawValue)) {
-					if (isNaN(ss.unbox(ss.cast(rawValue, Number)))) {
-						d = null;
-					}
-					else {
-						d = new Date(tableau.types.JsDateFromOleDate(ss.unbox(ss.cast(rawValue, Number))));
-					}
-				}
-				else {
-					d = tab.DateUtil.parsePresModelDate(rawValue.toString());
-				}
-				if (ss.isNullOrUndefined(d) || isNaN(d)) {
-					return null;
-				}
-				return d.getTime();
-			}
-			case 'integer': {
-				if (_.isNumber(rawValue)) {
-					return (isNaN(ss.unbox(ss.cast(rawValue, Number))) ? null : rawValue);
-				}
-				var parsedInt = parseInt(rawValue.toString(), 10);
-				return (isNaN(parsedInt) ? null : parsedInt);
-			}
-			case 'real': {
-				if (_.isNumber(rawValue)) {
-					return (isNaN(ss.unbox(ss.cast(rawValue, Number))) ? null : rawValue);
-				}
-				var parsedFloat = parseFloat(rawValue.toString());
-				return (isNaN(parsedFloat) ? null : parsedFloat);
-			}
-			default:
-			case 'cstring':
-			case 'tuple':
-			case 'unknown': {
-				return rawValue.toString();
-			}
-		}
-	};
-	$tab_ApiPresModelsConverter.getAddInLocatorPresModel = function ApiPresModelsConverter$GetAddInLocatorPresModel(apiAddInLocator) {
-		return $tab_NativePresModelsFactory.newAddInLocatorPresModel(apiAddInLocator);
-	};
-	$tab_ApiPresModelsConverter.$processActiveMarks = function ApiPresModelsConverter$ProcessActiveMarks(dataDictionaryPM, vizData) {
-		var returnPm = new Object();
-		var dataDictionary = new tab.DataDictionaryModel(null);
-		dataDictionary.update(dataDictionaryPM);
-		var vizDataModel = new tab.VizDataModel(null);
-		vizDataModel.update(vizData, tab.NoopModelEventsHandler.get_noopContext());
-		var marks = [];
-		returnPm.marks = marks;
-		if (ss.isNullOrUndefined(dataDictionary) || dataDictionary.get_isEmpty()) {
-			return returnPm;
-		}
-		vizDataModel.forEachTupleId(function(tupleId) {
-			var mark = new Object();
-			mark.tupleId = tupleId;
-			var pairs = [];
-			mark.pairs = pairs;
-			marks.push(mark);
-			vizDataModel.forEachVizDataField(function(dataField, colIdx) {
-				var pair = new Object();
-				pair.fieldName = dataField.get_fieldCaption();
-				pair.formattedValue = tab.VizDataLookup.lookupAlias(tupleId, dataField, dataDictionary);
-				pair.valueDataType = $tab_ApiCrossDomainEnumConverter.convertDataType(dataField.get_dataType());
-				var dataValue = null;
-				if (!tab.VizDataLookup.isSpecial(tupleId, dataField, dataDictionary, null) && dataField.get_hasDataValues() && dataField.isTupleIdValid(tupleId)) {
-					dataValue = tab.VizDataLookup.lookupRawDataValue(tupleId, dataField, dataDictionary);
-				}
-				var jsonValue = $tab_ApiPresModelsConverter.serializeDataValue(dataValue, dataField.get_dataType());
-				pair.value = jsonValue;
-				pairs.push(pair);
-				return true;
-			});
-			return true;
-		});
-		return returnPm;
-	};
-	$tab_ApiPresModelsConverter.$buildHeaders = function ApiPresModelsConverter$BuildHeaders(columns) {
-		var apiColumns = [];
-		for (var columnIndex = 0; columnIndex < columns.length; columnIndex++) {
-			var column = columns[columnIndex];
-			var dataType = $tab_ApiCrossDomainEnumConverter.convertUnderlyingDataType(column.dataType);
-			var apiColumn = $tab_ApiCrossDomainPresModelsFactory.newUnderlyingDataColumnsPM(dataType, column.fieldCaption, column.isReferenced, columnIndex);
-			apiColumns.push(apiColumn);
-		}
-		return apiColumns;
-	};
-	$tab_ApiPresModelsConverter.$buildDataTable = function ApiPresModelsConverter$BuildDataTable(dataDictionary, columns) {
-		var rowCount = columns[0].formatValIdxs.length;
-		var dataTable = new Array(rowCount);
-		for (var rowIndex = 0; rowIndex < rowCount; rowIndex++) {
-			dataTable[rowIndex] = new Array(columns.length);
-		}
-		for (var columnIndex = 0; columnIndex < columns.length; columnIndex++) {
-			var column = columns[columnIndex];
-			for (var rowIndex1 = 0; rowIndex1 < column.formatValIdxs.length; rowIndex1++) {
-				var val = new Object();
-				val.formattedValue = $tab_ApiPresModelsConverter.$lookUpValueFromDictionary(dataDictionary, column.formatValIdxs[rowIndex1], 'cstring');
-				val.value = $tab_ApiPresModelsConverter.$lookUpValueFromDictionary(dataDictionary, column.valueIndices[rowIndex1], column.dataType);
-				val.aliasedValue = val.formattedValue;
-				dataTable[rowIndex1][columnIndex] = val;
-			}
-		}
-		return dataTable;
-	};
-	$tab_ApiPresModelsConverter.$lookUpValueFromDictionary = function ApiPresModelsConverter$LookUpValueFromDictionary(dataDictionary, index, dataType) {
-		var dataValue = null;
-		var dt;
-		if (index >= 0) {
-			dt = dataType;
-		}
-		else {
-			dt = 'cstring';
-			index = -index - 1;
-		}
-		var rawValue = $tab_ApiPresModelsConverter.$getRawValue(dataDictionary, dt, index);
-		if (ss.isValue(rawValue)) {
-			dataValue = rawValue.toString();
-		}
-		return dataValue;
-	};
-	$tab_ApiPresModelsConverter.$getRawValue = function ApiPresModelsConverter$GetRawValue(dataDictionary, dt, index) {
-		if (ss.isNullOrUndefined(dataDictionary) || ss.isNullOrUndefined(dataDictionary.dataSegments)) {
-			return null;
-		}
-		var $t1 = ss.getEnumerator(Object.keys(dataDictionary.dataSegments));
-		try {
-			while ($t1.moveNext()) {
-				var key = $t1.current();
-				var dataSegment = dataDictionary.dataSegments[key];
-				for (var $t2 = 0; $t2 < dataSegment.dataColumns.length; $t2++) {
-					var dataColumn = dataSegment.dataColumns[$t2];
-					if (ss.isNullOrUndefined(dataColumn) || dataColumn.dataType !== dt) {
-						continue;
-					}
-					if (index < dataColumn.dataValues.length) {
-						return dataColumn.dataValues[index];
-					}
-					index -= dataColumn.dataValues.length;
-					break;
-				}
-			}
-		}
-		finally {
-			$t1.dispose();
-		}
-		return null;
-	};
-	global.tab.ApiPresModelsConverter = $tab_ApiPresModelsConverter;
-	////////////////////////////////////////////////////////////////////////////////
-	// Tableau.JavaScript.Vql.ApiDomain.ApiToDocParameter
-	var $tab_ApiToDocParameter = function(apiParam, toDoc) {
-		ss.makeGenericType($tab_ParameterMapping$1, [Object]).call(this, apiParam, toDoc);
-	};
-	$tab_ApiToDocParameter.__typeName = 'tab.ApiToDocParameter';
-	$tab_ApiToDocParameter.create = function(TApiParameterType, TDocParameterType) {
-		return function ApiToDocParameter$Create(apiParam, toDoc) {
-			return new $tab_ApiToDocParameter(apiParam, ss.makeGenericType($tab_ParameterMapping$1, [Object]).buildConversionFunc(TApiParameterType, TDocParameterType).call(null, toDoc));
-		};
-	};
-	global.tab.ApiToDocParameter = $tab_ApiToDocParameter;
-	////////////////////////////////////////////////////////////////////////////////
-	// Tableau.JavaScript.Vql.ApiDomain.CommandMapping
-	var $tab_CommandMapping = function(docId, apiId, input, output) {
-		this.docCommandId = null;
-		this.apiCommandId = null;
-		this.$inputParameters = null;
-		this.$outputParameter = null;
-		this.docCommandId = docId;
-		this.apiCommandId = apiId;
-		this.$inputParameters = input;
-		this.$outputParameter = output;
-	};
-	$tab_CommandMapping.__typeName = 'tab.CommandMapping';
-	global.tab.CommandMapping = $tab_CommandMapping;
-	////////////////////////////////////////////////////////////////////////////////
-	// Tableau.JavaScript.Vql.ApiDomain.CommandMappingRegistry
-	var $tab_CommandMappingRegistry = function() {
-		this.$apiToDocMappings = null;
-		this.$docToApiMappings = null;
-		ss.makeGenericType($tab_MappingRegistryBase$2, [Object, $tab_CommandMapping]).call(this);
-	};
-	$tab_CommandMappingRegistry.__typeName = 'tab.CommandMappingRegistry';
-	global.tab.CommandMappingRegistry = $tab_CommandMappingRegistry;
-	////////////////////////////////////////////////////////////////////////////////
-	// Tableau.JavaScript.Vql.ApiDomain.DocEventMapping
-	var $tab_DocEventMapping = function(notificationId, apiCommandId, output) {
-		this.docNotificationId = null;
-		this.apiCommandId = null;
-		this.$outputParameter = null;
-		this.docNotificationId = notificationId;
-		this.apiCommandId = apiCommandId;
-		this.$outputParameter = output;
-	};
-	$tab_DocEventMapping.__typeName = 'tab.DocEventMapping';
-	global.tab.DocEventMapping = $tab_DocEventMapping;
-	////////////////////////////////////////////////////////////////////////////////
-	// Tableau.JavaScript.Vql.ApiDomain.DocEventMappingRegistry
-	var $tab_DocEventMappingRegistry = function() {
-		this.$docToApiMappings = null;
-		ss.makeGenericType($tab_MappingRegistryBase$2, [Object, $tab_DocEventMapping]).call(this);
-	};
-	$tab_DocEventMappingRegistry.__typeName = 'tab.DocEventMappingRegistry';
-	global.tab.DocEventMappingRegistry = $tab_DocEventMappingRegistry;
-	////////////////////////////////////////////////////////////////////////////////
-	// Tableau.JavaScript.Vql.ApiDomain.DocParamMappingRegistry
-	var $tab_DocParamMappingRegistry = function() {
-		ss.makeGenericType($tab_MappingRegistryBase$2, [Object, $tab_DocToApiParameter]).call(this);
-	};
-	$tab_DocParamMappingRegistry.__typeName = 'tab.DocParamMappingRegistry';
-	global.tab.DocParamMappingRegistry = $tab_DocParamMappingRegistry;
-	////////////////////////////////////////////////////////////////////////////////
-	// Tableau.JavaScript.Vql.ApiDomain.DocToApiParameter
-	var $tab_DocToApiParameter = function(docParam, toApi) {
-		ss.makeGenericType($tab_ParameterMapping$1, [Object]).call(this, docParam, toApi);
-	};
-	$tab_DocToApiParameter.__typeName = 'tab.DocToApiParameter';
-	$tab_DocToApiParameter.create = function(TDocParameterType, TApiParameterType) {
-		return function DocToApiParameter$Create(docParam, toApi) {
-			return new $tab_DocToApiParameter(docParam, ss.makeGenericType($tab_ParameterMapping$1, [Object]).buildConversionFunc(TDocParameterType, TApiParameterType).call(null, toApi));
-		};
-	};
-	global.tab.DocToApiParameter = $tab_DocToApiParameter;
-	////////////////////////////////////////////////////////////////////////////////
-	// Tableau.JavaScript.Vql.ApiDomain.MappingRegistryBase
-	var $tab_MappingRegistryBase$2 = function(TEnumType, TMappingType) {
-		var $type = function() {
-			this.$mappings = null;
-		};
-		ss.registerGenericClassInstance($type, $tab_MappingRegistryBase$2, [TEnumType, TMappingType], {
-			initialize: function MappingRegistryBase$Initialize() {
-				this.$mappings = {};
-				this.initialize$1(this.$mappings);
-			},
-			has: function MappingRegistryBase$Has(key) {
-				return ss.keyExists(this.$mappings, key);
-			},
-			get: function MappingRegistryBase$Get(key) {
-				if (this.has(key)) {
-					return this.$mappings[key];
-				}
-				else {
-					throw new ss.KeyNotFoundException('Key not found: ' + key.toString());
-				}
-			},
-			getKeys: function MappingRegistryBase$GetKeys() {
-				return Object.keys(this.$mappings);
-			},
-			initialize$1: null
-		}, function() {
-			return null;
-		}, function() {
-			return [];
-		});
-		return $type;
-	};
-	$tab_MappingRegistryBase$2.__typeName = 'tab.MappingRegistryBase$2';
-	ss.initGenericClass($tab_MappingRegistryBase$2, $asm, 2);
-	global.tab.MappingRegistryBase$2 = $tab_MappingRegistryBase$2;
-	////////////////////////////////////////////////////////////////////////////////
-	// Tableau.JavaScript.Vql.ApiDomain.NativePresModelsFactory
-	var $tab_NativePresModelsFactory = function() {
-	};
-	$tab_NativePresModelsFactory.__typeName = 'tab.NativePresModelsFactory';
-	$tab_NativePresModelsFactory.newAddInLocatorPresModel = function NativePresModelsFactory$NewAddInLocatorPresModel(apiAddInLocator) {
-		var addInLocator = new Object();
-		addInLocator.addInInstanceId = apiAddInLocator.instanceId;
-		addInLocator.sheetPath = new Object();
-		addInLocator.sheetPath.flipboardZoneId = apiAddInLocator.dashboardPath.flipboardZoneID;
-		addInLocator.sheetPath.isDashboard = apiAddInLocator.dashboardPath.isDashboard;
-		addInLocator.sheetPath.sheetName = apiAddInLocator.dashboardPath.sheetName;
-		addInLocator.sheetPath.storyboard = apiAddInLocator.dashboardPath.storyboard;
-		addInLocator.sheetPath.storyPointId = apiAddInLocator.dashboardPath.storyPointID;
-		return addInLocator;
-	};
-	$tab_NativePresModelsFactory.newVisualIdPresModel = function NativePresModelsFactory$NewVisualIdPresModel(apiVisualId) {
-		var visualId = new Object();
-		visualId.worksheet = apiVisualId.worksheet;
-		visualId.dashboard = apiVisualId.dashboard;
-		visualId.storyboard = apiVisualId.storyboard;
-		visualId.storyPointId = apiVisualId.storyPointID;
-		visualId.flipboardZoneId = apiVisualId.flipboardZoneID;
-		return visualId;
-	};
-	global.tab.NativePresModelsFactory = $tab_NativePresModelsFactory;
-	////////////////////////////////////////////////////////////////////////////////
-	// Tableau.JavaScript.Vql.ApiDomain.ParameterMapping
-	var $tab_ParameterMapping$1 = function(TParamId) {
-		var $type = function(paramId, conversionFn) {
-			this.conversionFn = null;
-			this.paramId = ss.getDefaultValue(TParamId);
-			this.paramId = paramId;
-			this.conversionFn = conversionFn || function(a) {
-				return a;
-			};
-		};
-		$type.buildConversionFunc = function(TSourceType, TTargetType) {
-			return function ParameterMapping$BuildConversionFunc(conversionFn) {
-				if (!ss.staticEquals(conversionFn, null)) {
-					return function(a) {
-						return conversionFn(ss.cast(a, TSourceType));
-					};
-				}
-				else {
-					return null;
-				}
-			};
-		};
-		ss.registerGenericClassInstance($type, $tab_ParameterMapping$1, [TParamId], {}, function() {
-			return null;
-		}, function() {
-			return [];
-		});
-		return $type;
-	};
-	$tab_ParameterMapping$1.__typeName = 'tab.ParameterMapping$1';
-	ss.initGenericClass($tab_ParameterMapping$1, $asm, 1);
-	global.tab.ParameterMapping$1 = $tab_ParameterMapping$1;
-	ss.initClass($tab_$CommandInputMapping, $asm, {
-		get_$mapping: function CommandInputMapping$get_Mapping() {
-			return this.$1$MappingField;
-		},
-		set_$mapping: function CommandInputMapping$set_Mapping(value) {
-			this.$1$MappingField = value;
-		},
-		get_$docParam: function CommandInputMapping$get_DocParam() {
-			return this.$1$DocParamField;
-		},
-		set_$docParam: function CommandInputMapping$set_DocParam(value) {
-			this.$1$DocParamField = value;
-		},
-		get_$isOptional: function CommandInputMapping$get_IsOptional() {
-			return this.$1$IsOptionalField;
-		},
-		set_$isOptional: function CommandInputMapping$set_IsOptional(value) {
-			this.$1$IsOptionalField = value;
-		}
-	});
-	ss.initClass($tab_ApiCrossDomainEnumConverter, $asm, {});
-	ss.initClass($tab_ApiCrossDomainPresModelsFactory, $asm, {});
-	ss.initClass($tab_ApiParamMappingRegistry, $asm, {
-		initialize$1: function ApiParamMappingRegistry$Initialize(mappingsToInitialize) {
-			mappingsToInitialize['api.AddInLocator'] = $tab_ApiToDocParameter.create(Object, Object).call(null, 'api.AddInLocator', $tab_NativePresModelsFactory.newAddInLocatorPresModel);
-			mappingsToInitialize['api.AddInSettings'] = $tab_ApiToDocParameter.create(Object, Object).call(null, 'api.AddInSettings', null);
-			mappingsToInitialize['api.worksheetName'] = $tab_ApiToDocParameter.create(String, String).call(null, 'api.worksheetName', null);
-			mappingsToInitialize['api.dashboardName'] = $tab_ApiToDocParameter.create(String, String).call(null, 'api.dashboardName', null);
-			mappingsToInitialize['api.ignoreAliases'] = $tab_ApiToDocParameter.create(Boolean, Boolean).call(null, 'api.ignoreAliases', null);
-			mappingsToInitialize['api.ignoreSelection'] = $tab_ApiToDocParameter.create(Boolean, Boolean).call(null, 'api.ignoreSelection', null);
-			mappingsToInitialize['api.includeAllColumns'] = $tab_ApiToDocParameter.create(Boolean, Boolean).call(null, 'api.includeAllColumns', null);
-			mappingsToInitialize['api.maxRows'] = $tab_ApiToDocParameter.create(ss.Int32, ss.Int32).call(null, 'api.maxRows', null);
-			mappingsToInitialize['api.visualId'] = $tab_ApiToDocParameter.create(Object, Object).call(null, 'api.visualId', $tab_NativePresModelsFactory.newVisualIdPresModel);
-		}
-	}, ss.makeGenericType($tab_MappingRegistryBase$2, [Object, $tab_ApiToDocParameter]));
-	ss.initClass($tab_ApiPresModelsConverter, $asm, {});
-	ss.initClass($tab_ApiToDocParameter, $asm, {
-		get_apiParamId: function ApiToDocParameter$get_ApiParamId() {
-			return this.paramId;
-		},
-		toDocParam: function ApiToDocParameter$ToDocParam(apiPresModel) {
-			return this.conversionFn(apiPresModel);
-		}
-	}, ss.makeGenericType($tab_ParameterMapping$1, [Object]));
-	ss.initClass($tab_CommandMapping, $asm, {
-		createInternalCommandParams: function CommandMapping$CreateInternalCommandParams(apiParams) {
-			var internalCommandParameters = {};
-			for (var $t1 = 0; $t1 < this.$inputParameters.length; $t1++) {
-				var inputParam = this.$inputParameters[$t1];
-				if (!ss.keyExists(apiParams, inputParam.get_$mapping().get_apiParamId())) {
-					if (inputParam.get_$isOptional()) {
-						throw new ss.ArgumentException('Missing parameter: ' + inputParam.get_$mapping().get_apiParamId() + ' in command: ' + this.docCommandId);
-					}
-					else {
-						continue;
-					}
-				}
-				var apiParam = apiParams[inputParam.get_$mapping().get_apiParamId()];
-				internalCommandParameters[inputParam.get_$docParam()] = inputParam.get_$mapping().toDocParam(apiParam);
-			}
-			return internalCommandParameters;
-		},
-		processResult: function(T) {
-			return function CommandMapping$ProcessResult(commandResponse) {
-				if (!ss.keyExists(commandResponse, this.$outputParameter.get_docParamId())) {
-					return ss.getDefaultValue(T);
-				}
-				var resultPm = commandResponse[this.$outputParameter.get_docParamId()];
-				var apiResult = this.$outputParameter.toApiParam(resultPm);
-				return apiResult;
-			};
-		}
-	});
-	ss.initClass($tab_CommandMappingRegistry, $asm, {
-		initialize$1: function CommandMappingRegistry$Initialize(mappingsToInitialize) {
-			this.$apiToDocMappings = new $tab_ApiParamMappingRegistry();
-			this.$apiToDocMappings.initialize();
-			this.$docToApiMappings = new $tab_DocParamMappingRegistry();
-			this.$docToApiMappings.initialize();
-			var $t1 = [];
-			$t1.push(new $tab_$CommandInputMapping(this.$apiToDocMappings.get('api.AddInLocator'), 'addInLocatorPresModel', false));
-			mappingsToInitialize['api.InitializeDashboard'] = new $tab_CommandMapping('initialize-add-in-instance', 'api.InitializeDashboard', $t1, this.$docToApiMappings.get('addInBootstrapInfo'));
-			var $t2 = [];
-			$t2.push(new $tab_$CommandInputMapping(this.$apiToDocMappings.get('api.AddInLocator'), 'addInLocatorPresModel', false));
-			$t2.push(new $tab_$CommandInputMapping(this.$apiToDocMappings.get('api.AddInSettings'), 'addInSettings', false));
-			mappingsToInitialize['api.SaveAddInSettings'] = new $tab_CommandMapping('save-add-in-settings', 'api.SaveAddInSettings', $t2, this.$docToApiMappings.get('addInSettingsInfo'));
-			var $t3 = [];
-			$t3.push(new $tab_$CommandInputMapping(this.$apiToDocMappings.get('api.worksheetName'), 'worksheet', false));
-			$t3.push(new $tab_$CommandInputMapping(this.$apiToDocMappings.get('api.dashboardName'), 'dashboard', false));
-			$t3.push(new $tab_$CommandInputMapping(this.$apiToDocMappings.get('api.ignoreAliases'), 'ignoreAliases', false));
-			$t3.push(new $tab_$CommandInputMapping(this.$apiToDocMappings.get('api.ignoreSelection'), 'ignoreSelection', false));
-			$t3.push(new $tab_$CommandInputMapping(this.$apiToDocMappings.get('api.includeAllColumns'), 'includeAllColumns', false));
-			$t3.push(new $tab_$CommandInputMapping(this.$apiToDocMappings.get('api.maxRows'), 'maxRows', false));
-			mappingsToInitialize['api.GetUnderlyingTableCommand'] = new $tab_CommandMapping('get-underlying-data', 'api.GetUnderlyingTableCommand', $t3, $tab_DocToApiParameter.create(Object, Object).call(null, 'underlyingDataTable', function(pm) {
-				return $tab_ApiPresModelsConverter.getApiUnderlyingDataTablePresModel(pm, false);
-			}));
-			var $t4 = [];
-			$t4.push(new $tab_$CommandInputMapping(this.$apiToDocMappings.get('api.worksheetName'), 'worksheet', false));
-			$t4.push(new $tab_$CommandInputMapping(this.$apiToDocMappings.get('api.dashboardName'), 'dashboard', false));
-			$t4.push(new $tab_$CommandInputMapping(this.$apiToDocMappings.get('api.ignoreAliases'), 'ignoreAliases', false));
-			$t4.push(new $tab_$CommandInputMapping(this.$apiToDocMappings.get('api.ignoreSelection'), 'ignoreSelection', false));
-			$t4.push(new $tab_$CommandInputMapping(this.$apiToDocMappings.get('api.includeAllColumns'), 'includeAllColumns', false));
-			$t4.push(new $tab_$CommandInputMapping(this.$apiToDocMappings.get('api.maxRows'), 'maxRows', false));
-			mappingsToInitialize['api.GetSummaryTableCommand'] = new $tab_CommandMapping('get-summary-data', 'api.GetSummaryTableCommand', $t4, $tab_DocToApiParameter.create(Object, Object).call(null, 'underlyingDataTable', function(pm1) {
-				return $tab_ApiPresModelsConverter.getApiUnderlyingDataTablePresModel(pm1, true);
-			}));
-			var $t5 = [];
-			$t5.push(new $tab_$CommandInputMapping(this.$apiToDocMappings.get('api.visualId'), 'visualIdPresModel', false));
-			mappingsToInitialize['api.FetchSelectedMarksCommand'] = new $tab_CommandMapping('get-selection', 'api.FetchSelectedMarksCommand', $t5, this.$docToApiMappings.get('selectionData'));
-		}
-	}, ss.makeGenericType($tab_MappingRegistryBase$2, [Object, $tab_CommandMapping]));
-	ss.initClass($tab_DocEventMapping, $asm, {
-		convertToMessageHandlerNotification: function DocEventMapping$ConvertToMessageHandlerNotification(presModel) {
-			var apiParam = this.$outputParameter.toApiParam(presModel);
-			var serializedParam = JSON.stringify(apiParam);
-			return serializedParam;
-		}
-	});
-	ss.initClass($tab_DocEventMappingRegistry, $asm, {
-		initialize$1: function DocEventMappingRegistry$Initialize(mappingsToInitialize) {
-			this.$docToApiMappings = new $tab_DocParamMappingRegistry();
-			this.$docToApiMappings.initialize();
-			mappingsToInitialize['selection-changed-event'] = new $tab_DocEventMapping('selection-changed-event', 'api.MarksSelectionChangedEvent', this.$docToApiMappings.get('visualIdPresModel'));
-		}
-	}, ss.makeGenericType($tab_MappingRegistryBase$2, [Object, $tab_DocEventMapping]));
-	ss.initClass($tab_DocParamMappingRegistry, $asm, {
-		initialize$1: function DocParamMappingRegistry$Initialize(mappingsToInitialize) {
-			mappingsToInitialize['addInBootstrapInfo'] = $tab_DocToApiParameter.create(Object, Object).call(null, 'addInBootstrapInfo', $tab_ApiCrossDomainPresModelsFactory.newAddInBootstrapInfoPM);
-			mappingsToInitialize['addInSettingsInfo'] = $tab_DocToApiParameter.create(Object, Object).call(null, 'addInSettingsInfo', $tab_ApiCrossDomainPresModelsFactory.newAddInSettingsInfoPM);
-			mappingsToInitialize['sheetPath'] = $tab_DocToApiParameter.create(Object, Object).call(null, 'sheetPath', $tab_ApiCrossDomainPresModelsFactory.newSheetPathPM);
-			mappingsToInitialize['visualIdPresModel'] = $tab_DocToApiParameter.create(Object, Object).call(null, 'visualIdPresModel', $tab_ApiCrossDomainPresModelsFactory.newVisualIdPM);
-			mappingsToInitialize['selectionData'] = $tab_DocToApiParameter.create(Object, Object).call(null, 'selectionData', $tab_ApiPresModelsConverter.processSelectedMarks);
-		}
-	}, ss.makeGenericType($tab_MappingRegistryBase$2, [Object, $tab_DocToApiParameter]));
-	ss.initClass($tab_DocToApiParameter, $asm, {
-		get_docParamId: function DocToApiParameter$get_DocParamId() {
-			return this.paramId;
-		},
-		toApiParam: function DocToApiParameter$ToApiParam(docPresModel) {
-			return this.conversionFn(docPresModel);
-		}
-	}, ss.makeGenericType($tab_ParameterMapping$1, [Object]));
-	ss.initClass($tab_NativePresModelsFactory, $asm, {});
-})();
-// END ApiDomain
 
   var tab = global.tab;
   tab._Deferred = tab._DeferredImpl;
@@ -47562,11 +48605,10 @@ global.ss = ss;
 	////////////////////////////////////////////////////////////////////////////////
 	// Tableau.JavaScript.Vql.AddInApi.AddInSheetEventListenerManager
 	var $tab__AddInSheetEventListenerManager = function(sheetName, messagingOptions) {
-		this.$handlers = null;
 		this.$worksheet = null;
 		this.$sheetName = null;
+		this.$1$MarksEventField = null;
 		this.$sheetName = sheetName;
-		this.$handlers = {};
 		messagingOptions.get_router().registerHandler(this);
 	};
 	$tab__AddInSheetEventListenerManager.__typeName = 'tab._AddInSheetEventListenerManager';
@@ -47618,6 +48660,7 @@ global.ss = ss;
 		this.$worksheet = null;
 		this.$parentDashboardImpl = null;
 		this.$getDataCommandsBuilder = new tab.GetDataCommandsBuilder();
+		this.$filterCommandsBuilder = new tab.FilterCommandsBuilder();
 		this.$sharedUtils = new tab.SharedUtils();
 		$tab_SheetImpl.call(this, sheetInfoImpl, messagingOptions);
 		this.$parentDashboardImpl = parentDashboardImpl;
@@ -47645,13 +48688,6 @@ global.ss = ss;
 	};
 	$tab_EnvironmentVariablesImpl.__typeName = 'tab.EnvironmentVariablesImpl';
 	global.tab.EnvironmentVariablesImpl = $tab_EnvironmentVariablesImpl;
-	////////////////////////////////////////////////////////////////////////////////
-	// Tableau.JavaScript.Vql.AddInApi.MarksEvent
-	var $tab_MarksEvent = function(eventName, worksheet) {
-		$tableauSoftware_WorksheetEvent.call(this, eventName, worksheet);
-	};
-	$tab_MarksEvent.__typeName = 'tab.MarksEvent';
-	global.tab.MarksEvent = $tab_MarksEvent;
 	////////////////////////////////////////////////////////////////////////////////
 	// Tableau.JavaScript.Vql.AddInApi.SheetImpl
 	var $tab_SheetImpl = function(sheetInfoImpl, messagingOptions) {
@@ -47687,6 +48723,13 @@ global.ss = ss;
 	$tableauSoftware_Dashboard.__typeName = 'tableauSoftware.Dashboard';
 	global.tableauSoftware.Dashboard = $tableauSoftware_Dashboard;
 	////////////////////////////////////////////////////////////////////////////////
+	// Tableau.JavaScript.Vql.AddInApi.MarksEvent
+	var $tableauSoftware_MarksEvent = function(eventName, worksheet) {
+		$tableauSoftware_WorksheetEvent.call(this, eventName, worksheet);
+	};
+	$tableauSoftware_MarksEvent.__typeName = 'tableauSoftware.MarksEvent';
+	global.tableauSoftware.MarksEvent = $tableauSoftware_MarksEvent;
+	////////////////////////////////////////////////////////////////////////////////
 	// tableauSoftware.Sheet
 	var $tableauSoftware_Sheet = function(sheetImpl) {
 		this._impl = null;
@@ -47714,9 +48757,9 @@ global.ss = ss;
 	////////////////////////////////////////////////////////////////////////////////
 	// Tableau.JavaScript.Vql.AddInApi.WorksheetEvent
 	var $tableauSoftware_WorksheetEvent = function(eventName, worksheet) {
-		this.worksheet = null;
+		this.$worksheet = null;
 		$tableauSoftware_TableauEvent.call(this, eventName);
-		this.worksheet = worksheet;
+		this.$worksheet = worksheet;
 	};
 	$tableauSoftware_WorksheetEvent.__typeName = 'tableauSoftware.WorksheetEvent';
 	global.tableauSoftware.WorksheetEvent = $tableauSoftware_WorksheetEvent;
@@ -47794,6 +48837,12 @@ global.ss = ss;
 		}
 	});
 	ss.initClass($tab__AddInSheetEventListenerManager, $asm, {
+		add_$marksEvent: function AddInSheetEventListenerManager$add_MarksEvent(value) {
+			this.$1$MarksEventField = ss.delegateCombine(this.$1$MarksEventField, value);
+		},
+		remove_$marksEvent: function AddInSheetEventListenerManager$remove_MarksEvent(value) {
+			this.$1$MarksEventField = ss.delegateRemove(this.$1$MarksEventField, value);
+		},
 		$setWorksheet: function AddInSheetEventListenerManager$SetWorksheet(ws) {
 			if (!ss.referenceEquals(this.$sheetName, ws.getName())) {
 				throw tab._TableauException.createInternalError('Mismatched worksheet names');
@@ -47803,7 +48852,7 @@ global.ss = ss;
 		handleEventNotification: function AddInSheetEventListenerManager$HandleEventNotification(eventName, eventParameters) {
 			switch (eventName) {
 				case 'api.MarksSelectionChangedEvent': {
-					this.$handleMarkSelectionChangedEvent(eventParameters, this.$handlers['marksselection']);
+					this.$handleMarkSelectionChangedEvent(eventParameters);
 					break;
 				}
 			}
@@ -47811,17 +48860,12 @@ global.ss = ss;
 		addEventListener: function AddInSheetEventListenerManager$AddEventListener(eventName, handler) {
 			tab._Param.verifyValue(eventName, 'eventName');
 			tab._Param.verifyValue(handler, 'handler');
-			this.$handlers[eventName] = this.$handlers[eventName] || [];
-			this.$handlers[eventName].push(handler);
+			this.add_$marksEvent(handler);
 		},
 		removeEventListener: function AddInSheetEventListenerManager$RemoveEventListener(eventName, handler) {
 			tab._Param.verifyValue(eventName, 'eventName');
 			tab._Param.verifyValue(handler, 'handler');
-			var eventHandlers = this.$handlers[eventName] || [];
-			var index = tab._Utility.indexOf(eventHandlers, handler);
-			if (index !== -1) {
-				this.$handlers[eventName] = eventHandlers.splice(index, 1);
-			}
+			this.remove_$marksEvent(handler);
 		},
 		$matchesWorksheet: function AddInSheetEventListenerManager$MatchesWorksheet(visualId) {
 			if (!ss.isValue(this.$worksheet) || !ss.isValue(visualId) || !ss.isValue(visualId.worksheet) || !ss.referenceEquals(visualId.worksheet, this.$worksheet.getName())) {
@@ -47832,16 +48876,13 @@ global.ss = ss;
 			}
 			return true;
 		},
-		$handleMarkSelectionChangedEvent: function AddInSheetEventListenerManager$HandleMarkSelectionChangedEvent(eventParameters, eventHandlers) {
-			if (ss.isNullOrUndefined(eventHandlers) || ss.isNullOrUndefined(eventParameters) || ss.isNullOrUndefined(this.$worksheet)) {
+		$handleMarkSelectionChangedEvent: function AddInSheetEventListenerManager$HandleMarkSelectionChangedEvent(eventParameters) {
+			if (ss.staticEquals(this.$1$MarksEventField, null) || ss.isNullOrUndefined(eventParameters) || ss.isNullOrUndefined(this.$worksheet)) {
 				return;
 			}
 			var pm = JSON.parse(eventParameters);
 			if (this.$matchesWorksheet(pm)) {
-				for (var $t1 = 0; $t1 < eventHandlers.length; $t1++) {
-					var handler = eventHandlers[$t1];
-					handler(new $tab_MarksEvent('marksselection', this.$worksheet));
-				}
+				this.$1$MarksEventField(new $tableauSoftware_MarksEvent('marksselection', this.$worksheet));
 			}
 		}
 	});
@@ -47975,8 +49016,7 @@ global.ss = ss;
 		getSummaryDataAsync: function WorksheetImpl$GetSummaryDataAsync(options) {
 			var deferred = new tab._Deferred();
 			var commandParameters = this.$getDataCommandsBuilder.getSummaryDataCommandParams(options);
-			var dashboardName = (ss.isValue(this.get_parentDashboardImpl()) ? this.get_parentDashboardImpl().get_name() : null);
-			this.$sharedUtils.addVisualIdForWorksheet(commandParameters, this.get_name(), dashboardName);
+			this.$addVisualIdToCommand(commandParameters);
 			var returnHandler = this.$getDataCommandsBuilder.getSummaryDataResponseHandler(deferred);
 			this.sendCommand(Object).call(this, commandParameters, returnHandler);
 			return deferred.get_promise();
@@ -47984,8 +49024,7 @@ global.ss = ss;
 		getUnderlyingDataAsync: function WorksheetImpl$GetUnderlyingDataAsync(options) {
 			var deferred = new tab._Deferred();
 			var commandParameters = this.$getDataCommandsBuilder.getUnderlyingDataCommandParams(options);
-			var dashboardName = (ss.isValue(this.get_parentDashboardImpl()) ? this.get_parentDashboardImpl().get_name() : null);
-			this.$sharedUtils.addVisualIdForWorksheet(commandParameters, this.get_name(), dashboardName);
+			this.$addVisualIdToCommand(commandParameters);
 			var returnHandler = this.$getDataCommandsBuilder.getUnderlyingDataResponseHandler(deferred);
 			this.sendCommand(Object).call(this, commandParameters, returnHandler);
 			return deferred.get_promise();
@@ -48011,6 +49050,55 @@ global.ss = ss;
 			}
 			commandParameters['api.visualId'] = visualId;
 			return commandParameters;
+		},
+		$applyFilterAsync: function WorksheetImpl$ApplyFilterAsync(fieldName, values, updateType, filterOptions) {
+			var deferred = new tab._Deferred();
+			var commandParameters = this.$filterCommandsBuilder.buildApplyFiltersCommandParams(fieldName, values, updateType, filterOptions);
+			this.$addVisualIdToCommand(commandParameters);
+			var returnHandler = this.$filterCommandsBuilder.createFilterCommandReturnHandler('api.ApplyCategoricalFilterCommand', fieldName, deferred);
+			this.sendCommand(Object).call(this, commandParameters, returnHandler);
+			return deferred.get_promise();
+		},
+		$clearFilterAsync: function WorksheetImpl$ClearFilterAsync(fieldName) {
+			var deferred = new tab._Deferred();
+			var commandParameters = this.$filterCommandsBuilder.buildClearFilterCommandsParam(fieldName);
+			this.$addVisualIdToCommand(commandParameters);
+			var returnHandler = this.$filterCommandsBuilder.createFilterCommandReturnHandler('api.ClearFilterCommand', fieldName, deferred);
+			this.sendCommand(Object).call(this, commandParameters, returnHandler);
+			return deferred.get_promise();
+		},
+		$applyRangeFilterAsync: function WorksheetImpl$ApplyRangeFilterAsync(fieldName, filterOptions) {
+			var fixedUpFilterOptions = this.$filterCommandsBuilder.normalizeRangeFilterOption(filterOptions);
+			var commandParameters = this.$filterCommandsBuilder.buildRangeFilterCommandParams(fieldName, fixedUpFilterOptions);
+			this.$addVisualIdToCommand(commandParameters);
+			var deferred = new tab._Deferred();
+			var returnHandler = this.$filterCommandsBuilder.createFilterCommandReturnHandler('api.ApplyRangeFilterCommand', fieldName, deferred);
+			this.sendCommand(Object).call(this, commandParameters, returnHandler);
+			return deferred.get_promise();
+		},
+		$applyRelativeDateFilterAsync: function WorksheetImpl$ApplyRelativeDateFilterAsync(fieldName, options) {
+			var fixedUpFilterOptions = this.$filterCommandsBuilder.normalizeRelativeDateFilterOptions(options);
+			var commandParameters = this.$filterCommandsBuilder.buildRelativeDateFilterCommandParams(fieldName, fixedUpFilterOptions);
+			this.$addVisualIdToCommand(commandParameters);
+			var deferred = new tab._Deferred();
+			var returnHandler = this.$filterCommandsBuilder.createFilterCommandReturnHandler('api.ApplyRelativeDateFilterCommand', fieldName, deferred);
+			this.sendCommand(Object).call(this, commandParameters, returnHandler);
+			return deferred.get_promise();
+		},
+		$applyHierarchicalFilterAsync: function WorksheetImpl$ApplyHierarchicalFilterAsync(fieldName, values, updateType, options) {
+			if (ss.isNullOrUndefined(values) && updateType !== 'all') {
+				throw tab._TableauException.createInvalidParameter('values');
+			}
+			var commandParameters = this.$filterCommandsBuilder.buildHierarchicalFilterCommandParams(fieldName, values, updateType, options);
+			this.$addVisualIdToCommand(commandParameters);
+			var deferred = new tab._Deferred();
+			var returnHandler = this.$filterCommandsBuilder.createFilterCommandReturnHandler('api.ApplyHierarchicalFilterCommand', fieldName, deferred);
+			this.sendCommand(Object).call(this, commandParameters, returnHandler);
+			return deferred.get_promise();
+		},
+		$addVisualIdToCommand: function WorksheetImpl$AddVisualIdToCommand(commandParameters) {
+			var dashboardName = (ss.isValue(this.get_parentDashboardImpl()) ? this.get_parentDashboardImpl().get_name() : null);
+			this.$sharedUtils.addVisualIdForWorksheet(commandParameters, this.get_name(), dashboardName);
 		}
 	}, $tab_SheetImpl);
 	ss.initClass($tab_EnvironmentVariablesImpl, $asm, {
@@ -48036,21 +49124,6 @@ global.ss = ss;
 			return this.$apiVersion;
 		}
 	});
-	ss.initClass($tableauSoftware_TableauEvent, $asm, {
-		getEventName: function TableauEvent$GetEventName() {
-			return this.$eventName;
-		}
-	});
-	ss.initClass($tableauSoftware_WorksheetEvent, $asm, {
-		getWorksheet: function WorksheetEvent$GetWorksheet() {
-			return this.worksheet;
-		}
-	}, $tableauSoftware_TableauEvent);
-	ss.initClass($tab_MarksEvent, $asm, {
-		getMarksAsync: function MarksEvent$GetMarksAsync() {
-			return this.worksheet.getSelectedMarksAsync();
-		}
-	}, $tableauSoftware_WorksheetEvent);
 	ss.initClass($tableauSoftware_addIn, $asm, {});
 	ss.initClass($tableauSoftware_Sheet, $asm, {
 		getName: function Sheet$GetName() {
@@ -48080,6 +49153,21 @@ global.ss = ss;
 			return this._impl.get_worksheets()._toApiCollection();
 		}
 	}, $tableauSoftware_Sheet);
+	ss.initClass($tableauSoftware_TableauEvent, $asm, {
+		getEventName: function TableauEvent$GetEventName() {
+			return this.$eventName;
+		}
+	});
+	ss.initClass($tableauSoftware_WorksheetEvent, $asm, {
+		getWorksheet: function WorksheetEvent$GetWorksheet() {
+			return this.$worksheet;
+		}
+	}, $tableauSoftware_TableauEvent);
+	ss.initClass($tableauSoftware_MarksEvent, $asm, {
+		getMarksAsync: function MarksEvent$GetMarksAsync() {
+			return this.getWorksheet().getSelectedMarksAsync();
+		}
+	}, $tableauSoftware_WorksheetEvent);
 	ss.initClass($tableauSoftware_Worksheet, $asm, {
 		getParentDashboard: function Worksheet$GetParentDashboard() {
 			return this._impl.get_parentDashboard();
@@ -48092,6 +49180,21 @@ global.ss = ss;
 		},
 		getSelectedMarksAsync: function Worksheet$GetSelectedMarksAsync() {
 			return this._impl.getSelectedMarksAsync();
+		},
+		applyFilterAsync: function Worksheet$ApplyFilterAsync(fieldName, values, updateType, options) {
+			return this._impl.$applyFilterAsync(fieldName, values, updateType, options);
+		},
+		clearFilterAsync: function Worksheet$ClearFilterAsync(fieldName) {
+			return this._impl.$clearFilterAsync(fieldName);
+		},
+		applyRangeFilterAsync: function Worksheet$ApplyRangeFilterAsync(fieldName, options) {
+			return this._impl.$applyRangeFilterAsync(fieldName, options);
+		},
+		applyRelativeDateFilterAsync: function Worksheet$ApplyRelativeDateFilterAsync(fieldName, options) {
+			return this._impl.$applyRelativeDateFilterAsync(fieldName, options);
+		},
+		applyHierarchicalFilterAsync: function Worksheet$ApplyHierarchicalFilterAsync(fieldName, values, updateType, options) {
+			return this._impl.$applyHierarchicalFilterAsync(fieldName, values, updateType, options);
 		}
 	}, $tableauSoftware_Sheet);
 	ss.initClass($tableauSoftware_addin_DashboardContent, $asm, {
