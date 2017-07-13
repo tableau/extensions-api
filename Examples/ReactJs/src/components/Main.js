@@ -7,6 +7,7 @@ import EnvironmentDemoComponent from './EnvironmentDemo/EnvironmentDemoComponent
 import GetDataDemoComponent from './GetDataDemo/GetDataDemoComponent';
 import SelectedMarksDemoComponent from './SelectedMarksDemo/SelectedMarksDemoComponent'
 import LoadIndicatorComponent from './LoadIndicatorComponent';
+import FiltersDemoComponent from './FiltersDemo/FiltersDemoComponent';
 
 /*global tableau*/
 
@@ -60,6 +61,10 @@ class AppComponent extends React.Component {
       case '#selectedMarks':
         return (
           <SelectedMarksDemoComponent />
+        )
+      case '#filtering':
+        return (
+          <FiltersDemoComponent />
         )
       default:
         return (<h1>Unknown hash {this.props.hash}</h1>);
