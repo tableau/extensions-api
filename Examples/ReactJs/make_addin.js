@@ -12,5 +12,5 @@ var api = fs.readFileSync(path.join(program.perforce, 'src/AddInApi/bin/Debug/vq
 
 var combined = qwebChannel + "\n\n" + bootstrap + "\n\n" + api;
 
-var destination = path.join('./src/addin/tableau-addin-0.0.1.js');
+var destination = path.join('./src/addin/tableau-addin-0.1.0.js');
 fs.writeFileSync(destination, combined);
