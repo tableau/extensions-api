@@ -98,6 +98,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	        enumerable: true,
 	        configurable: true
 	    });
+	    Object.defineProperty(AddIn.prototype, "settings", {
+	        get: function () {
+	            return this.addInImpl.settings;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
 	    AddIn.prototype.initializeAsync = function () {
 	        return this.addInImpl.initializeAsync();
 	    };
@@ -114,12 +121,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", { value: true });
 	var api_internal_contract_1 = __webpack_require__(3);
 	var api_shared_1 = __webpack_require__(9);
-	var Dashboard_1 = __webpack_require__(29);
-	var DashboardImpl_1 = __webpack_require__(31);
-	var DashboardContent_1 = __webpack_require__(37);
-	var Environment_1 = __webpack_require__(38);
-	var AddInServiceNames_1 = __webpack_require__(39);
-	var RegisterAllAddInServices_1 = __webpack_require__(40);
+	var Dashboard_1 = __webpack_require__(30);
+	var DashboardImpl_1 = __webpack_require__(32);
+	var SettingsImpl_1 = __webpack_require__(38);
+	var DashboardContent_1 = __webpack_require__(41);
+	var Environment_1 = __webpack_require__(42);
+	var Settings_1 = __webpack_require__(43);
+	var AddInServiceNames_1 = __webpack_require__(40);
+	var RegisterAllAddInServices_1 = __webpack_require__(44);
 	var AddInImpl = (function () {
 	    function AddInImpl() {
 	    }
@@ -148,18 +157,23 @@ return /******/ (function(modules) { // webpackBootstrap
 	        RegisterAllAddInServices_1.RegisterAllAddInServices(dispatcher);
 	        // Get the initialization service and initialize this add-in
 	        var initializationService = api_shared_1.ApiServiceRegistry.Instance.GetService(AddInServiceNames_1.AddInServiceNames.InitializationService);
-	        return initializationService.InitializeDashboardAddIn().then(function (result) {
+	        return initializationService.InitializeDashboardAddInAsync().then(function (result) {
 	            if (!result.AddInInstance.Locator.DashboardPath) {
 	                throw new Error('DashboardPath is undefined');
 	            }
 	            _this.dashboardContent = _this.InitializeDashboardContent(result.AddinDashboardInfo, result.AddInInstance.Locator.DashboardPath);
 	            _this.environment = new Environment_1.Environment(result.AddInEnvironment);
+	            _this.settings = _this.InitializeSettings(result.AddInSettingsInfo);
 	        });
 	    };
 	    AddInImpl.prototype.InitializeDashboardContent = function (info, sheetPath) {
 	        var dashboardImpl = new DashboardImpl_1.DashboardImpl(info, sheetPath);
 	        var dashboard = new Dashboard_1.Dashboard(dashboardImpl);
 	        return new DashboardContent_1.DashboardContent(dashboard);
+	    };
+	    AddInImpl.prototype.InitializeSettings = function (settingsInfo) {
+	        var settingsImpl = new SettingsImpl_1.SettingsImpl(settingsInfo);
+	        return new Settings_1.Settings(settingsImpl);
 	    };
 	    return AddInImpl;
 	}());
@@ -1095,6 +1109,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", { value: true });
 	var EnumConverter_1 = __webpack_require__(28);
 	exports.EnumConverter = EnumConverter_1.EnumConverter;
+	var Param_1 = __webpack_require__(29);
+	exports.Param = Param_1.Param;
 
 
 /***/ },
@@ -1129,6 +1145,45 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 29 */
+/***/ function(module, exports) {
+
+	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	var Param = (function () {
+	    function Param() {
+	    }
+	    /**
+	     * Verifies that an incoming parameter is 'truthy' and throws
+	     * an error if it's not. This will throw an error if the value
+	     * is null, undefined, NaN, the empty string, 0, or false.
+	     *
+	     * @param argumentValue value to verify
+	     * @param argumentName name of argument to verify
+	     */
+	    Param.VerifyValue = function (argumentValue, argumentName) {
+	        if (!argumentValue) {
+	            throw new Error('Value is invalid for argument: ' + argumentName);
+	        }
+	    };
+	    /**
+	     * Verifies that a string is valid.  Throws an error if the string is
+	     * null, undefined, or NaN.
+	     *
+	     * @param argumentValue value to verify
+	     * @param argumentName name of argument to verify
+	     */
+	    Param.VerifyString = function (argumentValue, argumentName) {
+	        if (argumentValue === null || argumentValue === undefined) {
+	            throw new Error('String value is invalid for argument: ' + argumentName);
+	        }
+	    };
+	    return Param;
+	}());
+	exports.Param = Param;
+
+
+/***/ },
+/* 30 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1143,7 +1198,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	})();
 	Object.defineProperty(exports, "__esModule", { value: true });
-	var Sheet_1 = __webpack_require__(30);
+	var Sheet_1 = __webpack_require__(31);
 	var Dashboard = (function (_super) {
 	    __extends(Dashboard, _super);
 	    function Dashboard(dashboardImpl) {
@@ -1164,7 +1219,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 30 */
+/* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1207,7 +1262,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 31 */
+/* 32 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1222,12 +1277,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	})();
 	Object.defineProperty(exports, "__esModule", { value: true });
-	var api_external_contract_1 = __webpack_require__(32);
+	var api_external_contract_1 = __webpack_require__(33);
 	var api_internal_contract_1 = __webpack_require__(3);
-	var Worksheet_1 = __webpack_require__(33);
-	var AddInSheetInfoImpl_1 = __webpack_require__(34);
-	var SheetImpl_1 = __webpack_require__(35);
-	var WorksheetImpl_1 = __webpack_require__(36);
+	var Worksheet_1 = __webpack_require__(34);
+	var AddInSheetInfoImpl_1 = __webpack_require__(35);
+	var SheetImpl_1 = __webpack_require__(36);
+	var WorksheetImpl_1 = __webpack_require__(37);
 	var DashboardImpl = (function (_super) {
 	    __extends(DashboardImpl, _super);
 	    function DashboardImpl(info, sheetPath) {
@@ -1262,7 +1317,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 32 */
+/* 33 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1279,7 +1334,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 33 */
+/* 34 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1294,7 +1349,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	})();
 	Object.defineProperty(exports, "__esModule", { value: true });
-	var Sheet_1 = __webpack_require__(30);
+	var Sheet_1 = __webpack_require__(31);
 	var Worksheet = (function (_super) {
 	    __extends(Worksheet, _super);
 	    function Worksheet(worksheetImpl) {
@@ -1322,7 +1377,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 34 */
+/* 35 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -1354,7 +1409,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 35 */
+/* 36 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -1384,7 +1439,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 36 */
+/* 37 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1399,10 +1454,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	})();
 	Object.defineProperty(exports, "__esModule", { value: true });
-	var api_external_contract_1 = __webpack_require__(32);
+	var api_external_contract_1 = __webpack_require__(33);
 	var api_internal_contract_1 = __webpack_require__(3);
 	var api_shared_1 = __webpack_require__(9);
-	var SheetImpl_1 = __webpack_require__(35);
+	var SheetImpl_1 = __webpack_require__(36);
 	var VisualIdsAreEqual = function (a, b) {
 	    return a && b &&
 	        a.Worksheet === b.Worksheet &&
@@ -1413,7 +1468,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 	var WorksheetImpl = (function (_super) {
 	    __extends(WorksheetImpl, _super);
-	    // private marksEvent: EventListenerManagerImpl<MarksSelectedEvent>;
 	    function WorksheetImpl(sheetInfoImpl, visualId) {
 	        var _this = _super.call(this, sheetInfoImpl) || this;
 	        _this.visualId = visualId;
@@ -1479,7 +1533,121 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 37 */
+/* 38 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	var api_shared_1 = __webpack_require__(9);
+	var api_utils_1 = __webpack_require__(39);
+	var AddInServiceNames_1 = __webpack_require__(40);
+	var SettingsImpl = (function () {
+	    function SettingsImpl(settingsInfo) {
+	        // Since promises can't be introspected for state, keep a variable that
+	        // indicates a save is in progress, so that set/erase can't be called during a save.
+	        this.saveInProgress = false;
+	        this.initializeSettings(settingsInfo);
+	    }
+	    SettingsImpl.prototype.erase = function (key) {
+	        api_utils_1.Param.VerifyValue(key, 'key');
+	        // Only make a modification if we have the key already
+	        if (this.currentSettings[key]) {
+	            this.VerifySettingsAreUnlocked();
+	            delete this.currentSettings[key];
+	            this.isModified = true;
+	        }
+	    };
+	    SettingsImpl.prototype.get = function (key) {
+	        api_utils_1.Param.VerifyValue(key, 'key');
+	        return this.currentSettings[key];
+	    };
+	    SettingsImpl.prototype.getAll = function () {
+	        // Returns a mutable copy of the settings
+	        return Object.assign({}, this.currentSettings);
+	    };
+	    Object.defineProperty(SettingsImpl.prototype, "IsModified", {
+	        get: function () {
+	            return this.isModified;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    SettingsImpl.prototype.saveAsync = function () {
+	        var _this = this;
+	        this.VerifySettingsAreUnlocked();
+	        // Just resolve immediately if settings are unchanged
+	        if (!this.isModified) {
+	            return Promise.resolve(this.currentSettings);
+	        }
+	        this.saveInProgress = true;
+	        // Use the settings service to save settings to twb
+	        var settingsService = api_shared_1.ApiServiceRegistry.Instance.GetService(AddInServiceNames_1.AddInServiceNames.SettingsService);
+	        return settingsService.SaveSettingsAsync(this.currentSettings).then(function (newSettings) {
+	            _this.saveInProgress = false;
+	            _this.isModified = false;
+	            Object.assign(_this.currentSettings, newSettings);
+	            return newSettings;
+	        });
+	    };
+	    SettingsImpl.prototype.set = function (key, value) {
+	        api_utils_1.Param.VerifyValue(key, 'key'); // Key shouldn't be an empty string.
+	        api_utils_1.Param.VerifyString(value, 'value'); // Empty string value is allowed.
+	        this.VerifySettingsAreUnlocked();
+	        this.currentSettings[key] = value;
+	        this.isModified = true;
+	    };
+	    SettingsImpl.prototype.initializeSettings = function (settingsInfo) {
+	        api_utils_1.Param.VerifyValue(settingsInfo, 'settingsInfo');
+	        api_utils_1.Param.VerifyValue(settingsInfo.SettingsValues, 'settingsInfo.SettingsValues');
+	        this.currentSettings = settingsInfo.SettingsValues;
+	        // Reset the isModified flag
+	        this.isModified = false;
+	    };
+	    /**
+	     * This helper should be called before any local update to this.currentSettings.
+	     * Checks if a current save call is still in progress and throws an error if so.
+	     */
+	    SettingsImpl.prototype.VerifySettingsAreUnlocked = function () {
+	        if (this.saveInProgress) {
+	            throw new Error('Async Save is in progress, updating settings is not allowed.');
+	        }
+	    };
+	    return SettingsImpl;
+	}());
+	exports.SettingsImpl = SettingsImpl;
+
+
+/***/ },
+/* 39 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	/**
+	 * This is your main. This is where you re-export everything you want to be publicly available.
+	 *
+	 * The build enforces that the file has the same name as the global variable that is exported.
+	 */
+	Object.defineProperty(exports, "__esModule", { value: true });
+	var EnumConverter_1 = __webpack_require__(28);
+	exports.EnumConverter = EnumConverter_1.EnumConverter;
+	var Param_1 = __webpack_require__(29);
+	exports.Param = Param_1.Param;
+
+
+/***/ },
+/* 40 */
+/***/ function(module, exports) {
+
+	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.AddInServiceNames = {
+	    InitializationService: 'InitializationService',
+	    SettingsService: 'SettingsService'
+	};
+
+
+/***/ },
+/* 41 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -1506,7 +1674,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 38 */
+/* 42 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1582,37 +1750,68 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 39 */
+/* 43 */
 /***/ function(module, exports) {
 
 	"use strict";
 	Object.defineProperty(exports, "__esModule", { value: true });
-	exports.AddInServiceNames = {
-	    InitializationService: 'InitializationService'
-	};
+	/**
+	 * Implementation of the external settings namespace.
+	 */
+	var Settings = (function () {
+	    function Settings(settingsImpl) {
+	        this.settingsImpl = settingsImpl;
+	    }
+	    Settings.prototype.erase = function (key) {
+	        this.settingsImpl.erase(key);
+	    };
+	    Settings.prototype.get = function (key) {
+	        return this.settingsImpl.get(key);
+	    };
+	    Settings.prototype.getAll = function () {
+	        return this.settingsImpl.getAll();
+	    };
+	    Object.defineProperty(Settings.prototype, "IsModified", {
+	        get: function () {
+	            return this.settingsImpl.IsModified;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Settings.prototype.saveAsync = function () {
+	        return this.settingsImpl.saveAsync();
+	    };
+	    Settings.prototype.set = function (key, value) {
+	        this.settingsImpl.set(key, value);
+	    };
+	    return Settings;
+	}());
+	exports.Settings = Settings;
 
 
 /***/ },
-/* 40 */
+/* 44 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	Object.defineProperty(exports, "__esModule", { value: true });
-	var InitializationServiceImpl_1 = __webpack_require__(41);
 	var api_shared_1 = __webpack_require__(9);
+	var InitializationServiceImpl_1 = __webpack_require__(45);
+	var SettingsServiceImpl_1 = __webpack_require__(46);
 	function RegisterAllAddInServices(dispatcher) {
 	    api_shared_1.ApiServiceRegistry.Instance.RegisterService(new InitializationServiceImpl_1.InitializationServiceImpl(dispatcher));
+	    api_shared_1.ApiServiceRegistry.Instance.RegisterService(new SettingsServiceImpl_1.SettingsServiceImpl(dispatcher));
 	}
 	exports.RegisterAllAddInServices = RegisterAllAddInServices;
 
 
 /***/ },
-/* 41 */
+/* 45 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	Object.defineProperty(exports, "__esModule", { value: true });
-	var AddInServiceNames_1 = __webpack_require__(39);
+	var AddInServiceNames_1 = __webpack_require__(40);
 	var api_internal_contract_1 = __webpack_require__(3);
 	var InitializationServiceImpl = (function () {
 	    function InitializationServiceImpl(dispatcher) {
@@ -1625,7 +1824,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        enumerable: true,
 	        configurable: true
 	    });
-	    InitializationServiceImpl.prototype.InitializeDashboardAddIn = function () {
+	    InitializationServiceImpl.prototype.InitializeDashboardAddInAsync = function () {
 	        // We don't need any parameters for this call because they are added in for us by the dispatcher
 	        return this.dispatcher.Execute(api_internal_contract_1.VerbId.InitializeAddIn, {}).then(function (response) {
 	            // TODO - Validate return value
@@ -1636,6 +1835,41 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return InitializationServiceImpl;
 	}());
 	exports.InitializationServiceImpl = InitializationServiceImpl;
+
+
+/***/ },
+/* 46 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	var api_internal_contract_1 = __webpack_require__(3);
+	var AddInServiceNames_1 = __webpack_require__(40);
+	var SettingsServiceImpl = (function () {
+	    function SettingsServiceImpl(dispatcher) {
+	        this.dispatcher = dispatcher;
+	    }
+	    Object.defineProperty(SettingsServiceImpl.prototype, "serviceName", {
+	        get: function () {
+	            return AddInServiceNames_1.AddInServiceNames.SettingsService;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    SettingsServiceImpl.prototype.SaveSettingsAsync = function (settings) {
+	        var parameters = {};
+	        parameters[api_internal_contract_1.ParameterId.SettingsValues] = settings;
+	        return this.dispatcher.Execute(api_internal_contract_1.VerbId.SaveAddInSettings, parameters).then(function (value) {
+	            var result = value.result;
+	            if (!result || !result.SettingsValues) {
+	                throw new Error('Internal error saving settings.');
+	            }
+	            return (result.SettingsValues);
+	        });
+	    };
+	    return SettingsServiceImpl;
+	}());
+	exports.SettingsServiceImpl = SettingsServiceImpl;
 
 
 /***/ }

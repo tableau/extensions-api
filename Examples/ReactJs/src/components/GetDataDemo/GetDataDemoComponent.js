@@ -28,8 +28,7 @@ class GetDataDemoComponent extends React.Component {
   loadFromTableau() {
     let allSheets = tableau.addIn.dashboardContent.Dashboard.Worksheets;
     const sheetNames = allSheets.map((sheet) => sheet.Name);
-   // var settingsString = tableau.addIn.settings.get('getDataSettings');
-    var settingsString = '';
+    var settingsString = tableau.addIn.settings.get('getDataSettings');
     if (!!settingsString) {
       const settings = JSON.parse(settingsString);
       this.setState({
@@ -98,17 +97,17 @@ class GetDataDemoComponent extends React.Component {
 
   onSaveDialog(settings) {
     // Persist the saved settings into the workbook
-    // tableau.addIn.settings.set('getDataSettings', JSON.stringify(settings));
+    tableau.addIn.settings.set('getDataSettings', JSON.stringify(settings));
     this.setState({
       showingDialog: false,
       loading: true,
       settings: settings
     }, () => this.getData(settings));
 
-    // tableau.addIn.settings.saveAsync().then(() => {
-    //   // After we save, we should reload the data table with our settings
-    //   this.getData(settings);
-    // });
+    tableau.addIn.settings.saveAsync().then(() => {
+      // After we save, we should reload the data table with our settings
+      this.getData(settings);
+    });
   }
 
   buildColumns() {
