@@ -72,9 +72,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", { value: true });
 	var AddInApiPresLayerImpl_1 = __webpack_require__(2);
 	var api_core_1 = __webpack_require__(3);
-	var api_internal_contract_1 = __webpack_require__(23);
-	var DesktopApiDispatcher_1 = __webpack_require__(24);
-	var QtWebChannelImpl_1 = __webpack_require__(25);
+	var api_internal_contract_1 = __webpack_require__(26);
+	var DesktopApiDispatcher_1 = __webpack_require__(27);
+	var QtWebChannelImpl_1 = __webpack_require__(28);
 	/**
 	 * Wrapper for all the bootstrapping logic. This code attempts to initialize the qt pres-layer
 	 * as well as the desktop dispatcher. It then assigns it to the global desktop dispatcher to
@@ -115,7 +115,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 	var AddInApiPresLayerImpl = (function () {
 	    function AddInApiPresLayerImpl(interopObject) {
+	        var _this = this;
 	        this.interopObject = interopObject;
+	        this.notificationHandlers = {};
+	        if (interopObject && interopObject.OnNotification) {
+	            interopObject.OnNotification.connect(function (notification) {
+	                _this.dispatchNotification(notification);
+	            });
+	        }
 	    }
 	    Object.defineProperty(AddInApiPresLayerImpl.prototype, "AddInInstanceInfo", {
 	        /**
@@ -161,25 +168,47 @@ return /******/ (function(modules) { // webpackBootstrap
 	            }
 	        });
 	    };
-	    /**
-	     * Registers a notification handler with the pres layer and passes back a function
-	     * which can be called to remove the registration.
-	     *
-	     * @param {string} eventId
-	     * @param {contract.NotificationHandler} handler
-	     * @returns {() => void}
-	     * @memberof AddInApiPresLayerImpl
-	     */
+	    // This implementation will registration a single instance of a notification handler with the Native C++ object,
+	    // and implement multi-dispatch to the web objects from h.ere
 	    AddInApiPresLayerImpl.prototype.registerNotificationHandler = function (eventId, handler) {
 	        var _this = this;
-	        if (this.interopObject && this.interopObject.OnNotification) {
-	            this.interopObject.OnNotification.connect(function (notification) {
-	                handler(notification);
-	            });
+	        if (eventId in this.notificationHandlers) {
+	            this.notificationHandlers[eventId].push(handler);
 	        }
-	        return function () {
-	            _this.interopObject.OnNotification.disconnect(handler);
-	        };
+	        else {
+	            this.notificationHandlers[eventId] = [handler];
+	            try {
+	                this.interopObject.RegisterNotificationHandler(eventId);
+	            }
+	            catch (err) {
+	                // console.log('RegisterNotificationHandler failed: ' + err);
+	            }
+	        }
+	        return function () { return _this.removeNotificationHandler(eventId, handler); };
+	    };
+	    AddInApiPresLayerImpl.prototype.removeNotificationHandler = function (eventId, handler) {
+	        var handlerList = this.notificationHandlers[eventId];
+	        if (!handlerList) {
+	            return;
+	        }
+	        var foundIndex = handlerList.indexOf(handler);
+	        if (foundIndex >= 0) {
+	            handlerList.splice(foundIndex, 1);
+	        }
+	        if (handlerList.length === 0) {
+	            delete this.notificationHandlers[eventId];
+	        }
+	    };
+	    AddInApiPresLayerImpl.prototype.dispatchNotification = function (notification) {
+	        // console.log('received notification: ' + JSON.stringify(notification));
+	        var eventId = notification.eventId;
+	        var presModel = notification.presModel;
+	        if (eventId in this.notificationHandlers) {
+	            var handlers = this.notificationHandlers[eventId];
+	            for (var i = handlers.length - 1; i >= 0; i--) {
+	                handlers[i](presModel);
+	            }
+	        }
 	    };
 	    return AddInApiPresLayerImpl;
 	}());
@@ -201,6 +230,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 	Object.defineProperty(exports, "__esModule", { value: true });
 	__export(__webpack_require__(4));
+	var Events_1 = __webpack_require__(17);
+	exports.NotificationId = Events_1.NotificationId;
 
 
 /***/ },
@@ -211,7 +242,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", { value: true });
 	var api_internal_contract_1 = __webpack_require__(5);
 	var CommandMappingRegistryFactory_1 = __webpack_require__(11);
-	var ParameterMappingRegistryFactory_1 = __webpack_require__(16);
+	var EventMappingRegistryFactory_1 = __webpack_require__(16);
+	var ParameterMappingRegistryFactory_1 = __webpack_require__(21);
 	var Params_1 = __webpack_require__(12);
 	/**
 	 * Main class for the api-core project. This class is responsible for executing comamnd and marshalling notifcations
@@ -244,6 +276,25 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	    };
 	    /**
+	     * Called when a new event notification comes in from the presentation layer
+	     *
+	     * @param eventId The pres layer event id
+	     * @param presModel The pres model that is included with the event
+	     */
+	    ApiEventHandler.prototype.OnPresLayerNotification = function (eventId, presModel) {
+	        // First look up this eventId in our registry and convert to presModel
+	        var eventMapping = this.eventRegistry[eventId];
+	        var apiModel = eventMapping.Converter(presModel);
+	        // Create a notification object and send it to the event handler
+	        var notification = {
+	            notificationId: eventMapping.ApiId,
+	            data: apiModel
+	        };
+	        if (this.eventHandler) {
+	            this.eventHandler(notification);
+	        }
+	    };
+	    /**
 	     * Sets the internal Api version number which the external library is expecting to use. This must be called before
 	     * anything else in order to properly set up the translation layers.
 	     *
@@ -256,9 +307,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.commandRegistry = CommandMappingRegistryFactory_1.CommandMappingRegistryFactory.CreateCommandMappingRegistry(versionNumber);
 	        this.apiToPresLayerRegistry = ParameterMappingRegistryFactory_1.ParameterMappingRegistryFactory.CreateApiToPresLayerParamRegistry(versionNumber);
 	        this.presLayerToApiRegistry = ParameterMappingRegistryFactory_1.ParameterMappingRegistryFactory.CreatePresLayerToApiParamRegistry(versionNumber);
+	        this.eventRegistry = EventMappingRegistryFactory_1.EventMappingRegistryFactory.CreateEventMappingRegistry(versionNumber);
 	        // Convert our addInLocator to the Api version
 	        this.apiAddInLocator = this.presLayerToApiRegistry
 	            .Get(Params_1.ParameterId.AddInLocator, api_internal_contract_1.ParameterId.AddInLocator)(this.presLayerAddInLocator);
+	        for (var _i = 0, _a = Object.keys(this.eventRegistry); _i < _a.length; _i++) {
+	            var plEventId = _a[_i];
+	            // Register for all notifications we know about and bind the event type to the callback
+	            this.presLayer.registerNotificationHandler(plEventId, this.OnPresLayerNotification.bind(this, plEventId));
+	        }
 	    };
 	    /**
 	     * Sets an event handler function to be notified when Api events come in. Only a single registration is supported.
@@ -410,10 +467,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	"use strict";
 	Object.defineProperty(exports, "__esModule", { value: true });
-	var NotificationId = {
-	    SelectedMarksChanged: 'selected-marks-changed',
-	};
-	exports.NotificationId = NotificationId;
+	var NotificationId;
+	(function (NotificationId) {
+	    NotificationId["SelectedMarksChanged"] = "selected-marks-changed";
+	})(NotificationId = exports.NotificationId || (exports.NotificationId = {}));
 
 
 /***/ },
@@ -422,20 +479,23 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	"use strict";
 	Object.defineProperty(exports, "__esModule", { value: true });
-	var ParameterId = {
-	    AddInLocator: 'add-in-locator',
-	    AddInBootstrapInfo: 'add-in-bootstrap-info',
-	    VisualId: 'visual-id',
-	    SheetPath: 'sheet-path',
-	    IgnoreAliases: 'ignore-aliases',
-	    IgnoreSelection: 'ignore-selection',
-	    IncludeAllColumns: 'include-all-columns',
-	    MaxRows: 'max-rows',
-	    UnderlyingDataTable: 'underlying-data-table',
-	    UnderlyingSummaryDataTable: 'underlying-summary-data-table',
-	    SettingsValues: 'settings-values'
-	};
-	exports.ParameterId = ParameterId;
+	var ParameterId;
+	(function (ParameterId) {
+	    ParameterId["AddInLocator"] = "add-in-locator";
+	    ParameterId["AddInBootstrapInfo"] = "add-in-bootstrap-info";
+	    ParameterId["AddInSettingsInfo"] = "add-in-settings-info";
+	    ParameterId["VisualId"] = "visual-id";
+	    ParameterId["SheetPath"] = "sheet-path";
+	    ParameterId["IgnoreAliases"] = "ignore-aliases";
+	    ParameterId["IgnoreSelection"] = "ignore-selection";
+	    ParameterId["IncludeAllColumns"] = "include-all-columns";
+	    ParameterId["MaxRows"] = "max-rows";
+	    ParameterId["UnderlyingDataTable"] = "underlying-data-table";
+	    ParameterId["UnderlyingSummaryDataTable"] = "underlying-summary-data-table";
+	    ParameterId["SettingsValues"] = "settings-values";
+	    ParameterId["SelectedData"] = "selected-data";
+	    ParameterId["HighlightedData"] = "highlighted-data";
+	})(ParameterId = exports.ParameterId || (exports.ParameterId = {}));
 
 
 /***/ },
@@ -444,13 +504,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	"use strict";
 	Object.defineProperty(exports, "__esModule", { value: true });
-	var VerbId = {
-	    InitializeAddIn: 'initialize-add-in',
-	    GetDataSummaryData: 'get-summary-data',
-	    GetUnderlyingData: 'get-underlying-data',
-	    SaveAddInSettings: 'save-add-in-settings'
-	};
-	exports.VerbId = VerbId;
+	var VerbId;
+	(function (VerbId) {
+	    VerbId["InitializeAddIn"] = "initialize-add-in";
+	    VerbId["GetDataSummaryData"] = "get-summary-data";
+	    VerbId["GetUnderlyingData"] = "get-underlying-data";
+	    VerbId["SaveAddInSettings"] = "save-add-in-settings";
+	    VerbId["GetSelectedMarks"] = "get-selected-marks";
+	    VerbId["GetHighlightedMarks"] = "get-highlighted-marks";
+	})(VerbId = exports.VerbId || (exports.VerbId = {}));
 
 
 /***/ },
@@ -486,6 +548,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        result.AddCommand(new CommandRegistration_1.CommandRegistration(api_internal_contract_1.VerbId.GetDataSummaryData, CommandIds_1.DocCommands.GetSummaryData, [new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.IgnoreAliases, Params_1.ParameterId.IgnoreAliases),
 	            new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.IgnoreSelection, Params_1.ParameterId.IgnoreSelection),
 	            new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.VisualId, Params_1.ParameterId.VisualIDPM)], new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.UnderlyingSummaryDataTable, Params_1.ParameterId.UnderlyingDataTable)));
+	        result.AddCommand(new CommandRegistration_1.CommandRegistration(api_internal_contract_1.VerbId.GetSelectedMarks, CommandIds_1.DocCommands.GetSelectionData, [new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.VisualId, Params_1.ParameterId.VisualIDPM)], new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.SelectedData, Params_1.ParameterId.SelectionData)));
+	        result.AddCommand(new CommandRegistration_1.CommandRegistration(api_internal_contract_1.VerbId.GetHighlightedMarks, CommandIds_1.DocCommands.GetHighlightedData, [new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.VisualId, Params_1.ParameterId.VisualIDPM)], new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.HighlightedData, Params_1.ParameterId.HighlightedData)));
+	        result.AddCommand(new CommandRegistration_1.CommandRegistration(api_internal_contract_1.VerbId.SaveAddInSettings, CommandIds_1.DocCommands.SaveAddInSettings, [new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.AddInLocator, Params_1.ParameterId.AddInLocator),
+	            new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.SettingsValues, Params_1.ParameterId.AddInSettings)], new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.AddInSettingsInfo, Params_1.ParameterId.AddInSettingsInfo)));
 	        return result;
 	    };
 	    return CommandMappingRegistryFactory;
@@ -509,7 +575,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	//
 	// -----------------------------------------------------------------------------
 	// WARNING: Computer generated file.  Do not hand modify.
-	// DEPENDS ON: ['..\\git\\api-core\\node_modules\\@tableau\\preslayer-codegen-typescript\\templates\\params-ts.template', u'modules\\web\\api-core\\src\\preslayer\\all-params.data']
+	// DEPENDS ON: ['..\\git\\api-all-js\\api-core\\node_modules\\@tableau\\preslayer-codegen-typescript\\templates\\params-ts.template', u'..\\git\\api-all-js\\api-core\\temp-pres-layer\\all-params.data']
 	Object.defineProperty(exports, "__esModule", { value: true });
 	var ParameterId;
 	(function (ParameterId) {
@@ -7957,7 +8023,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	//
 	// -----------------------------------------------------------------------------
 	// WARNING: Computer generated file.  Do not hand modify.
-	// DEPENDS ON: ['..\\git\\api-core\\node_modules\\@tableau\\preslayer-codegen-typescript\\templates\\commands-enum-ts.template', u'modules\\web\\api-core\\src\\preslayer\\all-cmd-wrappers.data']
+	// DEPENDS ON: ['..\\git\\api-all-js\\api-core\\node_modules\\@tableau\\preslayer-codegen-typescript\\templates\\commands-enum-ts.template', u'..\\git\\api-all-js\\api-core\\temp-pres-layer\\all-cmd-wrappers.data']
 	Object.defineProperty(exports, "__esModule", { value: true });
 	var DocCommands;
 	(function (DocCommands) {
@@ -7983,6 +8049,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    DocCommands["GetSummaryData"] = "get-summary-data";
 	    // Gets the underlying data for a worksheet
 	    DocCommands["GetUnderlyingData"] = "get-underlying-data";
+	    // Select all marks that have the tuple's value for the given field .
+	    DocCommands["SelectByTupleValue"] = "select-by-tuple-value";
 	    // Gets the axis options .
 	    DocCommands["GetAxisOptions"] = "get-axis-options";
 	    // Reset the axis options .
@@ -8007,6 +8075,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	    DocCommands["SetAxisRange"] = "set-axis-range";
 	    // Synchronize dual axes on a folded quantitative axis
 	    DocCommands["SetAxisFoldState"] = "set-axis-fold-state";
+	    // 
+	    DocCommands["GetHighlightedData"] = "get-highlighted-data";
+	    // 
+	    DocCommands["GetSelectionData"] = "get-selection";
+	    // 
+	    DocCommands["Select"] = "select";
+	    // 
+	    DocCommands["SelectAll"] = "select-all";
+	    // 
+	    DocCommands["SelectByValue"] = "select-by-value";
+	    // 
+	    DocCommands["SelectNoneIncludingMaster"] = "select-none-including-master";
 	})(DocCommands = exports.DocCommands || (exports.DocCommands = {}));
 
 
@@ -8261,73 +8341,60 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var __extends = (this && this.__extends) || (function () {
-	    var extendStatics = Object.setPrototypeOf ||
-	        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-	        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-	    return function (d, b) {
-	        extendStatics(d, b);
-	        function __() { this.constructor = d; }
-	        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-	    };
-	})();
 	Object.defineProperty(exports, "__esModule", { value: true });
-	var Params_1 = __webpack_require__(12);
-	var api_internal_contract_1 = __webpack_require__(5);
-	var MappingRegistry_1 = __webpack_require__(17);
+	var Events_1 = __webpack_require__(17);
 	var PresLayerToApiConverter_1 = __webpack_require__(18);
-	var ApiToPresLayerConverter_1 = __webpack_require__(21);
-	var UnderlyingDataConverter_1 = __webpack_require__(22);
-	/*tslint:disable-next-line */
-	var id = function (inParam) { return inParam; };
+	var api_internal_contract_1 = __webpack_require__(5);
 	/**
-	 * Factory class for creating parameters mappings based on the VersionNumber of the Api
-	 *
-	 * @export
-	 * @class ParameterMappingRegistryFactory
+	 * Simple wrapper which holds a mapping to go from a pres-layer event to an API event
 	 */
-	var ParameterMappingRegistryFactory = (function () {
-	    function ParameterMappingRegistryFactory() {
+	var EventMappingRegistration = (function () {
+	    function EventMappingRegistration(presLayerId, apiId, converter) {
+	        this.presLayerId = presLayerId;
+	        this.apiId = apiId;
+	        this.converter = converter;
 	    }
-	    ParameterMappingRegistryFactory.CreatePresLayerToApiParamRegistry = function (versionNumber) {
-	        var result = new PresLayerToApiMappingRegistry();
-	        // TODO - check the version number and construct appropriate conversions
-	        result.AddRegistration(Params_1.ParameterId.AddInLocator, api_internal_contract_1.ParameterId.AddInLocator, PresLayerToApiConverter_1.PresLayerToApiConverter.ConvertAddInLocator);
-	        result.AddRegistration(Params_1.ParameterId.AddInBootstrapInfo, api_internal_contract_1.ParameterId.AddInBootstrapInfo, PresLayerToApiConverter_1.PresLayerToApiConverter.ConvertAddInBootstrapInfo);
-	        result.AddRegistration(Params_1.ParameterId.UnderlyingDataTable, api_internal_contract_1.ParameterId.UnderlyingDataTable, UnderlyingDataConverter_1.UnderlyingDataConverter.BuildUnderlyingDataTable.bind(undefined, false));
-	        result.AddRegistration(Params_1.ParameterId.UnderlyingDataTable, api_internal_contract_1.ParameterId.UnderlyingSummaryDataTable, UnderlyingDataConverter_1.UnderlyingDataConverter.BuildUnderlyingDataTable.bind(undefined, true));
-	        return result;
-	    };
-	    ParameterMappingRegistryFactory.CreateApiToPresLayerParamRegistry = function (versionNumber) {
-	        var result = new ApiToPresLayerMappingRegistry();
-	        // TODO - check the version number and construct appropriate conversions
-	        result.AddRegistration(api_internal_contract_1.ParameterId.AddInLocator, Params_1.ParameterId.AddInLocator, ApiToPresLayerConverter_1.ApiToPresLayerConverter.ConvertAddInLocator);
-	        result.AddRegistration(api_internal_contract_1.ParameterId.IgnoreAliases, Params_1.ParameterId.IgnoreAliases, id);
-	        result.AddRegistration(api_internal_contract_1.ParameterId.IgnoreSelection, Params_1.ParameterId.IgnoreSelection, id);
-	        result.AddRegistration(api_internal_contract_1.ParameterId.IncludeAllColumns, Params_1.ParameterId.IncludeAllColumns, id);
-	        result.AddRegistration(api_internal_contract_1.ParameterId.MaxRows, Params_1.ParameterId.MaxRows, id);
-	        result.AddRegistration(api_internal_contract_1.ParameterId.VisualId, Params_1.ParameterId.VisualIDPM, ApiToPresLayerConverter_1.ApiToPresLayerConverter.ConvertVisualId);
-	        return result;
-	    };
-	    return ParameterMappingRegistryFactory;
+	    Object.defineProperty(EventMappingRegistration.prototype, "PresLayerId", {
+	        get: function () {
+	            return this.presLayerId;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(EventMappingRegistration.prototype, "ApiId", {
+	        get: function () {
+	            return this.apiId;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(EventMappingRegistration.prototype, "Converter", {
+	        get: function () {
+	            return this.converter;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    return EventMappingRegistration;
 	}());
-	exports.ParameterMappingRegistryFactory = ParameterMappingRegistryFactory;
-	var ApiToPresLayerMappingRegistry = (function (_super) {
-	    __extends(ApiToPresLayerMappingRegistry, _super);
-	    function ApiToPresLayerMappingRegistry() {
-	        return _super !== null && _super.apply(this, arguments) || this;
+	exports.EventMappingRegistration = EventMappingRegistration;
+	var EventMappingRegistryFactory = (function () {
+	    function EventMappingRegistryFactory() {
 	    }
-	    return ApiToPresLayerMappingRegistry;
-	}(MappingRegistry_1.MappingRegistry));
-	exports.ApiToPresLayerMappingRegistry = ApiToPresLayerMappingRegistry;
-	var PresLayerToApiMappingRegistry = (function (_super) {
-	    __extends(PresLayerToApiMappingRegistry, _super);
-	    function PresLayerToApiMappingRegistry() {
-	        return _super !== null && _super.apply(this, arguments) || this;
-	    }
-	    return PresLayerToApiMappingRegistry;
-	}(MappingRegistry_1.MappingRegistry));
-	exports.PresLayerToApiMappingRegistry = PresLayerToApiMappingRegistry;
+	    /**
+	     * Creates and populates a new EventMappingRegistry for the specific version number requested
+	     *
+	     * @param {VersionNumber} versionNumber
+	     * @returns {EventMappingRegistry}
+	     */
+	    EventMappingRegistryFactory.CreateEventMappingRegistry = function (versionNumber) {
+	        var registry = {};
+	        registry[Events_1.NotificationId.SelectionChanged] = new EventMappingRegistration(Events_1.NotificationId.SelectionChanged, api_internal_contract_1.NotificationId.SelectedMarksChanged, PresLayerToApiConverter_1.PresLayerToApiConverter.ConvertVisualId);
+	        return registry;
+	    };
+	    return EventMappingRegistryFactory;
+	}());
+	exports.EventMappingRegistryFactory = EventMappingRegistryFactory;
 
 
 /***/ },
@@ -8335,58 +8402,108 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports) {
 
 	"use strict";
+	/* tslint:disable */
+	// -----------------------------------------------------------------------------
+	//
+	// This file is the copyrighted property of Tableau Software and is protected
+	// by registered patents and other applicable U.S. and international laws and
+	// regulations.
+	//
+	// Unlicensed use of the contents of this file is prohibited. Please refer to
+	// the NOTICES.txt file for further details.
+	//
+	// -----------------------------------------------------------------------------
+	// WARNING: Computer generated file.  Do not hand modify.
+	// DEPENDS ON: ['..\\git\\api-all-js\\api-core\\node_modules\\@tableau\\preslayer-codegen-typescript\\templates\\events-ts.template', u'..\\git\\api-all-js\\api-core\\temp-pres-layer\\all-events.data']
 	Object.defineProperty(exports, "__esModule", { value: true });
-	/**
-	 * Simple registry class which creates a mapping based on two keys.
-	 *
-	 * @export
-	 * @class MappingRegistry
-	 * @template TInputEnumType
-	 * @template TOutputEnumType
-	 * @template TMappingStorageType
-	 */
-	var MappingRegistry = (function () {
-	    function MappingRegistry() {
-	        this.registry = {};
-	    }
-	    /**
-	     * Combines the two keys into a unique string
-	     *
-	     * @private
-	     * @param {TInputEnumType} inputType
-	     * @param {TOutputEnumType} outputType
-	     * @returns {string}
-	     * @memberof MappingRegistry
-	     */
-	    MappingRegistry.prototype.MakeKey = function (inputType, outputType) {
-	        var keyObj = { input: inputType, output: outputType };
-	        return JSON.stringify(keyObj);
-	    };
-	    MappingRegistry.prototype.Has = function (inputType, outputType) {
-	        var key = this.MakeKey(inputType, outputType);
-	        if (!this.registry.hasOwnProperty(key)) {
-	            return false;
-	        }
-	        if (!this.registry[key]) {
-	            return false;
-	        }
-	        return true;
-	    };
-	    MappingRegistry.prototype.Get = function (inputType, outputType) {
-	        if (!this.Has(inputType, outputType)) {
-	            throw new Error('Missing requested mapping');
-	        }
-	        var key = this.MakeKey(inputType, outputType);
-	        return this.registry[key];
-	    };
-	    MappingRegistry.prototype.AddRegistration = function (inputType, outputType, storageItem) {
-	        var key = this.MakeKey(inputType, outputType);
-	        // Add this item
-	        this.registry[key] = storageItem;
-	    };
-	    return MappingRegistry;
-	}());
-	exports.MappingRegistry = MappingRegistry;
+	// Events you can register to receive presentation models
+	var NotificationId;
+	(function (NotificationId) {
+	    // Triggered when aliases are to be edited. Used to launch a dialog.
+	    NotificationId["EditAliasesDialogNotification"] = "edit-aliases-dialog-notification-event";
+	    // for the calculation dialog
+	    NotificationId["CalculationDialog"] = "calculation-dialog-event";
+	    // update for an adhoc calc in a type in pill
+	    NotificationId["TypeInPill"] = "type-in-pill-event";
+	    // results of a validation command
+	    NotificationId["CommandValidation"] = "command-validation-event";
+	    // event for the groups dialog
+	    NotificationId["UpdateCategoricalBinEditDialog"] = "update-categorical-bin-edit-dialog-event";
+	    // for the categorical color dialog
+	    NotificationId["CategoricalColor"] = "categorical-color-event";
+	    // update the web categorical color dialog
+	    NotificationId["WebCategoricalColorDialog"] = "web-categorical-color-dialog-event";
+	    // user invoked action which requires a Data Alert Dialog
+	    NotificationId["DataAlertDialog"] = "data-alert-dialog-event";
+	    // event for when the data source being edited is updated
+	    NotificationId["UpdateDataPreparation"] = "update-data-preparation-event";
+	    // event for when the data source data is updated
+	    NotificationId["UpdateDataSourceData"] = "update-data-source-data-event";
+	    // event for getting the pres model to update file join table properties
+	    NotificationId["TextFileProperties"] = "text-file-properties-event";
+	    // notify changes to the state of a filter's relational model
+	    NotificationId["FilterRelationalStateChanged"] = "filter-relational-state-changed-event";
+	    // notify changes to the size/selection count of a relational domain
+	    NotificationId["FilterRelationalDomainChanged"] = "filter-relational-domain-changed-event";
+	    // notify when filter cache was requested but not found
+	    NotificationId["FilterCacheNotFound"] = "filter-cache-not-found-event";
+	    // Hierarchy Select model observable notification.
+	    NotificationId["HierarchyNotification"] = "hierarchy-notification-event";
+	    // Hierarchy selection change notifications.
+	    NotificationId["HierarchySelection"] = "hierarchy-selection-event";
+	    // event for the bin dialog
+	    NotificationId["UpdateNumericBinEditDialog"] = "update-numeric-bin-edit-dialog-event";
+	    // event for the map options dialog
+	    NotificationId["MapOptionsDialog"] = "map-options-dialog-event";
+	    // notify the Page UI(hide/show states, layout) needs to be updated
+	    NotificationId["UpdatePageUINotification"] = "update-page-uinotification-event";
+	    // notify to the SceneView has been drawn.
+	    NotificationId["SceneViewDrawnNotification"] = "scene-view-drawn-notification-event";
+	    // The AnimationControlChange event fires when the user clicks an animation playback button: forward, stop, slow, fast, etc.
+	    NotificationId["AnimationControlChange"] = "animation-control-change-event";
+	    // update the web quantitative color dialog
+	    NotificationId["WebQuantitativeColorDialog"] = "web-quantitative-color-dialog-event";
+	    // update the axis edit dialog
+	    NotificationId["UpdateEditAxisDialog"] = "update-edit-axis-dialog-event";
+	    // event for the reference line dialog, which is only valid during web authoring
+	    NotificationId["UpdateRefLineDialog"] = "update-ref-line-dialog-event";
+	    // event to trigger other reference line dialogs to close
+	    NotificationId["RefLineDialogOpening"] = "ref-line-dialog-opening-event";
+	    // event for the close data source error dialog, which is only valid during web authoring
+	    NotificationId["CloseDataSourceErrorDialog"] = "close-data-source-error-dialog-event";
+	    // update the web Save Datasource dialog
+	    NotificationId["WebSaveDatasourceDialog"] = "web-save-datasource-dialog-event";
+	    // warning resulting from WarningMsg
+	    NotificationId["WarningMessage"] = "warning-message-event";
+	    // event for the table calc dialog, on web, this is only valid during web authoring
+	    NotificationId["TableCalcDialog"] = "table-calc-dialog-event";
+	    // user invoked action which requires Table Calc Dialog
+	    NotificationId["TableCalcActivateDialog"] = "table-calc-activate-dialog-event";
+	    // event for the trend line dialog
+	    NotificationId["UpdateTrendLineEditDialog"] = "update-trend-line-edit-dialog-event";
+	    // The table page cache has been refreshed; pages must be reloaded from the cache.
+	    NotificationId["PageCacheRefresh"] = "page-cache-refresh-event";
+	    // The table page cache has expired and all resources have been released.
+	    NotificationId["PageCacheExpired"] = "page-cache-expired-event";
+	    // All pages, identified by row/col, in the provided list have expired and should be reloaded.
+	    NotificationId["PageCachePagesExpired"] = "page-cache-pages-expired-event";
+	    // All pages betweem the range (inclusive) in the provided list have expired and should be reloaded.
+	    NotificationId["PageCachePageRangeExpired"] = "page-cache-page-range-expired-event";
+	    // Update for the rich text editor dialog
+	    NotificationId["RichTextEditorDialog"] = "rich-text-editor-dialog-event";
+	    // notification to launch the hybrid UI showcase
+	    NotificationId["LaunchHybridUIShowcase"] = "launch-hybrid-uishowcase-event";
+	    // notification of new echoed text for HybridUI showcase demo
+	    NotificationId["HybridUIShowcaseEcho"] = "hybrid-uishowcase-echo-event";
+	    // Triggered when the user wants to reload an add-in instance.
+	    NotificationId["ReloadAddIn"] = "reload-add-in-event";
+	    // Triggered when the selected marks have changed.
+	    NotificationId["SelectionChanged"] = "selection-changed-event";
+	    // a test event with a pres model
+	    NotificationId["TestEventWithModel"] = "test-event-with-model-event";
+	    // a test event without a pres model
+	    NotificationId["TestEventWithoutModel"] = "test-event-without-model-event";
+	})(NotificationId = exports.NotificationId || (exports.NotificationId = {}));
 
 
 /***/ },
@@ -8412,6 +8529,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	            Storyboard: plSheetPath.storyboard,
 	            FlipboardZoneID: plSheetPath.flipboardZoneId,
 	            StoryPointID: plSheetPath.storyPointId,
+	        };
+	        return result;
+	    };
+	    PresLayerToApiConverter.ConvertVisualId = function (plVisualId) {
+	        var result = {
+	            Worksheet: plVisualId.worksheet,
+	            Dashboard: plVisualId.dashboard,
+	            Storyboard: plVisualId.storyboard,
+	            FlipboardZoneID: plVisualId.flipboardZoneId,
+	            StoryPointID: plVisualId.storyPointId,
 	        };
 	        return result;
 	    };
@@ -8471,9 +8598,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        };
 	        return result;
 	    };
-	    PresLayerToApiConverter.ConvertAddInSettings = function (plAddInSettings) {
+	    PresLayerToApiConverter.ConvertAddInSettingsInfo = function (plAddInSettings) {
 	        var result = {
-	            SettingsValues: plAddInSettings.addInSettings
+	            // addInSettings is undefined during bootstrap initialization
+	            SettingsValues: plAddInSettings.addInSettings || {}
 	        };
 	        return result;
 	    };
@@ -8482,7 +8610,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            AddinDashboardInfo: PresLayerToApiConverter.ConvertDashboardInfo(plBootstrapInfo.addInDashboardInfoPresModel),
 	            AddInEnvironment: PresLayerToApiConverter.ConvertAddInEnivrionment(plBootstrapInfo.addInEnvironmentPresModel),
 	            AddInInstance: PresLayerToApiConverter.ConvertAddInInstance(plBootstrapInfo.addInInstancePresModel),
-	            AddInSettingsInfo: PresLayerToApiConverter.ConvertAddInSettings(plBootstrapInfo.addInSettingsInfo)
+	            AddInSettingsInfo: PresLayerToApiConverter.ConvertAddInSettingsInfo(plBootstrapInfo.addInSettingsInfo)
 	        };
 	        return result;
 	    };
@@ -8497,8 +8625,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	"use strict";
 	Object.defineProperty(exports, "__esModule", { value: true });
-	var Enums = __webpack_require__(20);
 	var api_internal_contract_1 = __webpack_require__(5);
+	var Enums = __webpack_require__(20);
 	var EnumConverter = (function () {
 	    function EnumConverter(mappings, defaultVal) {
 	        this.defaultVal = undefined;
@@ -8588,7 +8716,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	//
 	// -----------------------------------------------------------------------------
 	// WARNING: Computer generated file.  Do not hand modify.
-	// DEPENDS ON: ['..\\git\\api-core\\node_modules\\@tableau\\preslayer-codegen-typescript\\templates\\enum-ts.template', u'modules\\web\\api-core\\src\\preslayer\\all-enums.data']
+	// DEPENDS ON: ['..\\git\\api-all-js\\api-core\\node_modules\\@tableau\\preslayer-codegen-typescript\\templates\\enum-ts.template', u'..\\git\\api-all-js\\api-core\\temp-pres-layer\\all-enums.data']
 	Object.defineProperty(exports, "__esModule", { value: true });
 	// type of aggregation
 	var AggType;
@@ -14790,56 +14918,242 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 21 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || (function () {
+	    var extendStatics = Object.setPrototypeOf ||
+	        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+	        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+	    return function (d, b) {
+	        extendStatics(d, b);
+	        function __() { this.constructor = d; }
+	        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	    };
+	})();
+	Object.defineProperty(exports, "__esModule", { value: true });
+	var Params_1 = __webpack_require__(12);
+	var api_internal_contract_1 = __webpack_require__(5);
+	var MappingRegistry_1 = __webpack_require__(22);
+	var PresLayerToApiConverter_1 = __webpack_require__(18);
+	var ActiveMarksDataConverter_1 = __webpack_require__(23);
+	var ApiToPresLayerConverter_1 = __webpack_require__(25);
+	var UnderlyingDataConverter_1 = __webpack_require__(24);
+	/*tslint:disable-next-line */
+	var id = function (inParam) { return inParam; };
+	/**
+	 * Factory class for creating parameters mappings based on the VersionNumber of the Api
+	 *
+	 * @export
+	 * @class ParameterMappingRegistryFactory
+	 */
+	var ParameterMappingRegistryFactory = (function () {
+	    function ParameterMappingRegistryFactory() {
+	    }
+	    ParameterMappingRegistryFactory.CreatePresLayerToApiParamRegistry = function (versionNumber) {
+	        var result = new PresLayerToApiMappingRegistry();
+	        // TODO - check the version number and construct appropriate conversions
+	        result.AddRegistration(Params_1.ParameterId.AddInLocator, api_internal_contract_1.ParameterId.AddInLocator, PresLayerToApiConverter_1.PresLayerToApiConverter.ConvertAddInLocator);
+	        result.AddRegistration(Params_1.ParameterId.AddInBootstrapInfo, api_internal_contract_1.ParameterId.AddInBootstrapInfo, PresLayerToApiConverter_1.PresLayerToApiConverter.ConvertAddInBootstrapInfo);
+	        result.AddRegistration(Params_1.ParameterId.UnderlyingDataTable, api_internal_contract_1.ParameterId.UnderlyingDataTable, UnderlyingDataConverter_1.UnderlyingDataConverter.BuildUnderlyingDataTable.bind(undefined, false));
+	        result.AddRegistration(Params_1.ParameterId.UnderlyingDataTable, api_internal_contract_1.ParameterId.UnderlyingSummaryDataTable, UnderlyingDataConverter_1.UnderlyingDataConverter.BuildUnderlyingDataTable.bind(undefined, true));
+	        result.AddRegistration(Params_1.ParameterId.SelectionData, api_internal_contract_1.ParameterId.SelectedData, ActiveMarksDataConverter_1.ActiveMarksDataConverter.BuildSelectedDataTable);
+	        result.AddRegistration(Params_1.ParameterId.HighlightedData, api_internal_contract_1.ParameterId.HighlightedData, ActiveMarksDataConverter_1.ActiveMarksDataConverter.BuildHighlightedDataTable);
+	        result.AddRegistration(Params_1.ParameterId.AddInSettingsInfo, api_internal_contract_1.ParameterId.AddInSettingsInfo, PresLayerToApiConverter_1.PresLayerToApiConverter.ConvertAddInSettingsInfo);
+	        return result;
+	    };
+	    ParameterMappingRegistryFactory.CreateApiToPresLayerParamRegistry = function (versionNumber) {
+	        var result = new ApiToPresLayerMappingRegistry();
+	        // TODO - check the version number and construct appropriate conversions
+	        result.AddRegistration(api_internal_contract_1.ParameterId.AddInLocator, Params_1.ParameterId.AddInLocator, ApiToPresLayerConverter_1.ApiToPresLayerConverter.ConvertAddInLocator);
+	        result.AddRegistration(api_internal_contract_1.ParameterId.SettingsValues, Params_1.ParameterId.AddInSettings, id);
+	        result.AddRegistration(api_internal_contract_1.ParameterId.IgnoreAliases, Params_1.ParameterId.IgnoreAliases, id);
+	        result.AddRegistration(api_internal_contract_1.ParameterId.IgnoreSelection, Params_1.ParameterId.IgnoreSelection, id);
+	        result.AddRegistration(api_internal_contract_1.ParameterId.IncludeAllColumns, Params_1.ParameterId.IncludeAllColumns, id);
+	        result.AddRegistration(api_internal_contract_1.ParameterId.MaxRows, Params_1.ParameterId.MaxRows, id);
+	        result.AddRegistration(api_internal_contract_1.ParameterId.VisualId, Params_1.ParameterId.VisualIDPM, ApiToPresLayerConverter_1.ApiToPresLayerConverter.ConvertVisualId);
+	        return result;
+	    };
+	    return ParameterMappingRegistryFactory;
+	}());
+	exports.ParameterMappingRegistryFactory = ParameterMappingRegistryFactory;
+	var ApiToPresLayerMappingRegistry = (function (_super) {
+	    __extends(ApiToPresLayerMappingRegistry, _super);
+	    function ApiToPresLayerMappingRegistry() {
+	        return _super !== null && _super.apply(this, arguments) || this;
+	    }
+	    return ApiToPresLayerMappingRegistry;
+	}(MappingRegistry_1.MappingRegistry));
+	exports.ApiToPresLayerMappingRegistry = ApiToPresLayerMappingRegistry;
+	var PresLayerToApiMappingRegistry = (function (_super) {
+	    __extends(PresLayerToApiMappingRegistry, _super);
+	    function PresLayerToApiMappingRegistry() {
+	        return _super !== null && _super.apply(this, arguments) || this;
+	    }
+	    return PresLayerToApiMappingRegistry;
+	}(MappingRegistry_1.MappingRegistry));
+	exports.PresLayerToApiMappingRegistry = PresLayerToApiMappingRegistry;
+
+
+/***/ },
+/* 22 */
 /***/ function(module, exports) {
 
 	"use strict";
 	Object.defineProperty(exports, "__esModule", { value: true });
 	/**
-	 * Class containing helper methods for converting from ApiPresModels to their PresLayer equivalents
+	 * Simple registry class which creates a mapping based on two keys.
 	 *
 	 * @export
-	 * @class ApiToPresLayerConverter
+	 * @class MappingRegistry
+	 * @template TInputEnumType
+	 * @template TOutputEnumType
+	 * @template TMappingStorageType
 	 */
-	var ApiToPresLayerConverter = (function () {
-	    function ApiToPresLayerConverter() {
+	var MappingRegistry = (function () {
+	    function MappingRegistry() {
+	        this.registry = {};
 	    }
-	    ApiToPresLayerConverter.ConvertSheetPath = function (apiSheetPath) {
-	        if (!apiSheetPath) {
-	            throw new Error('sheetPath not defined');
+	    /**
+	     * Combines the two keys into a unique string
+	     *
+	     * @private
+	     * @param {TInputEnumType} inputType
+	     * @param {TOutputEnumType} outputType
+	     * @returns {string}
+	     * @memberof MappingRegistry
+	     */
+	    MappingRegistry.prototype.MakeKey = function (inputType, outputType) {
+	        var keyObj = { input: inputType, output: outputType };
+	        return JSON.stringify(keyObj);
+	    };
+	    MappingRegistry.prototype.Has = function (inputType, outputType) {
+	        var key = this.MakeKey(inputType, outputType);
+	        if (!this.registry.hasOwnProperty(key)) {
+	            return false;
 	        }
-	        var result = {
-	            sheetName: apiSheetPath.SheetName,
-	            isDashboard: apiSheetPath.IsDashboard,
-	            storyboard: apiSheetPath.Storyboard || '',
-	            flipboardZoneId: apiSheetPath.FlipboardZoneID || 0,
-	            storyPointId: apiSheetPath.StoryPointID || 0,
-	        };
-	        return result;
+	        if (!this.registry[key]) {
+	            return false;
+	        }
+	        return true;
 	    };
-	    ApiToPresLayerConverter.ConvertAddInLocator = function (apiAddInLocator) {
-	        var result = {
-	            addInInstanceId: apiAddInLocator.InstanceId,
-	            sheetPath: ApiToPresLayerConverter.ConvertSheetPath(apiAddInLocator.DashboardPath)
-	        };
-	        return result;
+	    MappingRegistry.prototype.Get = function (inputType, outputType) {
+	        if (!this.Has(inputType, outputType)) {
+	            throw new Error('Missing requested mapping: ' + inputType + ' to ' + outputType);
+	        }
+	        var key = this.MakeKey(inputType, outputType);
+	        return this.registry[key];
 	    };
-	    ApiToPresLayerConverter.ConvertVisualId = function (apiVisualid) {
-	        var result = {
-	            worksheet: apiVisualid.Worksheet,
-	            dashboard: apiVisualid.Dashboard,
-	            storyboard: apiVisualid.Storyboard,
-	            storyPointId: apiVisualid.StoryPointID,
-	            flipboardZoneId: apiVisualid.FlipboardZoneID
-	        };
-	        return result;
+	    MappingRegistry.prototype.AddRegistration = function (inputType, outputType, storageItem) {
+	        var key = this.MakeKey(inputType, outputType);
+	        // Add this item
+	        this.registry[key] = storageItem;
 	    };
-	    return ApiToPresLayerConverter;
+	    return MappingRegistry;
 	}());
-	exports.ApiToPresLayerConverter = ApiToPresLayerConverter;
+	exports.MappingRegistry = MappingRegistry;
 
 
 /***/ },
-/* 22 */
+/* 23 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	var EnumMappings_1 = __webpack_require__(19);
+	var UnderlyingDataConverter_1 = __webpack_require__(24);
+	/**
+	 * Contains logic for converting the active marks on a viz into the API pres models.
+	 * In the original project, most of this was in the ProcessActiveMarks function
+	 */
+	var ActiveMarksDataConverter = (function () {
+	    function ActiveMarksDataConverter() {
+	    }
+	    ActiveMarksDataConverter.BuildActiveMarksList = function (dataDictionary, vizData) {
+	        var result = new Array();
+	        var _loop_1 = function (i) {
+	            // Need to filter to find all the columns which are in this pane
+	            var columns = vizData.paneColumnsData.vizDataColumns.filter(function (vizDataColumn) {
+	                // We know this column matters for the current pane if this pane's index is in paneIndices
+	                return vizDataColumn.paneIndices.indexOf(i) > -1;
+	            });
+	            // Create a mapping of which index in the data dictionary our columns are in
+	            var columnIndices = columns.map(function (vizDataColumn) {
+	                // The columnIndex is in the same position as the paneIndex
+	                var paneIndex = vizDataColumn.paneIndices.indexOf(i);
+	                var columnIndex = vizDataColumn.columnIndices[paneIndex];
+	                return columnIndex;
+	            });
+	            // Get the data for the pane we are processing
+	            var vizPane = vizData.paneColumnsData.paneColumnsList[i];
+	            if (vizPane.vizPaneColumns.length !== columns.length) {
+	                throw new Error('Malformed data table');
+	            }
+	            var headers = new Array();
+	            var rows = new Array();
+	            // Column 0 will be the tuple id column. We can use this as a counter for how many rows we have
+	            var tupleIds = vizPane.vizPaneColumns[0].tupleIds;
+	            for (var tupleIndex = 0; tupleIndex < tupleIds.length; tupleIndex++) {
+	                // We will have 1 less value in this row since there's the tupleId column
+	                var cells = new Array(vizPane.vizPaneColumns.length - 1);
+	                for (var j = 1 /* skip the first which is tuple ids */; j < vizPane.vizPaneColumns.length; j++) {
+	                    // Next, we need to figure out which column we are reading data for
+	                    var column = columns[columnIndices[j]];
+	                    var vizPaneColumnData = vizPane.vizPaneColumns[j];
+	                    // Define the header when we are processing the first row
+	                    if (tupleIndex === 0) {
+	                        var header = {
+	                            DataType: EnumMappings_1.PresLayerToApiEnumMappings.DataType.Convert(column.dataType),
+	                            FieldName: column.fn,
+	                            IsReferenced: true,
+	                            Index: j - 1,
+	                            FieldCaption: column.fieldCaption
+	                        };
+	                        headers.push(header);
+	                    }
+	                    var value = UnderlyingDataConverter_1.UnderlyingDataConverter.LookupValueFromDictionary(dataDictionary, column.dataType, vizPaneColumnData.valueIndices[tupleIndex]);
+	                    var aliasValue = UnderlyingDataConverter_1.UnderlyingDataConverter.LookupValueFromDictionary(dataDictionary, column.dataType, vizPaneColumnData.aliasIndices[tupleIndex]) || '';
+	                    var formattedValue = aliasValue; // TODO - Figure out how to use the formatStrings
+	                    var dataCell = {
+	                        Value: value,
+	                        FormattedValue: formattedValue,
+	                        AliasedValue: aliasValue
+	                    };
+	                    // Add our cell to this row
+	                    cells[j - 1] = dataCell;
+	                }
+	                rows.push(cells);
+	            }
+	            var dataTable = {
+	                DataTable: rows,
+	                Headers: headers
+	            };
+	            result.push(dataTable);
+	        };
+	        // The data model for the VizDataPresModel is a little strange, so this parsing takes some time to figure out.
+	        // There can be multiple panes of data, so we must go through them one at a time to create data tables
+	        for (var i = 0; i < vizData.paneColumnsData.paneColumnsList.length; i++) {
+	            _loop_1(i);
+	        }
+	        return result;
+	    };
+	    ActiveMarksDataConverter.BuildSelectedDataTable = function (selectedData) {
+	        return {
+	            Data: ActiveMarksDataConverter.BuildActiveMarksList(selectedData.dataDictionary, selectedData.vizData)
+	        };
+	    };
+	    ActiveMarksDataConverter.BuildHighlightedDataTable = function (highlightedData) {
+	        return {
+	            Data: ActiveMarksDataConverter.BuildActiveMarksList(highlightedData.dataDictionary, highlightedData.vizData)
+	        };
+	    };
+	    return ActiveMarksDataConverter;
+	}());
+	exports.ActiveMarksDataConverter = ActiveMarksDataConverter;
+
+
+/***/ },
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -14941,13 +15255,66 @@ return /******/ (function(modules) { // webpackBootstrap
 	        };
 	        return result;
 	    };
+	    UnderlyingDataConverter.BuildActiveMarksTable = function (dataDictionary, vizData) {
+	        throw new Error();
+	    };
 	    return UnderlyingDataConverter;
 	}());
 	exports.UnderlyingDataConverter = UnderlyingDataConverter;
 
 
 /***/ },
-/* 23 */
+/* 25 */
+/***/ function(module, exports) {
+
+	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	/**
+	 * Class containing helper methods for converting from ApiPresModels to their PresLayer equivalents
+	 *
+	 * @export
+	 * @class ApiToPresLayerConverter
+	 */
+	var ApiToPresLayerConverter = (function () {
+	    function ApiToPresLayerConverter() {
+	    }
+	    ApiToPresLayerConverter.ConvertSheetPath = function (apiSheetPath) {
+	        if (!apiSheetPath) {
+	            throw new Error('sheetPath not defined');
+	        }
+	        var result = {
+	            sheetName: apiSheetPath.SheetName,
+	            isDashboard: apiSheetPath.IsDashboard,
+	            storyboard: apiSheetPath.Storyboard || '',
+	            flipboardZoneId: apiSheetPath.FlipboardZoneID || 0,
+	            storyPointId: apiSheetPath.StoryPointID || 0,
+	        };
+	        return result;
+	    };
+	    ApiToPresLayerConverter.ConvertAddInLocator = function (apiAddInLocator) {
+	        var result = {
+	            addInInstanceId: apiAddInLocator.InstanceId,
+	            sheetPath: ApiToPresLayerConverter.ConvertSheetPath(apiAddInLocator.DashboardPath)
+	        };
+	        return result;
+	    };
+	    ApiToPresLayerConverter.ConvertVisualId = function (apiVisualid) {
+	        var result = {
+	            worksheet: apiVisualid.Worksheet,
+	            dashboard: apiVisualid.Dashboard,
+	            storyboard: apiVisualid.Storyboard,
+	            storyPointId: apiVisualid.StoryPointID,
+	            flipboardZoneId: apiVisualid.FlipboardZoneID
+	        };
+	        return result;
+	    };
+	    return ApiToPresLayerConverter;
+	}());
+	exports.ApiToPresLayerConverter = ApiToPresLayerConverter;
+
+
+/***/ },
+/* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -14968,7 +15335,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 24 */
+/* 27 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -14983,7 +15350,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 	var DesktopApiDispatcher = (function () {
 	    function DesktopApiDispatcher(apiEventHandler) {
+	        var _this = this;
 	        this.apiEventHandler = apiEventHandler;
+	        this.notificationHandlers = [];
+	        this.apiEventHandler.SetEventHandler(function (notification) {
+	            _this.notificationHandlers.forEach(function (handler) { return handler(notification); });
+	        });
 	    }
 	    DesktopApiDispatcher.prototype.SetVersionNumber = function (versionNumber) {
 	        this.apiEventHandler.SetVersionNumber(versionNumber);
@@ -14993,10 +15365,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return this.apiEventHandler.Execute(verb, parameters);
 	    };
 	    DesktopApiDispatcher.prototype.RegisterNotificationHandler = function (handler) {
-	        throw new Error('Method not implemented.');
+	        this.notificationHandlers.push(handler);
 	    };
 	    DesktopApiDispatcher.prototype.UnregisterNotificationHandler = function (handler) {
-	        throw new Error('Method not implemented.');
+	        this.notificationHandlers = this.notificationHandlers.filter(function (h) { return h !== handler; });
 	    };
 	    return DesktopApiDispatcher;
 	}());
@@ -15004,13 +15376,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 25 */
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	Object.defineProperty(exports, "__esModule", { value: true });
-	var qwebchannel_1 = __webpack_require__(26);
-	__webpack_require__(27);
+	var qwebchannel_1 = __webpack_require__(29);
+	__webpack_require__(30);
 	/**
 	 * Initializes the QWebChannel contract and returns the pres layer interop object
 	 *
@@ -15035,7 +15407,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 26 */
+/* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/****************************************************************************
@@ -15453,7 +15825,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 27 */
+/* 30 */
 /***/ function(module, exports) {
 
 

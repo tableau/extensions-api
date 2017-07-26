@@ -114,12 +114,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", { value: true });
 	var api_internal_contract_1 = __webpack_require__(3);
 	var api_shared_1 = __webpack_require__(9);
-	var Dashboard_1 = __webpack_require__(22);
-	var DashboardImpl_1 = __webpack_require__(25);
-	var DashboardContent_1 = __webpack_require__(31);
-	var Environment_1 = __webpack_require__(32);
-	var AddInServiceNames_1 = __webpack_require__(33);
-	var RegisterAllAddInServices_1 = __webpack_require__(34);
+	var Dashboard_1 = __webpack_require__(29);
+	var DashboardImpl_1 = __webpack_require__(31);
+	var DashboardContent_1 = __webpack_require__(37);
+	var Environment_1 = __webpack_require__(38);
+	var AddInServiceNames_1 = __webpack_require__(39);
+	var RegisterAllAddInServices_1 = __webpack_require__(40);
 	var AddInImpl = (function () {
 	    function AddInImpl() {
 	    }
@@ -274,10 +274,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	"use strict";
 	Object.defineProperty(exports, "__esModule", { value: true });
-	var NotificationId = {
-	    SelectedMarksChanged: 'selected-marks-changed',
-	};
-	exports.NotificationId = NotificationId;
+	var NotificationId;
+	(function (NotificationId) {
+	    NotificationId["SelectedMarksChanged"] = "selected-marks-changed";
+	})(NotificationId = exports.NotificationId || (exports.NotificationId = {}));
 
 
 /***/ },
@@ -286,20 +286,23 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	"use strict";
 	Object.defineProperty(exports, "__esModule", { value: true });
-	var ParameterId = {
-	    AddInLocator: 'add-in-locator',
-	    AddInBootstrapInfo: 'add-in-bootstrap-info',
-	    VisualId: 'visual-id',
-	    SheetPath: 'sheet-path',
-	    IgnoreAliases: 'ignore-aliases',
-	    IgnoreSelection: 'ignore-selection',
-	    IncludeAllColumns: 'include-all-columns',
-	    MaxRows: 'max-rows',
-	    UnderlyingDataTable: 'underlying-data-table',
-	    UnderlyingSummaryDataTable: 'underlying-summary-data-table',
-	    SettingsValues: 'settings-values'
-	};
-	exports.ParameterId = ParameterId;
+	var ParameterId;
+	(function (ParameterId) {
+	    ParameterId["AddInLocator"] = "add-in-locator";
+	    ParameterId["AddInBootstrapInfo"] = "add-in-bootstrap-info";
+	    ParameterId["AddInSettingsInfo"] = "add-in-settings-info";
+	    ParameterId["VisualId"] = "visual-id";
+	    ParameterId["SheetPath"] = "sheet-path";
+	    ParameterId["IgnoreAliases"] = "ignore-aliases";
+	    ParameterId["IgnoreSelection"] = "ignore-selection";
+	    ParameterId["IncludeAllColumns"] = "include-all-columns";
+	    ParameterId["MaxRows"] = "max-rows";
+	    ParameterId["UnderlyingDataTable"] = "underlying-data-table";
+	    ParameterId["UnderlyingSummaryDataTable"] = "underlying-summary-data-table";
+	    ParameterId["SettingsValues"] = "settings-values";
+	    ParameterId["SelectedData"] = "selected-data";
+	    ParameterId["HighlightedData"] = "highlighted-data";
+	})(ParameterId = exports.ParameterId || (exports.ParameterId = {}));
 
 
 /***/ },
@@ -308,13 +311,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	"use strict";
 	Object.defineProperty(exports, "__esModule", { value: true });
-	var VerbId = {
-	    InitializeAddIn: 'initialize-add-in',
-	    GetDataSummaryData: 'get-summary-data',
-	    GetUnderlyingData: 'get-underlying-data',
-	    SaveAddInSettings: 'save-add-in-settings'
-	};
-	exports.VerbId = VerbId;
+	var VerbId;
+	(function (VerbId) {
+	    VerbId["InitializeAddIn"] = "initialize-add-in";
+	    VerbId["GetDataSummaryData"] = "get-summary-data";
+	    VerbId["GetUnderlyingData"] = "get-underlying-data";
+	    VerbId["SaveAddInSettings"] = "save-add-in-settings";
+	    VerbId["GetSelectedMarks"] = "get-selected-marks";
+	    VerbId["GetHighlightedMarks"] = "get-highlighted-marks";
+	})(VerbId = exports.VerbId || (exports.VerbId = {}));
 
 
 /***/ },
@@ -335,12 +340,52 @@ return /******/ (function(modules) { // webpackBootstrap
 	__export(__webpack_require__(11));
 	__export(__webpack_require__(12));
 	__export(__webpack_require__(13));
-	__export(__webpack_require__(14));
+	__export(__webpack_require__(18));
+	__export(__webpack_require__(17));
+	__export(__webpack_require__(16));
 	__export(__webpack_require__(19));
+	__export(__webpack_require__(20));
+	__export(__webpack_require__(21));
+	__export(__webpack_require__(22));
+	__export(__webpack_require__(26));
 
 
 /***/ },
 /* 10 */
+/***/ function(module, exports) {
+
+	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	/**
+	 * Class designed to register and unregister handlers from a user. Only those events
+	 * which are added via AddNewEventType will be supported by this instance
+	 */
+	var EventListenerManager = (function () {
+	    function EventListenerManager() {
+	        this.eventListenerManagers = {};
+	    }
+	    EventListenerManager.prototype.AddEventListener = function (eventType, handler) {
+	        if (!this.eventListenerManagers.hasOwnProperty(eventType)) {
+	            throw new Error("Unsupported event type : " + eventType);
+	        }
+	        return this.eventListenerManagers[eventType].AddEventListener(handler);
+	    };
+	    EventListenerManager.prototype.RemoveEventListener = function (eventType, handler) {
+	        if (!this.eventListenerManagers.hasOwnProperty(eventType)) {
+	            throw new Error("Unsupported event type : " + eventType);
+	        }
+	        return this.eventListenerManagers[eventType].RemoveEventListener(handler);
+	    };
+	    EventListenerManager.prototype.AddNewEventType = function (eventManager) {
+	        this.eventListenerManagers[eventManager.EventType] = eventManager;
+	    };
+	    return EventListenerManager;
+	}());
+	exports.EventListenerManager = EventListenerManager;
+
+
+/***/ },
+/* 11 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -393,7 +438,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	}());
 	exports.DataTable = DataTable;
 	var Column = (function () {
-	    function Column(fieldName, dataType, isReferenced, index) {
+	    function Column(fieldName, dataType, // TODO: this shoudl be an enum type
+	        isReferenced, index) {
 	        this.fieldName = fieldName;
 	        this.dataType = dataType;
 	        this.isReferenced = isReferenced;
@@ -431,6 +477,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}());
 	exports.Column = Column;
 	var DataValue = (function () {
+	    /* tslint:disable:no-any */
 	    function DataValue(value, formattedValue) {
 	        this.value = value;
 	        this.formattedValue = formattedValue;
@@ -455,7 +502,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 11 */
+/* 12 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -469,153 +516,38 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 12 */
-/***/ function(module, exports) {
-
-	"use strict";
-	Object.defineProperty(exports, "__esModule", { value: true });
-	/**
-	 * Defines which type of getData call to make.
-	 */
-	var GetDataType;
-	(function (GetDataType) {
-	    GetDataType["Summary"] = "summary";
-	    GetDataType["Underlying"] = "underlying";
-	})(GetDataType = exports.GetDataType || (exports.GetDataType = {}));
-
-
-/***/ },
 /* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
+	var __extends = (this && this.__extends) || (function () {
+	    var extendStatics = Object.setPrototypeOf ||
+	        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+	        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+	    return function (d, b) {
+	        extendStatics(d, b);
+	        function __() { this.constructor = d; }
+	        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	    };
+	})();
 	Object.defineProperty(exports, "__esModule", { value: true });
-	var ServiceRegistry_1 = __webpack_require__(14);
-	var GetDataServiceImpl_1 = __webpack_require__(15);
-	function RegisterAllSharedServices(dispatcher) {
-	    ServiceRegistry_1.ApiServiceRegistry.Instance.RegisterService(new GetDataServiceImpl_1.GetDataServiceImpl(dispatcher));
-	    // TODO - more shared services
-	}
-	exports.RegisterAllSharedServices = RegisterAllSharedServices;
+	var api_external_contract_1 = __webpack_require__(14);
+	var TableauWorksheetEvent_1 = __webpack_require__(16);
+	var MarksSelectedEvent = (function (_super) {
+	    __extends(MarksSelectedEvent, _super);
+	    function MarksSelectedEvent(worksheet) {
+	        return _super.call(this, api_external_contract_1.TableauEventType.MARK_SELECTION_CHANGED, worksheet) || this;
+	    }
+	    MarksSelectedEvent.prototype.GetMarksAsync = function () {
+	        return this.Worksheet.GetSelectedMarksAsync();
+	    };
+	    return MarksSelectedEvent;
+	}(TableauWorksheetEvent_1.TableauWorksheetEvent));
+	exports.MarksSelectedEvent = MarksSelectedEvent;
 
 
 /***/ },
 /* 14 */
-/***/ function(module, exports) {
-
-	"use strict";
-	Object.defineProperty(exports, "__esModule", { value: true });
-	/**
-	 * Collection of service name which will be registered in the api-shared project
-	 */
-	exports.ServiceNames = {
-	    GetData: 'get-data-service'
-	};
-	var ServiceRegistryImpl = (function () {
-	    function ServiceRegistryImpl() {
-	        this.services = {};
-	    }
-	    ServiceRegistryImpl.prototype.RegisterService = function (service) {
-	        this.services[service.serviceName] = service;
-	    };
-	    ServiceRegistryImpl.prototype.GetService = function (serviceName) {
-	        if (!this.services.hasOwnProperty(serviceName)) {
-	            throw new Error("No Service " + serviceName + " is registered");
-	        }
-	        return this.services[serviceName];
-	    };
-	    return ServiceRegistryImpl;
-	}());
-	/**
-	 * static class used for getting access to the single instance
-	 * of the ApiServiceRegistry
-	 */
-	var ApiServiceRegistry = (function () {
-	    // Private to avoid anyone constructing this
-	    function ApiServiceRegistry() {
-	    }
-	    Object.defineProperty(ApiServiceRegistry, "Instance", {
-	        /**
-	         * Gets the singleton instance of the ServiceRegistry
-	         */
-	        get: function () {
-	            if (!window.__tableauApiServiceRegistry) {
-	                ApiServiceRegistry.SetInstance(new ServiceRegistryImpl());
-	            }
-	            if (!window.__tableauApiServiceRegistry) {
-	                throw new Error('Assigning service registry failed');
-	            }
-	            return window.__tableauApiServiceRegistry;
-	        },
-	        enumerable: true,
-	        configurable: true
-	    });
-	    /**
-	     * Helper method to override the registry instance. Can be used by unit tests
-	     *
-	     * @param {ServiceRegistry} serviceRegistry The new registry
-	     */
-	    ApiServiceRegistry.SetInstance = function (serviceRegistry) {
-	        window.__tableauApiServiceRegistry = serviceRegistry;
-	    };
-	    return ApiServiceRegistry;
-	}());
-	exports.ApiServiceRegistry = ApiServiceRegistry;
-
-
-/***/ },
-/* 15 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	Object.defineProperty(exports, "__esModule", { value: true });
-	var GetDataService_1 = __webpack_require__(12);
-	var ServiceRegistry_1 = __webpack_require__(14);
-	var GetDataModels_1 = __webpack_require__(10);
-	var api_external_contract_1 = __webpack_require__(16);
-	var api_internal_contract_1 = __webpack_require__(18);
-	var GetDataServiceImpl = (function () {
-	    function GetDataServiceImpl(dispatcher) {
-	        this.dispatcher = dispatcher;
-	    }
-	    Object.defineProperty(GetDataServiceImpl.prototype, "serviceName", {
-	        get: function () {
-	            return ServiceRegistry_1.ServiceNames.GetData;
-	        },
-	        enumerable: true,
-	        configurable: true
-	    });
-	    GetDataServiceImpl.prototype.GetUnderlyingDataAsync = function (visualid, getType, ignoreAliases, ignoreSelection, includeAllColumns, maxRows) {
-	        var _this = this;
-	        // Create all of our parameters
-	        var verb = getType === GetDataService_1.GetDataType.Summary ? api_internal_contract_1.VerbId.GetDataSummaryData : api_internal_contract_1.VerbId.GetUnderlyingData;
-	        var parameters = {};
-	        parameters[api_internal_contract_1.ParameterId.VisualId] = visualid;
-	        parameters[api_internal_contract_1.ParameterId.IgnoreAliases] = ignoreAliases;
-	        parameters[api_internal_contract_1.ParameterId.IgnoreSelection] = ignoreSelection;
-	        parameters[api_internal_contract_1.ParameterId.IncludeAllColumns] = includeAllColumns;
-	        parameters[api_internal_contract_1.ParameterId.MaxRows] = maxRows;
-	        return this.dispatcher.Execute(verb, parameters).then(function (response) {
-	            var responseData = response.result;
-	            return _this.ProcessResultsTable(responseData);
-	        });
-	    };
-	    GetDataServiceImpl.prototype.ProcessResultsTable = function (responseData) {
-	        var headers = responseData.Data.Headers.map(function (h) { return new GetDataModels_1.Column(h.FieldName, api_external_contract_1.DataType.STRING /*h.DataType*/, h.IsReferenced, h.Index); });
-	        var table = responseData.Data.DataTable.map(function (row) {
-	            return row.map(function (cell) {
-	                return new GetDataModels_1.DataValue(cell.Value, cell.FormattedValue);
-	            });
-	        });
-	        return new GetDataModels_1.DataTable(table, headers, table.length, responseData.IsSummary);
-	    };
-	    return GetDataServiceImpl;
-	}());
-	exports.GetDataServiceImpl = GetDataServiceImpl;
-
-
-/***/ },
-/* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -628,11 +560,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 	}
 	Object.defineProperty(exports, "__esModule", { value: true });
-	__export(__webpack_require__(17));
+	__export(__webpack_require__(15));
 
 
 /***/ },
-/* 17 */
+/* 15 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -693,7 +625,323 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
+/* 16 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || (function () {
+	    var extendStatics = Object.setPrototypeOf ||
+	        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+	        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+	    return function (d, b) {
+	        extendStatics(d, b);
+	        function __() { this.constructor = d; }
+	        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	    };
+	})();
+	Object.defineProperty(exports, "__esModule", { value: true });
+	var TableauSheetEvent_1 = __webpack_require__(17);
+	var TableauWorksheetEvent = (function (_super) {
+	    __extends(TableauWorksheetEvent, _super);
+	    function TableauWorksheetEvent(type, worksheet) {
+	        var _this = _super.call(this, type, worksheet) || this;
+	        _this.worksheet = worksheet;
+	        return _this;
+	    }
+	    Object.defineProperty(TableauWorksheetEvent.prototype, "Worksheet", {
+	        get: function () {
+	            return this.worksheet;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    return TableauWorksheetEvent;
+	}(TableauSheetEvent_1.TableauSheetEvent));
+	exports.TableauWorksheetEvent = TableauWorksheetEvent;
+
+
+/***/ },
+/* 17 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || (function () {
+	    var extendStatics = Object.setPrototypeOf ||
+	        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+	        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+	    return function (d, b) {
+	        extendStatics(d, b);
+	        function __() { this.constructor = d; }
+	        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	    };
+	})();
+	Object.defineProperty(exports, "__esModule", { value: true });
+	var TableauEvent_1 = __webpack_require__(18);
+	var TableauSheetEvent = (function (_super) {
+	    __extends(TableauSheetEvent, _super);
+	    function TableauSheetEvent(type, sheet) {
+	        var _this = _super.call(this, type) || this;
+	        _this.sheet = sheet;
+	        return _this;
+	    }
+	    Object.defineProperty(TableauSheetEvent.prototype, "Sheet", {
+	        get: function () {
+	            return this.sheet;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    return TableauSheetEvent;
+	}(TableauEvent_1.TableauEvent));
+	exports.TableauSheetEvent = TableauSheetEvent;
+
+
+/***/ },
 /* 18 */
+/***/ function(module, exports) {
+
+	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	var TableauEvent = (function () {
+	    function TableauEvent(type) {
+	        this.type = type;
+	    }
+	    Object.defineProperty(TableauEvent.prototype, "Type", {
+	        get: function () {
+	            return this.type;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    return TableauEvent;
+	}());
+	exports.TableauEvent = TableauEvent;
+
+
+/***/ },
+/* 19 */
+/***/ function(module, exports) {
+
+	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	/**
+	 * This class implements the SingleEventManager interface for a single type of Tableau event
+	 *
+	 * @template TEventType The Tableau event type this class specializes
+	 */
+	var SingleEventManagerImpl = (function () {
+	    function SingleEventManagerImpl(eventType) {
+	        this.eventType = eventType;
+	        this.handlers = [];
+	    }
+	    Object.defineProperty(SingleEventManagerImpl.prototype, "EventType", {
+	        get: function () {
+	            return this.eventType;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    SingleEventManagerImpl.prototype.AddEventListener = function (handler) {
+	        var _this = this;
+	        this.handlers.push(handler);
+	        return function () { return _this.RemoveEventListener(handler); };
+	    };
+	    SingleEventManagerImpl.prototype.RemoveEventListener = function (handler) {
+	        var beforeCount = this.handlers.length;
+	        this.handlers = this.handlers.filter(function (h) { return h !== handler; });
+	        return beforeCount > this.handlers.length;
+	    };
+	    SingleEventManagerImpl.prototype.TriggerEvent = function (eventGenerator) {
+	        for (var _i = 0, _a = this.handlers; _i < _a.length; _i++) {
+	            var handler = _a[_i];
+	            try {
+	                var eventModel = eventGenerator();
+	                handler(eventModel);
+	            }
+	            catch (e) {
+	                // Since this handler could be outside our control, just catch anything it throws and continue on
+	                continue;
+	            }
+	        }
+	    };
+	    return SingleEventManagerImpl;
+	}());
+	exports.SingleEventManagerImpl = SingleEventManagerImpl;
+
+
+/***/ },
+/* 20 */
+/***/ function(module, exports) {
+
+	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	/**
+	 * Defines which type of getData call to make.
+	 */
+	var GetDataType;
+	(function (GetDataType) {
+	    GetDataType["Summary"] = "summary";
+	    GetDataType["Underlying"] = "underlying";
+	})(GetDataType = exports.GetDataType || (exports.GetDataType = {}));
+
+
+/***/ },
+/* 21 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	var ServiceRegistry_1 = __webpack_require__(22);
+	var GetDataServiceImpl_1 = __webpack_require__(23);
+	var NotificationServiceImpl_1 = __webpack_require__(25);
+	function RegisterAllSharedServices(dispatcher) {
+	    ServiceRegistry_1.ApiServiceRegistry.Instance.RegisterService(new GetDataServiceImpl_1.GetDataServiceImpl(dispatcher));
+	    ServiceRegistry_1.ApiServiceRegistry.Instance.RegisterService(new NotificationServiceImpl_1.NotificationServiceImpl(dispatcher));
+	    // TODO - more shared services
+	}
+	exports.RegisterAllSharedServices = RegisterAllSharedServices;
+
+
+/***/ },
+/* 22 */
+/***/ function(module, exports) {
+
+	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	/**
+	 * Collection of service name which will be registered in the api-shared project
+	 */
+	exports.ServiceNames = {
+	    GetData: 'get-data-service',
+	    Notification: 'notification-service'
+	};
+	var ServiceRegistryImpl = (function () {
+	    function ServiceRegistryImpl() {
+	        this.services = {};
+	    }
+	    ServiceRegistryImpl.prototype.RegisterService = function (service) {
+	        this.services[service.serviceName] = service;
+	    };
+	    ServiceRegistryImpl.prototype.GetService = function (serviceName) {
+	        if (!this.services.hasOwnProperty(serviceName)) {
+	            throw new Error("No Service " + serviceName + " is registered");
+	        }
+	        return this.services[serviceName];
+	    };
+	    return ServiceRegistryImpl;
+	}());
+	/**
+	 * static class used for getting access to the single instance
+	 * of the ApiServiceRegistry
+	 */
+	var ApiServiceRegistry = (function () {
+	    // Private to avoid anyone constructing this
+	    function ApiServiceRegistry() {
+	    }
+	    Object.defineProperty(ApiServiceRegistry, "Instance", {
+	        /**
+	         * Gets the singleton instance of the ServiceRegistry
+	         */
+	        get: function () {
+	            if (!window.__tableauApiServiceRegistry) {
+	                ApiServiceRegistry.SetInstance(new ServiceRegistryImpl());
+	            }
+	            if (!window.__tableauApiServiceRegistry) {
+	                throw new Error('Assigning service registry failed');
+	            }
+	            return window.__tableauApiServiceRegistry;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    /**
+	     * Helper method to override the registry instance. Can be used by unit tests
+	     *
+	     * @param {ServiceRegistry} serviceRegistry The new registry
+	     */
+	    ApiServiceRegistry.SetInstance = function (serviceRegistry) {
+	        window.__tableauApiServiceRegistry = serviceRegistry;
+	    };
+	    return ApiServiceRegistry;
+	}());
+	exports.ApiServiceRegistry = ApiServiceRegistry;
+
+
+/***/ },
+/* 23 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	var GetDataService_1 = __webpack_require__(20);
+	var ServiceRegistry_1 = __webpack_require__(22);
+	var GetDataModels_1 = __webpack_require__(11);
+	var api_external_contract_1 = __webpack_require__(14);
+	var api_internal_contract_1 = __webpack_require__(24);
+	var GetDataServiceImpl = (function () {
+	    function GetDataServiceImpl(dispatcher) {
+	        this.dispatcher = dispatcher;
+	    }
+	    Object.defineProperty(GetDataServiceImpl.prototype, "serviceName", {
+	        get: function () {
+	            return ServiceRegistry_1.ServiceNames.GetData;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    GetDataServiceImpl.prototype.GetUnderlyingDataAsync = function (visualId, getType, ignoreAliases, ignoreSelection, includeAllColumns, maxRows) {
+	        var _this = this;
+	        // Create all of our parameters
+	        var verb = getType === GetDataService_1.GetDataType.Summary ? api_internal_contract_1.VerbId.GetDataSummaryData : api_internal_contract_1.VerbId.GetUnderlyingData;
+	        var parameters = {};
+	        parameters[api_internal_contract_1.ParameterId.VisualId] = visualId;
+	        parameters[api_internal_contract_1.ParameterId.IgnoreAliases] = ignoreAliases;
+	        parameters[api_internal_contract_1.ParameterId.IgnoreSelection] = ignoreSelection;
+	        parameters[api_internal_contract_1.ParameterId.IncludeAllColumns] = includeAllColumns;
+	        parameters[api_internal_contract_1.ParameterId.MaxRows] = maxRows;
+	        return this.dispatcher.Execute(verb, parameters).then(function (response) {
+	            var responseData = response.result;
+	            return _this.ProcessResultsTable(responseData.Data, responseData.IsSummary);
+	        });
+	    };
+	    GetDataServiceImpl.prototype.ProcessResultsTable = function (responseData, isSummary) {
+	        var headers = responseData.Headers.map(function (h) { return new GetDataModels_1.Column(h.FieldName, api_external_contract_1.DataType.STRING /*h.DataType*/, h.IsReferenced, h.Index); });
+	        var table = responseData.DataTable.map(function (row) {
+	            return row.map(function (cell) {
+	                return new GetDataModels_1.DataValue(cell.Value, cell.FormattedValue);
+	            });
+	        });
+	        return new GetDataModels_1.DataTable(table, headers, table.length, isSummary);
+	    };
+	    GetDataServiceImpl.prototype.GetSelectedMarksAsync = function (visualId) {
+	        var _this = this;
+	        var parameters = (_a = {}, _a[api_internal_contract_1.ParameterId.VisualId] = visualId, _a);
+	        return this.dispatcher.Execute(api_internal_contract_1.VerbId.GetSelectedMarks, parameters).then(function (response) {
+	            var responseData = response.result;
+	            return {
+	                Data: responseData.Data.map(function (table) { return _this.ProcessResultsTable(table, true); })
+	            };
+	        });
+	        var _a;
+	    };
+	    GetDataServiceImpl.prototype.GetHighlightedMarksAsync = function (visualId) {
+	        var _this = this;
+	        var parameters = (_a = {}, _a[api_internal_contract_1.ParameterId.VisualId] = visualId, _a);
+	        return this.dispatcher.Execute(api_internal_contract_1.VerbId.GetHighlightedMarks, parameters).then(function (response) {
+	            var responseData = response.result;
+	            return {
+	                Data: responseData.Data.map(function (table) { return _this.ProcessResultsTable(table, true); })
+	            };
+	        });
+	        var _a;
+	    };
+	    return GetDataServiceImpl;
+	}());
+	exports.GetDataServiceImpl = GetDataServiceImpl;
+
+
+/***/ },
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -714,14 +962,76 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 19 */
+/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	Object.defineProperty(exports, "__esModule", { value: true });
-	var api_external_contract_1 = __webpack_require__(16);
-	var api_internal_contract_1 = __webpack_require__(18);
-	var api_utils_1 = __webpack_require__(20);
+	var ServiceRegistry_1 = __webpack_require__(22);
+	var Registration = (function () {
+	    function Registration(filterFn, callbackFn) {
+	        this.filterFn = filterFn;
+	        this.callbackFn = callbackFn;
+	        // Nothing Here
+	    }
+	    Registration.prototype.OnNotification = function (notificationModel) {
+	        if (this.filterFn(notificationModel)) {
+	            this.callbackFn(notificationModel);
+	        }
+	    };
+	    return Registration;
+	}());
+	var NotificationServiceImpl = (function () {
+	    function NotificationServiceImpl(dispatcher) {
+	        this.dispatcher = dispatcher;
+	        this.handlers = {};
+	        this.dispatcher.RegisterNotificationHandler(this.OnNotification.bind(this));
+	    }
+	    Object.defineProperty(NotificationServiceImpl.prototype, "serviceName", {
+	        get: function () {
+	            return ServiceRegistry_1.ServiceNames.Notification;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    NotificationServiceImpl.prototype.HasHandlersForNotificationType = function (id) {
+	        return this.handlers.hasOwnProperty(id);
+	    };
+	    NotificationServiceImpl.prototype.OnNotification = function (notification) {
+	        if (!this.HasHandlersForNotificationType(notification.notificationId)) {
+	            return;
+	        }
+	        // Go through and check for all the handlers of this particular notification
+	        this.handlers[notification.notificationId].forEach(function (h) { return h.OnNotification(notification.data); });
+	    };
+	    NotificationServiceImpl.prototype.RemoveRegistration = function (id, registration) {
+	        if (!this.HasHandlersForNotificationType(id)) {
+	            return;
+	        }
+	        this.handlers[id] = this.handlers[id].filter(function (reg) { return reg !== registration; });
+	    };
+	    NotificationServiceImpl.prototype.RegisterHandler = function (id, filterFn, handler) {
+	        var _this = this;
+	        var handlers = this.handlers[id] || new Array();
+	        var registration = new Registration(filterFn, handler);
+	        handlers.push(registration);
+	        this.handlers[id] = handlers;
+	        return function () { return _this.RemoveRegistration(id, registration); };
+	    };
+	    return NotificationServiceImpl;
+	}());
+	exports.NotificationServiceImpl = NotificationServiceImpl;
+
+
+/***/ },
+/* 26 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	var api_external_contract_1 = __webpack_require__(14);
+	var api_internal_contract_1 = __webpack_require__(24);
+	var api_utils_1 = __webpack_require__(27);
 	/* tslint:disable:typedef - Disable this to make declaring these classes a bit easier */
 	/**
 	 * Maps enums used by the internal-api-contract to the enums used
@@ -773,7 +1083,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 20 */
+/* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -783,12 +1093,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * The build enforces that the file has the same name as the global variable that is exported.
 	 */
 	Object.defineProperty(exports, "__esModule", { value: true });
-	var EnumConverter_1 = __webpack_require__(21);
+	var EnumConverter_1 = __webpack_require__(28);
 	exports.EnumConverter = EnumConverter_1.EnumConverter;
 
 
 /***/ },
-/* 21 */
+/* 28 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -818,7 +1128,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 22 */
+/* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -833,7 +1143,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	})();
 	Object.defineProperty(exports, "__esModule", { value: true });
-	var Sheet_1 = __webpack_require__(23);
+	var Sheet_1 = __webpack_require__(30);
 	var Dashboard = (function (_super) {
 	    __extends(Dashboard, _super);
 	    function Dashboard(dashboardImpl) {
@@ -854,7 +1164,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 23 */
+/* 30 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -869,7 +1179,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	})();
 	Object.defineProperty(exports, "__esModule", { value: true });
-	var EventListenerManager_1 = __webpack_require__(24);
+	var api_shared_1 = __webpack_require__(9);
 	var Sheet = (function (_super) {
 	    __extends(Sheet, _super);
 	    function Sheet(sheetImpl) {
@@ -892,33 +1202,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	        configurable: true
 	    });
 	    return Sheet;
-	}(EventListenerManager_1.EventListenerManager));
+	}(api_shared_1.EventListenerManager));
 	exports.Sheet = Sheet;
 
 
 /***/ },
-/* 24 */
-/***/ function(module, exports) {
-
-	"use strict";
-	Object.defineProperty(exports, "__esModule", { value: true });
-	var EventListenerManager = (function () {
-	    function EventListenerManager() {
-	        // TODO
-	    }
-	    EventListenerManager.prototype.addEventListener = function (eventType, handler) {
-	        throw new Error('EventListenerManager not yet implemented');
-	    };
-	    EventListenerManager.prototype.removeEventListener = function (eventType, handler) {
-	        throw new Error('EventListenerManager not yet implemented');
-	    };
-	    return EventListenerManager;
-	}());
-	exports.EventListenerManager = EventListenerManager;
-
-
-/***/ },
-/* 25 */
+/* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -933,12 +1222,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	})();
 	Object.defineProperty(exports, "__esModule", { value: true });
-	var api_external_contract_1 = __webpack_require__(26);
+	var api_external_contract_1 = __webpack_require__(32);
 	var api_internal_contract_1 = __webpack_require__(3);
-	var Worksheet_1 = __webpack_require__(27);
-	var AddInSheetInfoImpl_1 = __webpack_require__(28);
-	var SheetImpl_1 = __webpack_require__(29);
-	var WorksheetImpl_1 = __webpack_require__(30);
+	var Worksheet_1 = __webpack_require__(33);
+	var AddInSheetInfoImpl_1 = __webpack_require__(34);
+	var SheetImpl_1 = __webpack_require__(35);
+	var WorksheetImpl_1 = __webpack_require__(36);
 	var DashboardImpl = (function (_super) {
 	    __extends(DashboardImpl, _super);
 	    function DashboardImpl(info, sheetPath) {
@@ -973,7 +1262,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 26 */
+/* 32 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -986,11 +1275,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 	}
 	Object.defineProperty(exports, "__esModule", { value: true });
-	__export(__webpack_require__(17));
+	__export(__webpack_require__(15));
 
 
 /***/ },
-/* 27 */
+/* 33 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1005,16 +1294,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	})();
 	Object.defineProperty(exports, "__esModule", { value: true });
-	var Sheet_1 = __webpack_require__(23);
+	var Sheet_1 = __webpack_require__(30);
 	var Worksheet = (function (_super) {
 	    __extends(Worksheet, _super);
 	    function Worksheet(worksheetImpl) {
 	        var _this = _super.call(this, worksheetImpl) || this;
 	        _this.worksheetImpl = worksheetImpl;
+	        // Call to initialize events and then call down to the event listener manager to handle things
+	        _this.worksheetImpl.InitializeEvents(_this).forEach(function (e) { return _this.AddNewEventType(e); });
 	        return _this;
 	    }
 	    Worksheet.prototype.GetSelectedMarksAsync = function () {
 	        return this.worksheetImpl.GetSelectedMarksAsync();
+	    };
+	    Worksheet.prototype.GetHighlightedMarksAsync = function () {
+	        return this.worksheetImpl.GetHighlightedMarksAsync();
 	    };
 	    Worksheet.prototype.GetSummaryDataAsync = function (ignoreAliases, ignoreSelection, includeAllColumns) {
 	        return this.worksheetImpl.GetSummaryDataAsync(ignoreAliases, ignoreSelection, includeAllColumns);
@@ -1028,7 +1322,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 28 */
+/* 34 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -1060,7 +1354,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 29 */
+/* 35 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -1090,7 +1384,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 30 */
+/* 36 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1105,15 +1399,57 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	})();
 	Object.defineProperty(exports, "__esModule", { value: true });
+	var api_external_contract_1 = __webpack_require__(32);
+	var api_internal_contract_1 = __webpack_require__(3);
 	var api_shared_1 = __webpack_require__(9);
-	var SheetImpl_1 = __webpack_require__(29);
+	var SheetImpl_1 = __webpack_require__(35);
+	var VisualIdsAreEqual = function (a, b) {
+	    return a && b &&
+	        a.Worksheet === b.Worksheet &&
+	        a.Dashboard === b.Dashboard &&
+	        a.Storyboard === b.Storyboard &&
+	        a.StoryPointID === b.StoryPointID &&
+	        a.FlipboardZoneID === b.FlipboardZoneID;
+	};
 	var WorksheetImpl = (function (_super) {
 	    __extends(WorksheetImpl, _super);
+	    // private marksEvent: EventListenerManagerImpl<MarksSelectedEvent>;
 	    function WorksheetImpl(sheetInfoImpl, visualId) {
 	        var _this = _super.call(this, sheetInfoImpl) || this;
 	        _this.visualId = visualId;
 	        return _this;
 	    }
+	    /**
+	     * Helper method which goes through and registers each event type this impl knows about
+	     * with the NotificationService. It returns an array of SingleEventManager objects which
+	     * can then be passed to an EventListenerManager to handle user registration / unregistration.
+	     *
+	     * @param {Worksheet} worksheet The worksheet object which will be included with the event notifications
+	     * @returns {Array<SingleEventManager>} Collection of event managers to pass to an EventListenerManager
+	     */
+	    WorksheetImpl.prototype.InitializeEvents = function (worksheet) {
+	        var _this = this;
+	        var results = new Array();
+	        var notificationService;
+	        try {
+	            notificationService = api_shared_1.ApiServiceRegistry.Instance.GetService(api_shared_1.ServiceNames.Notification);
+	        }
+	        catch (e) {
+	            // If we don't have this service registered, just return
+	            return results;
+	        }
+	        // Initialize all of the event managers we'll need (one for each event type)
+	        var marksEvent = new api_shared_1.SingleEventManagerImpl(api_external_contract_1.TableauEventType.MARK_SELECTION_CHANGED);
+	        notificationService.RegisterHandler(api_internal_contract_1.NotificationId.SelectedMarksChanged, function (model) {
+	            var visualId = model;
+	            return VisualIdsAreEqual(visualId, _this.VisualId);
+	        }, function (viz) {
+	            marksEvent.TriggerEvent(function () { return new api_shared_1.MarksSelectedEvent(worksheet); });
+	        });
+	        results.push(marksEvent);
+	        // TODO - other event types
+	        return results;
+	    };
 	    Object.defineProperty(WorksheetImpl.prototype, "VisualId", {
 	        get: function () {
 	            return this.visualId;
@@ -1122,7 +1458,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	        configurable: true
 	    });
 	    WorksheetImpl.prototype.GetSelectedMarksAsync = function () {
-	        throw new Error('GetSelectedMarksAsync not yet implemented');
+	        var service = api_shared_1.ApiServiceRegistry.Instance.GetService(api_shared_1.ServiceNames.GetData);
+	        return service.GetSelectedMarksAsync(this.VisualId);
+	    };
+	    WorksheetImpl.prototype.GetHighlightedMarksAsync = function () {
+	        var service = api_shared_1.ApiServiceRegistry.Instance.GetService(api_shared_1.ServiceNames.GetData);
+	        return service.GetHighlightedMarksAsync(this.VisualId);
 	    };
 	    WorksheetImpl.prototype.GetSummaryDataAsync = function (ignoreAliases, ignoreSelection, includeAllColumns) {
 	        var service = api_shared_1.ApiServiceRegistry.Instance.GetService(api_shared_1.ServiceNames.GetData);
@@ -1138,7 +1479,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 31 */
+/* 37 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -1165,7 +1506,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 32 */
+/* 38 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1241,7 +1582,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 33 */
+/* 39 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -1252,12 +1593,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 34 */
+/* 40 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	Object.defineProperty(exports, "__esModule", { value: true });
-	var InitializationServiceImpl_1 = __webpack_require__(35);
+	var InitializationServiceImpl_1 = __webpack_require__(41);
 	var api_shared_1 = __webpack_require__(9);
 	function RegisterAllAddInServices(dispatcher) {
 	    api_shared_1.ApiServiceRegistry.Instance.RegisterService(new InitializationServiceImpl_1.InitializationServiceImpl(dispatcher));
@@ -1266,12 +1607,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 35 */
+/* 41 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	Object.defineProperty(exports, "__esModule", { value: true });
-	var AddInServiceNames_1 = __webpack_require__(33);
+	var AddInServiceNames_1 = __webpack_require__(39);
 	var api_internal_contract_1 = __webpack_require__(3);
 	var InitializationServiceImpl = (function () {
 	    function InitializationServiceImpl(dispatcher) {

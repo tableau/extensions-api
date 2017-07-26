@@ -44,7 +44,7 @@ class SelectedMarksDemoComponent extends React.Component {
 
   onSelectionChanged(marksEvent) {
     const sheetName = marksEvent.Worksheet.Name;
-    marksEvent.getMarksAsync().then((selectedMarks) => {
+    marksEvent.GetMarksAsync().then((selectedMarks) => {
       this.handleSelectedMarks(selectedMarks, sheetName, true);
     });
   }
@@ -64,7 +64,7 @@ class SelectedMarksDemoComponent extends React.Component {
         this.handleSelectedMarks(selectedMarks, sheetName, false);
       });
 
-      sheet.addEventListener('markselectionchanged', this.selectionChangedEvent);
+      sheet.AddEventListener('markselectionchanged', this.selectionChangedEvent);
     }
   }
 
