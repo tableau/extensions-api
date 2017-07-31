@@ -9,7 +9,7 @@ Example code can be found in the folder called [Examples/ReactJs](https://github
 
 Use [Issues](https://github.com/tableau/ProjectFrelard/issues) to log any problems or bugs you encounter in the docs or example code. 
 
-##API Reference
+## API Reference
 After cloning this repository, open docs/index.html in a web browser.  This will provide an interactive docs site with the full API reference.
 
 ## Known Issues (as of June 14, 2017)
