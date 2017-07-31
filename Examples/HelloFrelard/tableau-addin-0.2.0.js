@@ -59,7 +59,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var FrelardDesktopBootstrap_1 = __webpack_require__(1);
 	// This Main function will be executed when this module is loaded. Attempt to do our
 	// bootstrapping with qt and log any errors we encounter
-	FrelardDesktopBootstrap_1.DoBootstrap().catch(function (e) {
+	FrelardDesktopBootstrap_1.doBootstrap().catch(function (e) {
 	    console.error('Desktop bootstrapping failed: ' + e);
 	});
 
@@ -70,19 +70,19 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	"use strict";
 	Object.defineProperty(exports, "__esModule", { value: true });
-	var AddInApiPresLayerImpl_1 = __webpack_require__(2);
-	var api_core_1 = __webpack_require__(3);
-	var api_internal_contract_1 = __webpack_require__(26);
-	var DesktopApiDispatcher_1 = __webpack_require__(27);
-	var QtWebChannelImpl_1 = __webpack_require__(28);
+	var api_core_1 = __webpack_require__(2);
+	var api_internal_contract_1 = __webpack_require__(28);
+	var AddInApiPresLayerImpl_1 = __webpack_require__(29);
+	var DesktopApiDispatcher_1 = __webpack_require__(30);
+	var QtWebChannelImpl_1 = __webpack_require__(31);
 	/**
 	 * Wrapper for all the bootstrapping logic. This code attempts to initialize the qt pres-layer
 	 * as well as the desktop dispatcher. It then assigns it to the global desktop dispatcher to
 	 * be picked up by the add-in external Api
 	 */
-	function DoBootstrap() {
+	function doBootstrap() {
 	    // First we need to initialize the webchannel pres-layer
-	    var dispatcherPromise = QtWebChannelImpl_1.InitializeWebChannelPresLayer().then(function (preslayer) {
+	    var dispatcherPromise = QtWebChannelImpl_1.initializeWebChannelPresLayer().then(function (preslayer) {
 	        var presLayerApi = new AddInApiPresLayerImpl_1.AddInApiPresLayerImpl(preslayer);
 	        if (!presLayerApi.AddInInstanceInfo.addInLocatorPresModel) {
 	            throw new Error('AddInInstanceInfo undefined');
@@ -93,130 +93,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return desktopDispatcher;
 	    });
 	    // Assign the desktop dispatcher for the other project to find it
-	    api_internal_contract_1.InternalApiDispatcherHolder.SetDesktopDispatcherPromise(dispatcherPromise);
+	    api_internal_contract_1.InternalApiDispatcherHolder.setDesktopDispatcherPromise(dispatcherPromise);
 	    return dispatcherPromise;
 	}
-	exports.DoBootstrap = DoBootstrap;
+	exports.doBootstrap = doBootstrap;
 
 
 /***/ },
 /* 2 */
-/***/ function(module, exports) {
-
-	"use strict";
-	Object.defineProperty(exports, "__esModule", { value: true });
-	/**
-	 * Implemenation of the PresentationLayer contract with a bit of extra information
-	 * added to work with add-ins. Most work is delegated down to the interopObject which
-	 * communicates directly with the c++ layer via QWebChannel
-	 *
-	 * @class AddInApiPresLayerImpl
-	 * @implements {contract.PresentationLayer}
-	 */
-	var AddInApiPresLayerImpl = (function () {
-	    function AddInApiPresLayerImpl(interopObject) {
-	        var _this = this;
-	        this.interopObject = interopObject;
-	        this.notificationHandlers = {};
-	        if (interopObject && interopObject.OnNotification) {
-	            interopObject.OnNotification.connect(function (notification) {
-	                _this.dispatchNotification(notification);
-	            });
-	        }
-	    }
-	    Object.defineProperty(AddInApiPresLayerImpl.prototype, "AddInInstanceInfo", {
-	        /**
-	         * Gets the instance info for this particular add-in from the c++ code
-	         *
-	         * @readonly
-	         * @type {AddInInstancePresModel}
-	         * @memberof AddInApiPresLayerImpl
-	         */
-	        get: function () {
-	            return this.interopObject.addInInstanceInfo;
-	        },
-	        enumerable: true,
-	        configurable: true
-	    });
-	    /**
-	     * Invokes a command using the pres-layer interop
-	     *
-	     * @template T - The expected return type
-	     * @param {string} commandNamespace
-	     * @param {string} commandName
-	     * @param {object} params
-	     * @returns {Promise<T>}
-	     * @memberof AddInApiPresLayerImpl
-	     */
-	    AddInApiPresLayerImpl.prototype.invokeCommand = function (commandNamespace, commandName, params) {
-	        var _this = this;
-	        return new Promise(function (resolve, reject) {
-	            try {
-	                commandNamespace = commandNamespace || 'tabdoc';
-	                _this.interopObject.ExecuteCommand(commandNamespace, commandName, params, function (response) {
-	                    if (!response.Success) {
-	                        var msg = 'ExecuteCommand failed, with result:' + JSON.stringify(response.Result);
-	                        reject(new Error(msg));
-	                    }
-	                    else {
-	                        resolve(response.Result);
-	                    }
-	                });
-	            }
-	            catch (err) {
-	                reject(err);
-	            }
-	        });
-	    };
-	    // This implementation will registration a single instance of a notification handler with the Native C++ object,
-	    // and implement multi-dispatch to the web objects from h.ere
-	    AddInApiPresLayerImpl.prototype.registerNotificationHandler = function (eventId, handler) {
-	        var _this = this;
-	        if (eventId in this.notificationHandlers) {
-	            this.notificationHandlers[eventId].push(handler);
-	        }
-	        else {
-	            this.notificationHandlers[eventId] = [handler];
-	            try {
-	                this.interopObject.RegisterNotificationHandler(eventId);
-	            }
-	            catch (err) {
-	                // console.log('RegisterNotificationHandler failed: ' + err);
-	            }
-	        }
-	        return function () { return _this.removeNotificationHandler(eventId, handler); };
-	    };
-	    AddInApiPresLayerImpl.prototype.removeNotificationHandler = function (eventId, handler) {
-	        var handlerList = this.notificationHandlers[eventId];
-	        if (!handlerList) {
-	            return;
-	        }
-	        var foundIndex = handlerList.indexOf(handler);
-	        if (foundIndex >= 0) {
-	            handlerList.splice(foundIndex, 1);
-	        }
-	        if (handlerList.length === 0) {
-	            delete this.notificationHandlers[eventId];
-	        }
-	    };
-	    AddInApiPresLayerImpl.prototype.dispatchNotification = function (notification) {
-	        // console.log('received notification: ' + JSON.stringify(notification));
-	        var eventId = notification.eventId;
-	        var presModel = notification.presModel;
-	        if (eventId in this.notificationHandlers) {
-	            var handlers = this.notificationHandlers[eventId];
-	            for (var i = handlers.length - 1; i >= 0; i--) {
-	                handlers[i](presModel);
-	            }
-	        }
-	    };
-	    return AddInApiPresLayerImpl;
-	}());
-	exports.AddInApiPresLayerImpl = AddInApiPresLayerImpl;
-
-
-/***/ },
-/* 3 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -229,22 +113,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 	}
 	Object.defineProperty(exports, "__esModule", { value: true });
-	__export(__webpack_require__(4));
-	var Events_1 = __webpack_require__(17);
+	__export(__webpack_require__(3));
+	var Events_1 = __webpack_require__(16);
 	exports.NotificationId = Events_1.NotificationId;
 
 
 /***/ },
-/* 4 */
+/* 3 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	Object.defineProperty(exports, "__esModule", { value: true });
-	var api_internal_contract_1 = __webpack_require__(5);
+	var api_internal_contract_1 = __webpack_require__(4);
+	var Params_1 = __webpack_require__(10);
 	var CommandMappingRegistryFactory_1 = __webpack_require__(11);
-	var EventMappingRegistryFactory_1 = __webpack_require__(16);
-	var ParameterMappingRegistryFactory_1 = __webpack_require__(21);
-	var Params_1 = __webpack_require__(12);
+	var EventMappingRegistryFactory_1 = __webpack_require__(15);
+	var ParameterMappingRegistryFactory_1 = __webpack_require__(23);
 	/**
 	 * Main class for the api-core project. This class is responsible for executing comamnd and marshalling notifcations
 	 * between the internal Api and the pres-layer Api. After construction, SetVersionNumber must be called in order to
@@ -265,56 +149,26 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.presLayerAddInLocator = addInLocatorPresModel;
 	    }
 	    /**
-	     * Helper method to check that things are initialized as expected. Throws if initialization not complete
-	     *
-	     * @private
-	     * @memberof ApiEventHandler
-	     */
-	    ApiEventHandler.prototype.AssertInitialized = function () {
-	        if (!this.versionNumber) {
-	            throw new Error('VersionNumber not yet configured. Cannot take any actions');
-	        }
-	    };
-	    /**
-	     * Called when a new event notification comes in from the presentation layer
-	     *
-	     * @param eventId The pres layer event id
-	     * @param presModel The pres model that is included with the event
-	     */
-	    ApiEventHandler.prototype.OnPresLayerNotification = function (eventId, presModel) {
-	        // First look up this eventId in our registry and convert to presModel
-	        var eventMapping = this.eventRegistry[eventId];
-	        var apiModel = eventMapping.Converter(presModel);
-	        // Create a notification object and send it to the event handler
-	        var notification = {
-	            notificationId: eventMapping.ApiId,
-	            data: apiModel
-	        };
-	        if (this.eventHandler) {
-	            this.eventHandler(notification);
-	        }
-	    };
-	    /**
 	     * Sets the internal Api version number which the external library is expecting to use. This must be called before
 	     * anything else in order to properly set up the translation layers.
 	     *
 	     * @param {VersionNumber} versionNumber
 	     * @memberof ApiEventHandler
 	     */
-	    ApiEventHandler.prototype.SetVersionNumber = function (versionNumber) {
+	    ApiEventHandler.prototype.setVersionNumber = function (versionNumber) {
 	        this.versionNumber = versionNumber;
 	        // Initialize all our registries
-	        this.commandRegistry = CommandMappingRegistryFactory_1.CommandMappingRegistryFactory.CreateCommandMappingRegistry(versionNumber);
-	        this.apiToPresLayerRegistry = ParameterMappingRegistryFactory_1.ParameterMappingRegistryFactory.CreateApiToPresLayerParamRegistry(versionNumber);
-	        this.presLayerToApiRegistry = ParameterMappingRegistryFactory_1.ParameterMappingRegistryFactory.CreatePresLayerToApiParamRegistry(versionNumber);
-	        this.eventRegistry = EventMappingRegistryFactory_1.EventMappingRegistryFactory.CreateEventMappingRegistry(versionNumber);
+	        this.commandRegistry = CommandMappingRegistryFactory_1.CommandMappingRegistryFactory.createCommandMappingRegistry(versionNumber);
+	        this.apiToPresLayerRegistry = ParameterMappingRegistryFactory_1.ParameterMappingRegistryFactory.createApiToPresLayerParamRegistry(versionNumber);
+	        this.presLayerToApiRegistry = ParameterMappingRegistryFactory_1.ParameterMappingRegistryFactory.createPresLayerToApiParamRegistry(versionNumber);
+	        this.eventRegistry = EventMappingRegistryFactory_1.EventMappingRegistryFactory.createEventMappingRegistry(versionNumber);
 	        // Convert our addInLocator to the Api version
 	        this.apiAddInLocator = this.presLayerToApiRegistry
-	            .Get(Params_1.ParameterId.AddInLocator, api_internal_contract_1.ParameterId.AddInLocator)(this.presLayerAddInLocator);
+	            .get(Params_1.ParameterId.AddInLocator, api_internal_contract_1.ParameterId.AddInLocator)(this.presLayerAddInLocator);
 	        for (var _i = 0, _a = Object.keys(this.eventRegistry); _i < _a.length; _i++) {
 	            var plEventId = _a[_i];
 	            // Register for all notifications we know about and bind the event type to the callback
-	            this.presLayer.registerNotificationHandler(plEventId, this.OnPresLayerNotification.bind(this, plEventId));
+	            this.presLayer.registerNotificationHandler(plEventId, this.onPresLayerNotification.bind(this, plEventId));
 	        }
 	    };
 	    /**
@@ -323,7 +177,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * @param {NotificationHandler} eventHandler
 	     * @memberof ApiEventHandler
 	     */
-	    ApiEventHandler.prototype.SetEventHandler = function (eventHandler) {
+	    ApiEventHandler.prototype.setEventHandler = function (eventHandler) {
 	        this.eventHandler = eventHandler;
 	        // TODO - Register for pres layer events
 	    };
@@ -336,17 +190,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * @returns {Promise<ExecuteResponse>}
 	     * @memberof ApiEventHandler
 	     */
-	    ApiEventHandler.prototype.Execute = function (verb, parameters) {
+	    ApiEventHandler.prototype.execute = function (verb, parameters) {
 	        var _this = this;
-	        this.AssertInitialized();
-	        var command = this.commandRegistry.GetCommand(verb);
+	        this.assertInitialized();
+	        var command = this.commandRegistry.getCommand(verb);
 	        parameters = parameters || {};
 	        // Augment the command with the locator if it's needed
-	        if (command.NeedsAddInLocator) {
+	        if (command.needsAddInLocator) {
 	            parameters[api_internal_contract_1.ParameterId.AddInLocator] = this.apiAddInLocator;
 	        }
-	        var commandsParams = command.CreateParams(parameters, this.apiToPresLayerRegistry);
-	        return this.presLayer.invokeCommand('tabdoc', command.CommandId, commandsParams)
+	        var commandsParams = command.createParams(parameters, this.apiToPresLayerRegistry);
+	        return this.presLayer.invokeCommand('tabdoc', command.commandId, commandsParams)
 	            .then(function (commandResult) {
 	            var convertedResult = command.ProcessResult(commandResult, _this.presLayerToApiRegistry);
 	            return {
@@ -354,13 +208,38 @@ return /******/ (function(modules) { // webpackBootstrap
 	            };
 	        });
 	    };
+	    /**
+	     * Helper method to check that things are initialized as expected. Throws if initialization not complete
+	     *
+	     * @private
+	     * @memberof ApiEventHandler
+	     */
+	    ApiEventHandler.prototype.assertInitialized = function () {
+	        if (!this.versionNumber) {
+	            throw new Error('VersionNumber not yet configured. Cannot take any actions');
+	        }
+	    };
+	    /**
+	     * Called when a new event notification comes in from the presentation layer
+	     *
+	     * @param eventId The pres layer event id
+	     * @param presModel The pres model that is included with the event
+	     */
+	    ApiEventHandler.prototype.onPresLayerNotification = function (eventId, presModel) {
+	        // First look up this eventId in our registry and convert to presModel
+	        var eventMapping = this.eventRegistry[eventId];
+	        var apiModel = eventMapping.converter(presModel);
+	        if (this.eventHandler) {
+	            this.eventHandler(eventMapping.apiId, apiModel);
+	        }
+	    };
 	    return ApiEventHandler;
 	}());
 	exports.ApiEventHandler = ApiEventHandler;
 
 
 /***/ },
-/* 5 */
+/* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -373,11 +252,95 @@ return /******/ (function(modules) { // webpackBootstrap
 	    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 	}
 	Object.defineProperty(exports, "__esModule", { value: true });
+	__export(__webpack_require__(5));
 	__export(__webpack_require__(6));
 	__export(__webpack_require__(7));
 	__export(__webpack_require__(8));
 	__export(__webpack_require__(9));
-	__export(__webpack_require__(10));
+
+
+/***/ },
+/* 5 */
+/***/ function(module, exports) {
+
+	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	var AddInContext;
+	(function (AddInContext) {
+	    AddInContext["Desktop"] = "desktop";
+	    AddInContext["Server"] = "server";
+	    AddInContext["Unknown"] = "unknown";
+	})(AddInContext = exports.AddInContext || (exports.AddInContext = {}));
+	var AddInMode;
+	(function (AddInMode) {
+	    AddInMode["Authoring"] = "authoring";
+	    AddInMode["Viewing"] = "viewing";
+	    AddInMode["Unknown"] = "unknown";
+	})(AddInMode = exports.AddInMode || (exports.AddInMode = {}));
+	var DashboardObjectType;
+	(function (DashboardObjectType) {
+	    DashboardObjectType["Blank"] = "blank";
+	    DashboardObjectType["Worksheet"] = "worksheet";
+	    DashboardObjectType["QuickFilter"] = "quick-filter";
+	    DashboardObjectType["ParameterControl"] = "parameter-control";
+	    DashboardObjectType["PageFilter"] = "page-filter";
+	    DashboardObjectType["Legend"] = "legend";
+	    DashboardObjectType["Title"] = "title";
+	    DashboardObjectType["Text"] = "text";
+	    DashboardObjectType["Image"] = "image";
+	    DashboardObjectType["WebPage"] = "web-page";
+	    DashboardObjectType["AddIn"] = "addin";
+	})(DashboardObjectType = exports.DashboardObjectType || (exports.DashboardObjectType = {}));
+	var DataType;
+	(function (DataType) {
+	    DataType["String"] = "string";
+	    DataType["Int"] = "int";
+	    DataType["Float"] = "float";
+	    DataType["Bool"] = "bool";
+	    DataType["Date"] = "date";
+	    DataType["DateTime"] = "date-time";
+	    DataType["Spatial"] = "spatial";
+	})(DataType = exports.DataType || (exports.DataType = {}));
+	var EncodedDataType;
+	(function (EncodedDataType) {
+	    EncodedDataType["Number"] = "number";
+	    EncodedDataType["String"] = "string";
+	    EncodedDataType["Date"] = "date";
+	    EncodedDataType["Boolean"] = "boolean";
+	})(EncodedDataType = exports.EncodedDataType || (exports.EncodedDataType = {}));
+	var ErrorCode;
+	(function (ErrorCode) {
+	    ErrorCode["ServerError"] = "server-error";
+	    ErrorCode["InvalidAggregationFieldName"] = "invalid-aggregation-field-name";
+	    ErrorCode["InvalidFilterFieldName"] = "invalid-filter-fieldname";
+	    ErrorCode["InvalidFilterFieldValue"] = "invalid-filter-field-value";
+	})(ErrorCode = exports.ErrorCode || (exports.ErrorCode = {}));
+	/**
+	 *  The different update types for applying filter.
+	 */
+	var FilterUpdateType;
+	(function (FilterUpdateType) {
+	    FilterUpdateType["Add"] = "add";
+	    FilterUpdateType["All"] = "all";
+	    FilterUpdateType["Replace"] = "replace";
+	    FilterUpdateType["Remove"] = "remove";
+	})(FilterUpdateType = exports.FilterUpdateType || (exports.FilterUpdateType = {}));
+	var SheetType;
+	(function (SheetType) {
+	    SheetType["Dashboard"] = "dashboard";
+	    SheetType["Story"] = "story";
+	    SheetType["Worksheet"] = "worksheet";
+	    SheetType["Addin"] = "addin";
+	})(SheetType = exports.SheetType || (exports.SheetType = {}));
+	/**
+	 * The option for specifying which values to include for filtering.
+	 */
+	var NullOption;
+	(function (NullOption) {
+	    NullOption["NullValues"] = "nullvalues";
+	    NullOption["NonNullValues"] = "nonnullvalues";
+	    NullOption["AllValues"] = "allvalues";
+	})(NullOption = exports.NullOption || (exports.NullOption = {}));
 
 
 /***/ },
@@ -386,83 +349,25 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	"use strict";
 	Object.defineProperty(exports, "__esModule", { value: true });
-	var AddInContext;
-	(function (AddInContext) {
-	    AddInContext["DESKTOP"] = "desktop";
-	    AddInContext["SERVER"] = "server";
-	    AddInContext["UNKNOWN"] = "unknown";
-	})(AddInContext = exports.AddInContext || (exports.AddInContext = {}));
-	var AddInMode;
-	(function (AddInMode) {
-	    AddInMode["AUTHORING"] = "authoring";
-	    AddInMode["VIEWING"] = "viewing";
-	    AddInMode["UNKNOWN"] = "unknown";
-	})(AddInMode = exports.AddInMode || (exports.AddInMode = {}));
-	var DashboardObjectType;
-	(function (DashboardObjectType) {
-	    DashboardObjectType["BLANK"] = "blank";
-	    DashboardObjectType["WORKSHEET"] = "worksheet";
-	    DashboardObjectType["QUICK_FILTER"] = "quickfilter";
-	    DashboardObjectType["PARAMETER_CONTROL"] = "parametercontrol";
-	    DashboardObjectType["PAGE_FILTER"] = "pagefilter";
-	    DashboardObjectType["LEGEND"] = "legend";
-	    DashboardObjectType["TITLE"] = "title";
-	    DashboardObjectType["TEXT"] = "text";
-	    DashboardObjectType["IMAGE"] = "image";
-	    DashboardObjectType["WEB_PAGE"] = "webpage";
-	    DashboardObjectType["ADD_IN"] = "addin";
-	})(DashboardObjectType = exports.DashboardObjectType || (exports.DashboardObjectType = {}));
-	var SheetType;
-	(function (SheetType) {
-	    SheetType["DASHBOARD"] = "dashboard";
-	    SheetType["STORY"] = "story";
-	    SheetType["WORKSHEET"] = "worksheet";
-	    SheetType["ADDIN"] = "addin";
-	})(SheetType = exports.SheetType || (exports.SheetType = {}));
-	var DataType;
-	(function (DataType) {
-	    DataType["STRING"] = "string";
-	    DataType["INT"] = "int";
-	    DataType["FLOAT"] = "float";
-	    DataType["BOOL"] = "bool";
-	    DataType["DATE"] = "date";
-	    DataType["DATE_TIME"] = "datetime";
-	    DataType["SPATIAL"] = "spatial";
-	})(DataType = exports.DataType || (exports.DataType = {}));
-	var EncodedDataType;
-	(function (EncodedDataType) {
-	    EncodedDataType["NUMBER"] = "number";
-	    EncodedDataType["STRING"] = "string";
-	    EncodedDataType["DATE"] = "date";
-	    EncodedDataType["BOOLEAN"] = "boolean";
-	})(EncodedDataType = exports.EncodedDataType || (exports.EncodedDataType = {}));
-
-
-/***/ },
-/* 7 */
-/***/ function(module, exports) {
-
-	"use strict";
-	Object.defineProperty(exports, "__esModule", { value: true });
 	var InternalApiDispatcherHolder;
 	(function (InternalApiDispatcherHolder) {
-	    function GetDesktopDispatcherPromise() {
+	    function getDesktopDispatcherPromise() {
 	        return window.__tableauDesktopDispatcher;
 	    }
-	    InternalApiDispatcherHolder.GetDesktopDispatcherPromise = GetDesktopDispatcherPromise;
-	    function HasDesktopApiDispatcherPromise() {
-	        return !!InternalApiDispatcherHolder.GetDesktopDispatcherPromise();
+	    InternalApiDispatcherHolder.getDesktopDispatcherPromise = getDesktopDispatcherPromise;
+	    function hasDesktopApiDispatcherPromise() {
+	        return !!InternalApiDispatcherHolder.getDesktopDispatcherPromise();
 	    }
-	    InternalApiDispatcherHolder.HasDesktopApiDispatcherPromise = HasDesktopApiDispatcherPromise;
-	    function SetDesktopDispatcherPromise(dispatcher) {
+	    InternalApiDispatcherHolder.hasDesktopApiDispatcherPromise = hasDesktopApiDispatcherPromise;
+	    function setDesktopDispatcherPromise(dispatcher) {
 	        window.__tableauDesktopDispatcher = dispatcher;
 	    }
-	    InternalApiDispatcherHolder.SetDesktopDispatcherPromise = SetDesktopDispatcherPromise;
+	    InternalApiDispatcherHolder.setDesktopDispatcherPromise = setDesktopDispatcherPromise;
 	})(InternalApiDispatcherHolder = exports.InternalApiDispatcherHolder || (exports.InternalApiDispatcherHolder = {}));
 
 
 /***/ },
-/* 8 */
+/* 7 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -474,7 +379,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 9 */
+/* 8 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -495,17 +400,30 @@ return /******/ (function(modules) { // webpackBootstrap
 	    ParameterId["SettingsValues"] = "settings-values";
 	    ParameterId["SelectedData"] = "selected-data";
 	    ParameterId["HighlightedData"] = "highlighted-data";
+	    // Filter Params
+	    ParameterId["FieldName"] = "field-name";
+	    ParameterId["FilterValues"] = "filter-values";
+	    ParameterId["FilterUpdateType"] = "filter-update-type";
+	    ParameterId["IsExcludeMode"] = "is-exclude";
+	    ParameterId["FilterRangeMin"] = "filter-range-min";
+	    ParameterId["FilterRangeMax"] = "filter-range-max";
+	    ParameterId["FilterRangeNullOption"] = "filter-range-null-option";
+	    ParameterId["WorksheetName"] = "worksheet-name";
 	})(ParameterId = exports.ParameterId || (exports.ParameterId = {}));
 
 
 /***/ },
-/* 10 */
+/* 9 */
 /***/ function(module, exports) {
 
 	"use strict";
 	Object.defineProperty(exports, "__esModule", { value: true });
+	// Declare this key type and export the NotificationId to make this behave like a string enum
 	var VerbId;
 	(function (VerbId) {
+	    VerbId["ApplyCategoricalFilter"] = "categorical-filter";
+	    VerbId["ApplyRangeFilter"] = "range-filter";
+	    VerbId["ClearFilter"] = "clear-filter";
 	    VerbId["InitializeAddIn"] = "initialize-add-in";
 	    VerbId["GetDataSummaryData"] = "get-summary-data";
 	    VerbId["GetUnderlyingData"] = "get-underlying-data";
@@ -516,51 +434,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 11 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	Object.defineProperty(exports, "__esModule", { value: true });
-	var Params_1 = __webpack_require__(12);
-	var CommandIds_1 = __webpack_require__(13);
-	var api_internal_contract_1 = __webpack_require__(5);
-	var CommandRegistration_1 = __webpack_require__(14);
-	var CommandMappingRegistry_1 = __webpack_require__(15);
-	var CommandMappingRegistryFactory = (function () {
-	    function CommandMappingRegistryFactory() {
-	    }
-	    /**
-	     * Creates and populates a new CommandMappingRegistry for the specific version number requested
-	     *
-	     * @static
-	     * @param {VersionNumber} versionNumber
-	     * @returns {CommandMappingRegistry}
-	     * @memberof CommandMappingRegistryFactory
-	     */
-	    CommandMappingRegistryFactory.CreateCommandMappingRegistry = function (versionNumber) {
-	        var result = new CommandMappingRegistry_1.CommandMappingRegistry();
-	        result.AddCommand(new CommandRegistration_1.CommandRegistration(api_internal_contract_1.VerbId.InitializeAddIn, CommandIds_1.DocCommands.InitializeAddInInstance, [new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.AddInLocator, Params_1.ParameterId.AddInLocator)], new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.AddInBootstrapInfo, Params_1.ParameterId.AddInBootstrapInfo)));
-	        result.AddCommand(new CommandRegistration_1.CommandRegistration(api_internal_contract_1.VerbId.GetUnderlyingData, CommandIds_1.DocCommands.GetUnderlyingData, [new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.IgnoreAliases, Params_1.ParameterId.IgnoreAliases),
-	            new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.IgnoreSelection, Params_1.ParameterId.IgnoreSelection),
-	            new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.IncludeAllColumns, Params_1.ParameterId.IncludeAllColumns),
-	            new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.MaxRows, Params_1.ParameterId.MaxRows),
-	            new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.VisualId, Params_1.ParameterId.VisualIDPM)], new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.UnderlyingDataTable, Params_1.ParameterId.UnderlyingDataTable)));
-	        result.AddCommand(new CommandRegistration_1.CommandRegistration(api_internal_contract_1.VerbId.GetDataSummaryData, CommandIds_1.DocCommands.GetSummaryData, [new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.IgnoreAliases, Params_1.ParameterId.IgnoreAliases),
-	            new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.IgnoreSelection, Params_1.ParameterId.IgnoreSelection),
-	            new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.VisualId, Params_1.ParameterId.VisualIDPM)], new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.UnderlyingSummaryDataTable, Params_1.ParameterId.UnderlyingDataTable)));
-	        result.AddCommand(new CommandRegistration_1.CommandRegistration(api_internal_contract_1.VerbId.GetSelectedMarks, CommandIds_1.DocCommands.GetSelectionData, [new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.VisualId, Params_1.ParameterId.VisualIDPM)], new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.SelectedData, Params_1.ParameterId.SelectionData)));
-	        result.AddCommand(new CommandRegistration_1.CommandRegistration(api_internal_contract_1.VerbId.GetHighlightedMarks, CommandIds_1.DocCommands.GetHighlightedData, [new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.VisualId, Params_1.ParameterId.VisualIDPM)], new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.HighlightedData, Params_1.ParameterId.HighlightedData)));
-	        result.AddCommand(new CommandRegistration_1.CommandRegistration(api_internal_contract_1.VerbId.SaveAddInSettings, CommandIds_1.DocCommands.SaveAddInSettings, [new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.AddInLocator, Params_1.ParameterId.AddInLocator),
-	            new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.SettingsValues, Params_1.ParameterId.AddInSettings)], new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.AddInSettingsInfo, Params_1.ParameterId.AddInSettingsInfo)));
-	        return result;
-	    };
-	    return CommandMappingRegistryFactory;
-	}());
-	exports.CommandMappingRegistryFactory = CommandMappingRegistryFactory;
-
-
-/***/ },
-/* 12 */
+/* 10 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -575,7 +449,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	//
 	// -----------------------------------------------------------------------------
 	// WARNING: Computer generated file.  Do not hand modify.
-	// DEPENDS ON: ['..\\git\\api-all-js\\api-core\\node_modules\\@tableau\\preslayer-codegen-typescript\\templates\\params-ts.template', u'..\\git\\api-all-js\\api-core\\temp-pres-layer\\all-params.data']
+	// DEPENDS ON: ['..\\js-api\\api-core\\node_modules\\@tableau\\preslayer-codegen-typescript\\templates\\params-ts.template', u'..\\js-api\\api-core\\temp-pres-layer\\all-params.data']
 	Object.defineProperty(exports, "__esModule", { value: true });
 	var ParameterId;
 	(function (ParameterId) {
@@ -1559,6 +1433,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    ParameterId["CanChangeSemanticRole"] = "canChangeSemanticRole";
 	    // DPI_CanDerive, having type bool
 	    ParameterId["CanDerive"] = "canDerive";
+	    // DPI_CanDrop, having type bool
+	    ParameterId["CanDrop"] = "canDrop";
 	    // DPI_CanEdit, having type bool
 	    ParameterId["CanEdit"] = "canEdit";
 	    // DPI_CanEditLegendColor, having type bool
@@ -1653,6 +1529,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    ParameterId["CullLabels"] = "cullLabels";
 	    // DPI_CurrentCustViewIdFlag, having type bool
 	    ParameterId["CurrentCustViewIdFlag"] = "isCurrentCustViewIdValid";
+	    // DPI_DashboardEnableSnap, having type bool
+	    ParameterId["DashboardEnableSnap"] = "dashboardEnableSnap";
+	    // DPI_DashboardShowGrid, having type bool
+	    ParameterId["DashboardShowGrid"] = "dashboardShowGrid";
 	    // DPI_DataGridSortOrder, having type bool
 	    ParameterId["DataGridSortOrder"] = "datagridSortOrder";
 	    // DPI_DeleteExtract, having type bool
@@ -1829,6 +1709,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    ParameterId["HasDownloadPermissions"] = "hasDownloadPermissions";
 	    // DPI_HasDrill, having type bool
 	    ParameterId["HasDrill"] = "hasDrill";
+	    // DPI_HasExclude, having type bool
+	    ParameterId["HasExclude"] = "hasExclude";
 	    // DPI_HasFill, having type bool
 	    ParameterId["HasFill"] = "hasFill";
 	    // DPI_HasLabels, having type bool
@@ -2725,6 +2607,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    ParameterId["EnableIncludeZero"] = "enableIncludeZero";
 	    // DPI_EnableSyncDualAxes, having type bool
 	    ParameterId["EnableSyncDualAxes"] = "enableSynchronizeDualAxes";
+	    // DPI_EnableShowTimes, having type bool
+	    ParameterId["EnableShowTimes"] = "enableShowTimes";
 	    // DPI_IsTemporal, having type bool
 	    ParameterId["IsTemporal"] = "isTemporal";
 	    // DPI_ShouldIncludeZero, having type bool
@@ -3081,6 +2965,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	    ParameterId["FormattedMinValue"] = "formattedMin";
 	    // DPI_FormattedValue, having type string
 	    ParameterId["FormattedValue"] = "formattedValue";
+	    // DPI_FormattedCenterValue, having type string
+	    ParameterId["FormattedCenterValue"] = "formattedCenter";
+	    // DPI_FormattedEndValue, having type string
+	    ParameterId["FormattedEndValue"] = "formattedEnd";
+	    // DPI_FormattedStartValue, having type string
+	    ParameterId["FormattedStartValue"] = "formattedStart";
 	    // DPI_PairedFormattedValue, having type string
 	    ParameterId["PairedFormattedValue"] = "pairedFormattedValue";
 	    // DPI_FrameAttributes, having type string
@@ -3243,6 +3133,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    ParameterId["SortModeCaption"] = "sortModeCaption";
 	    // DPI_SourceName, having type string
 	    ParameterId["SourceName"] = "sourceName";
+	    // DPI_SourceText, having type string
+	    ParameterId["SourceText"] = "sourceText";
 	    // DPI_SpecialValueText, having type string
 	    ParameterId["SpecialValueText"] = "specialValueText";
 	    // DPI_StaticImage, having type string
@@ -3409,6 +3301,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    ParameterId["AtTheLevelSpecialCaption"] = "atTheLevelSpecialCaption";
 	    // DPI_AutoCompleteCalc, having type string
 	    ParameterId["AutoCompleteCalc"] = "acCalc";
+	    // DPI_CallToAction, having type string
+	    ParameterId["CallToAction"] = "callToAction";
 	    // DPI_CSVPath, having type string
 	    ParameterId["CSVPath"] = "csvPath";
 	    // DPI_CommandNamespace, having type string
@@ -3443,6 +3337,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    ParameterId["EditWidgetInstruction"] = "editWidgetInstruction";
 	    // DPI_EndSelectionCaption, having type string
 	    ParameterId["EndSelectionCaption"] = "endSelectionCaption";
+	    // DPI_ErrorDialogTitle, having type string
+	    ParameterId["ErrorDialogTitle"] = "errorDialogTitle";
+	    // DPI_ErrorHelpLink, having type string
+	    ParameterId["ErrorHelpLink"] = "errorHelpLink";
 	    // DPI_FilterSearchQuery, having type string
 	    ParameterId["FilterSearchQuery"] = "filterSearchQuery";
 	    // DPI_FromLabel, having type string
@@ -3943,6 +3841,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    ParameterId["DayNames"] = "dayNames";
 	    // DPI_DrillPathVector, having type string[]
 	    ParameterId["DrillPathVector"] = "drillpathVector";
+	    // DPI_ErrorDetails, having type string[]
+	    ParameterId["ErrorDetails"] = "errorDetails";
 	    // DPI_ExceptionMessageParams, having type string[]
 	    ParameterId["ExceptionMessageParams"] = "exceptionMessageParams";
 	    // DPI_ExcludedSheets, having type string[]
@@ -4207,6 +4107,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    ParameterId["CustomSplitCharacterCountSeparator"] = "customSplitCharacterCountSeparator";
 	    // DPI_CustomSplitDesiredSplitCount, having type int
 	    ParameterId["CustomSplitDesiredSplitCount"] = "customSplitDesiredSplitCount";
+	    // DPI_DashboardGridSize, having type int
+	    ParameterId["DashboardGridSize"] = "dashboardGridSize";
 	    // DPI_DataIndex, having type int
 	    ParameterId["DataIndex"] = "dataIndex";
 	    // DPI_DecimalPlaces, having type int
@@ -6659,8 +6561,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	    ParameterId["CategoricalFilterRelationalDomainInfo"] = "categoricalFilterRelationalDomainInfo";
 	    // DPI_CategoricalFilterRelationalDisplay, having type CategoricalFilterRelationalDisplayPresModel
 	    ParameterId["CategoricalFilterRelationalDisplay"] = "categoricalFilterRelationalDisplay";
+	    // DPI_ExpressionToken, having type ExpressionTokenPresModel
+	    ParameterId["ExpressionToken"] = "expressionToken";
+	    // DPI_ExpressionTokens, having type ExpressionTokenPresModel[]
+	    ParameterId["ExpressionTokens"] = "expressionTokens";
 	    // DPI_FormulaValidation, having type FormulaValidationPresModel
 	    ParameterId["FormulaValidation"] = "formulaValidation";
+	    // DPI_ValidationResults, having type ValidationResultsPresModel
+	    ParameterId["ValidationResults"] = "validationResults";
 	    // DPI_DomainMember, having type DomainMemberPresModel
 	    ParameterId["DomainMember"] = "domainMember";
 	    // DPI_DomainMembers, having type DomainMemberPresModel[]
@@ -7117,6 +7025,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    ParameterId["DomainRange"] = "domainRange";
 	    // DPI_BinSizeInfo, having type BinSizeInfoPresModel
 	    ParameterId["BinSizeInfo"] = "binSizeInfo";
+	    // DPI_DetailedErrorDialog, having type DetailedErrorPresModel
+	    ParameterId["DetailedErrorDialog"] = "detailedErrorDialog";
 	    // DPI_DragSourcePosition, having type ShelfDropPositionPresModel
 	    ParameterId["DragSourcePosition"] = "shelfDragSourcePosition";
 	    // DPI_DropTargetPosition, having type ShelfDropPositionPresModel
@@ -7981,6 +7891,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    ParameterId["AddInContext"] = "addInContext";
 	    // DPI_AddInMode, having type AddInMode
 	    ParameterId["AddInMode"] = "addInMode";
+	    // DPI_SetAxisRangeStartResult, having type SetAxisRangeResult
+	    ParameterId["SetAxisRangeStartResult"] = "setAxisRangeStartResult";
+	    // DPI_SetAxisRangeEndResult, having type SetAxisRangeResult
+	    ParameterId["SetAxisRangeEndResult"] = "setAxisRangeEndResult";
 	    // DPI_AddInEnvironment, having type AddInEnvironmentPresModel
 	    ParameterId["AddInEnvironment"] = "addInEnvironmentPresModel";
 	    // DPI_AddInDashboardInfo, having type AddInDashboardInfoPresModel
@@ -8007,7 +7921,66 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 13 */
+/* 11 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	var api_internal_contract_1 = __webpack_require__(4);
+	var CommandIds_1 = __webpack_require__(12);
+	var Params_1 = __webpack_require__(10);
+	var CommandMappingRegistry_1 = __webpack_require__(13);
+	var CommandRegistration_1 = __webpack_require__(14);
+	var CommandMappingRegistryFactory = (function () {
+	    function CommandMappingRegistryFactory() {
+	    }
+	    /**
+	     * Creates and populates a new CommandMappingRegistry for the specific version number requested
+	     *
+	     * @static
+	     * @param {VersionNumber} versionNumber
+	     * @returns {CommandMappingRegistry}
+	     * @memberof CommandMappingRegistryFactory
+	     */
+	    CommandMappingRegistryFactory.createCommandMappingRegistry = function (versionNumber) {
+	        var result = new CommandMappingRegistry_1.CommandMappingRegistry();
+	        result.addCommand(new CommandRegistration_1.CommandRegistration(api_internal_contract_1.VerbId.InitializeAddIn, CommandIds_1.DocCommands.InitializeAddInInstance, [new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.AddInLocator, Params_1.ParameterId.AddInLocator)], new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.AddInBootstrapInfo, Params_1.ParameterId.AddInBootstrapInfo)));
+	        result.addCommand(new CommandRegistration_1.CommandRegistration(api_internal_contract_1.VerbId.GetUnderlyingData, CommandIds_1.DocCommands.GetUnderlyingData, [new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.IgnoreAliases, Params_1.ParameterId.IgnoreAliases),
+	            new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.IgnoreSelection, Params_1.ParameterId.IgnoreSelection),
+	            new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.IncludeAllColumns, Params_1.ParameterId.IncludeAllColumns),
+	            new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.MaxRows, Params_1.ParameterId.MaxRows),
+	            new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.VisualId, Params_1.ParameterId.VisualIDPM)], new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.UnderlyingDataTable, Params_1.ParameterId.UnderlyingDataTable)));
+	        result.addCommand(new CommandRegistration_1.CommandRegistration(api_internal_contract_1.VerbId.GetDataSummaryData, CommandIds_1.DocCommands.GetSummaryData, [new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.IgnoreAliases, Params_1.ParameterId.IgnoreAliases),
+	            new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.IgnoreSelection, Params_1.ParameterId.IgnoreSelection),
+	            new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.VisualId, Params_1.ParameterId.VisualIDPM)], new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.UnderlyingSummaryDataTable, Params_1.ParameterId.UnderlyingDataTable)));
+	        result.addCommand(new CommandRegistration_1.CommandRegistration(api_internal_contract_1.VerbId.ApplyCategoricalFilter, CommandIds_1.DocCommands.CategoricalFilter, [new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.FieldName, Params_1.ParameterId.QualifiedFieldCaption),
+	            new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.FilterValues, Params_1.ParameterId.FilterAliases),
+	            new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.FilterUpdateType, Params_1.ParameterId.FilterUpdateType),
+	            new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.IsExcludeMode, Params_1.ParameterId.Exclude, true),
+	            new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.VisualId, Params_1.ParameterId.Worksheet),
+	            new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.VisualId, Params_1.ParameterId.Dashboard)], new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.FieldName, Params_1.ParameterId.FieldCaption)));
+	        result.addCommand(new CommandRegistration_1.CommandRegistration(api_internal_contract_1.VerbId.ApplyRangeFilter, CommandIds_1.DocCommands.RangeFilter, [new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.FieldName, Params_1.ParameterId.QualifiedFieldCaption),
+	            new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.FilterRangeMin, Params_1.ParameterId.RangeMin, true),
+	            new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.FilterRangeMax, Params_1.ParameterId.RangeMax, true),
+	            new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.FilterRangeNullOption, Params_1.ParameterId.Included, true),
+	            new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.VisualId, Params_1.ParameterId.Worksheet),
+	            new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.VisualId, Params_1.ParameterId.Dashboard)], new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.FieldName, Params_1.ParameterId.FieldCaption)));
+	        result.addCommand(new CommandRegistration_1.CommandRegistration(api_internal_contract_1.VerbId.ClearFilter, CommandIds_1.DocCommands.ClearExistingFilter, [new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.FieldName, Params_1.ParameterId.QualifiedFieldCaption),
+	            new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.VisualId, Params_1.ParameterId.Worksheet),
+	            new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.VisualId, Params_1.ParameterId.Dashboard)], new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.WorksheetName, Params_1.ParameterId.Worksheet)));
+	        result.addCommand(new CommandRegistration_1.CommandRegistration(api_internal_contract_1.VerbId.GetSelectedMarks, CommandIds_1.DocCommands.GetSelectionData, [new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.VisualId, Params_1.ParameterId.VisualIDPM)], new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.SelectedData, Params_1.ParameterId.SelectionData)));
+	        result.addCommand(new CommandRegistration_1.CommandRegistration(api_internal_contract_1.VerbId.GetHighlightedMarks, CommandIds_1.DocCommands.GetHighlightedData, [new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.VisualId, Params_1.ParameterId.VisualIDPM)], new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.HighlightedData, Params_1.ParameterId.HighlightedData)));
+	        result.addCommand(new CommandRegistration_1.CommandRegistration(api_internal_contract_1.VerbId.SaveAddInSettings, CommandIds_1.DocCommands.SaveAddInSettings, [new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.AddInLocator, Params_1.ParameterId.AddInLocator),
+	            new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.SettingsValues, Params_1.ParameterId.AddInSettings)], new CommandRegistration_1.CommandParameter(api_internal_contract_1.ParameterId.AddInSettingsInfo, Params_1.ParameterId.AddInSettingsInfo)));
+	        return result;
+	    };
+	    return CommandMappingRegistryFactory;
+	}());
+	exports.CommandMappingRegistryFactory = CommandMappingRegistryFactory;
+
+
+/***/ },
+/* 12 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -8023,7 +7996,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	//
 	// -----------------------------------------------------------------------------
 	// WARNING: Computer generated file.  Do not hand modify.
-	// DEPENDS ON: ['..\\git\\api-all-js\\api-core\\node_modules\\@tableau\\preslayer-codegen-typescript\\templates\\commands-enum-ts.template', u'..\\git\\api-all-js\\api-core\\temp-pres-layer\\all-cmd-wrappers.data']
+	// DEPENDS ON: ['..\\js-api\\api-core\\node_modules\\@tableau\\preslayer-codegen-typescript\\templates\\commands-enum-ts.template', u'..\\js-api\\api-core\\temp-pres-layer\\all-cmd-wrappers.data']
 	Object.defineProperty(exports, "__esModule", { value: true });
 	var DocCommands;
 	(function (DocCommands) {
@@ -8051,6 +8024,60 @@ return /******/ (function(modules) { // webpackBootstrap
 	    DocCommands["GetUnderlyingData"] = "get-underlying-data";
 	    // Select all marks that have the tuple's value for the given field .
 	    DocCommands["SelectByTupleValue"] = "select-by-tuple-value";
+	    // Creates or updates and existing filter based on the provided updates.
+	    DocCommands["ApplyCategoricalFilterUpdates"] = "apply-categorical-filter-updates";
+	    // Search filter domain for text and return any matching tuples.
+	    DocCommands["CategoricalFilterSearch"] = "categorical-filter-search";
+	    // Clear all members from the table of the identified cache.
+	    DocCommands["CategoricalFilterClearRelationalCache"] = "categorical-filter-clear-relational-cache";
+	    // Create tuples for an existing filter from supplied text.
+	    DocCommands["GetCategoricalFilterTuplesFromText"] = "get-categorical-filter-tuples-from-text";
+	    // Returns a presmodel backing a categorical filter, initializing a data cache for fast lookup of the filter's member domain.
+	    DocCommands["GetCategoricalFilter"] = "get-categorical-filter";
+	    // Retrieves a page of data to display in the filter's list domain
+	    DocCommands["GetCategoricalFilterDomainPage"] = "get-categorical-filter-domain-page";
+	    // Reset filter to committed state
+	    DocCommands["ResetCategoricalFilterDeferred"] = "reset-categorical-filter-deferred";
+	    // Use uncommitted state to reset the filter's controller
+	    DocCommands["RecreateCategoricalFilterController"] = "recreate-categorical-filter-controller";
+	    // Validates a Categroical Filter name.
+	    DocCommands["ValidateCategoricalFilterName"] = "validate-categorical-filter-name";
+	    // Gets a summary of the filter pattern.
+	    DocCommands["GetCategoricalFilterPatternSummary"] = "get-categorical-filter-pattern-summary";
+	    // Gets a summery of the filter condition.
+	    DocCommands["GetCategoricalFilterConditionSummary"] = "get-categorical-filter-condition-summary";
+	    // Load the current minimum and maximum data value range for the condition field.
+	    DocCommands["LoadCategoricalFilterConditionFieldValueRange"] = "load-categorical-filter-condition-field-value-range";
+	    // Validates a Categorical Filter's condition formula and re-writes it.
+	    DocCommands["ValidateCategoricalFilterConditionFormula"] = "validate-categorical-filter-condition-formula";
+	    // Gets a summery of the filter limit.
+	    DocCommands["GetCategoricalFilterLimitSummary"] = "get-categorical-filter-limit-summary";
+	    // Validates a Categorical Filter's limit count.
+	    DocCommands["ValidateCategoricalFilterLimitCount"] = "validate-categorical-filter-limit-count";
+	    // Validates a Categorical Filter's limit formula, and re-writes the formula.
+	    DocCommands["ValidateCategoricalFilterLimitFormula"] = "validate-categorical-filter-limit-formula";
+	    // Validates a Categorical Filter's limit.
+	    DocCommands["ValidateCategoricalFilterLimit"] = "validate-categorical-filter-limit";
+	    // Inform cache when a user changes the range
+	    DocCommands["CategoricalFilterSetRangeTypeDeferred"] = "categorical-filter-set-range-type-deferred";
+	    // Inform cache when a user changes whether the selection is exclusive
+	    DocCommands["CategoricalFilterSetSelectionExclusiveDeferred"] = "categorical-filter-set-selection-exclusive-deferred";
+	    // Inform cache when a user changes whether an empty selection should be considered a selection of 'All' in a Manual selection mode
+	    DocCommands["CategoricalFilterSetUseAllWhenManualIsEmptyDeferred"] = "categorical-filter-set-use-all-when-manual-is-empty-deferred";
+	    // Inform cache when a user alters the preset type
+	    DocCommands["CategoricalFilterSetPresetTypeDeferred"] = "categorical-filter-set-preset-type-deferred";
+	    // Inform cache the user has selected one or more members
+	    DocCommands["CategoricalFilterSelectRelationalMembersDeferred"] = "categorical-filter-select-relational-members-deferred";
+	    // Inform cache the user has deselected one or more members
+	    DocCommands["CategoricalFilterDeselectRelationalMembersDeferred"] = "categorical-filter-deselect-relational-members-deferred";
+	    // Inform cache when a user selects everything in the domain
+	    DocCommands["CategoricalFilterSelectAllRelationalMembersDeferred"] = "categorical-filter-select-all-relational-members-deferred";
+	    // Inform cache when a user deselects everything in the domain
+	    DocCommands["CategoricalFilterDeselectAllRelationalMembersDeferred"] = "categorical-filter-deselect-all-relational-members-deferred";
+	    // Inform cache the user wants to see a different domain (e.g. relevant values only)
+	    DocCommands["CategoricalFilterSetDomainTypeDeferred"] = "categorical-filter-set-domain-type-deferred";
+	    // Set whether filters apply to totals as well as non-totals table calcs
+	    DocCommands["FilterApplyToTotalTableCalcs"] = "filter-apply-to-total-table-calcs";
 	    // Gets the axis options .
 	    DocCommands["GetAxisOptions"] = "get-axis-options";
 	    // Reset the axis options .
@@ -8087,193 +8114,51 @@ return /******/ (function(modules) { // webpackBootstrap
 	    DocCommands["SelectByValue"] = "select-by-value";
 	    // 
 	    DocCommands["SelectNoneIncludingMaster"] = "select-none-including-master";
+	    // 
+	    DocCommands["AddManualItemsToFilter"] = "add-manual-items-to-filter";
+	    // 
+	    DocCommands["CategoricalFilter"] = "categorical-filter";
+	    // 
+	    DocCommands["CategoricalFilterByIndex"] = "categorical-filter-by-index";
+	    // 
+	    DocCommands["ChangeSharedFilter"] = "change-shared-filter";
+	    // 
+	    DocCommands["ClearContextFilters"] = "clear-context-filters";
+	    // 
+	    DocCommands["ClearExistingFilter"] = "clear-existing-filter";
+	    // 
+	    DocCommands["DefaultFilter"] = "default-filter";
+	    // 
+	    DocCommands["FilterGeo"] = "filter-geo";
+	    // 
+	    DocCommands["FilterNeg"] = "filter-neg";
+	    // 
+	    DocCommands["FilterNulls"] = "filter-nulls";
+	    // 
+	    DocCommands["FilterTargets"] = "filter-targets";
+	    // 
+	    DocCommands["GetSharedFilterPresModel"] = "get-shared-filter-pres-model";
+	    // 
+	    DocCommands["HierarchicalFilter"] = "hierarchical-filter";
+	    // 
+	    DocCommands["KeepOnlyOrExclude"] = "keep-only-or-exclude";
+	    // 
+	    DocCommands["RangeFilter"] = "range-filter";
+	    // 
+	    DocCommands["RelDateFilter"] = "relative-date-filter";
+	    // 
+	    DocCommands["ResetFilter"] = "reset-filter";
+	    // 
+	    DocCommands["ShowGeoAtDefault"] = "show-geo-at-default";
+	    // 
+	    DocCommands["ShowSVAtDefault"] = "show-sv-at-default";
+	    // 
+	    DocCommands["ToggleLockQuickFilters"] = "toggle-lock-quick-filters";
 	})(DocCommands = exports.DocCommands || (exports.DocCommands = {}));
 
 
 /***/ },
-/* 14 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	Object.defineProperty(exports, "__esModule", { value: true });
-	var api_internal_contract_1 = __webpack_require__(5);
-	/**
-	 * Represents an input or output paramter for a command.
-	 *
-	 * @export
-	 * @class CommandParameter
-	 */
-	var CommandParameter = (function () {
-	    /**
-	     * Creates an instance of CommandParameter.
-	     * @param {ApiParameterId} apiId
-	     * @param {PresLayerParameterId} presLayerId
-	     * @param {boolean} [isOptional]
-	     * @memberof CommandParameter
-	     */
-	    function CommandParameter(apiId, presLayerId, isOptional) {
-	        this.presLayerId = presLayerId;
-	        this.apiId = apiId;
-	        this.isOptional = isOptional;
-	    }
-	    Object.defineProperty(CommandParameter.prototype, "ApiId", {
-	        /**
-	         * The Id of the Api Parameter
-	         *
-	         * @readonly
-	         * @type {ApiParameterId}
-	         * @memberof CommandParameter
-	         */
-	        get: function () {
-	            return this.apiId;
-	        },
-	        enumerable: true,
-	        configurable: true
-	    });
-	    Object.defineProperty(CommandParameter.prototype, "PresLayerId", {
-	        /**
-	         * The Id of the Pres Layer Parameter
-	         *
-	         * @readonly
-	         * @type {PresLayerParameterId}
-	         * @memberof CommandParameter
-	         */
-	        get: function () {
-	            return this.presLayerId;
-	        },
-	        enumerable: true,
-	        configurable: true
-	    });
-	    Object.defineProperty(CommandParameter.prototype, "IsOptional", {
-	        /**
-	         * Whether or not this is an optional parameter
-	         *
-	         * @readonly
-	         * @type {boolean}
-	         * @memberof CommandParameter
-	         */
-	        get: function () {
-	            return !!this.isOptional;
-	        },
-	        enumerable: true,
-	        configurable: true
-	    });
-	    return CommandParameter;
-	}());
-	exports.CommandParameter = CommandParameter;
-	/**
-	 * Represents a the complete mapping of an ApiCommand to its corresponding pres-layer command
-	 * and the conversion of the output value as well
-	 *
-	 * @export
-	 * @class CommandRegistration
-	 */
-	var CommandRegistration = (function () {
-	    function CommandRegistration(apiVerbId, commandId, inputParameters, outputParameter) {
-	        this.apiVerbId = apiVerbId;
-	        this.commandId = commandId;
-	        this.inputParameters = inputParameters;
-	        this.outputParameter = outputParameter;
-	    }
-	    Object.defineProperty(CommandRegistration.prototype, "ApiVerbId", {
-	        get: function () {
-	            return this.apiVerbId;
-	        },
-	        enumerable: true,
-	        configurable: true
-	    });
-	    Object.defineProperty(CommandRegistration.prototype, "CommandId", {
-	        get: function () {
-	            return this.commandId;
-	        },
-	        enumerable: true,
-	        configurable: true
-	    });
-	    Object.defineProperty(CommandRegistration.prototype, "Inputs", {
-	        get: function () {
-	            return this.inputParameters || new Array();
-	        },
-	        enumerable: true,
-	        configurable: true
-	    });
-	    Object.defineProperty(CommandRegistration.prototype, "Output", {
-	        get: function () {
-	            return this.outputParameter;
-	        },
-	        enumerable: true,
-	        configurable: true
-	    });
-	    Object.defineProperty(CommandRegistration.prototype, "NeedsAddInLocator", {
-	        /**
-	         * Whether or not this command requires an add-in locator to be injected into it
-	         *
-	         * @readonly
-	         * @type {boolean}
-	         * @memberof CommandRegistration
-	         */
-	        get: function () {
-	            for (var _i = 0, _a = this.Inputs; _i < _a.length; _i++) {
-	                var input = _a[_i];
-	                if (input.ApiId === api_internal_contract_1.ParameterId.AddInLocator) {
-	                    return true;
-	                }
-	            }
-	            return false;
-	        },
-	        enumerable: true,
-	        configurable: true
-	    });
-	    /**
-	     * Creates a dictionary of pres-layer parameters from the input dictionary
-	     * of api parameters.
-	     *
-	     * @param {ExecuteParameters} parameters - The parameters to convert
-	     * @param {ApiToPresLayerMappingRegistry} apiToPresLayer - mapping to determine the conversion
-	     * @returns {{ [paramId: string]: object; }} - parameters to send to the pres-layer
-	     * @memberof CommandRegistration
-	     */
-	    CommandRegistration.prototype.CreateParams = function (parameters, apiToPresLayer) {
-	        var result = {};
-	        for (var _i = 0, _a = this.Inputs; _i < _a.length; _i++) {
-	            var inputParam = _a[_i];
-	            // First make sure the parameter is there or that it's optional
-	            if (!parameters.hasOwnProperty(inputParam.ApiId)) {
-	                if (inputParam.IsOptional) {
-	                    continue;
-	                }
-	                else {
-	                    throw new Error('Missing parameter for command: ' + inputParam.ApiId);
-	                }
-	            }
-	            // Find the conversion function for this parameter
-	            var conversionFn = apiToPresLayer.Get(inputParam.ApiId, inputParam.PresLayerId);
-	            // Convert the pres model and insert it into our results object
-	            result[inputParam.PresLayerId] = conversionFn(parameters[inputParam.ApiId]);
-	        }
-	        return result;
-	    };
-	    /**
-	     * Processes the result received back after executing a pres-layer command
-	     *
-	     * @param {{ [docParamId: string]: object; }} resultParameters
-	     * @param {PresLayerToApiMappingRegistry} presLayerToApi
-	     * @returns {Model}
-	     * @memberof CommandRegistration
-	     */
-	    CommandRegistration.prototype.ProcessResult = function (resultParameters, presLayerToApi) {
-	        if (!resultParameters.hasOwnProperty(this.Output.PresLayerId)) {
-	            throw new Error('Missing exptected result parameter: ' + this.Output.PresLayerId);
-	        }
-	        var conversionFn = presLayerToApi.Get(this.Output.PresLayerId, this.Output.ApiId);
-	        return conversionFn(resultParameters[this.Output.PresLayerId]);
-	    };
-	    return CommandRegistration;
-	}());
-	exports.CommandRegistration = CommandRegistration;
-
-
-/***/ },
-/* 15 */
+/* 13 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -8299,8 +8184,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * @param {CommandRegistration} command
 	     * @memberof CommandMappingRegistry
 	     */
-	    CommandMappingRegistry.prototype.AddCommand = function (command) {
-	        this.commands[command.ApiVerbId] = command;
+	    CommandMappingRegistry.prototype.addCommand = function (command) {
+	        this.commands[command.apiVerbId] = command;
 	    };
 	    /**
 	     * Whether or not this registry contains a definition for this ApiVerbId
@@ -8309,7 +8194,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * @returns {boolean}
 	     * @memberof CommandMappingRegistry
 	     */
-	    CommandMappingRegistry.prototype.HasCommand = function (apiVerbId) {
+	    CommandMappingRegistry.prototype.hasCommand = function (apiVerbId) {
 	        if (!this.commands.hasOwnProperty(apiVerbId)) {
 	            return false;
 	        }
@@ -8325,8 +8210,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * @returns {CommandRegistration}
 	     * @memberof CommandMappingRegistry
 	     */
-	    CommandMappingRegistry.prototype.GetCommand = function (apiVerbId) {
-	        if (!this.HasCommand(apiVerbId)) {
+	    CommandMappingRegistry.prototype.getCommand = function (apiVerbId) {
+	        if (!this.hasCommand(apiVerbId)) {
 	            throw new Error('Unknown ApiVerb: ' + apiVerbId);
 	        }
 	        return this.commands[apiVerbId];
@@ -8337,40 +8222,223 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 16 */
+/* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	Object.defineProperty(exports, "__esModule", { value: true });
-	var Events_1 = __webpack_require__(17);
-	var PresLayerToApiConverter_1 = __webpack_require__(18);
-	var api_internal_contract_1 = __webpack_require__(5);
+	var api_internal_contract_1 = __webpack_require__(4);
+	/**
+	 * Represents an input or output paramter for a command.
+	 *
+	 * @export
+	 * @class CommandParameter
+	 */
+	var CommandParameter = (function () {
+	    /**
+	     * Creates an instance of CommandParameter.
+	     * @param {ApiParameterId} apiId
+	     * @param {PresLayerParameterId} presLayerId
+	     * @param {boolean} [isOptional]
+	     * @memberof CommandParameter
+	     */
+	    function CommandParameter(_apiId, _presLayerId, _isOptional) {
+	        this._apiId = _apiId;
+	        this._presLayerId = _presLayerId;
+	        this._isOptional = _isOptional;
+	    }
+	    Object.defineProperty(CommandParameter.prototype, "apiId", {
+	        /**
+	         * The Id of the Api Parameter
+	         *
+	         * @readonly
+	         * @type {ApiParameterId}
+	         * @memberof CommandParameter
+	         */
+	        get: function () {
+	            return this._apiId;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(CommandParameter.prototype, "presLayerId", {
+	        /**
+	         * The Id of the Pres Layer Parameter
+	         *
+	         * @readonly
+	         * @type {PresLayerParameterId}
+	         * @memberof CommandParameter
+	         */
+	        get: function () {
+	            return this._presLayerId;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(CommandParameter.prototype, "isOptional", {
+	        /**
+	         * Whether or not this is an optional parameter
+	         *
+	         * @readonly
+	         * @type {boolean}
+	         * @memberof CommandParameter
+	         */
+	        get: function () {
+	            return !!this._isOptional;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    return CommandParameter;
+	}());
+	exports.CommandParameter = CommandParameter;
+	/**
+	 * Represents a the complete mapping of an ApiCommand to its corresponding pres-layer command
+	 * and the conversion of the output value as well
+	 *
+	 * @export
+	 * @class CommandRegistration
+	 */
+	var CommandRegistration = (function () {
+	    function CommandRegistration(_apiVerbId, _commandId, _inputParameters, _outputParameter) {
+	        this._apiVerbId = _apiVerbId;
+	        this._commandId = _commandId;
+	        this._inputParameters = _inputParameters;
+	        this._outputParameter = _outputParameter;
+	    }
+	    Object.defineProperty(CommandRegistration.prototype, "apiVerbId", {
+	        get: function () {
+	            return this._apiVerbId;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(CommandRegistration.prototype, "commandId", {
+	        get: function () {
+	            return this._commandId;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(CommandRegistration.prototype, "inputs", {
+	        get: function () {
+	            return this._inputParameters || new Array();
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(CommandRegistration.prototype, "output", {
+	        get: function () {
+	            return this._outputParameter;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(CommandRegistration.prototype, "needsAddInLocator", {
+	        /**
+	         * Whether or not this command requires an add-in locator to be injected into it
+	         *
+	         * @readonly
+	         * @type {boolean}
+	         * @memberof CommandRegistration
+	         */
+	        get: function () {
+	            for (var _i = 0, _a = this.inputs; _i < _a.length; _i++) {
+	                var input = _a[_i];
+	                if (input.apiId === api_internal_contract_1.ParameterId.AddInLocator) {
+	                    return true;
+	                }
+	            }
+	            return false;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    /**
+	     * Creates a dictionary of pres-layer parameters from the input dictionary
+	     * of api parameters.
+	     *
+	     * @param {ExecuteParameters} parameters - The parameters to convert
+	     * @param {ApiToPresLayerMappingRegistry} apiToPresLayer - mapping to determine the conversion
+	     * @returns {{ [paramId: string]: object; }} - parameters to send to the pres-layer
+	     * @memberof CommandRegistration
+	     */
+	    CommandRegistration.prototype.createParams = function (parameters, apiToPresLayer) {
+	        var result = {};
+	        for (var _i = 0, _a = this.inputs; _i < _a.length; _i++) {
+	            var inputParam = _a[_i];
+	            // First make sure the parameter is there or that it's optional
+	            if (!parameters.hasOwnProperty(inputParam.apiId)) {
+	                if (inputParam.isOptional) {
+	                    continue;
+	                }
+	                else {
+	                    throw new Error('Missing parameter for command: ' + inputParam.apiId);
+	                }
+	            }
+	            // Find the conversion function for this parameter
+	            var conversionFn = apiToPresLayer.get(inputParam.apiId, inputParam.presLayerId);
+	            // Convert the pres model and insert it into our results object
+	            result[inputParam.presLayerId] = conversionFn(parameters[inputParam.apiId]);
+	        }
+	        return result;
+	    };
+	    /**
+	     * Processes the result received back after executing a pres-layer command
+	     *
+	     * @param {{ [docParamId: string]: object; }} resultParameters
+	     * @param {PresLayerToApiMappingRegistry} presLayerToApi
+	     * @returns {Model}
+	     * @memberof CommandRegistration
+	     */
+	    CommandRegistration.prototype.ProcessResult = function (resultParameters, presLayerToApi) {
+	        // TODO: Add error handling
+	        if (!resultParameters.hasOwnProperty(this.output.presLayerId)) {
+	            throw new Error('Missing exptected result parameter: ' + this.output.presLayerId);
+	        }
+	        var conversionFn = presLayerToApi.get(this.output.presLayerId, this.output.apiId);
+	        return conversionFn(resultParameters[this.output.presLayerId]);
+	    };
+	    return CommandRegistration;
+	}());
+	exports.CommandRegistration = CommandRegistration;
+
+
+/***/ },
+/* 15 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	var api_internal_contract_1 = __webpack_require__(4);
+	var Events_1 = __webpack_require__(16);
+	var PresLayerToApiConverter_1 = __webpack_require__(17);
 	/**
 	 * Simple wrapper which holds a mapping to go from a pres-layer event to an API event
 	 */
 	var EventMappingRegistration = (function () {
-	    function EventMappingRegistration(presLayerId, apiId, converter) {
-	        this.presLayerId = presLayerId;
-	        this.apiId = apiId;
-	        this.converter = converter;
+	    function EventMappingRegistration(_presLayerId, _apiId, _converter) {
+	        this._presLayerId = _presLayerId;
+	        this._apiId = _apiId;
+	        this._converter = _converter;
 	    }
-	    Object.defineProperty(EventMappingRegistration.prototype, "PresLayerId", {
+	    Object.defineProperty(EventMappingRegistration.prototype, "presLayerId", {
 	        get: function () {
-	            return this.presLayerId;
+	            return this._presLayerId;
 	        },
 	        enumerable: true,
 	        configurable: true
 	    });
-	    Object.defineProperty(EventMappingRegistration.prototype, "ApiId", {
+	    Object.defineProperty(EventMappingRegistration.prototype, "apiId", {
 	        get: function () {
-	            return this.apiId;
+	            return this._apiId;
 	        },
 	        enumerable: true,
 	        configurable: true
 	    });
-	    Object.defineProperty(EventMappingRegistration.prototype, "Converter", {
+	    Object.defineProperty(EventMappingRegistration.prototype, "converter", {
 	        get: function () {
-	            return this.converter;
+	            return this._converter;
 	        },
 	        enumerable: true,
 	        configurable: true
@@ -8387,9 +8455,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * @param {VersionNumber} versionNumber
 	     * @returns {EventMappingRegistry}
 	     */
-	    EventMappingRegistryFactory.CreateEventMappingRegistry = function (versionNumber) {
+	    EventMappingRegistryFactory.createEventMappingRegistry = function (versionNumber) {
 	        var registry = {};
-	        registry[Events_1.NotificationId.SelectionChanged] = new EventMappingRegistration(Events_1.NotificationId.SelectionChanged, api_internal_contract_1.NotificationId.SelectedMarksChanged, PresLayerToApiConverter_1.PresLayerToApiConverter.ConvertVisualId);
+	        registry[Events_1.NotificationId.SelectionChanged] = new EventMappingRegistration(Events_1.NotificationId.SelectionChanged, api_internal_contract_1.NotificationId.SelectedMarksChanged, PresLayerToApiConverter_1.PresLayerToApiConverter.convertVisualId);
 	        return registry;
 	    };
 	    return EventMappingRegistryFactory;
@@ -8398,7 +8466,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 17 */
+/* 16 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -8414,7 +8482,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	//
 	// -----------------------------------------------------------------------------
 	// WARNING: Computer generated file.  Do not hand modify.
-	// DEPENDS ON: ['..\\git\\api-all-js\\api-core\\node_modules\\@tableau\\preslayer-codegen-typescript\\templates\\events-ts.template', u'..\\git\\api-all-js\\api-core\\temp-pres-layer\\all-events.data']
+	// DEPENDS ON: ['..\\js-api\\api-core\\node_modules\\@tableau\\preslayer-codegen-typescript\\templates\\events-ts.template', u'..\\js-api\\api-core\\temp-pres-layer\\all-events.data']
 	Object.defineProperty(exports, "__esModule", { value: true });
 	// Events you can register to receive presentation models
 	var NotificationId;
@@ -8441,6 +8509,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    NotificationId["UpdateDataSourceData"] = "update-data-source-data-event";
 	    // event for getting the pres model to update file join table properties
 	    NotificationId["TextFileProperties"] = "text-file-properties-event";
+	    // event for the detailed error dialog
+	    NotificationId["UpdateDetailedErrorDialog"] = "update-detailed-error-dialog-event";
 	    // notify changes to the state of a filter's relational model
 	    NotificationId["FilterRelationalStateChanged"] = "filter-relational-state-changed-event";
 	    // notify changes to the size/selection count of a relational domain
@@ -8507,12 +8577,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 18 */
+/* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	Object.defineProperty(exports, "__esModule", { value: true });
-	var EnumMappings_1 = __webpack_require__(19);
+	var EnumMappings_1 = __webpack_require__(18);
 	/**
 	 * Class containing helper methods for converting from PresLayerPresModels to their ApiPresModels equivalents
 	 *
@@ -8522,95 +8592,95 @@ return /******/ (function(modules) { // webpackBootstrap
 	var PresLayerToApiConverter = (function () {
 	    function PresLayerToApiConverter() {
 	    }
-	    PresLayerToApiConverter.ConvertSheetPath = function (plSheetPath) {
+	    PresLayerToApiConverter.convertSheetPath = function (plSheetPath) {
 	        var result = {
-	            SheetName: plSheetPath.sheetName,
-	            IsDashboard: plSheetPath.isDashboard,
-	            Storyboard: plSheetPath.storyboard,
-	            FlipboardZoneID: plSheetPath.flipboardZoneId,
-	            StoryPointID: plSheetPath.storyPointId,
+	            sheetName: plSheetPath.sheetName,
+	            isDashboard: plSheetPath.isDashboard,
+	            storyboard: plSheetPath.storyboard,
+	            flipboardZoneID: plSheetPath.flipboardZoneId,
+	            storyPointID: plSheetPath.storyPointId,
 	        };
 	        return result;
 	    };
-	    PresLayerToApiConverter.ConvertVisualId = function (plVisualId) {
+	    PresLayerToApiConverter.convertVisualId = function (plVisualId) {
 	        var result = {
-	            Worksheet: plVisualId.worksheet,
-	            Dashboard: plVisualId.dashboard,
-	            Storyboard: plVisualId.storyboard,
-	            FlipboardZoneID: plVisualId.flipboardZoneId,
-	            StoryPointID: plVisualId.storyPointId,
+	            worksheet: plVisualId.worksheet,
+	            dashboard: plVisualId.dashboard,
+	            storyboard: plVisualId.storyboard,
+	            flipboardZoneID: plVisualId.flipboardZoneId,
+	            storyPointID: plVisualId.storyPointId,
 	        };
 	        return result;
 	    };
-	    PresLayerToApiConverter.ConvertAddInLocator = function (plAddInLocator) {
+	    PresLayerToApiConverter.convertAddInLocator = function (plAddInLocator) {
 	        var dashboardPath = undefined;
 	        if (plAddInLocator.sheetPath) {
-	            dashboardPath = PresLayerToApiConverter.ConvertSheetPath(plAddInLocator.sheetPath);
+	            dashboardPath = PresLayerToApiConverter.convertSheetPath(plAddInLocator.sheetPath);
 	        }
 	        var result = {
-	            InstanceId: plAddInLocator.addInInstanceId,
-	            DashboardPath: dashboardPath
+	            instanceId: plAddInLocator.addInInstanceId,
+	            dashboardPath: dashboardPath
 	        };
 	        return result;
 	    };
-	    PresLayerToApiConverter.ConvertDashboardInZones = function (plDashboard) {
+	    PresLayerToApiConverter.convertDashboardInZones = function (plDashboard) {
 	        var result = new Array();
 	        for (var _i = 0, _a = Object.keys(plDashboard.zones); _i < _a.length; _i++) {
 	            var zoneKey = _a[_i];
 	            var zone = plDashboard.zones[zoneKey];
 	            var apiZone = {
-	                Name: zone.zoneCommon.name,
-	                ZoneId: zone.zoneId,
-	                ZoneType: EnumMappings_1.PresLayerToApiEnumMappings.ZoneType.Convert(zone.zoneCommon.zoneType),
-	                Height: zone.zoneCommon.h,
-	                Width: zone.zoneCommon.w,
-	                X: zone.zoneCommon.x,
-	                Y: zone.zoneCommon.y
+	                name: zone.zoneCommon.name,
+	                zoneId: zone.zoneId,
+	                zoneType: EnumMappings_1.PresLayerToApiEnumMappings.zoneType.convert(zone.zoneCommon.zoneType),
+	                height: zone.zoneCommon.h,
+	                width: zone.zoneCommon.w,
+	                x: zone.zoneCommon.x,
+	                y: zone.zoneCommon.y
 	            };
 	            result.push(apiZone);
 	        }
 	        return result;
 	    };
-	    PresLayerToApiConverter.ConvertDashboardInfo = function (plDashboardInfo) {
+	    PresLayerToApiConverter.convertDashboardInfo = function (plDashboardInfo) {
 	        var result = {
-	            Zones: PresLayerToApiConverter.ConvertDashboardInZones(plDashboardInfo.dashboardPresModel),
-	            Name: plDashboardInfo.dashboardPresModel.sheetPath.sheetName,
-	            AddInZoneId: plDashboardInfo.zoneId
+	            zones: PresLayerToApiConverter.convertDashboardInZones(plDashboardInfo.dashboardPresModel),
+	            name: plDashboardInfo.dashboardPresModel.sheetPath.sheetName,
+	            addInZoneId: plDashboardInfo.zoneId
 	        };
 	        return result;
 	    };
-	    PresLayerToApiConverter.ConvertAddInInstance = function (plAddInInstance) {
+	    PresLayerToApiConverter.convertAddInInstance = function (plAddInInstance) {
 	        var result = {
-	            Url: plAddInInstance.addInRegistrationPresModel.url,
-	            Locator: PresLayerToApiConverter.ConvertAddInLocator(plAddInInstance.addInLocatorPresModel)
+	            url: plAddInInstance.addInRegistrationPresModel.url,
+	            locator: PresLayerToApiConverter.convertAddInLocator(plAddInInstance.addInLocatorPresModel)
 	        };
 	        return result;
 	    };
-	    PresLayerToApiConverter.ConvertAddInEnivrionment = function (plAddInEnvironment) {
+	    PresLayerToApiConverter.convertAddInEnivrionment = function (plAddInEnvironment) {
 	        var result = {
-	            AddInContext: EnumMappings_1.PresLayerToApiEnumMappings.AddInContext.Convert(plAddInEnvironment.addInContext),
-	            AddInMode: EnumMappings_1.PresLayerToApiEnumMappings.AddInMode.Convert(plAddInEnvironment.addInMode),
-	            AddInLocale: plAddInEnvironment.addInLocale,
-	            AddInLanguage: plAddInEnvironment.addInLanguage,
-	            TableauVersion: plAddInEnvironment.tableauVersion,
-	            OperatingSystem: plAddInEnvironment.operatingSystem,
-	            APIVersion: plAddInEnvironment.apiVersion
+	            addInContext: EnumMappings_1.PresLayerToApiEnumMappings.addInContext.convert(plAddInEnvironment.addInContext),
+	            addInMode: EnumMappings_1.PresLayerToApiEnumMappings.addInMode.convert(plAddInEnvironment.addInMode),
+	            addInLocale: plAddInEnvironment.addInLocale,
+	            addInLanguage: plAddInEnvironment.addInLanguage,
+	            tableauVersion: plAddInEnvironment.tableauVersion,
+	            operatingSystem: plAddInEnvironment.operatingSystem,
+	            apiVersion: plAddInEnvironment.apiVersion
 	        };
 	        return result;
 	    };
-	    PresLayerToApiConverter.ConvertAddInSettingsInfo = function (plAddInSettings) {
+	    PresLayerToApiConverter.convertAddInSettingsInfo = function (plAddInSettings) {
 	        var result = {
 	            // addInSettings is undefined during bootstrap initialization
-	            SettingsValues: plAddInSettings.addInSettings || {}
+	            settingsValues: plAddInSettings.addInSettings || {}
 	        };
 	        return result;
 	    };
-	    PresLayerToApiConverter.ConvertAddInBootstrapInfo = function (plBootstrapInfo) {
+	    PresLayerToApiConverter.convertAddInBootstrapInfo = function (plBootstrapInfo) {
 	        var result = {
-	            AddinDashboardInfo: PresLayerToApiConverter.ConvertDashboardInfo(plBootstrapInfo.addInDashboardInfoPresModel),
-	            AddInEnvironment: PresLayerToApiConverter.ConvertAddInEnivrionment(plBootstrapInfo.addInEnvironmentPresModel),
-	            AddInInstance: PresLayerToApiConverter.ConvertAddInInstance(plBootstrapInfo.addInInstancePresModel),
-	            AddInSettingsInfo: PresLayerToApiConverter.ConvertAddInSettingsInfo(plBootstrapInfo.addInSettingsInfo)
+	            addinDashboardInfo: PresLayerToApiConverter.convertDashboardInfo(plBootstrapInfo.addInDashboardInfoPresModel),
+	            addInEnvironment: PresLayerToApiConverter.convertAddInEnivrionment(plBootstrapInfo.addInEnvironmentPresModel),
+	            addInInstance: PresLayerToApiConverter.convertAddInInstance(plBootstrapInfo.addInInstancePresModel),
+	            addInSettingsInfo: PresLayerToApiConverter.convertAddInSettingsInfo(plBootstrapInfo.addInSettingsInfo)
 	        };
 	        return result;
 	    };
@@ -8620,20 +8690,118 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 19 */
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	Object.defineProperty(exports, "__esModule", { value: true });
-	var api_internal_contract_1 = __webpack_require__(5);
-	var Enums = __webpack_require__(20);
+	var api_internal_contract_1 = __webpack_require__(4);
+	var api_utils_1 = __webpack_require__(19);
+	var Enums = __webpack_require__(22);
+	/* tslint:disable:typedef - Disable this to make declaring these classes a bit easier */
+	var PresLayerToApiEnumMappings = (function () {
+	    function PresLayerToApiEnumMappings() {
+	    }
+	    PresLayerToApiEnumMappings.zoneType = new api_utils_1.EnumConverter((_a = {},
+	        _a[Enums.ZoneType.ZT_Invalid] = api_internal_contract_1.DashboardObjectType.Blank,
+	        _a[Enums.ZoneType.ZT_Viz] = api_internal_contract_1.DashboardObjectType.Worksheet,
+	        _a[Enums.ZoneType.ZT_ColorLegend] = api_internal_contract_1.DashboardObjectType.Legend,
+	        _a[Enums.ZoneType.ZT_ShapeLegend] = api_internal_contract_1.DashboardObjectType.Legend,
+	        _a[Enums.ZoneType.ZT_SizeLegend] = api_internal_contract_1.DashboardObjectType.Legend,
+	        _a[Enums.ZoneType.ZT_MapLegend] = api_internal_contract_1.DashboardObjectType.Legend,
+	        _a[Enums.ZoneType.ZT_QuickFilter] = api_internal_contract_1.DashboardObjectType.QuickFilter,
+	        _a[Enums.ZoneType.ZT_Highlighter] = api_internal_contract_1.DashboardObjectType.Blank,
+	        _a[Enums.ZoneType.ZT_CurrPage] = api_internal_contract_1.DashboardObjectType.PageFilter,
+	        _a[Enums.ZoneType.ZT_Empty] = api_internal_contract_1.DashboardObjectType.Blank,
+	        _a[Enums.ZoneType.ZT_Title] = api_internal_contract_1.DashboardObjectType.Title,
+	        _a[Enums.ZoneType.ZT_Text] = api_internal_contract_1.DashboardObjectType.Text,
+	        _a[Enums.ZoneType.ZT_Bitmap] = api_internal_contract_1.DashboardObjectType.Image,
+	        _a[Enums.ZoneType.ZT_Web] = api_internal_contract_1.DashboardObjectType.WebPage,
+	        _a[Enums.ZoneType.ZT_AddIn] = api_internal_contract_1.DashboardObjectType.AddIn,
+	        _a[Enums.ZoneType.ZT_ParamCtrl] = api_internal_contract_1.DashboardObjectType.ParameterControl,
+	        _a[Enums.ZoneType.ZT_FlipboardNav] = api_internal_contract_1.DashboardObjectType.Blank,
+	        _a[Enums.ZoneType.ZT_Flipboard] = api_internal_contract_1.DashboardObjectType.Blank,
+	        _a[Enums.ZoneType.ZT_LayoutBasic] = api_internal_contract_1.DashboardObjectType.Blank,
+	        _a[Enums.ZoneType.ZT_LayoutFlow] = api_internal_contract_1.DashboardObjectType.Blank,
+	        _a[Enums.ZoneType.ZT_LayoutFreeForm] = api_internal_contract_1.DashboardObjectType.Blank,
+	        _a[Enums.ZoneType.ZT_End] = api_internal_contract_1.DashboardObjectType.Blank,
+	        _a), api_internal_contract_1.DashboardObjectType.Blank);
+	    PresLayerToApiEnumMappings.addInContext = new api_utils_1.EnumConverter((_b = {},
+	        _b[Enums.AddInContext.Unknown] = api_internal_contract_1.AddInContext.Unknown,
+	        _b[Enums.AddInContext.Desktop] = api_internal_contract_1.AddInContext.Desktop,
+	        _b[Enums.AddInContext.Server] = api_internal_contract_1.AddInContext.Server,
+	        _b));
+	    PresLayerToApiEnumMappings.addInMode = new api_utils_1.EnumConverter((_c = {},
+	        _c[Enums.AddInMode.Unknown] = api_internal_contract_1.AddInMode.Unknown,
+	        _c[Enums.AddInMode.Authoring] = api_internal_contract_1.AddInMode.Authoring,
+	        _c[Enums.AddInMode.Viewing] = api_internal_contract_1.AddInMode.Viewing,
+	        _c));
+	    PresLayerToApiEnumMappings.dataType = new api_utils_1.EnumConverter((_d = {},
+	        _d[Enums.DataType.DT_BOOLEAN] = api_internal_contract_1.DataType.Bool,
+	        _d[Enums.DataType.DT_DATE] = api_internal_contract_1.DataType.Date,
+	        _d[Enums.DataType.DT_DATETIME] = api_internal_contract_1.DataType.DateTime,
+	        _d[Enums.DataType.DT_INTEGER] = api_internal_contract_1.DataType.Int,
+	        _d[Enums.DataType.DT_REAL] = api_internal_contract_1.DataType.Float,
+	        _d[Enums.DataType.DT_STRING] = api_internal_contract_1.DataType.String,
+	        _d[Enums.DataType.DT_SPATIAL] = api_internal_contract_1.DataType.Spatial,
+	        _d));
+	    return PresLayerToApiEnumMappings;
+	}());
+	exports.PresLayerToApiEnumMappings = PresLayerToApiEnumMappings;
+	var ApiToPresLayerEnumMappings = (function () {
+	    function ApiToPresLayerEnumMappings() {
+	    }
+	    ApiToPresLayerEnumMappings.filterUpdateType = new api_utils_1.EnumConverter((_a = {},
+	        _a[api_internal_contract_1.FilterUpdateType.Add] = Enums.FilterUpdateType.ADD,
+	        _a[api_internal_contract_1.FilterUpdateType.All] = Enums.FilterUpdateType.ALL,
+	        _a[api_internal_contract_1.FilterUpdateType.Replace] = Enums.FilterUpdateType.REPLACE,
+	        _a[api_internal_contract_1.FilterUpdateType.Remove] = Enums.FilterUpdateType.REMOVE,
+	        _a));
+	    ApiToPresLayerEnumMappings.nullOption = new api_utils_1.EnumConverter((_b = {},
+	        _b[api_internal_contract_1.NullOption.AllValues] = Enums.FiltersQuantitativeIncludedValues.All,
+	        _b[api_internal_contract_1.NullOption.NonNullValues] = Enums.FiltersQuantitativeIncludedValues.NonNull,
+	        _b[api_internal_contract_1.NullOption.NullValues] = Enums.FiltersQuantitativeIncludedValues.Null,
+	        _b));
+	    return ApiToPresLayerEnumMappings;
+	}());
+	exports.ApiToPresLayerEnumMappings = ApiToPresLayerEnumMappings;
+	var _a, _b, _c, _d, _a, _b;
+	/* tslint:enable:typedef */
+
+
+/***/ },
+/* 19 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	/**
+	 * This is your main. This is where you re-export everything you want to be publicly available.
+	 *
+	 * The build enforces that the file has the same name as the global variable that is exported.
+	 */
+	Object.defineProperty(exports, "__esModule", { value: true });
+	var EnumConverter_1 = __webpack_require__(20);
+	exports.EnumConverter = EnumConverter_1.EnumConverter;
+	var Param_1 = __webpack_require__(21);
+	exports.Param = Param_1.Param;
+
+
+/***/ },
+/* 20 */
+/***/ function(module, exports) {
+
+	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	/**
+	 * This class converts from a source enum value to destination enum
+	 * value given a mapping from source to destination when constructed.
+	 */
 	var EnumConverter = (function () {
 	    function EnumConverter(mappings, defaultVal) {
-	        this.defaultVal = undefined;
 	        this.mappings = mappings;
 	        this.defaultVal = defaultVal;
 	    }
-	    EnumConverter.prototype.Convert = function (enumVal, throwIfMissing) {
+	    EnumConverter.prototype.convert = function (enumVal, throwIfMissing) {
 	        if (this.mappings.hasOwnProperty(enumVal)) {
 	            return this.mappings[enumVal];
 	        }
@@ -8645,62 +8813,50 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return EnumConverter;
 	}());
 	exports.EnumConverter = EnumConverter;
-	/* tslint:disable:typedef - Disable this to make declaring these classes a bit easier */
-	var PresLayerToApiEnumMappings = (function () {
-	    function PresLayerToApiEnumMappings() {
-	    }
-	    PresLayerToApiEnumMappings.ZoneType = new EnumConverter((_a = {},
-	        _a[Enums.ZoneType.ZT_Invalid] = api_internal_contract_1.DashboardObjectType.BLANK,
-	        _a[Enums.ZoneType.ZT_Viz] = api_internal_contract_1.DashboardObjectType.WORKSHEET,
-	        _a[Enums.ZoneType.ZT_ColorLegend] = api_internal_contract_1.DashboardObjectType.LEGEND,
-	        _a[Enums.ZoneType.ZT_ShapeLegend] = api_internal_contract_1.DashboardObjectType.LEGEND,
-	        _a[Enums.ZoneType.ZT_SizeLegend] = api_internal_contract_1.DashboardObjectType.LEGEND,
-	        _a[Enums.ZoneType.ZT_MapLegend] = api_internal_contract_1.DashboardObjectType.LEGEND,
-	        _a[Enums.ZoneType.ZT_QuickFilter] = api_internal_contract_1.DashboardObjectType.QUICK_FILTER,
-	        _a[Enums.ZoneType.ZT_Highlighter] = api_internal_contract_1.DashboardObjectType.BLANK,
-	        _a[Enums.ZoneType.ZT_CurrPage] = api_internal_contract_1.DashboardObjectType.PAGE_FILTER,
-	        _a[Enums.ZoneType.ZT_Empty] = api_internal_contract_1.DashboardObjectType.BLANK,
-	        _a[Enums.ZoneType.ZT_Title] = api_internal_contract_1.DashboardObjectType.TITLE,
-	        _a[Enums.ZoneType.ZT_Text] = api_internal_contract_1.DashboardObjectType.TEXT,
-	        _a[Enums.ZoneType.ZT_Bitmap] = api_internal_contract_1.DashboardObjectType.IMAGE,
-	        _a[Enums.ZoneType.ZT_Web] = api_internal_contract_1.DashboardObjectType.WEB_PAGE,
-	        _a[Enums.ZoneType.ZT_AddIn] = api_internal_contract_1.DashboardObjectType.ADD_IN,
-	        _a[Enums.ZoneType.ZT_ParamCtrl] = api_internal_contract_1.DashboardObjectType.PARAMETER_CONTROL,
-	        _a[Enums.ZoneType.ZT_FlipboardNav] = api_internal_contract_1.DashboardObjectType.BLANK,
-	        _a[Enums.ZoneType.ZT_Flipboard] = api_internal_contract_1.DashboardObjectType.BLANK,
-	        _a[Enums.ZoneType.ZT_LayoutBasic] = api_internal_contract_1.DashboardObjectType.BLANK,
-	        _a[Enums.ZoneType.ZT_LayoutFlow] = api_internal_contract_1.DashboardObjectType.BLANK,
-	        _a[Enums.ZoneType.ZT_LayoutFreeForm] = api_internal_contract_1.DashboardObjectType.BLANK,
-	        _a[Enums.ZoneType.ZT_End] = api_internal_contract_1.DashboardObjectType.BLANK,
-	        _a), api_internal_contract_1.DashboardObjectType.BLANK);
-	    PresLayerToApiEnumMappings.AddInContext = new EnumConverter((_b = {},
-	        _b[Enums.AddInContext.Unknown] = api_internal_contract_1.AddInContext.UNKNOWN,
-	        _b[Enums.AddInContext.Desktop] = api_internal_contract_1.AddInContext.DESKTOP,
-	        _b[Enums.AddInContext.Server] = api_internal_contract_1.AddInContext.SERVER,
-	        _b));
-	    PresLayerToApiEnumMappings.AddInMode = new EnumConverter((_c = {},
-	        _c[Enums.AddInMode.Unknown] = api_internal_contract_1.AddInMode.UNKNOWN,
-	        _c[Enums.AddInMode.Authoring] = api_internal_contract_1.AddInMode.AUTHORING,
-	        _c[Enums.AddInMode.Viewing] = api_internal_contract_1.AddInMode.VIEWING,
-	        _c));
-	    PresLayerToApiEnumMappings.DataType = new EnumConverter((_d = {},
-	        _d[Enums.DataType.DT_BOOLEAN] = api_internal_contract_1.DataType.BOOL,
-	        _d[Enums.DataType.DT_DATE] = api_internal_contract_1.DataType.DATE,
-	        _d[Enums.DataType.DT_DATETIME] = api_internal_contract_1.DataType.DATE_TIME,
-	        _d[Enums.DataType.DT_INTEGER] = api_internal_contract_1.DataType.INT,
-	        _d[Enums.DataType.DT_REAL] = api_internal_contract_1.DataType.FLOAT,
-	        _d[Enums.DataType.DT_STRING] = api_internal_contract_1.DataType.STRING,
-	        _d[Enums.DataType.DT_SPATIAL] = api_internal_contract_1.DataType.SPATIAL,
-	        _d));
-	    return PresLayerToApiEnumMappings;
-	}());
-	exports.PresLayerToApiEnumMappings = PresLayerToApiEnumMappings;
-	var _a, _b, _c, _d;
-	/* tslint:enable:typedef */
 
 
 /***/ },
-/* 20 */
+/* 21 */
+/***/ function(module, exports) {
+
+	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	var Param = (function () {
+	    function Param() {
+	    }
+	    /**
+	     * Verifies that an incoming parameter is 'truthy' and throws
+	     * an error if it's not. This will throw an error if the value
+	     * is null, undefined, NaN, the empty string, 0, or false.
+	     *
+	     * @param argumentValue value to verify
+	     * @param argumentName name of argument to verify
+	     */
+	    /*tslint:disable-next-line */
+	    Param.verifyValue = function (argumentValue, argumentName) {
+	        if (!argumentValue) {
+	            throw new Error('Value is invalid for argument: ' + argumentName);
+	        }
+	    };
+	    /**
+	     * Verifies that a string is valid.  Throws an error if the string is
+	     * null, undefined, or NaN.
+	     *
+	     * @param argumentValue value to verify
+	     * @param argumentName name of argument to verify
+	     */
+	    Param.verifyString = function (argumentValue, argumentName) {
+	        if (argumentValue === null || argumentValue === undefined) {
+	            throw new Error('String value is invalid for argument: ' + argumentName);
+	        }
+	    };
+	    return Param;
+	}());
+	exports.Param = Param;
+
+
+/***/ },
+/* 22 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -8716,102 +8872,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	//
 	// -----------------------------------------------------------------------------
 	// WARNING: Computer generated file.  Do not hand modify.
-	// DEPENDS ON: ['..\\git\\api-all-js\\api-core\\node_modules\\@tableau\\preslayer-codegen-typescript\\templates\\enum-ts.template', u'..\\git\\api-all-js\\api-core\\temp-pres-layer\\all-enums.data']
+	// DEPENDS ON: ['..\\js-api\\api-core\\node_modules\\@tableau\\preslayer-codegen-typescript\\templates\\enum-ts.template', u'..\\js-api\\api-core\\temp-pres-layer\\all-enums.data']
 	Object.defineProperty(exports, "__esModule", { value: true });
-	// type of aggregation
-	var AggType;
-	(function (AggType) {
-	    // 
-	    AggType["AGG_SUM"] = "sum";
-	    // 
-	    AggType["AGG_AVG"] = "average";
-	    // 
-	    AggType["AGG_MIN"] = "min";
-	    // 
-	    AggType["AGG_MAX"] = "max";
-	    // 
-	    AggType["AGG_STDEV"] = "std-dev";
-	    // 
-	    AggType["AGG_STDEVP"] = "std-dev-p";
-	    // 
-	    AggType["AGG_VAR"] = "var";
-	    // 
-	    AggType["AGG_VARP"] = "var-p";
-	    // 
-	    AggType["AGG_COUNT"] = "count";
-	    // 
-	    AggType["AGG_COUNTD"] = "count-d";
-	    // 
-	    AggType["AGG_MEDIAN"] = "median";
-	    // 
-	    AggType["AGG_ATTR"] = "attr";
-	    // 
-	    AggType["AGG_NONE"] = "none";
-	    // 
-	    AggType["AGG_PERCENTILE"] = "percentile";
-	    // 
-	    AggType["AGG_YEAR"] = "year";
-	    // 
-	    AggType["AGG_QTR"] = "qtr";
-	    // 
-	    AggType["AGG_MONTH"] = "month";
-	    // 
-	    AggType["AGG_DAY"] = "day";
-	    // 
-	    AggType["AGG_HOUR"] = "hour";
-	    // 
-	    AggType["AGG_MINUTE"] = "minute";
-	    // 
-	    AggType["AGG_SECOND"] = "second";
-	    // 
-	    AggType["AGG_WEEK"] = "week";
-	    // 
-	    AggType["AGG_WEEKDAY"] = "weekday";
-	    // 
-	    AggType["AGG_MONTHYEAR"] = "month-year";
-	    // 
-	    AggType["AGG_MDY"] = "mdy";
-	    // 
-	    AggType["AGG_END"] = "end";
-	    // 
-	    AggType["TRUNC_YEAR"] = "trunc-year";
-	    // 
-	    AggType["TRUNC_QTR"] = "trunc-qtr";
-	    // 
-	    AggType["TRUNC_MONTH"] = "trunc-month";
-	    // 
-	    AggType["TRUNC_WEEK"] = "trunc-week";
-	    // 
-	    AggType["TRUNC_DAY"] = "trunc-day";
-	    // 
-	    AggType["TRUNC_HOUR"] = "trunc-hour";
-	    // 
-	    AggType["TRUNC_MINUTE"] = "trunc-minute";
-	    // 
-	    AggType["TRUNC_SECOND"] = "trunc-second";
-	    // 
-	    AggType["AGG_QUART1"] = "quart1";
-	    // 
-	    AggType["AGG_QUART3"] = "quart3";
-	    // 
-	    AggType["AGG_SKEWNESS"] = "skewness";
-	    // 
-	    AggType["AGG_KURTOSIS"] = "kurtosis";
-	    // 
-	    AggType["AGG_INOUT"] = "in-out";
-	    // 
-	    AggType["AGG_SUM_XSQR"] = "sum-xsqr";
-	    // 
-	    AggType["AGG_USER"] = "user";
-	    // 
-	    AggType["AGG_COLLECT"] = "collect";
-	    // 
-	    AggType["AGG_COVAR"] = "covar";
-	    // 
-	    AggType["AGG_COVARP"] = "covarp";
-	    // 
-	    AggType["AGG_CORR"] = "corr";
-	})(AggType = exports.AggType || (exports.AggType = {}));
 	// 
 	var DataScaling;
 	(function (DataScaling) {
@@ -9496,7 +9558,101 @@ return /******/ (function(modules) { // webpackBootstrap
 	    // 
 	    TextBreakMode["TextBreakAuto"] = "text-break-auto";
 	})(TextBreakMode = exports.TextBreakMode || (exports.TextBreakMode = {}));
-	// Anyone editing this also needs to update the hardcoded workbook serializers - see the file formats team
+	// type of aggregation
+	var AggType;
+	(function (AggType) {
+	    // 
+	    AggType["AGG_SUM"] = "sum";
+	    // 
+	    AggType["AGG_AVG"] = "average";
+	    // 
+	    AggType["AGG_MIN"] = "min";
+	    // 
+	    AggType["AGG_MAX"] = "max";
+	    // 
+	    AggType["AGG_STDEV"] = "std-dev";
+	    // 
+	    AggType["AGG_STDEVP"] = "std-dev-p";
+	    // 
+	    AggType["AGG_VAR"] = "var";
+	    // 
+	    AggType["AGG_VARP"] = "var-p";
+	    // 
+	    AggType["AGG_COUNT"] = "count";
+	    // 
+	    AggType["AGG_COUNTD"] = "count-d";
+	    // 
+	    AggType["AGG_MEDIAN"] = "median";
+	    // 
+	    AggType["AGG_ATTR"] = "attr";
+	    // 
+	    AggType["AGG_NONE"] = "none";
+	    // 
+	    AggType["AGG_PERCENTILE"] = "percentile";
+	    // 
+	    AggType["AGG_YEAR"] = "year";
+	    // 
+	    AggType["AGG_QTR"] = "qtr";
+	    // 
+	    AggType["AGG_MONTH"] = "month";
+	    // 
+	    AggType["AGG_DAY"] = "day";
+	    // 
+	    AggType["AGG_HOUR"] = "hour";
+	    // 
+	    AggType["AGG_MINUTE"] = "minute";
+	    // 
+	    AggType["AGG_SECOND"] = "second";
+	    // 
+	    AggType["AGG_WEEK"] = "week";
+	    // 
+	    AggType["AGG_WEEKDAY"] = "weekday";
+	    // 
+	    AggType["AGG_MONTHYEAR"] = "month-year";
+	    // 
+	    AggType["AGG_MDY"] = "mdy";
+	    // 
+	    AggType["AGG_END"] = "end";
+	    // 
+	    AggType["TRUNC_YEAR"] = "trunc-year";
+	    // 
+	    AggType["TRUNC_QTR"] = "trunc-qtr";
+	    // 
+	    AggType["TRUNC_MONTH"] = "trunc-month";
+	    // 
+	    AggType["TRUNC_WEEK"] = "trunc-week";
+	    // 
+	    AggType["TRUNC_DAY"] = "trunc-day";
+	    // 
+	    AggType["TRUNC_HOUR"] = "trunc-hour";
+	    // 
+	    AggType["TRUNC_MINUTE"] = "trunc-minute";
+	    // 
+	    AggType["TRUNC_SECOND"] = "trunc-second";
+	    // 
+	    AggType["AGG_QUART1"] = "quart1";
+	    // 
+	    AggType["AGG_QUART3"] = "quart3";
+	    // 
+	    AggType["AGG_SKEWNESS"] = "skewness";
+	    // 
+	    AggType["AGG_KURTOSIS"] = "kurtosis";
+	    // 
+	    AggType["AGG_INOUT"] = "in-out";
+	    // 
+	    AggType["AGG_SUM_XSQR"] = "sum-xsqr";
+	    // 
+	    AggType["AGG_USER"] = "user";
+	    // 
+	    AggType["AGG_COLLECT"] = "collect";
+	    // 
+	    AggType["AGG_COVAR"] = "covar";
+	    // 
+	    AggType["AGG_COVARP"] = "covarp";
+	    // 
+	    AggType["AGG_CORR"] = "corr";
+	})(AggType = exports.AggType || (exports.AggType = {}));
+	// DataValueFormatter::DataTypeEncodings has hardcoded values corresponding to following enum members
 	var DataType;
 	(function (DataType) {
 	    // 
@@ -11100,6 +11256,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	    // 
 	    ConnectionTypeEnum["TableauServerDS"] = "tableau-server-d-s";
 	})(ConnectionTypeEnum = exports.ConnectionTypeEnum || (exports.ConnectionTypeEnum = {}));
+	// The result of setting one end of an axis range
+	var SetAxisRangeResult;
+	(function (SetAxisRangeResult) {
+	    // 
+	    SetAxisRangeResult["Success"] = "set-axis-range-success-result";
+	    // 
+	    SetAxisRangeResult["Failure"] = "set-axis-range-failure-result";
+	})(SetAxisRangeResult = exports.SetAxisRangeResult || (exports.SetAxisRangeResult = {}));
 	// Enumeration of units tick spacing can take
 	var TickSpacingUnits;
 	(function (TickSpacingUnits) {
@@ -13161,6 +13325,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    SelectOptions["SelectOptionsRange"] = "select-options-range";
 	    // Usually triggered by right click
 	    SelectOptions["SelectOptionsMouseMenu"] = "select-options-menu";
+	    // An attempt to select via search
+	    SelectOptions["SelectOptionsSearchMatch"] = "select-options-search";
 	})(SelectOptions = exports.SelectOptions || (exports.SelectOptions = {}));
 	// 
 	var Orientation;
@@ -14917,7 +15083,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 21 */
+/* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -14932,13 +15098,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	})();
 	Object.defineProperty(exports, "__esModule", { value: true });
-	var Params_1 = __webpack_require__(12);
-	var api_internal_contract_1 = __webpack_require__(5);
-	var MappingRegistry_1 = __webpack_require__(22);
-	var PresLayerToApiConverter_1 = __webpack_require__(18);
-	var ActiveMarksDataConverter_1 = __webpack_require__(23);
-	var ApiToPresLayerConverter_1 = __webpack_require__(25);
-	var UnderlyingDataConverter_1 = __webpack_require__(24);
+	var api_internal_contract_1 = __webpack_require__(4);
+	var Params_1 = __webpack_require__(10);
+	var ActiveMarksDataConverter_1 = __webpack_require__(24);
+	var ApiToPresLayerConverter_1 = __webpack_require__(26);
+	var MappingRegistry_1 = __webpack_require__(27);
+	var PresLayerToApiConverter_1 = __webpack_require__(17);
+	var UnderlyingDataConverter_1 = __webpack_require__(25);
 	/*tslint:disable-next-line */
 	var id = function (inParam) { return inParam; };
 	/**
@@ -14950,28 +15116,39 @@ return /******/ (function(modules) { // webpackBootstrap
 	var ParameterMappingRegistryFactory = (function () {
 	    function ParameterMappingRegistryFactory() {
 	    }
-	    ParameterMappingRegistryFactory.CreatePresLayerToApiParamRegistry = function (versionNumber) {
+	    ParameterMappingRegistryFactory.createPresLayerToApiParamRegistry = function (versionNumber) {
 	        var result = new PresLayerToApiMappingRegistry();
 	        // TODO - check the version number and construct appropriate conversions
-	        result.AddRegistration(Params_1.ParameterId.AddInLocator, api_internal_contract_1.ParameterId.AddInLocator, PresLayerToApiConverter_1.PresLayerToApiConverter.ConvertAddInLocator);
-	        result.AddRegistration(Params_1.ParameterId.AddInBootstrapInfo, api_internal_contract_1.ParameterId.AddInBootstrapInfo, PresLayerToApiConverter_1.PresLayerToApiConverter.ConvertAddInBootstrapInfo);
-	        result.AddRegistration(Params_1.ParameterId.UnderlyingDataTable, api_internal_contract_1.ParameterId.UnderlyingDataTable, UnderlyingDataConverter_1.UnderlyingDataConverter.BuildUnderlyingDataTable.bind(undefined, false));
-	        result.AddRegistration(Params_1.ParameterId.UnderlyingDataTable, api_internal_contract_1.ParameterId.UnderlyingSummaryDataTable, UnderlyingDataConverter_1.UnderlyingDataConverter.BuildUnderlyingDataTable.bind(undefined, true));
-	        result.AddRegistration(Params_1.ParameterId.SelectionData, api_internal_contract_1.ParameterId.SelectedData, ActiveMarksDataConverter_1.ActiveMarksDataConverter.BuildSelectedDataTable);
-	        result.AddRegistration(Params_1.ParameterId.HighlightedData, api_internal_contract_1.ParameterId.HighlightedData, ActiveMarksDataConverter_1.ActiveMarksDataConverter.BuildHighlightedDataTable);
-	        result.AddRegistration(Params_1.ParameterId.AddInSettingsInfo, api_internal_contract_1.ParameterId.AddInSettingsInfo, PresLayerToApiConverter_1.PresLayerToApiConverter.ConvertAddInSettingsInfo);
+	        result.addRegistration(Params_1.ParameterId.AddInLocator, api_internal_contract_1.ParameterId.AddInLocator, PresLayerToApiConverter_1.PresLayerToApiConverter.convertAddInLocator);
+	        result.addRegistration(Params_1.ParameterId.AddInBootstrapInfo, api_internal_contract_1.ParameterId.AddInBootstrapInfo, PresLayerToApiConverter_1.PresLayerToApiConverter.convertAddInBootstrapInfo);
+	        result.addRegistration(Params_1.ParameterId.UnderlyingDataTable, api_internal_contract_1.ParameterId.UnderlyingDataTable, UnderlyingDataConverter_1.UnderlyingDataConverter.buildUnderlyingDataTable.bind(undefined, false));
+	        result.addRegistration(Params_1.ParameterId.UnderlyingDataTable, api_internal_contract_1.ParameterId.UnderlyingSummaryDataTable, UnderlyingDataConverter_1.UnderlyingDataConverter.buildUnderlyingDataTable.bind(undefined, true));
+	        result.addRegistration(Params_1.ParameterId.FieldCaption, api_internal_contract_1.ParameterId.FieldName, id);
+	        result.addRegistration(Params_1.ParameterId.SelectionData, api_internal_contract_1.ParameterId.SelectedData, ActiveMarksDataConverter_1.ActiveMarksDataConverter.buildSelectedDataTable);
+	        result.addRegistration(Params_1.ParameterId.HighlightedData, api_internal_contract_1.ParameterId.HighlightedData, ActiveMarksDataConverter_1.ActiveMarksDataConverter.buildHighlightedDataTable);
+	        result.addRegistration(Params_1.ParameterId.AddInSettingsInfo, api_internal_contract_1.ParameterId.AddInSettingsInfo, PresLayerToApiConverter_1.PresLayerToApiConverter.convertAddInSettingsInfo);
+	        result.addRegistration(Params_1.ParameterId.Worksheet, api_internal_contract_1.ParameterId.WorksheetName, id);
 	        return result;
 	    };
-	    ParameterMappingRegistryFactory.CreateApiToPresLayerParamRegistry = function (versionNumber) {
+	    ParameterMappingRegistryFactory.createApiToPresLayerParamRegistry = function (versionNumber) {
 	        var result = new ApiToPresLayerMappingRegistry();
 	        // TODO - check the version number and construct appropriate conversions
-	        result.AddRegistration(api_internal_contract_1.ParameterId.AddInLocator, Params_1.ParameterId.AddInLocator, ApiToPresLayerConverter_1.ApiToPresLayerConverter.ConvertAddInLocator);
-	        result.AddRegistration(api_internal_contract_1.ParameterId.SettingsValues, Params_1.ParameterId.AddInSettings, id);
-	        result.AddRegistration(api_internal_contract_1.ParameterId.IgnoreAliases, Params_1.ParameterId.IgnoreAliases, id);
-	        result.AddRegistration(api_internal_contract_1.ParameterId.IgnoreSelection, Params_1.ParameterId.IgnoreSelection, id);
-	        result.AddRegistration(api_internal_contract_1.ParameterId.IncludeAllColumns, Params_1.ParameterId.IncludeAllColumns, id);
-	        result.AddRegistration(api_internal_contract_1.ParameterId.MaxRows, Params_1.ParameterId.MaxRows, id);
-	        result.AddRegistration(api_internal_contract_1.ParameterId.VisualId, Params_1.ParameterId.VisualIDPM, ApiToPresLayerConverter_1.ApiToPresLayerConverter.ConvertVisualId);
+	        result.addRegistration(api_internal_contract_1.ParameterId.AddInLocator, Params_1.ParameterId.AddInLocator, ApiToPresLayerConverter_1.ApiToPresLayerConverter.convertAddInLocator);
+	        result.addRegistration(api_internal_contract_1.ParameterId.SettingsValues, Params_1.ParameterId.AddInSettings, id);
+	        result.addRegistration(api_internal_contract_1.ParameterId.IgnoreAliases, Params_1.ParameterId.IgnoreAliases, id);
+	        result.addRegistration(api_internal_contract_1.ParameterId.IgnoreSelection, Params_1.ParameterId.IgnoreSelection, id);
+	        result.addRegistration(api_internal_contract_1.ParameterId.IncludeAllColumns, Params_1.ParameterId.IncludeAllColumns, id);
+	        result.addRegistration(api_internal_contract_1.ParameterId.MaxRows, Params_1.ParameterId.MaxRows, id);
+	        result.addRegistration(api_internal_contract_1.ParameterId.VisualId, Params_1.ParameterId.VisualIDPM, ApiToPresLayerConverter_1.ApiToPresLayerConverter.convertVisualId);
+	        result.addRegistration(api_internal_contract_1.ParameterId.FieldName, Params_1.ParameterId.QualifiedFieldCaption, id);
+	        result.addRegistration(api_internal_contract_1.ParameterId.FilterValues, Params_1.ParameterId.FilterAliases, ApiToPresLayerConverter_1.ApiToPresLayerConverter.convertFilterValues);
+	        result.addRegistration(api_internal_contract_1.ParameterId.FilterUpdateType, Params_1.ParameterId.FilterUpdateType, ApiToPresLayerConverter_1.ApiToPresLayerConverter.convertFilterType);
+	        result.addRegistration(api_internal_contract_1.ParameterId.IsExcludeMode, Params_1.ParameterId.Exclude, id);
+	        result.addRegistration(api_internal_contract_1.ParameterId.FilterRangeMin, Params_1.ParameterId.RangeMin, id);
+	        result.addRegistration(api_internal_contract_1.ParameterId.FilterRangeMax, Params_1.ParameterId.RangeMax, id);
+	        result.addRegistration(api_internal_contract_1.ParameterId.FilterRangeNullOption, Params_1.ParameterId.Included, ApiToPresLayerConverter_1.ApiToPresLayerConverter.ConvertNullOption);
+	        result.addRegistration(api_internal_contract_1.ParameterId.VisualId, Params_1.ParameterId.Worksheet, ApiToPresLayerConverter_1.ApiToPresLayerConverter.convertVisualIdToWorksheet);
+	        result.addRegistration(api_internal_contract_1.ParameterId.VisualId, Params_1.ParameterId.Dashboard, ApiToPresLayerConverter_1.ApiToPresLayerConverter.convertVisualIdToDashboard);
 	        return result;
 	    };
 	    return ParameterMappingRegistryFactory;
@@ -14996,72 +15173,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 22 */
-/***/ function(module, exports) {
-
-	"use strict";
-	Object.defineProperty(exports, "__esModule", { value: true });
-	/**
-	 * Simple registry class which creates a mapping based on two keys.
-	 *
-	 * @export
-	 * @class MappingRegistry
-	 * @template TInputEnumType
-	 * @template TOutputEnumType
-	 * @template TMappingStorageType
-	 */
-	var MappingRegistry = (function () {
-	    function MappingRegistry() {
-	        this.registry = {};
-	    }
-	    /**
-	     * Combines the two keys into a unique string
-	     *
-	     * @private
-	     * @param {TInputEnumType} inputType
-	     * @param {TOutputEnumType} outputType
-	     * @returns {string}
-	     * @memberof MappingRegistry
-	     */
-	    MappingRegistry.prototype.MakeKey = function (inputType, outputType) {
-	        var keyObj = { input: inputType, output: outputType };
-	        return JSON.stringify(keyObj);
-	    };
-	    MappingRegistry.prototype.Has = function (inputType, outputType) {
-	        var key = this.MakeKey(inputType, outputType);
-	        if (!this.registry.hasOwnProperty(key)) {
-	            return false;
-	        }
-	        if (!this.registry[key]) {
-	            return false;
-	        }
-	        return true;
-	    };
-	    MappingRegistry.prototype.Get = function (inputType, outputType) {
-	        if (!this.Has(inputType, outputType)) {
-	            throw new Error('Missing requested mapping: ' + inputType + ' to ' + outputType);
-	        }
-	        var key = this.MakeKey(inputType, outputType);
-	        return this.registry[key];
-	    };
-	    MappingRegistry.prototype.AddRegistration = function (inputType, outputType, storageItem) {
-	        var key = this.MakeKey(inputType, outputType);
-	        // Add this item
-	        this.registry[key] = storageItem;
-	    };
-	    return MappingRegistry;
-	}());
-	exports.MappingRegistry = MappingRegistry;
-
-
-/***/ },
-/* 23 */
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	Object.defineProperty(exports, "__esModule", { value: true });
-	var EnumMappings_1 = __webpack_require__(19);
-	var UnderlyingDataConverter_1 = __webpack_require__(24);
+	var EnumMappings_1 = __webpack_require__(18);
+	var UnderlyingDataConverter_1 = __webpack_require__(25);
 	/**
 	 * Contains logic for converting the active marks on a viz into the API pres models.
 	 * In the original project, most of this was in the ProcessActiveMarks function
@@ -15069,7 +15187,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	var ActiveMarksDataConverter = (function () {
 	    function ActiveMarksDataConverter() {
 	    }
-	    ActiveMarksDataConverter.BuildActiveMarksList = function (dataDictionary, vizData) {
+	    ActiveMarksDataConverter.buildSelectedDataTable = function (selectedData) {
+	        return {
+	            data: ActiveMarksDataConverter.buildActiveMarksList(selectedData.dataDictionary, selectedData.vizData)
+	        };
+	    };
+	    ActiveMarksDataConverter.buildHighlightedDataTable = function (highlightedData) {
+	        return {
+	            data: ActiveMarksDataConverter.buildActiveMarksList(highlightedData.dataDictionary, highlightedData.vizData)
+	        };
+	    };
+	    ActiveMarksDataConverter.buildActiveMarksList = function (dataDictionary, vizData) {
 	        var result = new Array();
 	        var _loop_1 = function (i) {
 	            // Need to filter to find all the columns which are in this pane
@@ -15103,21 +15231,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    // Define the header when we are processing the first row
 	                    if (tupleIndex === 0) {
 	                        var header = {
-	                            DataType: EnumMappings_1.PresLayerToApiEnumMappings.DataType.Convert(column.dataType),
-	                            FieldName: column.fn,
-	                            IsReferenced: true,
-	                            Index: j - 1,
-	                            FieldCaption: column.fieldCaption
+	                            dataType: EnumMappings_1.PresLayerToApiEnumMappings.dataType.convert(column.dataType),
+	                            fieldName: column.fn,
+	                            isReferenced: true,
+	                            index: j - 1,
+	                            fieldCaption: column.fieldCaption
 	                        };
 	                        headers.push(header);
 	                    }
-	                    var value = UnderlyingDataConverter_1.UnderlyingDataConverter.LookupValueFromDictionary(dataDictionary, column.dataType, vizPaneColumnData.valueIndices[tupleIndex]);
-	                    var aliasValue = UnderlyingDataConverter_1.UnderlyingDataConverter.LookupValueFromDictionary(dataDictionary, column.dataType, vizPaneColumnData.aliasIndices[tupleIndex]) || '';
+	                    var value = UnderlyingDataConverter_1.UnderlyingDataConverter.lookupValueFromDictionary(dataDictionary, column.dataType, vizPaneColumnData.valueIndices[tupleIndex]);
+	                    var aliasValue = UnderlyingDataConverter_1.UnderlyingDataConverter.lookupValueFromDictionary(dataDictionary, column.dataType, vizPaneColumnData.aliasIndices[tupleIndex]) || '';
 	                    var formattedValue = aliasValue; // TODO - Figure out how to use the formatStrings
 	                    var dataCell = {
-	                        Value: value,
-	                        FormattedValue: formattedValue,
-	                        AliasedValue: aliasValue
+	                        value: value,
+	                        formattedValue: formattedValue,
+	                        aliasedValue: aliasValue
 	                    };
 	                    // Add our cell to this row
 	                    cells[j - 1] = dataCell;
@@ -15125,8 +15253,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	                rows.push(cells);
 	            }
 	            var dataTable = {
-	                DataTable: rows,
-	                Headers: headers
+	                dataTable: rows,
+	                headers: headers
 	            };
 	            result.push(dataTable);
 	        };
@@ -15137,29 +15265,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	        return result;
 	    };
-	    ActiveMarksDataConverter.BuildSelectedDataTable = function (selectedData) {
-	        return {
-	            Data: ActiveMarksDataConverter.BuildActiveMarksList(selectedData.dataDictionary, selectedData.vizData)
-	        };
-	    };
-	    ActiveMarksDataConverter.BuildHighlightedDataTable = function (highlightedData) {
-	        return {
-	            Data: ActiveMarksDataConverter.BuildActiveMarksList(highlightedData.dataDictionary, highlightedData.vizData)
-	        };
-	    };
 	    return ActiveMarksDataConverter;
 	}());
 	exports.ActiveMarksDataConverter = ActiveMarksDataConverter;
 
 
 /***/ },
-/* 24 */
+/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	Object.defineProperty(exports, "__esModule", { value: true });
-	var Enums = __webpack_require__(20);
-	var EnumMappings_1 = __webpack_require__(19);
+	var Enums = __webpack_require__(22);
+	var EnumMappings_1 = __webpack_require__(18);
 	/**
 	 * Contains static helper methods for converting from an underlying data pres model into the api representation.
 	 * Most of the code is a direct port from ApiUnderlyingDataHandler.cs
@@ -15168,59 +15286,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	var UnderlyingDataConverter = (function () {
 	    function UnderlyingDataConverter() {
 	    }
-	    UnderlyingDataConverter.BuildColumnModel = function (column, index) {
-	        return {
-	            DataType: EnumMappings_1.PresLayerToApiEnumMappings.DataType.Convert(column.dataType),
-	            FieldName: column.fn,
-	            FieldCaption: column.fieldCaption,
-	            IsReferenced: !!column.isReferenced,
-	            Index: index
-	        };
-	    };
-	    UnderlyingDataConverter.BuildTable = function (dataDictionary, columns) {
-	        if (columns.length === 0) {
-	            return new Array();
-	        }
-	        var rowCount = columns[0].formatValIdxs.length;
-	        var columnCount = columns.length;
-	        var result = new Array(rowCount);
-	        // Initialize all of our rows
-	        for (var rowIndex = 0; rowIndex < rowCount; rowIndex++) {
-	            result[rowIndex] = new Array(columnCount);
-	        }
-	        // Go through column-by-column and convert the values
-	        for (var columnIndex = 0; columnIndex < columnCount; columnIndex++) {
-	            var column = columns[columnIndex];
-	            for (var rowIndex = 0; rowIndex < rowCount; rowIndex++) {
-	                var formattedValue = UnderlyingDataConverter.LookupValueFromDictionary(dataDictionary, Enums.DataType.DT_STRING, column.formatValIdxs[rowIndex]);
-	                if (formattedValue === null) {
-	                    throw new Error('formattedValue was null');
-	                }
-	                var value = {
-	                    Value: UnderlyingDataConverter.LookupValueFromDictionary(dataDictionary, column.dataType, column.valueIndices[rowIndex]),
-	                    FormattedValue: formattedValue,
-	                    AliasedValue: formattedValue
-	                };
-	                result[rowIndex][columnIndex] = value;
-	            }
-	        }
-	        return result;
-	    };
-	    UnderlyingDataConverter.LookupValueFromDictionary = function (dataDictionary, dt, index) {
+	    UnderlyingDataConverter.lookupValueFromDictionary = function (dataDictionary, dt, index) {
 	        if (index < 0) {
 	            // per cl 280396 / bugzid 81197 negative data value index means that it is special
 	            dt = Enums.DataType.DT_STRING;
 	            index = -index - 1;
 	        }
 	        var result = null;
-	        var rawValue = UnderlyingDataConverter.GetRawValue(dataDictionary, dt, index);
+	        var rawValue = UnderlyingDataConverter.getRawValue(dataDictionary, dt, index);
 	        if (rawValue !== null) {
 	            result = rawValue.toString();
 	        }
 	        return result;
 	    };
 	    /* tslint:disable-next-line:no-any */
-	    UnderlyingDataConverter.GetRawValue = function (dataDictionary, dt, index) {
+	    UnderlyingDataConverter.getRawValue = function (dataDictionary, dt, index) {
 	        if (!dataDictionary.dataSegments) {
 	            return null;
 	        }
@@ -15241,22 +15321,60 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	        return null;
 	    };
-	    UnderlyingDataConverter.BuildDataTable = function (dataDictionary, columns) {
+	    UnderlyingDataConverter.buildDataTable = function (dataDictionary, columns) {
 	        var result = {
-	            DataTable: UnderlyingDataConverter.BuildTable(dataDictionary, columns),
-	            Headers: columns.map(function (c, i) { return UnderlyingDataConverter.BuildColumnModel(c, i); })
+	            dataTable: UnderlyingDataConverter.buildTable(dataDictionary, columns),
+	            headers: columns.map(function (c, i) { return UnderlyingDataConverter.buildColumnModel(c, i); })
 	        };
 	        return result;
 	    };
-	    UnderlyingDataConverter.BuildUnderlyingDataTable = function (isSummary, underlyingDataTable) {
+	    UnderlyingDataConverter.buildUnderlyingDataTable = function (isSummary, underlyingDataTable) {
 	        var result = {
-	            Data: UnderlyingDataConverter.BuildDataTable(underlyingDataTable.dataDictionary, underlyingDataTable.underlyingDataTableColumns),
-	            IsSummary: isSummary
+	            data: UnderlyingDataConverter.buildDataTable(underlyingDataTable.dataDictionary, underlyingDataTable.underlyingDataTableColumns),
+	            isSummary: isSummary
 	        };
 	        return result;
 	    };
-	    UnderlyingDataConverter.BuildActiveMarksTable = function (dataDictionary, vizData) {
+	    UnderlyingDataConverter.buildActiveMarksTable = function (dataDictionary, vizData) {
 	        throw new Error();
+	    };
+	    UnderlyingDataConverter.buildColumnModel = function (column, index) {
+	        return {
+	            dataType: EnumMappings_1.PresLayerToApiEnumMappings.dataType.convert(column.dataType),
+	            fieldName: column.fn,
+	            fieldCaption: column.fieldCaption,
+	            isReferenced: !!column.isReferenced,
+	            index: index
+	        };
+	    };
+	    UnderlyingDataConverter.buildTable = function (dataDictionary, columns) {
+	        if (columns.length === 0) {
+	            return new Array();
+	        }
+	        var rowCount = columns[0].formatValIdxs.length;
+	        var columnCount = columns.length;
+	        var result = new Array(rowCount);
+	        // Initialize all of our rows
+	        for (var rowIndex = 0; rowIndex < rowCount; rowIndex++) {
+	            result[rowIndex] = new Array(columnCount);
+	        }
+	        // Go through column-by-column and convert the values
+	        for (var columnIndex = 0; columnIndex < columnCount; columnIndex++) {
+	            var column = columns[columnIndex];
+	            for (var rowIndex = 0; rowIndex < rowCount; rowIndex++) {
+	                var formattedValue = UnderlyingDataConverter.lookupValueFromDictionary(dataDictionary, Enums.DataType.DT_STRING, column.formatValIdxs[rowIndex]);
+	                if (formattedValue === null) {
+	                    throw new Error('formattedValue was null');
+	                }
+	                var value = {
+	                    value: UnderlyingDataConverter.lookupValueFromDictionary(dataDictionary, column.dataType, column.valueIndices[rowIndex]),
+	                    formattedValue: formattedValue,
+	                    aliasedValue: formattedValue
+	                };
+	                result[rowIndex][columnIndex] = value;
+	            }
+	        }
+	        return result;
 	    };
 	    return UnderlyingDataConverter;
 	}());
@@ -15264,11 +15382,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 25 */
-/***/ function(module, exports) {
+/* 26 */
+/***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	Object.defineProperty(exports, "__esModule", { value: true });
+	var EnumMappings_1 = __webpack_require__(18);
 	/**
 	 * Class containing helper methods for converting from ApiPresModels to their PresLayer equivalents
 	 *
@@ -15278,35 +15397,54 @@ return /******/ (function(modules) { // webpackBootstrap
 	var ApiToPresLayerConverter = (function () {
 	    function ApiToPresLayerConverter() {
 	    }
-	    ApiToPresLayerConverter.ConvertSheetPath = function (apiSheetPath) {
+	    ApiToPresLayerConverter.convertSheetPath = function (apiSheetPath) {
 	        if (!apiSheetPath) {
 	            throw new Error('sheetPath not defined');
 	        }
 	        var result = {
-	            sheetName: apiSheetPath.SheetName,
-	            isDashboard: apiSheetPath.IsDashboard,
-	            storyboard: apiSheetPath.Storyboard || '',
-	            flipboardZoneId: apiSheetPath.FlipboardZoneID || 0,
-	            storyPointId: apiSheetPath.StoryPointID || 0,
+	            sheetName: apiSheetPath.sheetName,
+	            isDashboard: apiSheetPath.isDashboard,
+	            storyboard: apiSheetPath.storyboard || '',
+	            flipboardZoneId: apiSheetPath.flipboardZoneID || 0,
+	            storyPointId: apiSheetPath.storyPointID || 0,
 	        };
 	        return result;
 	    };
-	    ApiToPresLayerConverter.ConvertAddInLocator = function (apiAddInLocator) {
+	    ApiToPresLayerConverter.convertAddInLocator = function (apiAddInLocator) {
 	        var result = {
-	            addInInstanceId: apiAddInLocator.InstanceId,
-	            sheetPath: ApiToPresLayerConverter.ConvertSheetPath(apiAddInLocator.DashboardPath)
+	            addInInstanceId: apiAddInLocator.instanceId,
+	            sheetPath: ApiToPresLayerConverter.convertSheetPath(apiAddInLocator.dashboardPath)
 	        };
 	        return result;
 	    };
-	    ApiToPresLayerConverter.ConvertVisualId = function (apiVisualid) {
+	    ApiToPresLayerConverter.convertVisualId = function (apiVisualid) {
 	        var result = {
-	            worksheet: apiVisualid.Worksheet,
-	            dashboard: apiVisualid.Dashboard,
-	            storyboard: apiVisualid.Storyboard,
-	            storyPointId: apiVisualid.StoryPointID,
-	            flipboardZoneId: apiVisualid.FlipboardZoneID
+	            worksheet: apiVisualid.worksheet,
+	            dashboard: apiVisualid.dashboard,
+	            storyboard: apiVisualid.storyboard,
+	            storyPointId: apiVisualid.storyPointID,
+	            flipboardZoneId: apiVisualid.flipboardZoneID
 	        };
 	        return result;
+	    };
+	    ApiToPresLayerConverter.convertVisualIdToWorksheet = function (apiVisualId) {
+	        return apiVisualId.worksheet;
+	    };
+	    ApiToPresLayerConverter.convertVisualIdToDashboard = function (apiVisualId) {
+	        return apiVisualId.dashboard || '';
+	    };
+	    ApiToPresLayerConverter.convertFilterValues = function (filterValues) {
+	        if (filterValues.length === 0) {
+	            // platform code expects an empty string for clearing filter values
+	            return [''];
+	        }
+	        return filterValues;
+	    };
+	    ApiToPresLayerConverter.convertFilterType = function (filterUpdateType) {
+	        return EnumMappings_1.ApiToPresLayerEnumMappings.filterUpdateType.convert(filterUpdateType);
+	    };
+	    ApiToPresLayerConverter.ConvertNullOption = function (nullOption) {
+	        return EnumMappings_1.ApiToPresLayerEnumMappings.nullOption.convert(nullOption);
 	    };
 	    return ApiToPresLayerConverter;
 	}());
@@ -15314,7 +15452,66 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 26 */
+/* 27 */
+/***/ function(module, exports) {
+
+	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	/**
+	 * Simple registry class which creates a mapping based on two keys.
+	 *
+	 * @export
+	 * @class MappingRegistry
+	 * @template TInputEnumType
+	 * @template TOutputEnumType
+	 * @template TMappingStorageType
+	 */
+	var MappingRegistry = (function () {
+	    function MappingRegistry() {
+	        this.registry = {};
+	    }
+	    MappingRegistry.prototype.has = function (inputType, outputType) {
+	        var key = this.makeKey(inputType, outputType);
+	        if (!this.registry.hasOwnProperty(key)) {
+	            return false;
+	        }
+	        if (!this.registry[key]) {
+	            return false;
+	        }
+	        return true;
+	    };
+	    MappingRegistry.prototype.get = function (inputType, outputType) {
+	        if (!this.has(inputType, outputType)) {
+	            throw new Error('Missing requested mapping: ' + inputType + ' to ' + outputType);
+	        }
+	        var key = this.makeKey(inputType, outputType);
+	        return this.registry[key];
+	    };
+	    MappingRegistry.prototype.addRegistration = function (inputType, outputType, storageItem) {
+	        var key = this.makeKey(inputType, outputType);
+	        // Add this item
+	        this.registry[key] = storageItem;
+	    };
+	    /**
+	     * Combines the two keys into a unique string
+	     *
+	     * @private
+	     * @param {TInputEnumType} inputType
+	     * @param {TOutputEnumType} outputType
+	     * @returns {string}
+	     * @memberof MappingRegistry
+	     */
+	    MappingRegistry.prototype.makeKey = function (inputType, outputType) {
+	        var keyObj = { input: inputType, output: outputType };
+	        return JSON.stringify(keyObj);
+	    };
+	    return MappingRegistry;
+	}());
+	exports.MappingRegistry = MappingRegistry;
+
+
+/***/ },
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -15327,15 +15524,131 @@ return /******/ (function(modules) { // webpackBootstrap
 	    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 	}
 	Object.defineProperty(exports, "__esModule", { value: true });
+	__export(__webpack_require__(5));
 	__export(__webpack_require__(6));
 	__export(__webpack_require__(7));
 	__export(__webpack_require__(8));
 	__export(__webpack_require__(9));
-	__export(__webpack_require__(10));
 
 
 /***/ },
-/* 27 */
+/* 29 */
+/***/ function(module, exports) {
+
+	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	/**
+	 * Implemenation of the PresentationLayer contract with a bit of extra information
+	 * added to work with add-ins. Most work is delegated down to the interopObject which
+	 * communicates directly with the c++ layer via QWebChannel
+	 *
+	 * @class AddInApiPresLayerImpl
+	 * @implements {contract.PresentationLayer}
+	 */
+	var AddInApiPresLayerImpl = (function () {
+	    function AddInApiPresLayerImpl(interopObject) {
+	        var _this = this;
+	        this.interopObject = interopObject;
+	        this.notificationHandlers = {};
+	        if (interopObject && interopObject.OnNotification) {
+	            interopObject.OnNotification.connect(function (notification) {
+	                _this.dispatchNotification(notification);
+	            });
+	        }
+	    }
+	    Object.defineProperty(AddInApiPresLayerImpl.prototype, "AddInInstanceInfo", {
+	        /**
+	         * Gets the instance info for this particular add-in from the c++ code
+	         *
+	         * @readonly
+	         * @type {AddInInstancePresModel}
+	         * @memberof AddInApiPresLayerImpl
+	         */
+	        get: function () {
+	            return this.interopObject.addInInstanceInfo;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    /**
+	     * Invokes a command using the pres-layer interop
+	     *
+	     * @template T - The expected return type
+	     * @param {string} commandNamespace
+	     * @param {string} commandName
+	     * @param {object} params
+	     * @returns {Promise<T>}
+	     * @memberof AddInApiPresLayerImpl
+	     */
+	    AddInApiPresLayerImpl.prototype.invokeCommand = function (commandNamespace, commandName, params) {
+	        var _this = this;
+	        return new Promise(function (resolve, reject) {
+	            try {
+	                commandNamespace = commandNamespace || 'tabdoc';
+	                _this.interopObject.ExecuteCommand(commandNamespace, commandName, params, function (response) {
+	                    if (!response.Success) {
+	                        var msg = 'ExecuteCommand failed, with result:' + JSON.stringify(response.Result);
+	                        reject(new Error(msg));
+	                    }
+	                    else {
+	                        resolve(response.Result);
+	                    }
+	                });
+	            }
+	            catch (err) {
+	                reject(err);
+	            }
+	        });
+	    };
+	    // This implementation will registration a single instance of a notification handler with the Native C++ object,
+	    // and implement multi-dispatch to the web objects from h.ere
+	    AddInApiPresLayerImpl.prototype.registerNotificationHandler = function (eventId, handler) {
+	        var _this = this;
+	        if (eventId in this.notificationHandlers) {
+	            this.notificationHandlers[eventId].push(handler);
+	        }
+	        else {
+	            this.notificationHandlers[eventId] = [handler];
+	            try {
+	                this.interopObject.RegisterNotificationHandler(eventId);
+	            }
+	            catch (err) {
+	                // console.log('RegisterNotificationHandler failed: ' + err);
+	            }
+	        }
+	        return function () { return _this.removeNotificationHandler(eventId, handler); };
+	    };
+	    AddInApiPresLayerImpl.prototype.removeNotificationHandler = function (eventId, handler) {
+	        var handlerList = this.notificationHandlers[eventId];
+	        if (!handlerList) {
+	            return;
+	        }
+	        var foundIndex = handlerList.indexOf(handler);
+	        if (foundIndex >= 0) {
+	            handlerList.splice(foundIndex, 1);
+	        }
+	        if (handlerList.length === 0) {
+	            delete this.notificationHandlers[eventId];
+	        }
+	    };
+	    AddInApiPresLayerImpl.prototype.dispatchNotification = function (notification) {
+	        // console.log('received notification: ' + JSON.stringify(notification));
+	        var eventId = notification.eventId;
+	        var presModel = notification.presModel;
+	        if (eventId in this.notificationHandlers) {
+	            var handlers = this.notificationHandlers[eventId];
+	            for (var i = handlers.length - 1; i >= 0; i--) {
+	                handlers[i](presModel);
+	            }
+	        }
+	    };
+	    return AddInApiPresLayerImpl;
+	}());
+	exports.AddInApiPresLayerImpl = AddInApiPresLayerImpl;
+
+
+/***/ },
+/* 30 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -15353,21 +15666,24 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var _this = this;
 	        this.apiEventHandler = apiEventHandler;
 	        this.notificationHandlers = [];
-	        this.apiEventHandler.SetEventHandler(function (notification) {
-	            _this.notificationHandlers.forEach(function (handler) { return handler(notification); });
+	        this.apiEventHandler.setEventHandler(function (notificationId, model) {
+	            _this.notificationHandlers.forEach(function (handler) { return handler({
+	                notificationId: notificationId,
+	                data: model
+	            }); });
 	        });
 	    }
-	    DesktopApiDispatcher.prototype.SetVersionNumber = function (versionNumber) {
-	        this.apiEventHandler.SetVersionNumber(versionNumber);
+	    DesktopApiDispatcher.prototype.setVersionNumber = function (versionNumber) {
+	        this.apiEventHandler.setVersionNumber(versionNumber);
 	    };
-	    DesktopApiDispatcher.prototype.Execute = function (verb, parameters) {
+	    DesktopApiDispatcher.prototype.execute = function (verb, parameters) {
 	        // Just pass this right through to the ApiEventHandler
-	        return this.apiEventHandler.Execute(verb, parameters);
+	        return this.apiEventHandler.execute(verb, parameters);
 	    };
-	    DesktopApiDispatcher.prototype.RegisterNotificationHandler = function (handler) {
+	    DesktopApiDispatcher.prototype.registerNotificationHandler = function (handler) {
 	        this.notificationHandlers.push(handler);
 	    };
-	    DesktopApiDispatcher.prototype.UnregisterNotificationHandler = function (handler) {
+	    DesktopApiDispatcher.prototype.unregisterNotificationHandler = function (handler) {
 	        this.notificationHandlers = this.notificationHandlers.filter(function (h) { return h !== handler; });
 	    };
 	    return DesktopApiDispatcher;
@@ -15376,19 +15692,19 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 28 */
+/* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	Object.defineProperty(exports, "__esModule", { value: true });
-	var qwebchannel_1 = __webpack_require__(29);
-	__webpack_require__(30);
+	__webpack_require__(32);
+	var qwebchannel_1 = __webpack_require__(33);
 	/**
 	 * Initializes the QWebChannel contract and returns the pres layer interop object
 	 *
 	 * @returns {Promise<AddInApiPresLayerInteropObject>}
 	 */
-	function InitializeWebChannelPresLayer() {
+	function initializeWebChannelPresLayer() {
 	    return new Promise(function (resolve, reject) {
 	        try {
 	            // tslint:disable-next-line
@@ -15403,11 +15719,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	    });
 	}
-	exports.InitializeWebChannelPresLayer = InitializeWebChannelPresLayer;
+	exports.initializeWebChannelPresLayer = initializeWebChannelPresLayer;
 
 
 /***/ },
-/* 29 */
+/* 32 */
+/***/ function(module, exports) {
+
+
+
+/***/ },
+/* 33 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/****************************************************************************
@@ -15824,14 +16146,2417 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 
+/***/ }
+/******/ ])
+});
+;
+//# sourceMappingURL=frelard-desktop-bootstrap.js.map
+
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define([], factory);
+	else if(typeof exports === 'object')
+		exports["tableau"] = factory();
+	else
+		root["tableau"] = factory();
+})(this, function() {
+return /******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId])
+/******/ 			return installedModules[moduleId].exports;
+/******/
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			exports: {},
+/******/ 			id: moduleId,
+/******/ 			loaded: false
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.loaded = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "/dist/";
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(0);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	/**
+	 * This is your main. This is where you re-export everything you want to be publicly available.
+	 *
+	 * The build enforces that the file has the same name as the global variable that is exported.
+	 */
+	Object.defineProperty(exports, "__esModule", { value: true });
+	// Due to the way we configured webpack, we should be exporting things which will be under
+	// a global variable called "tableau". Export everything we want to be visible under tableau
+	// from this file.
+	var AddIn_1 = __webpack_require__(1);
+	var AddInImpl_1 = __webpack_require__(2);
+	var addInImpl = new AddInImpl_1.AddInImpl();
+	exports.addIn = new AddIn_1.AddIn(addInImpl);
+	// Export Enums
+	var api_external_contract_1 = __webpack_require__(42);
+	exports.FilterUpdateType = api_external_contract_1.FilterUpdateType;
+	exports.NullOption = api_external_contract_1.NullOption;
+
+
+/***/ },
+/* 1 */
+/***/ function(module, exports) {
+
+	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	/**
+	 * Implementation of the external AddIn namespace.
+	 */
+	var AddIn = (function () {
+	    function AddIn(addInImpl) {
+	        this.addInImpl = addInImpl;
+	        this.addInImpl = addInImpl;
+	    }
+	    Object.defineProperty(AddIn.prototype, "dashboardContent", {
+	        get: function () {
+	            return this.addInImpl.dashboardContent;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(AddIn.prototype, "environment", {
+	        get: function () {
+	            return this.addInImpl.environment;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(AddIn.prototype, "settings", {
+	        get: function () {
+	            return this.addInImpl.settings;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(AddIn.prototype, "ui", {
+	        get: function () {
+	            throw new Error('API call not yet implemented');
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    AddIn.prototype.initializeAsync = function () {
+	        return this.addInImpl.initializeAsync();
+	    };
+	    return AddIn;
+	}());
+	exports.AddIn = AddIn;
+
+
+/***/ },
+/* 2 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	var api_internal_contract_1 = __webpack_require__(3);
+	var api_shared_1 = __webpack_require__(9);
+	var Dashboard_1 = __webpack_require__(32);
+	var DashboardContent_1 = __webpack_require__(34);
+	var Environment_1 = __webpack_require__(35);
+	var Settings_1 = __webpack_require__(36);
+	var RegisterAllAddInServices_1 = __webpack_require__(37);
+	var VersionNumber_1 = __webpack_require__(40);
+	var DashboardImpl_1 = __webpack_require__(41);
+	var SettingsImpl_1 = __webpack_require__(47);
+	var AddInImpl = (function () {
+	    function AddInImpl() {
+	    }
+	    AddInImpl.prototype.initializeAsync = function () {
+	        var _this = this;
+	        if (!this.initializationPromise) {
+	            this.initializationPromise = new Promise(function (resolve, reject) {
+	                // First thing we want to do is check to see if there is a desktop dispatcher already registered for us
+	                if (api_internal_contract_1.InternalApiDispatcherHolder.hasDesktopApiDispatcherPromise()) {
+	                    // Running in desktop, use this promise
+	                    var desktopDispatcherPromise = api_internal_contract_1.InternalApiDispatcherHolder.getDesktopDispatcherPromise();
+	                    desktopDispatcherPromise.then(_this.onDispatcherReceived.bind(_this)).then(function () { resolve(); });
+	                }
+	                else {
+	                    reject('Not running in desktop. Server support coming soon!');
+	                }
+	            });
+	        }
+	        return this.initializationPromise;
+	    };
+	    AddInImpl.prototype.onDispatcherReceived = function (dispatcher) {
+	        var _this = this;
+	        dispatcher.setVersionNumber(VersionNumber_1.VersionNumber.Instance);
+	        // Call to register all the services which will use the newly initialized dispatcher
+	        api_shared_1.registerAllSharedServices(dispatcher);
+	        RegisterAllAddInServices_1.registerAllAddInServices(dispatcher);
+	        // Get the initialization service and initialize this add-in
+	        var initializationService = api_shared_1.ApiServiceRegistry.instance.getService("InitializationService" /* InitializationService */);
+	        return initializationService.initializeDashboardAddInAsync().then(function (result) {
+	            if (!result.addInInstance.locator.dashboardPath) {
+	                throw new Error('DashboardPath is undefined');
+	            }
+	            _this.dashboardContent = _this.initializeDashboardContent(result.addinDashboardInfo, result.addInInstance.locator.dashboardPath);
+	            _this.environment = new Environment_1.Environment(result.addInEnvironment);
+	            _this.settings = _this.initializeSettings(result.addInSettingsInfo);
+	        });
+	    };
+	    AddInImpl.prototype.initializeDashboardContent = function (info, sheetPath) {
+	        var dashboardImpl = new DashboardImpl_1.DashboardImpl(info, sheetPath);
+	        var dashboard = new Dashboard_1.Dashboard(dashboardImpl);
+	        return new DashboardContent_1.DashboardContent(dashboard);
+	    };
+	    AddInImpl.prototype.initializeSettings = function (settingsInfo) {
+	        var settingsImpl = new SettingsImpl_1.SettingsImpl(settingsInfo);
+	        return new Settings_1.Settings(settingsImpl);
+	    };
+	    return AddInImpl;
+	}());
+	exports.AddInImpl = AddInImpl;
+
+
+/***/ },
+/* 3 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	/**
+	 * This is your main. This is where you re-export everything you want to be publicly available.
+	 *
+	 * The build enforces that the file has the same name as the global variable that is exported.
+	 */
+	function __export(m) {
+	    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+	}
+	Object.defineProperty(exports, "__esModule", { value: true });
+	__export(__webpack_require__(4));
+	__export(__webpack_require__(5));
+	__export(__webpack_require__(6));
+	__export(__webpack_require__(7));
+	__export(__webpack_require__(8));
+
+
+/***/ },
+/* 4 */
+/***/ function(module, exports) {
+
+	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	var AddInContext;
+	(function (AddInContext) {
+	    AddInContext["Desktop"] = "desktop";
+	    AddInContext["Server"] = "server";
+	    AddInContext["Unknown"] = "unknown";
+	})(AddInContext = exports.AddInContext || (exports.AddInContext = {}));
+	var AddInMode;
+	(function (AddInMode) {
+	    AddInMode["Authoring"] = "authoring";
+	    AddInMode["Viewing"] = "viewing";
+	    AddInMode["Unknown"] = "unknown";
+	})(AddInMode = exports.AddInMode || (exports.AddInMode = {}));
+	var DashboardObjectType;
+	(function (DashboardObjectType) {
+	    DashboardObjectType["Blank"] = "blank";
+	    DashboardObjectType["Worksheet"] = "worksheet";
+	    DashboardObjectType["QuickFilter"] = "quick-filter";
+	    DashboardObjectType["ParameterControl"] = "parameter-control";
+	    DashboardObjectType["PageFilter"] = "page-filter";
+	    DashboardObjectType["Legend"] = "legend";
+	    DashboardObjectType["Title"] = "title";
+	    DashboardObjectType["Text"] = "text";
+	    DashboardObjectType["Image"] = "image";
+	    DashboardObjectType["WebPage"] = "web-page";
+	    DashboardObjectType["AddIn"] = "addin";
+	})(DashboardObjectType = exports.DashboardObjectType || (exports.DashboardObjectType = {}));
+	var DataType;
+	(function (DataType) {
+	    DataType["String"] = "string";
+	    DataType["Int"] = "int";
+	    DataType["Float"] = "float";
+	    DataType["Bool"] = "bool";
+	    DataType["Date"] = "date";
+	    DataType["DateTime"] = "date-time";
+	    DataType["Spatial"] = "spatial";
+	})(DataType = exports.DataType || (exports.DataType = {}));
+	var EncodedDataType;
+	(function (EncodedDataType) {
+	    EncodedDataType["Number"] = "number";
+	    EncodedDataType["String"] = "string";
+	    EncodedDataType["Date"] = "date";
+	    EncodedDataType["Boolean"] = "boolean";
+	})(EncodedDataType = exports.EncodedDataType || (exports.EncodedDataType = {}));
+	var ErrorCode;
+	(function (ErrorCode) {
+	    ErrorCode["ServerError"] = "server-error";
+	    ErrorCode["InvalidAggregationFieldName"] = "invalid-aggregation-field-name";
+	    ErrorCode["InvalidFilterFieldName"] = "invalid-filter-fieldname";
+	    ErrorCode["InvalidFilterFieldValue"] = "invalid-filter-field-value";
+	})(ErrorCode = exports.ErrorCode || (exports.ErrorCode = {}));
+	/**
+	 *  The different update types for applying filter.
+	 */
+	var FilterUpdateType;
+	(function (FilterUpdateType) {
+	    FilterUpdateType["Add"] = "add";
+	    FilterUpdateType["All"] = "all";
+	    FilterUpdateType["Replace"] = "replace";
+	    FilterUpdateType["Remove"] = "remove";
+	})(FilterUpdateType = exports.FilterUpdateType || (exports.FilterUpdateType = {}));
+	var SheetType;
+	(function (SheetType) {
+	    SheetType["Dashboard"] = "dashboard";
+	    SheetType["Story"] = "story";
+	    SheetType["Worksheet"] = "worksheet";
+	    SheetType["Addin"] = "addin";
+	})(SheetType = exports.SheetType || (exports.SheetType = {}));
+	/**
+	 * The option for specifying which values to include for filtering.
+	 */
+	var NullOption;
+	(function (NullOption) {
+	    NullOption["NullValues"] = "nullvalues";
+	    NullOption["NonNullValues"] = "nonnullvalues";
+	    NullOption["AllValues"] = "allvalues";
+	})(NullOption = exports.NullOption || (exports.NullOption = {}));
+
+
+/***/ },
+/* 5 */
+/***/ function(module, exports) {
+
+	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	var InternalApiDispatcherHolder;
+	(function (InternalApiDispatcherHolder) {
+	    function getDesktopDispatcherPromise() {
+	        return window.__tableauDesktopDispatcher;
+	    }
+	    InternalApiDispatcherHolder.getDesktopDispatcherPromise = getDesktopDispatcherPromise;
+	    function hasDesktopApiDispatcherPromise() {
+	        return !!InternalApiDispatcherHolder.getDesktopDispatcherPromise();
+	    }
+	    InternalApiDispatcherHolder.hasDesktopApiDispatcherPromise = hasDesktopApiDispatcherPromise;
+	    function setDesktopDispatcherPromise(dispatcher) {
+	        window.__tableauDesktopDispatcher = dispatcher;
+	    }
+	    InternalApiDispatcherHolder.setDesktopDispatcherPromise = setDesktopDispatcherPromise;
+	})(InternalApiDispatcherHolder = exports.InternalApiDispatcherHolder || (exports.InternalApiDispatcherHolder = {}));
+
+
+/***/ },
+/* 6 */
+/***/ function(module, exports) {
+
+	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	var NotificationId;
+	(function (NotificationId) {
+	    NotificationId["SelectedMarksChanged"] = "selected-marks-changed";
+	})(NotificationId = exports.NotificationId || (exports.NotificationId = {}));
+
+
+/***/ },
+/* 7 */
+/***/ function(module, exports) {
+
+	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	var ParameterId;
+	(function (ParameterId) {
+	    ParameterId["AddInLocator"] = "add-in-locator";
+	    ParameterId["AddInBootstrapInfo"] = "add-in-bootstrap-info";
+	    ParameterId["AddInSettingsInfo"] = "add-in-settings-info";
+	    ParameterId["VisualId"] = "visual-id";
+	    ParameterId["SheetPath"] = "sheet-path";
+	    ParameterId["IgnoreAliases"] = "ignore-aliases";
+	    ParameterId["IgnoreSelection"] = "ignore-selection";
+	    ParameterId["IncludeAllColumns"] = "include-all-columns";
+	    ParameterId["MaxRows"] = "max-rows";
+	    ParameterId["UnderlyingDataTable"] = "underlying-data-table";
+	    ParameterId["UnderlyingSummaryDataTable"] = "underlying-summary-data-table";
+	    ParameterId["SettingsValues"] = "settings-values";
+	    ParameterId["SelectedData"] = "selected-data";
+	    ParameterId["HighlightedData"] = "highlighted-data";
+	    // Filter Params
+	    ParameterId["FieldName"] = "field-name";
+	    ParameterId["FilterValues"] = "filter-values";
+	    ParameterId["FilterUpdateType"] = "filter-update-type";
+	    ParameterId["IsExcludeMode"] = "is-exclude";
+	    ParameterId["FilterRangeMin"] = "filter-range-min";
+	    ParameterId["FilterRangeMax"] = "filter-range-max";
+	    ParameterId["FilterRangeNullOption"] = "filter-range-null-option";
+	    ParameterId["WorksheetName"] = "worksheet-name";
+	})(ParameterId = exports.ParameterId || (exports.ParameterId = {}));
+
+
+/***/ },
+/* 8 */
+/***/ function(module, exports) {
+
+	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	// Declare this key type and export the NotificationId to make this behave like a string enum
+	var VerbId;
+	(function (VerbId) {
+	    VerbId["ApplyCategoricalFilter"] = "categorical-filter";
+	    VerbId["ApplyRangeFilter"] = "range-filter";
+	    VerbId["ClearFilter"] = "clear-filter";
+	    VerbId["InitializeAddIn"] = "initialize-add-in";
+	    VerbId["GetDataSummaryData"] = "get-summary-data";
+	    VerbId["GetUnderlyingData"] = "get-underlying-data";
+	    VerbId["SaveAddInSettings"] = "save-add-in-settings";
+	    VerbId["GetSelectedMarks"] = "get-selected-marks";
+	    VerbId["GetHighlightedMarks"] = "get-highlighted-marks";
+	})(VerbId = exports.VerbId || (exports.VerbId = {}));
+
+
+/***/ },
+/* 9 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	/**
+	 * This is your main. This is where you re-export everything you want to be publicly available.
+	 *
+	 * The build enforces that the file has the same name as the global variable that is exported.
+	 */
+	function __export(m) {
+	    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+	}
+	Object.defineProperty(exports, "__esModule", { value: true });
+	__export(__webpack_require__(10));
+	__export(__webpack_require__(11));
+	__export(__webpack_require__(12));
+	__export(__webpack_require__(13));
+	__export(__webpack_require__(18));
+	__export(__webpack_require__(17));
+	__export(__webpack_require__(16));
+	__export(__webpack_require__(19));
+	__export(__webpack_require__(20));
+	__export(__webpack_require__(21));
+	__export(__webpack_require__(30));
+	__export(__webpack_require__(31));
+
+
+/***/ },
+/* 10 */
+/***/ function(module, exports) {
+
+	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	/**
+	 * Class designed to register and unregister handlers from a user. Only those events
+	 * which are added via AddNewEventType will be supported by this instance
+	 */
+	var EventListenerManager = (function () {
+	    function EventListenerManager() {
+	        this.eventListenerManagers = {};
+	    }
+	    EventListenerManager.prototype.addEventListener = function (eventType, handler) {
+	        if (!this.eventListenerManagers.hasOwnProperty(eventType)) {
+	            throw new Error("Unsupported event type : " + eventType);
+	        }
+	        return this.eventListenerManagers[eventType].addEventListener(handler);
+	    };
+	    EventListenerManager.prototype.removeEventListener = function (eventType, handler) {
+	        if (!this.eventListenerManagers.hasOwnProperty(eventType)) {
+	            throw new Error("Unsupported event type : " + eventType);
+	        }
+	        return this.eventListenerManagers[eventType].removeEventListener(handler);
+	    };
+	    EventListenerManager.prototype.addNewEventType = function (eventManager) {
+	        this.eventListenerManagers[eventManager.eventType] = eventManager;
+	    };
+	    return EventListenerManager;
+	}());
+	exports.EventListenerManager = EventListenerManager;
+
+
+/***/ },
+/* 11 */
+/***/ function(module, exports) {
+
+	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	var DataTable = (function () {
+	    function DataTable(_data, _columns, _totalRowCount, _isSummaryData) {
+	        this._data = _data;
+	        this._columns = _columns;
+	        this._totalRowCount = _totalRowCount;
+	        this._isSummaryData = _isSummaryData;
+	        // TODO: get rid of this in redesign.
+	        this._name = _isSummaryData ? 'Summary Data Table' : 'Underlying Data Table';
+	    }
+	    Object.defineProperty(DataTable.prototype, "name", {
+	        get: function () {
+	            return this._name;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(DataTable.prototype, "data", {
+	        get: function () {
+	            return this._data;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(DataTable.prototype, "columns", {
+	        get: function () {
+	            return this._columns;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(DataTable.prototype, "totalRowCount", {
+	        get: function () {
+	            return this._totalRowCount;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(DataTable.prototype, "isSummaryData", {
+	        get: function () {
+	            return this._isSummaryData;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    return DataTable;
+	}());
+	exports.DataTable = DataTable;
+	var Column = (function () {
+	    function Column(_fieldName, _dataType, // TODO: this shoudl be an enum type
+	        _isReferenced, _index) {
+	        this._fieldName = _fieldName;
+	        this._dataType = _dataType;
+	        this._isReferenced = _isReferenced;
+	        this._index = _index;
+	    }
+	    Object.defineProperty(Column.prototype, "fieldName", {
+	        get: function () {
+	            return this._fieldName;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(Column.prototype, "dataType", {
+	        get: function () {
+	            return this._dataType;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(Column.prototype, "isReferenced", {
+	        get: function () {
+	            return this._isReferenced;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(Column.prototype, "index", {
+	        get: function () {
+	            return this._index;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    return Column;
+	}());
+	exports.Column = Column;
+	var DataValue = (function () {
+	    /* tslint:disable:no-any */
+	    function DataValue(_value, _formattedValue) {
+	        this._value = _value;
+	        this._formattedValue = _formattedValue;
+	    }
+	    Object.defineProperty(DataValue.prototype, "value", {
+	        get: function () {
+	            return this._value;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(DataValue.prototype, "formattedValue", {
+	        get: function () {
+	            return this._formattedValue;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    return DataValue;
+	}());
+	exports.DataValue = DataValue;
+
+
+/***/ },
+/* 12 */
+/***/ function(module, exports) {
+
+	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	var TableauExceptions = (function () {
+	    function TableauExceptions() {
+	    }
+	    return TableauExceptions;
+	}());
+	exports.TableauExceptions = TableauExceptions;
+
+
+/***/ },
+/* 13 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || (function () {
+	    var extendStatics = Object.setPrototypeOf ||
+	        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+	        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+	    return function (d, b) {
+	        extendStatics(d, b);
+	        function __() { this.constructor = d; }
+	        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	    };
+	})();
+	Object.defineProperty(exports, "__esModule", { value: true });
+	var api_external_contract_1 = __webpack_require__(14);
+	var TableauWorksheetEvent_1 = __webpack_require__(16);
+	var MarksSelectedEvent = (function (_super) {
+	    __extends(MarksSelectedEvent, _super);
+	    function MarksSelectedEvent(worksheet) {
+	        return _super.call(this, api_external_contract_1.TableauEventType.MarkSelectionChanged, worksheet) || this;
+	    }
+	    MarksSelectedEvent.prototype.getMarksAsync = function () {
+	        return this.worksheet.getSelectedMarksAsync();
+	    };
+	    return MarksSelectedEvent;
+	}(TableauWorksheetEvent_1.TableauWorksheetEvent));
+	exports.MarksSelectedEvent = MarksSelectedEvent;
+
+
+/***/ },
+/* 14 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	/**
+	 * This is your main. This is where you re-export everything you want to be publicly available.
+	 *
+	 * The build enforces that the file has the same name as the global variable that is exported.
+	 */
+	function __export(m) {
+	    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+	}
+	Object.defineProperty(exports, "__esModule", { value: true });
+	__export(__webpack_require__(15));
+
+
+/***/ },
+/* 15 */
+/***/ function(module, exports) {
+
+	"use strict";
+	// All enum values made available to AddIn developers.
+	// Enums should be kept in alphabetical order.
+	Object.defineProperty(exports, "__esModule", { value: true });
+	/**
+	 * The context in which the AddIn is currently running.
+	 */
+	var AddInContext;
+	(function (AddInContext) {
+	    AddInContext["Desktop"] = "desktop";
+	    AddInContext["Server"] = "server";
+	    AddInContext["Unknown"] = "unknown";
+	})(AddInContext = exports.AddInContext || (exports.AddInContext = {}));
+	/**
+	 * The mode in which the AddIn is currently running.
+	 */
+	var AddInMode;
+	(function (AddInMode) {
+	    AddInMode["Authoring"] = "authoring";
+	    AddInMode["Viewing"] = "viewing";
+	    AddInMode["Unknown"] = "unknown";
+	})(AddInMode = exports.AddInMode || (exports.AddInMode = {}));
+	/**
+	 * What the object represents in a dashboard.
+	 */
+	var DashboardObjectType;
+	(function (DashboardObjectType) {
+	    DashboardObjectType["Blank"] = "blank";
+	    DashboardObjectType["Worksheet"] = "worksheet";
+	    DashboardObjectType["QuickFilter"] = "quick-filter";
+	    DashboardObjectType["ParameterControl"] = "parameter-control";
+	    DashboardObjectType["PageFilter"] = "page-filter";
+	    DashboardObjectType["Legend"] = "legend";
+	    DashboardObjectType["Title"] = "title";
+	    DashboardObjectType["Text"] = "text";
+	    DashboardObjectType["Image"] = "image";
+	    DashboardObjectType["WebPage"] = "web-page";
+	    DashboardObjectType["AddIn"] = "addin";
+	})(DashboardObjectType = exports.DashboardObjectType || (exports.DashboardObjectType = {}));
+	/**
+	 * The different types of data a value can have
+	 */
+	var DataType;
+	(function (DataType) {
+	    DataType["String"] = "string";
+	    DataType["Int"] = "int";
+	    DataType["Float"] = "float";
+	    DataType["Bool"] = "bool";
+	    DataType["Date"] = "date";
+	    DataType["DateTime"] = "date-time";
+	    DataType["Spatial"] = "spatial";
+	})(DataType = exports.DataType || (exports.DataType = {}));
+	/**
+	 * Valid date ranges for a relative date filter.
+	 */
+	var DateRangeType;
+	(function (DateRangeType) {
+	    DateRangeType["Last"] = "last";
+	    DateRangeType["LastN"] = "last-n";
+	    DateRangeType["Next"] = "next";
+	    DateRangeType["NextN"] = "next-n";
+	    DateRangeType["Current"] = "current";
+	    DateRangeType["ToDate"] = "to-date";
+	})(DateRangeType = exports.DateRangeType || (exports.DateRangeType = {}));
+	/**
+	 * Types of dialog event for event listening between a parent AddIn and a popup dialog.
+	 */
+	var DialogEventType;
+	(function (DialogEventType) {
+	    DialogEventType["DialogMessage"] = "dialog-message";
+	    DialogEventType["DialogEvent"] = "dialog-event";
+	})(DialogEventType = exports.DialogEventType || (exports.DialogEventType = {}));
+	/**
+	 * All error codes used by the AddIn API.
+	 */
+	var ErrorCodes;
+	(function (ErrorCodes) {
+	    /**
+	     * Only one dialog can be opened at time with the UI namespace functionality.
+	     */
+	    ErrorCodes["DialogAlreadyOpen"] = "dialog-already-open";
+	    /**
+	     * The open dialog was closed by the user.
+	     */
+	    ErrorCodes["DialogClosedByUser"] = "dialog-closed-by-user";
+	    /**
+	     * An error occurred while attempting to perform a filter operation.
+	     */
+	    ErrorCodes["FilterCannotBePerformed"] = "filter-cannot-be-performed";
+	    /**
+	     * An error occurred within the Tableau AddIn API. Contact Tableau Support.
+	     */
+	    ErrorCodes["InternalError"] = "internal-error";
+	    /**
+	     * An invalid aggregation was specified for the filter, such as setting a range filter to "SUM(Sales)" instead of "Sales".
+	     */
+	    ErrorCodes["InvalidAggregationFieldName"] = "invalid-aggregation-field-name";
+	    /**
+	     * A dialog must first launch to, and send messages from, the same domain as the parent AddIn.
+	     */
+	    ErrorCodes["InvalidDomainDialog"] = "invalid-dialog-domain";
+	    /**
+	     * An invalid date was specified in a method that required a date parameter.
+	     */
+	    ErrorCodes["InvalidDateParameter"] = "invalid-date-parameter";
+	    /**
+	     * A filter operation was attempted on a field that does not exist in the data source.
+	     */
+	    ErrorCodes["InvalidFilterFieldName"] = "invalid-filter-field-name";
+	    /**
+	     * A filter operation was attempted using a value that is the wrong data type or format.
+	     */
+	    ErrorCodes["InvalidFilterFieldValue"] = "invalid-filter-field-value";
+	    /**
+	     * A parameter is not the correct data type or format. The name of the parameter is specified in the Error.message field.
+	     */
+	    ErrorCodes["InvalidParameter"] = "invalid-parameter";
+	    /**
+	     * An invalid date value was specified in a Sheet.selectMarksAsync() call for a date field.
+	     */
+	    ErrorCodes["InvalidSelectionDate"] = "invalid-selection-date";
+	    /**
+	     * A field was specified in a Sheet.selectMarksAsync() call that does not exist in the data source.
+	     */
+	    ErrorCodes["InvalidSelectionFieldName"] = "invalid-selection-field-name";
+	    /**
+	     * An invalid value was specified in a Sheet.selectMarksAsync() call.
+	     */
+	    ErrorCodes["InvalidSelectionValue"] = "invalid-selection-value";
+	    /**
+	     * A required parameter was not specified, null, or an empty string/array.
+	     */
+	    ErrorCodes["NullOrEmptyParameter"] = "null-or-empty-parameter";
+	    /**
+	     * An unknown event name was specified in the call to Viz.addEventListeneror Viz.removeEventListener.
+	     */
+	    ErrorCodes["UnsupportedEventName"] = "unsupported-event-name";
+	})(ErrorCodes = exports.ErrorCodes || (exports.ErrorCodes = {}));
+	/**
+	 *  Type of aggregation on a field.
+	 */
+	var FieldAggreationType;
+	(function (FieldAggreationType) {
+	    FieldAggreationType["Sum"] = "sum";
+	    FieldAggreationType["Avg"] = "avg";
+	    FieldAggreationType["Min"] = "min";
+	    FieldAggreationType["Max"] = "max";
+	    FieldAggreationType["Stdev"] = "stdev";
+	    FieldAggreationType["Stdevp"] = "stdevp";
+	    FieldAggreationType["Var"] = "var";
+	    FieldAggreationType["Varp"] = "varp";
+	    FieldAggreationType["Count"] = "count";
+	    FieldAggreationType["Countd"] = "countd";
+	    FieldAggreationType["Median"] = "median";
+	    FieldAggreationType["Attr"] = "attr";
+	    FieldAggreationType["None"] = "none";
+	    FieldAggreationType["Year"] = "year";
+	    FieldAggreationType["Qtr"] = "qtr";
+	    FieldAggreationType["Month"] = "month";
+	    FieldAggreationType["Day"] = "day";
+	    FieldAggreationType["Hour"] = "hour";
+	    FieldAggreationType["Minute"] = "minute";
+	    FieldAggreationType["Second"] = "second";
+	    FieldAggreationType["Week"] = "week";
+	    FieldAggreationType["Weekday"] = "weekday";
+	    FieldAggreationType["MomthYear"] = "month-year";
+	    FieldAggreationType["Mdy"] = "mdy";
+	    FieldAggreationType["End"] = "end";
+	    FieldAggreationType["TruncYear"] = "trunc-year";
+	    FieldAggreationType["TruncQtr"] = "trunc-qtr";
+	    FieldAggreationType["TruncMonth"] = "trunc-month";
+	    FieldAggreationType["TruncWeek"] = "trunc-week";
+	    FieldAggreationType["TruncDay"] = "trunc-day";
+	    FieldAggreationType["TruncHour"] = "trunc-hour";
+	    FieldAggreationType["TruncMinute"] = "trunc-minute";
+	    FieldAggreationType["TruncSecond"] = "trunc-second";
+	    FieldAggreationType["Quart1"] = "quart1";
+	    FieldAggreationType["Quart3"] = "quart3";
+	    FieldAggreationType["Skewness"] = "skewness";
+	    FieldAggreationType["Kurtosis"] = "kurtosis";
+	    FieldAggreationType["InOut"] = "in-out";
+	    FieldAggreationType["User"] = "user";
+	})(FieldAggreationType = exports.FieldAggreationType || (exports.FieldAggreationType = {}));
+	/**
+	 * Role of a field.
+	 */
+	var FieldRoleType;
+	(function (FieldRoleType) {
+	    FieldRoleType["Dimension"] = "dimension";
+	    FieldRoleType["Measure"] = "measure";
+	    FieldRoleType["Unknown"] = "unknown";
+	})(FieldRoleType = exports.FieldRoleType || (exports.FieldRoleType = {}));
+	/**
+	 * An enumeration of the valid types of filters that can be applied.
+	 */
+	var FilterType;
+	(function (FilterType) {
+	    FilterType["Categorical"] = "categorical";
+	    FilterType["Quantitative"] = "quantitative";
+	    FilterType["Hierarchical"] = "hierarchical";
+	    FilterType["RelativeDate"] = "relative-data";
+	})(FilterType = exports.FilterType || (exports.FilterType = {}));
+	/**
+	 * The different update types for applying filter
+	 */
+	var FilterUpdateType;
+	(function (FilterUpdateType) {
+	    FilterUpdateType["Add"] = "add";
+	    FilterUpdateType["All"] = "all";
+	    FilterUpdateType["Replace"] = "replace";
+	    FilterUpdateType["Remove"] = "remove";
+	})(FilterUpdateType = exports.FilterUpdateType || (exports.FilterUpdateType = {}));
+	/**
+	 * Indicates what to do with null values for a given filter or mark selection call.
+	 */
+	var NullOption;
+	(function (NullOption) {
+	    NullOption["NullValues"] = "null-values";
+	    NullOption["NonNullValues"] = "non-null-values";
+	    NullOption["AllValues"] = "all-values";
+	})(NullOption = exports.NullOption || (exports.NullOption = {}));
+	/**
+	 * Date period used in filters and in parameters.
+	 */
+	var PeriodType;
+	(function (PeriodType) {
+	    PeriodType["Years"] = "years";
+	    PeriodType["Quarters"] = "quarters";
+	    PeriodType["Months"] = "months";
+	    PeriodType["Weeks"] = "weeks";
+	    PeriodType["Days"] = "days";
+	    PeriodType["Hours"] = "hours";
+	    PeriodType["Minutes"] = "minutes";
+	    PeriodType["Seconds"] = "seconds";
+	})(PeriodType = exports.PeriodType || (exports.PeriodType = {}));
+	/**
+	 * The type of sheet a Sheet object represents
+	 */
+	var SheetType;
+	(function (SheetType) {
+	    SheetType["Dashboard"] = "dashboard";
+	    SheetType["Story"] = "story";
+	    SheetType["Worksheet"] = "worksheet";
+	    SheetType["AddIn"] = "add-in";
+	})(SheetType = exports.SheetType || (exports.SheetType = {}));
+	/**
+	 * Represents a certain type of event which can be listened for
+	 */
+	var TableauEventType;
+	(function (TableauEventType) {
+	    /** The selected marks on a visualization has changed */
+	    TableauEventType["MarkSelectionChanged"] = "mark-selection-changed";
+	})(TableauEventType = exports.TableauEventType || (exports.TableauEventType = {}));
+
+
+/***/ },
+/* 16 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || (function () {
+	    var extendStatics = Object.setPrototypeOf ||
+	        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+	        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+	    return function (d, b) {
+	        extendStatics(d, b);
+	        function __() { this.constructor = d; }
+	        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	    };
+	})();
+	Object.defineProperty(exports, "__esModule", { value: true });
+	var TableauSheetEvent_1 = __webpack_require__(17);
+	var TableauWorksheetEvent = (function (_super) {
+	    __extends(TableauWorksheetEvent, _super);
+	    function TableauWorksheetEvent(type, worksheet) {
+	        var _this = _super.call(this, type, worksheet) || this;
+	        _this._worksheet = worksheet;
+	        return _this;
+	    }
+	    Object.defineProperty(TableauWorksheetEvent.prototype, "worksheet", {
+	        get: function () {
+	            return this._worksheet;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    return TableauWorksheetEvent;
+	}(TableauSheetEvent_1.TableauSheetEvent));
+	exports.TableauWorksheetEvent = TableauWorksheetEvent;
+
+
+/***/ },
+/* 17 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || (function () {
+	    var extendStatics = Object.setPrototypeOf ||
+	        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+	        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+	    return function (d, b) {
+	        extendStatics(d, b);
+	        function __() { this.constructor = d; }
+	        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	    };
+	})();
+	Object.defineProperty(exports, "__esModule", { value: true });
+	var TableauEvent_1 = __webpack_require__(18);
+	var TableauSheetEvent = (function (_super) {
+	    __extends(TableauSheetEvent, _super);
+	    function TableauSheetEvent(type, sheet) {
+	        var _this = _super.call(this, type) || this;
+	        _this._sheet = sheet;
+	        return _this;
+	    }
+	    Object.defineProperty(TableauSheetEvent.prototype, "sheet", {
+	        get: function () {
+	            return this._sheet;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    return TableauSheetEvent;
+	}(TableauEvent_1.TableauEvent));
+	exports.TableauSheetEvent = TableauSheetEvent;
+
+
+/***/ },
+/* 18 */
+/***/ function(module, exports) {
+
+	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	var TableauEvent = (function () {
+	    function TableauEvent(type) {
+	        this._type = type;
+	    }
+	    Object.defineProperty(TableauEvent.prototype, "type", {
+	        get: function () {
+	            return this._type;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    return TableauEvent;
+	}());
+	exports.TableauEvent = TableauEvent;
+
+
+/***/ },
+/* 19 */
+/***/ function(module, exports) {
+
+	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	/**
+	 * This class implements the SingleEventManager interface for a single type of Tableau event
+	 *
+	 * @template TEventType The Tableau event type this class specializes
+	 */
+	var SingleEventManagerImpl = (function () {
+	    function SingleEventManagerImpl(eventType) {
+	        this._eventType = eventType;
+	        this.handlers = [];
+	    }
+	    Object.defineProperty(SingleEventManagerImpl.prototype, "eventType", {
+	        get: function () {
+	            return this._eventType;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    SingleEventManagerImpl.prototype.addEventListener = function (handler) {
+	        var _this = this;
+	        this.handlers.push(handler);
+	        return function () { return _this.removeEventListener(handler); };
+	    };
+	    SingleEventManagerImpl.prototype.removeEventListener = function (handler) {
+	        var beforeCount = this.handlers.length;
+	        this.handlers = this.handlers.filter(function (h) { return h !== handler; });
+	        return beforeCount > this.handlers.length;
+	    };
+	    SingleEventManagerImpl.prototype.triggerEvent = function (eventGenerator) {
+	        for (var _i = 0, _a = this.handlers; _i < _a.length; _i++) {
+	            var handler = _a[_i];
+	            try {
+	                var eventModel = eventGenerator();
+	                handler(eventModel);
+	            }
+	            catch (e) {
+	                // Since this handler could be outside our control, just catch anything it throws and continue on
+	                continue;
+	            }
+	        }
+	    };
+	    return SingleEventManagerImpl;
+	}());
+	exports.SingleEventManagerImpl = SingleEventManagerImpl;
+
+
+/***/ },
+/* 20 */
+/***/ function(module, exports) {
+
+	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	/**
+	 * Defines which type of getData call to make.
+	 */
+	var GetDataType;
+	(function (GetDataType) {
+	    GetDataType["Summary"] = "summary";
+	    GetDataType["Underlying"] = "underlying";
+	})(GetDataType = exports.GetDataType || (exports.GetDataType = {}));
+
+
+/***/ },
+/* 21 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	var FilterServiceImpl_1 = __webpack_require__(22);
+	var GetDataServiceImpl_1 = __webpack_require__(28);
+	var NotificationServiceImpl_1 = __webpack_require__(29);
+	var ServiceRegistry_1 = __webpack_require__(30);
+	function registerAllSharedServices(dispatcher) {
+	    ServiceRegistry_1.ApiServiceRegistry.instance.registerService(new GetDataServiceImpl_1.GetDataServiceImpl(dispatcher));
+	    ServiceRegistry_1.ApiServiceRegistry.instance.registerService(new FilterServiceImpl_1.FilterServiceImpl(dispatcher));
+	    ServiceRegistry_1.ApiServiceRegistry.instance.registerService(new NotificationServiceImpl_1.NotificationServiceImpl(dispatcher));
+	    // TODO - more shared services
+	}
+	exports.registerAllSharedServices = registerAllSharedServices;
+
+
+/***/ },
+/* 22 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	var api_external_contract_1 = __webpack_require__(14);
+	var api_internal_contract_1 = __webpack_require__(23);
+	var api_utils_1 = __webpack_require__(24);
+	var ExternalToInternalEnumMappings_1 = __webpack_require__(27);
+	var FilterServiceImpl = (function () {
+	    function FilterServiceImpl(dispatcher) {
+	        this.dispatcher = dispatcher;
+	    }
+	    Object.defineProperty(FilterServiceImpl.prototype, "serviceName", {
+	        get: function () {
+	            return "filter-service" /* Filter */;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    FilterServiceImpl.prototype.applyFilterAsync = function (visualId, fieldName, values, updateType, filterOptions) {
+	        if (!api_utils_1.Param.isValidEnumValue(updateType, api_external_contract_1.FilterUpdateType)) {
+	            throw new Error('Invalid value for parameter FilterUpdateType');
+	        }
+	        var verb = api_internal_contract_1.VerbId.ApplyCategoricalFilter;
+	        var parameters = {};
+	        parameters[api_internal_contract_1.ParameterId.VisualId] = visualId;
+	        parameters[api_internal_contract_1.ParameterId.FieldName] = fieldName;
+	        parameters[api_internal_contract_1.ParameterId.FilterValues] = values;
+	        parameters[api_internal_contract_1.ParameterId.FilterUpdateType] = updateType;
+	        parameters[api_internal_contract_1.ParameterId.IsExcludeMode] =
+	            (filterOptions === undefined || filterOptions.isExcludeMode === undefined) ? false : filterOptions.isExcludeMode;
+	        return this.dispatcher.execute(verb, parameters).then(function (response) {
+	            var error = response.result;
+	            if (!(error.errorCode === null || error.errorCode === undefined)) {
+	                // TODO: come back and implement error handling logic
+	                throw new Error('Error Applying Filter: ' + error.errorCode);
+	            }
+	            return fieldName;
+	        });
+	    };
+	    FilterServiceImpl.prototype.applyRangeFilterAsync = function (visualId, fieldName, filterOptions) {
+	        if (!filterOptions) {
+	            throw new Error('Missing Parameter: RangeFilterOptions');
+	        }
+	        api_utils_1.Param.verifyRangeParamType(filterOptions.min, filterOptions.max);
+	        var verb = api_internal_contract_1.VerbId.ApplyRangeFilter;
+	        var parameters = {};
+	        if (filterOptions.min) {
+	            var min = void 0;
+	            if (filterOptions.min instanceof Date) {
+	                min = api_utils_1.Param.serializeDateForPlatform(filterOptions.min);
+	            }
+	            else {
+	                min = filterOptions.min;
+	            }
+	            parameters[api_internal_contract_1.ParameterId.FilterRangeMin] = min;
+	        }
+	        if (filterOptions.max) {
+	            var max = void 0;
+	            if (filterOptions.max instanceof Date) {
+	                max = api_utils_1.Param.serializeDateForPlatform(filterOptions.max);
+	            }
+	            else {
+	                max = filterOptions.max;
+	            }
+	            parameters[api_internal_contract_1.ParameterId.FilterRangeMax] = max;
+	        }
+	        if (filterOptions.nullOption) {
+	            if (!api_utils_1.Param.isValidEnumValue(filterOptions.nullOption, api_external_contract_1.NullOption)) {
+	                throw new Error('Invalid value for parameter NullOption');
+	            }
+	            parameters[api_internal_contract_1.ParameterId.FilterRangeNullOption] = ExternalToInternalEnumMappings_1.ExternalToInternalEnumMappings.nullOptions.convert(filterOptions.nullOption);
+	        }
+	        parameters[api_internal_contract_1.ParameterId.FieldName] = fieldName;
+	        parameters[api_internal_contract_1.ParameterId.VisualId] = visualId;
+	        return this.dispatcher.execute(verb, parameters).then(function (response) {
+	            return fieldName;
+	        });
+	    };
+	    FilterServiceImpl.prototype.clearFilterAsync = function (visualId, fieldName) {
+	        var verb = api_internal_contract_1.VerbId.ClearFilter;
+	        var parameters = {};
+	        parameters[api_internal_contract_1.ParameterId.VisualId] = visualId;
+	        parameters[api_internal_contract_1.ParameterId.FieldName] = fieldName;
+	        return this.dispatcher.execute(verb, parameters).then(function (resposne) {
+	            return fieldName;
+	        });
+	    };
+	    return FilterServiceImpl;
+	}());
+	exports.FilterServiceImpl = FilterServiceImpl;
+
+
+/***/ },
+/* 23 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	/**
+	 * This is your main. This is where you re-export everything you want to be publicly available.
+	 *
+	 * The build enforces that the file has the same name as the global variable that is exported.
+	 */
+	function __export(m) {
+	    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+	}
+	Object.defineProperty(exports, "__esModule", { value: true });
+	__export(__webpack_require__(4));
+	__export(__webpack_require__(5));
+	__export(__webpack_require__(6));
+	__export(__webpack_require__(7));
+	__export(__webpack_require__(8));
+
+
+/***/ },
+/* 24 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	/**
+	 * This is your main. This is where you re-export everything you want to be publicly available.
+	 *
+	 * The build enforces that the file has the same name as the global variable that is exported.
+	 */
+	Object.defineProperty(exports, "__esModule", { value: true });
+	var EnumConverter_1 = __webpack_require__(25);
+	exports.EnumConverter = EnumConverter_1.EnumConverter;
+	var Param_1 = __webpack_require__(26);
+	exports.Param = Param_1.Param;
+
+
+/***/ },
+/* 25 */
+/***/ function(module, exports) {
+
+	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	/**
+	 * This class converts from a source enum value to destination enum
+	 * value given a mapping from source to destination when constructed.
+	 */
+	var EnumConverter = (function () {
+	    function EnumConverter(mappings, defaultVal) {
+	        this.mappings = mappings;
+	        this.defaultVal = defaultVal;
+	    }
+	    EnumConverter.prototype.convert = function (enumVal, throwIfMissing) {
+	        if (this.mappings.hasOwnProperty(enumVal)) {
+	            return this.mappings[enumVal];
+	        }
+	        if (this.defaultVal !== undefined && !throwIfMissing) {
+	            return this.defaultVal;
+	        }
+	        throw new Error('Mapping not found for ' + enumVal);
+	    };
+	    return EnumConverter;
+	}());
+	exports.EnumConverter = EnumConverter;
+
+
+/***/ },
+/* 26 */
+/***/ function(module, exports) {
+
+	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	var Param = (function () {
+	    function Param() {
+	    }
+	    /**
+	     * Verifies that an incoming parameter is 'truthy' and throws
+	     * an error if it's not. This will throw an error if the value
+	     * is null, undefined, NaN, the empty string, 0, or false.
+	     *
+	     * @param argumentValue value to verify
+	     * @param argumentName name of argument to verify
+	     */
+	    /*tslint:disable-next-line */
+	    Param.verifyValue = function (argumentValue, argumentName) {
+	        if (!argumentValue) {
+	            throw new Error('Value is invalid for argument: ' + argumentName);
+	        }
+	    };
+	    /**
+	     * Verifies that a string is valid.  Throws an error if the string is
+	     * null, undefined, or NaN.
+	     *
+	     * @param argumentValue value to verify
+	     * @param argumentName name of argument to verify
+	     */
+	    Param.verifyString = function (argumentValue, argumentName) {
+	        if (argumentValue === null || argumentValue === undefined) {
+	            throw new Error('String value is invalid for argument: ' + argumentName);
+	        }
+	    };
+	    /**
+	     * Verifies the value is part of the Enum
+	     *
+	     * String enums are {string : string} dictionaries which are not reverse mappable
+	     * This is an ugly workaround
+	     * @param value value to verify
+	     * @param enumType enum to verify against
+	     */
+	    /* tslint:disable:no-any */
+	    Param.isValidEnumValue = function (value, enumType) {
+	        var isValid = false;
+	        Object.keys(enumType).forEach(function (enumKey) {
+	            if (enumType[enumKey] === value.toString()) {
+	                isValid = true;
+	            }
+	        });
+	        return isValid;
+	    };
+	    /* tslint:enable:no-any */
+	    /**
+	     * serializes the date into the format that the server expects.
+	     * @param date the date to serialize
+	     */
+	    Param.serializeDateForPlatform = function (date) {
+	        var year = date.getUTCFullYear();
+	        var month = date.getUTCMonth() + 1;
+	        var day = date.getUTCDate();
+	        var hh = date.getUTCHours();
+	        var mm = date.getUTCMinutes();
+	        var sec = date.getUTCSeconds();
+	        return year + '-' + month + '-' + day + ' ' + hh + ':' + mm + ':' + sec;
+	    };
+	    /**
+	     * Verifies the params min and max for applying range filter
+	     * @param min range min
+	     * @param max range max
+	     */
+	    /* tslint:disable:no-any */
+	    Param.verifyRangeParamType = function (min, max) {
+	        /* tslint:enable:no-any */
+	        if (!min && !max) {
+	            throw new Error('Missing Parameter: At least one of min or max is required');
+	        }
+	        if (!Param.isTypeNumber(min) && !Param.isTypeDate(min)) {
+	            throw new Error('Invalid Parameter Type: Only Date and number are allowed for parameter min');
+	        }
+	        if (!Param.isTypeNumber(max) && !Param.isTypeDate(max)) {
+	            throw new Error('Invalid Parameter Type: Only Date and number are allowed for parameter max');
+	        }
+	        if (typeof (min) !== typeof (max)) {
+	            throw new Error('Invalid Parameter Type: Parameters min and max should be of the same type');
+	        }
+	    };
+	    /**
+	     * Verifies the input is a number
+	     */
+	    /* tslint:disable:no-any */
+	    Param.isTypeNumber = function (input) {
+	        return typeof (input) === 'number' || input instanceof Number;
+	    };
+	    /* tslint:enable:no-any */
+	    /**
+	     * Verifies the input is a Date
+	     */
+	    /* tslint:disable:no-any */
+	    Param.isTypeDate = function (input) {
+	        return input instanceof Date;
+	    };
+	    return Param;
+	}());
+	exports.Param = Param;
+
+
+/***/ },
+/* 27 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	var api_external_contract_1 = __webpack_require__(14);
+	var api_internal_contract_1 = __webpack_require__(23);
+	var api_utils_1 = __webpack_require__(24);
+	/* tslint:disable:typedef - Disable this to make declaring these classes a bit easier */
+	/**
+	 * Maps enums used by the external-api-contract to the enums used
+	 * in the internal-api-contract, which developers code against.
+	 */
+	var ExternalToInternalEnumMappings = (function () {
+	    function ExternalToInternalEnumMappings() {
+	    }
+	    ExternalToInternalEnumMappings.nullOptions = new api_utils_1.EnumConverter((_a = {},
+	        _a[api_external_contract_1.NullOption.AllValues] = api_internal_contract_1.NullOption.AllValues,
+	        _a[api_external_contract_1.NullOption.NonNullValues] = api_internal_contract_1.NullOption.NonNullValues,
+	        _a[api_external_contract_1.NullOption.NonNullValues] = api_internal_contract_1.NullOption.NullValues,
+	        _a));
+	    return ExternalToInternalEnumMappings;
+	}());
+	exports.ExternalToInternalEnumMappings = ExternalToInternalEnumMappings;
+	var _a;
+	/* tslint:enable:typedef */
+
+
+/***/ },
+/* 28 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	var api_external_contract_1 = __webpack_require__(14);
+	var api_internal_contract_1 = __webpack_require__(23);
+	var GetDataModels_1 = __webpack_require__(11);
+	var GetDataService_1 = __webpack_require__(20);
+	var GetDataServiceImpl = (function () {
+	    function GetDataServiceImpl(dispatcher) {
+	        this.dispatcher = dispatcher;
+	    }
+	    Object.defineProperty(GetDataServiceImpl.prototype, "serviceName", {
+	        get: function () {
+	            return "get-data-service" /* GetData */;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    GetDataServiceImpl.prototype.getUnderlyingDataAsync = function (visualId, getType, ignoreAliases, ignoreSelection, includeAllColumns, maxRows) {
+	        var _this = this;
+	        // Create all of our parameters
+	        var verb = getType === GetDataService_1.GetDataType.Summary ? api_internal_contract_1.VerbId.GetDataSummaryData : api_internal_contract_1.VerbId.GetUnderlyingData;
+	        var parameters = {};
+	        parameters[api_internal_contract_1.ParameterId.VisualId] = visualId;
+	        parameters[api_internal_contract_1.ParameterId.IgnoreAliases] = ignoreAliases;
+	        parameters[api_internal_contract_1.ParameterId.IgnoreSelection] = ignoreSelection;
+	        parameters[api_internal_contract_1.ParameterId.IncludeAllColumns] = includeAllColumns;
+	        parameters[api_internal_contract_1.ParameterId.MaxRows] = maxRows;
+	        return this.dispatcher.execute(verb, parameters).then(function (response) {
+	            var responseData = response.result;
+	            return _this.processResultsTable(responseData.data, responseData.isSummary);
+	        });
+	    };
+	    GetDataServiceImpl.prototype.getSelectedMarksAsync = function (visualId) {
+	        var _this = this;
+	        var parameters = (_a = {}, _a[api_internal_contract_1.ParameterId.VisualId] = visualId, _a);
+	        return this.dispatcher.execute(api_internal_contract_1.VerbId.GetSelectedMarks, parameters).then(function (response) {
+	            var responseData = response.result;
+	            return {
+	                data: responseData.data.map(function (table) { return _this.processResultsTable(table, true); })
+	            };
+	        });
+	        var _a;
+	    };
+	    GetDataServiceImpl.prototype.getHighlightedMarksAsync = function (visualId) {
+	        var _this = this;
+	        var parameters = (_a = {}, _a[api_internal_contract_1.ParameterId.VisualId] = visualId, _a);
+	        return this.dispatcher.execute(api_internal_contract_1.VerbId.GetHighlightedMarks, parameters).then(function (response) {
+	            var responseData = response.result;
+	            return {
+	                data: responseData.data.map(function (table) { return _this.processResultsTable(table, true); })
+	            };
+	        });
+	        var _a;
+	    };
+	    GetDataServiceImpl.prototype.processResultsTable = function (responseData, isSummary) {
+	        var headers = responseData.headers.map(function (h) { return new GetDataModels_1.Column(h.fieldCaption, api_external_contract_1.DataType.String /*h.DataType*/, h.isReferenced, h.index); });
+	        var table = responseData.dataTable.map(function (row) {
+	            return row.map(function (cell) {
+	                return new GetDataModels_1.DataValue(cell.value, cell.formattedValue);
+	            });
+	        });
+	        return new GetDataModels_1.DataTable(table, headers, table.length, isSummary);
+	    };
+	    return GetDataServiceImpl;
+	}());
+	exports.GetDataServiceImpl = GetDataServiceImpl;
+
+
+/***/ },
+/* 29 */
+/***/ function(module, exports) {
+
+	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	var Registration = (function () {
+	    function Registration(filterFn, callbackFn) {
+	        this.filterFn = filterFn;
+	        this.callbackFn = callbackFn;
+	        // Nothing Here
+	    }
+	    Registration.prototype.onNotification = function (notificationModel) {
+	        if (this.filterFn(notificationModel)) {
+	            this.callbackFn(notificationModel);
+	        }
+	    };
+	    return Registration;
+	}());
+	var NotificationServiceImpl = (function () {
+	    function NotificationServiceImpl(dispatcher) {
+	        this.dispatcher = dispatcher;
+	        this.handlers = {};
+	        this.dispatcher.registerNotificationHandler(this.onNotification.bind(this));
+	    }
+	    Object.defineProperty(NotificationServiceImpl.prototype, "serviceName", {
+	        get: function () {
+	            return "notification-service" /* Notification */;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    NotificationServiceImpl.prototype.registerHandler = function (id, filterFn, handler) {
+	        var _this = this;
+	        var handlers = this.handlers[id] || new Array();
+	        var registration = new Registration(filterFn, handler);
+	        handlers.push(registration);
+	        this.handlers[id] = handlers;
+	        return function () { return _this.removeRegistration(id, registration); };
+	    };
+	    NotificationServiceImpl.prototype.hasHandlersForNotificationType = function (id) {
+	        return this.handlers.hasOwnProperty(id);
+	    };
+	    NotificationServiceImpl.prototype.onNotification = function (notification) {
+	        if (!this.hasHandlersForNotificationType(notification.notificationId)) {
+	            return;
+	        }
+	        // Go through and check for all the handlers of this particular notification
+	        this.handlers[notification.notificationId].forEach(function (h) { return h.onNotification(notification.data); });
+	    };
+	    NotificationServiceImpl.prototype.removeRegistration = function (id, registration) {
+	        if (!this.hasHandlersForNotificationType(id)) {
+	            return;
+	        }
+	        this.handlers[id] = this.handlers[id].filter(function (reg) { return reg !== registration; });
+	    };
+	    return NotificationServiceImpl;
+	}());
+	exports.NotificationServiceImpl = NotificationServiceImpl;
+
+
 /***/ },
 /* 30 */
 /***/ function(module, exports) {
 
+	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	var ServiceRegistryImpl = (function () {
+	    function ServiceRegistryImpl() {
+	        this.services = {};
+	    }
+	    ServiceRegistryImpl.prototype.registerService = function (service) {
+	        this.services[service.serviceName] = service;
+	    };
+	    ServiceRegistryImpl.prototype.getService = function (serviceName) {
+	        if (!this.services.hasOwnProperty(serviceName)) {
+	            throw new Error("No Service " + serviceName + " is registered");
+	        }
+	        return this.services[serviceName];
+	    };
+	    return ServiceRegistryImpl;
+	}());
+	/**
+	 * static class used for getting access to the single instance
+	 * of the ApiServiceRegistry
+	 */
+	var ApiServiceRegistry = (function () {
+	    // Private to avoid anyone constructing this
+	    function ApiServiceRegistry() {
+	    }
+	    Object.defineProperty(ApiServiceRegistry, "instance", {
+	        /**
+	         * Gets the singleton instance of the ServiceRegistry
+	         */
+	        get: function () {
+	            if (!window.__tableauApiServiceRegistry) {
+	                ApiServiceRegistry.setInstance(new ServiceRegistryImpl());
+	            }
+	            if (!window.__tableauApiServiceRegistry) {
+	                throw new Error('Assigning service registry failed');
+	            }
+	            return window.__tableauApiServiceRegistry;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    /**
+	     * Helper method to override the registry instance. Can be used by unit tests
+	     *
+	     * @param {ServiceRegistry} serviceRegistry The new registry
+	     */
+	    ApiServiceRegistry.setInstance = function (serviceRegistry) {
+	        window.__tableauApiServiceRegistry = serviceRegistry;
+	    };
+	    return ApiServiceRegistry;
+	}());
+	exports.ApiServiceRegistry = ApiServiceRegistry;
+
+
+/***/ },
+/* 31 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	var api_external_contract_1 = __webpack_require__(14);
+	var api_internal_contract_1 = __webpack_require__(23);
+	var api_utils_1 = __webpack_require__(24);
+	/* tslint:disable:typedef - Disable this to make declaring these classes a bit easier */
+	/**
+	 * Maps enums used by the internal-api-contract to the enums used
+	 * in the external-api-contract, which developers code against.
+	 */
+	var InternalToExternalEnumMappings = (function () {
+	    function InternalToExternalEnumMappings() {
+	    }
+	    InternalToExternalEnumMappings.addInContext = new api_utils_1.EnumConverter((_a = {},
+	        _a[api_internal_contract_1.AddInContext.Desktop] = api_external_contract_1.AddInContext.Desktop,
+	        _a[api_internal_contract_1.AddInContext.Server] = api_external_contract_1.AddInContext.Server,
+	        _a[api_internal_contract_1.AddInContext.Unknown] = api_external_contract_1.AddInContext.Unknown,
+	        _a));
+	    InternalToExternalEnumMappings.addInMode = new api_utils_1.EnumConverter((_b = {},
+	        _b[api_internal_contract_1.AddInMode.Authoring] = api_external_contract_1.AddInMode.Authoring,
+	        _b[api_internal_contract_1.AddInMode.Viewing] = api_external_contract_1.AddInMode.Viewing,
+	        _b[api_internal_contract_1.AddInMode.Unknown] = api_external_contract_1.AddInMode.Unknown,
+	        _b));
+	    InternalToExternalEnumMappings.sheetType = new api_utils_1.EnumConverter((_c = {},
+	        _c[api_internal_contract_1.SheetType.Dashboard] = api_external_contract_1.SheetType.Dashboard,
+	        _c[api_internal_contract_1.SheetType.Story] = api_external_contract_1.SheetType.Story,
+	        _c[api_internal_contract_1.SheetType.Worksheet] = api_external_contract_1.SheetType.Worksheet,
+	        _c));
+	    InternalToExternalEnumMappings.dashboardObjectType = new api_utils_1.EnumConverter((_d = {},
+	        _d[api_internal_contract_1.DashboardObjectType.Blank] = api_external_contract_1.DashboardObjectType.Blank,
+	        _d[api_internal_contract_1.DashboardObjectType.Image] = api_external_contract_1.DashboardObjectType.Image,
+	        _d[api_internal_contract_1.DashboardObjectType.Legend] = api_external_contract_1.DashboardObjectType.Legend,
+	        _d[api_internal_contract_1.DashboardObjectType.PageFilter] = api_external_contract_1.DashboardObjectType.PageFilter,
+	        _d[api_internal_contract_1.DashboardObjectType.ParameterControl] = api_external_contract_1.DashboardObjectType.ParameterControl,
+	        _d[api_internal_contract_1.DashboardObjectType.QuickFilter] = api_external_contract_1.DashboardObjectType.QuickFilter,
+	        _d[api_internal_contract_1.DashboardObjectType.Text] = api_external_contract_1.DashboardObjectType.Text,
+	        _d[api_internal_contract_1.DashboardObjectType.Title] = api_external_contract_1.DashboardObjectType.Title,
+	        _d[api_internal_contract_1.DashboardObjectType.WebPage] = api_external_contract_1.DashboardObjectType.WebPage,
+	        _d[api_internal_contract_1.DashboardObjectType.Worksheet] = api_external_contract_1.DashboardObjectType.Worksheet,
+	        _d));
+	    InternalToExternalEnumMappings.dataType = new api_utils_1.EnumConverter((_e = {},
+	        _e[api_internal_contract_1.DataType.Bool] = api_external_contract_1.DataType.Bool,
+	        _e[api_internal_contract_1.DataType.Date] = api_external_contract_1.DataType.Date,
+	        _e[api_internal_contract_1.DataType.DateTime] = api_external_contract_1.DataType.DateTime,
+	        _e[api_internal_contract_1.DataType.Float] = api_external_contract_1.DataType.Float,
+	        _e[api_internal_contract_1.DataType.Int] = api_external_contract_1.DataType.Int,
+	        _e[api_internal_contract_1.DataType.String] = api_external_contract_1.DataType.String,
+	        _e));
+	    InternalToExternalEnumMappings.filterUpdateType = new api_utils_1.EnumConverter((_f = {},
+	        _f[api_internal_contract_1.FilterUpdateType.Add] = api_external_contract_1.FilterUpdateType.Add,
+	        _f[api_internal_contract_1.FilterUpdateType.All] = api_external_contract_1.FilterUpdateType.All,
+	        _f[api_internal_contract_1.FilterUpdateType.Remove] = api_external_contract_1.FilterUpdateType.Remove,
+	        _f[api_internal_contract_1.FilterUpdateType.Replace] = api_external_contract_1.FilterUpdateType.Replace,
+	        _f));
+	    return InternalToExternalEnumMappings;
+	}());
+	exports.InternalToExternalEnumMappings = InternalToExternalEnumMappings;
+	var _a, _b, _c, _d, _e, _f;
+	/* tslint:enable:typedef */
+
+
+/***/ },
+/* 32 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || (function () {
+	    var extendStatics = Object.setPrototypeOf ||
+	        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+	        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+	    return function (d, b) {
+	        extendStatics(d, b);
+	        function __() { this.constructor = d; }
+	        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	    };
+	})();
+	Object.defineProperty(exports, "__esModule", { value: true });
+	var Sheet_1 = __webpack_require__(33);
+	var Dashboard = (function (_super) {
+	    __extends(Dashboard, _super);
+	    function Dashboard(dashboardImpl) {
+	        var _this = _super.call(this, dashboardImpl) || this;
+	        _this.dashboardImpl = dashboardImpl;
+	        return _this;
+	    }
+	    Object.defineProperty(Dashboard.prototype, "worksheets", {
+	        get: function () {
+	            return this.dashboardImpl.worksheets;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(Dashboard.prototype, "objects", {
+	        get: function () {
+	            throw new Error('API call not yet implemented');
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    return Dashboard;
+	}(Sheet_1.Sheet));
+	exports.Dashboard = Dashboard;
+
+
+/***/ },
+/* 33 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || (function () {
+	    var extendStatics = Object.setPrototypeOf ||
+	        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+	        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+	    return function (d, b) {
+	        extendStatics(d, b);
+	        function __() { this.constructor = d; }
+	        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	    };
+	})();
+	Object.defineProperty(exports, "__esModule", { value: true });
+	var api_shared_1 = __webpack_require__(9);
+	var Sheet = (function (_super) {
+	    __extends(Sheet, _super);
+	    function Sheet(sheetImpl) {
+	        var _this = _super.call(this) || this;
+	        _this.sheetImpl = sheetImpl;
+	        return _this;
+	    }
+	    Object.defineProperty(Sheet.prototype, "name", {
+	        get: function () {
+	            return this.sheetImpl.name;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(Sheet.prototype, "sheetType", {
+	        get: function () {
+	            return this.sheetImpl.sheetType;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(Sheet.prototype, "size", {
+	        get: function () {
+	            throw new Error('API call not yet implemented');
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    return Sheet;
+	}(api_shared_1.EventListenerManager));
+	exports.Sheet = Sheet;
+
+
+/***/ },
+/* 34 */
+/***/ function(module, exports) {
+
+	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	/**
+	 * Implementation of the external DashboardContent namespace.
+	 * This does not follow the Impl pattern as DashboardContent is
+	 * currently just a (single) property bag.
+	 */
+	var DashboardContent = (function () {
+	    function DashboardContent(_dashboard) {
+	        this._dashboard = _dashboard;
+	    }
+	    Object.defineProperty(DashboardContent.prototype, "dashboard", {
+	        get: function () {
+	            return this._dashboard;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    return DashboardContent;
+	}());
+	exports.DashboardContent = DashboardContent;
+
+
+/***/ },
+/* 35 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	var api_shared_1 = __webpack_require__(9);
+	/**
+	 * Implementation of the external environment namespace.
+	 * Environment does not follow the Impl pattern as it is
+	 * just a property bag.
+	 */
+	var Environment = (function () {
+	    function Environment(addInEnvironment) {
+	        this._apiVersion = addInEnvironment.apiVersion;
+	        this._context = api_shared_1.InternalToExternalEnumMappings.addInContext.convert(addInEnvironment.addInContext);
+	        this._language = addInEnvironment.addInLanguage;
+	        this._locale = addInEnvironment.addInLocale;
+	        this._mode = api_shared_1.InternalToExternalEnumMappings.addInMode.convert(addInEnvironment.addInMode);
+	        this._operatingSystem = addInEnvironment.operatingSystem;
+	        this._tableauVersion = addInEnvironment.tableauVersion;
+	    }
+	    Object.defineProperty(Environment.prototype, "apiVersion", {
+	        get: function () {
+	            return this._apiVersion;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(Environment.prototype, "context", {
+	        get: function () {
+	            return this._context;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(Environment.prototype, "language", {
+	        get: function () {
+	            return this._language;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(Environment.prototype, "locale", {
+	        get: function () {
+	            return this._locale;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(Environment.prototype, "mode", {
+	        get: function () {
+	            return this._mode;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(Environment.prototype, "operatingSystem", {
+	        get: function () {
+	            return this._operatingSystem;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(Environment.prototype, "tableauVersion", {
+	        get: function () {
+	            return this._tableauVersion;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    return Environment;
+	}());
+	exports.Environment = Environment;
+
+
+/***/ },
+/* 36 */
+/***/ function(module, exports) {
+
+	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	/**
+	 * Implementation of the external settings namespace.
+	 */
+	var Settings = (function () {
+	    function Settings(settingsImpl) {
+	        this.settingsImpl = settingsImpl;
+	    }
+	    Settings.prototype.erase = function (key) {
+	        this.settingsImpl.erase(key);
+	    };
+	    Settings.prototype.get = function (key) {
+	        return this.settingsImpl.get(key);
+	    };
+	    Settings.prototype.getAll = function () {
+	        return this.settingsImpl.getAll();
+	    };
+	    Object.defineProperty(Settings.prototype, "isModified", {
+	        get: function () {
+	            return this.settingsImpl.isModified;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Settings.prototype.saveAsync = function () {
+	        return this.settingsImpl.saveAsync();
+	    };
+	    Settings.prototype.set = function (key, value) {
+	        this.settingsImpl.set(key, value);
+	    };
+	    return Settings;
+	}());
+	exports.Settings = Settings;
+
+
+/***/ },
+/* 37 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	var api_shared_1 = __webpack_require__(9);
+	var InitializationServiceImpl_1 = __webpack_require__(38);
+	var SettingsServiceImpl_1 = __webpack_require__(39);
+	function registerAllAddInServices(dispatcher) {
+	    api_shared_1.ApiServiceRegistry.instance.registerService(new InitializationServiceImpl_1.InitializationServiceImpl(dispatcher));
+	    api_shared_1.ApiServiceRegistry.instance.registerService(new SettingsServiceImpl_1.SettingsServiceImpl(dispatcher));
+	}
+	exports.registerAllAddInServices = registerAllAddInServices;
+
+
+/***/ },
+/* 38 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	var api_internal_contract_1 = __webpack_require__(3);
+	var InitializationServiceImpl = (function () {
+	    function InitializationServiceImpl(dispatcher) {
+	        this.dispatcher = dispatcher;
+	    }
+	    Object.defineProperty(InitializationServiceImpl.prototype, "serviceName", {
+	        get: function () {
+	            return "InitializationService" /* InitializationService */;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    InitializationServiceImpl.prototype.initializeDashboardAddInAsync = function () {
+	        // We don't need any parameters for this call because they are added in for us by the dispatcher
+	        return this.dispatcher.execute(api_internal_contract_1.VerbId.InitializeAddIn, {}).then(function (response) {
+	            // TODO - Validate return value
+	            var result = response.result;
+	            return result;
+	        });
+	    };
+	    return InitializationServiceImpl;
+	}());
+	exports.InitializationServiceImpl = InitializationServiceImpl;
+
+
+/***/ },
+/* 39 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	var api_internal_contract_1 = __webpack_require__(3);
+	var SettingsServiceImpl = (function () {
+	    function SettingsServiceImpl(dispatcher) {
+	        this.dispatcher = dispatcher;
+	    }
+	    Object.defineProperty(SettingsServiceImpl.prototype, "serviceName", {
+	        get: function () {
+	            return "SettingsService" /* SettingsService */;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    SettingsServiceImpl.prototype.saveSettingsAsync = function (settings) {
+	        var parameters = {};
+	        parameters[api_internal_contract_1.ParameterId.SettingsValues] = settings;
+	        return this.dispatcher.execute(api_internal_contract_1.VerbId.SaveAddInSettings, parameters).then(function (value) {
+	            var result = value.result;
+	            if (!result || !result.settingsValues) {
+	                throw new Error('Internal error saving settings.');
+	            }
+	            return (result.settingsValues);
+	        });
+	    };
+	    return SettingsServiceImpl;
+	}());
+	exports.SettingsServiceImpl = SettingsServiceImpl;
+
+
+/***/ },
+/* 40 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	/**
+	 * Represents the current version of the addin library
+	 */
+	var VersionNumber = (function () {
+	    // private constructor so everyone uses the singleton instance
+	    function VersionNumber(versionString) {
+	        var parts = versionString.split('.').map(function (p) { return parseInt(p, 10); });
+	        if (parts.length !== 3) {
+	            throw new Error('Invalid version number: ' + versionString);
+	        }
+	        this._major = parts[0];
+	        this._minor = parts[1];
+	        this._fix = parts[2];
+	    }
+	    Object.defineProperty(VersionNumber, "Instance", {
+	        /**
+	         * Gets the singleton instance of the version number.
+	         */
+	        get: function () {
+	            return VersionNumber.instance;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(VersionNumber.prototype, "major", {
+	        get: function () {
+	            return this._major;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(VersionNumber.prototype, "minor", {
+	        get: function () {
+	            return this._minor;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(VersionNumber.prototype, "fix", {
+	        get: function () {
+	            return this._fix;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    // Using some webpack tricks, we can inject this version into our code (kinda like c++ preprocessor stuff)
+	    VersionNumber.instance = new VersionNumber(("0.2.0"));
+	    return VersionNumber;
+	}());
+	exports.VersionNumber = VersionNumber;
+
+
+/***/ },
+/* 41 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || (function () {
+	    var extendStatics = Object.setPrototypeOf ||
+	        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+	        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+	    return function (d, b) {
+	        extendStatics(d, b);
+	        function __() { this.constructor = d; }
+	        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	    };
+	})();
+	Object.defineProperty(exports, "__esModule", { value: true });
+	var api_external_contract_1 = __webpack_require__(42);
+	var api_internal_contract_1 = __webpack_require__(3);
+	var AddInSheetInfoImpl_1 = __webpack_require__(43);
+	var SheetImpl_1 = __webpack_require__(44);
+	var WorksheetImpl_1 = __webpack_require__(45);
+	var Worksheet_1 = __webpack_require__(46);
+	var DashboardImpl = (function (_super) {
+	    __extends(DashboardImpl, _super);
+	    function DashboardImpl(info, sheetPath) {
+	        var _this = _super.call(this, new AddInSheetInfoImpl_1.AddInSheetInfoImpl(info.name, api_external_contract_1.SheetType.Dashboard)) || this;
+	        _this._worksheets = new Array();
+	        // Process all the zones which are contained in this dashboard
+	        for (var _i = 0, _a = info.zones; _i < _a.length; _i++) {
+	            var zone = _a[_i];
+	            if (zone.zoneType === api_internal_contract_1.DashboardObjectType.Worksheet) {
+	                var sheetInfo = new AddInSheetInfoImpl_1.AddInSheetInfoImpl(zone.name, api_external_contract_1.SheetType.Worksheet);
+	                var vizId = {
+	                    worksheet: zone.name,
+	                    dashboard: info.name,
+	                    storyboard: sheetPath.storyboard,
+	                    flipboardZoneID: sheetPath.flipboardZoneID,
+	                    storyPointID: sheetPath.storyPointID
+	                };
+	                var worksheetImpl = new WorksheetImpl_1.WorksheetImpl(sheetInfo, vizId);
+	                _this._worksheets.push(new Worksheet_1.Worksheet(worksheetImpl));
+	            }
+	        }
+	        return _this;
+	    }
+	    Object.defineProperty(DashboardImpl.prototype, "worksheets", {
+	        get: function () {
+	            return this._worksheets;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    return DashboardImpl;
+	}(SheetImpl_1.SheetImpl));
+	exports.DashboardImpl = DashboardImpl;
+
+
+/***/ },
+/* 42 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	/**
+	 * This is your main. This is where you re-export everything you want to be publicly available.
+	 *
+	 * The build enforces that the file has the same name as the global variable that is exported.
+	 */
+	function __export(m) {
+	    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+	}
+	Object.defineProperty(exports, "__esModule", { value: true });
+	__export(__webpack_require__(15));
+
+
+/***/ },
+/* 43 */
+/***/ function(module, exports) {
+
+	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	var AddInSheetInfoImpl = (function () {
+	    function AddInSheetInfoImpl(_name, _sheetType) {
+	        this._name = _name;
+	        this._sheetType = _sheetType;
+	    }
+	    Object.defineProperty(AddInSheetInfoImpl.prototype, "name", {
+	        get: function () {
+	            return this._name;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(AddInSheetInfoImpl.prototype, "sheetType", {
+	        get: function () {
+	            return this._sheetType;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    return AddInSheetInfoImpl;
+	}());
+	exports.AddInSheetInfoImpl = AddInSheetInfoImpl;
+
+
+/***/ },
+/* 44 */
+/***/ function(module, exports) {
+
+	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	var SheetImpl = (function () {
+	    function SheetImpl(sheetInfoImpl) {
+	        this._name = sheetInfoImpl.name;
+	        this._sheetType = sheetInfoImpl.sheetType;
+	    }
+	    Object.defineProperty(SheetImpl.prototype, "name", {
+	        get: function () {
+	            return this._name;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(SheetImpl.prototype, "sheetType", {
+	        get: function () {
+	            return this._sheetType;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    return SheetImpl;
+	}());
+	exports.SheetImpl = SheetImpl;
+
+
+/***/ },
+/* 45 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || (function () {
+	    var extendStatics = Object.setPrototypeOf ||
+	        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+	        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+	    return function (d, b) {
+	        extendStatics(d, b);
+	        function __() { this.constructor = d; }
+	        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	    };
+	})();
+	Object.defineProperty(exports, "__esModule", { value: true });
+	var api_external_contract_1 = __webpack_require__(42);
+	var api_internal_contract_1 = __webpack_require__(3);
+	var api_shared_1 = __webpack_require__(9);
+	var SheetImpl_1 = __webpack_require__(44);
+	var visualIdsAreEqual = function (a, b) {
+	    return a && b &&
+	        a.worksheet === b.worksheet &&
+	        a.dashboard === b.dashboard &&
+	        a.storyboard === b.storyboard &&
+	        a.storyPointID === b.storyPointID &&
+	        a.flipboardZoneID === b.flipboardZoneID;
+	};
+	var WorksheetImpl = (function (_super) {
+	    __extends(WorksheetImpl, _super);
+	    function WorksheetImpl(sheetInfoImpl, _visualId) {
+	        var _this = _super.call(this, sheetInfoImpl) || this;
+	        _this._visualId = _visualId;
+	        return _this;
+	    }
+	    /**
+	     * Helper method which goes through and registers each event type this impl knows about
+	     * with the NotificationService. It returns an array of SingleEventManager objects which
+	     * can then be passed to an EventListenerManager to handle user registration / unregistration.
+	     *
+	     * @param {Worksheet} worksheet The worksheet object which will be included with the event notifications
+	     * @returns {Array<SingleEventManager>} Collection of event managers to pass to an EventListenerManager
+	     */
+	    WorksheetImpl.prototype.initializeEvents = function (worksheet) {
+	        var _this = this;
+	        var results = new Array();
+	        var notificationService;
+	        try {
+	            notificationService = api_shared_1.ApiServiceRegistry.instance.getService("notification-service" /* Notification */);
+	        }
+	        catch (e) {
+	            // If we don't have this service registered, just return
+	            return results;
+	        }
+	        // Initialize all of the event managers we'll need (one for each event type)
+	        var marksEvent = new api_shared_1.SingleEventManagerImpl(api_external_contract_1.TableauEventType.MarkSelectionChanged);
+	        notificationService.registerHandler(api_internal_contract_1.NotificationId.SelectedMarksChanged, function (model) {
+	            var visualId = model;
+	            return visualIdsAreEqual(visualId, _this.visualId);
+	        }, function (viz) {
+	            marksEvent.triggerEvent(function () { return new api_shared_1.MarksSelectedEvent(worksheet); });
+	        });
+	        results.push(marksEvent);
+	        // TODO - other event types
+	        return results;
+	    };
+	    Object.defineProperty(WorksheetImpl.prototype, "visualId", {
+	        get: function () {
+	            return this._visualId;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    WorksheetImpl.prototype.applyFilterAsync = function (fieldName, values, updateType, options) {
+	        var service = api_shared_1.ApiServiceRegistry.instance.getService("filter-service" /* Filter */);
+	        return service.applyFilterAsync(this.visualId, fieldName, values, updateType, options);
+	    };
+	    WorksheetImpl.prototype.applyRangeFilterAsync = function (fieldName, filterOptions) {
+	        var service = api_shared_1.ApiServiceRegistry.instance.getService("filter-service" /* Filter */);
+	        return service.applyRangeFilterAsync(this.visualId, fieldName, filterOptions);
+	    };
+	    WorksheetImpl.prototype.clearFilterAsync = function (fieldName) {
+	        var service = api_shared_1.ApiServiceRegistry.instance.getService("filter-service" /* Filter */);
+	        return service.clearFilterAsync(this.visualId, fieldName);
+	    };
+	    WorksheetImpl.prototype.getSelectedMarksAsync = function () {
+	        var service = api_shared_1.ApiServiceRegistry.instance.getService("get-data-service" /* GetData */);
+	        return service.getSelectedMarksAsync(this.visualId);
+	    };
+	    WorksheetImpl.prototype.getHighlightedMarksAsync = function () {
+	        var service = api_shared_1.ApiServiceRegistry.instance.getService("get-data-service" /* GetData */);
+	        return service.getHighlightedMarksAsync(this.visualId);
+	    };
+	    WorksheetImpl.prototype.getSummaryDataAsync = function (options) {
+	        var service = api_shared_1.ApiServiceRegistry.instance.getService("get-data-service" /* GetData */);
+	        options = options || {};
+	        return service.getUnderlyingDataAsync(this.visualId, api_shared_1.GetDataType.Summary, !!options.ignoreAliases, !!options.ignoreSelection, true, 0);
+	    };
+	    WorksheetImpl.prototype.getUnderlyingDataAsync = function (options) {
+	        var service = api_shared_1.ApiServiceRegistry.instance.getService("get-data-service" /* GetData */);
+	        options = options || {};
+	        return service.getUnderlyingDataAsync(this.visualId, api_shared_1.GetDataType.Underlying, !!options.ignoreAliases, !!options.ignoreSelection, !!options.includeAllColumns, options.maxRows || 0);
+	    };
+	    return WorksheetImpl;
+	}(SheetImpl_1.SheetImpl));
+	exports.WorksheetImpl = WorksheetImpl;
+
+
+/***/ },
+/* 46 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || (function () {
+	    var extendStatics = Object.setPrototypeOf ||
+	        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+	        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+	    return function (d, b) {
+	        extendStatics(d, b);
+	        function __() { this.constructor = d; }
+	        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	    };
+	})();
+	Object.defineProperty(exports, "__esModule", { value: true });
+	var Sheet_1 = __webpack_require__(33);
+	var Worksheet = (function (_super) {
+	    __extends(Worksheet, _super);
+	    function Worksheet(worksheetImpl) {
+	        var _this = _super.call(this, worksheetImpl) || this;
+	        _this.worksheetImpl = worksheetImpl;
+	        // Call to initialize events and then call down to the event listener manager to handle things
+	        _this.worksheetImpl.initializeEvents(_this).forEach(function (e) { return _this.addNewEventType(e); });
+	        return _this;
+	    }
+	    Object.defineProperty(Worksheet.prototype, "parentDashboard", {
+	        get: function () {
+	            throw new Error('API call not yet implemented');
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Worksheet.prototype.applyFilterAsync = function (fieldName, values, updateType, options) {
+	        return this.worksheetImpl.applyFilterAsync(fieldName, values, updateType, options);
+	    };
+	    Worksheet.prototype.applyRangeFilterAsync = function (fieldName, filterOptions) {
+	        return this.worksheetImpl.applyRangeFilterAsync(fieldName, filterOptions);
+	    };
+	    Worksheet.prototype.clearFilterAsync = function (fieldName) {
+	        return this.worksheetImpl.clearFilterAsync(fieldName);
+	    };
+	    Worksheet.prototype.getFiltersAsync = function () {
+	        throw new Error('API call not yet implemented');
+	    };
+	    Worksheet.prototype.getSelectedMarksAsync = function () {
+	        return this.worksheetImpl.getSelectedMarksAsync();
+	    };
+	    Worksheet.prototype.getHighlightedMarksAsync = function () {
+	        return this.worksheetImpl.getHighlightedMarksAsync();
+	    };
+	    Worksheet.prototype.getSummaryDataAsync = function (options) {
+	        return this.worksheetImpl.getSummaryDataAsync(options);
+	    };
+	    Worksheet.prototype.getUnderlyingDataAsync = function (options) {
+	        return this.worksheetImpl.getUnderlyingDataAsync(options);
+	    };
+	    return Worksheet;
+	}(Sheet_1.Sheet));
+	exports.Worksheet = Worksheet;
+
+
+/***/ },
+/* 47 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	var api_shared_1 = __webpack_require__(9);
+	var api_utils_1 = __webpack_require__(48);
+	var SettingsImpl = (function () {
+	    function SettingsImpl(settingsInfo) {
+	        // Since promises can't be introspected for state, keep a variable that
+	        // indicates a save is in progress, so that set/erase can't be called during a save.
+	        this.saveInProgress = false;
+	        this.initializeSettings(settingsInfo);
+	    }
+	    SettingsImpl.prototype.erase = function (key) {
+	        api_utils_1.Param.verifyValue(key, 'key');
+	        // Only make a modification if we have the key already
+	        if (this.currentSettings[key]) {
+	            this.verifySettingsAreUnlocked();
+	            delete this.currentSettings[key];
+	            this._isModified = true;
+	        }
+	    };
+	    SettingsImpl.prototype.get = function (key) {
+	        api_utils_1.Param.verifyValue(key, 'key');
+	        return this.currentSettings[key];
+	    };
+	    SettingsImpl.prototype.getAll = function () {
+	        // Returns a mutable copy of the settings
+	        return Object.assign({}, this.currentSettings);
+	    };
+	    Object.defineProperty(SettingsImpl.prototype, "isModified", {
+	        get: function () {
+	            return this._isModified;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    SettingsImpl.prototype.saveAsync = function () {
+	        var _this = this;
+	        this.verifySettingsAreUnlocked();
+	        // Just resolve immediately if settings are unchanged
+	        if (!this._isModified) {
+	            return Promise.resolve(this.currentSettings);
+	        }
+	        this.saveInProgress = true;
+	        // Use the settings service to save settings to twb
+	        var settingsService = api_shared_1.ApiServiceRegistry.instance.getService("SettingsService" /* SettingsService */);
+	        return settingsService.saveSettingsAsync(this.currentSettings).then(function (newSettings) {
+	            _this.saveInProgress = false;
+	            _this._isModified = false;
+	            Object.assign(_this.currentSettings, newSettings);
+	            return newSettings;
+	        });
+	    };
+	    SettingsImpl.prototype.set = function (key, value) {
+	        api_utils_1.Param.verifyValue(key, 'key'); // Key shouldn't be an empty string.
+	        api_utils_1.Param.verifyString(value, 'value'); // Empty string value is allowed.
+	        this.verifySettingsAreUnlocked();
+	        this.currentSettings[key] = value;
+	        this._isModified = true;
+	    };
+	    SettingsImpl.prototype.initializeSettings = function (settingsInfo) {
+	        api_utils_1.Param.verifyValue(settingsInfo, 'settingsInfo');
+	        api_utils_1.Param.verifyValue(settingsInfo.settingsValues, 'settingsInfo.SettingsValues');
+	        this.currentSettings = settingsInfo.settingsValues;
+	        // Reset the isModified flag
+	        this._isModified = false;
+	    };
+	    /**
+	     * This helper should be called before any local update to this.currentSettings.
+	     * Checks if a current save call is still in progress and throws an error if so.
+	     */
+	    SettingsImpl.prototype.verifySettingsAreUnlocked = function () {
+	        if (this.saveInProgress) {
+	            throw new Error('Async Save is in progress, updating settings is not allowed.');
+	        }
+	    };
+	    return SettingsImpl;
+	}());
+	exports.SettingsImpl = SettingsImpl;
+
+
+/***/ },
+/* 48 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	/**
+	 * This is your main. This is where you re-export everything you want to be publicly available.
+	 *
+	 * The build enforces that the file has the same name as the global variable that is exported.
+	 */
+	Object.defineProperty(exports, "__esModule", { value: true });
+	var EnumConverter_1 = __webpack_require__(25);
+	exports.EnumConverter = EnumConverter_1.EnumConverter;
+	var Param_1 = __webpack_require__(26);
+	exports.Param = Param_1.Param;
 
 
 /***/ }
 /******/ ])
 });
 ;
-//# sourceMappingURL=frelard-desktop-bootstrap.js.map
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vd2VicGFjay91bml2ZXJzYWxNb2R1bGVEZWZpbml0aW9uIiwid2VicGFjazovLy93ZWJwYWNrL2Jvb3RzdHJhcCBhZGZhOTkyYzlkYTU1MWVlOTRmYiIsIndlYnBhY2s6Ly8vLi4vc3JjL0FkZEluQXBpLnRzIiwid2VicGFjazovLy8uLi9zcmMvRXh0ZXJuYWxOYW1lc3BhY2VzL0FkZEluLnRzIiwid2VicGFjazovLy8uLi9zcmMvSW50ZXJuYWwvQWRkSW5JbXBsLnRzIiwid2VicGFjazovLy9EOi9kZXYvanMtYXBpL2FwaS1pbnRlcm5hbC1jb250cmFjdC9zcmMvQXBpSW50ZXJuYWxDb250cmFjdC50cyIsIndlYnBhY2s6Ly8vRDovZGV2L2pzLWFwaS9hcGktaW50ZXJuYWwtY29udHJhY3Qvc3JjL2ludGVyZmFjZS9FbnVtcy50cyIsIndlYnBhY2s6Ly8vRDovZGV2L2pzLWFwaS9hcGktaW50ZXJuYWwtY29udHJhY3Qvc3JjL2ludGVyZmFjZS9JbnRlcm5hbEFwaURpc3BhdGNoZXIudHMiLCJ3ZWJwYWNrOi8vL0Q6L2Rldi9qcy1hcGkvYXBpLWludGVybmFsLWNvbnRyYWN0L3NyYy9pbnRlcmZhY2UvTm90aWZpY2F0aW9ucy50cyIsIndlYnBhY2s6Ly8vRDovZGV2L2pzLWFwaS9hcGktaW50ZXJuYWwtY29udHJhY3Qvc3JjL2ludGVyZmFjZS9QYXJhbWV0ZXJzLnRzIiwid2VicGFjazovLy9EOi9kZXYvanMtYXBpL2FwaS1pbnRlcm5hbC1jb250cmFjdC9zcmMvaW50ZXJmYWNlL1ZlcmJzLnRzIiwid2VicGFjazovLy9EOi9kZXYvanMtYXBpL2FwaS1zaGFyZWQvc3JjL0FwaVNoYXJlZC50cyIsIndlYnBhY2s6Ly8vRDovZGV2L2pzLWFwaS9hcGktc2hhcmVkL3NyYy9FdmVudExpc3RlbmVyTWFuYWdlci50cyIsIndlYnBhY2s6Ly8vRDovZGV2L2pzLWFwaS9hcGktc2hhcmVkL3NyYy9Nb2RlbHMvR2V0RGF0YU1vZGVscy50cyIsIndlYnBhY2s6Ly8vRDovZGV2L2pzLWFwaS9hcGktc2hhcmVkL3NyYy9FeGNlcHRpb25zL1RhYmxlYXVFeGNlcHRpb25zLnRzIiwid2VicGFjazovLy9EOi9kZXYvanMtYXBpL2FwaS1zaGFyZWQvc3JjL0V2ZW50cy9NYXJrc1NlbGVjdGVkRXZlbnQudHMiLCJ3ZWJwYWNrOi8vL0Q6L2Rldi9qcy1hcGkvYXBpLWV4dGVybmFsLWNvbnRyYWN0L3NyYy9BcGlFeHRlcm5hbENvbnRyYWN0LnRzIiwid2VicGFjazovLy9EOi9kZXYvanMtYXBpL2FwaS1leHRlcm5hbC1jb250cmFjdC9zcmMvRW51bXMudHMiLCJ3ZWJwYWNrOi8vL0Q6L2Rldi9qcy1hcGkvYXBpLXNoYXJlZC9zcmMvRXZlbnRzL1RhYmxlYXVXb3Jrc2hlZXRFdmVudC50cyIsIndlYnBhY2s6Ly8vRDovZGV2L2pzLWFwaS9hcGktc2hhcmVkL3NyYy9FdmVudHMvVGFibGVhdVNoZWV0RXZlbnQudHMiLCJ3ZWJwYWNrOi8vL0Q6L2Rldi9qcy1hcGkvYXBpLXNoYXJlZC9zcmMvRXZlbnRzL1RhYmxlYXVFdmVudC50cyIsIndlYnBhY2s6Ly8vRDovZGV2L2pzLWFwaS9hcGktc2hhcmVkL3NyYy9JbnRlcm5hbC9TaW5nbGVFdmVudE1hbmFnZXJJbXBsLnRzIiwid2VicGFjazovLy9EOi9kZXYvanMtYXBpL2FwaS1zaGFyZWQvc3JjL1NlcnZpY2VzL0dldERhdGFTZXJ2aWNlLnRzIiwid2VicGFjazovLy9EOi9kZXYvanMtYXBpL2FwaS1zaGFyZWQvc3JjL1NlcnZpY2VzL1JlZ2lzdGVyQWxsU2hhcmVkU2VydmljZXMudHMiLCJ3ZWJwYWNrOi8vL0Q6L2Rldi9qcy1hcGkvYXBpLXNoYXJlZC9zcmMvU2VydmljZXMvaW1wbC9GaWx0ZXJTZXJ2aWNlSW1wbC50cyIsIndlYnBhY2s6Ly8vRDovZGV2L2pzLWFwaS9hcGktdXRpbHMvc3JjL0FwaVV0aWxzLnRzIiwid2VicGFjazovLy9EOi9kZXYvanMtYXBpL2FwaS11dGlscy9zcmMvRW51bUNvbnZlcnRlci50cyIsIndlYnBhY2s6Ly8vRDovZGV2L2pzLWFwaS9hcGktdXRpbHMvc3JjL1BhcmFtLnRzIiwid2VicGFjazovLy9EOi9kZXYvanMtYXBpL2FwaS1zaGFyZWQvc3JjL0VudW1NYXBwaW5ncy9FeHRlcm5hbFRvSW50ZXJuYWxFbnVtTWFwcGluZ3MudHMiLCJ3ZWJwYWNrOi8vL0Q6L2Rldi9qcy1hcGkvYXBpLXNoYXJlZC9zcmMvU2VydmljZXMvaW1wbC9HZXREYXRhU2VydmljZUltcGwudHMiLCJ3ZWJwYWNrOi8vL0Q6L2Rldi9qcy1hcGkvYXBpLXNoYXJlZC9zcmMvU2VydmljZXMvaW1wbC9Ob3RpZmljYXRpb25TZXJ2aWNlSW1wbC50cyIsIndlYnBhY2s6Ly8vRDovZGV2L2pzLWFwaS9hcGktc2hhcmVkL3NyYy9TZXJ2aWNlcy9TZXJ2aWNlUmVnaXN0cnkudHMiLCJ3ZWJwYWNrOi8vL0Q6L2Rldi9qcy1hcGkvYXBpLXNoYXJlZC9zcmMvRW51bU1hcHBpbmdzL0ludGVybmFsVG9FeHRlcm5hbEVudW1NYXBwaW5ncy50cyIsIndlYnBhY2s6Ly8vLi4vc3JjL0Rhc2hib2FyZC50cyIsIndlYnBhY2s6Ly8vLi4vc3JjL1NoZWV0LnRzIiwid2VicGFjazovLy8uLi9zcmMvRXh0ZXJuYWxOYW1lc3BhY2VzL0Rhc2hib2FyZENvbnRlbnQudHMiLCJ3ZWJwYWNrOi8vLy4uL3NyYy9FeHRlcm5hbE5hbWVzcGFjZXMvRW52aXJvbm1lbnQudHMiLCJ3ZWJwYWNrOi8vLy4uL3NyYy9FeHRlcm5hbE5hbWVzcGFjZXMvU2V0dGluZ3MudHMiLCJ3ZWJwYWNrOi8vLy4uL3NyYy9TZXJ2aWNlcy9SZWdpc3RlckFsbEFkZEluU2VydmljZXMudHMiLCJ3ZWJwYWNrOi8vLy4uL3NyYy9TZXJ2aWNlcy9JbXBsL0luaXRpYWxpemF0aW9uU2VydmljZUltcGwudHMiLCJ3ZWJwYWNrOi8vLy4uL3NyYy9TZXJ2aWNlcy9JbXBsL1NldHRpbmdzU2VydmljZUltcGwudHMiLCJ3ZWJwYWNrOi8vLy4uL3NyYy9WZXJzaW9uTnVtYmVyLnRzIiwid2VicGFjazovLy8uLi9zcmMvSW50ZXJuYWwvRGFzaGJvYXJkSW1wbC50cyIsIndlYnBhY2s6Ly8vLi4vc3JjL0ludGVybmFsL0FkZEluU2hlZXRJbmZvSW1wbC50cyIsIndlYnBhY2s6Ly8vLi4vc3JjL0ludGVybmFsL1NoZWV0SW1wbC50cyIsIndlYnBhY2s6Ly8vLi4vc3JjL0ludGVybmFsL1dvcmtzaGVldEltcGwudHMiLCJ3ZWJwYWNrOi8vLy4uL3NyYy9Xb3Jrc2hlZXQudHMiLCJ3ZWJwYWNrOi8vLy4uL3NyYy9JbnRlcm5hbC9TZXR0aW5nc0ltcGwudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0EsQ0FBQztBQUNELE87QUNWQTtBQUNBOztBQUVBO0FBQ0E7O0FBRUE7QUFDQTtBQUNBOztBQUVBO0FBQ0E7QUFDQSx1QkFBZTtBQUNmO0FBQ0E7QUFDQTs7QUFFQTtBQUNBOztBQUVBO0FBQ0E7O0FBRUE7QUFDQTtBQUNBOzs7QUFHQTtBQUNBOztBQUVBO0FBQ0E7O0FBRUE7QUFDQTs7QUFFQTtBQUNBOzs7Ozs7OztBQ3RDQTs7OztJQUlHOztBQUVILDJGQUEwRjtBQUMxRiw2RkFBNEY7QUFDNUYsbUJBQWtCO0FBRWxCLHNDQUFtRDtBQUNuRCwwQ0FBaUQ7QUFFakQsS0FBTSxTQUFTLEdBQUcsSUFBSSxxQkFBUyxFQUFFLENBQUM7QUFDckIsY0FBSyxHQUFHLElBQUksYUFBSyxDQUFDLFNBQVMsQ0FBQyxDQUFDO0FBRTFDLGdCQUFlO0FBQ2YsdURBR3dDO0FBRnRDLG9FQUFnQjtBQUNoQix3REFBVTs7Ozs7Ozs7O0FDVFo7O0lBRUc7QUFDSDtLQUNFLGVBQTJCLFNBQW9CO1NBQXBCLGNBQVMsR0FBVCxTQUFTLENBQVc7U0FDN0MsSUFBSSxDQUFDLFNBQVMsR0FBRyxTQUFTLENBQUM7S0FDN0IsQ0FBQztLQUVELHNCQUFXLG1DQUFnQjtjQUEzQjthQUNFLE1BQU0sQ0FBQyxJQUFJLENBQUMsU0FBUyxD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O0tBRU0sMEJBQUcsR0FBVixVQUFXLEdBQVcsRUFBRSxLQUFhO1NBQ25DLGlCQUFLLENBQUMsV0FBVyxDQUFDLEdBQUcsRUFBRSxLQUFLLENBQUMsQ0FBQyxDQUFDLG9DQUFvQztTQUNuRSxpQkFBSyxDQUFDLFlBQVksQ0FBQyxLQUFLLEVBQUUsT0FBTyxDQUFDLENBQUMsQ0FBQyxpQ0FBaUM7U0FDckUsSUFBSSxDQUFDLHlCQUF5QixFQUFFLENBQUM7U0FFakMsSUFBSSxDQUFDLGVBQWUsQ0FBQyxHQUFHLENBQUMsR0FBRyxLQUFLLENBQUM7U0FDbEMsSUFBSSxDQUFDLFdBQVcsR0FBRyxJQUFJLENBQUM7S0FDMUIsQ0FBQztLQUVPLHlDQUFrQixHQUExQixVQUEyQixZQUErQjtTQUN4RCxpQkFBSyxDQUFDLFdBQVcsQ0FBQyxZQUFZLEVBQUUsY0FBYyxDQUFDLENBQUM7U0FDaEQsaUJBQUssQ0FBQyxXQUFXLENBQUMsWUFBWSxDQUFDLGNBQWMsRUFBRSw2QkFBNkIsQ0FBQyxDQUFDO1NBRTlFLElBQUksQ0FBQyxlQUFlLEdBQUcsWUFBWSxDQUFDLGNBQWMsQ0FBQztTQUVuRCw0QkFBNEI7U0FDNUIsSUFBSSxDQUFDLFdBQVcsR0FBRyxLQUFLLENBQUM7S0FDM0IsQ0FBQztLQUVEOzs7UUFHRztLQUNLLGdEQUF5QixHQUFqQztTQUNFLEVBQUUsQ0FBQyxDQUFDLElBQUksQ0FBQyxjQUFjLENBQUMsQ0FBQyxDQUFDO2FBQ3hCLE1BQU0sSUFBSSxLQUFLLENBQUMsOERBQThELENBQUMsQ0FBQztTQUNsRixDQUFDO0tBQ0gsQ0FBQztLQUNILG1CQUFDO0FBQUQsRUFBQztBQXhGWSxxQ0FBWTs7Ozs7Ozs7QXRCUHpCOzs7O0lBSUc7O0FBRUgsK0NBQWdEO0FBQXZDLHNEQUFhO0FBQ3RCLHVDQUFnQztBQUF2Qiw4QkFBSyIsImZpbGUiOiJAdGFibGVhdS9hZGRpbi1hcGkuMC4yLjAuanMiLCJzb3VyY2VzQ29udGVudCI6WyIoZnVuY3Rpb24gd2VicGFja1VuaXZlcnNhbE1vZHVsZURlZmluaXRpb24ocm9vdCwgZmFjdG9yeSkge1xuXHRpZih0eXBlb2YgZXhwb3J0cyA9PT0gJ29iamVjdCcgJiYgdHlwZW9mIG1vZHVsZSA9PT0gJ29iamVjdCcpXG5cdFx0bW9kdWxlLmV4cG9ydHMgPSBmYWN0b3J5KCk7XG5cdGVsc2UgaWYodHlwZW9mIGRlZmluZSA9PT0gJ2Z1bmN0aW9uJyAmJiBkZWZpbmUuYW1kKVxuXHRcdGRlZmluZShbXSwgZmFjdG9yeSk7XG5cdGVsc2UgaWYodHlwZW9mIGV4cG9ydHMgPT09ICdvYmplY3QnKVxuXHRcdGV4cG9ydHNbXCJ0YWJsZWF1XCJdID0gZmFjdG9yeSgpO1xuXHRlbHNlXG5cdFx0cm9vdFtcInRhYmxlYXVcIl0gPSBmYWN0b3J5KCk7XG59KSh0aGlzLCBmdW5jdGlvbigpIHtcbnJldHVybiBcblxuXG4vKiogV0VCUEFDSyBGT09URVIgKipcbiAqKiB3ZWJwYWNrL3VuaXZlcnNhbE1vZHVsZURlZmluaXRpb25cbiAqKi8iLCIgXHQvLyBUaGUgbW9kdWxlIGNhY2hlXG4gXHR2YXIgaW5zdGFsbGVkTW9kdWxlcyA9IHt9O1xuXG4gXHQvLyBUaGUgcmVxdWlyZSBmdW5jdGlvblxuIFx0ZnVuY3Rpb24gX193ZWJwYWNrX3JlcXVpcmVfXyhtb2R1bGVJZCkge1xuXG4gXHRcdC8vIENoZWNrIGlmIG1vZHVsZSBpcyBpbiBjYWNoZVxuIFx0XHRpZihpbnN0YWxsZWRNb2R1bGVzW21vZHVsZUlkXSlcbiBcdFx0XHRyZXR1cm4gaW5zdGFsbGVkTW9kdWxlc1ttb2R1bGVJZF0uZXhwb3J0cztcblxuIFx0XHQvLyBDcmVhdGUgYSBuZXcgbW9kdWxlIChhbmQgcHV0IGl0IGludG8gdGhlIGNhY2hlKVxuIFx0XHR2YXIgbW9kdWxlID0gaW5zdGFsbGVkTW9kdWxlc1ttb2R1bGVJZF0gPSB7XG4gXHRcdFx0ZXhwb3J0czoge30sXG4gXHRcdFx0aWQ6IG1vZHVsZUlkLFxuIFx0XHRcdGxvYWRlZDogZmFsc2VcbiBcdFx0fTtcblxuIFx0XHQvLyBFeGVjdXRlIHRoZSBtb2R1bGUgZnVuY3Rpb25cbiBcdFx0bW9kdWxlc1ttb2R1bGVJZF0uY2FsbChtb2R1bGUuZXhwb3J0cywgbW9kdWxlLCBtb2R1bGUuZXhwb3J0cywgX193ZWJwYWNrX3JlcXVpcmVfXyk7XG5cbiBcdFx0Ly8gRmxhZyB0aGUgbW9kdWxlIGFzIGxvYWRlZFxuIFx0XHRtb2R1bGUubG9hZGVkID0gdHJ1ZTtcblxuIFx0XHQvLyBSZXR1cm4gdGhlIGV4cG9ydHMgb2YgdGhlIG1vZHVsZVxuIFx0XHRyZXR1cm4gbW9kdWxlLmV4cG9ydHM7XG4gXHR9XG5cblxuIFx0Ly8gZXhwb3NlIHRoZSBtb2R1bGVzIG9iamVjdCAoX193ZWJwYWNrX21vZHVsZXNfXylcbiBcdF9fd2VicGFja19yZXF1aXJlX18ubSA9IG1vZHVsZXM7XG5cbiBcdC8vIGV4cG9zZSB0aGUgbW9kdWxlIGNhY2hlXG4gXHRfX3dlYnBhY2tfcmVxdWlyZV9fLmMgPSBpbnN0YWxsZWRNb2R1bGVzO1xuXG4gXHQvLyBfX3dlYnBhY2tfcHVibGljX3BhdGhfX1xuIFx0X193ZWJwYWNrX3JlcXVpcmVfXy5wID0gXCIvZGlzdC9cIjtcblxuIFx0Ly8gTG9hZCBlbnRyeSBtb2R1bGUgYW5kIHJldHVybiBleHBvcnRzXG4gXHRyZXR1cm4gX193ZWJwYWNrX3JlcXVpcmVfXygwKTtcblxuXG5cbi8qKiBXRUJQQUNLIEZPT1RFUiAqKlxuICoqIHdlYnBhY2svYm9vdHN0cmFwIGFkZmE5OTJjOWRhNTUxZWU5NGZiXG4gKiovIiwiLyoqXHJcbiAqIFRoaXMgaXMgeW91ciBtYWluLiBUaGlzIGlzIHdoZXJlIHlvdSByZS1leHBvcnQgZXZlcnl0aGluZyB5b3Ugd2FudCB0byBiZSBwdWJsaWNseSBhdmFpbGFibGUuXHJcbiAqXHJcbiAqIFRoZSBidWlsZCBlbmZvcmNlcyB0aGF0IHRoZSBmaWxlIGhhcyB0aGUgc2FtZSBuYW1lIGFzIHRoZSBnbG9iYWwgdmFyaWFibGUgdGhhdCBpcyBleHBvcnRlZC5cclxuICovXHJcblxyXG4vLyBEdWUgdG8gdGhlIHdheSB3ZSBjb25maWd1cmVkIHdlYnBhY2ssIHdlIHNob3VsZCBiZSBleHBvcnRpbmcgdGhpbmdzIHdoaWNoIHdpbGwgYmUgdW5kZXJcclxuLy8gYSBnbG9iYWwgdmFyaWFibGUgY2FsbGVkIFwidGFibGVhdVwiLiBFeHBvcnQgZXZlcnl0aGluZyB3ZSB3YW50IHRvIGJlIHZpc2libGUgdW5kZXIgdGFibGVhdVxyXG4vLyBmcm9tIHRoaXMgZmlsZS5cclxuXHJcbmltcG9ydCB7IEFkZEluIH0gZnJvbSAnLi9FeHRlcm5hbE5hbWVzcGFjZXMvQWRkSW4nO1xyXG5pbXBvcnQgeyBBZGRJbkltcGwgfSBmcm9tICcuL0ludGVybmFsL0FkZEluSW1wbCc7XHJcblxyXG5jb25zdCBhZGRJbkltcGwgPSBuZXcgQWRkSW5JbXBsKCk7XHJcbmV4cG9ydCBjb25zdCBhZGRJbiA9IG5ldyBBZGRJbihhZGRJbkltcGwpO1xyXG5cclxuLy8gRXhwb3J0IEVudW1zXHJcbmV4cG9ydCB7XHJcbiAgRmlsdGVyVXBkYXRlVHlwZSxcclxuICBOdWxsT3B0aW9uXHJcbn0gZnJvbSAnQHRhYmxlYXUvYXBpLWV4dGVybmFsLWNvbnRyYWN0JztcclxuXG5cblxuLyoqIFdFQlBBQ0sgRk9PVEVSICoqXG4gKiogLi4vc3JjL0FkZEluQXBpLnRzXG4gKiovIiwiaW1wb3J0IHtcclxuICBBZGRJbiBhcyBBZGRJbkNvbnRyYWN0LFxyXG4gIERhc2hib2FyZENvbnRlbnQsXHJcbiAgRW52aXJvbm1lbnQsXHJcbiAgU2V0dGluZ3MsXHJcbiAgVUlcclxufSBmcm9tICdAdGFibGVhdS9hcGktZXh0ZXJuYWwtY29udHJhY3QnO1xyXG5cclxuaW1wb3J0IHsgQWRkSW5JbXBsIH0gZnJvbSAnLi4vSW50ZXJuYWwvQWRkSW5JbXBsJztcclxuXHJcbi8qKlxyXG4gKiBJbXBsZW1lbnRhdGlvbiBvZiB0aGUgZXh0ZXJuYWwgQWRkSW4gbmFtZXNwYWNlLlxyXG4gKi9cclxuZXhwb3J0IGNsYXNzIEFkZEluIGltcGxlbWVudHMgQWRkSW5Db250cmFjdCB7XHJcbiAgcHVibGljIGNvbnN0cnVjdG9yKHByaXZhdGUgYWRkSW5JbXBsOiBBZGRJbkltcGwpIHtcclxuICAgIHRoaXMuYWRkSW5JbXBsID0gYWRkSW5JbXBsO1xyXG4gIH1cclxuXHJcbiAgcHVibGljIGdldCBkYXNoYm9hcmRDb250ZW50KCk6IERhc2hib2FyZENvbnRlbnQge1xyXG4gICAgcmV0dXJuIHRoaXMuYWRkSW5JbXBsLmRhc2hib2FyZENvbnRlbnQ7XHJcbiAgfVxyXG5cclxuICBwdWJsaWMgZ2V0IGVudmlyb25tZW50KCk6IEVudmlyb25tZW50IHtcclxuICAgIHJldHVybiB0aGlzLmFkZEluSW1wbC5lbnZpcm9ubWVudDtcclxuICB9XHJcblxyXG4gIHB1YmxpYyBnZXQgc2V0dGluZ3MoKTogU2V0dGluZ3Mge1xyXG4gICAgcmV0dXJuIHRoaXMuYWRkSW5JbXBsLnNldHRpbmdzO1xyXG4gIH1cclxuXHJcbiAgcHVibGljIGdldCB1aSgpOiBVSSB7XHJcbiAgICB0aHJvdyBuZXcgRXJyb3IoJ0FQSSBjYWxsIG5vdCB5ZXQgaW1wbGVtZW50ZWQnKTtcclxuICB9XHJcblxyXG4gIHB1YmxpYyBpbml0aWFsaXplQXN5bmMoKTogUHJvbWlzZTx2b2lkPiB7XHJcbiAgICByZXR1cm4gdGhpcy5hZGRJbkltcGwuaW5pdGlhbGl6ZUFzeW5jKCk7XHJcbiAgfVxyXG59XHJcblxuXG5cbi8qKiBXRUJQQUNLIEZPT1RFUiAqKlxuICoqIC4uL3NyYy9FeHRlcm5hbE5hbWVzcGFjZXMvQWRkSW4udHNcbiAqKi8iLCJpbXBvcnQge1xyXG4gIEFkZEluRGFzaGJvYXJkSW5mbyxcclxuICBBZGRJblNldHRpbmdzSW5mbyxcclxuICBJbnRlcm5hbEFwaURpc3BhdGNoZXIsXHJcbiAgSW50ZXJuYWxBcGlEaXNwYXRjaGVySG9sZGVyLFxyXG4gIFNoZWV0UGF0aCxcclxufSBmcm9tICdAdGFibGVhdS9hcGktaW50ZXJuYWwtY29udHJhY3QnO1xyXG5pbXBvcnQgeyBBcGlTZXJ2aWNlUmVnaXN0cnksIHJlZ2lzdGVyQWxsU2hhcmVkU2VydmljZXMgfSBmcm9tICdAdGFibGVhdS9hcGktc2hhcmVkJztcclxuXHJcbmltcG9ydCB7IERhc2hib2FyZCB9IGZyb20gJy4uL0Rhc2hib2FyZCc7XHJcbmltcG9ydCB7IERhc2hib2FyZENvbnRlbnQgfSBmcm9tICcuLi9FeHRlcm5hbE5hbWVzcGFjZXMvRGFzaGJvYXJkQ29udGVudCc7XHJcbmltcG9ydCB7IEVudmlyb25tZW50IH0gZnJvbSAnLi4vRXh0ZXJuYWxOYW1lc3BhY2VzL0Vudmlyb25tZW50JztcclxuaW1wb3J0IHsgU2V0dGluZ3MgfSBmcm9tICcuLi9FeHRlcm5hbE5hbWVzcGFjZXMvU2V0dGluZ3MnO1xyXG5pbXBvcnQgeyBBZGRJblNlcnZpY2VOYW1lcyB9IGZyb20gJy4uL1NlcnZpY2VzL0FkZEluU2VydmljZU5hbWVzJztcclxuaW1wb3J0IHsgSW5pdGlhbGl6YXRpb25TZXJ2aWNlIH0gZnJvbSAnLi4vU2VydmljZXMvSW5pdGlhbGl6YXRpb25TZXJ2aWNlJztcclxuaW1wb3J0IHsgcmVnaXN0ZXJBbGxBZGRJblNlcnZpY2VzIH0gZnJvbSAnLi4vU2VydmljZXMvUmVnaXN0ZXJBbGxBZGRJblNlcnZpY2VzJztcclxuaW1wb3J0IHsgVmVyc2lvbk51bWJlciB9IGZyb20gJy4uL1ZlcnNpb25OdW1iZXInO1xyXG5pbXBvcnQgeyBEYXNoYm9hcmRJbXBsIH0gZnJvbSAnLi9EYXNoYm9hcmRJbXBsJztcclxuaW1wb3J0IHsgU2V0dGluZ3NJbXBsIH0gZnJvbSAnLi9TZXR0aW5nc0ltcGwnO1xyXG5cclxuZXhwb3J0IGNsYXNzIEFkZEluSW1wbCB7XHJcbiAgcHJpdmF0ZSBpbml0aWFsaXphdGlvblByb21pc2U6IFByb21pc2U8dm9pZD47XHJcblxyXG4gIHB1YmxpYyBkYXNoYm9hcmRDb250ZW50OiBEYXNoYm9hcmRDb250ZW50O1xyXG4gIHB1YmxpYyBlbnZpcm9ubWVudDogRW52aXJvbm1lbnQ7XHJcbiAgcHVibGljIHNldHRpbmdzOiBTZXR0aW5ncztcclxuXHJcbiAgcHVibGljIGluaXRpYWxpemVBc3luYygpOiBQcm9taXNlPHZvaWQ+IHtcclxuICAgIGlmICghdGhpcy5pbml0aWFsaXphdGlvblByb21pc2UpIHtcclxuICAgICAgdGhpcy5pbml0aWFsaXphdGlvblByb21pc2UgPSBuZXcgUHJvbWlzZTx2b2lkPigocmVzb2x2ZSwgcmVqZWN0KSA9PiB7XHJcbiAgICAgICAgLy8gRmlyc3QgdGhpbmcgd2Ugd2FudCB0byBkbyBpcyBjaGVjayB0byBzZWUgaWYgdGhlcmUgaXMgYSBkZXNrdG9wIGRpc3BhdGNoZXIgYWxyZWFkeSByZWdpc3RlcmVkIGZvciB1c1xyXG4gICAgICAgIGlmIChJbnRlcm5hbEFwaURpc3BhdGNoZXJIb2xkZXIuaGFzRGVza3RvcEFwaURpc3BhdGNoZXJQcm9taXNlKCkpIHtcclxuICAgICAgICAgIC8vIFJ1bm5pbmcgaW4gZGVza3RvcCwgdXNlIHRoaXMgcHJvbWlzZVxyXG4gICAgICAgICAgY29uc3QgZGVza3RvcERpc3BhdGNoZXJQcm9taXNlID0gSW50ZXJuYWxBcGlEaXNwYXRjaGVySG9sZGVyLmdldERlc2t0b3BEaXNwYXRjaGVyUHJvbWlzZSgpO1xyXG4gICAgICAgICAgZGVza3RvcERpc3BhdGNoZXJQcm9taXNlLnRoZW4odGhpcy5vbkRpc3BhdGNoZXJSZWNlaXZlZC5iaW5kKHRoaXMpKS50aGVuKCgpID0+IHsgcmVzb2x2ZSgpOyB9KTtcclxuICAgICAgICB9IGVsc2Uge1xyXG4gICAgICAgICAgcmVqZWN0KCdOb3QgcnVubmluZyBpbiBkZXNrdG9wLiBTZXJ2ZXIgc3VwcG9ydCBjb21pbmcgc29vbiEnKTtcclxuICAgICAgICB9XHJcbiAgICAgIH0pO1xyXG4gICAgfVxyXG5cclxuICAgIHJldHVybiB0aGlzLmluaXRpYWxpemF0aW9uUHJvbWlzZTtcclxuICB9XHJcblxyXG4gIHByaXZhdGUgb25EaXNwYXRjaGVyUmVjZWl2ZWQoZGlzcGF0Y2hlcjogSW50ZXJuYWxBcGlEaXNwYXRjaGVyKTogUHJvbWlzZTx2b2lkPiB7XHJcbiAgICBkaXNwYXRjaGVyLnNldFZlcnNpb25OdW1iZXIoVmVyc2lvbk51bWJlci5JbnN0YW5jZSk7XHJcblxyXG4gICAgLy8gQ2FsbCB0byByZWdpc3RlciBhbGwgdGhlIHNlcnZpY2VzIHdoaWNoIHdpbGwgdXNlIHRoZSBuZXdseSBpbml0aWFsaXplZCBkaXNwYXRjaGVyXHJcbiAgICByZWdpc3RlckFsbFNoYXJlZFNlcnZpY2VzKGRpc3BhdGNoZXIpO1xyXG4gICAgcmVnaXN0ZXJBbGxBZGRJblNlcnZpY2VzKGRpc3BhdGNoZXIpO1xyXG5cclxuICAgIC8vIEdldCB0aGUgaW5pdGlhbGl6YXRpb24gc2VydmljZSBhbmQgaW5pdGlhbGl6ZSB0aGlzIGFkZC1pblxyXG4gICAgY29uc3QgaW5pdGlhbGl6YXRpb25TZXJ2aWNlID0gQXBpU2VydmljZVJlZ2lzdHJ5Lmluc3RhbmNlLmdldFNlcnZpY2U8SW5pdGlhbGl6YXRpb25TZXJ2aWNlPihcclxuICAgICAgQWRkSW5TZXJ2aWNlTmFtZXMuSW5pdGlhbGl6YXRpb25TZXJ2aWNlKTtcclxuXHJcbiAgICByZXR1cm4gaW5pdGlhbGl6YXRpb25TZXJ2aWNlLmluaXRpYWxpemVEYXNoYm9hcmRBZGRJbkFzeW5jKCkudGhlbihyZXN1bHQgPT4ge1xyXG4gICAgICBpZiAoIXJlc3VsdC5hZGRJbkluc3RhbmNlLmxvY2F0b3IuZGFzaGJvYXJkUGF0aCkge1xyXG4gICAgICAgIHRocm93IG5ldyBFcnJvcignRGFzaGJvYXJkUGF0aCBpcyB1bmRlZmluZWQnKTtcclxuICAgICAgfVxyXG5cclxuICAgICAgdGhpcy5kYXNoYm9hcmRDb250ZW50ID0gdGhpcy5pbml0aWFsaXplRGFzaGJvYXJkQ29udGVudChyZXN1bHQuYWRkaW5EYXNoYm9hcmRJbmZvLCByZXN1bHQuYWRkSW5JbnN0YW5jZS5sb2NhdG9yLmRhc2hib2FyZFBhdGgpO1xyXG4gICAgICB0aGlzLmVudmlyb25tZW50ID0gbmV3IEVudmlyb25tZW50KHJlc3VsdC5hZGRJbkVudmlyb25tZW50KTtcclxuICAgICAgdGhpcy5zZXR0aW5ncyA9IHRoaXMuaW5pdGlhbGl6ZVNldHRpbmdzKHJlc3VsdC5hZGRJblNldHRpbmdzSW5mbyk7XHJcbiAgICB9KTtcclxuICB9XHJcblxyXG4gIHByaXZhdGUgaW5pdGlhbGl6ZURhc2hib2FyZENvbnRlbnQoaW5mbzogQWRkSW5EYXNoYm9hcmRJbmZvLCBzaGVldFBhdGg6IFNoZWV0UGF0aCk6IERhc2hib2FyZENvbnRlbnQge1xyXG4gICAgY29uc3QgZGFzaGJvYXJkSW1wbCA9IG5ldyBEYXNoYm9hcmRJbXBsKGluZm8sIHNoZWV0UGF0aCk7XHJcbiAgICBjb25zdCBkYXNoYm9hcmQgPSBuZXcgRGFzaGJvYXJkKGRhc2hib2FyZEltcGwpO1xyXG4gICAgcmV0dXJuIG5ldyBEYXNoYm9hcmRDb250ZW50KGRhc2hib2FyZCk7XHJcbiAgfVxyXG5cclxuICBwcml2YXRlIGluaXRpYWxpemVTZXR0aW5ncyhzZXR0aW5nc0luZm86IEFkZEluU2V0dGluZ3NJbmZvKTogU2V0dGluZ3Mge1xyXG4gICAgY29uc3Qgc2V0dGluZ3NJbXBsID0gbmV3IFNldHRpbmdzSW1wbChzZXR0aW5nc0luZm8pO1xyXG4gICAgcmV0dXJuIG5ldyBTZXR0aW5ncyhzZXR0aW5nc0ltcGwpO1xyXG4gIH1cclxufVxyXG5cblxuXG4vKiogV0VCUEFDSyBGT09URVIgKipcbiAqKiAuLi9zcmMvSW50ZXJuYWwvQWRkSW5JbXBsLnRzXG4gKiovIiwiLyoqXHJcbiAqIFRoaXMgaXMgeW91ciBtYWluLiBUaGlzIGlzIHdoZXJlIHlvdSByZS1leHBvcnQgZXZlcnl0aGluZyB5b3Ugd2FudCB0byBiZSBwdWJsaWNseSBhdmFpbGFibGUuXHJcbiAqXHJcbiAqIFRoZSBidWlsZCBlbmZvcmNlcyB0aGF0IHRoZSBmaWxlIGhhcyB0aGUgc2FtZSBuYW1lIGFzIHRoZSBnbG9iYWwgdmFyaWFibGUgdGhhdCBpcyBleHBvcnRlZC5cclxuICovXHJcblxyXG5leHBvcnQgKiBmcm9tICcuL2ludGVyZmFjZS9FbnVtcyc7XHJcbmV4cG9ydCAqIGZyb20gJy4vaW50ZXJmYWNlL0ludGVybmFsQXBpRGlzcGF0Y2hlcic7XHJcbmV4cG9ydCAqIGZyb20gJy4vaW50ZXJmYWNlL01vZGVscyc7XHJcbmV4cG9ydCAqIGZyb20gJy4vaW50ZXJmYWNlL05vdGlmaWNhdGlvbnMnO1xyXG5leHBvcnQgKiBmcm9tICcuL2ludGVyZmFjZS9QYXJhbWV0ZXJzJztcclxuZXhwb3J0ICogZnJvbSAnLi9pbnRlcmZhY2UvVmVyYnMnO1xyXG5leHBvcnQgKiBmcm9tICcuL2ludGVyZmFjZS9WZXJzaW9uTnVtYmVyJztcclxuXG5cblxuLyoqIFdFQlBBQ0sgRk9PVEVSICoqXG4gKiogRDovZGV2L2pzLWFwaS9hcGktaW50ZXJuYWwtY29udHJhY3Qvc3JjL0FwaUludGVybmFsQ29udHJhY3QudHNcbiAqKi8iLCJleHBvcnQgZW51bSBBZGRJbkNvbnRleHQge1xyXG4gIERlc2t0b3AgPSAnZGVza3RvcCcsXHJcbiAgU2VydmVyID0gJ3NlcnZlcicsXHJcbiAgVW5rbm93biA9ICd1bmtub3duJ1xyXG59XHJcblxyXG5leHBvcnQgZW51bSBBZGRJbk1vZGUge1xyXG4gIEF1dGhvcmluZyA9ICdhdXRob3JpbmcnLFxyXG4gIFZpZXdpbmcgPSAndmlld2luZycsXHJcbiAgVW5rbm93biA9ICd1bmtub3duJ1xyXG59XHJcblxyXG5leHBvcnQgZW51bSBEYXNoYm9hcmRPYmplY3RUeXBlIHtcclxuICBCbGFuayA9ICdibGFuaycsXHJcbiAgV29ya3NoZWV0ID0gJ3dvcmtzaGVldCcsXHJcbiAgUXVpY2tGaWx0ZXIgPSAncXVpY2stZmlsdGVyJyxcclxuICBQYXJhbWV0ZXJDb250cm9sID0gJ3BhcmFtZXRlci1jb250cm9sJyxcclxuICBQYWdlRmlsdGVyID0gJ3BhZ2UtZmlsdGVyJyxcclxuICBMZWdlbmQgPSAnbGVnZW5kJyxcclxuICBUaXRsZSA9ICd0aXRsZScsXHJcbiAgVGV4dCA9ICd0ZXh0JyxcclxuICBJbWFnZSA9ICdpbWFnZScsXHJcbiAgV2ViUGFnZSA9ICd3ZWItcGFnZScsXHJcbiAgQWRkSW4gPSAnYWRkaW4nXHJcbn1cclxuXHJcbmV4cG9ydCBlbnVtIERhdGFUeXBlIHtcclxuICBTdHJpbmcgPSAnc3RyaW5nJyxcclxuICBJbnQgPSAnaW50JyxcclxuICBGbG9hdCA9ICdmbG9hdCcsXHJcbiAgQm9vbCA9ICdib29sJyxcclxuICBEYXRlID0gJ2RhdGUnLFxyXG4gIERhdGVUaW1lID0gJ2RhdGUtdGltZScsXHJcbiAgU3BhdGlhbCA9ICdzcGF0aWFsJ1xyXG59XHJcblxyXG5leHBvcnQgZW51bSBFbmNvZGVkRGF0YVR5cGUge1xyXG4gIE51bWJlciA9ICdudW1iZXInLFxyXG4gIFN0cmluZyA9ICdzdHJpbmcnLFxyXG4gIERhdGUgPSAnZGF0ZScsXHJcbiAgQm9vbGVhbiA9ICdib29sZWFuJ1xyXG59XHJcblxyXG5leHBvcnQgZW51bSBFcnJvckNvZGUge1xyXG4gIFNlcnZlckVycm9yID0gJ3NlcnZlci1lcnJvcicsXHJcbiAgSW52YWxpZEFnZ3JlZ2F0aW9uRmllbGROYW1lID0gJ2ludmFsaWQtYWdncmVnYXRpb24tZmllbGQtbmFtZScsXHJcbiAgSW52YWxpZEZpbHRlckZpZWxkTmFtZSA9ICdpbnZhbGlkLWZpbHRlci1maWVsZG5hbWUnLFxyXG4gIEludmFsaWRGaWx0ZXJGaWVsZFZhbHVlID0gJ2ludmFsaWQtZmlsdGVyLWZpZWxkLXZhbHVlJ1xyXG59XHJcblxyXG4vKipcclxuICogIFRoZSBkaWZmZXJlbnQgdXBkYXRlIHR5cGVzIGZvciBhcHBseWluZyBmaWx0ZXIuXHJcbiAqL1xyXG5leHBvcnQgZW51bSBGaWx0ZXJVcGRhdGVUeXBlIHtcclxuICBBZGQgPSAnYWRkJyxcclxuICBBbGwgPSAnYWxsJyxcclxuICBSZXBsYWNlID0gJ3JlcGxhY2UnLFxyXG4gIFJlbW92ZSA9ICdyZW1vdmUnXHJcbn1cclxuXHJcbmV4cG9ydCBlbnVtIFNoZWV0VHlwZSB7XHJcbiAgRGFzaGJvYXJkID0gJ2Rhc2hib2FyZCcsXHJcbiAgU3RvcnkgPSAnc3RvcnknLFxyXG4gIFdvcmtzaGVldCA9ICd3b3Jrc2hlZXQnLFxyXG4gIEFkZGluID0gJ2FkZGluJ1xyXG59XHJcblxyXG4vKipcclxuICogVGhlIG9wdGlvbiBmb3Igc3BlY2lmeWluZyB3aGljaCB2YWx1ZXMgdG8gaW5jbHVkZSBmb3IgZmlsdGVyaW5nLlxyXG4gKi9cclxuZXhwb3J0IGVudW0gTnVsbE9wdGlvbiB7XHJcbiAgTnVsbFZhbHVlcyA9ICdudWxsdmFsdWVzJyxcclxuICBOb25OdWxsVmFsdWVzID0gJ25vbm51bGx2YWx1ZXMnLFxyXG4gIEFsbFZhbHVlcyA9ICdhbGx2YWx1ZXMnXHJcbn1cclxuXG5cblxuLyoqIFdFQlBBQ0sgRk9PVEVSICoqXG4gKiogRDovZGV2L2pzLWFwaS9hcGktaW50ZXJuYWwtY29udHJhY3Qvc3JjL2ludGVyZmFjZS9FbnVtcy50c1xuICoqLyIsImltcG9ydCB7IE1vZGVsIH0gZnJvbSAnLi9Nb2RlbHMnO1xyXG5pbXBvcnQgeyBOb3RpZmljYXRpb25JZCB9IGZyb20gJy4vTm90aWZpY2F0aW9ucyc7XHJcbmltcG9ydCB7IFZlcmJJZCB9IGZyb20gJy4vVmVyYnMnO1xyXG5pbXBvcnQgeyBWZXJzaW9uTnVtYmVyIH0gZnJvbSAnLi9WZXJzaW9uTnVtYmVyJztcclxuXHJcbmV4cG9ydCB0eXBlIE5vdGlmaWNhdGlvbkhhbmRsZXIgPSAobm90aWZpY2F0aW9uOiBOb3RpZmljYXRpb24pID0+IHZvaWQ7XHJcblxyXG5leHBvcnQgaW50ZXJmYWNlIEV4ZWN1dGVQYXJhbWV0ZXJzIHtcclxuICBba2V5OiBzdHJpbmddOiBNb2RlbDtcclxufVxyXG5cclxuZXhwb3J0IGludGVyZmFjZSBFeGVjdXRlUmVzcG9uc2Uge1xyXG4gIHJlc3VsdDogTW9kZWw7XHJcbn1cclxuXHJcbmV4cG9ydCBpbnRlcmZhY2UgTm90aWZpY2F0aW9uIHtcclxuICBub3RpZmljYXRpb25JZDogTm90aWZpY2F0aW9uSWQ7XHJcbiAgZGF0YTogTW9kZWw7XHJcbn1cclxuXHJcbmV4cG9ydCBpbnRlcmZhY2UgSW50ZXJuYWxBcGlEaXNwYXRjaGVyIHtcclxuICBzZXRWZXJzaW9uTnVtYmVyKHZlcnNpb25OdW1iZXI6IFZlcnNpb25OdW1iZXIpOiB2b2lkO1xyXG4gIGV4ZWN1dGUodmVyYjogVmVyYklkLCBwYXJhbWV0ZXJzOiBFeGVjdXRlUGFyYW1ldGVycyk6IFByb21pc2U8RXhlY3V0ZVJlc3BvbnNlPjtcclxuICByZWdpc3Rlck5vdGlmaWNhdGlvbkhhbmRsZXIoaGFuZGxlcjogTm90aWZpY2F0aW9uSGFuZGxlcik6IHZvaWQ7XHJcbiAgdW5yZWdpc3Rlck5vdGlmaWNhdGlvbkhhbmRsZXIoaGFuZGxlcjogTm90aWZpY2F0aW9uSGFuZGxlcik6IHZvaWQ7XHJcbn1cclxuXHJcbmRlY2xhcmUgZ2xvYmFsIHtcclxuICBpbnRlcmZhY2UgV2luZG93IHsgX190YWJsZWF1RGVza3RvcERpc3BhdGNoZXI6IFByb21pc2U8SW50ZXJuYWxBcGlEaXNwYXRjaGVyPjsgfVxyXG59XHJcblxyXG5leHBvcnQgbmFtZXNwYWNlIEludGVybmFsQXBpRGlzcGF0Y2hlckhvbGRlciB7XHJcbiAgZXhwb3J0IGZ1bmN0aW9uIGdldERlc2t0b3BEaXNwYXRjaGVyUHJvbWlzZSgpOiBQcm9taXNlPEludGVybmFsQXBpRGlzcGF0Y2hlcj4ge1xyXG4gICAgcmV0dXJuIHdpbmRvdy5fX3RhYmxlYXVEZXNrdG9wRGlzcGF0Y2hlcjtcclxuICB9XHJcblxyXG4gIGV4cG9ydCBmdW5jdGlvbiBoYXNEZXNrdG9wQXBpRGlzcGF0Y2hlclByb21pc2UoKTogYm9vbGVhbiB7XHJcbiAgICByZXR1cm4gISFJbnRlcm5hbEFwaURpc3BhdGNoZXJIb2xkZXIuZ2V0RGVza3RvcERpc3BhdGNoZXJQcm9taXNlKCk7XHJcbiAgfVxyXG5cclxuICBleHBvcnQgZnVuY3Rpb24gc2V0RGVza3RvcERpc3BhdGNoZXJQcm9taXNlKGRpc3BhdGNoZXI6IFByb21pc2U8SW50ZXJuYWxBcGlEaXNwYXRjaGVyPik6IHZvaWQge1xyXG4gICAgd2luZG93Ll9fdGFibGVhdURlc2t0b3BEaXNwYXRjaGVyID0gZGlzcGF0Y2hlcjtcclxuICB9XHJcbn1cclxuXG5cblxuLyoqIFdFQlBBQ0sgRk9PVEVSICoqXG4gKiogRDovZGV2L2pzLWFwaS9hcGktaW50ZXJuYWwtY29udHJhY3Qvc3JjL2ludGVyZmFjZS9JbnRlcm5hbEFwaURpc3BhdGNoZXIudHNcbiAqKi8iLCJleHBvcnQgZW51bSBOb3RpZmljYXRpb25JZCB7XHJcbiAgU2VsZWN0ZWRNYXJrc0NoYW5nZWQgPSAnc2VsZWN0ZWQtbWFya3MtY2hhbmdlZCdcclxufVxyXG5cblxuXG4vKiogV0VCUEFDSyBGT09URVIgKipcbiAqKiBEOi9kZXYvanMtYXBpL2FwaS1pbnRlcm5hbC1jb250cmFjdC9zcmMvaW50ZXJmYWNlL05vdGlmaWNhdGlvbnMudHNcbiAqKi8iLCJleHBvcnQgZW51bSBQYXJhbWV0ZXJJZCB7XHJcbiAgQWRkSW5Mb2NhdG9yID0gJ2FkZC1pbi1sb2NhdG9yJyxcclxuICBBZGRJbkJvb3RzdHJhcEluZm8gPSAnYWRkLWluLWJvb3RzdHJhcC1pbmZvJyxcclxuICBBZGRJblNldHRpbmdzSW5mbyA9ICdhZGQtaW4tc2V0dGluZ3MtaW5mbycsXHJcbiAgVmlzdWFsSWQgPSAndmlzdWFsLWlkJyxcclxuICBTaGVldFBhdGggPSAnc2hlZXQtcGF0aCcsXHJcbiAgSWdub3JlQWxpYXNlcyA9ICdpZ25vcmUtYWxpYXNlcycsXHJcbiAgSWdub3JlU2VsZWN0aW9uID0gJ2lnbm9yZS1zZWxlY3Rpb24nLFxyXG4gIEluY2x1ZGVBbGxDb2x1bW5zID0gJ2luY2x1ZGUtYWxsLWNvbHVtbnMnLFxyXG4gIE1heFJvd3MgPSAnbWF4LXJvd3MnLFxyXG4gIFVuZGVybHlpbmdEYXRhVGFibGUgPSAndW5kZXJseWluZy1kYXRhLXRhYmxlJyxcclxuICBVbmRlcmx5aW5nU3VtbWFyeURhdGFUYWJsZSA9ICd1bmRlcmx5aW5nLXN1bW1hcnktZGF0YS10YWJsZScsXHJcbiAgU2V0dGluZ3NWYWx1ZXMgPSAnc2V0dGluZ3MtdmFsdWVzJyxcclxuICBTZWxlY3RlZERhdGEgPSAnc2VsZWN0ZWQtZGF0YScsXHJcbiAgSGlnaGxpZ2h0ZWREYXRhID0gJ2hpZ2hsaWdodGVkLWRhdGEnLFxyXG5cclxuICAgLy8gRmlsdGVyIFBhcmFtc1xyXG4gIEZpZWxkTmFtZSA9ICdmaWVsZC1uYW1lJyxcclxuICBGaWx0ZXJWYWx1ZXMgPSAnZmlsdGVyLXZhbHVlcycsXHJcbiAgRmlsdGVyVXBkYXRlVHlwZSA9ICdmaWx0ZXItdXBkYXRlLXR5cGUnLFxyXG4gIElzRXhjbHVkZU1vZGUgPSAnaXMtZXhjbHVkZScsXHJcbiAgRmlsdGVyUmFuZ2VNaW4gPSAnZmlsdGVyLXJhbmdlLW1pbicsXHJcbiAgRmlsdGVyUmFuZ2VNYXggPSAnZmlsdGVyLXJhbmdlLW1heCcsXHJcbiAgRmlsdGVyUmFuZ2VOdWxsT3B0aW9uID0gJ2ZpbHRlci1yYW5nZS1udWxsLW9wdGlvbicsXHJcblxyXG4gIFdvcmtzaGVldE5hbWUgPSAnd29ya3NoZWV0LW5hbWUnXHJcbn1cclxuXG5cblxuLyoqIFdFQlBBQ0sgRk9PVEVSICoqXG4gKiogRDovZGV2L2pzLWFwaS9hcGktaW50ZXJuYWwtY29udHJhY3Qvc3JjL2ludGVyZmFjZS9QYXJhbWV0ZXJzLnRzXG4gKiovIiwiLy8gRGVjbGFyZSB0aGlzIGtleSB0eXBlIGFuZCBleHBvcnQgdGhlIE5vdGlmaWNhdGlvbklkIHRvIG1ha2UgdGhpcyBiZWhhdmUgbGlrZSBhIHN0cmluZyBlbnVtXHJcbmV4cG9ydCBlbnVtIFZlcmJJZCB7XHJcbiAgQXBwbHlDYXRlZ29yaWNhbEZpbHRlciA9ICdjYXRlZ29yaWNhbC1maWx0ZXInLFxyXG4gIEFwcGx5UmFuZ2VGaWx0ZXIgPSAncmFuZ2UtZmlsdGVyJyxcclxuICBDbGVhckZpbHRlciA9ICdjbGVhci1maWx0ZXInLFxyXG4gIEluaXRpYWxpemVBZGRJbiA9ICdpbml0aWFsaXplLWFkZC1pbicsXHJcbiAgR2V0RGF0YVN1bW1hcnlEYXRhID0gJ2dldC1zdW1tYXJ5LWRhdGEnLFxyXG4gIEdldFVuZGVybHlpbmdEYXRhID0gJ2dldC11bmRlcmx5aW5nLWRhdGEnLFxyXG4gIFNhdmVBZGRJblNldHRpbmdzID0gJ3NhdmUtYWRkLWluLXNldHRpbmdzJyxcclxuICBHZXRTZWxlY3RlZE1hcmtzID0gJ2dldC1zZWxlY3RlZC1tYXJrcycsXHJcbiAgR2V0SGlnaGxpZ2h0ZWRNYXJrcyA9ICdnZXQtaGlnaGxpZ2h0ZWQtbWFya3MnXHJcbn1cclxuXG5cblxuLyoqIFdFQlBBQ0sgRk9PVEVSICoqXG4gKiogRDovZGV2L2pzLWFwaS9hcGktaW50ZXJuYWwtY29udHJhY3Qvc3JjL2ludGVyZmFjZS9WZXJicy50c1xuICoqLyIsIi8qKlxyXG4gKiBUaGlzIGlzIHlvdXIgbWFpbi4gVGhpcyBpcyB3aGVyZSB5b3UgcmUtZXhwb3J0IGV2ZXJ5dGhpbmcgeW91IHdhbnQgdG8gYmUgcHVibGljbHkgYXZhaWxhYmxlLlxyXG4gKlxyXG4gKiBUaGUgYnVpbGQgZW5mb3JjZXMgdGhhdCB0aGUgZmlsZSBoYXMgdGhlIHNhbWUgbmFtZSBhcyB0aGUgZ2xvYmFsIHZhcmlhYmxlIHRoYXQgaXMgZXhwb3J0ZWQuXHJcbiAqL1xyXG5cclxuZXhwb3J0ICogZnJvbSAnLi9FdmVudExpc3RlbmVyTWFuYWdlcic7XHJcbmV4cG9ydCAqIGZyb20gJy4vU2luZ2xlRXZlbnRNYW5hZ2VyJztcclxuZXhwb3J0ICogZnJvbSAnLi9Nb2RlbHMvR2V0RGF0YU1vZGVscyc7XHJcbmV4cG9ydCAqIGZyb20gJy4vRXhjZXB0aW9ucy9UYWJsZWF1RXhjZXB0aW9ucyc7XHJcbmV4cG9ydCAqIGZyb20gJy4vRXZlbnRzL01hcmtzU2VsZWN0ZWRFdmVudCc7XHJcbmV4cG9ydCAqIGZyb20gJy4vRXZlbnRzL1RhYmxlYXVFdmVudCc7XHJcbmV4cG9ydCAqIGZyb20gJy4vRXZlbnRzL1RhYmxlYXVTaGVldEV2ZW50JztcclxuZXhwb3J0ICogZnJvbSAnLi9FdmVudHMvVGFibGVhdVdvcmtzaGVldEV2ZW50JztcclxuZXhwb3J0ICogZnJvbSAnLi9JbnRlcm5hbC9TaW5nbGVFdmVudE1hbmFnZXJJbXBsJztcclxuZXhwb3J0ICogZnJvbSAnLi9TZXJ2aWNlcy9HZXREYXRhU2VydmljZSc7XHJcbmV4cG9ydCAqIGZyb20gJy4vU2VydmljZXMvRmlsdGVyU2VydmljZSc7XHJcbmV4cG9ydCAqIGZyb20gJy4vU2VydmljZXMvTm90aWZpY2F0aW9uU2VydmljZSc7XHJcbmV4cG9ydCAqIGZyb20gJy4vU2VydmljZXMvUmVnaXN0ZXJBbGxTaGFyZWRTZXJ2aWNlcyc7XHJcbmV4cG9ydCAqIGZyb20gJy4vU2VydmljZXMvU2VydmljZVJlZ2lzdHJ5JztcclxuZXhwb3J0ICogZnJvbSAnLi9FbnVtTWFwcGluZ3MvSW50ZXJuYWxUb0V4dGVybmFsRW51bU1hcHBpbmdzJztcclxuXG5cblxuLyoqIFdFQlBBQ0sgRk9PVEVSICoqXG4gKiogRDovZGV2L2pzLWFwaS9hcGktc2hhcmVkL3NyYy9BcGlTaGFyZWQudHNcbiAqKi8iLCJpbXBvcnQge1xyXG4gIEV2ZW50TGlzdGVuZXJNYW5hZ2VyIGFzIEV2ZW50TGlzdGVuZXJNYW5hZ2VyQ29udHJhY3QsXHJcbiAgVGFibGVhdUV2ZW50SGFuZGxlckZuLFxyXG4gIFRhYmxlYXVFdmVudFR5cGUsXHJcbiAgVGFibGVhdUV2ZW50VW5yZWdpc3RlckZuXHJcbn0gZnJvbSAnQHRhYmxlYXUvYXBpLWV4dGVybmFsLWNvbnRyYWN0JztcclxuXHJcbmltcG9ydCB7IFNpbmdsZUV2ZW50TWFuYWdlciB9IGZyb20gJy4vU2luZ2xlRXZlbnRNYW5hZ2VyJztcclxuXHJcbi8qKlxyXG4gKiBDbGFzcyBkZXNpZ25lZCB0byByZWdpc3RlciBhbmQgdW5yZWdpc3RlciBoYW5kbGVycyBmcm9tIGEgdXNlci4gT25seSB0aG9zZSBldmVudHNcclxuICogd2hpY2ggYXJlIGFkZGVkIHZpYSBBZGROZXdFdmVudFR5cGUgd2lsbCBiZSBzdXBwb3J0ZWQgYnkgdGhpcyBpbnN0YW5jZVxyXG4gKi9cclxuZXhwb3J0IGNsYXNzIEV2ZW50TGlzdGVuZXJNYW5hZ2VyIGltcGxlbWVudHMgRXZlbnRMaXN0ZW5lck1hbmFnZXJDb250cmFjdCB7XHJcbiAgcHJpdmF0ZSBldmVudExpc3RlbmVyTWFuYWdlcnM6IHsgW3RhYmxlYXVFdmVudFR5cGU6IHN0cmluZ106IFNpbmdsZUV2ZW50TWFuYWdlcjsgfTtcclxuXHJcbiAgcHVibGljIGNvbnN0cnVjdG9yKCkge1xyXG4gICAgdGhpcy5ldmVudExpc3RlbmVyTWFuYWdlcnMgPSB7fTtcclxuICB9XHJcblxyXG4gIHB1YmxpYyBhZGRFdmVudExpc3RlbmVyKGV2ZW50VHlwZTogVGFibGVhdUV2ZW50VHlwZSwgaGFuZGxlcjogVGFibGVhdUV2ZW50SGFuZGxlckZuKTogVGFibGVhdUV2ZW50VW5yZWdpc3RlckZuIHtcclxuICAgIGlmICghdGhpcy5ldmVudExpc3RlbmVyTWFuYWdlcnMuaGFzT3duUHJvcGVydHkoZXZlbnRUeXBlKSkge1xyXG4gICAgICB0aHJvdyBuZXcgRXJyb3IoYFVuc3VwcG9ydGVkIGV2ZW50IHR5cGUgOiAke2V2ZW50VHlwZX1gKTtcclxuICAgIH1cclxuXHJcbiAgICByZXR1cm4gdGhpcy5ldmVudExpc3RlbmVyTWFuYWdlcnNbZXZlbnRUeXBlXS5hZGRFdmVudExpc3RlbmVyKGhhbmRsZXIpO1xyXG4gIH1cclxuXHJcbiAgcHVibGljIHJlbW92ZUV2ZW50TGlzdGVuZXIoZXZlbnRUeXBlOiBUYWJsZWF1RXZlbnRUeXBlLCBoYW5kbGVyOiBUYWJsZWF1RXZlbnRIYW5kbGVyRm4pOiBib29sZWFuIHtcclxuICAgIGlmICghdGhpcy5ldmVudExpc3RlbmVyTWFuYWdlcnMuaGFzT3duUHJvcGVydHkoZXZlbnRUeXBlKSkge1xyXG4gICAgICB0aHJvdyBuZXcgRXJyb3IoYFVuc3VwcG9ydGVkIGV2ZW50IHR5cGUgOiAke2V2ZW50VHlwZX1gKTtcclxuICAgIH1cclxuXHJcbiAgICByZXR1cm4gdGhpcy5ldmVudExpc3RlbmVyTWFuYWdlcnNbZXZlbnRUeXBlXS5yZW1vdmVFdmVudExpc3RlbmVyKGhhbmRsZXIpO1xyXG4gIH1cclxuXHJcbiAgcHJvdGVjdGVkIGFkZE5ld0V2ZW50VHlwZShldmVudE1hbmFnZXI6IFNpbmdsZUV2ZW50TWFuYWdlcik6IHZvaWQge1xyXG4gICAgdGhpcy5ldmVudExpc3RlbmVyTWFuYWdlcnNbZXZlbnRNYW5hZ2VyLmV2ZW50VHlwZV0gPSBldmVudE1hbmFnZXI7XHJcbiAgfVxyXG59XHJcblxuXG5cbi8qKiBXRUJQQUNLIEZPT1RFUiAqKlxuICoqIEQ6L2Rldi9qcy1hcGkvYXBpLXNoYXJlZC9zcmMvRXZlbnRMaXN0ZW5lck1hbmFnZXIudHNcbiAqKi8iLCJpbXBvcnQge1xyXG4gIENvbHVtbiBhcyBDb2x1bW5Db250cmFjdCxcclxuICBEYXRhVGFibGUgYXMgRGF0YVRhYmxlQ29udHJhY3QsXHJcbiAgRGF0YVR5cGUsXHJcbiAgRGF0YVZhbHVlIGFzIERhdGFWYWx1ZUNvbnRyYWN0XHJcbn0gZnJvbSAnQHRhYmxlYXUvYXBpLWV4dGVybmFsLWNvbnRyYWN0JztcclxuXHJcbmV4cG9ydCBjbGFzcyBEYXRhVGFibGUgaW1wbGVtZW50cyBEYXRhVGFibGVDb250cmFjdCB7XHJcbiAgcHJpdmF0ZSBfbmFtZTogc3RyaW5nO1xyXG5cclxuICBwdWJsaWMgY29uc3RydWN0b3IoXHJcbiAgICBwcml2YXRlIF9kYXRhOiBBcnJheTxBcnJheTxEYXRhVmFsdWVDb250cmFjdD4+LFxyXG4gICAgcHJpdmF0ZSBfY29sdW1uczogQXJyYXk8Q29sdW1uQ29udHJhY3Q+LFxyXG4gICAgcHJpdmF0ZSBfdG90YWxSb3dDb3VudDogbnVtYmVyLFxyXG4gICAgcHJpdmF0ZSBfaXNTdW1tYXJ5RGF0YTogYm9vbGVhbikge1xyXG4gICAgICAgIC8vIFRPRE86IGdldCByaWQgb2YgdGhpcyBpbiByZWRlc2lnbi5cclxuICAgICAgICB0aGlzLl9uYW1lID0gX2lzU3VtbWFyeURhdGEgPyAnU3VtbWFyeSBEYXRhIFRhYmxlJyA6ICdVbmRlcmx5aW5nIERhdGEgVGFibGUnO1xyXG4gICAgfVxyXG5cclxuICBwdWJsaWMgZ2V0IG5hbWUoKTogc3RyaW5nIHtcclxuICAgIHJldHVybiB0aGlzLl9uYW1lO1xyXG4gIH1cclxuXHJcbiAgcHVibGljIGdldCBkYXRhKCk6IEFycmF5PEFycmF5PERhdGFWYWx1ZUNvbnRyYWN0Pj4ge1xyXG4gICAgcmV0dXJuIHRoaXMuX2RhdGE7XHJcbiAgfVxyXG5cclxuICBwdWJsaWMgZ2V0IGNvbHVtbnMoKTogQXJyYXk8Q29sdW1uQ29udHJhY3Q+IHtcclxuICAgIHJldHVybiB0aGlzLl9jb2x1bW5zO1xyXG4gIH1cclxuXHJcbiAgcHVibGljIGdldCB0b3RhbFJvd0NvdW50KCk6IG51bWJlciB7XHJcbiAgICByZXR1cm4gdGhpcy5fdG90YWxSb3dDb3VudDtcclxuICB9XHJcblxyXG4gIHB1YmxpYyBnZXQgaXNTdW1tYXJ5RGF0YSgpOiBib29sZWFuIHtcclxuICAgIHJldHVybiB0aGlzLl9pc1N1bW1hcnlEYXRhO1xyXG4gIH1cclxufVxyXG5cclxuZXhwb3J0IGNsYXNzIENvbHVtbiBpbXBsZW1lbnRzIENvbHVtbkNvbnRyYWN0IHtcclxuICBwdWJsaWMgY29uc3RydWN0b3IoXHJcbiAgICBwcml2YXRlIF9maWVsZE5hbWU6IHN0cmluZyxcclxuICAgIHByaXZhdGUgX2RhdGFUeXBlOiBEYXRhVHlwZSwgLy8gVE9ETzogdGhpcyBzaG91ZGwgYmUgYW4gZW51bSB0eXBlXHJcbiAgICBwcml2YXRlIF9pc1JlZmVyZW5jZWQ6IGJvb2xlYW4sXHJcbiAgICBwcml2YXRlIF9pbmRleDogbnVtYmVyKSB7fVxyXG5cclxuICBwdWJsaWMgZ2V0IGZpZWxkTmFtZSgpOiBzdHJpbmcge1xyXG4gICAgcmV0dXJuIHRoaXMuX2ZpZWxkTmFtZTtcclxuICB9XHJcblxyXG4gIHB1YmxpYyBnZXQgZGF0YVR5cGUoKTogRGF0YVR5cGUge1xyXG4gICAgcmV0dXJuIHRoaXMuX2RhdGFUeXBlO1xyXG4gIH1cclxuXHJcbiAgcHVibGljIGdldCBpc1JlZmVyZW5jZWQoKTogYm9vbGVhbiB7XHJcbiAgICByZXR1cm4gdGhpcy5faXNSZWZlcmVuY2VkO1xyXG4gIH1cclxuXHJcbiAgcHVibGljIGdldCBpbmRleCgpOiBudW1iZXIge1xyXG4gICAgcmV0dXJuIHRoaXMuX2luZGV4O1xyXG4gIH1cclxufVxyXG5cclxuZXhwb3J0IGNsYXNzIERhdGFWYWx1ZSBpbXBsZW1lbnRzIERhdGFWYWx1ZUNvbnRyYWN0IHtcclxuICAvKiB0c2xpbnQ6ZGlzYWJsZTpuby1hbnkgKi9cclxuICBwdWJsaWMgY29uc3RydWN0b3IoXHJcbiAgICBwcml2YXRlIF92YWx1ZTogYW55LFxyXG4gICAgcHJpdmF0ZSBfZm9ybWF0dGVkVmFsdWU6IHN0cmluZykge31cclxuXHJcbiAgcHVibGljIGdldCB2YWx1ZSgpOiBhbnkge1xyXG4gICAgcmV0dXJuIHRoaXMuX3ZhbHVlO1xyXG4gIH1cclxuXHJcbiAgcHVibGljIGdldCBmb3JtYXR0ZWRWYWx1ZSgpOiBzdHJpbmcge1xyXG4gICAgcmV0dXJuIHRoaXMuX2Zvcm1hdHRlZFZhbHVlO1xyXG4gIH1cclxuICAvKiB0c2xpbnQ6ZW5hYmxlOm5vLWFueSAqL1xyXG59XHJcblxuXG5cbi8qKiBXRUJQQUNLIEZPT1RFUiAqKlxuICoqIEQ6L2Rldi9qcy1hcGkvYXBpLXNoYXJlZC9zcmMvTW9kZWxzL0dldERhdGFNb2RlbHMudHNcbiAqKi8iLCJleHBvcnQgY2xhc3MgVGFibGVhdUV4Y2VwdGlvbnMge1xyXG4gIC8vIFRPRE8sIEFwaUVycm9yQ29kZXMgbmVlZCB0byBiZSBhZGRlZCB0byBleHRlcm5hbCBpbnRlcmZhY2VzLlxyXG59XHJcblxuXG5cbi8qKiBXRUJQQUNLIEZPT1RFUiAqKlxuICoqIEQ6L2Rldi9qcy1hcGkvYXBpLXNoYXJlZC9zcmMvRXhjZXB0aW9ucy9UYWJsZWF1RXhjZXB0aW9ucy50c1xuICoqLyIsImltcG9ydCB7XHJcbiAgQWN0aXZlTWFya3MsXHJcbiAgTWFya3NTZWxlY3RlZEV2ZW50IGFzIE1hcmtzU2VsZWN0ZWRFdmVudENvbnRyYWN0LFxyXG4gIFRhYmxlYXVFdmVudFR5cGUsXHJcbiAgV29ya3NoZWV0IGFzIFdvcmtzaGVldENvbnRyYWN0LFxyXG59IGZyb20gJ0B0YWJsZWF1L2FwaS1leHRlcm5hbC1jb250cmFjdCc7XHJcblxyXG5pbXBvcnQgeyBUYWJsZWF1V29ya3NoZWV0RXZlbnQgfSBmcm9tICcuL1RhYmxlYXVXb3Jrc2hlZXRFdmVudCc7XHJcblxyXG5leHBvcnQgY2xhc3MgTWFya3NTZWxlY3RlZEV2ZW50IGV4dGVuZHMgVGFibGVhdVdvcmtzaGVldEV2ZW50IGltcGxlbWVudHMgTWFya3NTZWxlY3RlZEV2ZW50Q29udHJhY3Qge1xyXG4gIHB1YmxpYyBjb25zdHJ1Y3Rvcih3b3Jrc2hlZXQ6IFdvcmtzaGVldENvbnRyYWN0KSB7XHJcbiAgICBzdXBlcihUYWJsZWF1RXZlbnRUeXBlLk1hcmtTZWxlY3Rpb25DaGFuZ2VkLCB3b3Jrc2hlZXQpO1xyXG4gIH1cclxuXHJcbiAgcHVibGljIGdldE1hcmtzQXN5bmMoKTogUHJvbWlzZTxBY3RpdmVNYXJrcz4ge1xyXG4gICAgcmV0dXJuIHRoaXMud29ya3NoZWV0LmdldFNlbGVjdGVkTWFya3NBc3luYygpO1xyXG4gIH1cclxufVxyXG5cblxuXG4vKiogV0VCUEFDSyBGT09URVIgKipcbiAqKiBEOi9kZXYvanMtYXBpL2FwaS1zaGFyZWQvc3JjL0V2ZW50cy9NYXJrc1NlbGVjdGVkRXZlbnQudHNcbiAqKi8iLCIvKipcclxuICogVGhpcyBpcyB5b3VyIG1haW4uIFRoaXMgaXMgd2hlcmUgeW91IHJlLWV4cG9ydCBldmVyeXRoaW5nIHlvdSB3YW50IHRvIGJlIHB1YmxpY2x5IGF2YWlsYWJsZS5cclxuICpcclxuICogVGhlIGJ1aWxkIGVuZm9yY2VzIHRoYXQgdGhlIGZpbGUgaGFzIHRoZSBzYW1lIG5hbWUgYXMgdGhlIGdsb2JhbCB2YXJpYWJsZSB0aGF0IGlzIGV4cG9ydGVkLlxyXG4gKi9cclxuXHJcbmV4cG9ydCAqIGZyb20gJy4vRGF0YVNvdXJjZUludGVyZmFjZXMnO1xyXG5leHBvcnQgKiBmcm9tICcuL0VudW1zJztcclxuZXhwb3J0ICogZnJvbSAnLi9FdmVudEludGVyZmFjZXMnO1xyXG5leHBvcnQgKiBmcm9tICcuL0ZpbHRlckludGVyZmFjZXMnO1xyXG5leHBvcnQgKiBmcm9tICcuL0dldERhdGFJbnRlcmZhY2VzJztcclxuZXhwb3J0ICogZnJvbSAnLi9TaGVldEludGVyZmFjZXMnO1xyXG5leHBvcnQgeyBBZGRJbiB9IGZyb20gJy4vRXh0ZXJuYWxOYW1lc3BhY2VzL0FkZGluJztcclxuZXhwb3J0IHsgRGFzaGJvYXJkQ29udGVudCB9IGZyb20gJy4vRXh0ZXJuYWxOYW1lc3BhY2VzL0Rhc2hib2FyZENvbnRlbnQnO1xyXG5leHBvcnQgeyBFbnZpcm9ubWVudCB9IGZyb20gJy4vRXh0ZXJuYWxOYW1lc3BhY2VzL0Vudmlyb25tZW50JztcclxuZXhwb3J0IHsgU2V0dGluZ3MgfSBmcm9tICcuL0V4dGVybmFsTmFtZXNwYWNlcy9TZXR0aW5ncyc7XHJcbmV4cG9ydCB7IFVJIH0gZnJvbSAnLi9FeHRlcm5hbE5hbWVzcGFjZXMvVUknO1xyXG5cblxuXG4vKiogV0VCUEFDSyBGT09URVIgKipcbiAqKiBEOi9kZXYvanMtYXBpL2FwaS1leHRlcm5hbC1jb250cmFjdC9zcmMvQXBpRXh0ZXJuYWxDb250cmFjdC50c1xuICoqLyIsIi8vIEFsbCBlbnVtIHZhbHVlcyBtYWRlIGF2YWlsYWJsZSB0byBBZGRJbiBkZXZlbG9wZXJzLlxyXG4vLyBFbnVtcyBzaG91bGQgYmUga2VwdCBpbiBhbHBoYWJldGljYWwgb3JkZXIuXHJcblxyXG4vKipcclxuICogVGhlIGNvbnRleHQgaW4gd2hpY2ggdGhlIEFkZEluIGlzIGN1cnJlbnRseSBydW5uaW5nLlxyXG4gKi9cclxuZXhwb3J0IGVudW0gQWRkSW5Db250ZXh0IHtcclxuICBEZXNrdG9wID0gJ2Rlc2t0b3AnLFxyXG4gIFNlcnZlciA9ICdzZXJ2ZXInLFxyXG4gIFVua25vd24gPSAndW5rbm93bidcclxufVxyXG5cclxuLyoqXHJcbiAqIFRoZSBtb2RlIGluIHdoaWNoIHRoZSBBZGRJbiBpcyBjdXJyZW50bHkgcnVubmluZy5cclxuICovXHJcbmV4cG9ydCBlbnVtIEFkZEluTW9kZSB7XHJcbiAgQXV0aG9yaW5nID0gJ2F1dGhvcmluZycsXHJcbiAgVmlld2luZyA9ICd2aWV3aW5nJyxcclxuICBVbmtub3duID0gJ3Vua25vd24nXHJcbn1cclxuXHJcbi8qKlxyXG4gKiBXaGF0IHRoZSBvYmplY3QgcmVwcmVzZW50cyBpbiBhIGRhc2hib2FyZC5cclxuICovXHJcbmV4cG9ydCBlbnVtIERhc2hib2FyZE9iamVjdFR5cGUge1xyXG4gIEJsYW5rID0gJ2JsYW5rJyxcclxuICBXb3Jrc2hlZXQgPSAnd29ya3NoZWV0JyxcclxuICBRdWlja0ZpbHRlciA9ICdxdWljay1maWx0ZXInLFxyXG4gIFBhcmFtZXRlckNvbnRyb2wgPSAncGFyYW1ldGVyLWNvbnRyb2wnLFxyXG4gIFBhZ2VGaWx0ZXIgPSAncGFnZS1maWx0ZXInLFxyXG4gIExlZ2VuZCA9ICdsZWdlbmQnLFxyXG4gIFRpdGxlID0gJ3RpdGxlJyxcclxuICBUZXh0ID0gJ3RleHQnLFxyXG4gIEltYWdlID0gJ2ltYWdlJyxcclxuICBXZWJQYWdlID0gJ3dlYi1wYWdlJyxcclxuICBBZGRJbiA9ICdhZGRpbidcclxufVxyXG5cclxuLyoqXHJcbiAqIFRoZSBkaWZmZXJlbnQgdHlwZXMgb2YgZGF0YSBhIHZhbHVlIGNhbiBoYXZlXHJcbiAqL1xyXG5leHBvcnQgZW51bSBEYXRhVHlwZSB7XHJcbiAgU3RyaW5nID0gJ3N0cmluZycsXHJcbiAgSW50ID0gJ2ludCcsXHJcbiAgRmxvYXQgPSAnZmxvYXQnLFxyXG4gIEJvb2wgPSAnYm9vbCcsXHJcbiAgRGF0ZSA9ICdkYXRlJyxcclxuICBEYXRlVGltZSA9ICdkYXRlLXRpbWUnLFxyXG4gIFNwYXRpYWwgPSAnc3BhdGlhbCdcclxufVxyXG5cclxuLyoqXHJcbiAqIFZhbGlkIGRhdGUgcmFuZ2VzIGZvciBhIHJlbGF0aXZlIGRhdGUgZmlsdGVyLlxyXG4gKi9cclxuZXhwb3J0IGVudW0gRGF0ZVJhbmdlVHlwZSB7XHJcbiAgTGFzdCA9ICdsYXN0JyxcclxuICBMYXN0TiA9ICdsYXN0LW4nLFxyXG4gIE5leHQgPSAnbmV4dCcsXHJcbiAgTmV4dE4gPSAnbmV4dC1uJyxcclxuICBDdXJyZW50ID0gJ2N1cnJlbnQnLFxyXG4gIFRvRGF0ZSA9ICd0by1kYXRlJ1xyXG59XHJcblxyXG4vKipcclxuICogVHlwZXMgb2YgZGlhbG9nIGV2ZW50IGZvciBldmVudCBsaXN0ZW5pbmcgYmV0d2VlbiBhIHBhcmVudCBBZGRJbiBhbmQgYSBwb3B1cCBkaWFsb2cuXHJcbiAqL1xyXG5leHBvcnQgZW51bSBEaWFsb2dFdmVudFR5cGUge1xyXG4gIERpYWxvZ01lc3NhZ2UgPSAnZGlhbG9nLW1lc3NhZ2UnLFxyXG4gIERpYWxvZ0V2ZW50ID0gJ2RpYWxvZy1ldmVudCdcclxufVxyXG5cclxuLyoqXHJcbiAqIEFsbCBlcnJvciBjb2RlcyB1c2VkIGJ5IHRoZSBBZGRJbiBBUEkuXHJcbiAqL1xyXG5leHBvcnQgZW51bSBFcnJvckNvZGVzIHtcclxuICAvKipcclxuICAgKiBPbmx5IG9uZSBkaWFsb2cgY2FuIGJlIG9wZW5lZCBhdCB0aW1lIHdpdGggdGhlIFVJIG5hbWVzcGFjZSBmdW5jdGlvbmFsaXR5LlxyXG4gICAqL1xyXG4gIERpYWxvZ0FscmVhZHlPcGVuID0gJ2RpYWxvZy1hbHJlYWR5LW9wZW4nLFxyXG4gIC8qKlxyXG4gICAqIFRoZSBvcGVuIGRpYWxvZyB3YXMgY2xvc2VkIGJ5IHRoZSB1c2VyLlxyXG4gICAqL1xyXG4gIERpYWxvZ0Nsb3NlZEJ5VXNlciA9ICdkaWFsb2ctY2xvc2VkLWJ5LXVzZXInLFxyXG4gIC8qKlxyXG4gICAqIEFuIGVycm9yIG9jY3VycmVkIHdoaWxlIGF0dGVtcHRpbmcgdG8gcGVyZm9ybSBhIGZpbHRlciBvcGVyYXRpb24uXHJcbiAgICovXHJcbiAgRmlsdGVyQ2Fubm90QmVQZXJmb3JtZWQgPSAnZmlsdGVyLWNhbm5vdC1iZS1wZXJmb3JtZWQnLFxyXG4gIC8qKlxyXG4gICAqIEFuIGVycm9yIG9jY3VycmVkIHdpdGhpbiB0aGUgVGFibGVhdSBBZGRJbiBBUEkuIENvbnRhY3QgVGFibGVhdSBTdXBwb3J0LlxyXG4gICAqL1xyXG4gIEludGVybmFsRXJyb3IgPSAnaW50ZXJuYWwtZXJyb3InLFxyXG4gIC8qKlxyXG4gICAqIEFuIGludmFsaWQgYWdncmVnYXRpb24gd2FzIHNwZWNpZmllZCBmb3IgdGhlIGZpbHRlciwgc3VjaCBhcyBzZXR0aW5nIGEgcmFuZ2UgZmlsdGVyIHRvIFwiU1VNKFNhbGVzKVwiIGluc3RlYWQgb2YgXCJTYWxlc1wiLlxyXG4gICAqL1xyXG4gIEludmFsaWRBZ2dyZWdhdGlvbkZpZWxkTmFtZSA9ICdpbnZhbGlkLWFnZ3JlZ2F0aW9uLWZpZWxkLW5hbWUnLFxyXG4gIC8qKlxyXG4gICAqIEEgZGlhbG9nIG11c3QgZmlyc3QgbGF1bmNoIHRvLCBhbmQgc2VuZCBtZXNzYWdlcyBmcm9tLCB0aGUgc2FtZSBkb21haW4gYXMgdGhlIHBhcmVudCBBZGRJbi5cclxuICAgKi9cclxuICBJbnZhbGlkRG9tYWluRGlhbG9nID0gJ2ludmFsaWQtZGlhbG9nLWRvbWFpbicsXHJcbiAgLyoqXHJcbiAgICogQW4gaW52YWxpZCBkYXRlIHdhcyBzcGVjaWZpZWQgaW4gYSBtZXRob2QgdGhhdCByZXF1aXJlZCBhIGRhdGUgcGFyYW1ldGVyLlxyXG4gICAqL1xyXG4gIEludmFsaWREYXRlUGFyYW1ldGVyID0gJ2ludmFsaWQtZGF0ZS1wYXJhbWV0ZXInLFxyXG4gIC8qKlxyXG4gICAqIEEgZmlsdGVyIG9wZXJhdGlvbiB3YXMgYXR0ZW1wdGVkIG9uIGEgZmllbGQgdGhhdCBkb2VzIG5vdCBleGlzdCBpbiB0aGUgZGF0YSBzb3VyY2UuXHJcbiAgICovXHJcbiAgSW52YWxpZEZpbHRlckZpZWxkTmFtZSA9ICdpbnZhbGlkLWZpbHRlci1maWVsZC1uYW1lJyxcclxuICAvKipcclxuICAgKiBBIGZpbHRlciBvcGVyYXRpb24gd2FzIGF0dGVtcHRlZCB1c2luZyBhIHZhbHVlIHRoYXQgaXMgdGhlIHdyb25nIGRhdGEgdHlwZSBvciBmb3JtYXQuXHJcbiAgICovXHJcbiAgSW52YWxpZEZpbHRlckZpZWxkVmFsdWUgPSAnaW52YWxpZC1maWx0ZXItZmllbGQtdmFsdWUnLFxyXG4gIC8qKlxyXG4gICAqIEEgcGFyYW1ldGVyIGlzIG5vdCB0aGUgY29ycmVjdCBkYXRhIHR5cGUgb3IgZm9ybWF0LiBUaGUgbmFtZSBvZiB0aGUgcGFyYW1ldGVyIGlzIHNwZWNpZmllZCBpbiB0aGUgRXJyb3IubWVzc2FnZSBmaWVsZC5cclxuICAgKi9cclxuICBJbnZhbGlkUGFyYW1ldGVyID0gJ2ludmFsaWQtcGFyYW1ldGVyJyxcclxuICAvKipcclxuICAgKiBBbiBpbnZhbGlkIGRhdGUgdmFsdWUgd2FzIHNwZWNpZmllZCBpbiBhIFNoZWV0LnNlbGVjdE1hcmtzQXN5bmMoKSBjYWxsIGZvciBhIGRhdGUgZmllbGQuXHJcbiAgICovXHJcbiAgSW52YWxpZFNlbGVjdGlvbkRhdGUgPSAnaW52YWxpZC1zZWxlY3Rpb24tZGF0ZScsXHJcbiAgLyoqXHJcbiAgICogQSBmaWVsZCB3YXMgc3BlY2lmaWVkIGluIGEgU2hlZXQuc2VsZWN0TWFya3NBc3luYygpIGNhbGwgdGhhdCBkb2VzIG5vdCBleGlzdCBpbiB0aGUgZGF0YSBzb3VyY2UuXHJcbiAgICovXHJcbiAgSW52YWxpZFNlbGVjdGlvbkZpZWxkTmFtZSA9ICdpbnZhbGlkLXNlbGVjdGlvbi1maWVsZC1uYW1lJyxcclxuICAvKipcclxuICAgKiBBbiBpbnZhbGlkIHZhbHVlIHdhcyBzcGVjaWZpZWQgaW4gYSBTaGVldC5zZWxlY3RNYXJrc0FzeW5jKCkgY2FsbC5cclxuICAgKi9cclxuICBJbnZhbGlkU2VsZWN0aW9uVmFsdWUgPSAnaW52YWxpZC1zZWxlY3Rpb24tdmFsdWUnLFxyXG4gIC8qKlxyXG4gICAqIEEgcmVxdWlyZWQgcGFyYW1ldGVyIHdhcyBub3Qgc3BlY2lmaWVkLCBudWxsLCBvciBhbiBlbXB0eSBzdHJpbmcvYXJyYXkuXHJcbiAgICovXHJcbiAgTnVsbE9yRW1wdHlQYXJhbWV0ZXIgPSAnbnVsbC1vci1lbXB0eS1wYXJhbWV0ZXInLFxyXG4gIC8qKlxyXG4gICAqIEFuIHVua25vd24gZXZlbnQgbmFtZSB3YXMgc3BlY2lmaWVkIGluIHRoZSBjYWxsIHRvIFZpei5hZGRFdmVudExpc3RlbmVyb3IgVml6LnJlbW92ZUV2ZW50TGlzdGVuZXIuXHJcbiAgICovXHJcbiAgVW5zdXBwb3J0ZWRFdmVudE5hbWUgPSAndW5zdXBwb3J0ZWQtZXZlbnQtbmFtZSdcclxufVxyXG5cclxuLyoqXHJcbiAqICBUeXBlIG9mIGFnZ3JlZ2F0aW9uIG9uIGEgZmllbGQuXHJcbiAqL1xyXG5leHBvcnQgZW51bSBGaWVsZEFnZ3JlYXRpb25UeXBlIHtcclxuICBTdW0gPSAnc3VtJyxcclxuICBBdmcgPSAnYXZnJyxcclxuICBNaW4gPSAnbWluJyxcclxuICBNYXggPSAnbWF4JyxcclxuICBTdGRldiA9ICdzdGRldicsXHJcbiAgU3RkZXZwID0gJ3N0ZGV2cCcsXHJcbiAgVmFyID0gJ3ZhcicsXHJcbiAgVmFycCA9ICd2YXJwJyxcclxuICBDb3VudCA9ICdjb3VudCcsXHJcbiAgQ291bnRkID0gJ2NvdW50ZCcsXHJcbiAgTWVkaWFuID0gJ21lZGlhbicsXHJcbiAgQXR0ciA9ICdhdHRyJyxcclxuICBOb25lID0gJ25vbmUnLFxyXG4gIFllYXIgPSAneWVhcicsXHJcbiAgUXRyID0gJ3F0cicsXHJcbiAgTW9udGggPSAnbW9udGgnLFxyXG4gIERheSA9ICdkYXknLFxyXG4gIEhvdXIgPSAnaG91cicsXHJcbiAgTWludXRlID0gJ21pbnV0ZScsXHJcbiAgU2Vjb25kID0gJ3NlY29uZCcsXHJcbiAgV2VlayA9ICd3ZWVrJyxcclxuICBXZWVrZGF5ID0gJ3dlZWtkYXknLFxyXG4gIE1vbXRoWWVhciA9ICdtb250aC15ZWFyJyxcclxuICBNZHkgPSAnbWR5JyxcclxuICBFbmQgPSAnZW5kJyxcclxuICBUcnVuY1llYXIgPSAndHJ1bmMteWVhcicsXHJcbiAgVHJ1bmNRdHIgPSAndHJ1bmMtcXRyJyxcclxuICBUcnVuY01vbnRoID0gJ3RydW5jLW1vbnRoJyxcclxuICBUcnVuY1dlZWsgPSAndHJ1bmMtd2VlaycsXHJcbiAgVHJ1bmNEYXkgPSAndHJ1bmMtZGF5JyxcclxuICBUcnVuY0hvdXIgPSAndHJ1bmMtaG91cicsXHJcbiAgVHJ1bmNNaW51dGUgPSAndHJ1bmMtbWludXRlJyxcclxuICBUcnVuY1NlY29uZCA9ICd0cnVuYy1zZWNvbmQnLFxyXG4gIFF1YXJ0MSA9ICdxdWFydDEnLFxyXG4gIFF1YXJ0MyA9ICdxdWFydDMnLFxyXG4gIFNrZXduZXNzID0gJ3NrZXduZXNzJyxcclxuICBLdXJ0b3NpcyA9ICdrdXJ0b3NpcycsXHJcbiAgSW5PdXQgPSAnaW4tb3V0JyxcclxuICBVc2VyID0gJ3VzZXInXHJcbn1cclxuXHJcbi8qKlxyXG4gKiBSb2xlIG9mIGEgZmllbGQuXHJcbiAqL1xyXG5leHBvcnQgZW51bSBGaWVsZFJvbGVUeXBlIHtcclxuICBEaW1lbnNpb24gPSAnZGltZW5zaW9uJyxcclxuICBNZWFzdXJlID0gJ21lYXN1cmUnLFxyXG4gIFVua25vd24gPSAndW5rbm93bidcclxufVxyXG5cclxuLyoqXHJcbiAqIEFuIGVudW1lcmF0aW9uIG9mIHRoZSB2YWxpZCB0eXBlcyBvZiBmaWx0ZXJzIHRoYXQgY2FuIGJlIGFwcGxpZWQuXHJcbiAqL1xyXG5leHBvcnQgZW51bSBGaWx0ZXJUeXBlIHtcclxuICBDYXRlZ29yaWNhbCA9ICdjYXRlZ29yaWNhbCcsXHJcbiAgUXVhbnRpdGF0aXZlID0gJ3F1YW50aXRhdGl2ZScsXHJcbiAgSGllcmFyY2hpY2FsID0gJ2hpZXJhcmNoaWNhbCcsXHJcbiAgUmVsYXRpdmVEYXRlID0gJ3JlbGF0aXZlLWRhdGEnXHJcbn1cclxuXHJcbi8qKlxyXG4gKiBUaGUgZGlmZmVyZW50IHVwZGF0ZSB0eXBlcyBmb3IgYXBwbHlpbmcgZmlsdGVyXHJcbiAqL1xyXG5leHBvcnQgZW51bSBGaWx0ZXJVcGRhdGVUeXBlIHtcclxuICBBZGQgPSAnYWRkJyxcclxuICBBbGwgPSAnYWxsJyxcclxuICBSZXBsYWNlID0gJ3JlcGxhY2UnLFxyXG4gIFJlbW92ZSA9ICdyZW1vdmUnXHJcbn1cclxuXHJcbi8qKlxyXG4gKiBJbmRpY2F0ZXMgd2hhdCB0byBkbyB3aXRoIG51bGwgdmFsdWVzIGZvciBhIGdpdmVuIGZpbHRlciBvciBtYXJrIHNlbGVjdGlvbiBjYWxsLlxyXG4gKi9cclxuZXhwb3J0IGVudW0gTnVsbE9wdGlvbiB7XHJcbiAgTnVsbFZhbHVlcyA9ICdudWxsLXZhbHVlcycsXHJcbiAgTm9uTnVsbFZhbHVlcyA9ICdub24tbnVsbC12YWx1ZXMnLFxyXG4gIEFsbFZhbHVlcyA9ICdhbGwtdmFsdWVzJ1xyXG59XHJcblxyXG4vKipcclxuICogRGF0ZSBwZXJpb2QgdXNlZCBpbiBmaWx0ZXJzIGFuZCBpbiBwYXJhbWV0ZXJzLlxyXG4gKi9cclxuZXhwb3J0IGVudW0gUGVyaW9kVHlwZSB7XHJcbiAgWWVhcnMgPSAneWVhcnMnLFxyXG4gIFF1YXJ0ZXJzID0gJ3F1YXJ0ZXJzJyxcclxuICBNb250aHMgPSAnbW9udGhzJyxcclxuICBXZWVrcyA9ICd3ZWVrcycsXHJcbiAgRGF5cyA9ICdkYXlzJyxcclxuICBIb3VycyA9ICdob3VycycsXHJcbiAgTWludXRlcyA9ICdtaW51dGVzJyxcclxuICBTZWNvbmRzID0gJ3NlY29uZHMnXHJcbn1cclxuXHJcbi8qKlxyXG4gKiBUaGUgdHlwZSBvZiBzaGVldCBhIFNoZWV0IG9iamVjdCByZXByZXNlbnRzXHJcbiAqL1xyXG5leHBvcnQgZW51bSBTaGVldFR5cGUge1xyXG4gIERhc2hib2FyZCA9ICdkYXNoYm9hcmQnLFxyXG4gIFN0b3J5ID0gJ3N0b3J5JyxcclxuICBXb3Jrc2hlZXQgPSAnd29ya3NoZWV0JyxcclxuICBBZGRJbiA9ICdhZGQtaW4nXHJcbn1cclxuLyoqXHJcbiAqIFJlcHJlc2VudHMgYSBjZXJ0YWluIHR5cGUgb2YgZXZlbnQgd2hpY2ggY2FuIGJlIGxpc3RlbmVkIGZvclxyXG4gKi9cclxuZXhwb3J0IGVudW0gVGFibGVhdUV2ZW50VHlwZSB7XHJcbiAgLyoqIFRoZSBzZWxlY3RlZCBtYXJrcyBvbiBhIHZpc3VhbGl6YXRpb24gaGFzIGNoYW5nZWQgKi9cclxuICBNYXJrU2VsZWN0aW9uQ2hhbmdlZCA9ICdtYXJrLXNlbGVjdGlvbi1jaGFuZ2VkJ1xyXG59XHJcblxuXG5cbi8qKiBXRUJQQUNLIEZPT1RFUiAqKlxuICoqIEQ6L2Rldi9qcy1hcGkvYXBpLWV4dGVybmFsLWNvbnRyYWN0L3NyYy9FbnVtcy50c1xuICoqLyIsImltcG9ydCB7XHJcbiAgVGFibGVhdUV2ZW50VHlwZSxcclxuICBUYWJsZWF1V29ya3NoZWV0RXZlbnQgYXMgVGFibGVhdVdvcmtTaGVldEV2ZW50Q29udHJhY3QsXHJcbiAgV29ya3NoZWV0IGFzIFdvcmtzaGVldENvbnRyYWN0XHJcbn0gZnJvbSAnQHRhYmxlYXUvYXBpLWV4dGVybmFsLWNvbnRyYWN0JztcclxuXHJcbmltcG9ydCB7IFRhYmxlYXVTaGVldEV2ZW50IH0gZnJvbSAnLi9UYWJsZWF1U2hlZXRFdmVudCc7XHJcblxyXG5leHBvcnQgY2xhc3MgVGFibGVhdVdvcmtzaGVldEV2ZW50IGV4dGVuZHMgVGFibGVhdVNoZWV0RXZlbnQgaW1wbGVtZW50cyBUYWJsZWF1V29ya1NoZWV0RXZlbnRDb250cmFjdCB7XHJcbiAgcHJpdmF0ZSBfd29ya3NoZWV0OiBXb3Jrc2hlZXRDb250cmFjdDtcclxuXHJcbiAgcHVibGljIGdldCB3b3Jrc2hlZXQoKTogV29ya3NoZWV0Q29udHJhY3Qge1xyXG4gICAgcmV0dXJuIHRoaXMuX3dvcmtzaGVldDtcclxuICB9XHJcblxyXG4gIHB1YmxpYyBjb25zdHJ1Y3Rvcih0eXBlOiBUYWJsZWF1RXZlbnRUeXBlLCB3b3Jrc2hlZXQ6IFdvcmtzaGVldENvbnRyYWN0KSB7XHJcbiAgICBzdXBlcih0eXBlLCB3b3Jrc2hlZXQpO1xyXG5cclxuICAgIHRoaXMuX3dvcmtzaGVldCA9IHdvcmtzaGVldDtcclxuICB9XHJcbn1cclxuXG5cblxuLyoqIFdFQlBBQ0sgRk9PVEVSICoqXG4gKiogRDovZGV2L2pzLWFwaS9hcGktc2hhcmVkL3NyYy9FdmVudHMvVGFibGVhdVdvcmtzaGVldEV2ZW50LnRzXG4gKiovIiwiaW1wb3J0IHtcclxuICBTaGVldCBhcyBTaGVldENvbnRyYWN0LFxyXG4gIFRhYmxlYXVFdmVudFR5cGUsXHJcbiAgVGFibGVhdVNoZWV0RXZlbnQgYXMgVGFibGVhdVNoZWV0RXZlbnRDb250cmFjdFxyXG59IGZyb20gJ0B0YWJsZWF1L2FwaS1leHRlcm5hbC1jb250cmFjdCc7XHJcblxyXG5pbXBvcnQgeyBUYWJsZWF1RXZlbnQgfSBmcm9tICcuL1RhYmxlYXVFdmVudCc7XHJcblxyXG5leHBvcnQgY2xhc3MgVGFibGVhdVNoZWV0RXZlbnQgZXh0ZW5kcyBUYWJsZWF1RXZlbnQgaW1wbGVtZW50cyBUYWJsZWF1U2hlZXRFdmVudENvbnRyYWN0IHtcclxuICBwcml2YXRlIF9zaGVldDogU2hlZXRDb250cmFjdDtcclxuXHJcbiAgcHVibGljIGdldCBzaGVldCgpOiBTaGVldENvbnRyYWN0IHtcclxuICAgIHJldHVybiB0aGlzLl9zaGVldDtcclxuICB9XHJcblxyXG4gIHB1YmxpYyBjb25zdHJ1Y3Rvcih0eXBlOiBUYWJsZWF1RXZlbnRUeXBlLCBzaGVldDogU2hlZXRDb250cmFjdCkge1xyXG4gICAgc3VwZXIodHlwZSk7XHJcblxyXG4gICAgdGhpcy5fc2hlZXQgPSBzaGVldDtcclxuICB9XHJcbn1cclxuXG5cblxuLyoqIFdFQlBBQ0sgRk9PVEVSICoqXG4gKiogRDovZGV2L2pzLWFwaS9hcGktc2hhcmVkL3NyYy9FdmVudHMvVGFibGVhdVNoZWV0RXZlbnQudHNcbiAqKi8iLCJpbXBvcnQgeyBUYWJsZWF1RXZlbnQgYXMgVGFibGVhdUV2ZW50Q29udHJhY3QsIFRhYmxlYXVFdmVudFR5cGUgfSBmcm9tICdAdGFibGVhdS9hcGktZXh0ZXJuYWwtY29udHJhY3QnO1xyXG5cclxuZXhwb3J0IGNsYXNzIFRhYmxlYXVFdmVudCBpbXBsZW1lbnRzIFRhYmxlYXVFdmVudENvbnRyYWN0IHtcclxuICBwcml2YXRlIF90eXBlOiBUYWJsZWF1RXZlbnRUeXBlO1xyXG5cclxuICBwdWJsaWMgY29uc3RydWN0b3IodHlwZTogVGFibGVhdUV2ZW50VHlwZSkge1xyXG4gICAgdGhpcy5fdHlwZSA9IHR5cGU7XHJcbiAgfVxyXG5cclxuICBwdWJsaWMgZ2V0IHR5cGUoKTogVGFibGVhdUV2ZW50VHlwZSB7XHJcbiAgICByZXR1cm4gdGhpcy5fdHlwZTtcclxuICB9XHJcbn1cclxuXG5cblxuLyoqIFdFQlBBQ0sgRk9PVEVSICoqXG4gKiogRDovZGV2L2pzLWFwaS9hcGktc2hhcmVkL3NyYy9FdmVudHMvVGFibGVhdUV2ZW50LnRzXG4gKiovIiwiaW1wb3J0IHsgVGFibGVhdUV2ZW50LCBUYWJsZWF1RXZlbnRUeXBlLCBUYWJsZWF1RXZlbnRVbnJlZ2lzdGVyRm4gfSBmcm9tICdAdGFibGVhdS9hcGktZXh0ZXJuYWwtY29udHJhY3QnO1xyXG5cclxuaW1wb3J0IHsgU2luZ2xlRXZlbnRNYW5hZ2VyIH0gZnJvbSAnLi4vU2luZ2xlRXZlbnRNYW5hZ2VyJztcclxuXHJcbi8qKlxyXG4gKiBUaGlzIGNsYXNzIGltcGxlbWVudHMgdGhlIFNpbmdsZUV2ZW50TWFuYWdlciBpbnRlcmZhY2UgZm9yIGEgc2luZ2xlIHR5cGUgb2YgVGFibGVhdSBldmVudFxyXG4gKlxyXG4gKiBAdGVtcGxhdGUgVEV2ZW50VHlwZSBUaGUgVGFibGVhdSBldmVudCB0eXBlIHRoaXMgY2xhc3Mgc3BlY2lhbGl6ZXNcclxuICovXHJcbmV4cG9ydCBjbGFzcyBTaW5nbGVFdmVudE1hbmFnZXJJbXBsPFRFdmVudFR5cGUgZXh0ZW5kcyBUYWJsZWF1RXZlbnQ+IGltcGxlbWVudHMgU2luZ2xlRXZlbnRNYW5hZ2VyIHtcclxuICBwcml2YXRlIF9ldmVudFR5cGU6IFRhYmxlYXVFdmVudFR5cGU7XHJcbiAgcHJpdmF0ZSBoYW5kbGVyczogQXJyYXk8KGV2ZW50T2JqOiBURXZlbnRUeXBlKSA9PiB2b2lkPjtcclxuXHJcbiAgcHVibGljIGNvbnN0cnVjdG9yKGV2ZW50VHlwZTogVGFibGVhdUV2ZW50VHlwZSkge1xyXG4gICAgdGhpcy5fZXZlbnRUeXBlID0gZXZlbnRUeXBlO1xyXG4gICAgdGhpcy5oYW5kbGVycyA9IFtdO1xyXG4gIH1cclxuXHJcbiAgcHVibGljIGdldCBldmVudFR5cGUoKTogVGFibGVhdUV2ZW50VHlwZSB7XHJcbiAgICByZXR1cm4gdGhpcy5fZXZlbnRUeXBlO1xyXG4gIH1cclxuXHJcbiAgcHVibGljIGFkZEV2ZW50TGlzdGVuZXIoaGFuZGxlcjogKGV2ZW50T2JqOiBURXZlbnRUeXBlKSA9PiB2b2lkKTogVGFibGVhdUV2ZW50VW5yZWdpc3RlckZuIHtcclxuICAgIHRoaXMuaGFuZGxlcnMucHVzaChoYW5kbGVyKTtcclxuICAgIHJldHVybiAoKSA9PiB0aGlzLnJlbW92ZUV2ZW50TGlzdGVuZXIoaGFuZGxlcik7XHJcbiAgfVxyXG5cclxuICBwdWJsaWMgcmVtb3ZlRXZlbnRMaXN0ZW5lcihoYW5kbGVyOiAoZXZlbnRPYmo6IFRFdmVudFR5cGUpID0+IHZvaWQpOiBib29sZWFuIHtcclxuICAgIGNvbnN0IGJlZm9yZUNvdW50ID0gdGhpcy5oYW5kbGVycy5sZW5ndGg7XHJcbiAgICB0aGlzLmhhbmRsZXJzID0gdGhpcy5oYW5kbGVycy5maWx0ZXIoaCA9PiBoICE9PSBoYW5kbGVyKTtcclxuICAgIHJldHVybiBiZWZvcmVDb3VudCA+IHRoaXMuaGFuZGxlcnMubGVuZ3RoO1xyXG4gIH1cclxuXHJcbiAgcHVibGljIHRyaWdnZXJFdmVudChldmVudEdlbmVyYXRvcjogKCkgPT4gVEV2ZW50VHlwZSk6IHZvaWQge1xyXG4gICAgZm9yIChjb25zdCBoYW5kbGVyIG9mIHRoaXMuaGFuZGxlcnMpIHtcclxuICAgICAgdHJ5IHtcclxuICAgICAgICBjb25zdCBldmVudE1vZGVsID0gZXZlbnRHZW5lcmF0b3IoKTtcclxuICAgICAgICBoYW5kbGVyKGV2ZW50TW9kZWwpO1xyXG4gICAgICB9IGNhdGNoIChlKSB7XHJcbiAgICAgICAgLy8gU2luY2UgdGhpcyBoYW5kbGVyIGNvdWxkIGJlIG91dHNpZGUgb3VyIGNvbnRyb2wsIGp1c3QgY2F0Y2ggYW55dGhpbmcgaXQgdGhyb3dzIGFuZCBjb250aW51ZSBvblxyXG4gICAgICAgIGNvbnRpbnVlO1xyXG4gICAgICB9XHJcbiAgICB9XHJcbiAgfVxyXG59XHJcblxuXG5cbi8qKiBXRUJQQUNLIEZPT1RFUiAqKlxuICoqIEQ6L2Rldi9qcy1hcGkvYXBpLXNoYXJlZC9zcmMvSW50ZXJuYWwvU2luZ2xlRXZlbnRNYW5hZ2VySW1wbC50c1xuICoqLyIsImltcG9ydCB7IEFjdGl2ZU1hcmtzIH0gZnJvbSAnQHRhYmxlYXUvYXBpLWV4dGVybmFsLWNvbnRyYWN0JztcclxuaW1wb3J0IHsgVmlzdWFsSWQgfSBmcm9tICdAdGFibGVhdS9hcGktaW50ZXJuYWwtY29udHJhY3QnO1xyXG5cclxuaW1wb3J0IHsgRGF0YVRhYmxlIH0gZnJvbSAnLi4vTW9kZWxzL0dldERhdGFNb2RlbHMnO1xyXG5pbXBvcnQgeyBBcGlTZXJ2aWNlIH0gZnJvbSAnLi9TZXJ2aWNlUmVnaXN0cnknO1xyXG5cclxuLyoqXHJcbiAqIERlZmluZXMgd2hpY2ggdHlwZSBvZiBnZXREYXRhIGNhbGwgdG8gbWFrZS5cclxuICovXHJcbmV4cG9ydCBlbnVtIEdldERhdGFUeXBlIHtcclxuICBTdW1tYXJ5ID0gJ3N1bW1hcnknLFxyXG4gIFVuZGVybHlpbmcgPSAndW5kZXJseWluZydcclxufVxyXG5cclxuLyoqXHJcbiAqIFNlcnZpY2UgZm9yIGltcGxlbWVudGluZyB0aGUgbG9naWMgZm9yIHZhcmlvdXMgZ2V0RGF0YSBjYWxsc1xyXG4gKlxyXG4gKiBAaW50ZXJmYWNlIEdldERhdGFTZXJ2aWNlXHJcbiAqIEBleHRlbmRzIHtBcGlTZXJ2aWNlfVxyXG4gKi9cclxuZXhwb3J0IGludGVyZmFjZSBHZXREYXRhU2VydmljZSBleHRlbmRzIEFwaVNlcnZpY2Uge1xyXG4gIC8qKlxyXG4gICAqIEdldHMgdGhlIHVuZGVybHlpbmcgZGF0YSBmb3IgYSBwYXJ0aWN1bGFyIHZpc3VhbFxyXG4gICAqXHJcbiAgICogQHBhcmFtIHtWaXN1YWxJZH0gdmlzdWFsSWQgIFRoZSB2aXN1YWwgdG8gZ2V0IGRhdGEgZm9yXHJcbiAgICogQHBhcmFtIHtHZXREYXRhVHlwZX0gZ2V0VHlwZSAgVGhlIHR5cGUgb2YgZ2V0RGF0YSBjYWxsIHRvIG1ha2VcclxuICAgKiBAcGFyYW0ge2Jvb2xlYW59IGlnbm9yZUFsaWFzZXMgIFdoZXRoZXIgb3Igbm90IGFsaWFzZXMgc2hvdWxkIGJlIGlnbm9yZWRcclxuICAgKiBAcGFyYW0ge2Jvb2xlYW59IGlnbm9yZVNlbGVjdGlvbiAgV2hldGhlciBvciBub3Qgc2VsZWN0aW9uIHNob3VsZCBiZSBpZ25vcmVkXHJcbiAgICogQHBhcmFtIHtib29sZWFufSBpbmNsdWRlQWxsQ29sdW1ucyAgU2hvdWxkIGFsbCBjb2x1bW5zIGJlIGluY2x1ZGVkXHJcbiAgICogQHBhcmFtIHtudW1iZXJ9IG1heFJvd3MgIE1heGltdW0gbnVtYmVyIG9mIHJvd3MgdG8gcmV0dXJuXHJcbiAgICogQHJldHVybnMge1Byb21pc2U8RGF0YVRhYmxlPn0gIERhdGEgdGFibGUgd2l0aCB0aGUgcmVxdWVzdGVkIGRhdGFcclxuICAgKi9cclxuICAgIGdldFVuZGVybHlpbmdEYXRhQXN5bmMoXHJcbiAgICAgIHZpc3VhbElkOiBWaXN1YWxJZCxcclxuICAgICAgZ2V0VHlwZTogR2V0RGF0YVR5cGUsXHJcbiAgICAgIGlnbm9yZUFsaWFzZXM6IGJvb2xlYW4sXHJcbiAgICAgIGlnbm9yZVNlbGVjdGlvbjogYm9vbGVhbixcclxuICAgICAgaW5jbHVkZUFsbENvbHVtbnM6IGJvb2xlYW4sXHJcbiAgICAgIG1heFJvd3M6IG51bWJlcik6IFByb21pc2U8RGF0YVRhYmxlPjtcclxuXHJcbiAgICAvKipcclxuICAgICAqIEdldHMgdGhlIGN1cnJlbnRseSBzZWxlY3RlZCBtYXJrcyBmb3IgYSBnaXZlbiB2aXN1YWxcclxuICAgICAqXHJcbiAgICAqIEBwYXJhbSB7VmlzdWFsSWR9IHZpc3VhbElkICBUaGUgdmlzdWFsIHRvIGdldCBkYXRhIGZvclxyXG4gICAgKiBAcmV0dXJucyB7UHJvbWlzZTxBY3RpdmVNYXJrcz59ICBDb2xsZWN0aW9uIG9mIGRhdGEgdGFibGVzIHdpdGggdGhlIGFjdGl2ZSBtYXJrc1xyXG4gICAgKi9cclxuICAgIGdldFNlbGVjdGVkTWFya3NBc3luYyh2aXN1YWxJZDogVmlzdWFsSWQpOiBQcm9taXNlPEFjdGl2ZU1hcmtzPjtcclxuXHJcbiAgICAvKipcclxuICAgICAqIEdldHMgdGhlIGN1cnJlbnRseSBoaWdobGlnaHRlZCBtYXJrcyBmb3IgYSBnaXZlbiB2aXN1YWxcclxuICAgICAqXHJcbiAgICAqIEBwYXJhbSB7VmlzdWFsSWR9IHZpc3VhbElkICBUaGUgdmlzdWFsIHRvIGdldCBkYXRhIGZvclxyXG4gICAgKiBAcmV0dXJucyB7UHJvbWlzZTxBY3RpdmVNYXJrcz59ICBDb2xsZWN0aW9uIG9mIGRhdGEgdGFibGVzIHdpdGggdGhlIGFjdGl2ZSBtYXJrc1xyXG4gICAgKi9cclxuICAgIGdldEhpZ2hsaWdodGVkTWFya3NBc3luYyh2aXN1YWxJZDogVmlzdWFsSWQpOiBQcm9taXNlPEFjdGl2ZU1hcmtzPjtcclxufVxyXG5cblxuXG4vKiogV0VCUEFDSyBGT09URVIgKipcbiAqKiBEOi9kZXYvanMtYXBpL2FwaS1zaGFyZWQvc3JjL1NlcnZpY2VzL0dldERhdGFTZXJ2aWNlLnRzXG4gKiovIiwiaW1wb3J0IHsgSW50ZXJuYWxBcGlEaXNwYXRjaGVyIH0gZnJvbSAnQHRhYmxlYXUvYXBpLWludGVybmFsLWNvbnRyYWN0JztcclxuXHJcbmltcG9ydCB7IEZpbHRlclNlcnZpY2VJbXBsIH0gZnJvbSAnLi9pbXBsL0ZpbHRlclNlcnZpY2VJbXBsJztcclxuaW1wb3J0IHsgR2V0RGF0YVNlcnZpY2VJbXBsIH0gZnJvbSAnLi9pbXBsL0dldERhdGFTZXJ2aWNlSW1wbCc7XHJcbmltcG9ydCB7IE5vdGlmaWNhdGlvblNlcnZpY2VJbXBsIH0gZnJvbSAnLi9pbXBsL05vdGlmaWNhdGlvblNlcnZpY2VJbXBsJztcclxuaW1wb3J0IHsgQXBpU2VydmljZVJlZ2lzdHJ5IH0gZnJvbSAnLi9TZXJ2aWNlUmVnaXN0cnknO1xyXG5cclxuZXhwb3J0IGZ1bmN0aW9uIHJlZ2lzdGVyQWxsU2hhcmVkU2VydmljZXMoZGlzcGF0Y2hlcjogSW50ZXJuYWxBcGlEaXNwYXRjaGVyKTogdm9pZCB7XHJcbiAgQXBpU2VydmljZVJlZ2lzdHJ5Lmluc3RhbmNlLnJlZ2lzdGVyU2VydmljZShuZXcgR2V0RGF0YVNlcnZpY2VJbXBsKGRpc3BhdGNoZXIpKTtcclxuICBBcGlTZXJ2aWNlUmVnaXN0cnkuaW5zdGFuY2UucmVnaXN0ZXJTZXJ2aWNlKG5ldyBGaWx0ZXJTZXJ2aWNlSW1wbChkaXNwYXRjaGVyKSk7XHJcbiAgQXBpU2VydmljZVJlZ2lzdHJ5Lmluc3RhbmNlLnJlZ2lzdGVyU2VydmljZShuZXcgTm90aWZpY2F0aW9uU2VydmljZUltcGwoZGlzcGF0Y2hlcikpO1xyXG4gIC8vIFRPRE8gLSBtb3JlIHNoYXJlZCBzZXJ2aWNlc1xyXG59XHJcblxuXG5cbi8qKiBXRUJQQUNLIEZPT1RFUiAqKlxuICoqIEQ6L2Rldi9qcy1hcGkvYXBpLXNoYXJlZC9zcmMvU2VydmljZXMvUmVnaXN0ZXJBbGxTaGFyZWRTZXJ2aWNlcy50c1xuICoqLyIsImltcG9ydCB7XHJcbiAgRmlsdGVyT3B0aW9ucyxcclxuICBGaWx0ZXJVcGRhdGVUeXBlLFxyXG4gIE51bGxPcHRpb24sXHJcbiAgUmFuZ2VGaWx0ZXJPcHRpb25zXHJcbn0gZnJvbSAnQHRhYmxlYXUvYXBpLWV4dGVybmFsLWNvbnRyYWN0JztcclxuaW1wb3J0IHtcclxuICBDb21tYW5kRXJyb3IsXHJcbiAgRXhlY3V0ZVBhcmFtZXRlcnMsXHJcbiAgSW50ZXJuYWxBcGlEaXNwYXRjaGVyLFxyXG4gIFBhcmFtZXRlcklkLFxyXG4gIFZlcmJJZCxcclxuICBWaXN1YWxJZFxyXG59IGZyb20gJ0B0YWJsZWF1L2FwaS1pbnRlcm5hbC1jb250cmFjdCc7XHJcbmltcG9ydCB7IFBhcmFtIH0gZnJvbSAnQHRhYmxlYXUvYXBpLXV0aWxzJztcclxuXHJcbmltcG9ydCB7IEV4dGVybmFsVG9JbnRlcm5hbEVudW1NYXBwaW5ncyBhcyBFbnVtQ29udmVydGVyIH0gZnJvbSAnLi4vLi4vRW51bU1hcHBpbmdzL0V4dGVybmFsVG9JbnRlcm5hbEVudW1NYXBwaW5ncyc7XHJcblxyXG5pbXBvcnQgeyBGaWx0ZXJTZXJ2aWNlIH0gZnJvbSAnLi4vRmlsdGVyU2VydmljZSc7XHJcbmltcG9ydCB7IFNlcnZpY2VOYW1lcyB9IGZyb20gJy4uL1NlcnZpY2VSZWdpc3RyeSc7XHJcblxyXG5leHBvcnQgY2xhc3MgRmlsdGVyU2VydmljZUltcGwgaW1wbGVtZW50cyBGaWx0ZXJTZXJ2aWNlIHtcclxuICBwcml2YXRlIGRpc3BhdGNoZXI6IEludGVybmFsQXBpRGlzcGF0Y2hlcjtcclxuXHJcbiAgcHVibGljIGNvbnN0cnVjdG9yKGRpc3BhdGNoZXI6IEludGVybmFsQXBpRGlzcGF0Y2hlcikge1xyXG4gICAgdGhpcy5kaXNwYXRjaGVyID0gZGlzcGF0Y2hlcjtcclxuICB9XHJcblxyXG4gIHB1YmxpYyBnZXQgc2VydmljZU5hbWUoKTogc3RyaW5nIHtcclxuICAgIHJldHVybiBTZXJ2aWNlTmFtZXMuRmlsdGVyO1xyXG4gIH1cclxuXHJcbiAgcHVibGljIGFwcGx5RmlsdGVyQXN5bmMoXHJcbiAgICB2aXN1YWxJZDogVmlzdWFsSWQsXHJcbiAgICBmaWVsZE5hbWU6IHN0cmluZyxcclxuICAgIHZhbHVlczogQXJyYXk8c3RyaW5nPixcclxuICAgIHVwZGF0ZVR5cGU6IEZpbHRlclVwZGF0ZVR5cGUsXHJcbiAgICBmaWx0ZXJPcHRpb25zOiBGaWx0ZXJPcHRpb25zKTogUHJvbWlzZTxzdHJpbmc+IHtcclxuICAgICAgaWYgKCFQYXJhbS5pc1ZhbGlkRW51bVZhbHVlPEZpbHRlclVwZGF0ZVR5cGU+KHVwZGF0ZVR5cGUsIEZpbHRlclVwZGF0ZVR5cGUpKSB7XHJcbiAgICAgICAgdGhyb3cgbmV3IEVycm9yKCdJbnZhbGlkIHZhbHVlIGZvciBwYXJhbWV0ZXIgRmlsdGVyVXBkYXRlVHlwZScpO1xyXG4gICAgICB9XHJcbiAgICAgIGNvbnN0IHZlcmIgPSBWZXJiSWQuQXBwbHlDYXRlZ29yaWNhbEZpbHRlcjtcclxuICAgICAgY29uc3QgcGFyYW1ldGVyczogRXhlY3V0ZVBhcmFtZXRlcnMgPSB7fTtcclxuICAgICAgcGFyYW1ldGVyc1tQYXJhbWV0ZXJJZC5WaXN1YWxJZF0gPSB2aXN1YWxJZDtcclxuICAgICAgcGFyYW1ldGVyc1tQYXJhbWV0ZXJJZC5GaWVsZE5hbWVdID0gZmllbGROYW1lO1xyXG4gICAgICBwYXJhbWV0ZXJzW1BhcmFtZXRlcklkLkZpbHRlclZhbHVlc10gPSB2YWx1ZXM7XHJcbiAgICAgIHBhcmFtZXRlcnNbUGFyYW1ldGVySWQuRmlsdGVyVXBkYXRlVHlwZV0gPSB1cGRhdGVUeXBlO1xyXG4gICAgICBwYXJhbWV0ZXJzW1BhcmFtZXRlcklkLklzRXhjbHVkZU1vZGVdID1cclxuICAgICAgICAoZmlsdGVyT3B0aW9ucyA9PT0gdW5kZWZpbmVkIHx8IGZpbHRlck9wdGlvbnMuaXNFeGNsdWRlTW9kZSA9PT0gdW5kZWZpbmVkKSA/IGZhbHNlIDogZmlsdGVyT3B0aW9ucy5pc0V4Y2x1ZGVNb2RlO1xyXG5cclxuICAgICAgcmV0dXJuIHRoaXMuZGlzcGF0Y2hlci5leGVjdXRlKHZlcmIsIHBhcmFtZXRlcnMpLnRoZW48c3RyaW5nPihyZXNwb25zZSA9PiB7XHJcbiAgICAgICAgY29uc3QgZXJyb3IgPSByZXNwb25zZS5yZXN1bHQgYXMgQ29tbWFuZEVycm9yO1xyXG4gICAgICAgIGlmICghKGVycm9yLmVycm9yQ29kZSA9PT0gbnVsbCB8fCBlcnJvci5lcnJvckNvZGUgPT09IHVuZGVmaW5lZCkpIHtcclxuICAgICAgICAgIC8vIFRPRE86IGNvbWUgYmFjayBhbmQgaW1wbGVtZW50IGVycm9yIGhhbmRsaW5nIGxvZ2ljXHJcbiAgICAgICAgICB0aHJvdyBuZXcgRXJyb3IoJ0Vycm9yIEFwcGx5aW5nIEZpbHRlcjogJyArIGVycm9yLmVycm9yQ29kZSk7XHJcbiAgICAgICAgfVxyXG4gICAgICAgIHJldHVybiBmaWVsZE5hbWU7XHJcbiAgICAgIH0pO1xyXG4gICAgfVxyXG5cclxuICBwdWJsaWMgYXBwbHlSYW5nZUZpbHRlckFzeW5jKHZpc3VhbElkOiBWaXN1YWxJZCwgZmllbGROYW1lOiBzdHJpbmcsIGZpbHRlck9wdGlvbnM6IFJhbmdlRmlsdGVyT3B0aW9ucyk6IFByb21pc2U8c3RyaW5nPiB7XHJcbiAgICBpZiAoIWZpbHRlck9wdGlvbnMpIHtcclxuICAgICAgdGhyb3cgbmV3IEVycm9yKCdNaXNzaW5nIFBhcmFtZXRlcjogUmFuZ2VGaWx0ZXJPcHRpb25zJyk7XHJcbiAgICB9XHJcbiAgICBQYXJhbS52ZXJpZnlSYW5nZVBhcmFtVHlwZShmaWx0ZXJPcHRpb25zLm1pbiwgZmlsdGVyT3B0aW9ucy5tYXgpO1xyXG5cclxuICAgIGNvbnN0IHZlcmIgPSBWZXJiSWQuQXBwbHlSYW5nZUZpbHRlcjtcclxuICAgIGNvbnN0IHBhcmFtZXRlcnM6IEV4ZWN1dGVQYXJhbWV0ZXJzID0ge307XHJcblxyXG4gICAgaWYgKGZpbHRlck9wdGlvbnMubWluKSB7XHJcbiAgICAgIGxldCBtaW46IHN0cmluZyB8IG51bWJlcjtcclxuICAgICAgaWYgKGZpbHRlck9wdGlvbnMubWluIGluc3RhbmNlb2YgRGF0ZSkge1xyXG4gICAgICAgIG1pbiA9IFBhcmFtLnNlcmlhbGl6ZURhdGVGb3JQbGF0Zm9ybShmaWx0ZXJPcHRpb25zLm1pbik7XHJcbiAgICAgIH0gZWxzZSB7XHJcbiAgICAgICAgbWluID0gZmlsdGVyT3B0aW9ucy5taW47XHJcbiAgICAgIH1cclxuICAgICAgcGFyYW1ldGVyc1tQYXJhbWV0ZXJJZC5GaWx0ZXJSYW5nZU1pbl0gPSBtaW47XHJcbiAgICB9XHJcblxyXG4gICAgaWYgKGZpbHRlck9wdGlvbnMubWF4KSB7XHJcbiAgICAgIGxldCBtYXg6IHN0cmluZyB8IG51bWJlcjtcclxuICAgICAgaWYgKGZpbHRlck9wdGlvbnMubWF4IGluc3RhbmNlb2YgRGF0ZSkge1xyXG4gICAgICAgIG1heCA9IFBhcmFtLnNlcmlhbGl6ZURhdGVGb3JQbGF0Zm9ybShmaWx0ZXJPcHRpb25zLm1heCk7XHJcbiAgICAgIH0gZWxzZSB7XHJcbiAgICAgICAgbWF4ID0gZmlsdGVyT3B0aW9ucy5tYXg7XHJcbiAgICAgIH1cclxuICAgICAgcGFyYW1ldGVyc1tQYXJhbWV0ZXJJZC5GaWx0ZXJSYW5nZU1heF0gPSBtYXg7XHJcbiAgICB9XHJcblxyXG4gICAgaWYgKGZpbHRlck9wdGlvbnMubnVsbE9wdGlvbikge1xyXG4gICAgICBpZiAoIVBhcmFtLmlzVmFsaWRFbnVtVmFsdWU8TnVsbE9wdGlvbj4oZmlsdGVyT3B0aW9ucy5udWxsT3B0aW9uLCBOdWxsT3B0aW9uKSkge1xyXG4gICAgICAgIHRocm93IG5ldyBFcnJvcignSW52YWxpZCB2YWx1ZSBmb3IgcGFyYW1ldGVyIE51bGxPcHRpb24nKTtcclxuICAgICAgfVxyXG4gICAgICBwYXJhbWV0ZXJzW1BhcmFtZXRlcklkLkZpbHRlclJhbmdlTnVsbE9wdGlvbl0gPSBFbnVtQ29udmVydGVyLm51bGxPcHRpb25zLmNvbnZlcnQoZmlsdGVyT3B0aW9ucy5udWxsT3B0aW9uKTtcclxuICAgIH1cclxuICAgIHBhcmFtZXRlcnNbUGFyYW1ldGVySWQuRmllbGROYW1lXSA9IGZpZWxkTmFtZTtcclxuICAgIHBhcmFtZXRlcnNbUGFyYW1ldGVySWQuVmlzdWFsSWRdID0gdmlzdWFsSWQ7XHJcblxyXG4gICAgcmV0dXJuIHRoaXMuZGlzcGF0Y2hlci5leGVjdXRlKHZlcmIsIHBhcmFtZXRlcnMpLnRoZW48c3RyaW5nPihyZXNwb25zZSA9PiB7XHJcbiAgICAgIHJldHVybiBmaWVsZE5hbWU7XHJcbiAgICB9KTtcclxuICB9XHJcblxyXG4gIHB1YmxpYyBjbGVhckZpbHRlckFzeW5jKHZpc3VhbElkOiBWaXN1YWxJZCwgZmllbGROYW1lOiBzdHJpbmcpOiBQcm9taXNlPHN0cmluZz4ge1xyXG4gICAgY29uc3QgdmVyYiA9IFZlcmJJZC5DbGVhckZpbHRlcjtcclxuICAgIGxldCBwYXJhbWV0ZXJzOiBFeGVjdXRlUGFyYW1ldGVycyA9IHt9O1xyXG4gICAgcGFyYW1ldGVyc1tQYXJhbWV0ZXJJZC5WaXN1YWxJZF0gPSB2aXN1YWxJZDtcclxuICAgIHBhcmFtZXRlcnNbUGFyYW1ldGVySWQuRmllbGROYW1lXSA9IGZpZWxkTmFtZTtcclxuICAgIHJldHVybiB0aGlzLmRpc3BhdGNoZXIuZXhlY3V0ZSh2ZXJiLCBwYXJhbWV0ZXJzKS50aGVuPHN0cmluZz4ocmVzcG9zbmUgPT4ge1xyXG4gICAgICByZXR1cm4gZmllbGROYW1lO1xyXG4gICAgfSk7XHJcbiAgfVxyXG59XHJcblxuXG5cbi8qKiBXRUJQQUNLIEZPT1RFUiAqKlxuICoqIEQ6L2Rldi9qcy1hcGkvYXBpLXNoYXJlZC9zcmMvU2VydmljZXMvaW1wbC9GaWx0ZXJTZXJ2aWNlSW1wbC50c1xuICoqLyIsIi8qKlxyXG4gKiBUaGlzIGlzIHlvdXIgbWFpbi4gVGhpcyBpcyB3aGVyZSB5b3UgcmUtZXhwb3J0IGV2ZXJ5dGhpbmcgeW91IHdhbnQgdG8gYmUgcHVibGljbHkgYXZhaWxhYmxlLlxyXG4gKlxyXG4gKiBUaGUgYnVpbGQgZW5mb3JjZXMgdGhhdCB0aGUgZmlsZSBoYXMgdGhlIHNhbWUgbmFtZSBhcyB0aGUgZ2xvYmFsIHZhcmlhYmxlIHRoYXQgaXMgZXhwb3J0ZWQuXHJcbiAqL1xyXG5cclxuZXhwb3J0IHsgRW51bUNvbnZlcnRlciB9IGZyb20gJy4vRW51bUNvbnZlcnRlcic7XHJcbmV4cG9ydCB7IFBhcmFtIH0gZnJvbSAnLi9QYXJhbSc7XHJcblxuXG5cbi8qKiBXRUJQQUNLIEZPT1RFUiAqKlxuICoqIEQ6L2Rldi9qcy1hcGkvYXBpLXV0aWxzL3NyYy9BcGlVdGlscy50c1xuICoqLyIsIi8qKlxyXG4gKiBUaGlzIGNsYXNzIGNvbnZlcnRzIGZyb20gYSBzb3VyY2UgZW51bSB2YWx1ZSB0byBkZXN0aW5hdGlvbiBlbnVtXHJcbiAqIHZhbHVlIGdpdmVuIGEgbWFwcGluZyBmcm9tIHNvdXJjZSB0byBkZXN0aW5hdGlvbiB3aGVuIGNvbnN0cnVjdGVkLlxyXG4gKi9cclxuZXhwb3J0IGNsYXNzIEVudW1Db252ZXJ0ZXI8VFNvdXJjZVR5cGUgZXh0ZW5kcyBzdHJpbmcsIFREZXN0aW5hdGlvblR5cGU+IHtcclxuICBwdWJsaWMgY29uc3RydWN0b3IoXHJcbiAgICBwcml2YXRlIG1hcHBpbmdzOiB7IFtlbnVtVmFsOiBzdHJpbmddOiBURGVzdGluYXRpb25UeXBlOyB9LFxyXG4gICAgcHJpdmF0ZSBkZWZhdWx0VmFsPzogVERlc3RpbmF0aW9uVHlwZSkgeyB9XHJcblxyXG4gIHB1YmxpYyBjb252ZXJ0KGVudW1WYWw6IFRTb3VyY2VUeXBlLCB0aHJvd0lmTWlzc2luZz86IGJvb2xlYW4pOiBURGVzdGluYXRpb25UeXBlIHtcclxuICAgIGlmICh0aGlzLm1hcHBpbmdzLmhhc093blByb3BlcnR5KGVudW1WYWwpKSB7XHJcbiAgICAgIHJldHVybiB0aGlzLm1hcHBpbmdzW2VudW1WYWwgYXMgc3RyaW5nXTtcclxuICAgIH1cclxuXHJcbiAgICBpZiAodGhpcy5kZWZhdWx0VmFsICE9PSB1bmRlZmluZWQgJiYgIXRocm93SWZNaXNzaW5nKSB7XHJcbiAgICAgIHJldHVybiB0aGlzLmRlZmF1bHRWYWw7XHJcbiAgICB9XHJcblxyXG4gICAgdGhyb3cgbmV3IEVycm9yKCdNYXBwaW5nIG5vdCBmb3VuZCBmb3IgJyArIGVudW1WYWwpO1xyXG4gIH1cclxufVxyXG5cblxuXG4vKiogV0VCUEFDSyBGT09URVIgKipcbiAqKiBEOi9kZXYvanMtYXBpL2FwaS11dGlscy9zcmMvRW51bUNvbnZlcnRlci50c1xuICoqLyIsImV4cG9ydCBjbGFzcyBQYXJhbSB7XHJcbiAgLyoqXHJcbiAgICogVmVyaWZpZXMgdGhhdCBhbiBpbmNvbWluZyBwYXJhbWV0ZXIgaXMgJ3RydXRoeScgYW5kIHRocm93c1xyXG4gICAqIGFuIGVycm9yIGlmIGl0J3Mgbm90LiBUaGlzIHdpbGwgdGhyb3cgYW4gZXJyb3IgaWYgdGhlIHZhbHVlXHJcbiAgICogaXMgbnVsbCwgdW5kZWZpbmVkLCBOYU4sIHRoZSBlbXB0eSBzdHJpbmcsIDAsIG9yIGZhbHNlLlxyXG4gICAqXHJcbiAgICogQHBhcmFtIGFyZ3VtZW50VmFsdWUgdmFsdWUgdG8gdmVyaWZ5XHJcbiAgICogQHBhcmFtIGFyZ3VtZW50TmFtZSBuYW1lIG9mIGFyZ3VtZW50IHRvIHZlcmlmeVxyXG4gICAqL1xyXG4gIC8qdHNsaW50OmRpc2FibGUtbmV4dC1saW5lICovXHJcbiAgcHVibGljIHN0YXRpYyB2ZXJpZnlWYWx1ZShhcmd1bWVudFZhbHVlOiBhbnksIGFyZ3VtZW50TmFtZTogc3RyaW5nKTogdm9pZCB7XHJcbiAgICBpZiAoIWFyZ3VtZW50VmFsdWUpIHtcclxuICAgICAgdGhyb3cgbmV3IEVycm9yKCdWYWx1ZSBpcyBpbnZhbGlkIGZvciBhcmd1bWVudDogJyArIGFyZ3VtZW50TmFtZSk7XHJcbiAgICB9XHJcbiAgfVxyXG5cclxuICAvKipcclxuICAgKiBWZXJpZmllcyB0aGF0IGEgc3RyaW5nIGlzIHZhbGlkLiAgVGhyb3dzIGFuIGVycm9yIGlmIHRoZSBzdHJpbmcgaXNcclxuICAgKiBudWxsLCB1bmRlZmluZWQsIG9yIE5hTi5cclxuICAgKlxyXG4gICAqIEBwYXJhbSBhcmd1bWVudFZhbHVlIHZhbHVlIHRvIHZlcmlmeVxyXG4gICAqIEBwYXJhbSBhcmd1bWVudE5hbWUgbmFtZSBvZiBhcmd1bWVudCB0byB2ZXJpZnlcclxuICAgKi9cclxuICBwdWJsaWMgc3RhdGljIHZlcmlmeVN0cmluZyhhcmd1bWVudFZhbHVlOiBzdHJpbmcsIGFyZ3VtZW50TmFtZTogc3RyaW5nKTogdm9pZCB7XHJcbiAgICBpZiAoYXJndW1lbnRWYWx1ZSA9PT0gbnVsbCB8fCBhcmd1bWVudFZhbHVlID09PSB1bmRlZmluZWQpIHtcclxuICAgICAgdGhyb3cgbmV3IEVycm9yKCdTdHJpbmcgdmFsdWUgaXMgaW52YWxpZCBmb3IgYXJndW1lbnQ6ICcgKyBhcmd1bWVudE5hbWUpO1xyXG4gICAgfVxyXG4gIH1cclxuXHJcbiAgLyoqXHJcbiAgICogVmVyaWZpZXMgdGhlIHZhbHVlIGlzIHBhcnQgb2YgdGhlIEVudW1cclxuICAgKlxyXG4gICAqIFN0cmluZyBlbnVtcyBhcmUge3N0cmluZyA6IHN0cmluZ30gZGljdGlvbmFyaWVzIHdoaWNoIGFyZSBub3QgcmV2ZXJzZSBtYXBwYWJsZVxyXG4gICAqIFRoaXMgaXMgYW4gdWdseSB3b3JrYXJvdW5kXHJcbiAgICogQHBhcmFtIHZhbHVlIHZhbHVlIHRvIHZlcmlmeVxyXG4gICAqIEBwYXJhbSBlbnVtVHlwZSBlbnVtIHRvIHZlcmlmeSBhZ2FpbnN0XHJcbiAgICovXHJcbiAgLyogdHNsaW50OmRpc2FibGU6bm8tYW55ICovXHJcbiAgcHVibGljIHN0YXRpYyBpc1ZhbGlkRW51bVZhbHVlPEVudW1UeXBlPih2YWx1ZTogRW51bVR5cGUsIGVudW1UeXBlOiBhbnkpOiBib29sZWFuIHtcclxuICAgIGxldCBpc1ZhbGlkOiBib29sZWFuID0gZmFsc2U7XHJcbiAgICBPYmplY3Qua2V5cyhlbnVtVHlwZSkuZm9yRWFjaCgoZW51bUtleSkgPT4ge1xyXG4gICAgICBpZiAoZW51bVR5cGVbZW51bUtleV0gPT09IHZhbHVlLnRvU3RyaW5nKCkpIHtcclxuICAgICAgICBpc1ZhbGlkID0gdHJ1ZTtcclxuICAgICAgfVxyXG4gICAgfSk7XHJcbiAgICByZXR1cm4gaXNWYWxpZDtcclxuICB9XHJcbiAgLyogdHNsaW50OmVuYWJsZTpuby1hbnkgKi9cclxuXHJcbiAgLyoqXHJcbiAgICogc2VyaWFsaXplcyB0aGUgZGF0ZSBpbnRvIHRoZSBmb3JtYXQgdGhhdCB0aGUgc2VydmVyIGV4cGVjdHMuXHJcbiAgICogQHBhcmFtIGRhdGUgdGhlIGRhdGUgdG8gc2VyaWFsaXplXHJcbiAgICovXHJcbiAgcHVibGljIHN0YXRpYyBzZXJpYWxpemVEYXRlRm9yUGxhdGZvcm0oZGF0ZTogRGF0ZSk6IHN0cmluZyB7XHJcbiAgICBjb25zdCB5ZWFyOiBudW1iZXIgPSBkYXRlLmdldFVUQ0Z1bGxZZWFyKCk7XHJcbiAgICBjb25zdCBtb250aDogbnVtYmVyID0gZGF0ZS5nZXRVVENNb250aCgpICsgMTtcclxuICAgIGNvbnN0IGRheTogbnVtYmVyID0gZGF0ZS5nZXRVVENEYXRlKCk7XHJcbiAgICBjb25zdCBoaDogbnVtYmVyID0gZGF0ZS5nZXRVVENIb3VycygpO1xyXG4gICAgY29uc3QgbW06IG51bWJlciA9IGRhdGUuZ2V0VVRDTWludXRlcygpO1xyXG4gICAgY29uc3Qgc2VjOiBudW1iZXIgPSBkYXRlLmdldFVUQ1NlY29uZHMoKTtcclxuICAgIHJldHVybiB5ZWFyICsgJy0nICsgbW9udGggKyAnLScgKyBkYXkgKyAnICcgKyBoaCArICc6JyArIG1tICsgJzonICsgc2VjO1xyXG4gIH1cclxuXHJcbiAgLyoqXHJcbiAgICogVmVyaWZpZXMgdGhlIHBhcmFtcyBtaW4gYW5kIG1heCBmb3IgYXBwbHlpbmcgcmFuZ2UgZmlsdGVyXHJcbiAgICogQHBhcmFtIG1pbiByYW5nZSBtaW5cclxuICAgKiBAcGFyYW0gbWF4IHJhbmdlIG1heFxyXG4gICAqL1xyXG4gIC8qIHRzbGludDpkaXNhYmxlOm5vLWFueSAqL1xyXG4gIHB1YmxpYyBzdGF0aWMgdmVyaWZ5UmFuZ2VQYXJhbVR5cGUobWluOiBhbnksIG1heDogYW55KTogdm9pZCB7XHJcbiAgLyogdHNsaW50OmVuYWJsZTpuby1hbnkgKi9cclxuICAgIGlmICghbWluICYmICFtYXgpIHtcclxuICAgICAgdGhyb3cgbmV3IEVycm9yKCdNaXNzaW5nIFBhcmFtZXRlcjogQXQgbGVhc3Qgb25lIG9mIG1pbiBvciBtYXggaXMgcmVxdWlyZWQnKTtcclxuICAgIH1cclxuXHJcbiAgICBpZiAoIVBhcmFtLmlzVHlwZU51bWJlcihtaW4pICYmICFQYXJhbS5pc1R5cGVEYXRlKG1pbikpIHtcclxuICAgICAgdGhyb3cgbmV3IEVycm9yKCdJbnZhbGlkIFBhcmFtZXRlciBUeXBlOiBPbmx5IERhdGUgYW5kIG51bWJlciBhcmUgYWxsb3dlZCBmb3IgcGFyYW1ldGVyIG1pbicpO1xyXG4gICAgfVxyXG5cclxuICAgIGlmICghUGFyYW0uaXNUeXBlTnVtYmVyKG1heCkgJiYgIVBhcmFtLmlzVHlwZURhdGUobWF4KSkge1xyXG4gICAgICB0aHJvdyBuZXcgRXJyb3IoJ0ludmFsaWQgUGFyYW1ldGVyIFR5cGU6IE9ubHkgRGF0ZSBhbmQgbnVtYmVyIGFyZSBhbGxvd2VkIGZvciBwYXJhbWV0ZXIgbWF4Jyk7XHJcbiAgICB9XHJcblxyXG4gICAgaWYgKHR5cGVvZihtaW4pICE9PSB0eXBlb2YobWF4KSkge1xyXG4gICAgICB0aHJvdyBuZXcgRXJyb3IoJ0ludmFsaWQgUGFyYW1ldGVyIFR5cGU6IFBhcmFtZXRlcnMgbWluIGFuZCBtYXggc2hvdWxkIGJlIG9mIHRoZSBzYW1lIHR5cGUnKTtcclxuICAgIH1cclxuICB9XHJcblxyXG4gIC8qKlxyXG4gICAqIFZlcmlmaWVzIHRoZSBpbnB1dCBpcyBhIG51bWJlclxyXG4gICAqL1xyXG4gIC8qIHRzbGludDpkaXNhYmxlOm5vLWFueSAqL1xyXG4gIHB1YmxpYyBzdGF0aWMgaXNUeXBlTnVtYmVyKGlucHV0OiBhbnkpOiBib29sZWFuIHtcclxuICAgIHJldHVybiB0eXBlb2YoaW5wdXQpID09PSAnbnVtYmVyJyB8fCBpbnB1dCBpbnN0YW5jZW9mIE51bWJlcjtcclxuICB9XHJcbiAgLyogdHNsaW50OmVuYWJsZTpuby1hbnkgKi9cclxuXHJcbiAgLyoqXHJcbiAgICogVmVyaWZpZXMgdGhlIGlucHV0IGlzIGEgRGF0ZVxyXG4gICAqL1xyXG4gIC8qIHRzbGludDpkaXNhYmxlOm5vLWFueSAqL1xyXG4gIHB1YmxpYyBzdGF0aWMgaXNUeXBlRGF0ZShpbnB1dDogYW55KTogYm9vbGVhbiB7XHJcbiAgICByZXR1cm4gaW5wdXQgaW5zdGFuY2VvZiBEYXRlO1xyXG4gIH1cclxuICAvKiB0c2xpbnQ6ZW5hYmxlOm5vLWFueSAqL1xyXG59XHJcblxuXG5cbi8qKiBXRUJQQUNLIEZPT1RFUiAqKlxuICoqIEQ6L2Rldi9qcy1hcGkvYXBpLXV0aWxzL3NyYy9QYXJhbS50c1xuICoqLyIsImltcG9ydCB7IE51bGxPcHRpb24gYXMgRXh0ZXJuYWxOdWxsT3B0aW9uIH0gZnJvbSAnQHRhYmxlYXUvYXBpLWV4dGVybmFsLWNvbnRyYWN0JztcclxuaW1wb3J0IHsgTnVsbE9wdGlvbiBhcyBJbnRlcm5hbE51bGxPcHRpb24gfSBmcm9tICdAdGFibGVhdS9hcGktaW50ZXJuYWwtY29udHJhY3QnO1xyXG5cclxuaW1wb3J0IHsgRW51bUNvbnZlcnRlciB9IGZyb20gJ0B0YWJsZWF1L2FwaS11dGlscyc7XHJcblxyXG4vKiB0c2xpbnQ6ZGlzYWJsZTp0eXBlZGVmIC0gRGlzYWJsZSB0aGlzIHRvIG1ha2UgZGVjbGFyaW5nIHRoZXNlIGNsYXNzZXMgYSBiaXQgZWFzaWVyICovXHJcbi8qKlxyXG4gKiBNYXBzIGVudW1zIHVzZWQgYnkgdGhlIGV4dGVybmFsLWFwaS1jb250cmFjdCB0byB0aGUgZW51bXMgdXNlZFxyXG4gKiBpbiB0aGUgaW50ZXJuYWwtYXBpLWNvbnRyYWN0LCB3aGljaCBkZXZlbG9wZXJzIGNvZGUgYWdhaW5zdC5cclxuICovXHJcbmV4cG9ydCBjbGFzcyBFeHRlcm5hbFRvSW50ZXJuYWxFbnVtTWFwcGluZ3Mge1xyXG4gIHB1YmxpYyBzdGF0aWMgbnVsbE9wdGlvbnMgPSBuZXcgRW51bUNvbnZlcnRlcjxFeHRlcm5hbE51bGxPcHRpb24sIEludGVybmFsTnVsbE9wdGlvbj4oe1xyXG4gICAgW0V4dGVybmFsTnVsbE9wdGlvbi5BbGxWYWx1ZXNdOiBJbnRlcm5hbE51bGxPcHRpb24uQWxsVmFsdWVzLFxyXG4gICAgW0V4dGVybmFsTnVsbE9wdGlvbi5Ob25OdWxsVmFsdWVzXTogSW50ZXJuYWxOdWxsT3B0aW9uLk5vbk51bGxWYWx1ZXMsXHJcbiAgICBbRXh0ZXJuYWxOdWxsT3B0aW9uLk5vbk51bGxWYWx1ZXNdOiBJbnRlcm5hbE51bGxPcHRpb24uTnVsbFZhbHVlc1xyXG4gIH0pO1xyXG59XHJcbi8qIHRzbGludDplbmFibGU6dHlwZWRlZiAqL1xyXG5cblxuXG4vKiogV0VCUEFDSyBGT09URVIgKipcbiAqKiBEOi9kZXYvanMtYXBpL2FwaS1zaGFyZWQvc3JjL0VudW1NYXBwaW5ncy9FeHRlcm5hbFRvSW50ZXJuYWxFbnVtTWFwcGluZ3MudHNcbiAqKi8iLCJpbXBvcnQgeyBBY3RpdmVNYXJrcywgRGF0YVR5cGUgfSBmcm9tICdAdGFibGVhdS9hcGktZXh0ZXJuYWwtY29udHJhY3QnO1xyXG5pbXBvcnQge1xyXG4gIERhdGFUYWJsZSBhcyBEYXRhVGFibGVJbnRlcm5hbENvbnRyYWN0LFxyXG4gIEV4ZWN1dGVQYXJhbWV0ZXJzLFxyXG4gIEhpZ2hsaWdodGVkTWFya3NUYWJsZSxcclxuICBJbnRlcm5hbEFwaURpc3BhdGNoZXIsXHJcbiAgUGFyYW1ldGVySWQsXHJcbiAgU2VsZWN0ZWRNYXJrc1RhYmxlLFxyXG4gIFVuZGVybHlpbmdEYXRhVGFibGUsXHJcbiAgVmVyYklkLFxyXG4gIFZpc3VhbElkLFxyXG59IGZyb20gJ0B0YWJsZWF1L2FwaS1pbnRlcm5hbC1jb250cmFjdCc7XHJcblxyXG5pbXBvcnQgeyBDb2x1bW4sIERhdGFUYWJsZSwgRGF0YVZhbHVlIH0gZnJvbSAnLi4vLi4vTW9kZWxzL0dldERhdGFNb2RlbHMnO1xyXG5pbXBvcnQgeyBHZXREYXRhU2VydmljZSwgR2V0RGF0YVR5cGUgfSBmcm9tICcuLi9HZXREYXRhU2VydmljZSc7XHJcbmltcG9ydCB7IFNlcnZpY2VOYW1lcyB9IGZyb20gJy4uL1NlcnZpY2VSZWdpc3RyeSc7XHJcblxyXG5leHBvcnQgY2xhc3MgR2V0RGF0YVNlcnZpY2VJbXBsIGltcGxlbWVudHMgR2V0RGF0YVNlcnZpY2Uge1xyXG4gIHByaXZhdGUgZGlzcGF0Y2hlcjogSW50ZXJuYWxBcGlEaXNwYXRjaGVyO1xyXG5cclxuICBwdWJsaWMgY29uc3RydWN0b3IoZGlzcGF0Y2hlcjogSW50ZXJuYWxBcGlEaXNwYXRjaGVyKSB7XHJcbiAgICB0aGlzLmRpc3BhdGNoZXIgPSBkaXNwYXRjaGVyO1xyXG4gIH1cclxuXHJcbiAgcHVibGljIGdldCBzZXJ2aWNlTmFtZSgpOiBzdHJpbmcge1xyXG4gICAgcmV0dXJuIFNlcnZpY2VOYW1lcy5HZXREYXRhO1xyXG4gIH1cclxuXHJcbiAgcHVibGljIGdldFVuZGVybHlpbmdEYXRhQXN5bmMoXHJcbiAgICB2aXN1YWxJZDogVmlzdWFsSWQsXHJcbiAgICBnZXRUeXBlOiBHZXREYXRhVHlwZSxcclxuICAgIGlnbm9yZUFsaWFzZXM6IGJvb2xlYW4sXHJcbiAgICBpZ25vcmVTZWxlY3Rpb246IGJvb2xlYW4sXHJcbiAgICBpbmNsdWRlQWxsQ29sdW1uczogYm9vbGVhbixcclxuICAgIG1heFJvd3M6IG51bWJlcik6IFByb21pc2U8RGF0YVRhYmxlPiB7XHJcbiAgICAgIC8vIENyZWF0ZSBhbGwgb2Ygb3VyIHBhcmFtZXRlcnNcclxuICAgICAgY29uc3QgdmVyYiA9IGdldFR5cGUgPT09IEdldERhdGFUeXBlLlN1bW1hcnkgPyBWZXJiSWQuR2V0RGF0YVN1bW1hcnlEYXRhIDogVmVyYklkLkdldFVuZGVybHlpbmdEYXRhO1xyXG4gICAgICBjb25zdCBwYXJhbWV0ZXJzOiBFeGVjdXRlUGFyYW1ldGVycyA9IHt9O1xyXG4gICAgICBwYXJhbWV0ZXJzW1BhcmFtZXRlcklkLlZpc3VhbElkXSA9IHZpc3VhbElkO1xyXG4gICAgICBwYXJhbWV0ZXJzW1BhcmFtZXRlcklkLklnbm9yZUFsaWFzZXNdID0gaWdub3JlQWxpYXNlcztcclxuICAgICAgcGFyYW1ldGVyc1tQYXJhbWV0ZXJJZC5JZ25vcmVTZWxlY3Rpb25dID0gaWdub3JlU2VsZWN0aW9uO1xyXG4gICAgICBwYXJhbWV0ZXJzW1BhcmFtZXRlcklkLkluY2x1ZGVBbGxDb2x1bW5zXSA9IGluY2x1ZGVBbGxDb2x1bW5zO1xyXG4gICAgICBwYXJhbWV0ZXJzW1BhcmFtZXRlcklkLk1heFJvd3NdID0gbWF4Um93cztcclxuXHJcbiAgICAgIHJldHVybiB0aGlzLmRpc3BhdGNoZXIuZXhlY3V0ZSh2ZXJiLCBwYXJhbWV0ZXJzKS50aGVuPERhdGFUYWJsZT4ocmVzcG9uc2UgPT4ge1xyXG4gICAgICAgIGNvbnN0IHJlc3BvbnNlRGF0YSA9IHJlc3BvbnNlLnJlc3VsdCBhcyBVbmRlcmx5aW5nRGF0YVRhYmxlO1xyXG4gICAgICAgIHJldHVybiB0aGlzLnByb2Nlc3NSZXN1bHRzVGFibGUocmVzcG9uc2VEYXRhLmRhdGEsIHJlc3BvbnNlRGF0YS5pc1N1bW1hcnkpO1xyXG4gICAgICB9KTtcclxuICAgIH1cclxuXHJcbiAgcHVibGljIGdldFNlbGVjdGVkTWFya3NBc3luYyh2aXN1YWxJZDogVmlzdWFsSWQpOiBQcm9taXNlPEFjdGl2ZU1hcmtzPiB7XHJcbiAgICBjb25zdCBwYXJhbWV0ZXJzOiBFeGVjdXRlUGFyYW1ldGVycyA9IHsgW1BhcmFtZXRlcklkLlZpc3VhbElkXTogdmlzdWFsSWQgfTtcclxuICAgIHJldHVybiB0aGlzLmRpc3BhdGNoZXIuZXhlY3V0ZShWZXJiSWQuR2V0U2VsZWN0ZWRNYXJrcywgcGFyYW1ldGVycykudGhlbjxBY3RpdmVNYXJrcz4ocmVzcG9uc2UgPT4ge1xyXG4gICAgICBjb25zdCByZXNwb25zZURhdGEgPSByZXNwb25zZS5yZXN1bHQgYXMgU2VsZWN0ZWRNYXJrc1RhYmxlO1xyXG4gICAgICByZXR1cm4ge1xyXG4gICAgICAgIGRhdGE6IHJlc3BvbnNlRGF0YS5kYXRhLm1hcCh0YWJsZSA9PiB0aGlzLnByb2Nlc3NSZXN1bHRzVGFibGUodGFibGUsIHRydWUpKVxyXG4gICAgICB9O1xyXG4gICAgfSk7XHJcbiAgfVxyXG5cclxuICBwdWJsaWMgZ2V0SGlnaGxpZ2h0ZWRNYXJrc0FzeW5jKHZpc3VhbElkOiBWaXN1YWxJZCk6IFByb21pc2U8QWN0aXZlTWFya3M+IHtcclxuICAgIGNvbnN0IHBhcmFtZXRlcnM6IEV4ZWN1dGVQYXJhbWV0ZXJzID0geyBbUGFyYW1ldGVySWQuVmlzdWFsSWRdOiB2aXN1YWxJZCB9O1xyXG4gICAgcmV0dXJuIHRoaXMuZGlzcGF0Y2hlci5leGVjdXRlKFZlcmJJZC5HZXRIaWdobGlnaHRlZE1hcmtzLCBwYXJhbWV0ZXJzKS50aGVuPEFjdGl2ZU1hcmtzPihyZXNwb25zZSA9PiB7XHJcbiAgICAgIGNvbnN0IHJlc3BvbnNlRGF0YSA9IHJlc3BvbnNlLnJlc3VsdCBhcyBIaWdobGlnaHRlZE1hcmtzVGFibGU7XHJcbiAgICAgIHJldHVybiB7XHJcbiAgICAgICAgZGF0YTogcmVzcG9uc2VEYXRhLmRhdGEubWFwKHRhYmxlID0+IHRoaXMucHJvY2Vzc1Jlc3VsdHNUYWJsZSh0YWJsZSwgdHJ1ZSkpXHJcbiAgICAgIH07XHJcbiAgICB9KTtcclxuICB9XHJcblxyXG4gIHByb3RlY3RlZCBwcm9jZXNzUmVzdWx0c1RhYmxlKHJlc3BvbnNlRGF0YTogRGF0YVRhYmxlSW50ZXJuYWxDb250cmFjdCwgaXNTdW1tYXJ5OiBib29sZWFuKTogRGF0YVRhYmxlIHtcclxuICAgIGNvbnN0IGhlYWRlcnMgPSByZXNwb25zZURhdGEuaGVhZGVycy5tYXAoaCA9PiBuZXcgQ29sdW1uKGguZmllbGRDYXB0aW9uLCBEYXRhVHlwZS5TdHJpbmcgLypoLkRhdGFUeXBlKi8sIGguaXNSZWZlcmVuY2VkLCBoLmluZGV4KSk7XHJcbiAgICBjb25zdCB0YWJsZSA9IHJlc3BvbnNlRGF0YS5kYXRhVGFibGUubWFwKHJvdyA9PiB7XHJcbiAgICAgIHJldHVybiByb3cubWFwKGNlbGwgPT4ge1xyXG4gICAgICAgIHJldHVybiBuZXcgRGF0YVZhbHVlKGNlbGwudmFsdWUsIGNlbGwuZm9ybWF0dGVkVmFsdWUpO1xyXG4gICAgICB9KTtcclxuICAgIH0pO1xyXG5cclxuICAgIHJldHVybiBuZXcgRGF0YVRhYmxlKHRhYmxlLCBoZWFkZXJzLCB0YWJsZS5sZW5ndGgsIGlzU3VtbWFyeSk7XHJcbiAgfVxyXG59XHJcblxuXG5cbi8qKiBXRUJQQUNLIEZPT1RFUiAqKlxuICoqIEQ6L2Rldi9qcy1hcGkvYXBpLXNoYXJlZC9zcmMvU2VydmljZXMvaW1wbC9HZXREYXRhU2VydmljZUltcGwudHNcbiAqKi8iLCJpbXBvcnQgeyBJbnRlcm5hbEFwaURpc3BhdGNoZXIsIE1vZGVsLCBOb3RpZmljYXRpb24sIE5vdGlmaWNhdGlvbklkIH0gZnJvbSAnQHRhYmxlYXUvYXBpLWludGVybmFsLWNvbnRyYWN0JztcclxuXHJcbmltcG9ydCB7IE5vdGlmaWNhdGlvblNlcnZpY2UsIFVucmVnaXN0ZXJGbiB9IGZyb20gJy4uL05vdGlmaWNhdGlvblNlcnZpY2UnO1xyXG5pbXBvcnQgeyBTZXJ2aWNlTmFtZXMgfSBmcm9tICcuLi9TZXJ2aWNlUmVnaXN0cnknO1xyXG5cclxuY2xhc3MgUmVnaXN0cmF0aW9uIHtcclxuICBwdWJsaWMgY29uc3RydWN0b3IoXHJcbiAgICBwcml2YXRlIGZpbHRlckZuOiAobm90aWZpY2F0aW9uTW9kZWw6IE1vZGVsKSA9PiBib29sZWFuLFxyXG4gICAgcHJpdmF0ZSBjYWxsYmFja0ZuOiAobm90aWZpY2F0aW9uTW9kZWw6IE1vZGVsKSA9PiB2b2lkKSB7XHJcbiAgICAgIC8vIE5vdGhpbmcgSGVyZVxyXG4gIH1cclxuXHJcbiAgcHVibGljIG9uTm90aWZpY2F0aW9uKG5vdGlmaWNhdGlvbk1vZGVsOiBNb2RlbCk6IHZvaWQge1xyXG4gICAgaWYgKHRoaXMuZmlsdGVyRm4obm90aWZpY2F0aW9uTW9kZWwpKSB7XHJcbiAgICAgIHRoaXMuY2FsbGJhY2tGbihub3RpZmljYXRpb25Nb2RlbCk7XHJcbiAgICB9XHJcbiAgfVxyXG59XHJcblxyXG5leHBvcnQgY2xhc3MgTm90aWZpY2F0aW9uU2VydmljZUltcGwgaW1wbGVtZW50cyBOb3RpZmljYXRpb25TZXJ2aWNlIHtcclxuICBwcml2YXRlIGhhbmRsZXJzOiB7IFtub3RpZmljYXRpb25JZDogc3RyaW5nXTogQXJyYXk8UmVnaXN0cmF0aW9uPiB9O1xyXG5cclxuICBwdWJsaWMgY29uc3RydWN0b3IocHJpdmF0ZSBkaXNwYXRjaGVyOiBJbnRlcm5hbEFwaURpc3BhdGNoZXIpIHtcclxuICAgIHRoaXMuaGFuZGxlcnMgPSB7fTtcclxuICAgIHRoaXMuZGlzcGF0Y2hlci5yZWdpc3Rlck5vdGlmaWNhdGlvbkhhbmRsZXIodGhpcy5vbk5vdGlmaWNhdGlvbi5iaW5kKHRoaXMpKTtcclxuICB9XHJcblxyXG4gIHB1YmxpYyBnZXQgc2VydmljZU5hbWUoKTogc3RyaW5nIHtcclxuICAgIHJldHVybiBTZXJ2aWNlTmFtZXMuTm90aWZpY2F0aW9uO1xyXG4gIH1cclxuXHJcbiAgcHVibGljIHJlZ2lzdGVySGFuZGxlcihpZDogTm90aWZpY2F0aW9uSWQsIGZpbHRlckZuOiAobW9kZWw6IE1vZGVsKSA9PiBib29sZWFuLCBoYW5kbGVyOiAobW9kZWw6IE1vZGVsKSA9PiB2b2lkKTogVW5yZWdpc3RlckZuIHtcclxuICAgIGNvbnN0IGhhbmRsZXJzID0gdGhpcy5oYW5kbGVyc1tpZF0gfHwgbmV3IEFycmF5PFJlZ2lzdHJhdGlvbj4oKTtcclxuICAgIGNvbnN0IHJlZ2lzdHJhdGlvbiA9IG5ldyBSZWdpc3RyYXRpb24oZmlsdGVyRm4sIGhhbmRsZXIpO1xyXG4gICAgaGFuZGxlcnMucHVzaChyZWdpc3RyYXRpb24pO1xyXG4gICAgdGhpcy5oYW5kbGVyc1tpZF0gPSBoYW5kbGVycztcclxuICAgIHJldHVybiAoKSA9PiB0aGlzLnJlbW92ZVJlZ2lzdHJhdGlvbihpZCwgcmVnaXN0cmF0aW9uKTtcclxuICB9XHJcblxyXG4gIHByaXZhdGUgaGFzSGFuZGxlcnNGb3JOb3RpZmljYXRpb25UeXBlKGlkOiBOb3RpZmljYXRpb25JZCk6IGJvb2xlYW4ge1xyXG4gICAgcmV0dXJuIHRoaXMuaGFuZGxlcnMuaGFzT3duUHJvcGVydHkoaWQpO1xyXG4gIH1cclxuXHJcbiAgcHJpdmF0ZSBvbk5vdGlmaWNhdGlvbihub3RpZmljYXRpb246IE5vdGlmaWNhdGlvbik6IHZvaWQge1xyXG4gICAgaWYgKCF0aGlzLmhhc0hhbmRsZXJzRm9yTm90aWZpY2F0aW9uVHlwZShub3RpZmljYXRpb24ubm90aWZpY2F0aW9uSWQpKSB7XHJcbiAgICAgIHJldHVybjtcclxuICAgIH1cclxuXHJcbiAgICAvLyBHbyB0aHJvdWdoIGFuZCBjaGVjayBmb3IgYWxsIHRoZSBoYW5kbGVycyBvZiB0aGlzIHBhcnRpY3VsYXIgbm90aWZpY2F0aW9uXHJcbiAgICB0aGlzLmhhbmRsZXJzW25vdGlmaWNhdGlvbi5ub3RpZmljYXRpb25JZF0uZm9yRWFjaChoID0+IGgub25Ob3RpZmljYXRpb24obm90aWZpY2F0aW9uLmRhdGEpKTtcclxuICB9XHJcblxyXG4gIHByaXZhdGUgcmVtb3ZlUmVnaXN0cmF0aW9uKGlkOiBOb3RpZmljYXRpb25JZCwgcmVnaXN0cmF0aW9uOiBSZWdpc3RyYXRpb24pOiB2b2lkIHtcclxuICAgIGlmICghdGhpcy5oYXNIYW5kbGVyc0Zvck5vdGlmaWNhdGlvblR5cGUoaWQpKSB7XHJcbiAgICAgIHJldHVybjtcclxuICAgIH1cclxuXHJcbiAgICB0aGlzLmhhbmRsZXJzW2lkXSA9IHRoaXMuaGFuZGxlcnNbaWRdLmZpbHRlcihyZWcgPT4gcmVnICE9PSByZWdpc3RyYXRpb24pO1xyXG4gIH1cclxufVxyXG5cblxuXG4vKiogV0VCUEFDSyBGT09URVIgKipcbiAqKiBEOi9kZXYvanMtYXBpL2FwaS1zaGFyZWQvc3JjL1NlcnZpY2VzL2ltcGwvTm90aWZpY2F0aW9uU2VydmljZUltcGwudHNcbiAqKi8iLCIvKipcclxuICogQmFzZSBpbnRlcmZhY2UgZm9yIGFuIGFwaSBzZXJ2aWNlXHJcbiAqL1xyXG5leHBvcnQgaW50ZXJmYWNlIEFwaVNlcnZpY2Uge1xyXG4gIC8qKlxyXG4gICAqIEdldHMgdGhlIG5hbWUgZm9yIHRoaXMgc2VydmljZS5cclxuICAgKi9cclxuICByZWFkb25seSBzZXJ2aWNlTmFtZTogc3RyaW5nO1xyXG59XHJcblxyXG4vKipcclxuICogQ29sbGVjdGlvbiBvZiBzZXJ2aWNlIG5hbWUgd2hpY2ggd2lsbCBiZSByZWdpc3RlcmVkIGluIHRoZSBhcGktc2hhcmVkIHByb2plY3RcclxuICovXHJcbmV4cG9ydCBjb25zdCBlbnVtIFNlcnZpY2VOYW1lcyB7XHJcbiAgR2V0RGF0YSA9ICdnZXQtZGF0YS1zZXJ2aWNlJyxcclxuICBGaWx0ZXIgPSAnZmlsdGVyLXNlcnZpY2UnLFxyXG4gIE5vdGlmaWNhdGlvbiA9ICdub3RpZmljYXRpb24tc2VydmljZSdcclxufVxyXG5cclxuLyoqXHJcbiAqIERvIHNvbWUgZ2xvYmFibCBkZWNsYXJhdGlvbnMgc28gd2UgY2FuIGNyZWF0ZSBhIHNpbmdsZXRvbiBvbiB0aGUgd2luZG93IG9iamVjdFxyXG4gKi9cclxuZGVjbGFyZSBnbG9iYWwge1xyXG4gIGludGVyZmFjZSBXaW5kb3cgeyBfX3RhYmxlYXVBcGlTZXJ2aWNlUmVnaXN0cnk6IFNlcnZpY2VSZWdpc3RyeSB8IHVuZGVmaW5lZDsgfVxyXG59XHJcblxyXG5leHBvcnQgaW50ZXJmYWNlIFNlcnZpY2VSZWdpc3RyeSB7XHJcbiAgLyoqXHJcbiAgICogUmVnaXN0ZXJzIGEgbmV3IHNlcnZpY2UgaW50byB0aGUgc2VydmljZSByZWdpc3RyeS4gQW55IGV4aXN0aW5nIG9uZSB3aWxsXHJcbiAgICogYmUgb3ZlcndyaXR0ZW4uIHRoZSBzZXJ2aWNlIGlzIHJlZ2lzdGVyZWQgdW5kZXIgc2VydmljZS5zZXJ2aWNlTmFtZVxyXG4gICAqXHJcbiAgICogQHBhcmFtIHtBcGlTZXJ2aWNlfSBzZXJ2aWNlIFRoZSBzZXJ2aXZlIHRvIHJlZ2lzdGVyXHJcbiAgICovXHJcbiAgcmVnaXN0ZXJTZXJ2aWNlKHNlcnZpY2U6IEFwaVNlcnZpY2UpOiB2b2lkO1xyXG5cclxuICAvKipcclxuICAgKiBSZXRyaWV2ZXMgdGhlIGdpdmVuIHNlcnZpY2UgZnJvbSB0aGUgcmVnaXN0cnkuIElmIHRoZXJlIGlzIG5vdCBhXHJcbiAgICogc2VydmljZSByZWdpc3RlcmVkIHVuZGVyIHRoYXQgbmFtZSwgdGhyb3dzIGFuZCBlcnJvclxyXG4gICAqXHJcbiAgICogQHRlbXBsYXRlIFQgVGhlIHR5cGUgb2YgdGhlIHNlcnZpY2VcclxuICAgKiBAcGFyYW0ge3N0cmluZ30gc2VydmljZU5hbWUgVGhlIG5hbWUgb2YgdGhlIHNlcnZpY2UuXHJcbiAgICogQHJldHVybnMge1R9IFRoZSByZXF1ZXN0ZWQgc2VydmljZVxyXG4gICAqL1xyXG4gIGdldFNlcnZpY2U8VCBleHRlbmRzIEFwaVNlcnZpY2U+KHNlcnZpY2VOYW1lOiBzdHJpbmcpOiBUO1xyXG59XHJcblxyXG5jbGFzcyBTZXJ2aWNlUmVnaXN0cnlJbXBsIGltcGxlbWVudHMgU2VydmljZVJlZ2lzdHJ5IHtcclxuICBwcml2YXRlIHNlcnZpY2VzOiB7IFtzZXJ2aWNlTmFtZTogc3RyaW5nXTogQXBpU2VydmljZTsgfTtcclxuXHJcbiAgcHVibGljIGNvbnN0cnVjdG9yKCkge1xyXG4gICAgdGhpcy5zZXJ2aWNlcyA9IHt9O1xyXG4gIH1cclxuXHJcbiAgcHVibGljIHJlZ2lzdGVyU2VydmljZShzZXJ2aWNlOiBBcGlTZXJ2aWNlKTogdm9pZCB7XHJcbiAgICB0aGlzLnNlcnZpY2VzW3NlcnZpY2Uuc2VydmljZU5hbWVdID0gc2VydmljZTtcclxuICB9XHJcblxyXG4gIHB1YmxpYyBnZXRTZXJ2aWNlPFQgZXh0ZW5kcyBBcGlTZXJ2aWNlPihzZXJ2aWNlTmFtZTogc3RyaW5nKTogVCB7XHJcbiAgICBpZiAoIXRoaXMuc2VydmljZXMuaGFzT3duUHJvcGVydHkoc2VydmljZU5hbWUpKSB7XHJcbiAgICAgIHRocm93IG5ldyBFcnJvcihgTm8gU2VydmljZSAke3NlcnZpY2VOYW1lfSBpcyByZWdpc3RlcmVkYCk7XHJcbiAgICB9XHJcblxyXG4gICAgcmV0dXJuIHRoaXMuc2VydmljZXNbc2VydmljZU5hbWVdIGFzIFQ7XHJcbiAgfVxyXG59XHJcblxyXG4vKipcclxuICogc3RhdGljIGNsYXNzIHVzZWQgZm9yIGdldHRpbmcgYWNjZXNzIHRvIHRoZSBzaW5nbGUgaW5zdGFuY2VcclxuICogb2YgdGhlIEFwaVNlcnZpY2VSZWdpc3RyeVxyXG4gKi9cclxuZXhwb3J0IGNsYXNzIEFwaVNlcnZpY2VSZWdpc3RyeSB7XHJcbiAgLyoqXHJcbiAgICogR2V0cyB0aGUgc2luZ2xldG9uIGluc3RhbmNlIG9mIHRoZSBTZXJ2aWNlUmVnaXN0cnlcclxuICAgKi9cclxuICBwdWJsaWMgc3RhdGljIGdldCBpbnN0YW5jZSgpOiBTZXJ2aWNlUmVnaXN0cnkge1xyXG4gICAgaWYgKCF3aW5kb3cuX190YWJsZWF1QXBpU2VydmljZVJlZ2lzdHJ5KSB7XHJcbiAgICAgIEFwaVNlcnZpY2VSZWdpc3RyeS5zZXRJbnN0YW5jZShuZXcgU2VydmljZVJlZ2lzdHJ5SW1wbCgpKTtcclxuICAgIH1cclxuXHJcbiAgICBpZiAoIXdpbmRvdy5fX3RhYmxlYXVBcGlTZXJ2aWNlUmVnaXN0cnkpIHtcclxuICAgICAgdGhyb3cgbmV3IEVycm9yKCdBc3NpZ25pbmcgc2VydmljZSByZWdpc3RyeSBmYWlsZWQnKTtcclxuICAgIH1cclxuXHJcbiAgICByZXR1cm4gd2luZG93Ll9fdGFibGVhdUFwaVNlcnZpY2VSZWdpc3RyeTtcclxuICB9XHJcblxyXG4gIC8qKlxyXG4gICAqIEhlbHBlciBtZXRob2QgdG8gb3ZlcnJpZGUgdGhlIHJlZ2lzdHJ5IGluc3RhbmNlLiBDYW4gYmUgdXNlZCBieSB1bml0IHRlc3RzXHJcbiAgICpcclxuICAgKiBAcGFyYW0ge1NlcnZpY2VSZWdpc3RyeX0gc2VydmljZVJlZ2lzdHJ5IFRoZSBuZXcgcmVnaXN0cnlcclxuICAgKi9cclxuICBwdWJsaWMgc3RhdGljIHNldEluc3RhbmNlKHNlcnZpY2VSZWdpc3RyeT86IFNlcnZpY2VSZWdpc3RyeSk6IHZvaWQge1xyXG4gICAgd2luZG93Ll9fdGFibGVhdUFwaVNlcnZpY2VSZWdpc3RyeSA9IHNlcnZpY2VSZWdpc3RyeTtcclxuICB9XHJcblxyXG4gIC8vIFByaXZhdGUgdG8gYXZvaWQgYW55b25lIGNvbnN0cnVjdGluZyB0aGlzXHJcbiAgcHJpdmF0ZSBjb25zdHJ1Y3RvcigpIHt9XHJcbn1cclxuXG5cblxuLyoqIFdFQlBBQ0sgRk9PVEVSICoqXG4gKiogRDovZGV2L2pzLWFwaS9hcGktc2hhcmVkL3NyYy9TZXJ2aWNlcy9TZXJ2aWNlUmVnaXN0cnkudHNcbiAqKi8iLCJpbXBvcnQge1xyXG4gIEFkZEluQ29udGV4dCBhcyBFeHRlcm5hbEFkZEluQ29udGV4dCxcclxuICBBZGRJbk1vZGUgYXMgRXh0ZXJuYWxBZGRJbk1vZGUsXHJcbiAgRGFzaGJvYXJkT2JqZWN0VHlwZSBhcyBFeHRlcm5hbERhc2hib2FyZE9iamVjdFR5cGUsXHJcbiAgRGF0YVR5cGUgYXMgRXh0ZXJuYWxEYXRhVHlwZSxcclxuICBGaWx0ZXJVcGRhdGVUeXBlIGFzIEV4dGVybmFsRmlsdGVyVXBkYXRlVHlwZSxcclxuICBTaGVldFR5cGUgYXMgRXh0ZXJuYWxTaGVldFR5cGVcclxufSBmcm9tICdAdGFibGVhdS9hcGktZXh0ZXJuYWwtY29udHJhY3QnO1xyXG5pbXBvcnQge1xyXG4gIEFkZEluQ29udGV4dCBhcyBJbnRlcm5hbEFkZEluQ29udGV4dCxcclxuICBBZGRJbk1vZGUgYXMgSW50ZXJuYWxBZGRJbk1vZGUsXHJcbiAgRGFzaGJvYXJkT2JqZWN0VHlwZSBhcyBJbnRlcm5hbERhc2hib2FyZE9iamVjdFR5cGUsXHJcbiAgRGF0YVR5cGUgYXMgSW50ZXJuYWxEYXRhVHlwZSxcclxuICBGaWx0ZXJVcGRhdGVUeXBlIGFzIEludGVybmFsRmlsdGVyVXBkYXRlVHlwZSxcclxuICBTaGVldFR5cGUgYXMgSW50ZXJuYWxTaGVldFR5cGVcclxufSBmcm9tICdAdGFibGVhdS9hcGktaW50ZXJuYWwtY29udHJhY3QnO1xyXG5cclxuaW1wb3J0IHsgRW51bUNvbnZlcnRlciB9IGZyb20gJ0B0YWJsZWF1L2FwaS11dGlscyc7XHJcblxyXG4vKiB0c2xpbnQ6ZGlzYWJsZTp0eXBlZGVmIC0gRGlzYWJsZSB0aGlzIHRvIG1ha2UgZGVjbGFyaW5nIHRoZXNlIGNsYXNzZXMgYSBiaXQgZWFzaWVyICovXHJcbi8qKlxyXG4gKiBNYXBzIGVudW1zIHVzZWQgYnkgdGhlIGludGVybmFsLWFwaS1jb250cmFjdCB0byB0aGUgZW51bXMgdXNlZFxyXG4gKiBpbiB0aGUgZXh0ZXJuYWwtYXBpLWNvbnRyYWN0LCB3aGljaCBkZXZlbG9wZXJzIGNvZGUgYWdhaW5zdC5cclxuICovXHJcbmV4cG9ydCBjbGFzcyBJbnRlcm5hbFRvRXh0ZXJuYWxFbnVtTWFwcGluZ3Mge1xyXG4gIHB1YmxpYyBzdGF0aWMgYWRkSW5Db250ZXh0ID0gbmV3IEVudW1Db252ZXJ0ZXI8SW50ZXJuYWxBZGRJbkNvbnRleHQsIEV4dGVybmFsQWRkSW5Db250ZXh0Pih7XHJcbiAgICBbSW50ZXJuYWxBZGRJbkNvbnRleHQuRGVza3RvcF06IEV4dGVybmFsQWRkSW5Db250ZXh0LkRlc2t0b3AsXHJcbiAgICBbSW50ZXJuYWxBZGRJbkNvbnRleHQuU2VydmVyXTogRXh0ZXJuYWxBZGRJbkNvbnRleHQuU2VydmVyLFxyXG4gICAgW0ludGVybmFsQWRkSW5Db250ZXh0LlVua25vd25dOiBFeHRlcm5hbEFkZEluQ29udGV4dC5Vbmtub3duXHJcbiAgfSk7XHJcblxyXG4gIHB1YmxpYyBzdGF0aWMgYWRkSW5Nb2RlID0gbmV3IEVudW1Db252ZXJ0ZXI8SW50ZXJuYWxBZGRJbk1vZGUsIEV4dGVybmFsQWRkSW5Nb2RlPih7XHJcbiAgICBbSW50ZXJuYWxBZGRJbk1vZGUuQXV0aG9yaW5nXTogRXh0ZXJuYWxBZGRJbk1vZGUuQXV0aG9yaW5nLFxyXG4gICAgW0ludGVybmFsQWRkSW5Nb2RlLlZpZXdpbmddOiBFeHRlcm5hbEFkZEluTW9kZS5WaWV3aW5nLFxyXG4gICAgW0ludGVybmFsQWRkSW5Nb2RlLlVua25vd25dOiBFeHRlcm5hbEFkZEluTW9kZS5Vbmtub3duXHJcbiAgfSk7XHJcblxyXG4gIHB1YmxpYyBzdGF0aWMgc2hlZXRUeXBlID0gbmV3IEVudW1Db252ZXJ0ZXI8SW50ZXJuYWxTaGVldFR5cGUsIEV4dGVybmFsU2hlZXRUeXBlPih7XHJcbiAgICBbSW50ZXJuYWxTaGVldFR5cGUuRGFzaGJvYXJkXTogRXh0ZXJuYWxTaGVldFR5cGUuRGFzaGJvYXJkLFxyXG4gICAgW0ludGVybmFsU2hlZXRUeXBlLlN0b3J5XTogRXh0ZXJuYWxTaGVldFR5cGUuU3RvcnksXHJcbiAgICBbSW50ZXJuYWxTaGVldFR5cGUuV29ya3NoZWV0XTogRXh0ZXJuYWxTaGVldFR5cGUuV29ya3NoZWV0XHJcbiAgfSk7XHJcblxyXG4gIHB1YmxpYyBzdGF0aWMgZGFzaGJvYXJkT2JqZWN0VHlwZSA9IG5ldyBFbnVtQ29udmVydGVyPEludGVybmFsRGFzaGJvYXJkT2JqZWN0VHlwZSwgRXh0ZXJuYWxEYXNoYm9hcmRPYmplY3RUeXBlPih7XHJcbiAgICBbSW50ZXJuYWxEYXNoYm9hcmRPYmplY3RUeXBlLkJsYW5rXTogRXh0ZXJuYWxEYXNoYm9hcmRPYmplY3RUeXBlLkJsYW5rLFxyXG4gICAgW0ludGVybmFsRGFzaGJvYXJkT2JqZWN0VHlwZS5JbWFnZV06IEV4dGVybmFsRGFzaGJvYXJkT2JqZWN0VHlwZS5JbWFnZSxcclxuICAgIFtJbnRlcm5hbERhc2hib2FyZE9iamVjdFR5cGUuTGVnZW5kXTogRXh0ZXJuYWxEYXNoYm9hcmRPYmplY3RUeXBlLkxlZ2VuZCxcclxuICAgIFtJbnRlcm5hbERhc2hib2FyZE9iamVjdFR5cGUuUGFnZUZpbHRlcl06IEV4dGVybmFsRGFzaGJvYXJkT2JqZWN0VHlwZS5QYWdlRmlsdGVyLFxyXG4gICAgW0ludGVybmFsRGFzaGJvYXJkT2JqZWN0VHlwZS5QYXJhbWV0ZXJDb250cm9sXTogRXh0ZXJuYWxEYXNoYm9hcmRPYmplY3RUeXBlLlBhcmFtZXRlckNvbnRyb2wsXHJcbiAgICBbSW50ZXJuYWxEYXNoYm9hcmRPYmplY3RUeXBlLlF1aWNrRmlsdGVyXTogRXh0ZXJuYWxEYXNoYm9hcmRPYmplY3RUeXBlLlF1aWNrRmlsdGVyLFxyXG4gICAgW0ludGVybmFsRGFzaGJvYXJkT2JqZWN0VHlwZS5UZXh0XTogRXh0ZXJuYWxEYXNoYm9hcmRPYmplY3RUeXBlLlRleHQsXHJcbiAgICBbSW50ZXJuYWxEYXNoYm9hcmRPYmplY3RUeXBlLlRpdGxlXTogRXh0ZXJuYWxEYXNoYm9hcmRPYmplY3RUeXBlLlRpdGxlLFxyXG4gICAgW0ludGVybmFsRGFzaGJvYXJkT2JqZWN0VHlwZS5XZWJQYWdlXTogRXh0ZXJuYWxEYXNoYm9hcmRPYmplY3RUeXBlLldlYlBhZ2UsXHJcbiAgICBbSW50ZXJuYWxEYXNoYm9hcmRPYmplY3RUeXBlLldvcmtzaGVldF06IEV4dGVybmFsRGFzaGJvYXJkT2JqZWN0VHlwZS5Xb3Jrc2hlZXRcclxuICB9KTtcclxuXHJcbiAgcHVibGljIHN0YXRpYyBkYXRhVHlwZSA9IG5ldyBFbnVtQ29udmVydGVyPEludGVybmFsRGF0YVR5cGUsIEV4dGVybmFsRGF0YVR5cGU+KHtcclxuICAgIFtJbnRlcm5hbERhdGFUeXBlLkJvb2xdOiBFeHRlcm5hbERhdGFUeXBlLkJvb2wsXHJcbiAgICBbSW50ZXJuYWxEYXRhVHlwZS5EYXRlXTogRXh0ZXJuYWxEYXRhVHlwZS5EYXRlLFxyXG4gICAgW0ludGVybmFsRGF0YVR5cGUuRGF0ZVRpbWVdOiBFeHRlcm5hbERhdGFUeXBlLkRhdGVUaW1lLFxyXG4gICAgW0ludGVybmFsRGF0YVR5cGUuRmxvYXRdOiBFeHRlcm5hbERhdGFUeXBlLkZsb2F0LFxyXG4gICAgW0ludGVybmFsRGF0YVR5cGUuSW50XTogRXh0ZXJuYWxEYXRhVHlwZS5JbnQsXHJcbiAgICBbSW50ZXJuYWxEYXRhVHlwZS5TdHJpbmddOiBFeHRlcm5hbERhdGFUeXBlLlN0cmluZ1xyXG4gIH0pO1xyXG5cclxuICBwdWJsaWMgc3RhdGljIGZpbHRlclVwZGF0ZVR5cGUgPSBuZXcgRW51bUNvbnZlcnRlcjxJbnRlcm5hbEZpbHRlclVwZGF0ZVR5cGUsIEV4dGVybmFsRmlsdGVyVXBkYXRlVHlwZT4oe1xyXG4gICAgW0ludGVybmFsRmlsdGVyVXBkYXRlVHlwZS5BZGRdOiBFeHRlcm5hbEZpbHRlclVwZGF0ZVR5cGUuQWRkLFxyXG4gICAgW0ludGVybmFsRmlsdGVyVXBkYXRlVHlwZS5BbGxdOiBFeHRlcm5hbEZpbHRlclVwZGF0ZVR5cGUuQWxsLFxyXG4gICAgW0ludGVybmFsRmlsdGVyVXBkYXRlVHlwZS5SZW1vdmVdOiBFeHRlcm5hbEZpbHRlclVwZGF0ZVR5cGUuUmVtb3ZlLFxyXG4gICAgW0ludGVybmFsRmlsdGVyVXBkYXRlVHlwZS5SZXBsYWNlXTogRXh0ZXJuYWxGaWx0ZXJVcGRhdGVUeXBlLlJlcGxhY2VcclxuICB9KTtcclxufVxyXG4vKiB0c2xpbnQ6ZW5hYmxlOnR5cGVkZWYgKi9cclxuXG5cblxuLyoqIFdFQlBBQ0sgRk9PVEVSICoqXG4gKiogRDovZGV2L2pzLWFwaS9hcGktc2hhcmVkL3NyYy9FbnVtTWFwcGluZ3MvSW50ZXJuYWxUb0V4dGVybmFsRW51bU1hcHBpbmdzLnRzXG4gKiovIiwiaW1wb3J0IHsgRGFzaGJvYXJkIGFzIERhc2hib2FyZENvbnRyYWN0LCBEYXNoYm9hcmRPYmplY3QgfSBmcm9tICdAdGFibGVhdS9hcGktZXh0ZXJuYWwtY29udHJhY3QnO1xyXG5cclxuaW1wb3J0IHsgRGFzaGJvYXJkSW1wbCB9IGZyb20gJy4vSW50ZXJuYWwvRGFzaGJvYXJkSW1wbCc7XHJcbmltcG9ydCB7IFNoZWV0IH0gZnJvbSAnLi9TaGVldCc7XHJcbmltcG9ydCB7IFdvcmtzaGVldCB9IGZyb20gJy4vV29ya3NoZWV0JztcclxuXHJcbmV4cG9ydCBjbGFzcyBEYXNoYm9hcmQgZXh0ZW5kcyBTaGVldCBpbXBsZW1lbnRzIERhc2hib2FyZENvbnRyYWN0IHtcclxuICBwdWJsaWMgY29uc3RydWN0b3IocHJpdmF0ZSBkYXNoYm9hcmRJbXBsOiBEYXNoYm9hcmRJbXBsKSB7XHJcbiAgICBzdXBlcihkYXNoYm9hcmRJbXBsKTtcclxuICB9XHJcblxyXG4gIHB1YmxpYyBnZXQgd29ya3NoZWV0cygpOiBBcnJheTxXb3Jrc2hlZXQ+IHtcclxuICAgIHJldHVybiB0aGlzLmRhc2hib2FyZEltcGwud29ya3NoZWV0cztcclxuICB9XHJcblxyXG4gIHB1YmxpYyBnZXQgb2JqZWN0cygpOiBBcnJheTxEYXNoYm9hcmRPYmplY3Q+IHtcclxuICAgIHRocm93IG5ldyBFcnJvcignQVBJIGNhbGwgbm90IHlldCBpbXBsZW1lbnRlZCcpO1xyXG4gIH1cclxufVxyXG5cblxuXG4vKiogV0VCUEFDSyBGT09URVIgKipcbiAqKiAuLi9zcmMvRGFzaGJvYXJkLnRzXG4gKiovIiwiaW1wb3J0IHsgU2hlZXQgYXMgU2hlZXRDb250cmFjdCwgU2hlZXRUeXBlLCBTaXplIH0gZnJvbSAnQHRhYmxlYXUvYXBpLWV4dGVybmFsLWNvbnRyYWN0JztcclxuaW1wb3J0IHsgRXZlbnRMaXN0ZW5lck1hbmFnZXIgfSBmcm9tICdAdGFibGVhdS9hcGktc2hhcmVkJztcclxuXHJcbmltcG9ydCB7IFNoZWV0SW1wbCB9IGZyb20gJy4vSW50ZXJuYWwvU2hlZXRJbXBsJztcclxuXHJcbmV4cG9ydCBjbGFzcyBTaGVldCBleHRlbmRzIEV2ZW50TGlzdGVuZXJNYW5hZ2VyIGltcGxlbWVudHMgU2hlZXRDb250cmFjdCB7XHJcbiAgcHVibGljIGNvbnN0cnVjdG9yKHByaXZhdGUgc2hlZXRJbXBsOiBTaGVldEltcGwpIHtcclxuICAgIHN1cGVyKCk7XHJcbiAgfVxyXG5cclxuICBwdWJsaWMgZ2V0IG5hbWUoKTogc3RyaW5nIHtcclxuICAgIHJldHVybiB0aGlzLnNoZWV0SW1wbC5uYW1lO1xyXG4gIH1cclxuXHJcbiAgcHVibGljIGdldCBzaGVldFR5cGUoKTogU2hlZXRUeXBlIHtcclxuICAgIHJldHVybiB0aGlzLnNoZWV0SW1wbC5zaGVldFR5cGU7XHJcbiAgfVxyXG5cclxuICBwdWJsaWMgZ2V0IHNpemUoKTogU2l6ZSB7XHJcbiAgICB0aHJvdyBuZXcgRXJyb3IoJ0FQSSBjYWxsIG5vdCB5ZXQgaW1wbGVtZW50ZWQnKTtcclxuICB9XHJcbn1cclxuXG5cblxuLyoqIFdFQlBBQ0sgRk9PVEVSICoqXG4gKiogLi4vc3JjL1NoZWV0LnRzXG4gKiovIiwiaW1wb3J0IHsgRGFzaGJvYXJkQ29udGVudCBhcyBEYXNoYm9hcmRDb250ZW50Q29udHJhY3QgfSBmcm9tICdAdGFibGVhdS9hcGktZXh0ZXJuYWwtY29udHJhY3QnO1xyXG5cclxuaW1wb3J0IHsgRGFzaGJvYXJkIH0gZnJvbSAnLi4vRGFzaGJvYXJkJztcclxuXHJcbi8qKlxyXG4gKiBJbXBsZW1lbnRhdGlvbiBvZiB0aGUgZXh0ZXJuYWwgRGFzaGJvYXJkQ29udGVudCBuYW1lc3BhY2UuXHJcbiAqIFRoaXMgZG9lcyBub3QgZm9sbG93IHRoZSBJbXBsIHBhdHRlcm4gYXMgRGFzaGJvYXJkQ29udGVudCBpc1xyXG4gKiBjdXJyZW50bHkganVzdCBhIChzaW5nbGUpIHByb3BlcnR5IGJhZy5cclxuICovXHJcbmV4cG9ydCBjbGFzcyBEYXNoYm9hcmRDb250ZW50IGltcGxlbWVudHMgRGFzaGJvYXJkQ29udGVudENvbnRyYWN0IHtcclxuICBwdWJsaWMgY29uc3RydWN0b3IocHJpdmF0ZSBfZGFzaGJvYXJkOiBEYXNoYm9hcmQpIHsgfVxyXG5cclxuICBwdWJsaWMgZ2V0IGRhc2hib2FyZCgpOiBEYXNoYm9hcmQge1xyXG4gICAgcmV0dXJuIHRoaXMuX2Rhc2hib2FyZDtcclxuICB9XHJcbn1cclxuXG5cblxuLyoqIFdFQlBBQ0sgRk9PVEVSICoqXG4gKiogLi4vc3JjL0V4dGVybmFsTmFtZXNwYWNlcy9EYXNoYm9hcmRDb250ZW50LnRzXG4gKiovIiwiaW1wb3J0IHtcclxuICBBZGRJbkNvbnRleHQsXHJcbiAgQWRkSW5Nb2RlLFxyXG4gIEVudmlyb25tZW50IGFzIEVudmlyb25tZW50Q29udHJhY3RcclxufSBmcm9tICdAdGFibGVhdS9hcGktZXh0ZXJuYWwtY29udHJhY3QnO1xyXG5pbXBvcnQgeyBBZGRJbkVudmlyb25tZW50IH0gZnJvbSAnQHRhYmxlYXUvYXBpLWludGVybmFsLWNvbnRyYWN0JztcclxuaW1wb3J0IHsgSW50ZXJuYWxUb0V4dGVybmFsRW51bU1hcHBpbmdzIGFzIEVudW1NYXBwaW5ncyB9IGZyb20gJ0B0YWJsZWF1L2FwaS1zaGFyZWQnO1xyXG5cclxuLyoqXHJcbiAqIEltcGxlbWVudGF0aW9uIG9mIHRoZSBleHRlcm5hbCBlbnZpcm9ubWVudCBuYW1lc3BhY2UuXHJcbiAqIEVudmlyb25tZW50IGRvZXMgbm90IGZvbGxvdyB0aGUgSW1wbCBwYXR0ZXJuIGFzIGl0IGlzXHJcbiAqIGp1c3QgYSBwcm9wZXJ0eSBiYWcuXHJcbiAqL1xyXG5leHBvcnQgY2xhc3MgRW52aXJvbm1lbnQgaW1wbGVtZW50cyBFbnZpcm9ubWVudENvbnRyYWN0IHtcclxuICBwcml2YXRlIF9hcGlWZXJzaW9uOiBzdHJpbmc7XHJcbiAgcHJpdmF0ZSBfY29udGV4dDogQWRkSW5Db250ZXh0O1xyXG4gIHByaXZhdGUgX2xhbmd1YWdlOiBzdHJpbmc7XHJcbiAgcHJpdmF0ZSBfbG9jYWxlOiBzdHJpbmc7XHJcbiAgcHJpdmF0ZSBfbW9kZTogQWRkSW5Nb2RlO1xyXG4gIHByaXZhdGUgX29wZXJhdGluZ1N5c3RlbTogc3RyaW5nO1xyXG4gIHByaXZhdGUgX3RhYmxlYXVWZXJzaW9uOiBzdHJpbmc7XHJcblxyXG4gIHB1YmxpYyBjb25zdHJ1Y3RvcihhZGRJbkVudmlyb25tZW50OiBBZGRJbkVudmlyb25tZW50KSB7XHJcbiAgICB0aGlzLl9hcGlWZXJzaW9uID0gYWRkSW5FbnZpcm9ubWVudC5hcGlWZXJzaW9uO1xyXG4gICAgdGhpcy5fY29udGV4dCA9IEVudW1NYXBwaW5ncy5hZGRJbkNvbnRleHQuY29udmVydChhZGRJbkVudmlyb25tZW50LmFkZEluQ29udGV4dCk7XHJcbiAgICB0aGlzLl9sYW5ndWFnZSA9IGFkZEluRW52aXJvbm1lbnQuYWRkSW5MYW5ndWFnZTtcclxuICAgIHRoaXMuX2xvY2FsZSA9IGFkZEluRW52aXJvbm1lbnQuYWRkSW5Mb2NhbGU7XHJcbiAgICB0aGlzLl9tb2RlID0gRW51bU1hcHBpbmdzLmFkZEluTW9kZS5jb252ZXJ0KGFkZEluRW52aXJvbm1lbnQuYWRkSW5Nb2RlKTtcclxuICAgIHRoaXMuX29wZXJhdGluZ1N5c3RlbSA9IGFkZEluRW52aXJvbm1lbnQub3BlcmF0aW5nU3lzdGVtO1xyXG4gICAgdGhpcy5fdGFibGVhdVZlcnNpb24gPSBhZGRJbkVudmlyb25tZW50LnRhYmxlYXVWZXJzaW9uO1xyXG4gIH1cclxuXHJcbiAgcHVibGljIGdldCBhcGlWZXJzaW9uKCk6IHN0cmluZyB7XHJcbiAgICByZXR1cm4gdGhpcy5fYXBpVmVyc2lvbjtcclxuICB9XHJcblxyXG4gIHB1YmxpYyBnZXQgY29udGV4dCgpOiBBZGRJbkNvbnRleHQge1xyXG4gICAgcmV0dXJuIHRoaXMuX2NvbnRleHQ7XHJcbiAgfVxyXG5cclxuICBwdWJsaWMgZ2V0IGxhbmd1YWdlKCk6IHN0cmluZyB7XHJcbiAgICByZXR1cm4gdGhpcy5fbGFuZ3VhZ2U7XHJcbiAgfVxyXG5cclxuICBwdWJsaWMgZ2V0IGxvY2FsZSgpOiBzdHJpbmcge1xyXG4gICAgcmV0dXJuIHRoaXMuX2xvY2FsZTtcclxuICB9XHJcblxyXG4gIHB1YmxpYyBnZXQgbW9kZSgpOiBBZGRJbk1vZGUge1xyXG4gICAgcmV0dXJuIHRoaXMuX21vZGU7XHJcbiAgfVxyXG5cclxuICBwdWJsaWMgZ2V0IG9wZXJhdGluZ1N5c3RlbSgpOiBzdHJpbmcge1xyXG4gICAgcmV0dXJuIHRoaXMuX29wZXJhdGluZ1N5c3RlbTtcclxuICB9XHJcblxyXG4gIHB1YmxpYyBnZXQgdGFibGVhdVZlcnNpb24oKTogc3RyaW5nIHtcclxuICAgIHJldHVybiB0aGlzLl90YWJsZWF1VmVyc2lvbjtcclxuICB9XHJcbn1cclxuXG5cblxuLyoqIFdFQlBBQ0sgRk9PVEVSICoqXG4gKiogLi4vc3JjL0V4dGVybmFsTmFtZXNwYWNlcy9FbnZpcm9ubWVudC50c1xuICoqLyIsImltcG9ydCB7IFNldHRpbmdzIGFzIFNldHRpbmdzQ29udHJhY3QgfSBmcm9tICdAdGFibGVhdS9hcGktZXh0ZXJuYWwtY29udHJhY3QnO1xyXG5cclxuaW1wb3J0IHsgU2V0dGluZ3NJbXBsIH0gZnJvbSAnLi4vSW50ZXJuYWwvU2V0dGluZ3NJbXBsJztcclxuaW1wb3J0IHsgU2V0dGluZ3NDb2xsZWN0aW9uIH0gZnJvbSAnLi4vU2VydmljZXMvU2V0dGluZ3NTZXJ2aWNlJztcclxuXHJcbi8qKlxyXG4gKiBJbXBsZW1lbnRhdGlvbiBvZiB0aGUgZXh0ZXJuYWwgc2V0dGluZ3MgbmFtZXNwYWNlLlxyXG4gKi9cclxuZXhwb3J0IGNsYXNzIFNldHRpbmdzIGltcGxlbWVudHMgU2V0dGluZ3NDb250cmFjdCB7XHJcbiAgcHVibGljIGNvbnN0cnVjdG9yKHByaXZhdGUgc2V0dGluZ3NJbXBsOiBTZXR0aW5nc0ltcGwpIHsgfVxyXG5cclxuICBwdWJsaWMgZXJhc2Uoa2V5OiBzdHJpbmcpOiB2b2lkIHtcclxuICAgIHRoaXMuc2V0dGluZ3NJbXBsLmVyYXNlKGtleSk7XHJcbiAgfVxyXG5cclxuICBwdWJsaWMgZ2V0KGtleTogc3RyaW5nKTogc3RyaW5nIHwgdW5kZWZpbmVkIHtcclxuICAgIHJldHVybiB0aGlzLnNldHRpbmdzSW1wbC5nZXQoa2V5KTtcclxuICB9XHJcblxyXG4gIHB1YmxpYyBnZXRBbGwoKTogU2V0dGluZ3NDb2xsZWN0aW9uIHtcclxuICAgIHJldHVybiB0aGlzLnNldHRpbmdzSW1wbC5nZXRBbGwoKTtcclxuICB9XHJcblxyXG4gIHB1YmxpYyBnZXQgaXNNb2RpZmllZCgpOiBib29sZWFuIHtcclxuICAgIHJldHVybiB0aGlzLnNldHRpbmdzSW1wbC5pc01vZGlmaWVkO1xyXG4gIH1cclxuXHJcbiAgcHVibGljIHNhdmVBc3luYygpOiBQcm9taXNlPFNldHRpbmdzQ29sbGVjdGlvbj4ge1xyXG4gICAgcmV0dXJuIHRoaXMuc2V0dGluZ3NJbXBsLnNhdmVBc3luYygpO1xyXG4gIH1cclxuXHJcbiAgcHVibGljIHNldChrZXk6IHN0cmluZywgdmFsdWU6IHN0cmluZyk6IHZvaWQge1xyXG4gICAgdGhpcy5zZXR0aW5nc0ltcGwuc2V0KGtleSwgdmFsdWUpO1xyXG4gIH1cclxufVxyXG5cblxuXG4vKiogV0VCUEFDSyBGT09URVIgKipcbiAqKiAuLi9zcmMvRXh0ZXJuYWxOYW1lc3BhY2VzL1NldHRpbmdzLnRzXG4gKiovIiwiaW1wb3J0IHsgSW50ZXJuYWxBcGlEaXNwYXRjaGVyIH0gZnJvbSAnQHRhYmxlYXUvYXBpLWludGVybmFsLWNvbnRyYWN0JztcclxuaW1wb3J0IHsgQXBpU2VydmljZVJlZ2lzdHJ5IH0gZnJvbSAnQHRhYmxlYXUvYXBpLXNoYXJlZCc7XHJcblxyXG5pbXBvcnQgeyBJbml0aWFsaXphdGlvblNlcnZpY2VJbXBsIH0gZnJvbSAnLi9JbXBsL0luaXRpYWxpemF0aW9uU2VydmljZUltcGwnO1xyXG5pbXBvcnQgeyBTZXR0aW5nc1NlcnZpY2VJbXBsIH0gZnJvbSAgJy4vSW1wbC9TZXR0aW5nc1NlcnZpY2VJbXBsJztcclxuXHJcbmV4cG9ydCBmdW5jdGlvbiByZWdpc3RlckFsbEFkZEluU2VydmljZXMoZGlzcGF0Y2hlcjogSW50ZXJuYWxBcGlEaXNwYXRjaGVyKTogdm9pZCB7XHJcbiAgQXBpU2VydmljZVJlZ2lzdHJ5Lmluc3RhbmNlLnJlZ2lzdGVyU2VydmljZShuZXcgSW5pdGlhbGl6YXRpb25TZXJ2aWNlSW1wbChkaXNwYXRjaGVyKSk7XHJcbiAgQXBpU2VydmljZVJlZ2lzdHJ5Lmluc3RhbmNlLnJlZ2lzdGVyU2VydmljZShuZXcgU2V0dGluZ3NTZXJ2aWNlSW1wbChkaXNwYXRjaGVyKSk7XHJcbn1cclxuXG5cblxuLyoqIFdFQlBBQ0sgRk9PVEVSICoqXG4gKiogLi4vc3JjL1NlcnZpY2VzL1JlZ2lzdGVyQWxsQWRkSW5TZXJ2aWNlcy50c1xuICoqLyIsImltcG9ydCB7IEFkZEluQm9vdHN0cmFwSW5mbywgSW50ZXJuYWxBcGlEaXNwYXRjaGVyLCBWZXJiSWQgfSBmcm9tICdAdGFibGVhdS9hcGktaW50ZXJuYWwtY29udHJhY3QnO1xyXG5cclxuaW1wb3J0IHsgQWRkSW5TZXJ2aWNlTmFtZXMgfSBmcm9tICcuLi9BZGRJblNlcnZpY2VOYW1lcyc7XHJcbmltcG9ydCB7IEluaXRpYWxpemF0aW9uU2VydmljZSB9IGZyb20gJy4uL0luaXRpYWxpemF0aW9uU2VydmljZSc7XHJcblxyXG5leHBvcnQgY2xhc3MgSW5pdGlhbGl6YXRpb25TZXJ2aWNlSW1wbCBpbXBsZW1lbnRzIEluaXRpYWxpemF0aW9uU2VydmljZSB7XHJcbiAgcHVibGljIGNvbnN0cnVjdG9yKHByaXZhdGUgZGlzcGF0Y2hlcjogSW50ZXJuYWxBcGlEaXNwYXRjaGVyKSB7IH1cclxuXHJcbiAgcHVibGljIGdldCBzZXJ2aWNlTmFtZSgpOiBzdHJpbmcge1xyXG4gICAgcmV0dXJuIEFkZEluU2VydmljZU5hbWVzLkluaXRpYWxpemF0aW9uU2VydmljZTtcclxuICB9XHJcblxyXG4gIHB1YmxpYyBpbml0aWFsaXplRGFzaGJvYXJkQWRkSW5Bc3luYygpOiBQcm9taXNlPEFkZEluQm9vdHN0cmFwSW5mbz4ge1xyXG4gICAgLy8gV2UgZG9uJ3QgbmVlZCBhbnkgcGFyYW1ldGVycyBmb3IgdGhpcyBjYWxsIGJlY2F1c2UgdGhleSBhcmUgYWRkZWQgaW4gZm9yIHVzIGJ5IHRoZSBkaXNwYXRjaGVyXHJcbiAgICByZXR1cm4gdGhpcy5kaXNwYXRjaGVyLmV4ZWN1dGUoVmVyYklkLkluaXRpYWxpemVBZGRJbiwge30pLnRoZW48QWRkSW5Cb290c3RyYXBJbmZvPihyZXNwb25zZSA9PiB7XHJcbiAgICAgIC8vIFRPRE8gLSBWYWxpZGF0ZSByZXR1cm4gdmFsdWVcclxuXHJcbiAgICAgIGNvbnN0IHJlc3VsdCA9IHJlc3BvbnNlLnJlc3VsdCBhcyBBZGRJbkJvb3RzdHJhcEluZm87XHJcbiAgICAgIHJldHVybiByZXN1bHQ7XHJcbiAgICB9KTtcclxuICB9XHJcbn1cclxuXG5cblxuLyoqIFdFQlBBQ0sgRk9PVEVSICoqXG4gKiogLi4vc3JjL1NlcnZpY2VzL0ltcGwvSW5pdGlhbGl6YXRpb25TZXJ2aWNlSW1wbC50c1xuICoqLyIsImltcG9ydCB7XHJcbiAgQWRkSW5TZXR0aW5nc0luZm8sXHJcbiAgRXhlY3V0ZVBhcmFtZXRlcnMsXHJcbiAgSW50ZXJuYWxBcGlEaXNwYXRjaGVyLFxyXG4gIFBhcmFtZXRlcklkLFxyXG4gIFZlcmJJZFxyXG59IGZyb20gJ0B0YWJsZWF1L2FwaS1pbnRlcm5hbC1jb250cmFjdCc7XHJcblxyXG5pbXBvcnQgeyBBZGRJblNlcnZpY2VOYW1lcyB9IGZyb20gJy4uL0FkZEluU2VydmljZU5hbWVzJztcclxuaW1wb3J0IHsgU2V0dGluZ3NDb2xsZWN0aW9uLCBTZXR0aW5nc1NlcnZpY2UgfSBmcm9tICcuLi9TZXR0aW5nc1NlcnZpY2UnO1xyXG5cclxuZXhwb3J0IGNsYXNzIFNldHRpbmdzU2VydmljZUltcGwgaW1wbGVtZW50cyBTZXR0aW5nc1NlcnZpY2Uge1xyXG4gIHB1YmxpYyBjb25zdHJ1Y3Rvcihwcml2YXRlIGRpc3BhdGNoZXI6IEludGVybmFsQXBpRGlzcGF0Y2hlcikgeyB9XHJcblxyXG4gIHB1YmxpYyBnZXQgc2VydmljZU5hbWUoKTogc3RyaW5nIHtcclxuICAgIHJldHVybiBBZGRJblNlcnZpY2VOYW1lcy5TZXR0aW5nc1NlcnZpY2U7XHJcbiAgfVxyXG5cclxuICBwdWJsaWMgc2F2ZVNldHRpbmdzQXN5bmMoc2V0dGluZ3M6IFNldHRpbmdzQ29sbGVjdGlvbik6IFByb21pc2U8U2V0dGluZ3NDb2xsZWN0aW9uPiB7XHJcbiAgICBjb25zdCBwYXJhbWV0ZXJzOiBFeGVjdXRlUGFyYW1ldGVycyA9IHt9O1xyXG4gICAgcGFyYW1ldGVyc1tQYXJhbWV0ZXJJZC5TZXR0aW5nc1ZhbHVlc10gPSBzZXR0aW5ncztcclxuXHJcbiAgICByZXR1cm4gdGhpcy5kaXNwYXRjaGVyLmV4ZWN1dGUoVmVyYklkLlNhdmVBZGRJblNldHRpbmdzLCBwYXJhbWV0ZXJzKS50aGVuPFNldHRpbmdzQ29sbGVjdGlvbj4odmFsdWUgPT4ge1xyXG4gICAgICBjb25zdCByZXN1bHQgPSB2YWx1ZS5yZXN1bHQgYXMgQWRkSW5TZXR0aW5nc0luZm87XHJcblxyXG4gICAgICBpZiAoIXJlc3VsdCB8fCAhcmVzdWx0LnNldHRpbmdzVmFsdWVzKSB7XHJcbiAgICAgICAgdGhyb3cgbmV3IEVycm9yKCdJbnRlcm5hbCBlcnJvciBzYXZpbmcgc2V0dGluZ3MuJyk7XHJcbiAgICAgIH1cclxuXHJcbiAgICAgIHJldHVybihyZXN1bHQuc2V0dGluZ3NWYWx1ZXMpO1xyXG4gICAgfSk7XHJcbiAgfVxyXG59XHJcblxuXG5cbi8qKiBXRUJQQUNLIEZPT1RFUiAqKlxuICoqIC4uL3NyYy9TZXJ2aWNlcy9JbXBsL1NldHRpbmdzU2VydmljZUltcGwudHNcbiAqKi8iLCJpbXBvcnQgeyBWZXJzaW9uTnVtYmVyIGFzIFZlcnNpb25OdW1iZXJDb250cmFjdCB9IGZyb20gJ0B0YWJsZWF1L2FwaS1pbnRlcm5hbC1jb250cmFjdCc7XHJcblxyXG5kZWNsYXJlIHZhciBBRERJTl9BUElfVkVSU0lPTl9OVU1CRVI6IHN0cmluZztcclxuXHJcbi8qKlxyXG4gKiBSZXByZXNlbnRzIHRoZSBjdXJyZW50IHZlcnNpb24gb2YgdGhlIGFkZGluIGxpYnJhcnlcclxuICovXHJcbmV4cG9ydCBjbGFzcyBWZXJzaW9uTnVtYmVyIGltcGxlbWVudHMgVmVyc2lvbk51bWJlckNvbnRyYWN0IHtcclxuXHJcbiAgLy8gVXNpbmcgc29tZSB3ZWJwYWNrIHRyaWNrcywgd2UgY2FuIGluamVjdCB0aGlzIHZlcnNpb24gaW50byBvdXIgY29kZSAoa2luZGEgbGlrZSBjKysgcHJlcHJvY2Vzc29yIHN0dWZmKVxyXG4gIHByaXZhdGUgc3RhdGljIGluc3RhbmNlOiBWZXJzaW9uTnVtYmVyID0gbmV3IFZlcnNpb25OdW1iZXIoQURESU5fQVBJX1ZFUlNJT05fTlVNQkVSKTtcclxuXHJcbiAgLyoqXHJcbiAgICogR2V0cyB0aGUgc2luZ2xldG9uIGluc3RhbmNlIG9mIHRoZSB2ZXJzaW9uIG51bWJlci5cclxuICAgKi9cclxuICBwdWJsaWMgc3RhdGljIGdldCBJbnN0YW5jZSgpOiBWZXJzaW9uTnVtYmVyIHtcclxuICAgIHJldHVybiBWZXJzaW9uTnVtYmVyLmluc3RhbmNlO1xyXG4gIH1cclxuXHJcbiAgcHJpdmF0ZSBfbWFqb3I6IG51bWJlcjtcclxuICBwcml2YXRlIF9taW5vcjogbnVtYmVyO1xyXG4gIHByaXZhdGUgX2ZpeDogbnVtYmVyO1xyXG5cclxuICAvLyBwcml2YXRlIGNvbnN0cnVjdG9yIHNvIGV2ZXJ5b25lIHVzZXMgdGhlIHNpbmdsZXRvbiBpbnN0YW5jZVxyXG4gIHByaXZhdGUgY29uc3RydWN0b3IodmVyc2lvblN0cmluZzogc3RyaW5nKSB7XHJcbiAgICBjb25zdCBwYXJ0cyA9IHZlcnNpb25TdHJpbmcuc3BsaXQoJy4nKS5tYXAocCA9PiBwYXJzZUludChwLCAxMCkpO1xyXG4gICAgaWYgKHBhcnRzLmxlbmd0aCAhPT0gMykge1xyXG4gICAgICB0aHJvdyBuZXcgRXJyb3IoJ0ludmFsaWQgdmVyc2lvbiBudW1iZXI6ICcgKyB2ZXJzaW9uU3RyaW5nKTtcclxuICAgIH1cclxuXHJcbiAgICB0aGlzLl9tYWpvciA9IHBhcnRzWzBdO1xyXG4gICAgdGhpcy5fbWlub3IgPSBwYXJ0c1sxXTtcclxuICAgIHRoaXMuX2ZpeCA9IHBhcnRzWzJdO1xyXG4gIH1cclxuXHJcbiAgcHVibGljIGdldCBtYWpvcigpOiBudW1iZXIge1xyXG4gICAgcmV0dXJuIHRoaXMuX21ham9yO1xyXG4gIH1cclxuXHJcbiAgcHVibGljIGdldCBtaW5vcigpOiBudW1iZXIge1xyXG4gICAgcmV0dXJuIHRoaXMuX21pbm9yO1xyXG4gIH1cclxuXHJcbiAgcHVibGljIGdldCBmaXgoKTogbnVtYmVyIHtcclxuICAgIHJldHVybiB0aGlzLl9maXg7XHJcbiAgfVxyXG59XHJcblxuXG5cbi8qKiBXRUJQQUNLIEZPT1RFUiAqKlxuICoqIC4uL3NyYy9WZXJzaW9uTnVtYmVyLnRzXG4gKiovIiwiaW1wb3J0IHsgU2hlZXRUeXBlIH0gZnJvbSAnQHRhYmxlYXUvYXBpLWV4dGVybmFsLWNvbnRyYWN0JztcclxuaW1wb3J0IHtcclxuICBBZGRJbkRhc2hib2FyZEluZm8sXHJcbiAgRGFzaGJvYXJkT2JqZWN0VHlwZSxcclxuICBTaGVldFBhdGgsXHJcbiAgVmlzdWFsSWRcclxufSBmcm9tICdAdGFibGVhdS9hcGktaW50ZXJuYWwtY29udHJhY3QnO1xyXG5cclxuaW1wb3J0IHsgQWRkSW5TaGVldEluZm9JbXBsIH0gZnJvbSAnLi9BZGRJblNoZWV0SW5mb0ltcGwnO1xyXG5pbXBvcnQgeyBTaGVldEltcGwgfSBmcm9tICcuL1NoZWV0SW1wbCc7XHJcbmltcG9ydCB7IFdvcmtzaGVldEltcGwgfSBmcm9tICcuL1dvcmtzaGVldEltcGwnO1xyXG5cclxuaW1wb3J0IHsgV29ya3NoZWV0IH0gZnJvbSAnLi4vV29ya3NoZWV0JztcclxuXHJcbmV4cG9ydCBjbGFzcyBEYXNoYm9hcmRJbXBsIGV4dGVuZHMgU2hlZXRJbXBsIHtcclxuICBwcml2YXRlIF93b3Jrc2hlZXRzOiBBcnJheTxXb3Jrc2hlZXQ+O1xyXG5cclxuICBwdWJsaWMgY29uc3RydWN0b3IoaW5mbzogQWRkSW5EYXNoYm9hcmRJbmZvLCBzaGVldFBhdGg6IFNoZWV0UGF0aCkge1xyXG4gICAgc3VwZXIobmV3IEFkZEluU2hlZXRJbmZvSW1wbChpbmZvLm5hbWUsIFNoZWV0VHlwZS5EYXNoYm9hcmQpKTtcclxuICAgIHRoaXMuX3dvcmtzaGVldHMgPSBuZXcgQXJyYXk8V29ya3NoZWV0PigpO1xyXG5cclxuICAgIC8vIFByb2Nlc3MgYWxsIHRoZSB6b25lcyB3aGljaCBhcmUgY29udGFpbmVkIGluIHRoaXMgZGFzaGJvYXJkXHJcbiAgICBmb3IgKGNvbnN0IHpvbmUgb2YgaW5mby56b25lcykge1xyXG4gICAgICBpZiAoem9uZS56b25lVHlwZSA9PT0gRGFzaGJvYXJkT2JqZWN0VHlwZS5Xb3Jrc2hlZXQpIHtcclxuICAgICAgICBjb25zdCBzaGVldEluZm8gPSBuZXcgQWRkSW5TaGVldEluZm9JbXBsKHpvbmUubmFtZSwgU2hlZXRUeXBlLldvcmtzaGVldCk7XHJcbiAgICAgICAgY29uc3Qgdml6SWQ6IFZpc3VhbElkID0ge1xyXG4gICAgICAgICAgd29ya3NoZWV0OiB6b25lLm5hbWUsXHJcbiAgICAgICAgICBkYXNoYm9hcmQ6IGluZm8ubmFtZSxcclxuICAgICAgICAgIHN0b3J5Ym9hcmQ6IHNoZWV0UGF0aC5zdG9yeWJvYXJkLFxyXG4gICAgICAgICAgZmxpcGJvYXJkWm9uZUlEOiBzaGVldFBhdGguZmxpcGJvYXJkWm9uZUlELFxyXG4gICAgICAgICAgc3RvcnlQb2ludElEOiBzaGVldFBhdGguc3RvcnlQb2ludElEXHJcbiAgICAgICAgfTtcclxuXHJcbiAgICAgICAgY29uc3Qgd29ya3NoZWV0SW1wbCA9IG5ldyBXb3Jrc2hlZXRJbXBsKHNoZWV0SW5mbywgdml6SWQpO1xyXG4gICAgICAgIHRoaXMuX3dvcmtzaGVldHMucHVzaChuZXcgV29ya3NoZWV0KHdvcmtzaGVldEltcGwpKTtcclxuICAgICAgfVxyXG4gICAgfVxyXG4gIH1cclxuXHJcbiAgcHVibGljIGdldCB3b3Jrc2hlZXRzKCk6IEFycmF5PFdvcmtzaGVldD4ge1xyXG4gICAgcmV0dXJuIHRoaXMuX3dvcmtzaGVldHM7XHJcbiAgfVxyXG59XHJcblxuXG5cbi8qKiBXRUJQQUNLIEZPT1RFUiAqKlxuICoqIC4uL3NyYy9JbnRlcm5hbC9EYXNoYm9hcmRJbXBsLnRzXG4gKiovIiwiaW1wb3J0IHsgU2hlZXRUeXBlIH0gZnJvbSAnQHRhYmxlYXUvYXBpLWV4dGVybmFsLWNvbnRyYWN0JztcclxuXHJcbmV4cG9ydCBjbGFzcyBBZGRJblNoZWV0SW5mb0ltcGwge1xyXG4gIHB1YmxpYyBjb25zdHJ1Y3RvcihcclxuICAgIHByaXZhdGUgX25hbWU6IHN0cmluZyxcclxuICAgIHByaXZhdGUgX3NoZWV0VHlwZTogU2hlZXRUeXBlKSB7IH1cclxuXHJcbiAgcHVibGljIGdldCBuYW1lKCk6IHN0cmluZyB7XHJcbiAgICByZXR1cm4gdGhpcy5fbmFtZTtcclxuICB9XHJcblxyXG4gIHB1YmxpYyBnZXQgc2hlZXRUeXBlKCk6IFNoZWV0VHlwZSB7XHJcbiAgICByZXR1cm4gdGhpcy5fc2hlZXRUeXBlO1xyXG4gIH1cclxufVxyXG5cblxuXG4vKiogV0VCUEFDSyBGT09URVIgKipcbiAqKiAuLi9zcmMvSW50ZXJuYWwvQWRkSW5TaGVldEluZm9JbXBsLnRzXG4gKiovIiwiaW1wb3J0IHsgU2hlZXRUeXBlIH0gZnJvbSAnQHRhYmxlYXUvYXBpLWV4dGVybmFsLWNvbnRyYWN0JztcclxuXHJcbmltcG9ydCB7IEFkZEluU2hlZXRJbmZvSW1wbCB9IGZyb20gJy4vQWRkSW5TaGVldEluZm9JbXBsJztcclxuXHJcbmV4cG9ydCBjbGFzcyBTaGVldEltcGwge1xyXG4gIHByaXZhdGUgX25hbWU6IHN0cmluZztcclxuICBwcml2YXRlIF9zaGVldFR5cGU6IFNoZWV0VHlwZTtcclxuXHJcbiAgcHVibGljIGNvbnN0cnVjdG9yKHNoZWV0SW5mb0ltcGw6IEFkZEluU2hlZXRJbmZvSW1wbCkge1xyXG4gICAgdGhpcy5fbmFtZSA9IHNoZWV0SW5mb0ltcGwubmFtZTtcclxuICAgIHRoaXMuX3NoZWV0VHlwZSA9IHNoZWV0SW5mb0ltcGwuc2hlZXRUeXBlO1xyXG4gIH1cclxuXHJcbiAgZ2V0IG5hbWUoKTogc3RyaW5nIHtcclxuICAgIHJldHVybiB0aGlzLl9uYW1lO1xyXG4gIH1cclxuXHJcbiAgZ2V0IHNoZWV0VHlwZSgpOiBTaGVldFR5cGUge1xyXG4gICAgcmV0dXJuIHRoaXMuX3NoZWV0VHlwZTtcclxuICB9XHJcbn1cclxuXG5cblxuLyoqIFdFQlBBQ0sgRk9PVEVSICoqXG4gKiogLi4vc3JjL0ludGVybmFsL1NoZWV0SW1wbC50c1xuICoqLyIsImltcG9ydCB7XHJcbiAgQWN0aXZlTWFya3MsXHJcbiAgRGF0YVRhYmxlLFxyXG4gIEZpbHRlck9wdGlvbnMsXHJcbiAgRmlsdGVyVXBkYXRlVHlwZSxcclxuICBHZXRTdW1tYXJ5RGF0YU9wdGlvbnMsXHJcbiAgR2V0VW5kZXJseWluZ0RhdGFPcHRpb25zLFxyXG4gIFJhbmdlRmlsdGVyT3B0aW9ucyxcclxuICBUYWJsZWF1RXZlbnRUeXBlLFxyXG59IGZyb20gJ0B0YWJsZWF1L2FwaS1leHRlcm5hbC1jb250cmFjdCc7XHJcbmltcG9ydCB7IE5vdGlmaWNhdGlvbklkLCBWaXN1YWxJZCB9IGZyb20gJ0B0YWJsZWF1L2FwaS1pbnRlcm5hbC1jb250cmFjdCc7XHJcbmltcG9ydCB7XHJcbiAgQXBpU2VydmljZVJlZ2lzdHJ5LFxyXG4gIEZpbHRlclNlcnZpY2UsXHJcbiAgR2V0RGF0YVNlcnZpY2UsXHJcbiAgR2V0RGF0YVR5cGUsXHJcbiAgTWFya3NTZWxlY3RlZEV2ZW50LFxyXG4gIE5vdGlmaWNhdGlvblNlcnZpY2UsXHJcbiAgU2VydmljZU5hbWVzLFxyXG4gIFNpbmdsZUV2ZW50TWFuYWdlcixcclxuICBTaW5nbGVFdmVudE1hbmFnZXJJbXBsLFxyXG59IGZyb20gJ0B0YWJsZWF1L2FwaS1zaGFyZWQnO1xyXG5cclxuaW1wb3J0IHsgV29ya3NoZWV0IH0gZnJvbSAnLi4vV29ya3NoZWV0JztcclxuaW1wb3J0IHsgQWRkSW5TaGVldEluZm9JbXBsIH0gZnJvbSAnLi9BZGRJblNoZWV0SW5mb0ltcGwnO1xyXG5pbXBvcnQgeyBTaGVldEltcGwgfSBmcm9tICcuL1NoZWV0SW1wbCc7XHJcblxyXG5jb25zdCB2aXN1YWxJZHNBcmVFcXVhbCA9IGZ1bmN0aW9uKGE6IFZpc3VhbElkLCBiOiBWaXN1YWxJZCk6IGJvb2xlYW4ge1xyXG4gIHJldHVybiBhICYmIGIgJiZcclxuICAgIGEud29ya3NoZWV0ID09PSBiLndvcmtzaGVldCAmJlxyXG4gICAgYS5kYXNoYm9hcmQgPT09IGIuZGFzaGJvYXJkICYmXHJcbiAgICBhLnN0b3J5Ym9hcmQgPT09IGIuc3Rvcnlib2FyZCAmJlxyXG4gICAgYS5zdG9yeVBvaW50SUQgPT09IGIuc3RvcnlQb2ludElEICYmXHJcbiAgICBhLmZsaXBib2FyZFpvbmVJRCA9PT0gYi5mbGlwYm9hcmRab25lSUQ7XHJcbn07XHJcblxyXG5leHBvcnQgY2xhc3MgV29ya3NoZWV0SW1wbCBleHRlbmRzIFNoZWV0SW1wbCB7XHJcbiAgcHVibGljIGNvbnN0cnVjdG9yKHNoZWV0SW5mb0ltcGw6IEFkZEluU2hlZXRJbmZvSW1wbCwgcHJpdmF0ZSBfdmlzdWFsSWQ6IFZpc3VhbElkKSB7XHJcbiAgICBzdXBlcihzaGVldEluZm9JbXBsKTtcclxuICB9XHJcblxyXG4gIC8qKlxyXG4gICAqIEhlbHBlciBtZXRob2Qgd2hpY2ggZ29lcyB0aHJvdWdoIGFuZCByZWdpc3RlcnMgZWFjaCBldmVudCB0eXBlIHRoaXMgaW1wbCBrbm93cyBhYm91dFxyXG4gICAqIHdpdGggdGhlIE5vdGlmaWNhdGlvblNlcnZpY2UuIEl0IHJldHVybnMgYW4gYXJyYXkgb2YgU2luZ2xlRXZlbnRNYW5hZ2VyIG9iamVjdHMgd2hpY2hcclxuICAgKiBjYW4gdGhlbiBiZSBwYXNzZWQgdG8gYW4gRXZlbnRMaXN0ZW5lck1hbmFnZXIgdG8gaGFuZGxlIHVzZXIgcmVnaXN0cmF0aW9uIC8gdW5yZWdpc3RyYXRpb24uXHJcbiAgICpcclxuICAgKiBAcGFyYW0ge1dvcmtzaGVldH0gd29ya3NoZWV0IFRoZSB3b3Jrc2hlZXQgb2JqZWN0IHdoaWNoIHdpbGwgYmUgaW5jbHVkZWQgd2l0aCB0aGUgZXZlbnQgbm90aWZpY2F0aW9uc1xyXG4gICAqIEByZXR1cm5zIHtBcnJheTxTaW5nbGVFdmVudE1hbmFnZXI+fSBDb2xsZWN0aW9uIG9mIGV2ZW50IG1hbmFnZXJzIHRvIHBhc3MgdG8gYW4gRXZlbnRMaXN0ZW5lck1hbmFnZXJcclxuICAgKi9cclxuICBwdWJsaWMgaW5pdGlhbGl6ZUV2ZW50cyh3b3Jrc2hlZXQ6IFdvcmtzaGVldCk6IEFycmF5PFNpbmdsZUV2ZW50TWFuYWdlcj4ge1xyXG4gICAgY29uc3QgcmVzdWx0cyA9IG5ldyBBcnJheTxTaW5nbGVFdmVudE1hbmFnZXI+KCk7XHJcbiAgICBsZXQgbm90aWZpY2F0aW9uU2VydmljZTogTm90aWZpY2F0aW9uU2VydmljZTtcclxuXHJcbiAgICB0cnkge1xyXG4gICAgICBub3RpZmljYXRpb25TZXJ2aWNlID0gQXBpU2VydmljZVJlZ2lzdHJ5Lmluc3RhbmNlLmdldFNlcnZpY2U8Tm90aWZpY2F0aW9uU2VydmljZT4oU2VydmljZU5hbWVzLk5vdGlmaWNhdGlvbik7XHJcbiAgICB9IGNhdGNoIChlKSB7XHJcbiAgICAgIC8vIElmIHdlIGRvbid0IGhhdmUgdGhpcyBzZXJ2aWNlIHJlZ2lzdGVyZWQsIGp1c3QgcmV0dXJuXHJcbiAgICAgIHJldHVybiByZXN1bHRzO1xyXG4gICAgfVxyXG5cclxuICAgIC8vIEluaXRpYWxpemUgYWxsIG9mIHRoZSBldmVudCBtYW5hZ2VycyB3ZSdsbCBuZWVkIChvbmUgZm9yIGVhY2ggZXZlbnQgdHlwZSlcclxuICAgIGNvbnN0IG1hcmtzRXZlbnQgPSBuZXcgU2luZ2xlRXZlbnRNYW5hZ2VySW1wbDxNYXJrc1NlbGVjdGVkRXZlbnQ+KFRhYmxlYXVFdmVudFR5cGUuTWFya1NlbGVjdGlvbkNoYW5nZWQpO1xyXG4gICAgbm90aWZpY2F0aW9uU2VydmljZS5yZWdpc3RlckhhbmRsZXIoTm90aWZpY2F0aW9uSWQuU2VsZWN0ZWRNYXJrc0NoYW5nZWQsIChtb2RlbCkgPT4ge1xyXG4gICAgICBjb25zdCB2aXN1YWxJZCA9IG1vZGVsIGFzIFZpc3VhbElkO1xyXG4gICAgICByZXR1cm4gdmlzdWFsSWRzQXJlRXF1YWwodmlzdWFsSWQsIHRoaXMudmlzdWFsSWQpO1xyXG4gICAgfSwgKHZpejogVmlzdWFsSWQpID0+IHtcclxuICAgICAgbWFya3NFdmVudC50cmlnZ2VyRXZlbnQoKCkgPT4gbmV3IE1hcmtzU2VsZWN0ZWRFdmVudCh3b3Jrc2hlZXQpKTtcclxuICAgIH0pO1xyXG5cclxuICAgIHJlc3VsdHMucHVzaChtYXJrc0V2ZW50KTtcclxuXHJcbiAgICAvLyBUT0RPIC0gb3RoZXIgZXZlbnQgdHlwZXNcclxuXHJcbiAgICByZXR1cm4gcmVzdWx0cztcclxuICB9XHJcblxyXG4gIHB1YmxpYyBnZXQgdmlzdWFsSWQoKTogVmlzdWFsSWQge1xyXG4gICAgcmV0dXJuIHRoaXMuX3Zpc3VhbElkO1xyXG4gIH1cclxuXHJcbiAgcHVibGljIGFwcGx5RmlsdGVyQXN5bmMoXHJcbiAgICBmaWVsZE5hbWU6IHN0cmluZywgdmFsdWVzOiBBcnJheTxzdHJpbmc+LCB1cGRhdGVUeXBlOiBGaWx0ZXJVcGRhdGVUeXBlLCBvcHRpb25zOiBGaWx0ZXJPcHRpb25zKTogUHJvbWlzZTxzdHJpbmc+IHtcclxuICAgICAgY29uc3Qgc2VydmljZSA9IEFwaVNlcnZpY2VSZWdpc3RyeS5pbnN0YW5jZS5nZXRTZXJ2aWNlPEZpbHRlclNlcnZpY2U+KFNlcnZpY2VOYW1lcy5GaWx0ZXIpO1xyXG4gICAgICByZXR1cm4gc2VydmljZS5hcHBseUZpbHRlckFzeW5jKHRoaXMudmlzdWFsSWQsIGZpZWxkTmFtZSwgdmFsdWVzLCB1cGRhdGVUeXBlLCBvcHRpb25zKTtcclxuICAgIH1cclxuXHJcbiAgcHVibGljIGFwcGx5UmFuZ2VGaWx0ZXJBc3luYyhmaWVsZE5hbWU6IHN0cmluZywgZmlsdGVyT3B0aW9uczogUmFuZ2VGaWx0ZXJPcHRpb25zKTogUHJvbWlzZTxzdHJpbmc+IHtcclxuICAgIGNvbnN0IHNlcnZpY2UgPSBBcGlTZXJ2aWNlUmVnaXN0cnkuaW5zdGFuY2UuZ2V0U2VydmljZTxGaWx0ZXJTZXJ2aWNlPihTZXJ2aWNlTmFtZXMuRmlsdGVyKTtcclxuICAgIHJldHVybiBzZXJ2aWNlLmFwcGx5UmFuZ2VGaWx0ZXJBc3luYyh0aGlzLnZpc3VhbElkLCBmaWVsZE5hbWUsIGZpbHRlck9wdGlvbnMpO1xyXG4gIH1cclxuXHJcbiAgcHVibGljIGNsZWFyRmlsdGVyQXN5bmMoZmllbGROYW1lOiBzdHJpbmcpOiBQcm9taXNlPHN0cmluZz4ge1xyXG4gICAgY29uc3Qgc2VydmljZSA9IEFwaVNlcnZpY2VSZWdpc3RyeS5pbnN0YW5jZS5nZXRTZXJ2aWNlPEZpbHRlclNlcnZpY2U+KFNlcnZpY2VOYW1lcy5GaWx0ZXIpO1xyXG4gICAgcmV0dXJuIHNlcnZpY2UuY2xlYXJGaWx0ZXJBc3luYyh0aGlzLnZpc3VhbElkLCBmaWVsZE5hbWUpO1xyXG4gIH1cclxuXHJcbiAgcHVibGljIGdldFNlbGVjdGVkTWFya3NBc3luYygpOiBQcm9taXNlPEFjdGl2ZU1hcmtzPiB7XHJcbiAgICBjb25zdCBzZXJ2aWNlID0gQXBpU2VydmljZVJlZ2lzdHJ5Lmluc3RhbmNlLmdldFNlcnZpY2U8R2V0RGF0YVNlcnZpY2U+KFNlcnZpY2VOYW1lcy5HZXREYXRhKTtcclxuICAgIHJldHVybiBzZXJ2aWNlLmdldFNlbGVjdGVkTWFya3NBc3luYyh0aGlzLnZpc3VhbElkKTtcclxuICB9XHJcblxyXG4gIHB1YmxpYyBnZXRIaWdobGlnaHRlZE1hcmtzQXN5bmMoKTogUHJvbWlzZTxBY3RpdmVNYXJrcz4ge1xyXG4gICAgY29uc3Qgc2VydmljZSA9IEFwaVNlcnZpY2VSZWdpc3RyeS5pbnN0YW5jZS5nZXRTZXJ2aWNlPEdldERhdGFTZXJ2aWNlPihTZXJ2aWNlTmFtZXMuR2V0RGF0YSk7XHJcbiAgICByZXR1cm4gc2VydmljZS5nZXRIaWdobGlnaHRlZE1hcmtzQXN5bmModGhpcy52aXN1YWxJZCk7XHJcbiAgfVxyXG5cclxuICBwdWJsaWMgZ2V0U3VtbWFyeURhdGFBc3luYyhvcHRpb25zOiBHZXRTdW1tYXJ5RGF0YU9wdGlvbnMpOiBQcm9taXNlPERhdGFUYWJsZT4ge1xyXG4gICAgY29uc3Qgc2VydmljZSA9IEFwaVNlcnZpY2VSZWdpc3RyeS5pbnN0YW5jZS5nZXRTZXJ2aWNlPEdldERhdGFTZXJ2aWNlPihTZXJ2aWNlTmFtZXMuR2V0RGF0YSk7XHJcbiAgICBvcHRpb25zID0gb3B0aW9ucyB8fCB7fTtcclxuXHJcbiAgICByZXR1cm4gc2VydmljZS5nZXRVbmRlcmx5aW5nRGF0YUFzeW5jKFxyXG4gICAgICB0aGlzLnZpc3VhbElkLCBHZXREYXRhVHlwZS5TdW1tYXJ5LCAhIW9wdGlvbnMuaWdub3JlQWxpYXNlcywgISFvcHRpb25zLmlnbm9yZVNlbGVjdGlvbiwgdHJ1ZSwgMCk7XHJcbiAgICB9XHJcblxyXG4gIHB1YmxpYyBnZXRVbmRlcmx5aW5nRGF0YUFzeW5jKG9wdGlvbnM6IEdldFVuZGVybHlpbmdEYXRhT3B0aW9ucyk6IFByb21pc2U8RGF0YVRhYmxlPiB7XHJcbiAgICBjb25zdCBzZXJ2aWNlID0gQXBpU2VydmljZVJlZ2lzdHJ5Lmluc3RhbmNlLmdldFNlcnZpY2U8R2V0RGF0YVNlcnZpY2U+KFNlcnZpY2VOYW1lcy5HZXREYXRhKTtcclxuICAgIG9wdGlvbnMgPSBvcHRpb25zIHx8IHt9O1xyXG4gICAgcmV0dXJuIHNlcnZpY2UuZ2V0VW5kZXJseWluZ0RhdGFBc3luYyhcclxuICAgICAgdGhpcy52aXN1YWxJZCxcclxuICAgICAgR2V0RGF0YVR5cGUuVW5kZXJseWluZyxcclxuICAgICAgISFvcHRpb25zLmlnbm9yZUFsaWFzZXMsXHJcbiAgICAgICEhb3B0aW9ucy5pZ25vcmVTZWxlY3Rpb24sXHJcbiAgICAgICEhb3B0aW9ucy5pbmNsdWRlQWxsQ29sdW1ucyxcclxuICAgICAgb3B0aW9ucy5tYXhSb3dzIHx8IDApO1xyXG4gIH1cclxufVxyXG5cblxuXG4vKiogV0VCUEFDSyBGT09URVIgKipcbiAqKiAuLi9zcmMvSW50ZXJuYWwvV29ya3NoZWV0SW1wbC50c1xuICoqLyIsImltcG9ydCB7XHJcbiAgQWN0aXZlTWFya3MsXHJcbiAgRGFzaGJvYXJkLFxyXG4gIERhdGFUYWJsZSxcclxuICBGaWx0ZXIsXHJcbiAgRmlsdGVyT3B0aW9ucyxcclxuICBGaWx0ZXJVcGRhdGVUeXBlLFxyXG4gIEdldFN1bW1hcnlEYXRhT3B0aW9ucyxcclxuICBHZXRVbmRlcmx5aW5nRGF0YU9wdGlvbnMsXHJcbiAgUmFuZ2VGaWx0ZXJPcHRpb25zLFxyXG4gIFdvcmtzaGVldCBhcyBXb3Jrc2hlZXRDb250cmFjdFxyXG59IGZyb20gJ0B0YWJsZWF1L2FwaS1leHRlcm5hbC1jb250cmFjdCc7XHJcblxyXG5pbXBvcnQgeyBTaGVldCB9IGZyb20gJy4vU2hlZXQnO1xyXG5cclxuaW1wb3J0IHsgV29ya3NoZWV0SW1wbCB9IGZyb20gJy4vSW50ZXJuYWwvV29ya3NoZWV0SW1wbCc7XHJcblxyXG5leHBvcnQgY2xhc3MgV29ya3NoZWV0IGV4dGVuZHMgU2hlZXQgaW1wbGVtZW50cyBXb3Jrc2hlZXRDb250cmFjdCB7XHJcbiAgcHJpdmF0ZSB3b3Jrc2hlZXRJbXBsOiBXb3Jrc2hlZXRJbXBsO1xyXG5cclxuICBwdWJsaWMgY29uc3RydWN0b3Iod29ya3NoZWV0SW1wbDogV29ya3NoZWV0SW1wbCkge1xyXG4gICAgc3VwZXIod29ya3NoZWV0SW1wbCk7XHJcbiAgICB0aGlzLndvcmtzaGVldEltcGwgPSB3b3Jrc2hlZXRJbXBsO1xyXG5cclxuICAgIC8vIENhbGwgdG8gaW5pdGlhbGl6ZSBldmVudHMgYW5kIHRoZW4gY2FsbCBkb3duIHRvIHRoZSBldmVudCBsaXN0ZW5lciBtYW5hZ2VyIHRvIGhhbmRsZSB0aGluZ3NcclxuICAgIHRoaXMud29ya3NoZWV0SW1wbC5pbml0aWFsaXplRXZlbnRzKHRoaXMpLmZvckVhY2goZSA9PiB0aGlzLmFkZE5ld0V2ZW50VHlwZShlKSk7XHJcbiAgfVxyXG5cclxuICBwdWJsaWMgZ2V0IHBhcmVudERhc2hib2FyZCgpOiBEYXNoYm9hcmQge1xyXG4gICAgdGhyb3cgbmV3IEVycm9yKCdBUEkgY2FsbCBub3QgeWV0IGltcGxlbWVudGVkJyk7XHJcbiAgfVxyXG5cclxuICBwdWJsaWMgYXBwbHlGaWx0ZXJBc3luYyhcclxuICAgIGZpZWxkTmFtZTogc3RyaW5nLCB2YWx1ZXM6IEFycmF5PHN0cmluZz4sIHVwZGF0ZVR5cGU6IEZpbHRlclVwZGF0ZVR5cGUsIG9wdGlvbnM6IEZpbHRlck9wdGlvbnMpOiBQcm9taXNlPHN0cmluZz4ge1xyXG4gICAgICByZXR1cm4gdGhpcy53b3Jrc2hlZXRJbXBsLmFwcGx5RmlsdGVyQXN5bmMoZmllbGROYW1lLCB2YWx1ZXMsIHVwZGF0ZVR5cGUsIG9wdGlvbnMpO1xyXG4gIH1cclxuXHJcbiAgcHVibGljIGFwcGx5UmFuZ2VGaWx0ZXJBc3luYyhmaWVsZE5hbWU6IHN0cmluZywgZmlsdGVyT3B0aW9uczogUmFuZ2VGaWx0ZXJPcHRpb25zKTogUHJvbWlzZTxzdHJpbmc+IHtcclxuICAgIHJldHVybiB0aGlzLndvcmtzaGVldEltcGwuYXBwbHlSYW5nZUZpbHRlckFzeW5jKGZpZWxkTmFtZSwgZmlsdGVyT3B0aW9ucyk7XHJcbiAgfVxyXG5cclxuICBwdWJsaWMgY2xlYXJGaWx0ZXJBc3luYyhmaWVsZE5hbWU6IHN0cmluZyk6IFByb21pc2U8c3RyaW5nPiB7XHJcbiAgICByZXR1cm4gdGhpcy53b3Jrc2hlZXRJbXBsLmNsZWFyRmlsdGVyQXN5bmMoZmllbGROYW1lKTtcclxuICB9XHJcblxyXG4gIHB1YmxpYyBnZXRGaWx0ZXJzQXN5bmMoKTogUHJvbWlzZTxGaWx0ZXJbXT4ge1xyXG4gICAgdGhyb3cgbmV3IEVycm9yKCdBUEkgY2FsbCBub3QgeWV0IGltcGxlbWVudGVkJyk7XHJcbiAgfVxyXG5cclxuICBwdWJsaWMgZ2V0U2VsZWN0ZWRNYXJrc0FzeW5jKCk6IFByb21pc2U8QWN0aXZlTWFya3M+IHtcclxuICAgIHJldHVybiB0aGlzLndvcmtzaGVldEltcGwuZ2V0U2VsZWN0ZWRNYXJrc0FzeW5jKCk7XHJcbiAgfVxyXG5cclxuICBwdWJsaWMgZ2V0SGlnaGxpZ2h0ZWRNYXJrc0FzeW5jKCk6IFByb21pc2U8QWN0aXZlTWFya3M+IHtcclxuICAgIHJldHVybiB0aGlzLndvcmtzaGVldEltcGwuZ2V0SGlnaGxpZ2h0ZWRNYXJrc0FzeW5jKCk7XHJcbiAgfVxyXG5cclxuICBwdWJsaWMgZ2V0U3VtbWFyeURhdGFBc3luYyhvcHRpb25zOiBHZXRTdW1tYXJ5RGF0YU9wdGlvbnMpOiBQcm9taXNlPERhdGFUYWJsZT4ge1xyXG4gICAgcmV0dXJuIHRoaXMud29ya3NoZWV0SW1wbC5nZXRTdW1tYXJ5RGF0YUFzeW5jKG9wdGlvbnMpO1xyXG4gIH1cclxuXHJcbiAgcHVibGljIGdldFVuZGVybHlpbmdEYXRhQXN5bmMob3B0aW9uczogR2V0VW5kZXJseWluZ0RhdGFPcHRpb25zKTogUHJvbWlzZTxEYXRhVGFibGU+IHtcclxuICAgIHJldHVybiB0aGlzLndvcmtzaGVldEltcGwuZ2V0VW5kZXJseWluZ0RhdGFBc3luYyhvcHRpb25zKTtcclxuICB9XHJcbn1cclxuXG5cblxuLyoqIFdFQlBBQ0sgRk9PVEVSICoqXG4gKiogLi4vc3JjL1dvcmtzaGVldC50c1xuICoqLyIsImltcG9ydCB7IEFkZEluU2V0dGluZ3NJbmZvIH0gZnJvbSAnQHRhYmxlYXUvYXBpLWludGVybmFsLWNvbnRyYWN0JztcclxuaW1wb3J0IHsgQXBpU2VydmljZVJlZ2lzdHJ5IH0gZnJvbSAnQHRhYmxlYXUvYXBpLXNoYXJlZCc7XHJcbmltcG9ydCB7IFBhcmFtIH0gZnJvbSAnQHRhYmxlYXUvYXBpLXV0aWxzJztcclxuXHJcbmltcG9ydCB7IEFkZEluU2VydmljZU5hbWVzIH0gZnJvbSAnLi4vU2VydmljZXMvQWRkSW5TZXJ2aWNlTmFtZXMnO1xyXG5pbXBvcnQgeyBTZXR0aW5nc0NvbGxlY3Rpb24sIFNldHRpbmdzU2VydmljZSB9IGZyb20gJy4uL1NlcnZpY2VzL1NldHRpbmdzU2VydmljZSc7XHJcblxyXG5leHBvcnQgY2xhc3MgU2V0dGluZ3NJbXBsIHtcclxuICBwcml2YXRlIF9pc01vZGlmaWVkOiBib29sZWFuO1xyXG4gIHByaXZhdGUgY3VycmVudFNldHRpbmdzOiBTZXR0aW5nc0NvbGxlY3Rpb247XHJcblxyXG4gIC8vIFNpbmNlIHByb21pc2VzIGNhbid0IGJlIGludHJvc3BlY3RlZCBmb3Igc3RhdGUsIGtlZXAgYSB2YXJpYWJsZSB0aGF0XHJcbiAgLy8gaW5kaWNhdGVzIGEgc2F2ZSBpcyBpbiBwcm9ncmVzcywgc28gdGhhdCBzZXQvZXJhc2UgY2FuJ3QgYmUgY2FsbGVkIGR1cmluZyBhIHNhdmUuXHJcbiAgcHJpdmF0ZSBzYXZlSW5Qcm9ncmVzczogYm9vbGVhbiA9IGZhbHNlO1xyXG5cclxuICBwdWJsaWMgY29uc3RydWN0b3Ioc2V0dGluZ3NJbmZvOiBBZGRJblNldHRpbmdzSW5mbykge1xyXG4gICAgdGhpcy5pbml0aWFsaXplU2V0dGluZ3Moc2V0dGluZ3NJbmZvKTtcclxuICB9XHJcblxyXG4gIHB1YmxpYyBlcmFzZShrZXk6IHN0cmluZyk6IHZvaWQge1xyXG4gICAgUGFyYW0udmVyaWZ5VmFsdWUoa2V5LCAna2V5Jyk7XHJcblxyXG4gICAgLy8gT25seSBtYWtlIGEgbW9kaWZpY2F0aW9uIGlmIHdlIGhhdmUgdGhlIGtleSBhbHJlYWR5XHJcbiAgICBpZiAodGhpcy5jdXJyZW50U2V0dGluZ3Nba2V5XSkge1xyXG4gICAgICB0aGlzLnZlcmlmeVNldHRpbmdzQXJlVW5sb2NrZWQoKTtcclxuXHJcbiAgICAgIGRlbGV0ZSB0aGlzLmN1cnJlbnRTZXR0aW5nc1trZXldO1xyXG4gICAgICB0aGlzLl9pc01vZGlmaWVkID0gdHJ1ZTtcclxuICAgIH1cclxuICB9XHJcblxyXG4gIHB1YmxpYyBnZXQoa2V5OiBzdHJpbmcpOiBzdHJpbmcgfCB1bmRlZmluZWQge1xyXG4gICAgUGFyYW0udmVyaWZ5VmFsdWUoa2V5LCAna2V5Jyk7XHJcbiAgICByZXR1cm4gdGhpcy5jdXJyZW50U2V0dGluZ3Nba2V5XTtcclxuICB9XHJcblxyXG4gIHB1YmxpYyBnZXRBbGwoKTogU2V0dGluZ3NDb2xsZWN0aW9uIHtcclxuICAgIC8vIFJldHVybnMgYSBtdXRhYmxlIGNvcHkgb2YgdGhlIHNldHRpbmdzXHJcbiAgICByZXR1cm4gT2JqZWN0LmFzc2lnbih7fSwgdGhpcy5jdXJyZW50U2V0dGluZ3MpO1xyXG4gIH1cclxuXHJcbiAgcHVibGljIGdldCBpc01vZGlmaWVkKCk6IGJvb2xlYW4ge1xyXG4gICAgcmV0dXJuIHRoaXMuX2lzTW9kaWZpZWQ7XHJcbiAgfVxyXG5cclxuICBwdWJsaWMgc2F2ZUFzeW5jKCk6IFByb21pc2U8U2V0dGluZ3NDb2xsZWN0aW9uPiB7XHJcbiAgICB0aGlzLnZlcmlmeVNldHRpbmdzQXJlVW5sb2NrZWQoKTtcclxuXHJcbiAgICAvLyBKdXN0IHJlc29sdmUgaW1tZWRpYXRlbHkgaWYgc2V0dGluZ3MgYXJlIHVuY2hhbmdlZFxyXG4gICAgaWYgKCF0aGlzLl9pc01vZGlmaWVkKSB7XHJcbiAgICAgIHJldHVybiBQcm9taXNlLnJlc29sdmU8U2V0dGluZ3NDb2xsZWN0aW9uPih0aGlzLmN1cnJlbnRTZXR0aW5ncyk7XHJcbiAgICB9XHJcblxyXG4gICAgdGhpcy5zYXZlSW5Qcm9ncmVzcyA9IHRydWU7XHJcblxyXG4gICAgLy8gVXNlIHRoZSBzZXR0aW5ncyBzZXJ2aWNlIHRvIHNhdmUgc2V0dGluZ3MgdG8gdHdiXHJcbiAgICBjb25zdCBzZXR0aW5nc1NlcnZpY2UgPSBBcGlTZXJ2aWNlUmVnaXN0cnkuaW5zdGFuY2UuZ2V0U2VydmljZTxTZXR0aW5nc1NlcnZpY2U+KFxyXG4gICAgICBBZGRJblNlcnZpY2VOYW1lcy5TZXR0aW5nc1NlcnZpY2UpO1xyXG5cclxuICAgIHJldHVybiBzZXR0aW5nc1NlcnZpY2Uuc2F2ZVNldHRpbmdzQXN5bmModGhpcy5jdXJyZW50U2V0dGluZ3MpLnRoZW48U2V0dGluZ3NDb2xsZWN0aW9uPihuZXdTZXR0aW5ncyA9PiB7XHJcbiAgICAgIHRoaXMuc2F2ZUluUHJvZ3Jlc3MgPSBmYWxzZTtcclxuICAgICAgdGhpcy5faXNNb2RpZmllZCA9IGZhbHNlO1xyXG4gICAgICBPYmplY3QuYXNzaWduKHRoaXMuY3VycmVudFNldHRpbmdzLCBuZXdTZXR0aW5ncyk7XHJcbiAgICAgIHJldHVybiBuZXdTZXR0aW5ncztcclxuICAgIH0pO1xyXG4gIH1cclxuXHJcbiAgcHVibGljIHNldChrZXk6IHN0cmluZywgdmFsdWU6IHN0cmluZyk6IHZvaWQge1xyXG4gICAgUGFyYW0udmVyaWZ5VmFsdWUoa2V5LCAna2V5Jyk7IC8vIEtleSBzaG91bGRuJ3QgYmUgYW4gZW1wdHkgc3RyaW5nLlxyXG4gICAgUGFyYW0udmVyaWZ5U3RyaW5nKHZhbHVlLCAndmFsdWUnKTsgLy8gRW1wdHkgc3RyaW5nIHZhbHVlIGlzIGFsbG93ZWQuXHJcbiAgICB0aGlzLnZlcmlmeVNldHRpbmdzQXJlVW5sb2NrZWQoKTtcclxuXHJcbiAgICB0aGlzLmN1cnJlbnRTZXR0aW5nc1trZXldID0gdmFsdWU7XHJcbiAgICB0aGlzLl9pc01vZGlmaWVkID0gdHJ1ZTtcclxuICB9XHJcblxyXG4gIHByaXZhdGUgaW5pdGlhbGl6ZVNldHRpbmdzKHNldHRpbmdzSW5mbzogQWRkSW5TZXR0aW5nc0luZm8pOiB2b2lkIHtcclxuICAgIFBhcmFtLnZlcmlmeVZhbHVlKHNldHRpbmdzSW5mbywgJ3NldHRpbmdzSW5mbycpO1xyXG4gICAgUGFyYW0udmVyaWZ5VmFsdWUoc2V0dGluZ3NJbmZvLnNldHRpbmdzVmFsdWVzLCAnc2V0dGluZ3NJbmZvLlNldHRpbmdzVmFsdWVzJyk7XHJcblxyXG4gICAgdGhpcy5jdXJyZW50U2V0dGluZ3MgPSBzZXR0aW5nc0luZm8uc2V0dGluZ3NWYWx1ZXM7XHJcblxyXG4gICAgLy8gUmVzZXQgdGhlIGlzTW9kaWZpZWQgZmxhZ1xyXG4gICAgdGhpcy5faXNNb2RpZmllZCA9IGZhbHNlO1xyXG4gIH1cclxuXHJcbiAgLyoqXHJcbiAgICogVGhpcyBoZWxwZXIgc2hvdWxkIGJlIGNhbGxlZCBiZWZvcmUgYW55IGxvY2FsIHVwZGF0ZSB0byB0aGlzLmN1cnJlbnRTZXR0aW5ncy5cclxuICAgKiBDaGVja3MgaWYgYSBjdXJyZW50IHNhdmUgY2FsbCBpcyBzdGlsbCBpbiBwcm9ncmVzcyBhbmQgdGhyb3dzIGFuIGVycm9yIGlmIHNvLlxyXG4gICAqL1xyXG4gIHByaXZhdGUgdmVyaWZ5U2V0dGluZ3NBcmVVbmxvY2tlZCgpOiB2b2lkIHtcclxuICAgIGlmICh0aGlzLnNhdmVJblByb2dyZXNzKSB7XHJcbiAgICAgIHRocm93IG5ldyBFcnJvcignQXN5bmMgU2F2ZSBpcyBpbiBwcm9ncmVzcywgdXBkYXRpbmcgc2V0dGluZ3MgaXMgbm90IGFsbG93ZWQuJyk7XHJcbiAgICB9XHJcbiAgfVxyXG59XHJcblxuXG5cbi8qKiBXRUJQQUNLIEZPT1RFUiAqKlxuICoqIC4uL3NyYy9JbnRlcm5hbC9TZXR0aW5nc0ltcGwudHNcbiAqKi8iXSwic291cmNlUm9vdCI6IiJ9

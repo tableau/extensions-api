@@ -22,13 +22,13 @@ class SelectedMarksDemoComponent extends React.Component {
   }
 
   handleSelectedMarks(selectedMarks, sheetName, forceChangeSheet) {
-    const dataTable = selectedMarks.Data[0]; // Just get the first pane
-    const columns = dataTable.Columns.map((col) => ({
-      label: col.FieldName,
+    const dataTable = selectedMarks.data[0]; // Just get the first pane
+    const columns = dataTable.columns.map((col) => ({
+      label: col.fieldName,
       dataKey: 'FormattedValue'
     }));
 
-    const rows = dataTable.Data;
+    const rows = dataTable.data;
 
     const result = {
       rows: rows,
@@ -43,15 +43,15 @@ class SelectedMarksDemoComponent extends React.Component {
   }
 
   onSelectionChanged(marksEvent) {
-    const sheetName = marksEvent.Worksheet.Name;
-    marksEvent.GetMarksAsync().then((selectedMarks) => {
+    const sheetName = marksEvent.worksheet.name;
+    marksEvent.getMarksAsync().then((selectedMarks) => {
       this.handleSelectedMarks(selectedMarks, sheetName, true);
     });
   }
 
   reload() {
-    let allSheets = tableau.addIn.dashboardContent.Dashboard.Worksheets;
-    const sheets = allSheets.map((sheet) => sheet.Name);
+    let allSheets = tableau.addIn.dashboardContent.dashboard.worksheets;
+    const sheets = allSheets.map((sheet) => sheet.name);
 
     this.setState({
       sheets: sheets
@@ -59,12 +59,12 @@ class SelectedMarksDemoComponent extends React.Component {
 
     // Fetch the selected marks for every sheet
     for(const sheet of allSheets) {
-      const sheetName = sheet.Name;
-      sheet.GetSelectedMarksAsync().then((selectedMarks) => {
+      const sheetName = sheet.name;
+      sheet.getSelectedMarksAsync().then((selectedMarks) => {
         this.handleSelectedMarks(selectedMarks, sheetName, false);
       });
 
-      sheet.AddEventListener('markselectionchanged', this.selectionChangedEvent);
+      sheet.addEventListener('mark-selection-changed', this.selectionChangedEvent);
     }
   }
 

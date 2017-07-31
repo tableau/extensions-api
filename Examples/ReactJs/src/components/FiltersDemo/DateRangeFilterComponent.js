@@ -9,6 +9,7 @@ class DateRangeFilterComponent extends React.Component {
     constructor(props) {
         super(props);
         let defaultField = Object.keys(this.props.filters)[0];
+
         let minDate = this.props.filters[defaultField].minDate;
         let maxDate = this.props.filters[defaultField].maxDate;
         this.state = {
