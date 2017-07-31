@@ -10,13 +10,13 @@ require('styles//EnvironmentDemo.css');
 class EnvironmentDemoComponent extends React.Component {
   componentWillMount() {
     let properties = {
-      'Api Version': tableau.addIn.environment.getApiVersion(),
-      'Context': tableau.addIn.environment.getContext(),
-      'Language': tableau.addIn.environment.getLanguage(),
-      'Locale': tableau.addIn.environment.getLocale(),
-      'Mode': tableau.addIn.environment.getMode(),
-      'Operating System': tableau.addIn.environment.getOperatingSystem(),
-      'Tableau Version': tableau.addIn.environment.getTableauVersion()
+      'Api Version': tableau.addIn.environment.apiVersion,
+      'Context': tableau.addIn.environment.context,
+      'Language': tableau.addIn.environment.language,
+      'Locale': tableau.addIn.environment.locale,
+      'Mode': tableau.addIn.environment.mode,
+      'Operating System': tableau.addIn.environment.operatingSystem,
+      'Tableau Version': tableau.addIn.environment.tableauVersion
     };
 
     this.setState(() => {

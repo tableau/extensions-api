@@ -22,12 +22,17 @@ class SelectedMarksDemoComponent extends React.Component {
   }
 
   handleSelectedMarks(selectedMarks, sheetName, forceChangeSheet) {
-    const rows = selectedMarks.map((mark) => mark.getPairs());
-    const cols = selectedMarks.length == 0 ? [] : selectedMarks[0].getPairs().map((pair => { return { 'label' : pair.fieldName}; }));
+    const dataTable = selectedMarks.data[0]; // Just get the first pane
+    const columns = dataTable.columns.map((col) => ({
+      label: col.fieldName,
+      dataKey: 'FormattedValue'
+    }));
+
+    const rows = dataTable.data;
 
     const result = {
       rows: rows,
-      cols: cols,
+      cols: columns,
       dataKey: Math.random()
     };
 
@@ -38,15 +43,15 @@ class SelectedMarksDemoComponent extends React.Component {
   }
 
   onSelectionChanged(marksEvent) {
-    const sheetName = marksEvent.getWorksheet().getName();
+    const sheetName = marksEvent.worksheet.name;
     marksEvent.getMarksAsync().then((selectedMarks) => {
       this.handleSelectedMarks(selectedMarks, sheetName, true);
     });
   }
 
   reload() {
-    let allSheets = tableau.addIn.dashboardContent.getDashboard().getWorksheets();
-    const sheets = allSheets.map((sheet) => sheet.getName());
+    let allSheets = tableau.addIn.dashboardContent.dashboard.worksheets;
+    const sheets = allSheets.map((sheet) => sheet.name);
 
     this.setState({
       sheets: sheets
@@ -54,12 +59,12 @@ class SelectedMarksDemoComponent extends React.Component {
 
     // Fetch the selected marks for every sheet
     for(const sheet of allSheets) {
-      const sheetName = sheet.getName();
+      const sheetName = sheet.name;
       sheet.getSelectedMarksAsync().then((selectedMarks) => {
         this.handleSelectedMarks(selectedMarks, sheetName, false);
       });
 
-      sheet.getEventListenerManager().addEventListener(tableau.TableauEventName.MARKS_SELECTION, this.selectionChangedEvent);
+      sheet.addEventListener('mark-selection-changed', this.selectionChangedEvent);
     }
   }
 

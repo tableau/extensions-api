@@ -31,7 +31,7 @@ class SettingsDemoComponent extends React.Component {
 
     this.setState({
       settingsValues: rows,
-      isModified: tableau.addIn.settings.isModified()
+      isModified: tableau.addIn.settings.isModified
     });
   }
 

@@ -26,8 +26,8 @@ class GetDataDemoComponent extends React.Component {
   }
 
   loadFromTableau() {
-    let allSheets = tableau.addIn.dashboardContent.getDashboard().getWorksheets();
-    const sheetNames = allSheets.map((sheet) => sheet.getName());
+    let allSheets = tableau.addIn.dashboardContent.dashboard.worksheets;
+    const sheetNames = allSheets.map((sheet) => sheet.name);
     var settingsString = tableau.addIn.settings.get('getDataSettings');
     if (!!settingsString) {
       const settings = JSON.parse(settingsString);
@@ -55,8 +55,8 @@ class GetDataDemoComponent extends React.Component {
     // Here's where we actually use the getData API
 
     // First find the worksheet in the list of worksheets
-    const sheet = tableau.addIn.dashboardContent.getDashboard().getWorksheets().find(
-      (sheet) => sheet.getName() == settings.sheetName);
+    const sheet = tableau.addIn.dashboardContent.dashboard.worksheets.find(
+      (sheet) => sheet.name == settings.sheetName);
 
     if (!sheet) {
       // TODO - error
@@ -68,12 +68,12 @@ class GetDataDemoComponent extends React.Component {
     const params = Object.assign({}, settings); // Just copy over all of these to get the properties
     let promise = settings.type == 'summary' ? sheet.getSummaryDataAsync(params) : sheet.getUnderlyingDataAsync(params);
     promise.then((dataTable) => {
-      const columns = dataTable.getColumns().map((col) => ({
-        label: col.getFieldName(),
-        dataKey: 'formattedValue'
+      const columns = dataTable.columns.map((col) => ({
+        label: col.fieldName,
+        dataKey: 'FormattedValue'
       }));
 
-      const rows = dataTable.getData();
+      const rows = dataTable.data;
 
       this.setState({
         columns: columns,
@@ -102,7 +102,7 @@ class GetDataDemoComponent extends React.Component {
       showingDialog: false,
       loading: true,
       settings: settings
-    });
+    }, () => this.getData(settings));
 
     tableau.addIn.settings.saveAsync().then(() => {
       // After we save, we should reload the data table with our settings

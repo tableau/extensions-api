@@ -32,7 +32,7 @@ class CategoricalFilterComponent extends React.Component {
     }
 
     applyFilter() {
-        this.props.workSheet.applyFilterAsync(this.state.currField, this.state.currValue, tableau.FilterUpdateType.REPLACE);
+        this.props.workSheet.applyFilterAsync(this.state.currField, [this.state.currValue], tableau.FilterUpdateType.Replace);
     }
 
     clearFilter() {
