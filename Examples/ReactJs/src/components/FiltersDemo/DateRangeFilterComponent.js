@@ -9,6 +9,7 @@ class DateRangeFilterComponent extends React.Component {
     constructor(props) {
         super(props);
         let defaultField = Object.keys(this.props.filters)[0];
+
         let minDate = this.props.filters[defaultField].minDate;
         let maxDate = this.props.filters[defaultField].maxDate;
         this.state = {
@@ -30,6 +31,7 @@ class DateRangeFilterComponent extends React.Component {
     }
 
     handleDateChange(startDate, dateStr) {
+        debugger;
         let date = new Date(dateStr);
         if (startDate) {
             if (date <= this.props.filters[this.state.currField].minDate || date > this.state.endDate) {

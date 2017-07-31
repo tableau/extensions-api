@@ -21,11 +21,11 @@ class FiltersDemoComponent extends React.Component {
     }
 
     getUnderlyingData() {
-        let allSheets = tableau.addIn.dashboardContent.getDashboard().getWorksheets();
+        let allSheets = tableau.addIn.dashboardContent.dashboard.worksheets;
         let sheet = allSheets[0];
         sheet.getUnderlyingDataAsync().then((dataTable) => {
-            let columns = dataTable.getColumns();
-            let data = dataTable.getData();
+            let columns = dataTable.columns;
+            let data = dataTable.data;
             let categoricalColumns = [];
             let dateColumns = [];
             columns.forEach((column) => {
@@ -36,6 +36,7 @@ class FiltersDemoComponent extends React.Component {
                     dateColumns.push(column);
                 }
             });
+
             let allCategoricalFilters = this.constructFilterValues(categoricalColumns, data);
             let dateFilters = this.constructDateFilters(dateColumns, data);
             this.setState({
@@ -48,11 +49,11 @@ class FiltersDemoComponent extends React.Component {
     }
 
     isCategorical(column) {
-        return (column.getDataType() === 'string') || (column.getDataType() === 'boolean');
+        return (column.dataType === 'string') || (column.dataType === 'boolean');
     }
 
     isDate(column) {
-        return (column.getDataType() === 'datetime') || (column.getDataType() === 'date');
+        return (column.dataType === 'datetime') || (column.dataType === 'date');
     }
 
     constructFilterValues(columns, data) {
@@ -60,10 +61,10 @@ class FiltersDemoComponent extends React.Component {
         columns.forEach((column) => {
             let dataValues = [];
             data.forEach((row) => {
-                dataValues.push(row[column.getIndex()].value);
+                dataValues.push(row[column.index].value);
             })
             let uniqueDataValues = _.uniqBy(dataValues, (value) => value);
-            allFilters[column.getFieldName()] = uniqueDataValues;
+            allFilters[column.fieldName] = uniqueDataValues;
         });
         return allFilters;
     }
@@ -73,12 +74,12 @@ class FiltersDemoComponent extends React.Component {
         columns.forEach((column) => {
             let dataValues = [];
             data.forEach((row) => {
-                dataValues.push(new Date(row[column.getIndex()].value));
+                dataValues.push(new Date(row[column.index].value));
             })
             let uniqueDataValues = _.uniqBy(dataValues, (value) => value);
             let minDate = _.min(uniqueDataValues);
             let maxDate = _.max(uniqueDataValues);
-            dateFilters[column.getFieldName()] = {
+            dateFilters[column.fieldName] = {
                 minDate: minDate,
                 maxDate: maxDate
             }
@@ -98,13 +99,17 @@ class FiltersDemoComponent extends React.Component {
         }
         return (
             <div>
+                { Object.keys(this.state.dateFilters).length > 0 ?
                 <DateRangeFilterComponent
                     filters={this.state.dateFilters}
                     workSheet={this.state.sheet}/>
+                : null }
                 <hr/>
+                { Object.keys(this.state.categoricalFilters).length > 0 ?
                 <CategoricalFilterComponent
                     filters={this.state.categoricalFilters}
                     workSheet={this.state.sheet} />
+                : null }
             </div>
         );
 

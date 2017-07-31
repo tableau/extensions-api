@@ -9,10 +9,10 @@ $(document).ready(function() {
     tableau.addIn.initializeAsync().then(function() {
 
       // Initialization succeeded! Get the dashboard's name
-      var dashboard = tableau.addIn.dashboardContent.getDashboard(); 
+      var dashboard = tableau.addIn.dashboardContent.dashboard; 
 
       // Display the results in the UI
-      $("#resultBox").html("I'm running in a dashboard named <strong>" + dashboard.getName() + "</strong>");
+      $("#resultBox").html("I'm running in a dashboard named <strong>" + dashboard.name + "</strong>");
     }, function(err) {
 
       // something went wrong in initialization
