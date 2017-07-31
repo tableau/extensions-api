@@ -31,7 +31,6 @@ class DateRangeFilterComponent extends React.Component {
     }
 
     handleDateChange(startDate, dateStr) {
-        debugger;
         let date = new Date(dateStr);
         if (startDate) {
             if (date <= this.props.filters[this.state.currField].minDate || date > this.state.endDate) {
