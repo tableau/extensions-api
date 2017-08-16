@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Point | Frelard</title>
+	<title>ParameterDomainRestriction | Frelard</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style type="text/css">/*! normalize.css v1.1.3 | MIT License | git.io/normalize */
@@ -908,13 +908,25 @@ img { max-width: 100%; }
 <nav class="tsd-navigation secondary">
 	<ul>
 		<li class="current tsd-kind-interface">
-			<a href="point.html" class="tsd-kind-icon">Point</a>
+			<a href="parameterdomainrestriction.html" class="tsd-kind-icon">Parameter<wbr>Domain<wbr>Restriction</a>
 			<ul>
 				<li class=" tsd-kind-property tsd-parent-kind-interface">
-					<a href="point.html#x" class="tsd-kind-icon">x</a>
+					<a href="parameterdomainrestriction.html#allowablevalues" class="tsd-kind-icon">allowable<wbr>Values</a>
 				</li>
 				<li class=" tsd-kind-property tsd-parent-kind-interface">
-					<a href="point.html#y" class="tsd-kind-icon">y</a>
+					<a href="parameterdomainrestriction.html#datestepperiod" class="tsd-kind-icon">date<wbr>Step<wbr>Period</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-interface">
+					<a href="parameterdomainrestriction.html#maxvalue" class="tsd-kind-icon">max<wbr>Value</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-interface">
+					<a href="parameterdomainrestriction.html#minvalue" class="tsd-kind-icon">min<wbr>Value</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-interface">
+					<a href="parameterdomainrestriction.html#stepsize" class="tsd-kind-icon">step<wbr>Size</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-interface">
+					<a href="parameterdomainrestriction.html#type" class="tsd-kind-icon">type</a>
 				</li>
 			</ul>
 		</li>
@@ -924,14 +936,16 @@ img { max-width: 100%; }
 	<div class="content-wrap">
 		<section class="tsd-panel tsd-comment">
 			<div class="tsd-comment tsd-typography">
-				<p>Represents an x/y coordinate in pixels.</p>
+				<div class="lead">
+					<p>Represents the allowable set of values which a parameter can be set to.</p>
+				</div>
 			</div>
 		</section>
 		<section class="tsd-panel tsd-hierarchy">
 			<h3>Hierarchy</h3>
 			<ul class="tsd-hierarchy">
 				<li>
-					<span class="target">Point</span>
+					<span class="target">ParameterDomainRestriction</span>
 				</li>
 			</ul>
 		</section>
@@ -942,8 +956,12 @@ img { max-width: 100%; }
 					<section class="tsd-index-section ">
 						<h3>Properties</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="point.html#x" class="tsd-kind-icon">x</a></li>
-							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="point.html#y" class="tsd-kind-icon">y</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="parameterdomainrestriction.html#allowablevalues" class="tsd-kind-icon">allowable<wbr>Values</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="parameterdomainrestriction.html#datestepperiod" class="tsd-kind-icon">date<wbr>Step<wbr>Period</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="parameterdomainrestriction.html#maxvalue" class="tsd-kind-icon">max<wbr>Value</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="parameterdomainrestriction.html#minvalue" class="tsd-kind-icon">min<wbr>Value</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="parameterdomainrestriction.html#stepsize" class="tsd-kind-icon">step<wbr>Size</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="parameterdomainrestriction.html#type" class="tsd-kind-icon">type</a></li>
 						</ul>
 					</section>
 				</div>
@@ -952,37 +970,99 @@ img { max-width: 100%; }
 		<section class="tsd-panel-group tsd-member-group ">
 			<h2>Properties</h2>
 			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-				<a name="x" class="tsd-anchor"></a>
-				<h3>x</h3>
-				<div class="tsd-signature tsd-kind-icon">x<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+				<a name="allowablevalues" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagOptional">Optional</span> allowable<wbr>Values</h3>
+				<div class="tsd-signature tsd-kind-icon">allowable<wbr>Values<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="datavalue.html" class="tsd-signature-type">DataValue</a><span class="tsd-signature-symbol">&gt;</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in SheetInterfaces.ts:69</li>
+						<li>Defined in ParameterInterfaces.ts:54</li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
-					<dl class="tsd-comment-tags">
-						<dt>returns</dt>
-						<dd><p>x coordinate of point.</p>
-						</dd>
-					</dl>
+					<div class="lead">
+						<p>If Type is LIST, this will be the list of
+						values which the parameter is allowed to take</p>
+					</div>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-				<a name="y" class="tsd-anchor"></a>
-				<h3>y</h3>
-				<div class="tsd-signature tsd-kind-icon">y<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+				<a name="datestepperiod" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagOptional">Optional</span> date<wbr>Step<wbr>Period</h3>
+				<div class="tsd-signature tsd-kind-icon">date<wbr>Step<wbr>Period<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"years"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"quarters"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"months"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"weeks"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"days"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"hours"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"minutes"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"seconds"</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in SheetInterfaces.ts:76</li>
+						<li>Defined in ParameterInterfaces.ts:78</li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
-					<dl class="tsd-comment-tags">
-						<dt>returns</dt>
-						<dd><p>y coordinate of point.</p>
-						</dd>
-					</dl>
+					<div class="lead">
+						<p>If Type is RANGE, this defines the step date period
+						used in the Parameter UI control slider.</p>
+					</div>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<a name="maxvalue" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagOptional">Optional</span> max<wbr>Value</h3>
+				<div class="tsd-signature tsd-kind-icon">max<wbr>Value<span class="tsd-signature-symbol">:</span> <a href="datavalue.html" class="tsd-signature-type">DataValue</a></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in ParameterInterfaces.ts:66</li>
+					</ul>
+				</aside>
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>If Type is RANGE, this will be the upper
+						bound of allowable values for the parameter</p>
+					</div>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<a name="minvalue" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagOptional">Optional</span> min<wbr>Value</h3>
+				<div class="tsd-signature tsd-kind-icon">min<wbr>Value<span class="tsd-signature-symbol">:</span> <a href="datavalue.html" class="tsd-signature-type">DataValue</a></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in ParameterInterfaces.ts:60</li>
+					</ul>
+				</aside>
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>If Type is RANGE, this will be the lower
+						bound of allowable values for the parameter</p>
+					</div>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<a name="stepsize" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagOptional">Optional</span> step<wbr>Size</h3>
+				<div class="tsd-signature tsd-kind-icon">step<wbr>Size<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in ParameterInterfaces.ts:72</li>
+					</ul>
+				</aside>
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>If Type is RANGE, this will
+						define the step size used in the parameter UI control slider</p>
+					</div>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<a name="type" class="tsd-anchor"></a>
+				<h3>type</h3>
+				<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"all"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"list"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"range"</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in ParameterInterfaces.ts:48</li>
+					</ul>
+				</aside>
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>What type of restriction we have on the parameter&#39;s domain. This value
+						will effect what other properties are configured on this object.</p>
+					</div>
 				</div>
 			</section>
 		</section>

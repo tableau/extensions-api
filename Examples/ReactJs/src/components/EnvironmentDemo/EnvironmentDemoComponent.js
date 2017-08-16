@@ -36,6 +36,7 @@ class EnvironmentDemoComponent extends React.Component {
     for (const key in this.state.properties) {
       values.push(this.buildSetting(key, this.state.properties[key]));
     }
+    debugger;
 
     return (
       <div className="container">

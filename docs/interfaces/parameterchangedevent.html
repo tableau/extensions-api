@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Point | Frelard</title>
+	<title>ParameterChangedEvent | Frelard</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style type="text/css">/*! normalize.css v1.1.3 | MIT License | git.io/normalize */
@@ -908,13 +908,13 @@ img { max-width: 100%; }
 <nav class="tsd-navigation secondary">
 	<ul>
 		<li class="current tsd-kind-interface">
-			<a href="point.html" class="tsd-kind-icon">Point</a>
+			<a href="parameterchangedevent.html" class="tsd-kind-icon">Parameter<wbr>Changed<wbr>Event</a>
 			<ul>
-				<li class=" tsd-kind-property tsd-parent-kind-interface">
-					<a href="point.html#x" class="tsd-kind-icon">x</a>
+				<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a href="parameterchangedevent.html#type" class="tsd-kind-icon">type</a>
 				</li>
-				<li class=" tsd-kind-property tsd-parent-kind-interface">
-					<a href="point.html#y" class="tsd-kind-icon">y</a>
+				<li class=" tsd-kind-method tsd-parent-kind-interface">
+					<a href="parameterchangedevent.html#getparameterasync" class="tsd-kind-icon">get<wbr>Parameter<wbr>Async</a>
 				</li>
 			</ul>
 		</li>
@@ -922,16 +922,16 @@ img { max-width: 100%; }
 </nav>
 <div class="container container-main">
 	<div class="content-wrap">
-		<section class="tsd-panel tsd-comment">
-			<div class="tsd-comment tsd-typography">
-				<p>Represents an x/y coordinate in pixels.</p>
-			</div>
-		</section>
 		<section class="tsd-panel tsd-hierarchy">
 			<h3>Hierarchy</h3>
 			<ul class="tsd-hierarchy">
 				<li>
-					<span class="target">Point</span>
+					<a href="tableauevent.html" class="tsd-signature-type">TableauEvent</a>
+					<ul class="tsd-hierarchy">
+						<li>
+							<span class="target">ParameterChangedEvent</span>
+						</li>
+					</ul>
 				</li>
 			</ul>
 		</section>
@@ -939,51 +939,58 @@ img { max-width: 100%; }
 			<h2>Index</h2>
 			<section class="tsd-panel tsd-index-panel">
 				<div class="tsd-index-content">
-					<section class="tsd-index-section ">
+					<section class="tsd-index-section tsd-is-inherited">
 						<h3>Properties</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="point.html#x" class="tsd-kind-icon">x</a></li>
-							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="point.html#y" class="tsd-kind-icon">y</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="parameterchangedevent.html#type" class="tsd-kind-icon">type</a></li>
+						</ul>
+					</section>
+					<section class="tsd-index-section ">
+						<h3>Methods</h3>
+						<ul class="tsd-index-list">
+							<li class="tsd-kind-method tsd-parent-kind-interface"><a href="parameterchangedevent.html#getparameterasync" class="tsd-kind-icon">get<wbr>Parameter<wbr>Async</a></li>
 						</ul>
 					</section>
 				</div>
 			</section>
 		</section>
-		<section class="tsd-panel-group tsd-member-group ">
+		<section class="tsd-panel-group tsd-member-group tsd-is-inherited">
 			<h2>Properties</h2>
-			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-				<a name="x" class="tsd-anchor"></a>
-				<h3>x</h3>
-				<div class="tsd-signature tsd-kind-icon">x<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+				<a name="type" class="tsd-anchor"></a>
+				<h3>type</h3>
+				<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"mark-selection-changed"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"parameter-changed"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"filter-changed"</span></div>
 				<aside class="tsd-sources">
+					<p>Inherited from <a href="tableauevent.html">TableauEvent</a>.<a href="tableauevent.html#type">type</a></p>
 					<ul>
-						<li>Defined in SheetInterfaces.ts:69</li>
+						<li>Defined in EventInterfaces.ts:16</li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
-					<dl class="tsd-comment-tags">
-						<dt>returns</dt>
-						<dd><p>x coordinate of point.</p>
-						</dd>
-					</dl>
+					<div class="lead">
+						<p>The type of event which this class is representing.</p>
+					</div>
 				</div>
 			</section>
-			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-				<a name="y" class="tsd-anchor"></a>
-				<h3>y</h3>
-				<div class="tsd-signature tsd-kind-icon">y<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
-				<aside class="tsd-sources">
-					<ul>
-						<li>Defined in SheetInterfaces.ts:76</li>
-					</ul>
-				</aside>
-				<div class="tsd-comment tsd-typography">
-					<dl class="tsd-comment-tags">
-						<dt>returns</dt>
-						<dd><p>y coordinate of point.</p>
-						</dd>
-					</dl>
-				</div>
+		</section>
+		<section class="tsd-panel-group tsd-member-group ">
+			<h2>Methods</h2>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+				<a name="getparameterasync" class="tsd-anchor"></a>
+				<h3>get<wbr>Parameter<wbr>Async</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+					<li class="tsd-signature tsd-kind-icon">get<wbr>Parameter<wbr>Async<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="parameter.html" class="tsd-signature-type">Parameter</a><span class="tsd-signature-symbol">&gt;</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in EventInterfaces.ts:44</li>
+							</ul>
+						</aside>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="parameter.html" class="tsd-signature-type">Parameter</a><span class="tsd-signature-symbol">&gt;</span></h4>
+					</li>
+				</ul>
 			</section>
 		</section>
 		<footer class="with-border-bottom">

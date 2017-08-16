@@ -8,6 +8,7 @@ import GetDataDemoComponent from './GetDataDemo/GetDataDemoComponent';
 import SelectedMarksDemoComponent from './SelectedMarksDemo/SelectedMarksDemoComponent'
 import LoadIndicatorComponent from './LoadIndicatorComponent';
 import FiltersDemoComponent from './FiltersDemo/FiltersDemoComponent';
+import ParametersDemoComponent from './ParametersDemo/ParametersDemoComponent';
 
 /*global tableau*/
 
@@ -65,6 +66,10 @@ class AppComponent extends React.Component {
       case '#filtering':
         return (
           <FiltersDemoComponent />
+        )
+      case '#parameters':
+        return (
+          <ParametersDemoComponent />
         )
       default:
         return (<h1>Unknown hash {this.props.hash}</h1>);
