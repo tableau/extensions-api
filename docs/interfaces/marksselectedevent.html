@@ -928,6 +928,13 @@ img { max-width: 100%; }
 </nav>
 <div class="container container-main">
 	<div class="content-wrap">
+		<section class="tsd-panel tsd-comment">
+			<div class="tsd-comment tsd-typography">
+				<div class="lead">
+					<p>An event which is raised when marks are selected on a worksheet.</p>
+				</div>
+			</div>
+		</section>
 		<section class="tsd-panel tsd-hierarchy">
 			<h3>Hierarchy</h3>
 			<ul class="tsd-hierarchy">
@@ -971,29 +978,33 @@ img { max-width: 100%; }
 				<aside class="tsd-sources">
 					<p>Inherited from <a href="tableausheetevent.html">TableauSheetEvent</a>.<a href="tableausheetevent.html#sheet">sheet</a></p>
 					<ul>
-						<li>Defined in EventInterfaces.ts:24</li>
+						<li>Defined in EventInterfaces.ts:26</li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Gets the sheet which was the source of this event.</p>
-					</div>
+					<dl class="tsd-comment-tags">
+						<dt>returns</dt>
+						<dd><p>The sheet which was the source of this event.</p>
+						</dd>
+					</dl>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 				<a name="type" class="tsd-anchor"></a>
 				<h3>type</h3>
-				<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Enums.TableauEventType</span></div>
+				<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"filter-changed"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"mark-selection-changed"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"parameter-changed"</span></div>
 				<aside class="tsd-sources">
 					<p>Inherited from <a href="tableauevent.html">TableauEvent</a>.<a href="tableauevent.html#type">type</a></p>
 					<ul>
-						<li>Defined in EventInterfaces.ts:14</li>
+						<li>Defined in EventInterfaces.ts:16</li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>The type of event which this class is representing.</p>
-					</div>
+					<dl class="tsd-comment-tags">
+						<dt>returns</dt>
+						<dd><p>The type of event which this class is representing.</p>
+						</dd>
+					</dl>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
@@ -1003,13 +1014,15 @@ img { max-width: 100%; }
 				<aside class="tsd-sources">
 					<p>Inherited from <a href="tableauworksheetevent.html">TableauWorksheetEvent</a>.<a href="tableauworksheetevent.html#worksheet">worksheet</a></p>
 					<ul>
-						<li>Defined in EventInterfaces.ts:34</li>
+						<li>Defined in EventInterfaces.ts:36</li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Gets the worksheet which was the source of this event.</p>
-					</div>
+					<dl class="tsd-comment-tags">
+						<dt>returns</dt>
+						<dd><p>The worksheet which was the source of this event.</p>
+						</dd>
+					</dl>
 				</div>
 			</section>
 		</section>
@@ -1019,16 +1032,19 @@ img { max-width: 100%; }
 				<a name="getmarksasync" class="tsd-anchor"></a>
 				<h3>get<wbr>Marks<wbr>Async</h3>
 				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-					<li class="tsd-signature tsd-kind-icon">get<wbr>Marks<wbr>Async<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="activemarks.html" class="tsd-signature-type">ActiveMarks</a><span class="tsd-signature-symbol">&gt;</span></li>
+					<li class="tsd-signature tsd-kind-icon">get<wbr>Marks<wbr>Async<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="markscollection.html" class="tsd-signature-type">MarksCollection</a><span class="tsd-signature-symbol">&gt;</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in EventInterfaces.ts:38</li>
+								<li>Defined in EventInterfaces.ts:46</li>
 							</ul>
 						</aside>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="activemarks.html" class="tsd-signature-type">ActiveMarks</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						<div class="tsd-comment tsd-typography">
+						</div>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="markscollection.html" class="tsd-signature-type">MarksCollection</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						<p>The collection of Marks that were selected.</p>
 					</li>
 				</ul>
 			</section>

@@ -929,6 +929,12 @@ img { max-width: 100%; }
 					<a href="dashboard.html#addeventlistener" class="tsd-kind-icon">add<wbr>Event<wbr>Listener</a>
 				</li>
 				<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+					<a href="dashboard.html#findparameterasync" class="tsd-kind-icon">find<wbr>Parameter<wbr>Async</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+					<a href="dashboard.html#getparametersasync" class="tsd-kind-icon">get<wbr>Parameters<wbr>Async</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
 					<a href="dashboard.html#removeeventlistener" class="tsd-kind-icon">remove<wbr>Event<wbr>Listener</a>
 				</li>
 			</ul>
@@ -968,6 +974,8 @@ img { max-width: 100%; }
 						<h3>Methods</h3>
 						<ul class="tsd-index-list">
 							<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="dashboard.html#addeventlistener" class="tsd-kind-icon">add<wbr>Event<wbr>Listener</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="dashboard.html#findparameterasync" class="tsd-kind-icon">find<wbr>Parameter<wbr>Async</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="dashboard.html#getparametersasync" class="tsd-kind-icon">get<wbr>Parameters<wbr>Async</a></li>
 							<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="dashboard.html#removeeventlistener" class="tsd-kind-icon">remove<wbr>Event<wbr>Listener</a></li>
 						</ul>
 					</section>
@@ -983,7 +991,7 @@ img { max-width: 100%; }
 				<aside class="tsd-sources">
 					<p>Inherited from <a href="sheet.html">Sheet</a>.<a href="sheet.html#name">name</a></p>
 					<ul>
-						<li>Defined in SheetInterfaces.ts:83</li>
+						<li>Defined in SheetInterfaces.ts:77</li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -1000,7 +1008,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">objects<span class="tsd-signature-symbol">:</span> <a href="dashboardobject.html" class="tsd-signature-type">DashboardObject</a><span class="tsd-signature-symbol">[]</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in SheetInterfaces.ts:14</li>
+						<li>Defined in SheetInterfaces.ts:16</li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -1014,11 +1022,11 @@ img { max-width: 100%; }
 			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 				<a name="sheettype" class="tsd-anchor"></a>
 				<h3>sheet<wbr>Type</h3>
-				<div class="tsd-signature tsd-kind-icon">sheet<wbr>Type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"dashboard"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"story"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"worksheet"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"add-in"</span></div>
+				<div class="tsd-signature tsd-kind-icon">sheet<wbr>Type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"dashboard"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"story"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"worksheet"</span></div>
 				<aside class="tsd-sources">
 					<p>Inherited from <a href="sheet.html">Sheet</a>.<a href="sheet.html#sheettype">sheetType</a></p>
 					<ul>
-						<li>Defined in SheetInterfaces.ts:88</li>
+						<li>Defined in SheetInterfaces.ts:82</li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -1036,14 +1044,13 @@ img { max-width: 100%; }
 				<aside class="tsd-sources">
 					<p>Inherited from <a href="sheet.html">Sheet</a>.<a href="sheet.html#size">size</a></p>
 					<ul>
-						<li>Defined in SheetInterfaces.ts:95</li>
+						<li>Defined in SheetInterfaces.ts:97</li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>!! NOT YET IMPLEMENTED !!</p>
-					</div>
 					<dl class="tsd-comment-tags">
+						<dt>notimplemented</dt>
+						<dd></dd>
 						<dt>returns</dt>
 						<dd><p>Size of the sheet.</p>
 						</dd>
@@ -1056,7 +1063,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">worksheets<span class="tsd-signature-symbol">:</span> <a href="worksheet.html" class="tsd-signature-type">Worksheet</a><span class="tsd-signature-symbol">[]</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in SheetInterfaces.ts:23</li>
+						<li>Defined in SheetInterfaces.ts:25</li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -1065,7 +1072,7 @@ img { max-width: 100%; }
 						<dd><p>The collection of worksheets contained in the dashboard.
 								Note that this is a helper method and is equivalent to looping
 								through getObjects() and collecting all of the
-								DashboardObject.Worksheet pointers when
+								DashboardObject.Worksheet objects when
 							DashboardObject.getType() === tableau.DashboardObjectType.WORKSHEET.</p>
 						</dd>
 					</dl>
@@ -1078,14 +1085,14 @@ img { max-width: 100%; }
 				<a name="addeventlistener" class="tsd-anchor"></a>
 				<h3>add<wbr>Event<wbr>Listener</h3>
 				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-					<li class="tsd-signature tsd-kind-icon">add<wbr>Event<wbr>Listener<span class="tsd-signature-symbol">(</span>eventType<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Enums.TableauEventType</span>, handler<span class="tsd-signature-symbol">: </span><a href="../globals.html#tableaueventhandlerfn" class="tsd-signature-type">TableauEventHandlerFn</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../globals.html#tableaueventunregisterfn" class="tsd-signature-type">TableauEventUnregisterFn</a></li>
+					<li class="tsd-signature tsd-kind-icon">add<wbr>Event<wbr>Listener<span class="tsd-signature-symbol">(</span>eventType<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"filter-changed"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"mark-selection-changed"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"parameter-changed"</span>, handler<span class="tsd-signature-symbol">: </span><a href="../globals.html#tableaueventhandlerfn" class="tsd-signature-type">TableauEventHandlerFn</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../globals.html#tableaueventunregisterfn" class="tsd-signature-type">TableauEventUnregisterFn</a></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<p>Inherited from <a href="eventlistenermanager.html">EventListenerManager</a>.<a href="eventlistenermanager.html#addeventlistener">addEventListener</a></p>
 							<ul>
-								<li>Defined in EventInterfaces.ts:68</li>
+								<li>Defined in EventInterfaces.ts:101</li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1096,7 +1103,7 @@ img { max-width: 100%; }
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
-								<h5>eventType: <span class="tsd-signature-type">Enums.TableauEventType</span></h5>
+								<h5>eventType: <span class="tsd-signature-type">"filter-changed"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"mark-selection-changed"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"parameter-changed"</span></h5>
 								<div class="tsd-comment tsd-typography">
 									<p>The type of event to register for.</p>
 								</div>
@@ -1114,17 +1121,71 @@ img { max-width: 100%; }
 				</ul>
 			</section>
 			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+				<a name="findparameterasync" class="tsd-anchor"></a>
+				<h3>find<wbr>Parameter<wbr>Async</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+					<li class="tsd-signature tsd-kind-icon">find<wbr>Parameter<wbr>Async<span class="tsd-signature-symbol">(</span>parameterName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="parameter.html" class="tsd-signature-type">Parameter</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">&gt;</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Inherited from <a href="sheet.html">Sheet</a>.<a href="sheet.html#findparameterasync">findParameterAsync</a></p>
+							<ul>
+								<li>Defined in SheetInterfaces.ts:90</li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Searches for a parameter with the given name in the dashboard.</p>
+							</div>
+						</div>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>parameterName: <span class="tsd-signature-type">string</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<p>The name of the parameter to find.</p>
+								</div>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="parameter.html" class="tsd-signature-type">Parameter</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						<p>The parameter with the given name, or undefined if it does not exist.</p>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+				<a name="getparametersasync" class="tsd-anchor"></a>
+				<h3>get<wbr>Parameters<wbr>Async</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+					<li class="tsd-signature tsd-kind-icon">get<wbr>Parameters<wbr>Async<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="parameter.html" class="tsd-signature-type">Parameter</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Inherited from <a href="sheet.html">Sheet</a>.<a href="sheet.html#getparametersasync">getParametersAsync</a></p>
+							<ul>
+								<li>Defined in SheetInterfaces.ts:102</li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+						</div>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="parameter.html" class="tsd-signature-type">Parameter</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						<p>A collection of all the Tableau Parameters which are used on this dashboard.</p>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
 				<a name="removeeventlistener" class="tsd-anchor"></a>
 				<h3>remove<wbr>Event<wbr>Listener</h3>
 				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-					<li class="tsd-signature tsd-kind-icon">remove<wbr>Event<wbr>Listener<span class="tsd-signature-symbol">(</span>eventType<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Enums.TableauEventType</span>, handler<span class="tsd-signature-symbol">: </span><a href="../globals.html#tableaueventhandlerfn" class="tsd-signature-type">TableauEventHandlerFn</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					<li class="tsd-signature tsd-kind-icon">remove<wbr>Event<wbr>Listener<span class="tsd-signature-symbol">(</span>eventType<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"filter-changed"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"mark-selection-changed"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"parameter-changed"</span>, handler<span class="tsd-signature-symbol">: </span><a href="../globals.html#tableaueventhandlerfn" class="tsd-signature-type">TableauEventHandlerFn</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<p>Inherited from <a href="eventlistenermanager.html">EventListenerManager</a>.<a href="eventlistenermanager.html#removeeventlistener">removeEventListener</a></p>
 							<ul>
-								<li>Defined in EventInterfaces.ts:75</li>
+								<li>Defined in EventInterfaces.ts:108</li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1135,7 +1196,7 @@ img { max-width: 100%; }
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
-								<h5>eventType: <span class="tsd-signature-type">Enums.TableauEventType</span></h5>
+								<h5>eventType: <span class="tsd-signature-type">"filter-changed"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"mark-selection-changed"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"parameter-changed"</span></h5>
 							</li>
 							<li>
 								<h5>handler: <a href="../globals.html#tableaueventhandlerfn" class="tsd-signature-type">TableauEventHandlerFn</a></h5>

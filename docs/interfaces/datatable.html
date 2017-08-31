@@ -920,6 +920,9 @@ img { max-width: 100%; }
 					<a href="datatable.html#issummarydata" class="tsd-kind-icon">is<wbr>Summary<wbr>Data</a>
 				</li>
 				<li class=" tsd-kind-property tsd-parent-kind-interface">
+					<a href="datatable.html#marksinfo" class="tsd-kind-icon">marks<wbr>Info</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-interface">
 					<a href="datatable.html#name" class="tsd-kind-icon">name</a>
 				</li>
 				<li class=" tsd-kind-property tsd-parent-kind-interface">
@@ -949,6 +952,7 @@ img { max-width: 100%; }
 							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="datatable.html#columns" class="tsd-kind-icon">columns</a></li>
 							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="datatable.html#data" class="tsd-kind-icon">data</a></li>
 							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="datatable.html#issummarydata" class="tsd-kind-icon">is<wbr>Summary<wbr>Data</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="datatable.html#marksinfo" class="tsd-kind-icon">marks<wbr>Info</a></li>
 							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="datatable.html#name" class="tsd-kind-icon">name</a></li>
 							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="datatable.html#totalrowcount" class="tsd-kind-icon">total<wbr>Row<wbr>Count</a></li>
 						</ul>
@@ -961,10 +965,10 @@ img { max-width: 100%; }
 			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 				<a name="columns" class="tsd-anchor"></a>
 				<h3>columns</h3>
-				<div class="tsd-signature tsd-kind-icon">columns<span class="tsd-signature-symbol">:</span> <a href="column.html" class="tsd-signature-type">Column</a><span class="tsd-signature-symbol">[]</span></div>
+				<div class="tsd-signature tsd-kind-icon">columns<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="column.html" class="tsd-signature-type">Column</a><span class="tsd-signature-symbol">&gt;</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in GetDataInterfaces.ts:55</li>
+						<li>Defined in DataTableInterfaces.ts:50</li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -981,7 +985,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="datavalue.html" class="tsd-signature-type">DataValue</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in GetDataInterfaces.ts:50</li>
+						<li>Defined in DataTableInterfaces.ts:38</li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -1000,7 +1004,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">is<wbr>Summary<wbr>Data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in GetDataInterfaces.ts:66</li>
+						<li>Defined in DataTableInterfaces.ts:61</li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -1013,12 +1017,32 @@ img { max-width: 100%; }
 				</div>
 			</section>
 			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<a name="marksinfo" class="tsd-anchor"></a>
+				<h3>marks<wbr>Info</h3>
+				<div class="tsd-signature tsd-kind-icon">marks<wbr>Info<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="markinfo.html" class="tsd-signature-type">MarkInfo</a><span class="tsd-signature-symbol">&gt;</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in DataTableInterfaces.ts:45</li>
+					</ul>
+				</aside>
+				<div class="tsd-comment tsd-typography">
+					<dl class="tsd-comment-tags">
+						<dt>notimplemented</dt>
+						<dd></dd>
+						<dt>returns</dt>
+						<dd><p>An array of information about marks.  Each mark in the array corresponds
+							to a row in the data of this DataTable.</p>
+						</dd>
+					</dl>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 				<a name="name" class="tsd-anchor"></a>
 				<h3>name</h3>
 				<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in GetDataInterfaces.ts:43</li>
+						<li>Defined in DataTableInterfaces.ts:31</li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -1035,7 +1059,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">total<wbr>Row<wbr>Count<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in GetDataInterfaces.ts:60</li>
+						<li>Defined in DataTableInterfaces.ts:55</li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
