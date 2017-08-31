@@ -922,6 +922,13 @@ img { max-width: 100%; }
 </nav>
 <div class="container container-main">
 	<div class="content-wrap">
+		<section class="tsd-panel tsd-comment">
+			<div class="tsd-comment tsd-typography">
+				<div class="lead">
+					<p>An event which is raised when the value of a parameter changes.</p>
+				</div>
+			</div>
+		</section>
 		<section class="tsd-panel tsd-hierarchy">
 			<h3>Hierarchy</h3>
 			<ul class="tsd-hierarchy">
@@ -959,7 +966,7 @@ img { max-width: 100%; }
 			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 				<a name="type" class="tsd-anchor"></a>
 				<h3>type</h3>
-				<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"mark-selection-changed"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"parameter-changed"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"filter-changed"</span></div>
+				<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"filter-changed"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"mark-selection-changed"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"parameter-changed"</span></div>
 				<aside class="tsd-sources">
 					<p>Inherited from <a href="tableauevent.html">TableauEvent</a>.<a href="tableauevent.html#type">type</a></p>
 					<ul>
@@ -967,9 +974,11 @@ img { max-width: 100%; }
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>The type of event which this class is representing.</p>
-					</div>
+					<dl class="tsd-comment-tags">
+						<dt>returns</dt>
+						<dd><p>The type of event which this class is representing.</p>
+						</dd>
+					</dl>
 				</div>
 			</section>
 		</section>
@@ -985,10 +994,13 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in EventInterfaces.ts:44</li>
+								<li>Defined in EventInterfaces.ts:56</li>
 							</ul>
 						</aside>
+						<div class="tsd-comment tsd-typography">
+						</div>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="parameter.html" class="tsd-signature-type">Parameter</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						<p>The parameter that was changed.</p>
 					</li>
 				</ul>
 			</section>

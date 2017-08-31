@@ -916,6 +916,12 @@ img { max-width: 100%; }
 				<li class=" tsd-kind-property tsd-parent-kind-interface">
 					<a href="getsummarydataoptions.html#ignoreselection" class="tsd-kind-icon">ignore<wbr>Selection</a>
 				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-interface">
+					<a href="getsummarydataoptions.html#pagination" class="tsd-kind-icon">pagination</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-interface">
+					<a href="getsummarydataoptions.html#sort" class="tsd-kind-icon">sort</a>
+				</li>
 			</ul>
 		</li>
 	</ul>
@@ -951,6 +957,8 @@ img { max-width: 100%; }
 						<ul class="tsd-index-list">
 							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="getsummarydataoptions.html#ignorealiases" class="tsd-kind-icon">ignore<wbr>Aliases</a></li>
 							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="getsummarydataoptions.html#ignoreselection" class="tsd-kind-icon">ignore<wbr>Selection</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="getsummarydataoptions.html#pagination" class="tsd-kind-icon">pagination</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="getsummarydataoptions.html#sort" class="tsd-kind-icon">sort</a></li>
 						</ul>
 					</section>
 				</div>
@@ -964,7 +972,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">ignore<wbr>Aliases<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in GetDataInterfaces.ts:92</li>
+						<li>Defined in DataTableInterfaces.ts:87</li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -979,13 +987,47 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">ignore<wbr>Selection<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in GetDataInterfaces.ts:97</li>
+						<li>Defined in DataTableInterfaces.ts:92</li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
 						<p>Only return data for the currently selected marks. Default is false.</p>
 					</div>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<a name="pagination" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagOptional">Optional</span> pagination</h3>
+				<div class="tsd-signature tsd-kind-icon">pagination<span class="tsd-signature-symbol">:</span> <a href="paginationoptions.html" class="tsd-signature-type">PaginationOptions</a></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in DataTableInterfaces.ts:98</li>
+					</ul>
+				</aside>
+				<div class="tsd-comment tsd-typography">
+					<dl class="tsd-comment-tags">
+						<dt>notimplemented</dt>
+						<dd><p>Pagination of the data, returns the first 10,000 rows by default (with no pagination specified).</p>
+						</dd>
+					</dl>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<a name="sort" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagOptional">Optional</span> sort</h3>
+				<div class="tsd-signature tsd-kind-icon">sort<span class="tsd-signature-symbol">:</span> <a href="sortingoptions.html" class="tsd-signature-type">SortingOptions</a></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in DataTableInterfaces.ts:104</li>
+					</ul>
+				</aside>
+				<div class="tsd-comment tsd-typography">
+					<dl class="tsd-comment-tags">
+						<dt>notimplemented</dt>
+						<dd><p>Sorting of the returned data.</p>
+						</dd>
+					</dl>
 				</div>
 			</section>
 		</section>
