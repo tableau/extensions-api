@@ -1,0 +1,22 @@
+# Site settings
+title: Project Frelard
+email: git@tableau.com
+description: Create add-ins to extend the functionality of Tableau.
+repository: d45/tableau.github.io
+baseurl: "/dave2/projectfrelard"
+permalinks: /doc/:name
+
+defaults:
+  -
+    scope:
+      path: "" # Apply to all files
+    values:
+      layout: "default"
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+github: [metadata]
+# Exclude
+exclude: ['node_modules']
+
