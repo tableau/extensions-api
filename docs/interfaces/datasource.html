@@ -942,11 +942,9 @@ img { max-width: 100%; }
 	<div class="content-wrap">
 		<section class="tsd-panel tsd-comment">
 			<div class="tsd-comment tsd-typography">
-				<dl class="tsd-comment-tags">
-					<dt>notimplemented</dt>
-					<dd><p>Represents the datasource used by a Worksheet.</p>
-					</dd>
-				</dl>
+				<div class="lead">
+					<p>Represents the datasource used by a Worksheet.</p>
+				</div>
 			</div>
 		</section>
 		<section class="tsd-panel tsd-hierarchy">
@@ -990,7 +988,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">connection<wbr>Summaries<span class="tsd-signature-symbol">:</span> <a href="connectionsummary.html" class="tsd-signature-type">ConnectionSummary</a><span class="tsd-signature-symbol">[]</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in DataSourceInterfaces.ts:34</li>
+						<li>Defined in DataSourceInterfaces.ts:30</li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -1009,13 +1007,11 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">extract<wbr>Update<wbr>Time<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in DataSourceInterfaces.ts:40</li>
+						<li>Defined in DataSourceInterfaces.ts:35</li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
 					<dl class="tsd-comment-tags">
-						<dt>notimplemented</dt>
-						<dd></dd>
 						<dt>returns</dt>
 						<dd><p>Last update time of the data source&#39;s extract, or undefined if this data source is live.</p>
 						</dd>
@@ -1028,7 +1024,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">fields<span class="tsd-signature-symbol">:</span> <a href="field.html" class="tsd-signature-type">Field</a><span class="tsd-signature-symbol">[]</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in DataSourceInterfaces.ts:28</li>
+						<li>Defined in DataSourceInterfaces.ts:24</li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -1047,13 +1043,11 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in DataSourceInterfaces.ts:22</li>
+						<li>Defined in DataSourceInterfaces.ts:18</li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
 					<dl class="tsd-comment-tags">
-						<dt>notimplemented</dt>
-						<dd></dd>
 						<dt>returns</dt>
 						<dd><p>Unique string representing this datasource.</p>
 						</dd>
@@ -1066,13 +1060,11 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">is<wbr>Extract<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in DataSourceInterfaces.ts:46</li>
+						<li>Defined in DataSourceInterfaces.ts:40</li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
 					<dl class="tsd-comment-tags">
-						<dt>notimplemented</dt>
-						<dd></dd>
 						<dt>returns</dt>
 						<dd><p>True if this data source is an extract, false otherwise.</p>
 						</dd>
@@ -1085,13 +1077,11 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in DataSourceInterfaces.ts:16</li>
+						<li>Defined in DataSourceInterfaces.ts:13</li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
 					<dl class="tsd-comment-tags">
-						<dt>notimplemented*</dt>
-						<dd></dd>
 						<dt>returns</dt>
 						<dd><p>The user friendly name of the data source as seen in the UI.</p>
 						</dd>
@@ -1111,7 +1101,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in DataSourceInterfaces.ts:60</li>
+								<li>Defined in DataSourceInterfaces.ts:58</li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1144,14 +1134,15 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in DataSourceInterfaces.ts:52</li>
+								<li>Defined in DataSourceInterfaces.ts:50</li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
-							<dl class="tsd-comment-tags">
-								<dt>notimplemented</dt>
-								<dd></dd>
-							</dl>
+							<div class="lead">
+								<p>This call has the same functionality as clicking the Refresh option on a datasource in
+								Tableau.  This does not refresh an extract.</p>
+							</div>
+							<p>This call does not currently support refreshing live Google Sheet datasources.</p>
 						</div>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						<p>Promise that resolves when the data source has finished refreshing.</p>

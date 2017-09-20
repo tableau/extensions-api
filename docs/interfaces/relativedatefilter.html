@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>FilterOptions | Frelard</title>
+	<title>RelativeDateFilter | Frelard</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style type="text/css">/*! normalize.css v1.1.3 | MIT License | git.io/normalize */
@@ -908,10 +908,31 @@ img { max-width: 100%; }
 <nav class="tsd-navigation secondary">
 	<ul>
 		<li class="current tsd-kind-interface">
-			<a href="filteroptions.html" class="tsd-kind-icon">Filter<wbr>Options</a>
+			<a href="relativedatefilter.html" class="tsd-kind-icon">Relative<wbr>Date<wbr>Filter</a>
 			<ul>
 				<li class=" tsd-kind-property tsd-parent-kind-interface">
-					<a href="filteroptions.html#isexcludemode" class="tsd-kind-icon">is<wbr>Exclude<wbr>Mode</a>
+					<a href="relativedatefilter.html#anchordate" class="tsd-kind-icon">anchor<wbr>Date</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a href="relativedatefilter.html#fieldname" class="tsd-kind-icon">field<wbr>Name</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a href="relativedatefilter.html#filtertype" class="tsd-kind-icon">filter<wbr>Type</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-interface">
+					<a href="relativedatefilter.html#periodtype" class="tsd-kind-icon">period<wbr>Type</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-interface">
+					<a href="relativedatefilter.html#rangen" class="tsd-kind-icon">rangeN</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-interface">
+					<a href="relativedatefilter.html#rangetype" class="tsd-kind-icon">range<wbr>Type</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a href="relativedatefilter.html#worksheetname" class="tsd-kind-icon">worksheet<wbr>Name</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+					<a href="relativedatefilter.html#getfieldasync" class="tsd-kind-icon">get<wbr>Field<wbr>Async</a>
 				</li>
 			</ul>
 		</li>
@@ -919,18 +940,16 @@ img { max-width: 100%; }
 </nav>
 <div class="container container-main">
 	<div class="content-wrap">
-		<section class="tsd-panel tsd-comment">
-			<div class="tsd-comment tsd-typography">
-				<div class="lead">
-					<p>Passed into the applyFilter methods to control advanced filtering options.</p>
-				</div>
-			</div>
-		</section>
 		<section class="tsd-panel tsd-hierarchy">
 			<h3>Hierarchy</h3>
 			<ul class="tsd-hierarchy">
 				<li>
-					<span class="target">FilterOptions</span>
+					<a href="filter.html" class="tsd-signature-type">Filter</a>
+					<ul class="tsd-hierarchy">
+						<li>
+							<span class="target">RelativeDateFilter</span>
+						</li>
+					</ul>
 				</li>
 			</ul>
 		</section>
@@ -941,7 +960,19 @@ img { max-width: 100%; }
 					<section class="tsd-index-section ">
 						<h3>Properties</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="filteroptions.html#isexcludemode" class="tsd-kind-icon">is<wbr>Exclude<wbr>Mode</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="relativedatefilter.html#anchordate" class="tsd-kind-icon">anchor<wbr>Date</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="relativedatefilter.html#fieldname" class="tsd-kind-icon">field<wbr>Name</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="relativedatefilter.html#filtertype" class="tsd-kind-icon">filter<wbr>Type</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="relativedatefilter.html#periodtype" class="tsd-kind-icon">period<wbr>Type</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="relativedatefilter.html#rangen" class="tsd-kind-icon">rangeN</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="relativedatefilter.html#rangetype" class="tsd-kind-icon">range<wbr>Type</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="relativedatefilter.html#worksheetname" class="tsd-kind-icon">worksheet<wbr>Name</a></li>
+						</ul>
+					</section>
+					<section class="tsd-index-section tsd-is-inherited">
+						<h3>Methods</h3>
+						<ul class="tsd-index-list">
+							<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="relativedatefilter.html#getfieldasync" class="tsd-kind-icon">get<wbr>Field<wbr>Async</a></li>
 						</ul>
 					</section>
 				</div>
@@ -950,21 +981,161 @@ img { max-width: 100%; }
 		<section class="tsd-panel-group tsd-member-group ">
 			<h2>Properties</h2>
 			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-				<a name="isexcludemode" class="tsd-anchor"></a>
-				<h3>is<wbr>Exclude<wbr>Mode</h3>
-				<div class="tsd-signature tsd-kind-icon">is<wbr>Exclude<wbr>Mode<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+				<a name="anchordate" class="tsd-anchor"></a>
+				<h3>anchor<wbr>Date</h3>
+				<div class="tsd-signature tsd-kind-icon">anchor<wbr>Date<span class="tsd-signature-symbol">:</span> <a href="datavalue.html" class="tsd-signature-type">DataValue</a></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in FilterInterfaces.ts:121</li>
+						<li>Defined in FilterInterfaces.ts:94</li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Determines whether the filter will apply in exclude mode or include mode.
-							The default is include, which means that you use the fields as part of a filter.
-						Exclude mode means that you include everything else except the specified fields.</p>
-					</div>
+					<dl class="tsd-comment-tags">
+						<dt>returns</dt>
+						<dd><p>the anchor date of the filter</p>
+						</dd>
+					</dl>
 				</div>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+				<a name="fieldname" class="tsd-anchor"></a>
+				<h3>field<wbr>Name</h3>
+				<div class="tsd-signature tsd-kind-icon">field<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+				<aside class="tsd-sources">
+					<p>Inherited from <a href="filter.html">Filter</a>.<a href="filter.html#fieldname">fieldName</a></p>
+					<ul>
+						<li>Defined in FilterInterfaces.ts:28</li>
+					</ul>
+				</aside>
+				<div class="tsd-comment tsd-typography">
+					<dl class="tsd-comment-tags">
+						<dt>notimplemented</dt>
+						<dd></dd>
+						<dt>returns</dt>
+						<dd><p>The name of the field being filtered.  Note that this is the caption
+							as shown in the UI, and not the actual database field name.</p>
+						</dd>
+					</dl>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+				<a name="filtertype" class="tsd-anchor"></a>
+				<h3>filter<wbr>Type</h3>
+				<div class="tsd-signature tsd-kind-icon">filter<wbr>Type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"categorical"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"range"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"hierarchical"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"relative-date"</span></div>
+				<aside class="tsd-sources">
+					<p>Inherited from <a href="filter.html">Filter</a>.<a href="filter.html#filtertype">filterType</a></p>
+					<ul>
+						<li>Defined in FilterInterfaces.ts:21</li>
+					</ul>
+				</aside>
+				<div class="tsd-comment tsd-typography">
+					<dl class="tsd-comment-tags">
+						<dt>notimplemented</dt>
+						<dd></dd>
+						<dt>returns</dt>
+						<dd><p>The type of the filter.</p>
+						</dd>
+					</dl>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<a name="periodtype" class="tsd-anchor"></a>
+				<h3>period<wbr>Type</h3>
+				<div class="tsd-signature tsd-kind-icon">period<wbr>Type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"years"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"quarters"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"months"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"weeks"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"days"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"hours"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"minutes"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"seconds"</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in FilterInterfaces.ts:99</li>
+					</ul>
+				</aside>
+				<div class="tsd-comment tsd-typography">
+					<dl class="tsd-comment-tags">
+						<dt>returns</dt>
+						<dd><p>The date period of the filter.</p>
+						</dd>
+					</dl>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<a name="rangen" class="tsd-anchor"></a>
+				<h3>rangeN</h3>
+				<div class="tsd-signature tsd-kind-icon">rangeN<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in FilterInterfaces.ts:109</li>
+					</ul>
+				</aside>
+				<div class="tsd-comment tsd-typography">
+					<dl class="tsd-comment-tags">
+						<dt>returns</dt>
+						<dd><p>When getRange returns LASTN or NEXTN, this is the N value (how many years, months, etc.).</p>
+						</dd>
+					</dl>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<a name="rangetype" class="tsd-anchor"></a>
+				<h3>range<wbr>Type</h3>
+				<div class="tsd-signature tsd-kind-icon">range<wbr>Type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"last"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"last-n"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"next"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"next-n"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"current"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"to-date"</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in FilterInterfaces.ts:104</li>
+					</ul>
+				</aside>
+				<div class="tsd-comment tsd-typography">
+					<dl class="tsd-comment-tags">
+						<dt>returns</dt>
+						<dd><p>The range of the date filter (years, months, etc.).</p>
+						</dd>
+					</dl>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+				<a name="worksheetname" class="tsd-anchor"></a>
+				<h3>worksheet<wbr>Name</h3>
+				<div class="tsd-signature tsd-kind-icon">worksheet<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+				<aside class="tsd-sources">
+					<p>Inherited from <a href="filter.html">Filter</a>.<a href="filter.html#worksheetname">worksheetName</a></p>
+					<ul>
+						<li>Defined in FilterInterfaces.ts:15</li>
+					</ul>
+				</aside>
+				<div class="tsd-comment tsd-typography">
+					<dl class="tsd-comment-tags">
+						<dt>notimplemented</dt>
+						<dd></dd>
+						<dt>returns</dt>
+						<dd><p>The parent worksheet.</p>
+						</dd>
+					</dl>
+				</div>
+			</section>
+		</section>
+		<section class="tsd-panel-group tsd-member-group tsd-is-inherited">
+			<h2>Methods</h2>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+				<a name="getfieldasync" class="tsd-anchor"></a>
+				<h3>get<wbr>Field<wbr>Async</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+					<li class="tsd-signature tsd-kind-icon">get<wbr>Field<wbr>Async<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="field.html" class="tsd-signature-type">Field</a><span class="tsd-signature-symbol">&gt;</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Inherited from <a href="filter.html">Filter</a>.<a href="filter.html#getfieldasync">getFieldAsync</a></p>
+							<ul>
+								<li>Defined in FilterInterfaces.ts:34</li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<dl class="tsd-comment-tags">
+								<dt>notimplemented</dt>
+								<dd></dd>
+							</dl>
+						</div>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="field.html" class="tsd-signature-type">Field</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						<p>The field that is currently being filtered.</p>
+					</li>
+				</ul>
 			</section>
 		</section>
 		<footer class="with-border-bottom">
