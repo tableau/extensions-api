@@ -917,13 +917,10 @@ img { max-width: 100%; }
 					<a href="field.html#columntype" class="tsd-kind-icon">column<wbr>Type</a>
 				</li>
 				<li class=" tsd-kind-property tsd-parent-kind-interface">
-					<a href="field.html#datasourceid" class="tsd-kind-icon">data<wbr>Source<wbr>Id</a>
+					<a href="field.html#datasource" class="tsd-kind-icon">data<wbr>Source</a>
 				</li>
 				<li class=" tsd-kind-property tsd-parent-kind-interface">
 					<a href="field.html#description" class="tsd-kind-icon">description</a>
-				</li>
-				<li class=" tsd-kind-property tsd-parent-kind-interface">
-					<a href="field.html#getcalculatedfieldasync" class="tsd-kind-icon">get<wbr>Calculated<wbr>Field<wbr>Async</a>
 				</li>
 				<li class=" tsd-kind-property tsd-parent-kind-interface">
 					<a href="field.html#id" class="tsd-kind-icon">id</a>
@@ -935,16 +932,19 @@ img { max-width: 100%; }
 					<a href="field.html#iscombinedfield" class="tsd-kind-icon">is<wbr>Combined<wbr>Field</a>
 				</li>
 				<li class=" tsd-kind-property tsd-parent-kind-interface">
-					<a href="field.html#ishidden" class="tsd-kind-icon">is<wbr>Hidden</a>
+					<a href="field.html#isgenerated" class="tsd-kind-icon">is<wbr>Generated</a>
 				</li>
 				<li class=" tsd-kind-property tsd-parent-kind-interface">
-					<a href="field.html#isinstance" class="tsd-kind-icon">is<wbr>Instance</a>
+					<a href="field.html#ishidden" class="tsd-kind-icon">is<wbr>Hidden</a>
 				</li>
 				<li class=" tsd-kind-property tsd-parent-kind-interface">
 					<a href="field.html#name" class="tsd-kind-icon">name</a>
 				</li>
 				<li class=" tsd-kind-property tsd-parent-kind-interface">
 					<a href="field.html#role" class="tsd-kind-icon">role</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-interface">
+					<a href="field.html#getcalculatedfieldasync" class="tsd-kind-icon">get<wbr>Calculated<wbr>Field<wbr>Async</a>
 				</li>
 			</ul>
 		</li>
@@ -954,12 +954,10 @@ img { max-width: 100%; }
 	<div class="content-wrap">
 		<section class="tsd-panel tsd-comment">
 			<div class="tsd-comment tsd-typography">
-				<dl class="tsd-comment-tags">
-					<dt>notimplemented</dt>
-					<dd><p>A field contains information about what data source it belongs to,
-						its role, and the ability to fetch the domain values.</p>
-					</dd>
-				</dl>
+				<div class="lead">
+					<p>A field contains information about what data source it belongs to,
+					its role, and the ability to fetch the domain values.</p>
+				</div>
 			</div>
 		</section>
 		<section class="tsd-panel tsd-hierarchy">
@@ -979,16 +977,21 @@ img { max-width: 100%; }
 						<ul class="tsd-index-list">
 							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="field.html#aggregation" class="tsd-kind-icon">aggregation</a></li>
 							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="field.html#columntype" class="tsd-kind-icon">column<wbr>Type</a></li>
-							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="field.html#datasourceid" class="tsd-kind-icon">data<wbr>Source<wbr>Id</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="field.html#datasource" class="tsd-kind-icon">data<wbr>Source</a></li>
 							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="field.html#description" class="tsd-kind-icon">description</a></li>
-							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="field.html#getcalculatedfieldasync" class="tsd-kind-icon">get<wbr>Calculated<wbr>Field<wbr>Async</a></li>
 							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="field.html#id" class="tsd-kind-icon">id</a></li>
 							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="field.html#iscalculatedfield" class="tsd-kind-icon">is<wbr>Calculated<wbr>Field</a></li>
 							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="field.html#iscombinedfield" class="tsd-kind-icon">is<wbr>Combined<wbr>Field</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="field.html#isgenerated" class="tsd-kind-icon">is<wbr>Generated</a></li>
 							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="field.html#ishidden" class="tsd-kind-icon">is<wbr>Hidden</a></li>
-							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="field.html#isinstance" class="tsd-kind-icon">is<wbr>Instance</a></li>
 							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="field.html#name" class="tsd-kind-icon">name</a></li>
 							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="field.html#role" class="tsd-kind-icon">role</a></li>
+						</ul>
+					</section>
+					<section class="tsd-index-section ">
+						<h3>Methods</h3>
+						<ul class="tsd-index-list">
+							<li class="tsd-kind-method tsd-parent-kind-interface"><a href="field.html#getcalculatedfieldasync" class="tsd-kind-icon">get<wbr>Calculated<wbr>Field<wbr>Async</a></li>
 						</ul>
 					</section>
 				</div>
@@ -1002,13 +1005,11 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">aggregation<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"sum"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"avg"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"min"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"max"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"stdev"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"stdevp"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"var"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"varp"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"count"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"countd"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"median"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"attr"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"none"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"year"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"qtr"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"month"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"day"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"hour"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"minute"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"second"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"week"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"weekday"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"month-year"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"mdy"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"end"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"trunc-year"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"trunc-qtr"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"trunc-month"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"trunc-week"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"trunc-day"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"trunc-hour"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"trunc-minute"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"trunc-second"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"quart1"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"quart3"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"skewness"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"kurtosis"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"in-out"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"user"</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in DataSourceInterfaces.ts:104</li>
+						<li>Defined in DataSourceInterfaces.ts:113</li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
 					<dl class="tsd-comment-tags">
-						<dt>notimplemented</dt>
-						<dd></dd>
 						<dt>returns</dt>
 						<dd><p>The type of aggregation for this field.</p>
 						</dd>
@@ -1021,7 +1022,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">column<wbr>Type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"discrete"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"continuous"</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in DataSourceInterfaces.ts:134</li>
+						<li>Defined in DataSourceInterfaces.ts:119</li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -1035,20 +1036,18 @@ img { max-width: 100%; }
 				</div>
 			</section>
 			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-				<a name="datasourceid" class="tsd-anchor"></a>
-				<h3>data<wbr>Source<wbr>Id</h3>
-				<div class="tsd-signature tsd-kind-icon">data<wbr>Source<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+				<a name="datasource" class="tsd-anchor"></a>
+				<h3>data<wbr>Source</h3>
+				<div class="tsd-signature tsd-kind-icon">data<wbr>Source<span class="tsd-signature-symbol">:</span> <a href="datasource.html" class="tsd-signature-type">DataSource</a></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in DataSourceInterfaces.ts:110</li>
+						<li>Defined in DataSourceInterfaces.ts:84</li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
 					<dl class="tsd-comment-tags">
-						<dt>notimplemented</dt>
-						<dd></dd>
 						<dt>returns</dt>
-						<dd><p>The ID of the data source to which this field belongs.</p>
+						<dd><p>The data source to which this field belongs.</p>
 						</dd>
 					</dl>
 				</div>
@@ -1059,34 +1058,13 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">description<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in DataSourceInterfaces.ts:98</li>
+						<li>Defined in DataSourceInterfaces.ts:79</li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
 					<dl class="tsd-comment-tags">
-						<dt>notimplemented</dt>
-						<dd></dd>
 						<dt>returns</dt>
 						<dd><p>User description of field, undefined if there is none.</p>
-						</dd>
-					</dl>
-				</div>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-				<a name="getcalculatedfieldasync" class="tsd-anchor"></a>
-				<h3>get<wbr>Calculated<wbr>Field<wbr>Async</h3>
-				<div class="tsd-signature tsd-kind-icon">get<wbr>Calculated<wbr>Field<wbr>Async<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="calculatedfield.html" class="tsd-signature-type">CalculatedField</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">&gt;</span></div>
-				<aside class="tsd-sources">
-					<ul>
-						<li>Defined in DataSourceInterfaces.ts:146</li>
-					</ul>
-				</aside>
-				<div class="tsd-comment tsd-typography">
-					<dl class="tsd-comment-tags">
-						<dt>notimplemented</dt>
-						<dd></dd>
-						<dt>returns</dt>
-						<dd><p>A calculated field object if this field is calculated, otherwise undefined.</p>
 						</dd>
 					</dl>
 				</div>
@@ -1097,15 +1075,13 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in DataSourceInterfaces.ts:80</li>
+						<li>Defined in DataSourceInterfaces.ts:74</li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
 					<dl class="tsd-comment-tags">
-						<dt>notimplemented</dt>
-						<dd></dd>
 						<dt>returns</dt>
-						<dd><p>Unique string representing this field.</p>
+						<dd><p>Unique string representing this field in this datasource.</p>
 						</dd>
 					</dl>
 				</div>
@@ -1116,13 +1092,11 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">is<wbr>Calculated<wbr>Field<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in DataSourceInterfaces.ts:128</li>
+						<li>Defined in DataSourceInterfaces.ts:108</li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
 					<dl class="tsd-comment-tags">
-						<dt>notimplemented</dt>
-						<dd></dd>
 						<dt>returns</dt>
 						<dd><p>True if this field is a table calculation.</p>
 						</dd>
@@ -1135,15 +1109,34 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">is<wbr>Combined<wbr>Field<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in DataSourceInterfaces.ts:140</li>
+						<li>Defined in DataSourceInterfaces.ts:124</li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
 					<dl class="tsd-comment-tags">
-						<dt>notimplemented</dt>
-						<dd></dd>
 						<dt>returns</dt>
 						<dd><p>True if this field is a combination of multiple fields, false otherwise.</p>
+						</dd>
+					</dl>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<a name="isgenerated" class="tsd-anchor"></a>
+				<h3>is<wbr>Generated</h3>
+				<div class="tsd-signature tsd-kind-icon">is<wbr>Generated<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in DataSourceInterfaces.ts:103</li>
+					</ul>
+				</aside>
+				<div class="tsd-comment tsd-typography">
+					<dl class="tsd-comment-tags">
+						<dt>returns</dt>
+						<dd><p>True if this field is generated by Tableau, false otherwise.
+								Tableau generates a number of fields for a datasource, such as Number
+								of Records, or Measure Values.  This property can be used to
+								distinguish between those fields and fields that come from the underlying
+							data connection, or were created by a user.</p>
 						</dd>
 					</dl>
 				</div>
@@ -1154,38 +1147,13 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">is<wbr>Hidden<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in DataSourceInterfaces.ts:122</li>
+						<li>Defined in DataSourceInterfaces.ts:94</li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
 					<dl class="tsd-comment-tags">
-						<dt>notimplemented</dt>
-						<dd></dd>
 						<dt>returns</dt>
 						<dd><p>True if this field is hidden, false otherwise.</p>
-						</dd>
-					</dl>
-				</div>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-				<a name="isinstance" class="tsd-anchor"></a>
-				<h3>is<wbr>Instance</h3>
-				<div class="tsd-signature tsd-kind-icon">is<wbr>Instance<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
-				<aside class="tsd-sources">
-					<ul>
-						<li>Defined in DataSourceInterfaces.ts:92</li>
-					</ul>
-				</aside>
-				<div class="tsd-comment tsd-typography">
-					<dl class="tsd-comment-tags">
-						<dt>notimplemented</dt>
-						<dd><p>A field can be instantiated (ex. in a shelf on a viz - [AVG(Sales])]) vs. not
-								(i.e. in the left datasource pane - [Sales]).
-								Fields coming from datasource.fields will not be instances, whereas fields coming from
-							worksheet.fields will be instances.</p>
-						</dd>
-						<dt>returns</dt>
-						<dd><p>True if this field is an instance of a field, false otherwise.</p>
 						</dd>
 					</dl>
 				</div>
@@ -1196,13 +1164,11 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in DataSourceInterfaces.ts:74</li>
+						<li>Defined in DataSourceInterfaces.ts:69</li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
 					<dl class="tsd-comment-tags">
-						<dt>notimplemented</dt>
-						<dd></dd>
 						<dt>returns</dt>
 						<dd><p>The name of the field (i.e. the caption).</p>
 						</dd>
@@ -1212,21 +1178,46 @@ img { max-width: 100%; }
 			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 				<a name="role" class="tsd-anchor"></a>
 				<h3>role</h3>
-				<div class="tsd-signature tsd-kind-icon">role<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"dimension"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"measure"</span></div>
+				<div class="tsd-signature tsd-kind-icon">role<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"dimension"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"measure"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"unknown"</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in DataSourceInterfaces.ts:116</li>
+						<li>Defined in DataSourceInterfaces.ts:89</li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
 					<dl class="tsd-comment-tags">
-						<dt>notimplemented</dt>
-						<dd></dd>
 						<dt>returns</dt>
 						<dd><p>The role of this field.</p>
 						</dd>
 					</dl>
 				</div>
+			</section>
+		</section>
+		<section class="tsd-panel-group tsd-member-group ">
+			<h2>Methods</h2>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+				<a name="getcalculatedfieldasync" class="tsd-anchor"></a>
+				<h3>get<wbr>Calculated<wbr>Field<wbr>Async</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+					<li class="tsd-signature tsd-kind-icon">get<wbr>Calculated<wbr>Field<wbr>Async<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="calculatedfield.html" class="tsd-signature-type">CalculatedField</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">&gt;</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in DataSourceInterfaces.ts:130</li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<dl class="tsd-comment-tags">
+								<dt>notimplemented</dt>
+								<dd></dd>
+							</dl>
+						</div>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="calculatedfield.html" class="tsd-signature-type">CalculatedField</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						<p>A calculated field object if this field is calculated, otherwise undefined.</p>
+					</li>
+				</ul>
 			</section>
 		</section>
 		<footer class="with-border-bottom">

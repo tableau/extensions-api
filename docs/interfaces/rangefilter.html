@@ -910,20 +910,11 @@ img { max-width: 100%; }
 		<li class="current tsd-kind-interface">
 			<a href="rangefilter.html" class="tsd-kind-icon">Range<wbr>Filter</a>
 			<ul>
-				<li class=" tsd-kind-property tsd-parent-kind-interface">
-					<a href="rangefilter.html#domainmax" class="tsd-kind-icon">domain<wbr>Max</a>
-				</li>
-				<li class=" tsd-kind-property tsd-parent-kind-interface">
-					<a href="rangefilter.html#domainmin" class="tsd-kind-icon">domain<wbr>Min</a>
-				</li>
 				<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a href="rangefilter.html#fieldname" class="tsd-kind-icon">field<wbr>Name</a>
 				</li>
 				<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a href="rangefilter.html#filtertype" class="tsd-kind-icon">filter<wbr>Type</a>
-				</li>
-				<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-					<a href="rangefilter.html#getfieldasync" class="tsd-kind-icon">get<wbr>Field<wbr>Async</a>
 				</li>
 				<li class=" tsd-kind-property tsd-parent-kind-interface">
 					<a href="rangefilter.html#includenullvalues" class="tsd-kind-icon">include<wbr>Null<wbr>Values</a>
@@ -935,7 +926,13 @@ img { max-width: 100%; }
 					<a href="rangefilter.html#minvalue" class="tsd-kind-icon">min<wbr>Value</a>
 				</li>
 				<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-					<a href="rangefilter.html#worksheet" class="tsd-kind-icon">worksheet</a>
+					<a href="rangefilter.html#worksheetname" class="tsd-kind-icon">worksheet<wbr>Name</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+					<a href="rangefilter.html#getfieldasync" class="tsd-kind-icon">get<wbr>Field<wbr>Async</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-interface">
+					<a href="rangefilter.html#getrangefilterdomainasync" class="tsd-kind-icon">get<wbr>Range<wbr>Filter<wbr>Domain<wbr>Async</a>
 				</li>
 			</ul>
 		</li>
@@ -971,15 +968,19 @@ img { max-width: 100%; }
 					<section class="tsd-index-section ">
 						<h3>Properties</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="rangefilter.html#domainmax" class="tsd-kind-icon">domain<wbr>Max</a></li>
-							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="rangefilter.html#domainmin" class="tsd-kind-icon">domain<wbr>Min</a></li>
 							<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="rangefilter.html#fieldname" class="tsd-kind-icon">field<wbr>Name</a></li>
 							<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="rangefilter.html#filtertype" class="tsd-kind-icon">filter<wbr>Type</a></li>
-							<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="rangefilter.html#getfieldasync" class="tsd-kind-icon">get<wbr>Field<wbr>Async</a></li>
 							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="rangefilter.html#includenullvalues" class="tsd-kind-icon">include<wbr>Null<wbr>Values</a></li>
 							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="rangefilter.html#maxvalue" class="tsd-kind-icon">max<wbr>Value</a></li>
 							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="rangefilter.html#minvalue" class="tsd-kind-icon">min<wbr>Value</a></li>
-							<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="rangefilter.html#worksheet" class="tsd-kind-icon">worksheet</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="rangefilter.html#worksheetname" class="tsd-kind-icon">worksheet<wbr>Name</a></li>
+						</ul>
+					</section>
+					<section class="tsd-index-section ">
+						<h3>Methods</h3>
+						<ul class="tsd-index-list">
+							<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="rangefilter.html#getfieldasync" class="tsd-kind-icon">get<wbr>Field<wbr>Async</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-interface"><a href="rangefilter.html#getrangefilterdomainasync" class="tsd-kind-icon">get<wbr>Range<wbr>Filter<wbr>Domain<wbr>Async</a></li>
 						</ul>
 					</section>
 				</div>
@@ -987,44 +988,6 @@ img { max-width: 100%; }
 		</section>
 		<section class="tsd-panel-group tsd-member-group ">
 			<h2>Properties</h2>
-			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-				<a name="domainmax" class="tsd-anchor"></a>
-				<h3>domain<wbr>Max</h3>
-				<div class="tsd-signature tsd-kind-icon">domain<wbr>Max<span class="tsd-signature-symbol">:</span> <a href="datavalue.html" class="tsd-signature-type">DataValue</a></div>
-				<aside class="tsd-sources">
-					<ul>
-						<li>Defined in FilterInterfaces.ts:69</li>
-					</ul>
-				</aside>
-				<div class="tsd-comment tsd-typography">
-					<dl class="tsd-comment-tags">
-						<dt>notimplemented</dt>
-						<dd></dd>
-						<dt>returns</dt>
-						<dd><p>Maximum value as specified in the domain.</p>
-						</dd>
-					</dl>
-				</div>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-				<a name="domainmin" class="tsd-anchor"></a>
-				<h3>domain<wbr>Min</h3>
-				<div class="tsd-signature tsd-kind-icon">domain<wbr>Min<span class="tsd-signature-symbol">:</span> <a href="datavalue.html" class="tsd-signature-type">DataValue</a></div>
-				<aside class="tsd-sources">
-					<ul>
-						<li>Defined in FilterInterfaces.ts:63</li>
-					</ul>
-				</aside>
-				<div class="tsd-comment tsd-typography">
-					<dl class="tsd-comment-tags">
-						<dt>notimplemented</dt>
-						<dd></dd>
-						<dt>returns</dt>
-						<dd><p>Minimum value as specified in the domain.</p>
-						</dd>
-					</dl>
-				</div>
-			</section>
 			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 				<a name="fieldname" class="tsd-anchor"></a>
 				<h3>field<wbr>Name</h3>
@@ -1032,7 +995,7 @@ img { max-width: 100%; }
 				<aside class="tsd-sources">
 					<p>Inherited from <a href="filter.html">Filter</a>.<a href="filter.html#fieldname">fieldName</a></p>
 					<ul>
-						<li>Defined in FilterInterfaces.ts:29</li>
+						<li>Defined in FilterInterfaces.ts:28</li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -1053,7 +1016,7 @@ img { max-width: 100%; }
 				<aside class="tsd-sources">
 					<p>Inherited from <a href="filter.html">Filter</a>.<a href="filter.html#filtertype">filterType</a></p>
 					<ul>
-						<li>Defined in FilterInterfaces.ts:22</li>
+						<li>Defined in FilterInterfaces.ts:21</li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -1066,33 +1029,13 @@ img { max-width: 100%; }
 					</dl>
 				</div>
 			</section>
-			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-				<a name="getfieldasync" class="tsd-anchor"></a>
-				<h3>get<wbr>Field<wbr>Async</h3>
-				<div class="tsd-signature tsd-kind-icon">get<wbr>Field<wbr>Async<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="field.html" class="tsd-signature-type">Field</a><span class="tsd-signature-symbol">&gt;</span></div>
-				<aside class="tsd-sources">
-					<p>Inherited from <a href="filter.html">Filter</a>.<a href="filter.html#getfieldasync">getFieldAsync</a></p>
-					<ul>
-						<li>Defined in FilterInterfaces.ts:35</li>
-					</ul>
-				</aside>
-				<div class="tsd-comment tsd-typography">
-					<dl class="tsd-comment-tags">
-						<dt>notimplemented</dt>
-						<dd></dd>
-						<dt>returns</dt>
-						<dd><p>The field that is currently being filtered.</p>
-						</dd>
-					</dl>
-				</div>
-			</section>
 			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 				<a name="includenullvalues" class="tsd-anchor"></a>
 				<h3>include<wbr>Null<wbr>Values</h3>
 				<div class="tsd-signature tsd-kind-icon">include<wbr>Null<wbr>Values<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in FilterInterfaces.ts:87</li>
+						<li>Defined in FilterInterfaces.ts:80</li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -1107,11 +1050,11 @@ img { max-width: 100%; }
 			</section>
 			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 				<a name="maxvalue" class="tsd-anchor"></a>
-				<h3><span class="tsd-flag ts-flagOptional">Optional</span> max<wbr>Value</h3>
+				<h3>max<wbr>Value</h3>
 				<div class="tsd-signature tsd-kind-icon">max<wbr>Value<span class="tsd-signature-symbol">:</span> <a href="datavalue.html" class="tsd-signature-type">DataValue</a></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in FilterInterfaces.ts:81</li>
+						<li>Defined in FilterInterfaces.ts:74</li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -1126,11 +1069,11 @@ img { max-width: 100%; }
 			</section>
 			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 				<a name="minvalue" class="tsd-anchor"></a>
-				<h3><span class="tsd-flag ts-flagOptional">Optional</span> min<wbr>Value</h3>
+				<h3>min<wbr>Value</h3>
 				<div class="tsd-signature tsd-kind-icon">min<wbr>Value<span class="tsd-signature-symbol">:</span> <a href="datavalue.html" class="tsd-signature-type">DataValue</a></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in FilterInterfaces.ts:75</li>
+						<li>Defined in FilterInterfaces.ts:68</li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -1144,13 +1087,13 @@ img { max-width: 100%; }
 				</div>
 			</section>
 			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-				<a name="worksheet" class="tsd-anchor"></a>
-				<h3>worksheet</h3>
-				<div class="tsd-signature tsd-kind-icon">worksheet<span class="tsd-signature-symbol">:</span> <a href="worksheet.html" class="tsd-signature-type">Worksheet</a></div>
+				<a name="worksheetname" class="tsd-anchor"></a>
+				<h3>worksheet<wbr>Name</h3>
+				<div class="tsd-signature tsd-kind-icon">worksheet<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 				<aside class="tsd-sources">
-					<p>Inherited from <a href="filter.html">Filter</a>.<a href="filter.html#worksheet">worksheet</a></p>
+					<p>Inherited from <a href="filter.html">Filter</a>.<a href="filter.html#worksheetname">worksheetName</a></p>
 					<ul>
-						<li>Defined in FilterInterfaces.ts:16</li>
+						<li>Defined in FilterInterfaces.ts:15</li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -1162,6 +1105,67 @@ img { max-width: 100%; }
 						</dd>
 					</dl>
 				</div>
+			</section>
+		</section>
+		<section class="tsd-panel-group tsd-member-group ">
+			<h2>Methods</h2>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+				<a name="getfieldasync" class="tsd-anchor"></a>
+				<h3>get<wbr>Field<wbr>Async</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+					<li class="tsd-signature tsd-kind-icon">get<wbr>Field<wbr>Async<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="field.html" class="tsd-signature-type">Field</a><span class="tsd-signature-symbol">&gt;</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Inherited from <a href="filter.html">Filter</a>.<a href="filter.html#getfieldasync">getFieldAsync</a></p>
+							<ul>
+								<li>Defined in FilterInterfaces.ts:34</li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<dl class="tsd-comment-tags">
+								<dt>notimplemented</dt>
+								<dd></dd>
+							</dl>
+						</div>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="field.html" class="tsd-signature-type">Field</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						<p>The field that is currently being filtered.</p>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+				<a name="getrangefilterdomainasync" class="tsd-anchor"></a>
+				<h3>get<wbr>Range<wbr>Filter<wbr>Domain<wbr>Async</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+					<li class="tsd-signature tsd-kind-icon">get<wbr>Range<wbr>Filter<wbr>Domain<wbr>Async<span class="tsd-signature-symbol">(</span>domainType<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"relevant"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"database"</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="rangedomain.html" class="tsd-signature-type">RangeDomain</a><span class="tsd-signature-symbol">&gt;</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in FilterInterfaces.ts:87</li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<dl class="tsd-comment-tags">
+								<dt>notimplemented</dt>
+								<dd></dd>
+							</dl>
+						</div>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>domainType: <span class="tsd-signature-type">"relevant"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"database"</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<p>the domain type, defaults to relevant</p>
+								</div>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="rangedomain.html" class="tsd-signature-type">RangeDomain</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						<p>a promise containing the domain for the range filter</p>
+					</li>
+				</ul>
 			</section>
 		</section>
 		<footer class="with-border-bottom">

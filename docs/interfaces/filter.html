@@ -917,10 +917,10 @@ img { max-width: 100%; }
 					<a href="filter.html#filtertype" class="tsd-kind-icon">filter<wbr>Type</a>
 				</li>
 				<li class=" tsd-kind-property tsd-parent-kind-interface">
-					<a href="filter.html#getfieldasync" class="tsd-kind-icon">get<wbr>Field<wbr>Async</a>
+					<a href="filter.html#worksheetname" class="tsd-kind-icon">worksheet<wbr>Name</a>
 				</li>
-				<li class=" tsd-kind-property tsd-parent-kind-interface">
-					<a href="filter.html#worksheet" class="tsd-kind-icon">worksheet</a>
+				<li class=" tsd-kind-method tsd-parent-kind-interface">
+					<a href="filter.html#getfieldasync" class="tsd-kind-icon">get<wbr>Field<wbr>Async</a>
 				</li>
 			</ul>
 		</li>
@@ -949,6 +949,9 @@ img { max-width: 100%; }
 						<li>
 							<a href="rangefilter.html" class="tsd-signature-type">RangeFilter</a>
 						</li>
+						<li>
+							<a href="relativedatefilter.html" class="tsd-signature-type">RelativeDateFilter</a>
+						</li>
 					</ul>
 				</li>
 			</ul>
@@ -962,8 +965,13 @@ img { max-width: 100%; }
 						<ul class="tsd-index-list">
 							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="filter.html#fieldname" class="tsd-kind-icon">field<wbr>Name</a></li>
 							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="filter.html#filtertype" class="tsd-kind-icon">filter<wbr>Type</a></li>
-							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="filter.html#getfieldasync" class="tsd-kind-icon">get<wbr>Field<wbr>Async</a></li>
-							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="filter.html#worksheet" class="tsd-kind-icon">worksheet</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="filter.html#worksheetname" class="tsd-kind-icon">worksheet<wbr>Name</a></li>
+						</ul>
+					</section>
+					<section class="tsd-index-section ">
+						<h3>Methods</h3>
+						<ul class="tsd-index-list">
+							<li class="tsd-kind-method tsd-parent-kind-interface"><a href="filter.html#getfieldasync" class="tsd-kind-icon">get<wbr>Field<wbr>Async</a></li>
 						</ul>
 					</section>
 				</div>
@@ -977,7 +985,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">field<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in FilterInterfaces.ts:29</li>
+						<li>Defined in FilterInterfaces.ts:28</li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -997,7 +1005,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">filter<wbr>Type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"categorical"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"range"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"hierarchical"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"relative-date"</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in FilterInterfaces.ts:22</li>
+						<li>Defined in FilterInterfaces.ts:21</li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -1011,31 +1019,12 @@ img { max-width: 100%; }
 				</div>
 			</section>
 			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-				<a name="getfieldasync" class="tsd-anchor"></a>
-				<h3>get<wbr>Field<wbr>Async</h3>
-				<div class="tsd-signature tsd-kind-icon">get<wbr>Field<wbr>Async<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="field.html" class="tsd-signature-type">Field</a><span class="tsd-signature-symbol">&gt;</span></div>
+				<a name="worksheetname" class="tsd-anchor"></a>
+				<h3>worksheet<wbr>Name</h3>
+				<div class="tsd-signature tsd-kind-icon">worksheet<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in FilterInterfaces.ts:35</li>
-					</ul>
-				</aside>
-				<div class="tsd-comment tsd-typography">
-					<dl class="tsd-comment-tags">
-						<dt>notimplemented</dt>
-						<dd></dd>
-						<dt>returns</dt>
-						<dd><p>The field that is currently being filtered.</p>
-						</dd>
-					</dl>
-				</div>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-				<a name="worksheet" class="tsd-anchor"></a>
-				<h3>worksheet</h3>
-				<div class="tsd-signature tsd-kind-icon">worksheet<span class="tsd-signature-symbol">:</span> <a href="worksheet.html" class="tsd-signature-type">Worksheet</a></div>
-				<aside class="tsd-sources">
-					<ul>
-						<li>Defined in FilterInterfaces.ts:16</li>
+						<li>Defined in FilterInterfaces.ts:15</li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -1047,6 +1036,33 @@ img { max-width: 100%; }
 						</dd>
 					</dl>
 				</div>
+			</section>
+		</section>
+		<section class="tsd-panel-group tsd-member-group ">
+			<h2>Methods</h2>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+				<a name="getfieldasync" class="tsd-anchor"></a>
+				<h3>get<wbr>Field<wbr>Async</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+					<li class="tsd-signature tsd-kind-icon">get<wbr>Field<wbr>Async<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="field.html" class="tsd-signature-type">Field</a><span class="tsd-signature-symbol">&gt;</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in FilterInterfaces.ts:34</li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<dl class="tsd-comment-tags">
+								<dt>notimplemented</dt>
+								<dd></dd>
+							</dl>
+						</div>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="field.html" class="tsd-signature-type">Field</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						<p>The field that is currently being filtered.</p>
+					</li>
+				</ul>
 			</section>
 		</section>
 		<footer class="with-border-bottom">
