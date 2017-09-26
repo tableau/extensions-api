@@ -1,4 +1,5 @@
 # Project Frelard
+![Tableau Supported](https://img.shields.io/badge/Support%20Level-Tableau%20Supported-53bd92.svg)
 
 ![Image of T-Flex the T-Rex](./assets/tflx.png)
 
