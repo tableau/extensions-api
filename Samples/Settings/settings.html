@@ -21,9 +21,37 @@
   </head>
   <body>
     <div class="container">
-      <div>
-        <h1>Settings Sample</h1>
+      <!-- Exsiting Settings Table -->
+      <div id="settings">
+        <h4>Current Settings</h4>
+        <div class="table-responsive">          
+          <table id="settingsTable" class="table">
+            <thead>
+              <tr>
+                <th>Setting Name</th>
+                <th>Setting Value</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
       </div>
+
+      <!-- New Settings Submission Form -->
+      <div id="newSetting">
+       <hr>
+        <form id="settingForm">
+          <div class="form-group">
+            <input id="keyInput" type="text" class="form-control" placeholder="Setting Key">
+          </div>
+          <div class="form-group">
+            <input id="valueInput" type="text" class="form-control" placeholder="Setting Value">
+          </div>
+          <button id="save" type="button" class="btn btn-primary">Save a new setting.</button>
+        </form>
+      </div>
+
     </div>
   </body>
 </html>
