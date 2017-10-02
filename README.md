@@ -1,14 +1,14 @@
-# Project Frelard
+# Tableau Extensions API
 [![Tableau Supported](https://img.shields.io/badge/Support%20Level-Tableau%20Supported-53bd92.svg)](http://tableau.com)
 
 ![Image of T-Flex the T-Rex](./assets/tflx.png)
 
 ## Docs and Example Code
-This repository contains a [wiki](https://github.com/tableau/ProjectFrelard/wiki) which contains developer documentation. You are encouraged to use it and also contribute.
+This repository contains a [wiki](https://github.com/tableau/extensions-api/wiki) which contains developer documentation. You are encouraged to use it and also contribute.
 
-Example code can be found in the folder called [Examples/ReactJs](https://github.com/tableau/ProjectFrelard/tree/master/Examples/ReactJs). Note: running the examples requires you to have [Node.js](http://nodejs.org) installed.
+Example code can be found in the folder called [Examples/ReactJs](https://github.com/tableau/extensions-api/tree/master/Examples/ReactJs). Note: running the examples requires you to have [Node.js](http://nodejs.org) installed.
 
-Use [Issues](https://github.com/tableau/ProjectFrelard/issues) to log any problems or bugs you encounter in the docs or example code. 
+Use [Issues](https://github.com/tableau/extensions-api/issues) to log any problems or bugs you encounter in the docs or example code. 
 
 ## API Reference
 After cloning this repository, open docs/index.html in a web browser.  This will provide an interactive docs site with the full API reference.
@@ -19,7 +19,7 @@ After cloning this repository, open docs/index.html in a web browser.  This will
 When invoking something from JS over to the C++ code, if there is an unhanded exception the Qt browser seems to become completely messed up and will not set up the web channel communications correctly any more until the process is restarted. This means if you get an exception which escapes, you might need to restart tableau in order to get things working again.
 
 ### Mac Missing Binaries
-The binaries for Web Engine on MacOS still aren’t building correctly. That means Frelard is Windows only for now :( The new binaries should be available very soon though.
+The binaries for Web Engine on MacOS still aren’t building correctly. This means that the Extensions API is Windows only for now :( The new binaries should be available very soon though.
 
 ### Remote Desktop
 Some configurations for remote desktop seem to have issues where the browser is rendered as a black box. Most common is from a Mac to a machine running Windows 7 although we have Windows 7 machines that work and some that don't. No ideas yet on the cause.
