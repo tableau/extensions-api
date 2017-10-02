@@ -1,0 +1,73 @@
+{
+  "name": "union",
+  "description": "A hybrid buffered / streaming middleware kernel backwards compatible with connect.",
+  "version": "0.4.6",
+  "author": {
+    "name": "Charlie Robbins",
+    "email": "charlie.robbins@gmail.com"
+  },
+  "maintainers": [
+    {
+      "name": "indexzero",
+      "email": "charlie.robbins@gmail.com"
+    },
+    {
+      "name": "dscape",
+      "email": "nunojobpinto@gmail.com"
+    },
+    {
+      "name": "jcrugzz",
+      "email": "jcrugzz@gmail.com"
+    },
+    {
+      "name": "swaagie",
+      "email": "info@martijnswaagman.nl"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/flatiron/union.git"
+  },
+  "dependencies": {
+    "qs": "~2.3.3"
+  },
+  "devDependencies": {
+    "ecstatic": "0.5.x",
+    "director": "1.x.x",
+    "request": "2.29.x",
+    "vows": "0.8.0",
+    "connect": "2.22.x"
+  },
+  "scripts": {
+    "test": "vows test/*-test.js --spec -i"
+  },
+  "main": "./lib",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "gitHead": "0dfda9acdec355997b09c4b85e2906cb4b46014f",
+  "bugs": {
+    "url": "https://github.com/flatiron/union/issues"
+  },
+  "homepage": "https://github.com/flatiron/union#readme",
+  "_id": "union@0.4.6",
+  "_shasum": "198fbdaeba254e788b0efcb630bc11f24a2959e0",
+  "_from": "union@>=0.4.3 <0.5.0",
+  "_npmVersion": "3.9.6",
+  "_nodeVersion": "4.4.3",
+  "_npmUser": {
+    "name": "jcrugzz",
+    "email": "jcrugzz@gmail.com"
+  },
+  "dist": {
+    "shasum": "198fbdaeba254e788b0efcb630bc11f24a2959e0",
+    "tarball": "https://registry.npmjs.org/union/-/union-0.4.6.tgz"
+  },
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/union-0.4.6.tgz_1477161955979_0.7554563113953918"
+  },
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/union/-/union-0.4.6.tgz",
+  "readme": "ERROR: No README data found!"
+}
