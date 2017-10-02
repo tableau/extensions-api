@@ -1,5 +1,7 @@
 $(document).ready(function () {
+  let dashboard, worksheet;
   const wsName = "Project Status";    // This is the sheet we'll use for updating task info
+  
 
   function onSelectionChanged(marksEvent) {
     const sheetName = marksEvent.worksheet.name;
@@ -23,8 +25,7 @@ $(document).ready(function () {
   tableau.addIn.initializeAsync().then(function () {
 
     // Initialization succeeded! Get the dashboard's name & log to console
-    const dashboard = tableau.addIn.dashboardContent.dashboard;
-    let worksheet;
+    dashboard = tableau.addIn.dashboardContent.dashboard;
 
     for (const ws of dashboard.worksheets) {
       if (ws.name == wsName) {
@@ -112,7 +113,11 @@ $(document).ready(function () {
       url: 'http://localhost:8765',
       data: JSON.stringify(postData),
       contentType: 'application/json'
-    }).done(console.log("#####TODO Call Refresh"));
+    }).done(
+      worksheet.getDataSourcesAsync().then( (dataSources) => {
+        dataSources[0].refreshAsync();
+      })
+    );
 
     event.preventDefault();
   });
