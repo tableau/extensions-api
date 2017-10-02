@@ -88,7 +88,7 @@ The error reporting for the invalid XML is still work in progress. For the pre-a
 </tr>
 <tr class="even">
 <td><code>name</code></td>
-<td>The name of the add-in as it appears in the under <strong>Add-Ins</strong> on a dashboard sheet. To provide localized text, specify the name of the resource-id and provide the text strings in the resources element of the manifest (see the manifest example). You can provide localized strings for name and description.</td>
+<td>The name of the add-in as it appears in the under <strong>Extensions</strong> on a dashboard sheet. To provide localized text, specify the name of the resource-id and provide the text strings in the resources element of the manifest (see the manifest example). You can provide localized strings for name and description.</td>
 </tr>
 <tr class="odd">
 <td><code>description</code></td>
@@ -112,7 +112,7 @@ The error reporting for the invalid XML is still work in progress. For the pre-a
 </tr>
 <tr class="even">
 <td><code>icon</code></td>
-<td>If specified, the icon is what appears under <strong>Add-Ins</strong> on a dashboard sheet. The icon must be a 64x64 pixel PNG file that is Base64 encoded. If you need an encoder, see <a href="https://www.base64-image.de/" class="uri">https://www.base64-image.de/</a></td>
+<td>If specified, the icon is what appears under <strong>Extensions</strong> on a dashboard sheet. The icon must be a 64x64 pixel PNG file that is Base64 encoded. If you need an encoder, see <a href="https://www.base64-image.de/" class="uri">https://www.base64-image.de/</a></td>
 </tr>
 <tr class="odd">
 <td><code>resources</code></td>

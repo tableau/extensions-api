@@ -4,7 +4,7 @@ layout: docs
 ---
 
 
-When a Tableau Add-In is installed, it appears on the dashboard sheet, under **Add-Ins**. You can use the add-in like you would any other dashboard object. For information about creating and installing an add-in, see [Creating a Tableau-Add-In](https://github.com/tableau/ProjectFrelard/wiki/Developer-Docs-:--Create-and-Use-a-Tableau-AddIn-(Project-Frelard)).
+When a Tableau Extension is installed, it appears on the dashboard sheet, under **Add-Ins**. You can use the extension like you would any other dashboard object. For information about creating and installing Tableau extensions, see [Creating a Tableau-Extension]({{site.baseurl}}/docs/trex_create.html).
 
 1. In a Tableau workbook, create a new dashboard or open an existing dashboard.  
 2. Under **Add-Ins**,  select the add-in and drag it on to the dashboard. 

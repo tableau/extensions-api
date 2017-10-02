@@ -3,20 +3,34 @@ title: Project Frelard
 email: git@tableau.com
 description: Create add-ins to extend the functionality of Tableau.
 repository: d45/tableau.github.io
+# baseurl: "/projectfrelard"
 baseurl: "/dave2/projectfrelard"
-permalinks: /doc/:name
+# host: 127.0.0.1
+host:  "http://onlinehelp.tsi.lan"
+# permalink: pretty
 
 defaults:
   -
     scope:
       path: "" # Apply to all files
+      type: pages
     values:
       layout: "default"
+      permalink: /:path/:basename:output_ext      
+#    scope:
+#     type: pages
+#   values:
+#     permalink: /:path/:basename:output_ext
 
 # Build settings
 markdown: kramdown
 highlighter: rouge
 github: [metadata]
+
+kramdown:
+    toc_levels: 1..3
+
 # Exclude
-exclude: ['node_modules']
+exclude: ['node_modules', 'Examples']
+
 

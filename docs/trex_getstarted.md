@@ -4,11 +4,11 @@ layout: docs
 ---
 
 
-Project Frelard allows developers to create add-ins for Tableau. The add-ins are web applications that have two-way communications with a Tableau dashboard.
+The Tableau Extensions API allows developers to create extensions for Tableau. Tableau extensions are web applications that have two-way communications with Tableau.
  
-Project Frelard provides a framework and a rich set of JavaScript APIs to support different types of add-ins. For example, a dashboard add-in extends the Tableau dashboard by enabling an embedded iframe within the dashboard that you can use to host your web app. After the add-in is initialized and registered, your web app has access and secure two-way communication with the dashboard objects.
+For example, a dashboard extension extends Tableau by enabling an embedded `iframe` within the dashboard that you can use to host your web app. After the extension is initialized and registered, your web app has access and secure two-way communication with the dashboard objects.
 
-An add-in, or extension, consists of a manifest file and a web page that uses a Tableau-provided JavaScript library. The Frelard add-ins are supported on Tableau Desktop and Tableau Server.
+This section will take you through the process of setting up Tableau to use a sample dashboard extension.
 
 **In this section**
 
@@ -17,160 +17,60 @@ An add-in, or extension, consists of a manifest file and a web page that uses a 
 
 
 
-> **Note:** For information about the Frelard API reference docs, see [API Reference]({{site.baseurl}}/docs). 
-
-Download and install Tableau Desktop for Frelard
---------------------------------------------------
-
-The version of Tableau that supports Frelard is only available from from the **Project Frelard Pre-alpha SDK** on [https://prerelease.tableau.com](https://prerelease.tableau.com). 
-- Download and install the Frelard version of Tableau Desktop from the [Project Frelard Pre-alpha SDK](https://prerelease.tableau.com) site). Under **Resources**, click **Frelard Software Downloads**. You can also download the Frelard JavaScript library from the downloads page.
-- The downloads page also has a Frelard Registry Script. Download and run this script (`Addins.reg`) to enable the feature flag for Project Frelard. If you don't want the scritp to modify the registry, you can start `Tableau.exe` with the `-DOverride=AddIns` option.   
-
-Create an Add-in
-----------------
-
-To create a Frelard add-in (or extension) you need the following components.
-
--   A manifest file that identifies and describes the add-in.
--   The Tableau-provided (Frelard) JavaScript library (`tableau-addin-N.N.N.js`)
--   A web page that uses a Tableau-provided Frelard JavaScript library. The web page provides controls that interact with Tableau objects and data in the dashboard.
--   Additional JavaScript and HTML and CSS files as needed for your web app.
--   A web server to host your web app. 
-
-### Create a manifest file
-
-The manifest file (`ADDIN-NAME.trex`) is an XML file that describes the add-in and provides information to register the extension with Tableau. When they are installed, the registered add-ins appear in the **Add-in** pane of the dashboard.
-
--  Create a manifest file for your add-in.  
-Name the manifest file for your add-in (for example, `data-table` and save it with the file name extension `.trex`. The manifest file is an XML file that contains the following elements. For a description of the contents of this file, see [Elements of the manifest file]({{site.baseurl}}/docs/trex_manifest#elements-of-the-manifest-file). An XSD is available for validation on the pre-release website [here](https://prerelease.tableau.com/project/version/item.html?cap=52e2710a0793434d82142736c7ab3029&arttypeid={0DD668AE-472C-4E70-B465-35F7AE0DEB6D}&artid={939493D2-8000-4192-857A-67624CBCC35A}).
-
-   ```xml
-        <?xml version="1.0" encoding="utf-8"?> 
-        <manifest manifest-version="0.1" xmlns="http://wwww.tableau.com/xml/addin_manifest">
-          <tableau-addin id="com.tableau.addin" addin-version="0.1.0">
-            <default-locale>en_US</default-locale>
-            <name resource-id="name"/>
-            <description>Addin Description</description>
-            <addin-type>
-              <dashboard-addin/>
-            </addin-type>
-            <author name="USERNAME" email="USER@example.com" organization="My Company" website="www.example.com"/>
-            <min-api-version>1.1</min-api-version>
-            <source-location>
-              <url>SERVER:PORT</url> 
-            </source-location>
-            <icon>Base64-Encoded ICON</icon>
-          </tableau-addin>
-          <resources>
-            <resource id="name">
-              <text locale="en_US">name in English</text>
-              <text locale="fr_BE">name in French</text>
-              <text locale="de_DE">name in German</text>
-            </resource>
-          </resources>
-        </manifest>
-   ``` 
-
--  To make the add-in available in Tableau, you need to place the manifest file in an `Addins` folder in the `My Tableau Repository (Beta)` folder (for example, `c:\User\Name\Documents\My Tableau Repository (Beta)\Addins`). The add-in will appear on a dashboard sheet, under **Add-Ins**. For information about validating the manifest and adding version information, see [Tableau AddIn Manifest]({{site.baseurl}}/docs/trex_manifest).
-
-
-   ![]({{site.baseurl}}/assets/frelard_addins1.png)  
+### What's in a Tableau extension? 
+A Tableau extension consists of a manifest file (`.trex`), a web page that uses a Tableau-provided JavaScript library, and the JavaScript file (or files) that contain your extension logic. The Tableau extensions are supported on Tableau Desktop and Tableau Server.
 
 
 
-### Create your web app
+### Download and install Tableau Desktop
 
-The web app you create controls and interacts with the Tableau dashboard objects. The web app consists of one or more HTML files (one is the minimum). You host this web app on a web server (the server specified in the manifest file).
 
-#### Download the Frelard JavaScript library
+The version of Tableau that supports the extension API is only available from from the **Project Frelard Pre-alpha SDK** on [https://prerelease.tableau.com](https://prerelease.tableau.com). 
+1. Download and install Tableau Desktop from the [Project Frelard Pre-alpha SDK](https://prerelease.tableau.com) site). 
+   Under **Resources**, click **Frelard Software Downloads**. There are separate installation applications for Windows and macOS. You can also download the Frelard JavaScript library, which is needed if you are going to develop your own extensions.
 
-1.  Download the JavaScript library (for example, `tableau-addin-0.3.0.js`).  If you clone or download the ProjectFrelard repository, you can find the library in the examples folder (`ProjectFrelard/Examples/ReactJs/src/addin/` or `ProjectFrelard/Examples/HelloFrelard/`). The Frelard JavaScript library is also available from from the **Project Frelard Pre-alpha SDK** on [https://prerelease.tableau.com](https://prerelease.tableau.com). 
-2.  Save the file so that it is available and can be referenced on the hosting HTML page on your web server.
+2. Enable the Tableau Extensions feature in Tableau.
+- (**Windows**) Download and run the Frelard Registry Script (`Addins.reg`) to enable the feature flag for Project Frelard. If you don't want the script to modify the registry, you can start `Tableau.exe` with the `-DOverride=AddIns` option.   
+- (**macOS**) Start Tableau, click **Help** > **Settings and Performance** > **Feature Flags** (or press **Alt**+ **Shift** + **G**). In the Feature Flags dialog box, select **AddIns**. 
 
-#### Create the host HTML page
 
-Your web app must include an HTML page. This page should link to the Frelard JavaScript library and to any other JavaScript, CSS, or HTML resources your app requires.
+### Download the sample dashboard extension 
 
-1.  In the HTML page, add a link to the Frelard JavaScript library (for example, `tableau-addin-0.3.0.js`).
-    
-       <!-- Frelard AddIn Library  -->
-        <script src="./tableau-addin-0.3.0.js"></script>
 
-2.  Add links to additional JavaScript files and code that you need. You could add the JavaScript code to initialize and call Frelard functions directly in the HTML page. However, in most cases you want to keep this code in a separate file.
-The following is the `index.hml` from the HelloFrelard example.
-       ```html 
-       <!DOCTYPE html>
-       <html>
-         <head>
-           <meta charset="utf-8">
-           <meta http-equiv="X-UA-Compatible" content="IE=edge">
-           <meta name="viewport" content="width=device-width, initial-scale=1">
-           `<title>Hello Frelard</title>`
+Every Tableau extension has a manifest file (`.trex`) that describes the extension and identifies the location of the web appliction. This sample dashboard extension is simple web application that initializes the dashboard extension and gets and displays the name of the dashboard. The web application is hosted [here]({{site.host}}{{ site.baseurl}}/Examples/HelloFrelard/)
 
-           <!-- jQuery -->
-           <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
-           <!-- Bootstrap -->
-           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
-           <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+1. Click the **HelloFrelard** button to download the manifest file for the sample dashboard extension. 
 
-           <!-- Frelard AddIn Library  -->
-           <script src="./tableau-addin-0.3.0.js"></script>
+    <a class="btn btn-primary btn-lg" href="{{ site.baseurl }}/samples/gitHelloFrelard.tflx" role="button" download>HelloFrelard</a>&nbsp;&nbsp; 
 
-           <!-- Our add-in's code -->
-           <script src="./hello-frelard.js"></script>
-           </head>
-           <body>
-             <div class="container">
-               <div>
-                 <h1>Hello Frelard</h1>
-                 <p id="resultBox" class="lead">Not Initialized</p>
-                 <button id="initializeButton" class="btn btn-primary">Initialize AddIn Api</button>
-               </div>
-             </div>
-           </body>
-       </html>
-       ```
+2. Copy the `HelloFrelard.trex` file to the Tableau `Extensions` folder, for example, `c:\Users\Heather\Documents\My Tableau Repository (Beta)\Extensions`). The extension will appear on a dashboard sheet, under **Extensions**.
 
-3.  Save the HTML file and any JavaScript files on the web server. Start the web service to verify you have the web page configured. The URL of the server must match the `SERVER` in the manifest file for the add-in. Be sure to include the `http://` or `https` in the URL. If you are using your `localhost` for development work, you might want to set up a lightweight web server, for example, you could use Python 2.7 and the SimpleHTTPServer module:
+### Start Tableau and add the dashboard extension
 
-        python -m SimpleHTTPServer [PORT]
+1. Start Tableau and open a workbook that has a dashboard, or open a workbook and create a new dashboard. 
+2. In the dashboard, under **Extensions**, select the Hello Frelard extension and drag it on to the dashboard. 
+   ![]({{site.baseurl}}/assets/hellofrelard_sm.png)
+   
+   The Hello Frelard extension (web application) appears in the dashboard frame. 
+3. Click the **Initialize Addin Api** button.  This action initializes the extension and web application and displays the name of the dashboard. 
 
-#### Initialize the add-in and call Frelard API functions
+   ![]({{site.baseurl}}/assets/hello_test2.gif) 
 
-In your JavaScript code (either in your HTML page or in a separate JavaScript file), you first need to initialize the add-in. To do this, you call `tableau.addin.initializeAsync()`. The function returns after the initial bootstrap operation is complete and the add-in is available for use.
+### Using dashboard extensions in a workbook
+When a Tableau Extension is installed, you can use the extension like you would any other dashboard object. The settings for the extensions are saved when you save the workbook. 
+You can add multiple instances of an extension to a dashboard or to multiple dashboards within a workbook. The settings for each instance are saved separately.
 
-**Syntax:**
 
-`tableau.addin.initializeAsync()`
 
-**Example**
-
-In this code snippet from the [HelloFrelard add-in](https://github.com/tableau/ProjectFrelard/tree/master/Examples/HelloFrelard) example, the initialization function instantiates a dashboard add-in. The `then` method calls two callback functions to handle successful initialization or failure. In case of success, the example gets the dashboard object from the add-in, and then accesses the `name` property  to display the name of the dashboard sheet in the hosting web page. In case of an error, the error message is displayed.
-```javascript    
-    // ... 
-
-    tableau.addIn.initializeAsync().then(function() {
-
-      // Initialization succeeded! Get the dashboard's name
-      var dashboard = tableau.addIn.dashboardContent.dashboard; 
-
-      // Display the results in the UI
-      $("#resultBox").html("I'm running in a dashboard named <strong>" + dashboard.name + "</strong>");
-    }, function(err) {
-
-      // something went wrong in initialization
-      $("#resultBox").html("Error while Initializing: " + err.toString());
-    }); 
-    //  ...  
-```
 ------------------------------------------------------------------------
   
 ## What's next?
 
-Get familiar with the programming interface for Frelard, see [API Reference]({{site.baseurl}}/docs).
+For information about creating Tableau extensions, see [Creating a Tableau Extension]({{site.baseurl}}/docs/trex_create.html).
+To get familiar with the programming interface for the Extensions API, see the <a href="{{site.baseurl}}/docs/index.html" target="_blank">API Reference</a>.
 
-For more information about how you can use Project Frelard, see the [React Example](https://github.com/tableau/ProjectFrelard/tree/master/Examples/ReactJs) add-ins or the [HelloFrelard add-in](https://github.com/tableau/ProjectFrelard/tree/master/Examples/HelloFrelard) example.   
+For more information about how you can use dashboard extensions, see the [ReactJs](https://github.com/tableau/ProjectFrelard/tree/master/Examples/ReactJs) examples or the [HelloFrelard](https://github.com/tableau/ProjectFrelard/tree/master/Examples/HelloFrelard) example.   
 
 
-For information about debugging your add-in, see [Debugging Your Add-In]({{site.baseurl}}/docs/trex_debugging).
+For information about debugging your extension, see [Debugging Your Extension]({{site.baseurl}}/docs/trex_debugging.html).
