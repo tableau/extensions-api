@@ -1,0 +1,63 @@
+{
+  "name": "corser",
+  "version": "2.0.1",
+  "description": "A highly configurable, middleware compatible implementation of CORS.",
+  "keywords": [
+    "cors",
+    "cross-origin resource sharing",
+    "connect",
+    "express",
+    "middleware"
+  ],
+  "bugs": {
+    "url": "https://github.com/agrueneberg/Corser/issues"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Alexander Grüneberg",
+    "email": "alexander.grueneberg@googlemail.com"
+  },
+  "main": "./lib/corser.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/agrueneberg/Corser.git"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "devDependencies": {
+    "mocha": "1.3.x",
+    "expect.js": "0.1.x"
+  },
+  "engines": {
+    "node": ">= 0.4.0"
+  },
+  "gitHead": "ba612c30145eb0245957a135cdb26bf2f2734164",
+  "homepage": "https://github.com/agrueneberg/Corser#readme",
+  "_id": "corser@2.0.1",
+  "_shasum": "8eda252ecaab5840dcd975ceb90d9370c819ff87",
+  "_from": "corser@>=2.0.0 <2.1.0",
+  "_npmVersion": "3.10.6",
+  "_nodeVersion": "6.3.1",
+  "_npmUser": {
+    "name": "agrueneberg",
+    "email": "alexander.grueneberg@googlemail.com"
+  },
+  "maintainers": [
+    {
+      "name": "agrueneberg",
+      "email": "alexander.grueneberg@googlemail.com"
+    }
+  ],
+  "dist": {
+    "shasum": "8eda252ecaab5840dcd975ceb90d9370c819ff87",
+    "tarball": "https://registry.npmjs.org/corser/-/corser-2.0.1.tgz"
+  },
+  "_npmOperationalInternal": {
+    "host": "packages-16-east.internal.npmjs.com",
+    "tmp": "tmp/corser-2.0.1.tgz_1471373999376_0.5666255787946284"
+  },
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/corser/-/corser-2.0.1.tgz",
+  "readme": "ERROR: No README data found!"
+}
