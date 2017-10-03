@@ -6,31 +6,50 @@ $(document).ready(function () {
 
   }, function (err) {
     // Something went wrong in initialization
-    console.log("Error while Initializing: " + err.toString());
+    console.log('Error while Initializing: ' + err.toString());
   });
 
-  $("#save").click(saveSetting);
+  $('#save').click(saveSetting);
 });
+
+function eraseSetting(key, row) {
+  // This change won't be persisted until settings.saveAsync has been called.
+  tableau.extensions.settings.erase(key);
+
+  // Remove the setting from the UI immediately.
+  row.remove();
+  
+  // Save in the background, saveAsync results don't need to be handled immediately.
+  tableau.extensions.settings.saveAsync().then();
+}
 
 function buildSettingsTable(settings) {
   // Clear the table first.
-  $("#settingsTable > tbody tr").remove();
-  let settingsTable = document.getElementById("settingsTable").getElementsByTagName('tbody')[0];
+  $('#settingsTable > tbody tr').remove();
+  const settingsTable = document.getElementById('settingsTable').getElementsByTagName('tbody')[0];
 
   // Add an entry to the settings table for each settings.
-  for (const setting in settings) {
+  for (const settingKey in settings) {
     let newRow = settingsTable.insertRow(settingsTable.rows.length);
-    let nameCell = newRow.insertCell(0);
+    let keyCell = newRow.insertCell(0);
     let valueCell = newRow.insertCell(1);
+    let eraseCell = newRow.insertCell(2);
 
-    nameCell.innerHTML = setting;
-    valueCell.innerHTML = settings[setting].value;
+    let eraseSpan = document.createElement('span');
+    eraseSpan.className = 'glyphicon glyphicon-trash';
+
+    let eraseFunction = function() { eraseSetting(settingKey, newRow); };
+    eraseSpan.addEventListener('click', eraseFunction);
+
+    keyCell.innerHTML = settingKey;
+    valueCell.innerHTML = settings[settingKey];
+    eraseCell.appendChild(eraseSpan);
   }
 }
 
 function saveSetting() {
-  let settingKey = $('#keyInput').val();
-  let settingValue = $('#valueInput').val();
+  var settingKey = $('#keyInput').val();
+  var settingValue = $('#valueInput').val();
 
   tableau.extensions.settings.set(settingKey, settingValue);
 

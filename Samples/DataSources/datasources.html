@@ -22,9 +22,65 @@
   </head>
   <body>
     <div class="container">
-      <div>
-        <h1>DataSources Sample</h1>
+      <!-- Existing Settings Table -->
+      <div id="dataSources">
+        <h4>All DataSources</h4>
+        <div class="table-responsive">          
+          <table id="dataSourcesTable" class="table">
+            <thead>
+              <tr>
+                <th>DataSource Name</th>
+                <th>Auto Refresh</th>
+                <th>Info</td>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
       </div>
+
+      <!-- More info modal -->
+      <div class="modal fade" id="infoModal" role="dialog">
+        <div class="modal-dialog">
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">DataSource Details</h4>
+            </div>
+            <div id="dataSourceDetails" class="modal-body">
+              <div class="table-responsive">          
+              <table id="detailsTable" class="table">
+                <tbody>
+                  <tr>
+                    <td>DataSource Name</td>
+                    <td id="nameDetail"></td>
+                  </tr>
+                  <tr>
+                    <td>DataSource Id</td>
+                    <td id="idDetail"></tdth>
+                  </tr>
+                  <tr>
+                    <td>Type</td>
+                    <td id="typeDetail"></td>
+                  </tr>
+                  <tr>
+                    <td>Fields</td>
+                    <td id="fieldsDetail"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
     </div>
   </body>
 </html>
