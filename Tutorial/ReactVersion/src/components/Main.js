@@ -2,7 +2,7 @@ require('normalize.css/normalize.css');
 require('styles/App.css');
 
 import React from 'react';
-import { Button, Glyphicon } from 'react-bootstrap';
+import { Button, Glyphicon, Modal } from 'react-bootstrap';
 
 import DataTableComponent from './DataTableComponent';
 import SheetListComponent from './SheetListComponent';
@@ -20,7 +20,8 @@ class AppComponent extends React.Component {
       rows: [],
       headers: [],
       dataKey: 1,
-      filteredFields: []
+      filteredFields: [],
+      dashboardName: ''
     };
 
     this.unregisterEventFn = undefined;
@@ -30,10 +31,12 @@ class AppComponent extends React.Component {
     tableau.extensions.initializeAsync().then(() => {
       const selectedSheet = tableau.extensions.settings.get('sheet');
       const sheetNames = tableau.extensions.dashboardContent.dashboard.worksheets.map(worksheet => worksheet.name);
+      const dashboardName = tableau.extensions.dashboardContent.dashboard.name;
       this.setState({
         isInitializing: false,
         selectedSheet: selectedSheet,
-        sheetNames: sheetNames
+        sheetNames: sheetNames,
+        dashboardName: dashboardName
       });
 
       if (selectedSheet) {
@@ -50,7 +53,7 @@ class AppComponent extends React.Component {
   onSelectSheet(sheetName) {
     tableau.extensions.settings.set('sheet', sheetName);
     tableau.extensions.settings.saveAsync().then(() => {
-      this.setState({ selectedSheet: sheetName}, this.loadSelectedMarks.bind(this));
+      this.setState({ selectedSheet: sheetName, filteredFields: [] }, this.loadSelectedMarks.bind(this));
     });
   }
 
@@ -110,7 +113,15 @@ class AppComponent extends React.Component {
     }
 
     if (!this.state.selectedSheet) {
-      return (<SheetListComponent sheetNames={this.state.sheetNames} onSelectSheet={this.onSelectSheet.bind(this)} />);
+      return (
+      <Modal show>
+        <Modal.Header>
+          <Modal.Title>Choose a Sheet from <span className="sheet_name">{this.state.dashboardName}</span></Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <SheetListComponent sheetNames={this.state.sheetNames} onSelectSheet={this.onSelectSheet.bind(this)} />
+        </Modal.Body>
+      </Modal>);
     }
 
     const mainContent = this.state.rows.length > 0 ?
