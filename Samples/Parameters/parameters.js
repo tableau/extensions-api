@@ -1,11 +1,12 @@
 $(document).ready(function () {
   const table = $('#parameterTable');
   const tableBody = table.children('tbody');
+
   let onParameterChange = function (evt) {
     evt.getParameterAsync().then(function (param) {
-      console.dir(param);
       const newRow = parameterRow(param);
-      console.dir(newRow);
+      const oldRow = $("tr[data-fieldname='" + param.id + "'");
+      oldRow.replaceWith(newRow);
     });
   };
 
@@ -41,8 +42,7 @@ $(document).ready(function () {
   };
 
   let parameterRow = function (p) {
-    console.dir(p);
-    let root = $('<tr>').data('fieldname', p.fieldName);
+    let root = $('<tr>').attr('data-fieldname', p.id);
     root.append(textColumn(p.name));
     root.append(textColumn(p.dataType));
     root.append(textColumn(p.currentValue.formattedValue));
