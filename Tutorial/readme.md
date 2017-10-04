@@ -1,20 +1,21 @@
-# TC17 Extensions Demos
+# Dashboard Extensions Tutorial
 
-This project contains the samples for our tc17 talk.
+This project contains a tutorial designed to explain the various components of authoring nad using a Dashboard Extension in Tableau.
+
+This tutorial demonstrates a number of different aspects of the Dashboard Extensions API. The goal of this extenison is to display a data table summarizing the selected marks on a particular worksheet on a dashboard (similar to clicking view data on a tooltip). When the selected marks change, we want to update the data table with the newly selected marks. Then we will add functionality which allows the user to click on any column of data in the selected marks and filter the viz down to the domain of that column.
 
 ### Set Up
 
-- Copy the .trex files into your `My Tableau Repository/Extensions` folder and restart Tableau. 
-- From the root of this directoy start an http server on port 8765.
-	- Python 2.x : python -m SimpleHTTPServer 8765
-	- Python 3.x : python -m http.server 8765
-	- Node.js : `npm install http-server -g && http-server -p 8765`
+- Copy the `.trex` files in the Manifests folder into your `My Tableau Repository/Extensions` folder and restart Tableau.
+- In a command prompt, go to the root of the git repo (a directory above this one)
+- Run `npm install`
+- Run `npm start` to initialize the http server to server your content
 
-# Marks Selection Tutorial
+### Tutorial
 
-This sample demonstrates a number of different aspects of the Dashboard Extensions API. The goal of this extenison is to display a data table summarizing the selected marks on a particular worksheet on a dashboard (similar to clicking view data on a tooltip). When the selected marks change, we want to update the data table with the newly selected marks. If no marks are selected, we'll just show the data for every mark on the worksheet.
+To make it easier to follow along, the tutorial is organized in six parts. Each folder in this project contains the extension's code at the end of that part. In addition, there is a corresponding extension manifest file which allows you to see the extensions progress from within Tableau as you follow along.
 
-To make it easier to follow along, the tutorial is organized in four parts:
+### Tutorial Sections
 
 1. Initialization
 2. Ask the User to Select a Sheet
