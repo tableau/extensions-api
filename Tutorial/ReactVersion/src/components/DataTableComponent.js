@@ -10,8 +10,13 @@ class DataTableComponent extends React.Component {
   render() {
     const cellRenderer = ({ columnIndex, key, rowIndex, style }) => {
       if (rowIndex == 0) {
+        const onHeaderClicked = () => {
+          this.props.onHeaderClicked(this.props.headers[columnIndex]);
+          return false;
+        };
+
         return (<div className='cell header' key={key} style={style}>
-          {this.props.headers[columnIndex]}
+          <a href='#' onClick={onHeaderClicked}>{this.props.headers[columnIndex]}</a>
         </div>);
       } else {
         return (<div className={'cell ' + (rowIndex % 2 == 1 ? 'odd' : 'even')} key={key} style={style}>
@@ -48,7 +53,8 @@ DataTableComponent.displayName = 'DataTableComponent';
 DataTableComponent.propTypes = {
   rows: PropTypes.array.isRequired,
   headers: PropTypes.array.isRequired,
-  dataKey: PropTypes.number
+  dataKey: PropTypes.number.isRequired,
+  onHeaderClicked: PropTypes.func.isRequired
 };
 
 export default DataTableComponent;

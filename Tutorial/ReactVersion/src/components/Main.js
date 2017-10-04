@@ -21,6 +21,8 @@ class AppComponent extends React.Component {
       headers: [],
       dataKey: 1
     };
+
+    this.unregisterEventFn = undefined;
   }
 
   componentWillMount() {
@@ -52,6 +54,10 @@ class AppComponent extends React.Component {
   }
 
   loadSelectedMarks() {
+    if (this.unregisterEventFn) {
+      this.unregisterEventFn();
+    }
+
     const worksheet = this.getSelectedSheet();
     worksheet.getSelectedMarksAsync().then(marks => {
 
@@ -69,8 +75,13 @@ class AppComponent extends React.Component {
       });
 
       this.forceUpdate();
-
     });
+
+    this.unregisterEventFn = worksheet.addEventListener(tableau.TableauEventType.MarkSelectionChanged, this.loadSelectedMarks.bind(this));
+  }
+
+  onHeaderClicked(headerName) {
+    // TODO
   }
 
   render() {
@@ -83,8 +94,7 @@ class AppComponent extends React.Component {
     }
 
     const mainContent = this.state.rows.length > 0 ?
-      // (<ReactDataGrid columns={this.state.headers} rowGetter={(i) => this.state.rows[i]} rowsCount={this.state.rows.length} minHeight={500} />) :
-      (<DataTableComponent rows={this.state.rows} headers={this.state.headers} dataKey={this.state.dataKey} />) :
+      (<DataTableComponent rows={this.state.rows} headers={this.state.headers} dataKey={this.state.dataKey} onHeaderClicked={this.onHeaderClicked.bind(this)}/>) :
       (<h4>No marks selected</h4>);
 
     return (
