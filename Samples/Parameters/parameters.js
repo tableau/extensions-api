@@ -1,7 +1,7 @@
-$(document).ready(function() {
+$(document).ready(function () {
   const table = $('#parameterTable');
   const tableBody = table.children('tbody');
-  let onParameterChange = function(evt) {
+  let onParameterChange = function (evt) {
     evt.getParameterAsync().then(function (param) {
       console.dir(param);
       const newRow = parameterRow(param);
@@ -19,12 +19,13 @@ $(document).ready(function() {
     const row = $('<td>');
     row.text(value);
     return row;
-  }
+  };
 
   let allowableValues = function (value) {
     let termKey = function (key) {
       return $('<dt>').attr('id', key).text(key);
-    },  termValue = function (value, default_) {
+    };
+    let termValue = function (value, default_) {
       return $('<dd>').text(value || default_);
     };
 
@@ -50,12 +51,12 @@ $(document).ready(function() {
     return root;
   };
 
-  let processParameter = function(p) {
+  let processParameter = function (p) {
     p.addEventListener('parameter-changed', onParameterChange);
     parameterRow(p).appendTo(tableBody);
   };
 
-  tableau.extensions.initializeAsync().then(function() {
+  tableau.extensions.initializeAsync().then(function () {
     tableau.extensions.dashboardContent.dashboard.getParametersAsync().then(function (parameters) {
       parameters.forEach(processParameter);
     });
