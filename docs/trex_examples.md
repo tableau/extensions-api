@@ -3,6 +3,10 @@ title: Dashboard Extension Examples
 layout: docs
 ---
 
+<div class="alert alert-info">
+    <i><b>Developer Preview:</b> This is preliminary documentation and is subject to change.</i> 
+</div>
+
 
 To examine the sample source code and to see how Tableau dashboard extensions work, you can clone or download the [ProjectFrelard](https://github.com/tableau/ProjectFrelard) repository on GitHub and run the examples. 
 See the [React Example](https://github.com/tableau/ProjectFrelard/tree/master/Examples/ReactJs) add-ins or the [HelloFrelard add-in](https://github.com/tableau/ProjectFrelard/tree/master/Examples/HelloFrelard) example. Follow the instructions in the Readme files to set up the samples. The Readme files are in the `Examples/HelloFrelard` and `Example/ReactJs` folders. The examples are set up for running the web applications on your computer (as localhost). 

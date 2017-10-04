@@ -1,9 +1,15 @@
 ---
-title: Tableau Addin Manifest
+title: Tableau Extension Manifest File
 layout: docs
 ---
 
-The AddIn manifest (a .trex file) contains metadata for the add-in and is used for registration.  
+<div class="alert alert-info">
+    <i><b>Developer Preview:</b> This is preliminary documentation and is subject to change.</i> 
+</div>
+
+
+The extension manifest file (`.trex`) contains metadata for the add-in and is used for registration. 
+ 
 For details about a manifest or its fields, see the [Sample Manifest File](#sample-manifest-file) and [Elements of the Manifest File](#elements-of-the-manifest-file).  
 For documentation about creating a manifest file, see [Create a Tableau Add-In]({{site.baseurl}}/docs/trex_getstarted#create-a-manifest-file).
 
@@ -25,6 +31,7 @@ The error reporting for the invalid XML is still work in progress. For the pre-a
 
 ## Sample Manifest File
 
+```xml
         <?xml version="1.0" encoding="utf-8"?> 
         <manifest manifest-version="0.1" xmlns="http://wwww.tableau.com/xml/addin_manifest">
           <tableau-addin id="com.tableau.addin" addin-version="0.1.0">
@@ -49,7 +56,7 @@ The error reporting for the invalid XML is still work in progress. For the pre-a
             </resource>
           </resources>
         </manifest>
-
+```
 
 
 ## Elements of the Manifest File

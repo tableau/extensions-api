@@ -3,12 +3,17 @@ title: Get Started
 layout: docs
 ---
 
+<div class="alert alert-info">
+    <i><b>Developer Preview:</b> This is preliminary documentation and is subject to change.</i> 
+</div> 
+
 
 The Tableau Extensions API allows developers to create extensions for Tableau. Tableau extensions are web applications that have two-way communications with Tableau.
  
-For example, a dashboard extension extends Tableau by enabling an embedded `iframe` within the dashboard that you can use to host your web app. After the extension is initialized and registered, your web app has access and secure two-way communication with the dashboard objects.
+This section will take you through the process of setting up Tableau to use a sample dashboard extension. A dashboard extension is a web application that interacts with Tableau and can be placed in the dashboard like any other dashboard object.
 
-This section will take you through the process of setting up Tableau to use a sample dashboard extension.
+
+
 
 **In this section**
 
@@ -16,37 +21,71 @@ This section will take you through the process of setting up Tableau to use a sa
 {:toc}
 
 
+----
+*What's in a Tableau extension? <br/>
+A Tableau extension consists of a manifest file (`.trex`), a web page that uses a Tableau-provided JavaScript library, and the JavaScript file (or files) that contain your extension logic. The Tableau extensions are supported on Tableau Desktop.*
 
-### What's in a Tableau extension? 
-A Tableau extension consists of a manifest file (`.trex`), a web page that uses a Tableau-provided JavaScript library, and the JavaScript file (or files) that contain your extension logic. The Tableau extensions are supported on Tableau Desktop and Tableau Server.
+---
 
 
 
+
+### What you need to get started
+
+If you want to create an extension or work with the sample code, make sure you have the following dependencies installed:
+
+* [Git](https://git-scm.com/downloads)
+* [node and npm](https://nodejs.org/en/download/) - needed to run the Dashboard Extension demos (that use ReactJS)
+
+
+
+----
+
+### Get the Tableau Extensions API SDK
+
+You can get the Tableau Extensions API SDK in two ways. Clone the repository if you want to contribute to the open source project or keep current with the latest changes. Download the zip file if you want to view the samples and work on your own.
+
+- Open a terminal in the directory where you want to download the Tableau Extensions SDK.  Then run the following command to clone
+   the Tableau Extensions API git repository:
+
+   `git clone https://github.com/tableau/extensions-api.git`
+
+- Download the [Tableau Extensions API SDK (.zip file)](https://github.com/tableau/extensions-api/archive/master.zip).
+
+
+
+
+---
 ### Download and install Tableau Desktop
 
 
-The version of Tableau that supports the extension API is only available from from the **Project Frelard Pre-alpha SDK** on [https://prerelease.tableau.com](https://prerelease.tableau.com). 
-1. Download and install Tableau Desktop from the [Project Frelard Pre-alpha SDK](https://prerelease.tableau.com) site). 
-   Under **Resources**, click **Frelard Software Downloads**. There are separate installation applications for Windows and macOS. You can also download the Frelard JavaScript library, which is needed if you are going to develop your own extensions.
+The version of Tableau that supports the Extension API is only available from from the **Extensions API Developer Preview** on [https://prerelease.tableau.com](https://prerelease.tableau.com). 
+1. Download and install Tableau Desktop from the [Extensions API Developer Preview](https://prerelease.tableau.com) site). 
+   Under **Resources**, click **Extensions API Software Downloads**. There are separate installation applications for Windows and macOS. You can also download the Extensions API JavaScript library, which is needed if you are going to develop your own extensions.
 
-2. Enable the Tableau Extensions feature in Tableau.
-- (**Windows**) Download and run the Frelard Registry Script (`Addins.reg`) to enable the feature flag for Project Frelard. If you don't want the script to modify the registry, you can start `Tableau.exe` with the `-DOverride=AddIns` option.   
-- (**macOS**) Start Tableau, click **Help** > **Settings and Performance** > **Feature Flags** (or press **Alt**+ **Shift** + **G**). In the Feature Flags dialog box, select **AddIns**. 
+2. To avoid situations that might cause Tableau to become unresponsive, turn off accelerated graphics. From the **Help** menu, click **Settings and Performance**, and then clear the **Enable Accelerated Graphics** option. 
 
 
-### Download the sample dashboard extension 
+--- 
+### Download a sample dashboard extension 
 
 
-Every Tableau extension has a manifest file (`.trex`) that describes the extension and identifies the location of the web appliction. This sample dashboard extension is simple web application that initializes the dashboard extension and gets and displays the name of the dashboard. The web application is hosted [here]({{site.host}}{{ site.baseurl}}/Examples/HelloFrelard/)
+Every Tableau extension has a manifest file (`.trex`) that describes the extension and identifies the location of the web application. This sample dashboard extension is simple web application that initializes the dashboard extension and gets and displays the name of the dashboard. The web application is hosted [here]({{site.host}}{{ site.baseurl}}/Examples/HelloFrelard/)
 
 
 1. Click the **HelloFrelard** button to download the manifest file for the sample dashboard extension. 
 
-    <a class="btn btn-primary btn-lg" href="{{ site.baseurl }}/samples/gitHelloFrelard.tflx" role="button" download>HelloFrelard</a>&nbsp;&nbsp; 
+    <a class="btn btn-primary btn-lg" href="{{ site.baseurl }}/samples/gitHelloFrelard.tflx" role="button" download>Download HelloFrelard .trex file</a>&nbsp;&nbsp; 
 
-2. Copy the `HelloFrelard.trex` file to the Tableau `Extensions` folder, for example, `c:\Users\Heather\Documents\My Tableau Repository (Beta)\Extensions`). The extension will appear on a dashboard sheet, under **Extensions**.
+2. Close Tableau, if you have it opened. 
+3. Copy the `HelloFrelard.trex` file to the Tableau `Extensions` folder, for example, `c:\Users\Heather\Documents\My Tableau Repository (Beta)\Extensions`). 
+4. Start Tableau and open a workbook. The extension will appear on a dashboard sheet, under **Extensions**.
 
-### Start Tableau and add the dashboard extension
+
+
+
+---
+### Start Tableau and add an extension to the dashboard
 
 1. Start Tableau and open a workbook that has a dashboard, or open a workbook and create a new dashboard. 
 2. In the dashboard, under **Extensions**, select the Hello Frelard extension and drag it on to the dashboard. 
@@ -57,6 +96,9 @@ Every Tableau extension has a manifest file (`.trex`) that describes the extensi
 
    ![]({{site.baseurl}}/assets/hello_test2.gif) 
 
+
+
+---
 ### Using dashboard extensions in a workbook
 When a Tableau Extension is installed, you can use the extension like you would any other dashboard object. The settings for the extensions are saved when you save the workbook. 
 You can add multiple instances of an extension to a dashboard or to multiple dashboards within a workbook. The settings for each instance are saved separately.
@@ -73,4 +115,4 @@ To get familiar with the programming interface for the Extensions API, see the <
 For more information about how you can use dashboard extensions, see the [ReactJs](https://github.com/tableau/ProjectFrelard/tree/master/Examples/ReactJs) examples or the [HelloFrelard](https://github.com/tableau/ProjectFrelard/tree/master/Examples/HelloFrelard) example.   
 
 
-For information about debugging your extension, see [Debugging Your Extension]({{site.baseurl}}/docs/trex_debugging.html).
+For information about debugging your extension, see [Remote Debugging of JavaScript and HTML]({{site.baseurl}}/docs/trex_debugging.html).

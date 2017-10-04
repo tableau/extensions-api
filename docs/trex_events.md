@@ -3,6 +3,11 @@ title: Events and Event Handling
 layout: docs
 ---
 
+<div class="alert alert-info">
+    <i><b>Developer Preview:</b> This is preliminary documentation and is subject to change.</i> 
+</div> 
+
+
 In Tableau dashboard extensions, event handling operates at the sheet level. In the Extensions API, the `sheet` is an abstract class that both `dashboard` and `worksheet` inhierit from. You can add event listeners on individual sheets in a dashboard or on the entire dashboard itself. If you have an event listener, when the specified event is raised, the callback method you provide is called to handle the event. You can use event listeners to trigger specific actions based upon dashboard interactions. 
 
 The Tableau Extension API supports a range of events and provides methods for adding and removing event listeners. To manage the event listener, each sheet has an *event listener manager*. The manager provides a way to add or remove multiple events on sheets independently. 

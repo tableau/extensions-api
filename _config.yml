@@ -3,10 +3,11 @@ title: Project Frelard
 email: git@tableau.com
 description: Create add-ins to extend the functionality of Tableau.
 repository: d45/tableau.github.io
-# baseurl: "/projectfrelard"
-baseurl: "/dave2/projectfrelard"
+# baseurl: "/extensions-api"
+baseurl: "/dave2/extensions-api"
 # host: 127.0.0.1
 host:  "http://onlinehelp.tsi.lan"
+# host: "http://tableau.github.io"
 # permalink: pretty
 
 defaults:

@@ -1,9 +1,13 @@
 ---
-title: Remote Debugging Javascript & HTML
+title: Remote Debugging of JavaScript and HTML
 layout: docs
 ---
 
-Project Frelard embeds a webpage and runs a Chromium based browser inside of Tableau. Luckily, developers are able to debug this web browser using Chromium's remote debugging abilities.
+<div class="alert alert-info">
+    <i><b>Developer Preview:</b> This is preliminary documentation and is subject to change.</i> 
+</div>
+
+A dashboard extension embeds a web page and runs a Chromium-based browser inside of Tableau. Fortunately, you can debug this embedded web browser using the remote debugging abilities built-in to Chromium.
 
 ## Setup
 ### Tableau
