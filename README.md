@@ -1,6 +1,6 @@
 # Project Frelard
 
-![Image of T-Flex the T-Rex](./assets/tflx.png)
+![Image of Flex the T-Rex](./assets/flex.png)
 
 
 ## Setup and Running Samples
