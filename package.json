@@ -19,6 +19,13 @@
     "semistandard": "^11.0.0"
   },
   "semistandard": {
+    "env": {
+      "jquery": true,
+      "tableau": true
+    },
+    "globals": [
+      "tableau"
+    ],
     "ignore": [
       "/lib",
       "/docs"
