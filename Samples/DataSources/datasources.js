@@ -45,9 +45,9 @@ function refreshDataSource(dataSource) {
 function showModal(dataSource) {
   var modal = $('#infoModal');
 
-  $('#nameDetail').innerHTML = dataSource.name;
-  $('#idDetail').innerHTML = dataSource.id;
-  $('#typeDetail').innerHTML = (dataSource.isExtract) ? 'Extract' : 'Live';
+  $('#nameDetail').text(dataSource.name);
+  $('#idDetail').text(dataSource.id);
+  $('#typeDetail').text((dataSource.isExtract) ? 'Extract' : 'Live');
 
   // Loop through every field in the dataSource and concat it to a string.
   var fieldNamesStr = '';
@@ -56,7 +56,7 @@ function showModal(dataSource) {
   });
 
   // Slice of the last ", " for formatting.
-  $('#fieldsDetail')[0].innerHTML = fieldNamesStr.slice(0, -2);
+  $('#fieldsDetail').text(fieldNamesStr.slice(0, -2));
 
   modal.modal('show');
 }
