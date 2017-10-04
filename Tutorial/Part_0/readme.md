@@ -1,4 +1,4 @@
-# Part 0 - Starting the Server & Registering a Manifest
+## Part 0 - Starting the Server & Registering a Manifest
 
 This section contains a couple of very basic files which will become the basis of our extensions. There is a simple HTML page which includes jquery and some other libraries, a javascript file where we will write our code, and an empty css file. At the end of the section, we'll be able to see our extension show up in Tableau, and load this basic html page inside a dashboard.
 
