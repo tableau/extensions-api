@@ -5,6 +5,7 @@ import React from 'react';
 import { Button, Glyphicon, Modal } from 'react-bootstrap';
 
 import DataTableComponent from './DataTableComponent';
+import LoadingIndicatorComponent from './LoadingIndicatorComponent';
 import SheetListComponent from './SheetListComponent';
 
 // Declare this so our linter knows that tableau is a global object
@@ -14,7 +15,7 @@ class AppComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isInitializing: true,
+      isLoading: true,
       selectedSheet: undefined,
       sheetNames: [],
       rows: [],
@@ -32,14 +33,15 @@ class AppComponent extends React.Component {
       const selectedSheet = tableau.extensions.settings.get('sheet');
       const sheetNames = tableau.extensions.dashboardContent.dashboard.worksheets.map(worksheet => worksheet.name);
       const dashboardName = tableau.extensions.dashboardContent.dashboard.name;
+      const sheetSelected = !!selectedSheet;
       this.setState({
-        isInitializing: false,
+        isLoading: sheetSelected,
         selectedSheet: selectedSheet,
         sheetNames: sheetNames,
         dashboardName: dashboardName
       });
 
-      if (selectedSheet) {
+      if (sheetSelected) {
         this.loadSelectedMarks();
       }
     });
@@ -52,6 +54,7 @@ class AppComponent extends React.Component {
 
   onSelectSheet(sheetName) {
     tableau.extensions.settings.set('sheet', sheetName);
+    this.setState({ isLoading: true });
     tableau.extensions.settings.saveAsync().then(() => {
       this.setState({ selectedSheet: sheetName, filteredFields: [] }, this.loadSelectedMarks.bind(this));
     });
@@ -75,13 +78,17 @@ class AppComponent extends React.Component {
       this.setState( {
         rows: rows,
         headers: headers,
-        dataKey: Date.now()
+        dataKey: Date.now(),
+        isLoading: false
       });
 
       this.forceUpdate();
     });
 
-    this.unregisterEventFn = worksheet.addEventListener(tableau.TableauEventType.MarkSelectionChanged, this.loadSelectedMarks.bind(this));
+    this.unregisterEventFn = worksheet.addEventListener(tableau.TableauEventType.MarkSelectionChanged, () => {
+      this.setState({ isLoading: true });
+      this.loadSelectedMarks();
+    });
   }
 
   onHeaderClicked(fieldName) {
@@ -92,24 +99,26 @@ class AppComponent extends React.Component {
     });
 
     const worksheet = this.getSelectedSheet();
+    this.setState({ isLoading: true });
     worksheet.applyFilterAsync(fieldName, columnDomain, tableau.FilterUpdateType.Replace).then(() => {
       const updatedFilteredFields = this.state.filteredFields;
       updatedFilteredFields.push(fieldName);
-      this.setState({ filteredFields: updatedFilteredFields });
+      this.setState({ filteredFields: updatedFilteredFields, isLoading: false });
     });
   }
 
   onResetFilters() {
     const worksheet = this.getSelectedSheet();
+    this.setState({ isLoading: true });
     const promises = this.state.filteredFields.map(fieldName => worksheet.clearFilterAsync(fieldName));
     Promise.all(promises).then(() => {
-      this.setState({ filteredFields: [] });
+      this.setState({ filteredFields: [], isLoading: false });
     });
   }
 
   render() {
-    if (this.state.isInitializing) {
-      return (<h1>Initializing</h1>);
+    if (this.state.isLoading) {
+      return (<LoadingIndicatorComponent msg="Loading"/>);
     }
 
     if (!this.state.selectedSheet) {
