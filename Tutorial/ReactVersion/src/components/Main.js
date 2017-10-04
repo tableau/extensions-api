@@ -2,7 +2,7 @@ require('normalize.css/normalize.css');
 require('styles/App.css');
 
 import React from 'react';
-import { Button, Glyphicon } from 'react-bootstrap'
+import { Button, Glyphicon } from 'react-bootstrap';
 
 import DataTableComponent from './DataTableComponent';
 import SheetListComponent from './SheetListComponent';
@@ -32,11 +32,15 @@ class AppComponent extends React.Component {
         selectedSheet: selectedSheet,
         sheetNames: sheetNames
       });
+
+      if (selectedSheet) {
+        this.loadSelectedMarks();
+      }
     });
   }
 
-  getSelectedSheet() {
-    const sheetName = this.state.selectedSheet;
+  getSelectedSheet(selectedSheet) {
+    const sheetName = selectedSheet || this.state.selectedSheet;
     return tableau.extensions.dashboardContent.dashboard.worksheets.find(worksheet => worksheet.name === sheetName);
   }
 
@@ -64,6 +68,8 @@ class AppComponent extends React.Component {
         dataKey: Date.now()
       });
 
+      this.forceUpdate();
+
     });
   }
 
@@ -77,17 +83,20 @@ class AppComponent extends React.Component {
     }
 
     const mainContent = this.state.rows.length > 0 ?
+      // (<ReactDataGrid columns={this.state.headers} rowGetter={(i) => this.state.rows[i]} rowsCount={this.state.rows.length} minHeight={500} />) :
       (<DataTableComponent rows={this.state.rows} headers={this.state.headers} dataKey={this.state.dataKey} />) :
       (<h4>No marks selected</h4>);
 
     return (
-      <div className="container-fluid">
+    <div>
+      <div className="summary_header">
         <h4>
           Marks for <span className="sheet_name">{this.state.selectedSheet}</span>
           <Button bsStyle='link' onClick={() => this.setState({ selectedSheet: undefined })}><Glyphicon glyph='cog' /></Button>
         </h4>
-        {mainContent}
       </div>
+      {mainContent}
+    </div>
     );
 
   }

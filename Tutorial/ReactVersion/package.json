@@ -65,6 +65,7 @@
     "normalize.css": "^4.0.0",
     "react": "^15.0.0",
     "react-bootstrap": "^0.31.3",
+    "react-data-grid": "^2.0.60",
     "react-dom": "^15.0.0",
     "react-virtualized": "^9.10.1"
   }
