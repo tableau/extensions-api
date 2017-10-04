@@ -17,6 +17,7 @@ To make it easier to follow along, the tutorial is organized in six parts. Each 
 
 ### Tutorial Sections
 
+0. [Starting the Server & Registering a Manifest](Part_0/readme.md)
 1. Initialization
 2. Ask the User to Select a Sheet
 3. Getting and Displaying the Data
