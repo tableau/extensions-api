@@ -1,37 +1,19 @@
 # Site settings
-title: Project Frelard
-email: git@tableau.com
+title: Tableau Extensions API
+email: github@tableau.com
 description: Create add-ins to extend the functionality of Tableau.
-repository: d45/tableau.github.io
-# baseurl: "/extensions-api"
-baseurl: "/dave2/extensions-api"
-# host: 127.0.0.1
-host:  "http://onlinehelp.tsi.lan"
-# host: "http://tableau.github.io"
-# permalink: pretty
-
+baseurl: "/ProjectFrelard"
+permalinks: pretty
 defaults:
   -
     scope:
       path: "" # Apply to all files
-      type: pages
     values:
       layout: "default"
-      permalink: /:path/:basename:output_ext      
-#    scope:
-#     type: pages
-#   values:
-#     permalink: /:path/:basename:output_ext
 
 # Build settings
 markdown: kramdown
 highlighter: rouge
-github: [metadata]
-
-kramdown:
-    toc_levels: 1..3
 
 # Exclude
-exclude: ['node_modules', 'Examples']
-
-
+exclude: ['node_modules']
