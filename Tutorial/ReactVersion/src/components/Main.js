@@ -19,7 +19,8 @@ class AppComponent extends React.Component {
       sheetNames: [],
       rows: [],
       headers: [],
-      dataKey: 1
+      dataKey: 1,
+      filteredFields: []
     };
 
     this.unregisterEventFn = undefined;
@@ -80,8 +81,27 @@ class AppComponent extends React.Component {
     this.unregisterEventFn = worksheet.addEventListener(tableau.TableauEventType.MarkSelectionChanged, this.loadSelectedMarks.bind(this));
   }
 
-  onHeaderClicked(headerName) {
-    // TODO
+  onHeaderClicked(fieldName) {
+    const headerIndex = this.state.headers.indexOf(fieldName);
+    const columnData = this.state.rows.map(row => row[headerIndex]);
+    const columnDomain = columnData.filter((value, index, self) => {
+      return self.indexOf(value) === index;
+    });
+
+    const worksheet = this.getSelectedSheet();
+    worksheet.applyFilterAsync(fieldName, columnDomain, tableau.FilterUpdateType.Replace).then(() => {
+      const updatedFilteredFields = this.state.filteredFields;
+      updatedFilteredFields.push(fieldName);
+      this.setState({ filteredFields: updatedFilteredFields });
+    });
+  }
+
+  onResetFilters() {
+    const worksheet = this.getSelectedSheet();
+    const promises = this.state.filteredFields.map(fieldName => worksheet.clearFilterAsync(fieldName));
+    Promise.all(promises).then(() => {
+      this.setState({ filteredFields: [] });
+    });
   }
 
   render() {
@@ -102,7 +122,8 @@ class AppComponent extends React.Component {
       <div className="summary_header">
         <h4>
           Marks for <span className="sheet_name">{this.state.selectedSheet}</span>
-          <Button bsStyle='link' onClick={() => this.setState({ selectedSheet: undefined })}><Glyphicon glyph='cog' /></Button>
+          <Button bsStyle='link' onClick={() => this.setState({ selectedSheet: undefined })}><Glyphicon glyph='cog'/></Button>
+          <Button bsStyle='link' onClick={this.onResetFilters.bind(this)} disabled={this.state.filteredFields.length === 0}><Glyphicon glyph='repeat'/></Button>
         </h4>
       </div>
       {mainContent}
