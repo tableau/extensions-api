@@ -37,3 +37,7 @@ If you just want to jump to the end, follow the set up steps, then inside of Tab
 
 ![Completed Screenshot](./assets/Completed.gif)
 
+### React Version
+
+Included is also a functionally equivalent version of this sample written using React instead of jQuery and DataTables. It can be found in the ReactVersion folder (it has its own setup steps).
+
