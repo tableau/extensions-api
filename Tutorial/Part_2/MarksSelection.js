@@ -32,7 +32,8 @@
     worksheets.forEach(function(worksheet) {
 
       // Declare our new button which contains the sheet name
-      const button = createButton(worksheet.name);
+      const button = $("<button type='button' class='btn btn-default btn-block'></button");
+      button.text(worksheet.name);
 
       // Create an event handler for when this button is clicked
       button.click(function() {
@@ -51,15 +52,6 @@
 
     // Show the dialog
     $('#choose_sheet_dialog').modal('toggle');
-  }
-
-  function createButton(buttonTitle) {
-    const button =
-    $(`<button type='button' class='btn btn-default btn-block'>
-      ${buttonTitle}
-    </button>`);
-
-    return button;
   }
   
   function loadSelectedMarks(worksheetName) {

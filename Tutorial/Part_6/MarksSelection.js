@@ -127,8 +127,7 @@
 
     if (data.length > 0) {
       $('#no_data_message').css('display', 'none');
-
-      $('#data_table_wrapper').append(`<table id='data_table' class='table table-striped table-bordered'></table>`);
+      $('#data_table_wrapper').append(`<table id='data_table' class='table table-striped table-bordered'></table>`);    
 
       // Do some math to compute the height we want the data table to be
       var top = $('#data_table_wrapper')[0].getBoundingClientRect().top;
@@ -156,12 +155,11 @@
         columns: columns,
         autoWidth: false,
         deferRender: true,
-        scroller: false,
+        scroller: true,
         scrollY: height,
         scrollX: true,
-        ordering: false,
         headerCallback: headerCallback,
-        dom: "<'row'<'col-sm-6'i><'col-sm-6'f>><'row'<'col-sm-12'tr>>", // Do some custom styling
+        dom: "<'row'<'col-sm-6'i><'col-sm-6'f>><'row'<'col-sm-12'tr>>" // Do some custom styling
       });
     } else {
       // If we didn't get any rows back, there must be no marks selected
@@ -186,14 +184,14 @@
       return self.indexOf(value) === index;
     });
 
-    const worksheet = getSelectedSheet();
+    const worksheet = getSelectedSheet(tableau.extensions.settings.get('sheet'));
     worksheet.applyFilterAsync(fieldName, columnDomain, tableau.FilterUpdateType.Replace);
     filteredColumns.push(fieldName);
     return false;
   }
 
   function resetFilters() {
-    const worksheet = getSelectedSheet();
+    const worksheet = getSelectedSheet(tableau.extensions.settings.get('sheet'));
     filteredColumns.forEach(function(columnName) {
       worksheet.clearFilterAsync(columnName);
     });

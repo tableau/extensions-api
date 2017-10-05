@@ -20,6 +20,6 @@ The final change we make is to add some code which will be executed once our ini
 
 Drag out the extensiosn for Part 1 and you should see the name of your dashboard in the zone.
 
-![Part 0 Screenshot](../assets/Part_1.png)
+![Part 1 Screenshot](../assets/Part_1.png)
 
 [Next Section (Part 2 - Ask the User to Select a Sheet)](../Part_2/readme.md)
