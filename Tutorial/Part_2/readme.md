@@ -1,4 +1,4 @@
-## Part 1 - Ask the User to Select a Sheet
+## Part 2 - Ask the User to Select a Sheet
 
 Now that our extension is initialized, we'll need to prompt the user to choose which sheet on their dashboard to get data from. We will provide the user with a list of buttons and once they select one, show the data for that sheet.
 

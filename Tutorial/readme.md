@@ -26,10 +26,10 @@ To make it easier to follow along, the tutorial is organized in six parts. Each 
 0. [Starting the Server & Registering a Manifest](./Part_0/readme.md)
 1. [Initialization](./Part_1/readme.md)
 2. [Ask the User to Select a Sheet](./Part_2/readme.md)
-3. Getting and Displaying the Data
-4. Responding to Selection Changes
-5. Persisting Settings in the Workbook
-6. Performing Actions
+3. [Getting and Displaying the Data](./Part_3/readme.md)
+4. [Responding to Selection Changes](./Part_4/readme.md)
+5. [Persisting Settings in the Workbook](./Part_5/readme.md)
+6. [Performing Actions](./Part_6/readme.md)
 
 ### Part 1 - Initialization
 
