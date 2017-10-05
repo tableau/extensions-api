@@ -12,6 +12,6 @@ The final step is to process the returned data into a format that Data Tables ex
 
 #### Trying it out
 
-![Part 1 Screenshot](../assets/Part_3.gif)
+![Part 3 Screenshot](../assets/Part_3.gif)
 
 [Next Section (Part 4 - Responding to Selection Changes)](../Part_4/readme.md)

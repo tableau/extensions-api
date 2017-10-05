@@ -10,6 +10,6 @@ The other important aspect of the `addEventListener` function is that it returns
 
 #### Trying it out
 
-![Part 1 Screenshot](../assets/Part_4.gif)
+![Part 4 Screenshot](../assets/Part_4.gif)
 
 [Next Section (Part 5 - Persisting Settings in the Workbook)](../Part_5/readme.md)

@@ -14,6 +14,6 @@ In order to prompt the user, we first need to ask Tableau which worksheets are o
 
 When you drag out your extension, you should now see the dialoig pop up. Once a sheet is selected, an alert displays the sheet's name.
 
-![Part 1 Screenshot](../assets/Part_2.gif)
+![Part 2 Screenshot](../assets/Part_2.gif)
 
 [Next Section (Part 3 - Getting and Displaying the Data)](../Part_3/readme.md)
