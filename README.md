@@ -1,6 +1,6 @@
 # Project Frelard
 
-![Image of T-Flex the T-Rex](./assets/tflx.png)
+![Image of Flex the T-Rex](./assets/flex.png)
 
 
 ## Setup and Running Samples
@@ -15,6 +15,11 @@
 4. Run `npm start`.
 5. Launch Tableau and use the sample in a dashboard.
 
+## Submissions
+We would love submissions to either the Docs or Sample code! To contribute, first sign our CLA that can be found [here](https://tableau.github.io/contributing.html).  To submit a contribution, please fork the repository then submit a pull request to the `submissions` branch.
+
+## Code Style
+Our sample code follows the [Semi-Standard Style](https://github.com/Flet/semistandard).  If you add your own extension code to the Samples directory, you can run `npm run lint` to validate the style of your code.  Please run this command before submitting any pull requests for Sample code.
 
 ## Known Issues (as of June 14, 2017)
 Use [Issues](https://github.com/tableau/ProjectFrelard/issues) to log any problems or bugs you encounter in the docs or sample  code. 

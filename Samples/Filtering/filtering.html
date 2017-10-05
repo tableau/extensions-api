@@ -15,15 +15,35 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
 
     <!-- Extensions Library (this will be hosted on a CDN eventually) -->
-    <script src="../../lib/tableau-extensions-0.6.0.js"></script>
+    <script src="../../lib/tableau-extensions-0.6.1.js"></script>
 
     <!-- Our extensions's code -->
     <script src="./filtering.js"></script>
   </head>
   <body>
     <div class="container">
-      <div>
-        <h1>Filtering Sample</h1>
+      <!-- Filters Table -->
+      <div id="filters">
+        <h4>Current Filters</h4>
+        <div class="table-responsive">          
+          <table id="filtersTable" class="table">
+            <thead>
+              <tr>
+                <th>Filtered Field</th>
+                <th>Filtered Worksheet</th>
+                <th>Filter Type</th>
+                <th>Current Values</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- New Settings Submission Form -->
+      <div id="filterActions">
+        <button id="clear" type="button" class="btn btn-primary">Clear All</button>
       </div>
     </div>
   </body>
