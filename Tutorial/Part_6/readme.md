@@ -22,4 +22,5 @@ To see this part in action, click the header of categorical column and see the v
 
 That's it! We hope this tutorial was helpful and please open issues for anything which was confusing or incorrect.
 
-[Home](../../readme.md)
+
+[Back to Intro](../readme.md)
