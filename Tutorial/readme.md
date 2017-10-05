@@ -30,3 +30,10 @@ To make it easier to follow along, the tutorial is organized in seven parts. Eac
 4. [Responding to Selection Changes](./Part_4/readme.md)
 5. [Persisting Settings in the Workbook](./Part_5/readme.md)
 6. [Performing Actions](./Part_6/readme.md)
+
+### Completed Extension
+
+If you just want to jump to the end, follow the set up steps, then inside of Tableau drag out the "Tutorial - Complete" dashboard extension.
+
+![Completed Screenshot](./assets/Completed.gif)
+
