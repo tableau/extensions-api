@@ -12,7 +12,7 @@ If you don't have a hosted version yet, see our [suggestions for hosting](#hosti
 Submitting to the Community Portal {#portal}
 ----------------------------------
 
-**Note:** Before you submit a extension, you'll need a Github account.
+**Note:** Before you submit a extension, you'll need a GitHub account.
 
 1. Create a fork of the `extensions-api` repository.  
 
@@ -20,9 +20,9 @@ Submitting to the Community Portal {#portal}
 
 3. In your fork of the repository, find the community folder at the root of the repository. 
 
-4. In the community_extensions.json file, add an entry for your extension.  All fields are required.
+4. In the `community_extensions.json` file, add an entry for your extension.  All fields are required.
 
-5. Add the TREX file for your extension to the `community/manifests` folder.
+5. Add the manifest file (`.trex`) for your extension to the `community/manifests` folder.
 
 6. Submit a pull request from the submissions branch of your fork, to the submissions branch in the offical repository.
 
@@ -32,13 +32,13 @@ After that, a member of the Tableau Extensibiltiy team will review your submissi
 Suggestions for hosting your extension {#hosting}
 ---------------------------------------
 
-There are several free hosting services that you can use for extension.  You can host
+There are several free hosting services that you can use for your extension.  You can host
 your extension anywhere you please, but we have two suggested locations that we have
 seen to be the easiest to use.
 
 1. Host your static content on GitHub pages.
 
-    If your extension is composed of client side code only (just HTML/CSS/JS files),
+    If your extension is composed of client-side code only (just HTML/CSS/JS files),
     you can host your content for free on GitHub Pages (This is actually what's hosting the documentation
     you are currently reading!).
 
@@ -48,7 +48,7 @@ seen to be the easiest to use.
 2. Host your node app on Heroku.
 
     If your extension contains a sever component, like the Node Proxy sample,
-    you can host your extension for free on Heroku.  There are certain usage restrictions; for example
+    you can host your extension for free on Heroku.  There are certain usage restrictions; for example,
     their free tier requires the extension to be offline for a few hours a day.
 
     Check out their tutorial for more details:
