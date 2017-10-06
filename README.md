@@ -2,6 +2,8 @@
 
 ![Image of Flex the T-Rex](./assets/flex.png)
 
+## Docs and Example Code
+This repository contains a [wiki](https://github.com/tableau/ProjectFrelard/wiki) which contains developer documentation. You are encouraged to use it and also contribute.
 
 ## Setup and Running Samples
 
