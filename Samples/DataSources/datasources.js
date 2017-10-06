@@ -16,7 +16,7 @@
       // To get dataSource info, first get the dashboard.
       const dashboard = tableau.extensions.dashboardContent.dashboard;
 
-      // Then loop through each worksheet and get its datasources, save promise for later.
+      // Then loop through each worksheet and get its dataSources, save promise for later.
       dashboard.worksheets.forEach(function (worksheet) {
         dataSourceFetchPromises.push(worksheet.getDataSourcesAsync());
       });
@@ -70,7 +70,7 @@
   function buildDataSourcesTable (dataSources) {
     // Clear the table first.
     $('#dataSourcesTable > tbody tr').remove();
-    const dataSourcesTable = document.getElementById('dataSourcesTable').getElementsByTagName('tbody')[0];
+    const dataSourcesTable = $('#dataSourcesTable > tbody:first');
 
     // Add an entry to the dataSources table for each dataSource.
     for (let dataSourceId in dataSources) {
@@ -85,16 +85,12 @@
       refreshButton.innerHTML = ('Refresh Now');
       refreshButton.type = 'button';
       refreshButton.className = 'btn btn-primary';
-
-      let refreshFunction = function () { refreshDataSource(dataSource); };
-      refreshButton.addEventListener('click', refreshFunction);
+      refreshButton.addEventListener('click', function () { refreshDataSource(dataSource); });
 
       let infoSpan = document.createElement('span');
       infoSpan.className = 'glyphicon glyphicon-info-sign';
-
-      let showModalFunction = function () { showModal(dataSource); };
-      infoSpan.addEventListener('click', showModalFunction);
-
+      infoSpan.addEventListener('click', function () { showModal(dataSource); });
+      
       nameCell.innerHTML = dataSource.name;
       refreshCell.appendChild(refreshButton);
       infoCell.appendChild(infoSpan);

@@ -17,6 +17,8 @@
   });
 
   function fetchFilters () {
+    // Whenever we reste the filters table, remove all save handling functions,
+    // since we add them back later in this function.
     unregisterHandlerFunctions.forEach(function (unregisterHandlerFunction) {
       unregisterHandlerFunction();
     });
@@ -62,7 +64,7 @@
   function buildFiltersTable (filters) {
     // Clear the table first.
     $('#filtersTable > tbody tr').remove();
-    const filtersTable = document.getElementById('filtersTable').getElementsByTagName('tbody')[0];
+    const filtersTable = $('#filtersTable > tbody:first') 
 
     filters.forEach(function (filter) {
       let newRow = filtersTable.insertRow(filtersTable.rows.length);

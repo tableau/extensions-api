@@ -28,7 +28,7 @@
   function buildSettingsTable (settings) {
     // Clear the table first.
     $('#settingsTable > tbody tr').remove();
-    const settingsTable = document.getElementById('settingsTable').getElementsByTagName('tbody')[0];
+    const settingsTable = $('#settingsTable > tbody:first');
 
     // Add an entry to the settings table for each settings.
     for (const settingKey in settings) {
@@ -39,9 +39,7 @@
 
       let eraseSpan = document.createElement('span');
       eraseSpan.className = 'glyphicon glyphicon-trash';
-
-      let eraseFunction = function () { eraseSetting(settingKey, newRow); };
-      eraseSpan.addEventListener('click', eraseFunction);
+      eraseSpan.addEventListener('click', function () { eraseSetting(settingKey, newRow); });
 
       keyCell.innerHTML = settingKey;
       valueCell.innerHTML = settings[settingKey];
