@@ -3,8 +3,13 @@
 
 ![Image of T-Flex the T-Rex](./assets/tflx.png)
 
-## Docs and Example Code
-This repository contains a [wiki](https://github.com/tableau/extensions-api/wiki) which contains developer documentation. You are encouraged to use it and also contribute.
+## Why the Tableau Extensions API?
+
+The Extensions API lets you do more without leaving Tableau. Build Tableau extensions that can interact and communicate with Tableau, and embed them directly in your workbooks. 
+
+## Documentation and Examples
+
+This repository contains a [wiki](https://github.com/tableau/extensions-api/wiki) which contains developer documentation. You are encouraged to use it and to contribute.
 
 Example code can be found in the folder called [Examples/ReactJs](https://github.com/tableau/extensions-api/tree/master/Examples/ReactJs). Note: running the examples requires you to have [Node.js](http://nodejs.org) installed.
 
@@ -12,6 +17,13 @@ Use [Issues](https://github.com/tableau/extensions-api/issues) to log any proble
 
 ## API Reference
 After cloning this repository, open docs/index.html in a web browser.  This will provide an interactive docs site with the full API reference.
+
+## Contributions
+
+Code contributions and improvements by the community are welcomed!
+See the LICENSE file for current open-source licensing and use information.
+
+Before we can accept pull requests from contributors, we require a signed [Contributor License Agreement (CLA)](http://tableau.github.io/contributing.html).
 
 ## Known Issues (as of June 14, 2017)
 
@@ -26,3 +38,4 @@ Some configurations for remote desktop seem to have issues where the browser is 
 
 ### Chrome Debugging
 While you can technically do any remote debugging you want with a recent build of Chrome, the reality is we have a slightly outdate Chromium install which has some incompatibilities in the debugging layer of things. This means stuff like eval-ing from the console won’t work properly. Fear not, you can [download a legacy build of Chrome](https://www.googleapis.com/download/storage/v1/b/chromium-browser-snapshots/o/Win%2F352221%2Fchrome-win32.zip?generation=1443839123039000&alt=media) and use it for remote debugging (simply go to http://localhost:8696). Stay tuned for more info on debugging tips.
+
