@@ -74,7 +74,7 @@
   function buildDataSourcesTable (dataSources) {
     // Clear the table first.
     $('#dataSourcesTable > tbody tr').remove();
-    const dataSourcesTable = $('#dataSourcesTable > tbody:first');
+    const dataSourcesTable = $('#dataSourcesTable > tbody')[0];
 
     // Add an entry to the dataSources table for each dataSource.
     for (let dataSourceId in dataSources) {

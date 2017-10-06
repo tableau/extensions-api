@@ -57,7 +57,6 @@
         });
       });
 
-      updateUIState(dashboardfilters.length > 0);
       buildFiltersTable(dashboardfilters);
     });
   }
@@ -74,7 +73,7 @@
   function buildFiltersTable (filters) {
     // Clear the table first.
     $('#filtersTable > tbody tr').remove();
-    const filtersTable = $('#filtersTable > tbody:first');
+    const filtersTable = $('#filtersTable > tbody')[0];
 
     filters.forEach(function (filter) {
       let newRow = filtersTable.insertRow(filtersTable.rows.length);
@@ -90,6 +89,8 @@
       typeCell.innerHTML = filter.filterType;
       valuesCell.innerHTML = valueStr;
     });
+
+    updateUIState(Object.keys(filters).length > 0);
   }
 
   // This returns a string representation of the values a filter is set to.
@@ -128,7 +129,8 @@
   // This function removes all filters from a dashboard.
   function clearAllFilters () {
     // While performing async task, show loading message to user.
-    $('#loading').addClass('show');
+    $('#loading').removeClass('hidden').addClass('show');
+    $('#filtersTable').removeClass('show').addClass('hidden');
 
     const dashboard = tableau.extensions.dashboardContent.dashboard;
 
@@ -155,8 +157,10 @@
     $('#loading').addClass('hidden');
     if (filtersExist) {
       $('#filtersTable').removeClass('hidden').addClass('show');
+      $('#noFiltersWarning').removeClass('show').addClass('hidden');
     } else {
       $('#noFiltersWarning').removeClass('hidden').addClass('show');
+      $('#filtersTable').removeClass('show').addClass('hidden');
     }
   }
 })();

@@ -22,13 +22,15 @@
     row.remove();
 
     // Save in the background, saveAsync results don't need to be handled immediately.
-    tableau.extensions.settings.saveAsync().then();
+    tableau.extensions.settings.saveAsync();
+
+    updateUIState(Object.keys(tableau.extensions.settings.getAll()).length > 0);
   }
 
   function buildSettingsTable (settings) {
     // Clear the table first.
     $('#settingsTable > tbody tr').remove();
-    const settingsTable = $('#settingsTable > tbody:first');
+    const settingsTable = $('#settingsTable > tbody')[0];
 
     // Add an entry to the settings table for each settings.
     for (const settingKey in settings) {
@@ -45,6 +47,8 @@
       valueCell.innerHTML = settings[settingKey];
       eraseCell.appendChild(eraseSpan);
     }
+
+    updateUIState(Object.keys(settings).length > 0);
   }
 
   function saveSetting () {
@@ -62,5 +66,17 @@
       // Clears the settings of content.
       $('#settingForm').get(0).reset();
     });
+  }
+
+  // This helper updates the UI depending on whether or not there are settings
+  // that exist in the dashboard.  Accepts a boolean.
+  function updateUIState (settingsExist) {
+    if (settingsExist) {
+      $('#settingsTable').removeClass('hidden').addClass('show');
+      $('#noSettingsWarning').removeClass('show').addClass('hidden');
+    } else {
+      $('#noSettingsWarning').removeClass('hidden').addClass('show');
+      $('#settingsTable').removeClass('show').addClass('hidden');
+    }
   }
 })();

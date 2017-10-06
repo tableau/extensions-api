@@ -72,16 +72,27 @@
 
     const allowable = $('<dl class="dl-horizontal">');
 
-    if (value.type === 'all') {
-      allowable.append(termKey('Restrictions'));
-      allowable.append(termValue('None'));
-    } else {
-      allowable.append(termKey('Min Value'));
-      allowable.append(termValue(value.minValue._value, 'No Min'));
-      allowable.append(termKey('Max Value'));
-      allowable.append(termValue(value.maxValue._value, 'No Max'));
-      allowable.append(termKey('Step Size'));
-      allowable.append(termValue(value.maxValue.stepSize, 'default'));
+    switch (value.type) {
+      case 'all':
+        allowable.append(termKey('Restrictions'));
+        allowable.append(termValue('None'));
+        break;
+      case 'list':
+        value.allowableValues.forEach(function (allowableValue) {
+          allowable.append(termKey('List Value'));
+          allowable.append(termValue(allowableValue.formattedValue));
+        });
+        break;
+      case 'range':
+        allowable.append(termKey('Min Value'));
+        allowable.append(termValue(value.minValue.formattedValue, 'No Min'));
+        allowable.append(termKey('Max Value'));
+        allowable.append(termValue(value.maxValue.formattedValue, 'No Max'));
+        allowable.append(termKey('Step Size'));
+        allowable.append(termValue(value.maxValue.stepSize, 'default'));
+        break;
+      default:
+        console.error('Unknown Parameter value type: ' + value.type);
     }
 
     return allowable;
