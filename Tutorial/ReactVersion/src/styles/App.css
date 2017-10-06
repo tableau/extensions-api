@@ -1,0 +1,16 @@
+h4, h5 {
+  text-align: center;
+}
+
+.sheet_name {
+  font-weight: bold;
+}
+
+.summary_header {
+  height: 50px;
+}
+
+body, html {
+  padding: 0px;
+  margin: 0px;
+}

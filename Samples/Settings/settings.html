@@ -14,16 +14,48 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
 
     <!-- Extensions Library (this will be hosted on a CDN eventually) -->
-    <script src="../../lib/tableau-extensions-0.6.0.js"></script>
+    <script src="../../lib/tableau-extensions-0.6.1.js"></script>
 
     <!-- Our extensions's code -->
     <script src="./settings.js"></script>
   </head>
   <body>
     <div class="container">
-      <div>
-        <h1>Settings Sample</h1>
+      <!-- Existing Settings Table -->
+      <div id="settings">
+        <h4>Current Settings</h4>
+        <div class="table-responsive">   
+          <table id="settingsTable" class="table table-striped hidden">
+            <thead>
+              <tr>
+                <th>Setting Name</th>
+                <th>Setting Value</th>
+                <th style="width: 100%">Erase?</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+          <table id="noSettingsWarning" class="table bg-danger hidden">
+            <tbody><tr><td>There are currently no saved settings for this extension.</td></tr></tbody>
+          </table>
+        </div>
       </div>
+
+      <!-- New Settings Submission Form -->
+      <div id="newSetting">
+       <hr>
+        <form id="settingForm">
+          <div class="form-group">
+            <input id="keyInput" type="text" class="form-control" placeholder="Setting Key">
+          </div>
+          <div class="form-group">
+            <input id="valueInput" type="text" class="form-control" placeholder="Setting Value">
+          </div>
+          <button id="save" type="button" class="btn btn-primary">Save / Update</button>
+        </form>
+      </div>
+
     </div>
   </body>
 </html>
