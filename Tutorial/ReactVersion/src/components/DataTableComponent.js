@@ -7,9 +7,9 @@ import { AutoSizer, MultiGrid } from 'react-virtualized';
 require('styles//DataTable.css');
 
 class DataTableComponent extends React.Component {
-  render() {
+  render () {
     const cellRenderer = ({ columnIndex, key, rowIndex, style }) => {
-      if (rowIndex == 0) {
+      if (rowIndex === 0) {
         const onHeaderClicked = () => {
           this.props.onHeaderClicked(this.props.headers[columnIndex]);
           return false;
@@ -19,14 +19,14 @@ class DataTableComponent extends React.Component {
           <a href='#' onClick={onHeaderClicked}>{this.props.headers[columnIndex]}</a>
         </div>);
       } else {
-        return (<div className={'cell ' + (rowIndex % 2 == 1 ? 'odd' : 'even')} key={key} style={style}>
+        return (<div className={'cell ' + (rowIndex % 2 === 1 ? 'odd' : 'even')} key={key} style={style}>
           {this.props.rows[rowIndex - 1][columnIndex]}
         </div>);
       }
-    }
+    };
 
     return (
-      <div className="dataTable">
+      <div className='dataTable'>
         <AutoSizer>
           {({ height, width }) => (
             <MultiGrid

@@ -7,7 +7,7 @@ import Spinner from 'react-spinkit';
 require('styles//LoadingIndicator.css');
 
 class LoadingIndicatorComponent extends React.Component {
-  render() {
+  render () {
     return (
       <div className='loadingIndicator'>
         <h3>{this.props.msg}</h3>

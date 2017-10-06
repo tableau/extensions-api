@@ -7,20 +7,16 @@ import { Button } from 'react-bootstrap';
 require('styles//SheetList.css');
 
 class SheetListComponent extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  makeSheetButton(sheetName) {
+  makeSheetButton (sheetName) {
     return (
-      <Button key={sheetName} bsStyle="default" block
-      onClick={() => this.props.onSelectSheet(sheetName)}>
+      <Button key={sheetName} bsStyle='default' block
+        onClick={() => this.props.onSelectSheet(sheetName)}>
         {sheetName}
       </Button>
     );
   }
 
-  render() {
+  render () {
     const sheetButtons = this.props.sheetNames.map(sheetName => this.makeSheetButton(sheetName));
     return (
       <div>

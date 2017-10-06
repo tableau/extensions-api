@@ -24,8 +24,11 @@
       <!-- Existing Settings Table -->
       <div id="settings">
         <h4>Current Settings</h4>
-        <div class="table-responsive">          
-          <table id="settingsTable" class="table">
+        <div class="table-responsive">
+          <table id="loading" class="table">
+            <tbody><tr><td>Initializing...</td></tr></tbody>
+          </table>       
+          <table id="settingsTable" class="table table-striped hidden">
             <thead>
               <tr>
                 <th>Setting Name</th>
@@ -35,6 +38,9 @@
             </thead>
             <tbody>
             </tbody>
+          </table>
+          <table id="noSettingsWarning" class="table bg-danger hidden">
+            <tbody><tr><td>There are currently no saved settings for this extension.</td></tr></tbody>
           </table>
         </div>
       </div>

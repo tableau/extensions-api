@@ -17,6 +17,9 @@
   });
 
   function fetchFilters () {
+    // While performing async task, show loading message to user.
+    $('#loading').addClass('show');
+
     // Whenever we reste the filters table, remove all save handling functions,
     // since we add them back later in this function.
     unregisterHandlerFunctions.forEach(function (unregisterHandlerFunction) {
@@ -39,11 +42,14 @@
     dashboard.worksheets.forEach(function (worksheet) {
       filterFetchPromises.push(worksheet.getFiltersAsync());
 
-      // Add filter event to each worksheet
+      // Add filter event to each worksheet.  AddEventListener returns a function that will
+      // remove the event listener when called.
       let unregisterHandlerFunction = worksheet.addEventListener(tableau.TableauEventType.FilterChanged, filterChangedHandler);
       unregisterHandlerFunctions.push(unregisterHandlerFunction);
     });
 
+    // Now, we call every filter fetch promise, and wait for all the results
+    // to finish before displaying the results to the user.
     Promise.all(filterFetchPromises).then(function (fetchResults) {
       fetchResults.forEach(function (filtersForWorksheet) {
         filtersForWorksheet.forEach(function (filter) {
@@ -51,20 +57,24 @@
         });
       });
 
+      updateUIState(dashboardfilters.length > 0);
       buildFiltersTable(dashboardfilters);
     });
   }
 
+  // This is a handling function that is called anytime a filter is changed in Tableau.
   function filterChangedHandler (filterEvent) {
     // Just reconstruct the filters table whenever a filter changes.
     // This could be optimized to add/remove only the different filters.
     fetchFilters();
   }
 
+  // Contructs UI that displays all the dataSources in this dashboard
+  // given a mapping from dataSourceId to dataSource objects.
   function buildFiltersTable (filters) {
     // Clear the table first.
     $('#filtersTable > tbody tr').remove();
-    const filtersTable = $('#filtersTable > tbody:first') 
+    const filtersTable = $('#filtersTable > tbody:first');
 
     filters.forEach(function (filter) {
       let newRow = filtersTable.insertRow(filtersTable.rows.length);
@@ -82,6 +92,8 @@
     });
   }
 
+  // This returns a string representation of the values a filter is set to.
+  // Depending on the type of filter, this string will take a different form.
   function getFilterValues (filter) {
     let filterValues = '';
 
@@ -113,15 +125,38 @@
     return filterValues.slice(0, -2);
   }
 
+  // This function removes all filters from a dashboard.
   function clearAllFilters () {
+    // While performing async task, show loading message to user.
+    $('#loading').addClass('show');
+
     const dashboard = tableau.extensions.dashboardContent.dashboard;
 
     dashboard.worksheets.forEach(function (worksheet) {
       worksheet.getFiltersAsync().then(function (filtersForWorksheet) {
+        let filterClearPromises = [];
+
         filtersForWorksheet.forEach(function (filter) {
-          worksheet.clearFilterAsync(filter.fieldName);
+          filterClearPromises.push(worksheet.clearFilterAsync(filter.fieldName));
+        });
+
+        // Same pattern as in fetchFilters, wait until all promises have finished
+        // before updating the UI state.
+        Promise.all(filterClearPromises).then(function () {
+          updateUIState(false);
         });
       });
     });
+  }
+
+  // This helper updates the UI depending on whether or not there are filters
+  // that exist in the dashboard.  Accepts a boolean.
+  function updateUIState (filtersExist) {
+    $('#loading').addClass('hidden');
+    if (filtersExist) {
+      $('#filtersTable').removeClass('hidden').addClass('show');
+    } else {
+      $('#noFiltersWarning').removeClass('hidden').addClass('show');
+    }
   }
 })();

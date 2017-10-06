@@ -1,14 +1,11 @@
-"use strict";
+'use strict';
 
 // Wrap everything in an anonymous function to avoid poluting the global namespace
-(function() {
-
+(function () {
   // Use the jQuery document ready signal to know when everything has been initialized
-  $(document).ready(function() {
-
+  $(document).ready(function () {
     // Tell Tableau we'd like to initialize our extension
-    tableau.extensions.initializeAsync().then(function() {
-
+    tableau.extensions.initializeAsync().then(function () {
       // Once the extensions is initialized, ask the user to choose a sheet
       showChooseSheetDialog();
     });
@@ -17,7 +14,7 @@
   /**
    * Shows the choose sheet UI. Once a sheet is selected, the data table for the sheet is shown
    */
-  function showChooseSheetDialog() {
+  function showChooseSheetDialog () {
     // Clear out the existing list of sheets
     $('#choose_sheet_buttons').empty();
 
@@ -29,15 +26,13 @@
     const worksheets = tableau.extensions.dashboardContent.dashboard.worksheets;
 
     // Next, we loop through all of these worksheets add add radio buttons for each one
-    worksheets.forEach(function(worksheet) {
-
+    worksheets.forEach(function (worksheet) {
       // Declare our new button which contains the sheet name
       const button = $("<button type='button' class='btn btn-default btn-block'></button");
       button.text(worksheet.name);
 
       // Create an event handler for when this button is clicked
-      button.click(function() {
-
+      button.click(function () {
         // Get the worksheet name which was selected
         const worksheetName = worksheet.name;
 
@@ -53,8 +48,8 @@
     // Show the dialog
     $('#choose_sheet_dialog').modal('toggle');
   }
-  
-  function loadSelectedMarks(worksheetName) {
+
+  function loadSelectedMarks (worksheetName) {
     // For now, just pop up an alert saying that we've selected a sheet
     alert(`Loading selected marks for ${worksheetName}`);
   }

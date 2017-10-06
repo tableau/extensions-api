@@ -14,7 +14,7 @@ const dfltPort = 8000;
  * Get the default modules object for webpack
  * @return {Object}
  */
-function getDefaultModules() {
+function getDefaultModules () {
   return {
     preLoaders: [
       {

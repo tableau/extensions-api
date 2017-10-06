@@ -31,6 +31,10 @@
         });
 
         buildDataSourcesTable(dashboardDataSources);
+
+        // This just modifies the UI by removing the loading banner and showing the dataSources table.
+        $('#loading').addClass('hidden');
+        $('#dataSourcesTable').removeClass('hidden').addClass('show');
       });
     }, function (err) {
       // Something went wrong in initialization.
@@ -90,7 +94,7 @@
       let infoSpan = document.createElement('span');
       infoSpan.className = 'glyphicon glyphicon-info-sign';
       infoSpan.addEventListener('click', function () { showModal(dataSource); });
-      
+
       nameCell.innerHTML = dataSource.name;
       refreshCell.appendChild(refreshButton);
       infoCell.appendChild(infoSpan);

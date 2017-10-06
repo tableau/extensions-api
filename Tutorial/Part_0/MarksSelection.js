@@ -1,10 +1,9 @@
-"use strict";
+'use strict';
 
 // Wrap everything in an anonymous function to avoid poluting the global namespace
-(function() {
-
+(function () {
   // Use the jQuery document ready signal to know when everything has been initialized
-  $(document).ready(function() {
+  $(document).ready(function () {
     // Add your startup code here
 
   });

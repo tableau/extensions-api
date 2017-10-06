@@ -1,6 +1,3 @@
-require('normalize.css/normalize.css');
-require('styles/App.css');
-
 import React from 'react';
 import { Button, Glyphicon, Modal } from 'react-bootstrap';
 
@@ -8,11 +5,14 @@ import DataTableComponent from './DataTableComponent';
 import LoadingIndicatorComponent from './LoadingIndicatorComponent';
 import SheetListComponent from './SheetListComponent';
 
+require('normalize.css/normalize.css');
+require('styles/App.css');
+
 // Declare this so our linter knows that tableau is a global object
-/*global tableau*/
+/* global tableau */
 
 class AppComponent extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.state = {
       isLoading: true,
@@ -28,7 +28,7 @@ class AppComponent extends React.Component {
     this.unregisterEventFn = undefined;
   }
 
-  componentWillMount() {
+  componentWillMount () {
     tableau.extensions.initializeAsync().then(() => {
       const selectedSheet = tableau.extensions.settings.get('sheet');
       const sheetNames = tableau.extensions.dashboardContent.dashboard.worksheets.map(worksheet => worksheet.name);
@@ -47,12 +47,12 @@ class AppComponent extends React.Component {
     });
   }
 
-  getSelectedSheet(selectedSheet) {
+  getSelectedSheet (selectedSheet) {
     const sheetName = selectedSheet || this.state.selectedSheet;
     return tableau.extensions.dashboardContent.dashboard.worksheets.find(worksheet => worksheet.name === sheetName);
   }
 
-  onSelectSheet(sheetName) {
+  onSelectSheet (sheetName) {
     tableau.extensions.settings.set('sheet', sheetName);
     this.setState({ isLoading: true });
     tableau.extensions.settings.saveAsync().then(() => {
@@ -60,14 +60,13 @@ class AppComponent extends React.Component {
     });
   }
 
-  loadSelectedMarks() {
+  loadSelectedMarks () {
     if (this.unregisterEventFn) {
       this.unregisterEventFn();
     }
 
     const worksheet = this.getSelectedSheet();
     worksheet.getSelectedMarksAsync().then(marks => {
-
       // Get the first DataTable for our selected marks (usually there is just one)
       const worksheetData = marks.data[0];
 
@@ -75,7 +74,7 @@ class AppComponent extends React.Component {
       const rows = worksheetData.data.map(row => row.map(cell => cell.formattedValue));
       const headers = worksheetData.columns.map(column => column.fieldName);
 
-      this.setState( {
+      this.setState({
         rows: rows,
         headers: headers,
         dataKey: Date.now(),
@@ -91,7 +90,7 @@ class AppComponent extends React.Component {
     });
   }
 
-  onHeaderClicked(fieldName) {
+  onHeaderClicked (fieldName) {
     const headerIndex = this.state.headers.indexOf(fieldName);
     const columnData = this.state.rows.map(row => row[headerIndex]);
     const columnDomain = columnData.filter((value, index, self) => {
@@ -107,7 +106,7 @@ class AppComponent extends React.Component {
     });
   }
 
-  onResetFilters() {
+  onResetFilters () {
     const worksheet = this.getSelectedSheet();
     this.setState({ isLoading: true });
     const promises = this.state.filteredFields.map(fieldName => worksheet.clearFilterAsync(fieldName));
@@ -116,40 +115,39 @@ class AppComponent extends React.Component {
     });
   }
 
-  render() {
+  render () {
     if (this.state.isLoading) {
-      return (<LoadingIndicatorComponent msg="Loading"/>);
+      return (<LoadingIndicatorComponent msg='Loading' />);
     }
 
     if (!this.state.selectedSheet) {
       return (
-      <Modal show>
-        <Modal.Header>
-          <Modal.Title>Choose a Sheet from <span className="sheet_name">{this.state.dashboardName}</span></Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <SheetListComponent sheetNames={this.state.sheetNames} onSelectSheet={this.onSelectSheet.bind(this)} />
-        </Modal.Body>
-      </Modal>);
+        <Modal show>
+          <Modal.Header>
+            <Modal.Title>Choose a Sheet from <span className='sheet_name'>{this.state.dashboardName}</span></Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <SheetListComponent sheetNames={this.state.sheetNames} onSelectSheet={this.onSelectSheet.bind(this)} />
+          </Modal.Body>
+        </Modal>);
     }
 
-    const mainContent = this.state.rows.length > 0 ?
-      (<DataTableComponent rows={this.state.rows} headers={this.state.headers} dataKey={this.state.dataKey} onHeaderClicked={this.onHeaderClicked.bind(this)}/>) :
-      (<h4>No marks selected</h4>);
+    const mainContent = this.state.rows.length > 0
+      ? (<DataTableComponent rows={this.state.rows} headers={this.state.headers} dataKey={this.state.dataKey} onHeaderClicked={this.onHeaderClicked.bind(this)} />)
+      : (<h4>No marks selected</h4>);
 
     return (
-    <div>
-      <div className="summary_header">
-        <h4>
-          Marks for <span className="sheet_name">{this.state.selectedSheet}</span>
-          <Button bsStyle='link' onClick={() => this.setState({ selectedSheet: undefined })}><Glyphicon glyph='cog'/></Button>
-          <Button bsStyle='link' onClick={this.onResetFilters.bind(this)} disabled={this.state.filteredFields.length === 0}><Glyphicon glyph='repeat'/></Button>
-        </h4>
+      <div>
+        <div className='summary_header'>
+          <h4>
+          Marks for <span className='sheet_name'>{this.state.selectedSheet}</span>
+            <Button bsStyle='link' onClick={() => this.setState({ selectedSheet: undefined })}><Glyphicon glyph='cog' /></Button>
+            <Button bsStyle='link' onClick={this.onResetFilters.bind(this)} disabled={this.state.filteredFields.length === 0}><Glyphicon glyph='repeat' /></Button>
+          </h4>
+        </div>
+        {mainContent}
       </div>
-      {mainContent}
-    </div>
     );
-
   }
 }
 
