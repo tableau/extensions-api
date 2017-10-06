@@ -3,7 +3,7 @@ title: Community Portal
 layout: community
 ---
 
-The following extensions have been written by the Tableau Community and made available to use. Click on the extension to download the `.trex file`, then copy that file to `~\Documents\My Tableau Repository (Beta)\Extensions` to use the extension in Tableau.  If you write an extension, [please contribute!]({{ site.baseurl }}/docs/trex_contributing)
+The following extensions have been written by the Tableau Community and made available to use. Click on the extension to download the `.trex` file, then copy that file to `~\Documents\My Tableau Repository (Beta)\Extensions` to use the extension in Tableau.  If you write an extension, [please contribute!]({{ site.baseurl }}/docs/trex_contributing)
 
 
 
