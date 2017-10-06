@@ -8,9 +8,9 @@ layout: docs
 </div> 
 
 
-The Tableau Extensions API allows developers to create extensions for Tableau. Tableau extensions are web applications that have two-way communications with Tableau.
+The Tableau Extensions API allows developers to create extensions for Tableau. Tableau extensions are web applications that can interact and communicate with Tableau. 
  
-This section will take you through the process of setting up Tableau to use a sample dashboard extension. A dashboard extension is a web application that interacts with Tableau and can be placed in the dashboard like any other dashboard object.
+This section will take you through the process of setting up Tableau to use one of the sample dashboard extensions. A dashboard extension is a web application that can be placed in the dashboard like any other dashboard object.
 
 
 
@@ -75,7 +75,7 @@ Every Tableau extension has a manifest file (`.trex`) that describes the extensi
 
 1. Click the **HelloFrelard** button to download the manifest file for the sample dashboard extension. 
 
-    <a class="btn btn-primary btn-lg" href="{{ site.baseurl }}/samples/gitHelloFrelard.tflx" role="button" download>Download HelloFrelard .trex file</a>&nbsp;&nbsp; 
+    <a class="btn btn-primary btn-lg" href="{{ site.baseurl }}/samples/gitHelloFrelard.trex" role="button" download>Download HelloFrelard .trex file</a>&nbsp;&nbsp; 
 
 2. Close Tableau, if you have it opened. 
 3. Copy the `HelloFrelard.trex` file to the Tableau `Extensions` folder, for example, `c:\Users\Heather\Documents\My Tableau Repository (Beta)\Extensions`). 

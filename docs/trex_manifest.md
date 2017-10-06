@@ -21,13 +21,16 @@ For documentation about creating a manifest file, see [Create a Tableau Add-In](
 
 
 ## XSD Validation
-The manifest is an XML based file. We have provided an XSD that can be used to validate the user defined XML. The XSD is available [here](https://prerelease.tableau.com/project/version/item.html?cap=52e2710a0793434d82142736c7ab3029&arttypeid={0DD668AE-472C-4E70-B465-35F7AE0DEB6D}&artid={939493D2-8000-4192-857A-67624CBCC35A}). It is highly recommended that the manifest XML is validated before use. 
+The manifest is an XML-based file. We have provided an XSD that can be used to validate the user defined XML. The XSD is available from the  [Extensions API Developer Preview](https://prerelease.tableau.com/project/version/item.html?cap=52e2710a0793434d82142736c7ab3029&arttypeid={0DD668AE-472C-4E70-B465-35F7AE0DEB6D}&artid={939493D2-8000-4192-857A-67624CBCC35A}) site. It is highly recommended that you validate the manifest XML before use. 
 
 ## Manifest Versioning
 The versioning of the manifest is designed to be semantically simple and support compatibility. The version follows the [Major].[Minor] format. Minor upgrades are backwards compatible while major upgrades involve breaking changes. 
 
 ## Error Reporting
-The error reporting for the invalid XML is still work in progress. For the pre-alpha release, an invalid XML will fail silently and won't be included in the list of available AddIns. This is another important reason to use the XSD for validation before using the AddIn manifest.
+At start up, Tableau checks the manifest file. If any XML errors are found while parsing the file, Tableau writes these errors to the `log.txt` file in the `My Tableau Repository (Beta)/Logs` folder. This is the same location that Tableau Desktop uses to report other errors and activity. 
+
+If a workbook is saved with an extension and then later opened on another computer that does not have the extension installed, Tableau displays a message in the dashboard zone where the extension would have appeared that states the extension is not available. 
+
 
 ## Sample Manifest File
 
