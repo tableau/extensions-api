@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest manifest-version="0.1" xmlns="http://wwww.tableau.com/xml/addin_manifest">
+  <tableau-addin id="com.tableau.extension.projectmanagement" addin-version="0.1.0">
+    <default-locale>en_US</default-locale>
+    <name resource-id="name"/>
+    <description>Extensions API sample showing how to do write-back for a project management dashboard.</description>
+    <addin-type>
+      <dashboard-addin/>
+    </addin-type>
+    <author name="Tableau" email="github@tableau.com" organization="tableau" website="www.tableau.com"/>
+    <min-api-version>1.1</min-api-version>
+    <source-location>
+      <url>http://localhost:8765</url>
+    </source-location>
+    <icon>iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAiZJREFUeNrsWu1twjAQdREDsAGMkBHCBnQCwgbdADoB3cDeoN2AbkA2ACaADagtnVXLckhIcvic3JNOzg/Lzp3ffcQXIRgMBoPBiIEZCGnkWu4IstJyBJmN0QAn53kfU8HpE3OVlkuHveZaCnhewFhq+UyFAXnPbLpSoP/khXstnOebliWMYgwMyODE7VoFFQWnL9jD0Pzg0f1cwRBMw6iKfVsxwCiza6j8MZAF8hdmnIcMnnQ40a0WWRPIJNBftLE+1Rjgn2pVMSO9OaseM0r0IFhnhCKQ7nKKBmgbBG0aOwDFM3hegnKyRbpLKgg+YsLVq/mbrpVMEAwxoXTyvXWFjZaf1D9Zm/qtzQx2rkQuq8mVwpYJCtiwSeWE+64EuygeJQhOCR3GAoorLPxSN8ANXhJzfTI3QoMLgsmizgWMz2BcWZ0Fg8FgMBiM2HiL9IGioBq8Ub8zwCqFd4JIkyRWKbxNxUVygdccNfIx5o8hEwe+xmSAtXc5sRmTC+zHfB9QNPR1rIyD0hcwi5kGSNZgnkz5QqSqOPoW/70AtzHiIoN5btArai5JMP8XOvcZA9xC5hpQzBjn5KW7XAyoO2x9+x6o6Px+oUSoKchkgZAR3P8CDk+sFSUIdu0LKBilNwqIC+/UT7iPxogKKN/mN7ikgqCocYcC+buCFANcJpSQ/lQqQa7vSrDsoHxSleBg8IwLrDv67jz1IMjdYQaDwWAwhoU/AQYAzKOn1lVG60IAAAAASUVORK5CYII=</icon>
+  </tableau-addin>
+  <resources>
+    <resource id="name">
+      <text locale="en_US">Project Management</text>
+    </resource>
+  </resources>
+</manifest>
