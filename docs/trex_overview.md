@@ -3,7 +3,7 @@ title: What is a Tableau Dashboard Extension
 layout: docs
 ---
 
- Tableau dashboard extensions are web applications and have two-way communication with the dashboard. Dashboard extensions enable all sorts of different scenarios, like integrating with custom applications, modifying the data for a viz, or even creating custom visualizations inside the dashboard. A dashboard extension is just one type of extension that can be built using the Tableau Extensions API. 
+ Tableau dashboard extensions are web applications that have two-way communication with the dashboard. Dashboard extensions enable all sorts of scenarios, like letting you integrate Tableau with custom applications, making possible for you to modify the data for a viz, or even creating custom visualizations inside the dashboard. A dashboard extension is just one type of extension that can be built using the Tableau Extensions API. 
 
 ---
 **In this section**

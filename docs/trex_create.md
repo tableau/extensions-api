@@ -89,7 +89,7 @@ Your web application must include an HTML page. This page should link to the Ext
        <!-- Tableau Extensions API Library  -->
        <script src="../../lib/tableau-extensions-0.6.1.js"></script>
 ```
-2.  Add links to additional JavaScript files and code that you need. You could add the JavaScript code to initialize and call Extensions API functions directly in the HTML page. However, in most cases you want to keep this code in a separate file. The following code is from the DataSources example.
+2.  Add links to additional JavaScript files and code that you need. You could add the JavaScript code to initialize and call Extensions API functions directly in the HTML page. However, in most cases you want to keep this code in a separate file. The following code is from a simple sample.
        ```html 
        <!DOCTYPE html>
        <html>
@@ -131,7 +131,27 @@ Your web application must include an HTML page. This page should link to the Ext
         python -m SimpleHTTPServer [PORT]
 
 
-#### Initialize the add-in and call Tableau Extensions API functions
+### Test your extension in Tableau
+
+After you have created the manifest file (`.trex`) and have hosted your web app you can test it in Tableau. It's a good idea to do this even if your application isn't completed.   
+
+1. If you have not already done so, place the manifest file in an **Extensions** folder in the `My Tableau Repository (Beta)` folder (for example, `c:\User\Name\Documents\My Tableau Repository (Beta)\Extensions`).
+2. Start up you web page or application (or make sure it is running). 
+
+3. Start Tableau and open a workbook with a dashboard or create a new dashboard.  
+  Tableau reads the extension manifest files at start up. You might need to start Tableau again if you placed the `.trex` file in the **Extensions** folder while Tableau was open. 
+
+4. Your extension should appear under **Extensions** on the left side of the dashboard. Drag your extension on to the dashboard.  
+   Your web page should appear in the dashboard zone. 
+
+   - If not, and you see a 404 error, verify that you specified the correct URL to serve the page in the `.trex` file.
+
+   - You might need to start Tableau again if you placed the `.trex` file in the **Extensions** folder while Tableau was running. 
+
+
+
+
+### Add code to initialize the extension and call Tableau Extensions API functions
 
 In your JavaScript code (either in your HTML page or in a separate JavaScript file), you first need to initialize the extension. To do this, you call `tableau.extensions.initializeAsync()`. The function returns after the initial bootstrap operation is complete and the extension is available for use. The Extensions API follows the [CommonJS Promises/A standard](http://wiki.commonjs.org/wiki/Promises/A) for asynchronous method calls. 
 
@@ -141,24 +161,36 @@ In your JavaScript code (either in your HTML page or in a separate JavaScript fi
 
 **Example**
 
-In this code snippet, the initialization function instantiates a dashboard extension. To handle the promise, the `then` method calls two callback functions to handle successful initialization or failure. In case of success, the example gets the dashboard object from the extension, and then accesses the `name` property  to display the name of the dashboard sheet in the hosting web page. In case of an error, the error message is displayed.
+The following code example uses the jQuery document ready function to detect when the web page is loaded and ready. When the page is ready, the initialization function (`initializeAsync`) instantiates a dashboard extension. To handle the promise, the `then` method calls two callback functions to handle successful initialization or failure. In case of success, the example gets the dashboard object from the extension, and then accesses the `name` property  to display the name of the dashboard sheet in the hosting web page. In case of an error, the error message is displayed.
 ```javascript    
-    // ... 
+$(document).ready(function() {
+  
+  // Hook up an event handler for the load button clicking
+  $("#initializeButton").click(function() {
 
-    tableau.addIn.initializeAsync().then(function() {
+    // Disable the button after it's been clicked
+    $("#initializeButton").prop('disabled', true);
 
-      // Initialization succeeded. Get the dashboard.
+    tableau.extensions.initializeAsync().then(function() {
+
+      // Initialization succeeded! Get the dashboard
       var dashboard = tableau.addIn.dashboardContent.dashboard; 
 
-      // Display the name of the dashboard in the UI
+      // Display the name of dashboard in the UI
       $("#resultBox").html("I'm running in a dashboard named <strong>" + dashboard.name + "</strong>");
     }, function(err) {
 
       // something went wrong in initialization
       $("#resultBox").html("Error while Initializing: " + err.toString());
-    }); 
-    //  ...  
+    });
+  });
+});
 ```
+
+
+### Test your extension in Tableau
+
+
 ------------------------------------------------------------------------
   
 ## What's next?

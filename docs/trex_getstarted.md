@@ -35,7 +35,7 @@ A Tableau extension consists of a manifest file (`.trex`), a web page that uses 
 If you want to create an extension or work with the sample code, make sure you have the following dependencies installed:
 
 * [Git](https://git-scm.com/downloads)
-* [node and npm](https://nodejs.org/en/download/) - needed to run the Dashboard Extension demos (that use ReactJS)
+* [Node.js and npm](https://nodejs.org/en/download/) - needed to run the Dashboard Extension demos
 
 
 
@@ -43,7 +43,7 @@ If you want to create an extension or work with the sample code, make sure you h
 
 ### Get the Tableau Extensions API SDK
 
-You can get the Tableau Extensions API SDK in two ways. Clone the repository if you want to contribute to the open source project or keep current with the latest changes. Download the zip file if you want to view the samples and work on your own.
+You can get the Tableau Extensions API SDK in two ways. Clone the repository if you want to contribute to the open source project or keep current with the latest changes. Download the `.zip` file if you want to view the samples and work on your own.
 
 - Open a terminal in the directory where you want to download the Tableau Extensions SDK.  Then run the following command to clone
    the Tableau Extensions API git repository:
@@ -66,21 +66,28 @@ The version of Tableau that supports the Extension API is only available from fr
 2. To avoid situations that might cause Tableau to become unresponsive, turn off accelerated graphics. From the **Help** menu, click **Settings and Performance**, and then clear the **Enable Accelerated Graphics** option. 
 
 
+---
+### Start a web server to host the sample dashboard extensions
+
+To use the dashboard extension samples, you need to start up a web server on your computer to host the HTML pages. If you downloaded or cloned the Extensions API repository, you can start the web service in the root directory of the repository on your computer. 
+
+- From the root of this directory, start an HTTP server on port 8765.
+	- Python 2.x : `python -m SimpleHTTPServer 8765`
+	- Python 3.x : `python -m http.server 8765`
+	- Node.js : `npm install http-server -g && http-server -p 8765`
+
+
+
+
 --- 
-### Download a sample dashboard extension 
+### Install the dashboard extension manifest file (`.trex`) 
 
 
-Every Tableau extension has a manifest file (`.trex`) that describes the extension and identifies the location of the web application. This sample dashboard extension is simple web application that initializes the dashboard extension and gets and displays the name of the dashboard. The web application is hosted [here]({{site.host}}{{ site.baseurl}}/Examples/HelloFrelard/)
+Every Tableau extension has a manifest file (`.trex`) that describes the extension and identifies the location of the web application. 
 
-
-1. Click the **HelloFrelard** button to download the manifest file for the sample dashboard extension. 
-
-    <a class="btn btn-primary btn-lg" href="{{ site.baseurl }}/samples/gitHelloFrelard.trex" role="button" download>Download HelloFrelard .trex file</a>&nbsp;&nbsp; 
-
-2. Close Tableau, if you have it opened. 
-3. Copy the `HelloFrelard.trex` file to the Tableau `Extensions` folder, for example, `c:\Users\Heather\Documents\My Tableau Repository (Beta)\Extensions`). 
-4. Start Tableau and open a workbook. The extension will appear on a dashboard sheet, under **Extensions**.
-
+1. Close Tableau, if you have it opened. 
+2. Copy the `.trex` files of the samples you wish to run to `~\Documents\My Tableau Repository (Beta)\Extensions` so they are available to Tableau. 
+  The `.trex` files for the samples can be found in the folder with the samples. For example, `\extensions-api\Samples\DataSources\DataSources.trex`.
 
 
 
@@ -109,8 +116,10 @@ You can add multiple instances of an extension to a dashboard or to multiple das
   
 ## What's next?
 
-For information about creating Tableau extensions, see [Creating a Tableau Extension]({{site.baseurl}}/docs/trex_create.html).
-To get familiar with the programming interface for the Extensions API, see the <a href="{{site.baseurl}}/docs/index.html" target="_blank">API Reference</a>.
+- For more information about how you can use Extensions API, go look at the [Samples](https://github.com/tableau/extensions-api/tree/master/Samples/) or follow the [Tutorial](https://github.com/tableau/extensions-api/tree/master/Tutorial/HelloFrelard) and learn how to build a dashboard extension, step by step.   
+
+- For general information about creating Tableau extensions, see [Creating a Tableau Extension]({{site.baseurl}}/docs/trex_create.html).
+- To get familiar with the programming interface for the Extensions API, see the <a href="{{site.baseurl}}/docs/index.html" target="_blank">API Reference</a>.
 
 For more information about how you can use dashboard extensions, see the [ReactJs](https://github.com/tableau/ProjectFrelard/tree/master/Examples/ReactJs) examples or the [HelloFrelard](https://github.com/tableau/ProjectFrelard/tree/master/Examples/HelloFrelard) example.   
 
