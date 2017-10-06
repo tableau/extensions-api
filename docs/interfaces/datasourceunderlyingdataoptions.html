@@ -917,6 +917,9 @@ img { max-width: 100%; }
 					<a href="datasourceunderlyingdataoptions.html#ignorealiases" class="tsd-kind-icon">ignore<wbr>Aliases</a>
 				</li>
 				<li class=" tsd-kind-property tsd-parent-kind-interface">
+					<a href="datasourceunderlyingdataoptions.html#maxrows" class="tsd-kind-icon">max<wbr>Rows</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-interface">
 					<a href="datasourceunderlyingdataoptions.html#pagination" class="tsd-kind-icon">pagination</a>
 				</li>
 				<li class=" tsd-kind-property tsd-parent-kind-interface">
@@ -954,6 +957,7 @@ img { max-width: 100%; }
 						<ul class="tsd-index-list">
 							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="datasourceunderlyingdataoptions.html#columnstoinclude" class="tsd-kind-icon">columns<wbr>ToInclude</a></li>
 							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="datasourceunderlyingdataoptions.html#ignorealiases" class="tsd-kind-icon">ignore<wbr>Aliases</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="datasourceunderlyingdataoptions.html#maxrows" class="tsd-kind-icon">max<wbr>Rows</a></li>
 							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="datasourceunderlyingdataoptions.html#pagination" class="tsd-kind-icon">pagination</a></li>
 							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="datasourceunderlyingdataoptions.html#sort" class="tsd-kind-icon">sort</a></li>
 						</ul>
@@ -969,15 +973,13 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">columns<wbr>ToInclude<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in DataSourceInterfaces.ts:230</li>
+						<li>Defined in DataSourceInterfaces.ts:212</li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
-					<dl class="tsd-comment-tags">
-						<dt>notimplemented</dt>
-						<dd><p>The columns to return by name, returns all by default.</p>
-						</dd>
-					</dl>
+					<div class="lead">
+						<p>The columns to return by name, returns all by default.</p>
+					</div>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
@@ -986,15 +988,28 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">ignore<wbr>Aliases<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in DataSourceInterfaces.ts:224</li>
+						<li>Defined in DataSourceInterfaces.ts:207</li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
-					<dl class="tsd-comment-tags">
-						<dt>notimplemented</dt>
-						<dd><p>Do not use aliases specified in the data source in Tableau. Default is false.</p>
-						</dd>
-					</dl>
+					<div class="lead">
+						<p>Do not use aliases specified in the data source in Tableau. Default is false.</p>
+					</div>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<a name="maxrows" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagOptional">Optional</span> max<wbr>Rows</h3>
+				<div class="tsd-signature tsd-kind-icon">max<wbr>Rows<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in DataSourceInterfaces.ts:217</li>
+					</ul>
+				</aside>
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>The maximum number of rows to return. 10,000 by default (this goes away once pagination is implemented)</p>
+					</div>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
@@ -1003,7 +1018,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">pagination<span class="tsd-signature-symbol">:</span> <a href="paginationoptions.html" class="tsd-signature-type">PaginationOptions</a></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in DataSourceInterfaces.ts:236</li>
+						<li>Defined in DataSourceInterfaces.ts:223</li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -1020,7 +1035,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">sort<span class="tsd-signature-symbol">:</span> <a href="sortingoptions.html" class="tsd-signature-type">SortingOptions</a></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in DataSourceInterfaces.ts:242</li>
+						<li>Defined in DataSourceInterfaces.ts:229</li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">

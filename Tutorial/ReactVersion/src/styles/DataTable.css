@@ -1,0 +1,29 @@
+.cell {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  line-height: 30px;
+  vertical-align: middle;
+  padding-left: 3px;
+}
+
+.header {
+  font-weight: bold;
+  border-bottom: 1px solid #888888;
+}
+
+.odd {
+  background: #EEEEEE;
+}
+
+.grid {
+  outline: none;
+}
+
+.interesting {
+  font-weight: 700;
+}
+
+.dataTable {
+  height: calc(100vh - 60px);
+}

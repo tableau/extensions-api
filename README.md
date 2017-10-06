@@ -1,18 +1,30 @@
 # Project Frelard
 
-![Image of T-Flex the T-Rex](./assets/tflx.png)
+![Image of Flex the T-Rex](./assets/flex.png)
 
 ## Docs and Example Code
 This repository contains a [wiki](https://github.com/tableau/ProjectFrelard/wiki) which contains developer documentation. You are encouraged to use it and also contribute.
 
-Example code can be found in the folder called [Examples/ReactJs](https://github.com/tableau/ProjectFrelard/tree/master/Examples/ReactJs). Note: running the examples requires you to have [Node.js](http://nodejs.org) installed.
+## Setup and Running Samples
 
-Use [Issues](https://github.com/tableau/ProjectFrelard/issues) to log any problems or bugs you encounter in the docs or example code. 
+### Pre-requisites
+* You must have Node.js and npm installed. You can get these from [http://nodejs.org](http://nodejs.org).
 
-## API Reference
-After cloning this repository, open docs/index.html in a web browser.  This will provide an interactive docs site with the full API reference.
+### Setup
+1. Copy the `.trex` files of the sample you wish to run to `~\Documents\My Tableau Repository (Beta)\Extensions` so they are available to Tableau.
+2. Open a command prompt window to the location where you cloned this repo.
+3. Run `npm install`.
+4. Run `npm start`.
+5. Launch Tableau and use the sample in a dashboard.
+
+## Submissions
+We would love submissions to either the Docs or Sample code! To contribute, first sign our CLA that can be found [here](https://tableau.github.io/contributing.html).  To submit a contribution, please fork the repository then submit a pull request to the `submissions` branch.
+
+## Code Style
+Our sample code follows the [Semi-Standard Style](https://github.com/Flet/semistandard).  If you add your own extension code to the Samples directory, you can run `npm run lint` to validate the style of your code.  Please run this command before submitting any pull requests for Sample code.
 
 ## Known Issues (as of June 14, 2017)
+Use [Issues](https://github.com/tableau/ProjectFrelard/issues) to log any problems or bugs you encounter in the docs or sample  code. 
 
 ### Unhanded Exceptions During Interop (Qt Browser)
 When invoking something from JS over to the C++ code, if there is an unhanded exception the Qt browser seems to become completely messed up and will not set up the web channel communications correctly any more until the process is restarted. This means if you get an exception which escapes, you might need to restart tableau in order to get things working again.
