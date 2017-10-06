@@ -188,8 +188,18 @@ $(document).ready(function() {
 ```
 
 
-### Test your extension in Tableau
+### Debugging and testing your extension in Tableau
 
+After you have your extension installed and showing up in Tableau, you can continue to work on your web application and see the changes without leaving Tableau. 
+Reload the extension in Tableau. 
+
+Use the **Reload** option to refresh and reload the extension in the dashboard. 
+
+
+![]({{site.baseurl}}/assets/extension_reload.png) 
+ 
+
+ For information about debugging your extension, see [Remote Debugging of JavaScript and HTML]({{site.baseurl}}/docs/trex_debugging.html).
 
 ------------------------------------------------------------------------
   
@@ -199,4 +209,4 @@ $(document).ready(function() {
 
 - Get familiar with the programming interface of the Extensions API, see <a href="{{site.baseurl}}/docs/index.html" target="_blank">API Reference</a>.
 
-- For information about debugging your extension, see [Remote Debugging of JavaScript and HTML]({{site.baseurl}}/docs/trex_debugging.html).
+
