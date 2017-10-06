@@ -1,9 +1,10 @@
-# Project Frelard
+# Tableau Extensions API
+[![Tableau Supported](https://img.shields.io/badge/Support%20Level-Tableau%20Supported-53bd92.svg)](https://www.tableau.com/support-levels-it-and-developer-tools)
 
 ![Image of Flex the T-Rex](./assets/flex.png)
 
-## Docs and Example Code
-This repository contains a [wiki](https://github.com/tableau/ProjectFrelard/wiki) which contains developer documentation. You are encouraged to use it and also contribute.
+## Why the Tableau Extensions API?
+The Extensions API lets you do more without leaving Tableau. Build Tableau extensions that can interact and communicate with Tableau, and embed them directly in your workbooks.
 
 ## Setup and Running Samples
 
@@ -23,17 +24,11 @@ We would love submissions to either the Docs or Sample code! To contribute, firs
 ## Code Style
 Our sample code follows the [Semi-Standard Style](https://github.com/Flet/semistandard).  If you add your own extension code to the Samples directory, you can run `npm run lint` to validate the style of your code.  Please run this command before submitting any pull requests for Sample code.
 
-## Known Issues (as of June 14, 2017)
+## Contributions
+Code contributions and improvements by the community are welcomed!
+See the LICENSE file for current open-source licensing and use information.
+
+Before we can accept pull requests from contributors, we require a signed [Contributor License Agreement (CLA)](http://tableau.github.io/contributing.html).
+
+## Issues
 Use [Issues](https://github.com/tableau/ProjectFrelard/issues) to log any problems or bugs you encounter in the docs or sample  code. 
-
-### Unhanded Exceptions During Interop (Qt Browser)
-When invoking something from JS over to the C++ code, if there is an unhanded exception the Qt browser seems to become completely messed up and will not set up the web channel communications correctly any more until the process is restarted. This means if you get an exception which escapes, you might need to restart tableau in order to get things working again.
-
-### Mac Missing Binaries
-The binaries for Web Engine on MacOS still aren’t building correctly. That means Frelard is Windows only for now :( The new binaries should be available very soon though.
-
-### Remote Desktop
-Some configurations for remote desktop seem to have issues where the browser is rendered as a black box. Most common is from a Mac to a machine running Windows 7 although we have Windows 7 machines that work and some that don't. No ideas yet on the cause.
-
-### Chrome Debugging
-While you can technically do any remote debugging you want with a recent build of Chrome, the reality is we have a slightly outdate Chromium install which has some incompatibilities in the debugging layer of things. This means stuff like eval-ing from the console won’t work properly. Fear not, you can [download a legacy build of Chrome](https://www.googleapis.com/download/storage/v1/b/chromium-browser-snapshots/o/Win%2F352221%2Fchrome-win32.zip?generation=1443839123039000&alt=media) and use it for remote debugging (simply go to http://localhost:8696). Stay tuned for more info on debugging tips.
