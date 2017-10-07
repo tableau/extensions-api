@@ -1,20 +1,20 @@
 [
     {
-        "name": "Sample Extension1",
-        "url": "http://extensions.com/sample1.html",
-        "author": "Cool Person",
-        "github_username": "coolPerson",
-        "tags": ["v_1.0"],
-        "description": "A cool extension",
-        "source_code": "https://github.com/cool/Extension"
+        "name": "Image Filter (Jungle Book)",
+        "author": "Lee Graber & Ang Gao",
+        "github_username": "LGraber",
+        "tags": ["v_0.6"],
+        "description": "Lets you display an image, draw polygons in the image and then use those polygons as filters on a sheet in the viz.",
+        "source_code": "https://github.com/LGraber/trex-jungle-book"
     },
     {
-        "name": "Sample Extension2",
-        "url": "http://extensions.com/sample2.html",
-        "author": "Cool Person",
-        "github_username": "coolPerson2",
-        "tags": ["v_12.0"],
-        "description": "Another cool extension",
-        "source_code": "https://github.com/cool/Extension2"
+        "name": "Dynamic Parameters",
+        "hostedTrexFileName": "DynamicParameter.trex",
+        "website": "https://keshiarose.github.io/Dynamic-Parameter/",
+        "author": "Keshia Rose",
+        "github_username": "KeshiaRose",
+        "tags": ["v_0.6"],
+        "description": "A Tableau Extension to add dynamic parameter capabilities to Tableau dashboards.",
+        "source_code": "https://github.com/KeshiaRose/Dynamic-Parameter"
     }
 ]
