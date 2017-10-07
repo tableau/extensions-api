@@ -3,11 +3,6 @@ title: Get Started
 layout: docs
 ---
 
-<div class="alert alert-info">
-    <i><b>Developer Preview:</b> This is preliminary documentation and is subject to change.</i> 
-</div> 
-
-
 The Tableau Extensions API allows developers to create extensions for Tableau. Tableau extensions are web applications that can interact and communicate with Tableau. 
  
 This section will take you through the process of setting up Tableau to use one of the sample dashboard extensions. A dashboard extension is a web application that can be placed in the dashboard like any other dashboard object.

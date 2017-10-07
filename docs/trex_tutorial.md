@@ -1,11 +1,8 @@
 ---
 title: Dashboard Extension Tutorial
 layout: docs
+indexed_by_search: false
 --- 
-
-<div class="alert alert-info">
-    <i><b>Developer Preview:</b> This is preliminary documentation and is subject to change.</i> 
-</div>
 
 This tutorial walks you through the steps of creating and running a dashboard extension. The tutorial is based on the Marks Selection sample. 
 

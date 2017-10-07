@@ -3,11 +3,6 @@ title: Dashboard Extension Samples
 layout: docs
 ---
 
-<div class="alert alert-info">
-    <i><b>Developer Preview:</b> This is preliminary documentation and is subject to change.</i> 
-</div>
-
-
 To examine the sample source code and to see how Tableau dashboard extensions work, you can clone or download the [Extensions API](https://github.com/tableau/extensions-api) repository on GitHub and run the samples. The samples are in the `Samples` folder. There is also a step-by-step tutorial you can follow in the `Tutorial` folder. 
 
 You can also check out the dashboard extensions from the community, see [Community Extensions]({{ site.baseurl }}/community/).
