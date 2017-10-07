@@ -3,11 +3,6 @@ title: Tableau Extensions API Basics
 layout: docs
 --- 
 
-<div class="alert alert-info">
-    <i><b>Developer Preview:</b> This is preliminary documentation and is subject to change.</i> 
-</div>
-
-
 The Tableau Extensions API is organized by namespaces. The type of extension you create determines the set of namespaces the extension will have access to. For example, if you create and register a dashboard extension, the extension will have access to the `dashboardContent` namespace, which provides access to the dashboard object. When you have the dashboard object, you have access to all elements in the dashboard, including the worksheets, marks, filters, parameters, and data sources. 
 
 

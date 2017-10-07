@@ -3,11 +3,6 @@ title: Tableau Extension Manifest File
 layout: docs
 ---
 
-<div class="alert alert-info">
-    <i><b>Developer Preview:</b> This is preliminary documentation and is subject to change.</i> 
-</div>
-
-
 The extension manifest file (`.trex`) contains metadata for the add-in and is used for registration. 
  
 For details about a manifest or its fields, see the [Sample Manifest File](#sample-manifest-file) and [Elements of the Manifest File](#elements-of-the-manifest-file).  
