@@ -3,7 +3,6 @@ title: Release Notes for the Tableau Extensions API
 layout: docs
 --- 
 
-
 **In this section**
 
 * TOC

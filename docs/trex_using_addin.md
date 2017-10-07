@@ -1,7 +1,8 @@
 ---
 title: Using a Tableau Add-In
 layout: docs
----
+indexed_by_search: false
+--- 
 
 
 When a Tableau Extension is installed, it appears on the dashboard sheet, under **Add-Ins**. You can use the extension like you would any other dashboard object. For information about creating and installing Tableau extensions, see [Creating a Tableau-Extension]({{site.baseurl}}/docs/trex_create.html).
