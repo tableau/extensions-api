@@ -1,6 +1,6 @@
 'use strict';
 
-// Wrap everything in an anonymous function to avoid poluting the global namespace
+// Wrap everything in an anonymous function to avoid polluting the global namespace
 (function () {
   let unregisterHandlerFunctions = [];
 
@@ -20,7 +20,7 @@
     // While performing async task, show loading message to user.
     $('#loading').addClass('show');
 
-    // Whenever we reste the filters table, remove all save handling functions,
+    // Whenever we restore the filters table, remove all save handling functions,
     // since we add them back later in this function.
     unregisterHandlerFunctions.forEach(function (unregisterHandlerFunction) {
       unregisterHandlerFunction();
@@ -68,7 +68,7 @@
     fetchFilters();
   }
 
-  // Contructs UI that displays all the dataSources in this dashboard
+  // Constructs UI that displays all the dataSources in this dashboard
   // given a mapping from dataSourceId to dataSource objects.
   function buildFiltersTable (filters) {
     // Clear the table first.
