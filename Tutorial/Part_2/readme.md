@@ -12,7 +12,7 @@ In order to prompt the user, we first need to ask Tableau which worksheets are o
 
 #### Trying it out
 
-When you drag out your extension, you should now see the dialoig pop up. Once a sheet is selected, an alert displays the sheet's name.
+When you drag out your extension, you should now see the dialog pop up. Once a sheet is selected, an alert displays the sheet's name.
 
 ![Part 2 Screenshot](../assets/Part_2.gif)
 

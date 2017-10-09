@@ -1,12 +1,12 @@
 'use strict';
 
-// Wrap everything in an anonymous function to avoid poluting the global namespace
+// Wrap everything in an anonymous function to avoid polluting the global namespace
 (function () {
   // Use the jQuery document ready signal to know when everything has been initialized
   $(document).ready(function () {
     // Tell Tableau we'd like to initialize our extension
     tableau.extensions.initializeAsync().then(function () {
-      // Once the extensions is initialized, ask the user to choose a sheet
+      // Once the extension is initialized, ask the user to choose a sheet
       showChooseSheetDialog();
 
       initializeButtons();
@@ -27,7 +27,7 @@
     // The first step in choosing a sheet will be asking Tableau what sheets are available
     const worksheets = tableau.extensions.dashboardContent.dashboard.worksheets;
 
-    // Next, we loop through all of these worksheets add add radio buttons for each one
+    // Next, we loop through all of these worksheets and add buttons for each one
     worksheets.forEach(function (worksheet) {
       // Declare our new button which contains the sheet name
       const button = createButton(worksheet.name);
@@ -68,7 +68,7 @@
       unregisterEventHandlerFunction();
     }
 
-    // Get the worksheet object we want to get the selectd marks for
+    // Get the worksheet object we want to get the selected marks for
     const worksheet = getSelectedSheet(worksheetName);
 
     // Set our title to an appropriate value
@@ -104,7 +104,7 @@
   }
 
   function populateDataTable (data, columns) {
-    // Do some UI setup here change the visible section and reinitialize the table
+    // Do some UI setup here to change the visible section and reinitialize the table
     $('#data_table_wrapper').empty();
 
     if (data.length > 0) {
@@ -137,7 +137,7 @@
   }
 
   function getSelectedSheet (worksheetName) {
-    // go through all the worksheets in the dashboard and find the one we want
+    // Go through all the worksheets in the dashboard and find the one we want
     return tableau.extensions.dashboardContent.dashboard.worksheets.find(function (sheet) {
       return sheet.name === worksheetName;
     });

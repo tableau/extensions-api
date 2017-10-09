@@ -1,6 +1,6 @@
 ## Part 0 - Starting the Server & Registering a Manifest
 
-This section contains a couple of very basic files which will become the basis of our extensions. There is a simple HTML page which includes jquery and some other libraries, a javascript file where we will write our code, and an empty css file. At the end of the section, we'll be able to see our extension show up in Tableau, and load this basic html page inside a dashboard.
+This section contains a couple of very basic files which will become the basis of our extensions. There is a simple HTML page which includes jQuery and some other libraries, a javascript file where we will write our code, and an empty css file. At the end of the section, we'll be able to see our extension show up in Tableau, and load this basic html page inside a dashboard.
 
 #### Starting the Server
 
@@ -8,7 +8,7 @@ Extensions are simply web pages, so the first thing we'll need to do is make sur
 
 #### Registering the Manifest
 
-The very first thing you need to do is to provide an extension, or manifest file (`.trex`). If you cloned or downloaded the `.zip` file for the repository, you can find the manifests for the tutorial inside the Manifests folder. The `.trex` file contains basic information like the name of the extensions (as it will appear in Tableau) and the url where the extension is hosted. To have the extension show up in Tableau, you must copy the `.trex` file into your `My Tableau Repository (Beta)/Extensions` fodler and restart Tableau. When Tableau start up again, you should see the extensions listed when authoring a dashboard.
+The very first thing you need to do is to provide an extension, or manifest file (`.trex`). If you cloned or downloaded the `.zip` file for the repository, you can find the manifests for the tutorial inside the Manifests folder. The `.trex` file contains basic information like the name of the extension (as it will appear in Tableau) and the url where the extension is hosted. To have the extension show up in Tableau, you must copy the `.trex` file into your `My Tableau Repository (Beta)/Extensions` folder and restart Tableau. When Tableau starts up again, you should see the extension listed when authoring a dashboard.
 
 #### Testing It Out
 
