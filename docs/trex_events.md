@@ -13,18 +13,23 @@ Listening to an event is done by calling the `addEventListener(type, callback)` 
 ## Add an event listener  
 
 1. Get the sheet object that you want to observe (this could be an individual sheet, or it could be the whole dashboard). 
-2. Get the event listener manager for the sheet object, by calling `getEventListenerManager()`. 
-3. Add the event listener by calling `addEventListener` and specifying the name of the event and the callback method to call. The name of the event must be one of the supported types defined in the `TableauEventName` enumeration. The callback method must handle the event object raised.
+2. Add the event listener by calling `addEventListener` and specifying the name of the event and the callback method to call. The name of the event must be one of the supported types defined in the `TableauEventName` enumeration. The callback method must handle the event object raised.
+
 
 > **Note:** For information about the Tableau Extensions API, see <a href="{{ site.baseurl }}/docs/index.html" target="_blank">API Reference</a>. 
 
 
 ### Example 
 
-In most cases, you can create an event listener by chaining the methods to the sheet object. In the following example, the name of the event is `tableau.TableauEventName.MARKS_SELECTION` or `marksselection`. When a user selects or deselects marks in the sheet, a `MarksEvent` is raised, and the callback method `selectionChangedEvent` is called to handle the event. 
+In most cases, you can create an event listener by chaining the methods to the sheet object. In the following example, the name of the event is `tableau.TableauEventType.FilterChanged` or a `FilterChanged` event. When a user changes filters in the sheet, a `FilterChanged` is raised, and the callback method `filterChangedHandler` is called to handle the event. 
 
 ```javascript   
-sheet.getEventListenerManager().addEventListener(tableau.TableauEventName.MarksSelection, selectionChangedEvent);
+// ...
+// Add filter event to each worksheet.  AddEventListener returns a function that will
+// remove the event listener when called.
+   let unregisterHandlerFunction = worksheet.addEventListener(tableau.TableauEventType.FilterChanged, filterChangedHandler);
+   unregisterHandlerFunctions.push(unregisterHandlerFunction);
+// ...
 ```  
 
-For more information, check out the example extension, SelectedMarksDemo.
+For more information, check out the example extension, Filtering.
