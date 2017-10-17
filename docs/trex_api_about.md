@@ -14,7 +14,7 @@ The Tableau Extensions API is organized by namespaces. The type of extension you
 ## Navigating the top-level `tableau` and `extensions` namespaces
 
 
-The [Extensions API Reference]({{site.baseurl}}\docs\index.html) namespaces are like containers that comprise the classes and methods for communicating with Tableau components. At the highest-level, is the `tableau` namespace, which has no constructs, but contains the `addIn` or extensions namespace. The `tableau` namespace serves primarily as the overall container and keeps the global namespace clean. 
+The [Extensions API Reference]({{site.baseurl}}\docs\index.html) namespaces are like containers that comprise the classes and methods for communicating with Tableau components. At the highest-level, is the `tableau` namespace, which has no constructs, but contains the `extensions` namespace. The `tableau` namespace serves primarily as the overall container and keeps the global namespace clean. 
 
 The `extensions` namespace is the namespace for Tableau extensions. A dashboard extension is one type of extension. When a extension is registered as a dashboard extension, it has access to the `dashboardContent` namespace, and all of the objects and classes of the dashboard. The type of extension you have registered determines what namespaces will be available. Some namespaces, like the `settings`, `environment`, and `ui` are available to all extensions.  
 
@@ -36,7 +36,7 @@ After the extension is intialized, it provides access to the objects in the dash
 To access the objects in the dashboard, you specify the namespace reserved for dashboard extensions `dashboardContent`, which then gives you access to the dashboard object. For example, the following code snippet gets the array of worksheets in the dashboard.
 
 ```python
-   const worksheets = tableau.addIn.dashboardContent.dashboard.worksheets ;
+   const worksheets = tableau.extensions.dashboardContent.dashboard.worksheets ;
 ```
 
 The following diagram shows an outline of the namespace hierarchy that you traverse to get to worksheets.     

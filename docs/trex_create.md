@@ -174,7 +174,7 @@ $(document).ready(function() {
     tableau.extensions.initializeAsync().then(function() {
 
       // Initialization succeeded! Get the dashboard
-      var dashboard = tableau.addIn.dashboardContent.dashboard; 
+      var dashboard = tableau.extensions.dashboardContent.dashboard; 
 
       // Display the name of dashboard in the UI
       $("#resultBox").html("I'm running in a dashboard named <strong>" + dashboard.name + "</strong>");

@@ -40,12 +40,12 @@ If you want to create an extension or work with the sample code, make sure you h
 
 You can get the Tableau Extensions API SDK in two ways. Clone the repository if you want to contribute to the open source project or keep current with the latest changes. Download the `.zip` file if you want to view the samples and work on your own.
 
-- Open a terminal in the directory where you want to download the Tableau Extensions SDK.  Then run the following command to clone
+- Open a terminal in the directory where you want to copy the Tableau Extensions SDK.  Then run the following command to clone
    the Tableau Extensions API git repository:
 
    `git clone https://github.com/tableau/extensions-api.git`
 
-- Download the [Tableau Extensions API SDK (.zip file)](https://github.com/tableau/extensions-api/archive/master.zip).
+- Download the [Tableau Extensions API SDK (.zip file)](https://github.com/tableau/extensions-api/archive/master.zip) and extract the files to your computer.
 
 
 
@@ -64,13 +64,17 @@ The version of Tableau that supports the Extension API is only available from fr
 ---
 ### Start a web server to host the sample dashboard extensions
 
-To use the dashboard extension samples, you need to start up a web server on your computer to host the HTML pages. If you downloaded or cloned the Extensions API repository, you can start the web service in the root directory of the repository on your computer. 
+To use the dashboard extension samples, you need to start up a web server on your computer to host the HTML pages. If you downloaded or cloned the Extensions API repository, you can start the web service in the root directory of the repository on your computer. For example, if you downloaded the `extensions-api-master.zip` file to your `Downloads` directory, after you extract the files, the path might be `Downloads\extensions-api-master\extensions-api\`.
 
-- From the root of this directory, start an HTTP server on port 8765.
-	- Python 2.x : `python -m SimpleHTTPServer 8765`
-	- Python 3.x : `python -m http.server 8765`
-	- Node.js : `npm install http-server -g && http-server -p 8765`
-
+1. Navigate to the the `extensions-api` directory.
+2. To install the web server components, run the following command:
+   ```
+   npm install
+   ```
+3. To start the web server, run the following command:
+   ```
+   npm start
+   ```
 
 
 
@@ -111,12 +115,10 @@ You can add multiple instances of an extension to a dashboard or to multiple das
   
 ## What's next?
 
-- For more information about how you can use Extensions API, go look at the [Samples](https://github.com/tableau/extensions-api/tree/master/Samples/) or follow the [Tutorial](https://github.com/tableau/extensions-api/tree/master/Tutorial) and learn how to build a dashboard extension, step by step.   
+- For more information about how you can use Extensions API, go look at the [Samples (GitHub)](https://github.com/tableau/extensions-api/tree/master/Samples/), or follow the [Tutorial (GitHub)](https://github.com/tableau/extensions-api/tree/master/Tutorial) and learn how to build a dashboard extension, step by step. If you downloaded or cloned the repository, look in the `Samples` and `Tutorial` folder on your computer.  
 
 - For general information about creating Tableau extensions, see [Creating a Tableau Extension]({{site.baseurl}}/docs/trex_create.html).
 - To get familiar with the programming interface for the Extensions API, see the <a href="{{site.baseurl}}/docs/index.html" target="_blank">API Reference</a>.
-
-For more information about how you can use dashboard extensions, see the [ReactJs](https://github.com/tableau/ProjectFrelard/tree/master/Examples/ReactJs) examples or the [HelloFrelard](https://github.com/tableau/ProjectFrelard/tree/master/Examples/HelloFrelard) example.   
 
 
 For information about debugging your extension, see [Remote Debugging of JavaScript and HTML]({{site.baseurl}}/docs/trex_debugging.html).
