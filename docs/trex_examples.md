@@ -85,7 +85,7 @@ To use the dashboard extension samples, you need to start up a web server on you
 
 The samples are set up so that the web server is using port `8765`.  If you need to specify a different port instead of `8765`, you can change ports using Python, if you have Python installed, or you can run another Node.js command.  
 
-From the `extensions-api` folder, start an HTTP server on port \<PORT\>, using one of the following commands:
+From the `extensions-api` folder, start an HTTP server using one of the following commands. Replace `PORT` with the port you are using (for example, `8000`):
 
 * Python 2.x : `python -m SimpleHTTPServer PORT`
 * Python 3.x : `python -m http.server PORT`
