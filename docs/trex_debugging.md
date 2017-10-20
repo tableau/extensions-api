@@ -29,14 +29,14 @@ After you've done these steps, debugging will be enabled for all extensions unti
 
 If you are using Tableau Desktop on macOS, you need to open a Terminal window and run a command to enable debugging. 
 
-1. Open a terminal window. 
+1. Open a Terminal window. 
 2. Start Tableau using the following command:
 
    ```
    open /Applications/Tableau\ Desktop\ near.app --args --remote-debugging-port=8696
    ```
 
-**Note:** The remote debuggging port (for example, `8696`) must match the port address you use with Chromium for debugging. This is not the HTTP port that you are using to host your extension. 
+**Note:** The remote debugging port (for example, `8696`) must match the port address you use with Chromium for debugging. This is not the HTTP port that you are using to host your extension, the port that is specified in the manifest file (`.trex`). 
 
 
 ## Download the Chromium Browser
@@ -59,7 +59,7 @@ It can be difficult to hit breakpoints which occur during the loading of your pa
 1. In the **Debug Options** dropdown menu, select **Pause Before Loading**.
 2. Reload your extension (**Debug Options** > **Reload**)
 3. In Chromium, go to the debugging homepage ([http://localhost:8696](http://localhost:8696)). 
-4. To attach to the browser instance, click the frist item listed (it will be completely blank, but it is really there, and the selection is visible when you click on it). 
+4. To attach to the browser instance, click the first item listed (it will be completely blank, but it is really there. The cursor changes so you can select it). 
 4. Click the **Sources** tab in Chromium, under **Event Listener Breakpoints**, click **Script** and enable the **Script First Statement** breakpoint.
 5. Back in Tableau, click the extension zone to load your page.
 6. The debugger will pause each time the first statement of a script runs allowing you to debug the startup process
