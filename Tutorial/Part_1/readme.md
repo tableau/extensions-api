@@ -1,6 +1,6 @@
 ## Part 1 - Initialization
 
-Now that we have our extension registered with Tableau, we need to add some things to it in order to initialize communication with Tableau and get everythign ready.
+Now that we have our extension registered with Tableau, we need to add some things to it in order to initialize communication with Tableau and get everything ready.
 
 #### Adding the Tableau Extensions Library
 
