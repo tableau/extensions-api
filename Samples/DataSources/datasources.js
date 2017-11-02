@@ -1,6 +1,6 @@
 'use strict';
 
-// Wrap everything in an anonymous function to avoid poluting the global namespace
+// Wrap everything in an anonymous function to avoid polluting the global namespace
 (function () {
   $(document).ready(function () {
     tableau.extensions.initializeAsync().then(function () {
@@ -42,14 +42,14 @@
     });
   });
 
-  // Refreshes the a given dataSource.
+  // Refreshes the given dataSource.
   function refreshDataSource (dataSource) {
     dataSource.refreshAsync().then(function () {
       console.log(dataSource.name + ': Refreshed Successfully');
     });
   }
 
-  // Displays a modal dialog with more details about a given dataSource.
+  // Displays a modal dialog with more details about the given dataSource.
   function showModal (dataSource) {
     var modal = $('#infoModal');
 
@@ -63,13 +63,13 @@
       fieldNamesStr += field.name + ', ';
     });
 
-    // Slice of the last ", " for formatting.
+    // Slice off the last ", " for formatting.
     $('#fieldsDetail').text(fieldNamesStr.slice(0, -2));
 
     modal.modal('show');
   }
 
-  // Contructs UI that displays all the dataSources in this dashboard
+  // Constructs UI that displays all the dataSources in this dashboard
   // given a mapping from dataSourceId to dataSource objects.
   function buildDataSourcesTable (dataSources) {
     // Clear the table first.

@@ -1,6 +1,6 @@
 'use strict';
 
-// Wrap everything in an anonymous function to avoid poluting the global namespace
+// Wrap everything in an anonymous function to avoid polluting the global namespace
 (function () {
   $(document).ready(function () {
     tableau.extensions.initializeAsync().then(function () {
@@ -32,7 +32,7 @@
     $('#settingsTable > tbody tr').remove();
     const settingsTable = $('#settingsTable > tbody')[0];
 
-    // Add an entry to the settings table for each settings.
+    // Add an entry to the settings table for each setting.
     for (const settingKey in settings) {
       let newRow = settingsTable.insertRow(settingsTable.rows.length);
       let keyCell = newRow.insertCell(0);
