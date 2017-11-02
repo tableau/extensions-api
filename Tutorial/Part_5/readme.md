@@ -1,6 +1,6 @@
-## Part 5 - Performing Actions
+## Part 5 - Persisting Settings in the Workbook
 
-As you may have noticed when playing with our sample up to this point, when the extension reloads or the workbook is reloaded, we lose track of which sheet the user has selected to view data for. This creates a suboptimal user experience and would be quite unusable if your extensions had a lot of customization or if you want to publish your workbook or send it to someone and have them see what you saw. Luckily, the Extensions API includes a settings API which allows you to persiste key/value pairs into a workbook to be used again when the extensions is reloaded.
+As you may have noticed when playing with our sample up to this point, when the extension reloads or the workbook is reloaded, we lose track of which sheet the user has selected to view data for. This creates a suboptimal user experience and would be quite unusable if your extension had a lot of customization or if you wanted to publish your workbook or send it to someone and have them see what you saw. Luckily, the Extensions API includes a settings API which allows you to persist key/value pairs into a workbook to be used again when the extension is reloaded.
 
 #### Saving Settings
 

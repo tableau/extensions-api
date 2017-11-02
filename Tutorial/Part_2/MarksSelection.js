@@ -1,12 +1,12 @@
 'use strict';
 
-// Wrap everything in an anonymous function to avoid poluting the global namespace
+// Wrap everything in an anonymous function to avoid polluting the global namespace
 (function () {
   // Use the jQuery document ready signal to know when everything has been initialized
   $(document).ready(function () {
     // Tell Tableau we'd like to initialize our extension
     tableau.extensions.initializeAsync().then(function () {
-      // Once the extensions is initialized, ask the user to choose a sheet
+      // Once the extension is initialized, ask the user to choose a sheet
       showChooseSheetDialog();
     });
   });
@@ -25,10 +25,10 @@
     // The first step in choosing a sheet will be asking Tableau what sheets are available
     const worksheets = tableau.extensions.dashboardContent.dashboard.worksheets;
 
-    // Next, we loop through all of these worksheets add add radio buttons for each one
+    // Next, we loop through all of these worksheets and add buttons for each one
     worksheets.forEach(function (worksheet) {
       // Declare our new button which contains the sheet name
-      const button = $("<button type='button' class='btn btn-default btn-block'></button");
+      const button = $("<button type='button' class='btn btn-default btn-block'></button>");
       button.text(worksheet.name);
 
       // Create an event handler for when this button is clicked
