@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>DashboardContent | Frelard</title>
+	<title>ExtensionContext | Tableau Extensions API</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style type="text/css">/*! normalize.css v1.1.3 | MIT License | git.io/normalize */
@@ -879,7 +879,7 @@ img { max-width: 100%; }
 		<div class="container">
 			<div class="table-wrap">
 				<div class="table-cell">
-					<strong><a href="../index.html">Frelard</a></strong>
+					<strong><a href="../index.html">Tableau Extensions API</a></strong>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -907,11 +907,14 @@ img { max-width: 100%; }
 </header>
 <nav class="tsd-navigation secondary">
 	<ul>
-		<li class="current tsd-kind-interface">
-			<a href="dashboardcontent.html" class="tsd-kind-icon">Dashboard<wbr>Content</a>
+		<li class="current tsd-kind-enum">
+			<a href="extensioncontext.html" class="tsd-kind-icon">Extension<wbr>Context</a>
 			<ul>
-				<li class=" tsd-kind-property tsd-parent-kind-interface">
-					<a href="dashboardcontent.html#dashboard" class="tsd-kind-icon">dashboard</a>
+				<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+					<a href="extensioncontext.html#desktop" class="tsd-kind-icon">Desktop</a>
+				</li>
+				<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+					<a href="extensioncontext.html#server" class="tsd-kind-icon">Server</a>
 				</li>
 			</ul>
 		</li>
@@ -922,51 +925,45 @@ img { max-width: 100%; }
 		<section class="tsd-panel tsd-comment">
 			<div class="tsd-comment tsd-typography">
 				<div class="lead">
-					<p>This is the namespace associated with a Dashboard AddIn. Developers can use
-					anything in this namespace if their AddIn is registered as a Dashboard AddIn.</p>
+					<p>The context in which the Extensions is currently running.</p>
 				</div>
 			</div>
-		</section>
-		<section class="tsd-panel tsd-hierarchy">
-			<h3>Hierarchy</h3>
-			<ul class="tsd-hierarchy">
-				<li>
-					<span class="target">DashboardContent</span>
-				</li>
-			</ul>
 		</section>
 		<section class="tsd-panel-group tsd-index-group">
 			<h2>Index</h2>
 			<section class="tsd-panel tsd-index-panel">
 				<div class="tsd-index-content">
 					<section class="tsd-index-section ">
-						<h3>Properties</h3>
+						<h3>Enumeration members</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="dashboardcontent.html#dashboard" class="tsd-kind-icon">dashboard</a></li>
+							<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="extensioncontext.html#desktop" class="tsd-kind-icon">Desktop</a></li>
+							<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="extensioncontext.html#server" class="tsd-kind-icon">Server</a></li>
 						</ul>
 					</section>
 				</div>
 			</section>
 		</section>
 		<section class="tsd-panel-group tsd-member-group ">
-			<h2>Properties</h2>
-			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-				<a name="dashboard" class="tsd-anchor"></a>
-				<h3>dashboard</h3>
-				<div class="tsd-signature tsd-kind-icon">dashboard<span class="tsd-signature-symbol">:</span> <a href="dashboard.html" class="tsd-signature-type">Dashboard</a></div>
+			<h2>Enumeration members</h2>
+			<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+				<a name="desktop" class="tsd-anchor"></a>
+				<h3>Desktop</h3>
+				<div class="tsd-signature tsd-kind-icon">Desktop<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;&quot;desktop&quot;</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in Namespaces/DashboardContent.ts:12</li>
+						<li>Defined in Enums.ts:8</li>
 					</ul>
 				</aside>
-				<div class="tsd-comment tsd-typography">
-					<dl class="tsd-comment-tags">
-						<dt>returns</dt>
-						<dd><p>The Dashboard object representing the Tableau
-							Dashboard where the AddIn is running.</p>
-						</dd>
-					</dl>
-				</div>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+				<a name="server" class="tsd-anchor"></a>
+				<h3>Server</h3>
+				<div class="tsd-signature tsd-kind-icon">Server<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;&quot;server&quot;</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in Enums.ts:9</li>
+					</ul>
+				</aside>
 			</section>
 		</section>
 		<footer class="with-border-bottom">

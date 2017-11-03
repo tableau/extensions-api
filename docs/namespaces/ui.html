@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>AddInDialog | Frelard</title>
+	<title>UI | Tableau Extensions API</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style type="text/css">/*! normalize.css v1.1.3 | MIT License | git.io/normalize */
@@ -879,7 +879,7 @@ img { max-width: 100%; }
 		<div class="container">
 			<div class="table-wrap">
 				<div class="table-cell">
-					<strong><a href="../index.html">Frelard</a></strong>
+					<strong><a href="../index.html">Tableau Extensions API</a></strong>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -908,13 +908,13 @@ img { max-width: 100%; }
 <nav class="tsd-navigation secondary">
 	<ul>
 		<li class="current tsd-kind-interface">
-			<a href="addindialog.html" class="tsd-kind-icon">Add<wbr>InDialog</a>
+			<a href="ui.html" class="tsd-kind-icon">UI</a>
 			<ul>
 				<li class=" tsd-kind-method tsd-parent-kind-interface">
-					<a href="addindialog.html#addeventlistener" class="tsd-kind-icon">add<wbr>Event<wbr>Listener</a>
+					<a href="ui.html#displaydialogasync" class="tsd-kind-icon">display<wbr>Dialog<wbr>Async</a>
 				</li>
 				<li class=" tsd-kind-method tsd-parent-kind-interface">
-					<a href="addindialog.html#close" class="tsd-kind-icon">close</a>
+					<a href="ui.html#messageparentextensions" class="tsd-kind-icon">message<wbr>Parent<wbr>Extensions</a>
 				</li>
 			</ul>
 		</li>
@@ -925,9 +925,11 @@ img { max-width: 100%; }
 		<section class="tsd-panel tsd-comment">
 			<div class="tsd-comment tsd-typography">
 				<dl class="tsd-comment-tags">
-					<dt>notimplemented.</dt>
-					<dd><p>Dialog object used by parent AddIn to interact with a dialog.  Allows the parent
-						AddIn to close a displayed dialog, and register event listners for a dialog.</p>
+					<dt>notimplemented</dt>
+					<dd><p>This namesapce contains functionality that allows an Extensions to display a popup
+							dialog window, and communicate between that window and the parent Extensions. This can
+							be useful in auth scenarios and when extra situational UI space is needed.
+						Only one dialog can be displayed at a time.</p>
 					</dd>
 				</dl>
 			</div>
@@ -936,7 +938,7 @@ img { max-width: 100%; }
 			<h3>Hierarchy</h3>
 			<ul class="tsd-hierarchy">
 				<li>
-					<span class="target">AddInDialog</span>
+					<span class="target">UI</span>
 				</li>
 			</ul>
 		</section>
@@ -947,8 +949,8 @@ img { max-width: 100%; }
 					<section class="tsd-index-section ">
 						<h3>Methods</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-method tsd-parent-kind-interface"><a href="addindialog.html#addeventlistener" class="tsd-kind-icon">add<wbr>Event<wbr>Listener</a></li>
-							<li class="tsd-kind-method tsd-parent-kind-interface"><a href="addindialog.html#close" class="tsd-kind-icon">close</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-interface"><a href="ui.html#displaydialogasync" class="tsd-kind-icon">display<wbr>Dialog<wbr>Async</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-interface"><a href="ui.html#messageparentextensions" class="tsd-kind-icon">message<wbr>Parent<wbr>Extensions</a></li>
 						</ul>
 					</section>
 				</div>
@@ -957,58 +959,79 @@ img { max-width: 100%; }
 		<section class="tsd-panel-group tsd-member-group ">
 			<h2>Methods</h2>
 			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
-				<a name="addeventlistener" class="tsd-anchor"></a>
-				<h3>add<wbr>Event<wbr>Listener</h3>
+				<a name="displaydialogasync" class="tsd-anchor"></a>
+				<h3>display<wbr>Dialog<wbr>Async</h3>
 				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-					<li class="tsd-signature tsd-kind-icon">add<wbr>Event<wbr>Listener<span class="tsd-signature-symbol">(</span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"dialog-message"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"dialog-event"</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					<li class="tsd-signature tsd-kind-icon">display<wbr>Dialog<wbr>Async<span class="tsd-signature-symbol">(</span>url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, height<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, width<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="extensionsdialog.html" class="tsd-signature-type">ExtensionsDialog</a><span class="tsd-signature-symbol">&gt;</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in Namespaces/UI.ts:54</li>
+								<li>Defined in Namespaces/UI.ts:22</li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
 							<dl class="tsd-comment-tags">
-								<dt>notimplemented.</dt>
-								<dd><p>Registers an event handler.  The handler is a function in the parent AddIn
-										that will be called when the dialog either sends the parent AddIn a message, or
-										an event occurs in the dialog that the parent might care about - for example,
-									if the user closes the dialog.</p>
-								</dd>
+								<dt>notimplemented</dt>
+								<dd></dd>
 							</dl>
 						</div>
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
-								<h5>type: <span class="tsd-signature-type">"dialog-message"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"dialog-event"</span></h5>
+								<h5>url: <span class="tsd-signature-type">string</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<p>The url to navigate to in the popup dialog. The Dialog url must
+									belong to the same domain as the parent Extensions.</p>
+								</div>
+							</li>
+							<li>
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> height: <span class="tsd-signature-type">number</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<p>Optional height the dialog should try and open with.</p>
+								</div>
+							</li>
+							<li>
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> width: <span class="tsd-signature-type">number</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<p>Optional width the dialog should try and open with.</p>
+								</div>
 							</li>
 						</ul>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="extensionsdialog.html" class="tsd-signature-type">ExtensionsDialog</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						<p>A promise resolving to an ExtensionsDialog.</p>
 					</li>
 				</ul>
 			</section>
 			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
-				<a name="close" class="tsd-anchor"></a>
-				<h3>close</h3>
+				<a name="messageparentextensions" class="tsd-anchor"></a>
+				<h3>message<wbr>Parent<wbr>Extensions</h3>
 				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-					<li class="tsd-signature tsd-kind-icon">close<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					<li class="tsd-signature tsd-kind-icon">message<wbr>Parent<wbr>Extensions<span class="tsd-signature-symbol">(</span>message<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in Namespaces/UI.ts:44</li>
+								<li>Defined in Namespaces/UI.ts:29</li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
 							<dl class="tsd-comment-tags">
 								<dt>notimplemented.</dt>
-								<dd><p>Called from Parent AddIn to close the dialog box being displayed.</p>
-								</dd>
+								<dd></dd>
 							</dl>
 						</div>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>message: <span class="tsd-signature-type">string</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<p>The message to send from an Extensions&#39;s dialog to its parent frame.</p>
+								</div>
+							</li>
+						</ul>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 					</li>
 				</ul>

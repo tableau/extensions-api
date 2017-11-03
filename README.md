@@ -8,7 +8,7 @@ The Extensions API lets you do more without leaving Tableau. Build Tableau exten
 
 ## Setup and Running Samples
 
-### Pre-requisites
+### Prerequisites
 * You must have Node.js and npm installed. You can get these from [http://nodejs.org](http://nodejs.org).
 
 ### Setup
@@ -29,6 +29,10 @@ Code contributions and improvements by the community are welcomed!
 See the LICENSE file for current open-source licensing and use information.
 
 Before we can accept pull requests from contributors, we require a signed [Contributor License Agreement (CLA)](http://tableau.github.io/contributing.html).
+
+## Documentation
+[Visit the project website and read the documentation here.](https://tableau.github.io/extensions-api/)
+
 
 ## Issues
 Use [Issues](https://github.com/tableau/ProjectFrelard/issues) to log any problems or bugs you encounter in the docs or sample  code. 

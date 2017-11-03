@@ -174,7 +174,7 @@ $(document).ready(function() {
     tableau.extensions.initializeAsync().then(function() {
 
       // Initialization succeeded! Get the dashboard
-      var dashboard = tableau.addIn.dashboardContent.dashboard; 
+      var dashboard = tableau.extensions.dashboardContent.dashboard; 
 
       // Display the name of dashboard in the UI
       $("#resultBox").html("I'm running in a dashboard named <strong>" + dashboard.name + "</strong>");
@@ -205,7 +205,7 @@ Use the **Reload** option to refresh and reload the extension in the dashboard.
   
 ## What's next?
 
-- For more information about how you can use Extensions API, go look at the [Samples](https://github.com/tableau/extensions-api/tree/master/Samples/) or follow the [Tutorial](https://github.com/tableau/extensions-api/tree/master/Tutorial/HelloFrelard) and learn how to build a dashboard extension, step by step.   
+- For more information about how you can use the Extensions API, go look at the [Samples](https://github.com/tableau/extensions-api/tree/master/Samples/) or follow the [Tutorial](https://github.com/tableau/extensions-api/tree/master/Tutorial/) and learn how to build a dashboard extension, step by step.   
 
 - Get familiar with the programming interface of the Extensions API, see <a href="{{site.baseurl}}/docs/index.html" target="_blank">API Reference</a>.
 

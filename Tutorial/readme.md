@@ -1,6 +1,6 @@
 # Dashboard Extensions Tutorial
 
-This project contains a tutorial designed to explain the various components of authoring nad using a Dashboard Extension in Tableau.
+This project contains a tutorial designed to explain the various components of authoring and using a Dashboard Extension in Tableau.
 
 This tutorial demonstrates a number of different aspects of the Dashboard Extensions API. The goal of this extenison is to display a data table summarizing the selected marks on a particular worksheet on a dashboard (similar to clicking view data on a tooltip). When the selected marks change, we want to update the data table with the newly selected marks. Then we will add functionality which allows the user to click on any column of data in the selected marks and filter the viz down to the domain of that column.
 
@@ -19,7 +19,7 @@ This tutorial demonstrates a number of different aspects of the Dashboard Extens
 
 ### Tutorial
 
-To make it easier to follow along, the tutorial is organized in seven parts. Each folder in this project contains the extension's code at the end of that part. In addition, there is a corresponding extension manifest file which allows you to see the extensions progress from within Tableau as you follow along.
+To make it easier to follow along, the tutorial is organized in seven parts. Each folder in this project contains the extension's code at the end of that part. In addition, there is a corresponding extension manifest file which allows you to see the extension's progress from within Tableau as you follow along.
 
 ### Tutorial Sections
 

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>tableau | Frelard</title>
+	<title>Settings | Tableau Extensions API</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style type="text/css">/*! normalize.css v1.1.3 | MIT License | git.io/normalize */
@@ -879,7 +879,7 @@ img { max-width: 100%; }
 		<div class="container">
 			<div class="table-wrap">
 				<div class="table-cell">
-					<strong><a href="../index.html">Frelard</a></strong>
+					<strong><a href="../index.html">Tableau Extensions API</a></strong>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -907,8 +907,28 @@ img { max-width: 100%; }
 </header>
 <nav class="tsd-navigation secondary">
 	<ul>
-		<li class=" tsd-kind-variable tsd-parent-kind-module tsd-is-not-exported">
-			<a href="tableau.html#addin" class="tsd-kind-icon">add<wbr>In</a>
+		<li class="current tsd-kind-interface">
+			<a href="settings.html" class="tsd-kind-icon">Settings</a>
+			<ul>
+				<li class=" tsd-kind-property tsd-parent-kind-interface">
+					<a href="settings.html#ismodified" class="tsd-kind-icon">is<wbr>Modified</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-interface">
+					<a href="settings.html#erase" class="tsd-kind-icon">erase</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-interface">
+					<a href="settings.html#get" class="tsd-kind-icon">get</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-interface">
+					<a href="settings.html#getall" class="tsd-kind-icon">get<wbr>All</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-interface">
+					<a href="settings.html#saveasync" class="tsd-kind-icon">save<wbr>Async</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-interface">
+					<a href="settings.html#set" class="tsd-kind-icon">set</a>
+				</li>
+			</ul>
 		</li>
 	</ul>
 </nav>
@@ -917,35 +937,222 @@ img { max-width: 100%; }
 		<section class="tsd-panel tsd-comment">
 			<div class="tsd-comment tsd-typography">
 				<div class="lead">
-					<p>The tableau namespace exists for organization and to avoid polluting
-					the global namespace. It contains no constructs other than subnamespaces.</p>
+					<p>The settings namespace is used to get and set settings
+					values which will be persisted in a workbook.</p>
 				</div>
 			</div>
+		</section>
+		<section class="tsd-panel tsd-hierarchy">
+			<h3>Hierarchy</h3>
+			<ul class="tsd-hierarchy">
+				<li>
+					<span class="target">Settings</span>
+				</li>
+			</ul>
 		</section>
 		<section class="tsd-panel-group tsd-index-group">
 			<h2>Index</h2>
 			<section class="tsd-panel tsd-index-panel">
 				<div class="tsd-index-content">
-					<section class="tsd-index-section tsd-is-not-exported">
-						<h3>Variables</h3>
+					<section class="tsd-index-section ">
+						<h3>Properties</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-variable tsd-parent-kind-module tsd-is-not-exported"><a href="tableau.html#addin" class="tsd-kind-icon">add<wbr>In</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="settings.html#ismodified" class="tsd-kind-icon">is<wbr>Modified</a></li>
+						</ul>
+					</section>
+					<section class="tsd-index-section ">
+						<h3>Methods</h3>
+						<ul class="tsd-index-list">
+							<li class="tsd-kind-method tsd-parent-kind-interface"><a href="settings.html#erase" class="tsd-kind-icon">erase</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-interface"><a href="settings.html#get" class="tsd-kind-icon">get</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-interface"><a href="settings.html#getall" class="tsd-kind-icon">get<wbr>All</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-interface"><a href="settings.html#saveasync" class="tsd-kind-icon">save<wbr>Async</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-interface"><a href="settings.html#set" class="tsd-kind-icon">set</a></li>
 						</ul>
 					</section>
 				</div>
 			</section>
 		</section>
-		<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
-			<h2>Variables</h2>
-			<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module tsd-is-not-exported">
-				<a name="addin" class="tsd-anchor"></a>
-				<h3>add<wbr>In</h3>
-				<div class="tsd-signature tsd-kind-icon">add<wbr>In<span class="tsd-signature-symbol">:</span> <a href="../interfaces/addin.html" class="tsd-signature-type">AddIn</a><span class="tsd-signature-symbol"> =&nbsp;null</span></div>
+		<section class="tsd-panel-group tsd-member-group ">
+			<h2>Properties</h2>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<a name="ismodified" class="tsd-anchor"></a>
+				<h3>is<wbr>Modified</h3>
+				<div class="tsd-signature tsd-kind-icon">is<wbr>Modified<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in Namespaces/Tableau.ts:8</li>
+						<li>Defined in Namespaces/Settings.ts:35</li>
 					</ul>
 				</aside>
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Indicates whether or not the settings have been
+						modified since the last call to saveAsync.</p>
+					</div>
+					<dl class="tsd-comment-tags">
+						<dt>returns</dt>
+						<dd><p>True if settings have been modified, false otherwise.</p>
+						</dd>
+					</dl>
+				</div>
+			</section>
+		</section>
+		<section class="tsd-panel-group tsd-member-group ">
+			<h2>Methods</h2>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+				<a name="erase" class="tsd-anchor"></a>
+				<h3>erase</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+					<li class="tsd-signature tsd-kind-icon">erase<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in Namespaces/Settings.ts:11</li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Erases a settings key / value pair. If key isn&#39;t found, nothing happens.</p>
+							</div>
+						</div>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>key: <span class="tsd-signature-type">string</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<p>The key of the pair to erase.</p>
+								</div>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+				<a name="get" class="tsd-anchor"></a>
+				<h3>get</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+					<li class="tsd-signature tsd-kind-icon">get<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in Namespaces/Settings.ts:19</li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Gets a settings value or undefined if the value does not exist.</p>
+							</div>
+						</div>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>key: <span class="tsd-signature-type">string</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<p>The key to retrieve.</p>
+								</div>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span>
+							<span class="tsd-signature-symbol"> | </span>
+							<span class="tsd-signature-type">undefined</span>
+						</h4>
+						<p>The value or undefined if it does not exist.</p>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+				<a name="getall" class="tsd-anchor"></a>
+				<h3>get<wbr>All</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+					<li class="tsd-signature tsd-kind-icon">get<wbr>All<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in Namespaces/Settings.ts:27</li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Returns a copy of all the saved settings keys and values.
+								Modifying this value will have no effect on the class.</p>
+							</div>
+						</div>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">object</span></h4>
+						<p>All the saved settings keys and values in a dictionary.</p>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-index-signature">
+								<h5><span class="tsd-signature-symbol">[</span>key: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-type">string</span></h5>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+				<a name="saveasync" class="tsd-anchor"></a>
+				<h3>save<wbr>Async</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+					<li class="tsd-signature tsd-kind-icon">save<wbr>Async<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in Namespaces/Settings.ts:42</li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Attempts to persist any currently modified settings keys / values.</p>
+							</div>
+						</div>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						<p>Promise containing the newly saved settings values.</p>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+				<a name="set" class="tsd-anchor"></a>
+				<h3>set</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+					<li class="tsd-signature tsd-kind-icon">set<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in Namespaces/Settings.ts:50</li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Adds or updates a settings key / value pair.</p>
+							</div>
+						</div>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>key: <span class="tsd-signature-type">string</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<p>The key to save.</p>
+								</div>
+							</li>
+							<li>
+								<h5>value: <span class="tsd-signature-type">string</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<p>The value to save.</p>
+								</div>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+					</li>
+				</ul>
 			</section>
 		</section>
 		<footer class="with-border-bottom">
