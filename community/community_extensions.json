@@ -16,6 +16,7 @@
         "description": "Display one or more images selected on a dashboard",
         "source_code": "https://github.com/illonage/illonage.github.io/blob/master/DisplayImages/DisplayImage.html"
     },
+    {
         "name": "Dynamic Parameters",
         "hostedTrexFileName": "DynamicParameter.trex",
         "website": "https://keshiarose.github.io/Dynamic-Parameter/",
