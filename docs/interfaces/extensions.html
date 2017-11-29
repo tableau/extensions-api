@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>MarkInfo | Frelard</title>
+	<title>Extensions | Frelard</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style type="text/css">/*! normalize.css v1.1.3 | MIT License | git.io/normalize */
@@ -908,16 +908,22 @@ img { max-width: 100%; }
 <nav class="tsd-navigation secondary">
 	<ul>
 		<li class="current tsd-kind-interface">
-			<a href="markinfo.html" class="tsd-kind-icon">Mark<wbr>Info</a>
+			<a href="extensions.html" class="tsd-kind-icon">Extensions</a>
 			<ul>
 				<li class=" tsd-kind-property tsd-parent-kind-interface">
-					<a href="markinfo.html#color" class="tsd-kind-icon">color</a>
+					<a href="extensions.html#dashboardcontent" class="tsd-kind-icon">dashboard<wbr>Content</a>
 				</li>
 				<li class=" tsd-kind-property tsd-parent-kind-interface">
-					<a href="markinfo.html#tupleid" class="tsd-kind-icon">tuple<wbr>Id</a>
+					<a href="extensions.html#environment" class="tsd-kind-icon">environment</a>
 				</li>
 				<li class=" tsd-kind-property tsd-parent-kind-interface">
-					<a href="markinfo.html#type" class="tsd-kind-icon">type</a>
+					<a href="extensions.html#settings" class="tsd-kind-icon">settings</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-interface">
+					<a href="extensions.html#ui" class="tsd-kind-icon">ui</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-interface">
+					<a href="extensions.html#initializeasync" class="tsd-kind-icon">initialize<wbr>Async</a>
 				</li>
 			</ul>
 		</li>
@@ -928,7 +934,8 @@ img { max-width: 100%; }
 		<section class="tsd-panel tsd-comment">
 			<div class="tsd-comment tsd-typography">
 				<div class="lead">
-					<p>Represents a mark on in a worksheet.</p>
+					<p>The extension namespace contains all functionality available to
+					Extensions in Tableau.</p>
 				</div>
 			</div>
 		</section>
@@ -936,7 +943,7 @@ img { max-width: 100%; }
 			<h3>Hierarchy</h3>
 			<ul class="tsd-hierarchy">
 				<li>
-					<span class="target">MarkInfo</span>
+					<span class="target">Extensions</span>
 				</li>
 			</ul>
 		</section>
@@ -947,9 +954,16 @@ img { max-width: 100%; }
 					<section class="tsd-index-section ">
 						<h3>Properties</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="markinfo.html#color" class="tsd-kind-icon">color</a></li>
-							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="markinfo.html#tupleid" class="tsd-kind-icon">tuple<wbr>Id</a></li>
-							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="markinfo.html#type" class="tsd-kind-icon">type</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="extensions.html#dashboardcontent" class="tsd-kind-icon">dashboard<wbr>Content</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="extensions.html#environment" class="tsd-kind-icon">environment</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="extensions.html#settings" class="tsd-kind-icon">settings</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="extensions.html#ui" class="tsd-kind-icon">ui</a></li>
+						</ul>
+					</section>
+					<section class="tsd-index-section ">
+						<h3>Methods</h3>
+						<ul class="tsd-index-list">
+							<li class="tsd-kind-method tsd-parent-kind-interface"><a href="extensions.html#initializeasync" class="tsd-kind-icon">initialize<wbr>Async</a></li>
 						</ul>
 					</section>
 				</div>
@@ -958,61 +972,92 @@ img { max-width: 100%; }
 		<section class="tsd-panel-group tsd-member-group ">
 			<h2>Properties</h2>
 			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-				<a name="color" class="tsd-anchor"></a>
-				<h3>color</h3>
-				<div class="tsd-signature tsd-kind-icon">color<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+				<a name="dashboardcontent" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagOptional">Optional</span> dashboard<wbr>Content</h3>
+				<div class="tsd-signature tsd-kind-icon">dashboard<wbr>Content<span class="tsd-signature-symbol">:</span> <a href="dashboardcontent.html" class="tsd-signature-type">DashboardContent</a></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in SelectionInterfaces.ts:31</li>
+						<li>Defined in Namespaces/Extensions.ts:23</li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
-					<dl class="tsd-comment-tags">
-						<dt>notimplemented</dt>
-						<dd></dd>
-						<dt>returns</dt>
-						<dd><p>The RGBA value of this mark.</p>
-						</dd>
-					</dl>
+					<div class="lead">
+						<p>The dashboardContent namespace.</p>
+					</div>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-				<a name="tupleid" class="tsd-anchor"></a>
-				<h3><span class="tsd-flag ts-flagOptional">Optional</span> tuple<wbr>Id</h3>
-				<div class="tsd-signature tsd-kind-icon">tuple<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Number</span></div>
+				<a name="environment" class="tsd-anchor"></a>
+				<h3>environment</h3>
+				<div class="tsd-signature tsd-kind-icon">environment<span class="tsd-signature-symbol">:</span> <a href="environment.html" class="tsd-signature-type">Environment</a></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in SelectionInterfaces.ts:37</li>
+						<li>Defined in Namespaces/Extensions.ts:28</li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
-					<dl class="tsd-comment-tags">
-						<dt>notimplemented</dt>
-						<dd></dd>
-						<dt>returns</dt>
-						<dd><p>Unique tuple representing this mark in a drawn visualization.</p>
-						</dd>
-					</dl>
+					<div class="lead">
+						<p>The environment namespace.</p>
+					</div>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-				<a name="type" class="tsd-anchor"></a>
-				<h3>type</h3>
-				<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"bar"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"line"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"area"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"square"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"circle"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"shape"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"map"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"pie"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"gantt-bar"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"polygon"</span></div>
+				<a name="settings" class="tsd-anchor"></a>
+				<h3>settings</h3>
+				<div class="tsd-signature tsd-kind-icon">settings<span class="tsd-signature-symbol">:</span> <a href="settings.html" class="tsd-signature-type">Settings</a></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in SelectionInterfaces.ts:25</li>
+						<li>Defined in Namespaces/Extensions.ts:33</li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
-					<dl class="tsd-comment-tags">
-						<dt>notimplemented</dt>
-						<dd></dd>
-						<dt>returns</dt>
-						<dd><p>The type of this mark.</p>
-						</dd>
-					</dl>
+					<div class="lead">
+						<p>The settings namespace.</p>
+					</div>
 				</div>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<a name="ui" class="tsd-anchor"></a>
+				<h3>ui</h3>
+				<div class="tsd-signature tsd-kind-icon">ui<span class="tsd-signature-symbol">:</span> <a href="ui.html" class="tsd-signature-type">UI</a></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in Namespaces/Extensions.ts:38</li>
+					</ul>
+				</aside>
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>The ui namespace.</p>
+					</div>
+				</div>
+			</section>
+		</section>
+		<section class="tsd-panel-group tsd-member-group ">
+			<h2>Methods</h2>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+				<a name="initializeasync" class="tsd-anchor"></a>
+				<h3>initialize<wbr>Async</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+					<li class="tsd-signature tsd-kind-icon">initialize<wbr>Async<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in Namespaces/Extensions.ts:18</li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>This is the entry point for an Extensions.  This function must first be called
+								in order to interact with any of the other Extensions APIs.</p>
+							</div>
+						</div>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						<p>A promise that the developer must run to initiailze their extension.
+						When resolved, the other Extensions APIs will be available to use.</p>
+					</li>
+				</ul>
 			</section>
 		</section>
 		<footer class="with-border-bottom">
