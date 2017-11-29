@@ -3,10 +3,10 @@ title: Tableau Extension Manifest File
 layout: docs
 ---
 
-The extension manifest file (`.trex`) contains metadata for the add-in and is used for registration. 
+The extension manifest file (`.trex`) contains metadata for the extension and is used for registration. 
  
 For details about a manifest or its fields, see the [Sample Manifest File](#sample-manifest-file) and [Elements of the Manifest File](#elements-of-the-manifest-file).  
-For documentation about creating a manifest file, see [Create a Tableau Add-In]({{site.baseurl}}/docs/trex_getstarted#create-a-manifest-file).
+
 
 **In this section**
 
@@ -16,13 +16,13 @@ For documentation about creating a manifest file, see [Create a Tableau Add-In](
 
 
 ## XSD Validation
-The manifest is an XML-based file. We have provided an XSD that can be used to validate the user defined XML. The XSD is available from the  [Extensions API Developer Preview](https://prerelease.tableau.com/project/version/item.html?cap=52e2710a0793434d82142736c7ab3029&arttypeid={0DD668AE-472C-4E70-B465-35F7AE0DEB6D}&artid={939493D2-8000-4192-857A-67624CBCC35A}) site. It is highly recommended that you validate the manifest XML before use. 
+The manifest is an XML-based file. We have provided an XSD (an XML schema definition file) that can be used to validate the manifest file you have created for your extension. The XSD is available from the  [Extensions API Developer Preview](https://prerelease.tableau.com/project/version/item.html?cap=52e2710a0793434d82142736c7ab3029&arttypeid={0DD668AE-472C-4E70-B465-35F7AE0DEB6D}&artid={939493D2-8000-4192-857A-67624CBCC35A}) site. You are strongly encouraged to validate your extensions manifest file before using it for the first time. 
 
 ## Manifest Versioning
 The versioning of the manifest is designed to be semantically simple and support compatibility. The version follows the [Major].[Minor] format. Minor upgrades are backwards compatible while major upgrades involve breaking changes. 
 
 ## Error Reporting
-At start up, Tableau checks the manifest file. If any XML errors are found while parsing the file, Tableau writes these errors to the `log.txt` file in the `My Tableau Repository (Beta)/Logs` folder. This is the same location that Tableau Desktop uses to report other errors and activity. 
+At start up, Tableau checks the manifest file. If any errors are found while parsing the file, Tableau writes these errors to the `log.txt` file in the `My Tableau Repository (Beta)/Logs` folder. This is the same location that Tableau Desktop uses to report other errors and activity. 
 
 If a workbook is saved with an extension and then later opened on another computer that does not have the extension installed, Tableau displays a message in the dashboard zone where the extension would have appeared that states the extension is not available. 
 
@@ -31,21 +31,18 @@ If a workbook is saved with an extension and then later opened on another comput
 
 ```xml
         <?xml version="1.0" encoding="utf-8"?> 
-        <manifest manifest-version="0.1" xmlns="http://wwww.tableau.com/xml/addin_manifest">
-          <tableau-addin id="com.tableau.addin" addin-version="0.1.0">
+        <manifest manifest-version="0.1" xmlns="http://wwww.tableau.com/xml/extension_manifest">
+          <dashboard-extension id="com.example.extensions.name" extension-version="0.1.0">
             <default-locale>en_US</default-locale>
             <name resource-id="name"/>
-            <description>Addin Description</description>
-            <addin-type>
-              <dashboard-addin/>
-            </addin-type>
+            <description>Extension Description</description>
             <author name="USERNAME" email="USER@example.com" organization="My Company" website="www.example.com"/>
             <min-api-version>1.1</min-api-version>
             <source-location>
-              <url>SERVER:PORT</url> 
+              <url>SERVER:PORT/PATH</url> 
             </source-location>
             <icon>Base64-Encoded ICON</icon>
-          </tableau-addin>
+          </dashboard-extension>
           <resources>
             <resource id="name">
               <text locale="en_US">name in English</text>
@@ -75,45 +72,42 @@ If a workbook is saved with an extension and then later opened on another comput
 <td><code>manifest</code></td>
 <td>The root element that contains the manifest options.</td>
 </tr>
-<tr class="event">
+<tr class="even">
 <td><code>manifest-version</code></td>
-<td>The version of the manifest. Currently supported version is 0.1. </td>
+<td>The version of the manifest. The version currently supported is 0.1. </td>
 </tr>
 <tr class="odd">
-<td><code>tableau-addin</code></td>
-<td>The root element that contains the options for the add-in. The <code>tableau-addin</code> includes the <code>id</code> attribute, which follows the reverse domain name pattern (<code>com.tableau.addin</code>), and add-in version number attribute. These attributes are required.</td>
+<td><code>dashboard-extension</code></td>
+<td>The root element that contains the options for the extension. The <code>dashboard-extension</code> includes the <code>id</code> attribute, which follows the reverse domain name pattern (<code>com.example.extension</code>), and <code>extension-version</code> number attribute. These attributes are required.</td>
 </tr>
 <tr class="even">
-<td><code>addin-version</code></td>
-<td>The user defined version of the add-in. i.e. MyAddIn-1.0</td>
+<td><code>extension-version</code></td>
+<td>The version of the extension. For example, <code>extension-version="0.1.0"</code></td>
 </tr>
 <tr class="odd">
 <td><code>default-locale</code></td>
-<td>Specifies the default local to use for localized text. Here both the locale format (en_US) and language code (en) are accepted. The locales here gets converted to one of the supported languages in Desktop UI. If the language is unsupported or invalid, English is set as default </td>
+<td>Specifies the default locale to use for localized text. Here both the locale format (en_US) and language code (en) are accepted. The default locale specified here is converted to one of the supported languages in the Tableau UI. If the language is unsupported or invalid, English is set as default. </td>
 </tr>
 <tr class="even">
 <td><code>name</code></td>
-<td>The name of the add-in as it appears in the under <strong>Extensions</strong> on a dashboard sheet. To provide localized text, specify the name of the resource-id and provide the text strings in the resources element of the manifest (see the manifest example). You can provide localized strings for name and description.</td>
+<td>The name of the extension as it appears under <strong>Extensions</strong> on a dashboard sheet. To provide localized text, specify the name of the resource-id and provide the text strings in the resources element of the manifest (see the manifest example). You can provide localized strings for name and description.</td>
 </tr>
 <tr class="odd">
 <td><code>description</code></td>
-<td>A short description of the add-in.</td>
+<td>A short description of the extension.</td>
 </tr>
 <tr class="even">
-<td><code>addin-type</code></td>
-<td>Specifies the type of add-in. Currently, the only type supported is <code>dashboard-addin</code>.</td>
+<td><code>author</code></td>
+<td>Specifies metadata about the author of the extension, including <code>name</code>, <code>email</code> address, <code>organization</code>, and <code>website</code>. The <code>name</code> attribute is required.</td>
 </tr>
 <tr class="odd">
-<td><code>author</code></td>
-<td>Specifies metadata about the author of the add-in, including <code>name</code>, <code>email</code> address, <code>organization</code>, and <code>website</code>. The <code>name</code> attribute is required.</td>
-</tr>
-<tr class="even">
 <td><code>source-location</code></td>
 <td>Contains the <code>url</code> of the server that hosts the web page you create that interacts with Tableau.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>url</code></td>
-<td>Specifies the name and port (optional) of the server, for example, <code>&lt;url&gt;http://localhost:8080&lt;/url&gt;</code>.</td>
+<td>Specifies the name and port (optional) of the server. The <code>url</code> must use HTTPS. For example: <code>https://example.com/extension</code>. 
+The exception is for <code>localhost</code>. In this case, HTTP is allowed. For example: <code>http://localhost:8080</code>.</td>
 </tr>
 <tr class="even">
 <td><code>icon</code></td>
@@ -125,7 +119,13 @@ If a workbook is saved with an extension and then later opened on another comput
 </tr>
 <tr class="even">
 <td><code>min-api-version</code></td>
-<td>Specifies the minimum API version required to run the Add In. This field is not yet used in this alpha version. Versioning support is still in progress</td>
+<td>Specifies the minimum API version required to run the extension. This field is not used in this Developer Preview. Versioning support is still in progress.</td>
 </tr>
 </tbody>
 </table>
+
+**Constraints** 
+
+- String-based fields: 1000 characters 
+- URI-based fields: 2084 characters
+- Icon field: size of images are restricted to 64x64
