@@ -41,7 +41,7 @@ If you are using Tableau Desktop on macOS, you need to open a Terminal window an
 
 ## Download the Chromium Browser
 In order to actually do any debugging, you'll need to use a Chromium-based browser. You can use a normal install of Chrome, but because of some version incompatibilities in the debugging protocol, we recommend using build 47.0.2526.0 of Chromium, which matches the version of the browser running inside Tableau (just download and unzip the file).
-* [Chromium for Windows (47.0.2526.0)](https://www.googleapis.com/download/storage/v1/b/chromium-browser-snapshots/o/Win%2F352221%2Fchrome-win32.zip?generation=1443839123039000&alt=media) | 
+* [Chromium for Windows (47.0.2526.0)](https://www.googleapis.com/download/storage/v1/b/chromium-browser-snapshots/o/Win%2F352221%2Fchrome-win32.zip?generation=1443839123039000&alt=media)  
 * [Chromium for macOS (47.0.2526.0)](https://www.googleapis.com/download/storage/v1/b/chromium-browser-snapshots/o/Mac%2F352221%2Fchrome-mac.zip?generation=1443838516381000&alt=media) 
 
 
