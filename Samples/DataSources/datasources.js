@@ -66,6 +66,29 @@
     // Slice of the last ", " for formatting.
     $('#fieldsDetail').text(fieldNamesStr.slice(0, -2));
 
+    dataSource.getConnectionSummariesAsync().then(function (connectionSummaries) {
+      // Loop through each connection summary and list the connection's 
+      // name and type in the info field
+      var connectionsStr = '';
+      connectionSummaries.forEach(function (summary) {
+        connectionsStr += summary.name + ': ' + summary.type + ', ';
+      });
+
+      // Slice of the last ", " for formatting.
+      $('#connectionsDetail').text(connectionsStr.slice(0, -2));
+    });
+
+    dataSource.getActiveTablesAsync().then(function (activeTables) {
+      // Loop through each table that was used in creating this datasource
+      var tableStr = '';
+      activeTables.forEach(function (table) {
+        tableStr += table.name + ', ';
+      });
+
+      // Slice of the last ", " for formatting.
+      $('#activeTablesDetail').text(tableStr.slice(0, -2));
+    });
+
     modal.modal('show');
   }
 
