@@ -33,22 +33,18 @@ Name the manifest file for your extension (for example, `HelloExtensions` and sa
 
    ```xml
         <?xml version="1.0" encoding="utf-8"?> 
-        <manifest manifest-version="0.1" xmlns="http://wwww.tableau.com/xml/addin_manifest">
-          <tableau-addin id="com.example.extension.demo" addin-version="0.1.0">
+        <manifest manifest-version="0.1" xmlns="http://wwww.tableau.com/xml/extension_manifest">
+          <dashboard-extension id="com.example.extensions.name" extension-version="0.1.0">
             <default-locale>en_US</default-locale>
             <name resource-id="name"/>
-            <description>Addin Description</description>
-            <addin-type>
-              <dashboard-addin/>
-            </addin-type>
+            <description>Extension Description</description>
             <author name="USERNAME" email="USER@example.com" organization="My Company" website="www.example.com"/>
-            <min-api-version>0.6</min-api-version>
+            <min-api-version>0.7.0</min-api-version>
             <source-location>
-              <url>SERVER:PORT</url> 
-            </source-location> 
-            <icon>iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEwAACxMBAJqcGAAAAlhJREFUOI2Nkt9vy1EYh5/3bbsvRSySCZbIxI+ZCKsN2TKtSFyIrV2WuRCJuBiJWxfuxCVXbvwFgiEtposgLFJElnbU1SxIZIIRJDKTrdu+53Uhra4mce7Oe57Pcz7JOULFisViwZ+29LAzOSjQYDgz1ZcCvWuXV11MJpN+OS/lm6179teqH0yDqxPTCyKSA8DcDsyOmOprnCaeP7459pdgy969i0LTC3IO/RQMyoHcQN+3cnljW3dNIFC47qDaK3g7BwdTkwBaBELT4ZPOUVWgKl4ZBnjxJPUlMDnTDrp0pmr6RHFeEjjcUUXPDGeSEwDN0Xg8sivxMhJNjGzbHd8PkM3eHRfkrBM5NkcQaY2vUnTlrDIA0NoaX+KLXFFlowr14tvVpqb2MICzmQcKqxvbumv+NAhZGCCIPwEw6QWXKYRL/VUXO0+rAUJiPwAk5MIlgVfwPjjHLCL1APmHN94ZdqeYN+NW/mn6I4BvwQYchcLnwFhJMDiYmlRxAzjpKWZkYkUCcZ2I61wi37tLbYyjiN0fHk5Oz3nGSLSzBbNHCF35R7f6K1/hN9PRhek11FrymfQQQKB4+Gl05P2qNRtmETlXW7e+b2z01dfycGNbfFMAbqNyKp9Jp4rzOT8RYFs0njJkc2iqsCObvTsOsDWWqA5C1uFy+Uz/oXJeKwVT4h0RmPUXhi79vuC0Ku6yOffTK3g9lfxfDQAisY516sg5kfOCiJk7HoLt2cf9b/9LANAc7dznm98PagG1fUOZ9IP5uMB8Q4CPoyNvausapkTt3rNMuvdf3C/o6+czhtdwmwAAAABJRU5ErkJggg==
+              <url>SERVER:PORT/PATH</url> 
+            </source-location>            <icon>iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEwAACxMBAJqcGAAAAlhJREFUOI2Nkt9vy1EYh5/3bbsvRSySCZbIxI+ZCKsN2TKtSFyIrV2WuRCJuBiJWxfuxCVXbvwFgiEtposgLFJElnbU1SxIZIIRJDKTrdu+53Uhra4mce7Oe57Pcz7JOULFisViwZ+29LAzOSjQYDgz1ZcCvWuXV11MJpN+OS/lm6179teqH0yDqxPTCyKSA8DcDsyOmOprnCaeP7459pdgy969i0LTC3IO/RQMyoHcQN+3cnljW3dNIFC47qDaK3g7BwdTkwBaBELT4ZPOUVWgKl4ZBnjxJPUlMDnTDrp0pmr6RHFeEjjcUUXPDGeSEwDN0Xg8sivxMhJNjGzbHd8PkM3eHRfkrBM5NkcQaY2vUnTlrDIA0NoaX+KLXFFlowr14tvVpqb2MICzmQcKqxvbumv+NAhZGCCIPwEw6QWXKYRL/VUXO0+rAUJiPwAk5MIlgVfwPjjHLCL1APmHN94ZdqeYN+NW/mn6I4BvwQYchcLnwFhJMDiYmlRxAzjpKWZkYkUCcZ2I61wi37tLbYyjiN0fHk5Oz3nGSLSzBbNHCF35R7f6K1/hN9PRhek11FrymfQQQKB4+Gl05P2qNRtmETlXW7e+b2z01dfycGNbfFMAbqNyKp9Jp4rzOT8RYFs0njJkc2iqsCObvTsOsDWWqA5C1uFy+Uz/oXJeKwVT4h0RmPUXhi79vuC0Ku6yOffTK3g9lfxfDQAisY516sg5kfOCiJk7HoLt2cf9b/9LANAc7dznm98PagG1fUOZ9IP5uMB8Q4CPoyNvausapkTt3rNMuvdf3C/o6+czhtdwmwAAAABJRU5ErkJggg==
             </icon>
-          </tableau-addin>
+          </dashboard-extension>
           <resources>
             <resource id="name">
               <text locale="en_US">name in English</text>
@@ -60,8 +56,8 @@ Name the manifest file for your extension (for example, `HelloExtensions` and sa
    ``` 
 
 - In this file, you need to provide values for a few elements. Some key pieces are:
-- For `<tableau-addin id>` use reverse domain name notation to uniquely identify the extension (`com.example.extension.demo`)
-- For `<source-location>` make sure that this specifies the URL of your web application. For example, if you are doing development work and want to host the file locally on your computer using port 8765, you might use: `http://localhost:8765/myExtension.html` 
+- For `<dashboard-extension id=" ">` use reverse domain name notation to uniquely identify the extension (`com.example.extension.demo`)
+- For `<source-location>` make sure that this specifies the URL of your web application. You must use the HTTPS protocal. The exception to this requirement is `localhost`, where you can use HTTP. For example, if you are doing development work and want to host the file locally on your computer using port 8765, you might use: `http://localhost:8765/myExtension.html` 
 - The `<min-api-version>` element that specifies the minimum version of the Extensions API library that is required to run the extension.  
 - For `<icon>` you must use a Base64-encoded icon. To use the default icon, copy and paste the `<icon>` example here, or copy one of the manifest files (`.trex`) from the samples. 
 
@@ -84,10 +80,10 @@ The web app you create controls and interacts with the Tableau dashboard objects
 
 Your web application must include an HTML page. This page should link to the Extensions API JavaScript library and to any other JavaScript, CSS, or HTML resources your web app requires.
 
-1.  In the HTML page, add a link to the JavaScript library (for example, `tableau-extensions-0.6.1.js`).
+1.  In the HTML page, add a link to the JavaScript library (for example, `tableau-extensions-0.7.0.js`).
  ```
        <!-- Tableau Extensions API Library  -->
-       <script src="../../lib/tableau-extensions-0.6.1.js"></script>
+       <script src="../../lib/tableau-extensions-0.7.0.js"></script>
 ```
 2.  Add links to additional JavaScript files and code that you need. You could add the JavaScript code to initialize and call Extensions API functions directly in the HTML page. However, in most cases you want to keep this code in a separate file. The following code is from a simple sample.
        ```html 
@@ -107,7 +103,7 @@ Your web application must include an HTML page. This page should link to the Ext
            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
 
            <!-- Tableau Extensions API Library  -->
-           <script src="./tableau-extensions-0.6.01.js"></script>
+           <script src="./tableau-extensions-0.7.0.js"></script>
 
            <!-- Your JavaScript code that uses the Extensions API goes here -->
            <script src="./hello-extension.js"></script>
@@ -199,7 +195,9 @@ Use the **Reload** option to refresh and reload the extension in the dashboard.
 ![]({{site.baseurl}}/assets/extension_reload.png) 
  
 
- For information about debugging your extension, see [Remote Debugging of JavaScript and HTML]({{site.baseurl}}/docs/trex_debugging.html).
+For information about debugging your extension, see [Remote Debugging of JavaScript and HTML]({{site.baseurl}}/docs/trex_debugging.html). 
+
+You can also use the Tableau log files to identify issues, see [Use Log files to Troubleshoot Dashboard Extensions]({{site.baseurl}}/docs/trex_logging.html).
 
 ------------------------------------------------------------------------
   
