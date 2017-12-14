@@ -39,7 +39,7 @@ If a workbook is saved with an extension and then later opened on another comput
             <author name="USERNAME" email="USER@example.com" organization="My Company" website="www.example.com"/>
             <min-api-version>1.1</min-api-version>
             <source-location>
-              <url>SERVER:PORT/PATH</url> 
+              <url>SCHEME://SERVER[:PORT][/PATH]</url> 
             </source-location>
             <icon>Base64-Encoded ICON</icon>
           </dashboard-extension>
@@ -106,7 +106,7 @@ If a workbook is saved with an extension and then later opened on another comput
 </tr>
 <tr class="even">
 <td><code>url</code></td>
-<td>Specifies the name and port (optional) of the server. The <code>url</code> must use HTTPS. For example: <code>https://example.com/extension</code>. 
+<td>Specifies the scheme (HTTPS, HTTTP), the name of the server, the port (optional) and the path to extension (optional). The <code>url</code> must use HTTPS. For example: <code>https://example.com/extension</code>. 
 The exception is for <code>localhost</code>. In this case, HTTP is allowed. For example: <code>http://localhost:8080</code>.</td>
 </tr>
 <tr class="even">
