@@ -78,18 +78,6 @@ To use the dashboard extension samples, you need to start up a web server on you
 
 
 
---- 
-### Install the dashboard extension manifest file (`.trex`) 
-
-
-Every Tableau extension has a manifest file (`.trex`) that describes the extension and identifies the location of the web application. 
-
-1. Close Tableau, if you have it opened. 
-2. Copy the `.trex` files of the samples you wish to run to `~\Documents\My Tableau Repository (Beta)\Extensions` so they are available to Tableau. 
-  The `.trex` files for the samples can be found in the folder with the samples. For example, `\extensions-api\Samples\DataSources\DataSources.trex`.
-
-
-
 ---
 ### Start Tableau and add an extension to the dashboard
 
@@ -97,7 +85,8 @@ Every Tableau extension has a manifest file (`.trex`) that describes the extensi
 2. In the dashboard, under **Objects**, select **Extension** and drag it on to the dashboard.  
    ![]({{site.baseurl}}/assets/frelard_objects_extension.png)
 
-3. In the **Select and Extension** dialog box, click **Choose an Extension**. 
+3. In the **Select an Extension** dialog box, click **Choose an Extension**. 
+ Every Tableau extension has a manifest file (`.trex`) that describes the extension and identifies the location of the web application. 
 4. Browse to the directory where the samples are located. For example, if you downloaded or cloned the GitHub repository, go to `\extensions-api\Samples`. 
 5. Open the `DataSources.trex` file.     
    The sample extension (web application) appears in the dashboard frame. The DataSources sample finds and displays the data source for each worksheet in the dashboard. 
