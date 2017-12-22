@@ -10,6 +10,36 @@ layout: docs
 
 ---
 
+### Developer Preview (0.8.0)
+*December 21, 2017*
+
+- Update of the Tableau Extensions API. 
+- Tableau Extensions API library: `tableau-extensions-0.8.0.js`
+- Tableau Desktop 10.5 RC, Tableau Server 10.5 (from [Extensions API Developer Preview](https://prerelease.tableau.com){:target="_blank"})
+
+
+**New desktop authoring experience** 
+
+You no longer need to place the `.trex` file for the extension in a predetermined folder, you now do the following:
+
+ 1. In the dashboard, under **Objects** on the left, select **Extension** and drag it to the dashboard sheet on the right.
+   The **Select an Extension** dialog box appears. 
+ 2. The first time you open the dialog box to add an extension, you will see a link to **Choose an Extension**. Click the link and browse to the directory where you have the `.trex` file. 
+Subsequently, when you drag the **Extension** on the dashboard, the dialog box shows you the most recently used list, choose from the list, or click **Browse** to select another extension.
+
+**New UI namespace** 
+  
+- You can now launch a new modal dialog using the function: `tableau.extensions.ui.displayDialogAsync(dialonExtensionURL)`.
+- The URL you want to load (`dialonExtensionURL`) will be an extension itself.  
+- The extension in the dialog will have full access to the extensions API.  When ready to close to the dialog, from the dialog extension you can call `tableau.extensions.ui.closeDialog(string)`. See the documentation for details.
+- Note that the UI namespace is work is still in progress and has some upcoming additions. *Stay tuned for more.*
+
+**HTTPS and security**  
+
+For information about the HTTPS requirements for extensions, see [Security and Tableau Extensions]({{site.baseurl}}/docs/trex_security.html)
+
+
+
 ### Developer Preview (0.7.0)
 *November 29, 2017*
 
