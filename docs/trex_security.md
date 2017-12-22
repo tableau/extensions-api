@@ -38,10 +38,10 @@ If you plan to make your extension available to others, using HTTPS
 The requirements are pretty straight-forward. If you are distributing your extension so that others can use it, the extension must be hosted on a web server that is configured to support the HTTPS protocol. 
 
 - The server that hosts your extension must have a certificate from a Certificate Authority (CA). There are many free and low cost options. Note that self-signed or test-signed certificates are not sufficient. The certificate is sometimes called an SSL certificate, as HTTPS was formerly implemented by the Secure Sockets Layer (SSL). 
-- In the `.trex` file for your extension, the `url` you use for the source location must start with `https://` .  If the HTTPS protocol is not specified, the extension fails registration and does not appear in list of available extensions in Tableau.
-The exception to this requirement is for `localhost`. If you are developing your extension, you can host it on your computer using HTTP (for example, `http://localhost`). You can also use `localhost` on Tableau Server. 
+- In the `.trex` file for your extension, the `url` you use for the source location must start with `https://`.  If the HTTPS protocol is not specified, the extension fails registration and does not appear in list of available extensions in Tableau.
+The exception to this requirement is for `localhost`. If you are developing your extension, you can host it on your computer using HTTP (for example, `http://localhost`). You can also use `http://localhost` if you publish the workbook to Tableau Server. In this case, the extension must be running on the same computer as the browser you are using to access the server. 
 - Mixed content is not allowed. If your web application uses other libraries or resources, those assets should also use `https`, or use site-relative links. 
-- Redirects are permitted, but if they redirect to HTTP pages, those pages cannot interact with the Extensions API.  
+- Redirects are permitted, but if they redirect to any other origin, other than the URL of the extension, those pages cannot interact with the Extensions API. For example, if the URL of your extension is `https://example.com` and you redirect to `https://myexample.com`, the page you were redirecting to (`https://myexample.com`) cannot interact with the Extensions API. 
 - To run on Tableau Server, your extension must be added to the safe list for the site. Site administrators can add or remove extensions, and can configure how an extension requests permissions for access to data.  
 
 ----
