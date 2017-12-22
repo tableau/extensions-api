@@ -29,9 +29,10 @@ Subsequently, when you drag the **Extension** on the dashboard, the dialog box s
 
 **New UI namespace** 
   
-- You can now launch a new modal dialog using the function: `tableau.extensions.ui.displayDialogAsync(someUrl)`.
-- The URL you want to load (`someUrl`) will be an extension itself.  
-- Note that the UI namespace is work is still in progress. *Stay tuned for more.*
+- You can now launch a new modal dialog using the function: `tableau.extensions.ui.displayDialogAsync(dialonExtensionURL)`.
+- The URL you want to load (`dialonExtensionURL`) will be an extension itself.  
+- The extension in the dialog will have full access to the extensions API.  When ready to close to the dialog, from the dialog extension you can call `tableau.extensions.ui.closeDialog(string)`. See the documentation for details.
+- Note that the UI namespace is work is still in progress and has some upcoming additions. *Stay tuned for more.*
 
 **HTTPS and security**  
 
