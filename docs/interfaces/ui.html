@@ -914,7 +914,7 @@ img { max-width: 100%; }
 					<a href="ui.html#displaydialogasync" class="tsd-kind-icon">display<wbr>Dialog<wbr>Async</a>
 				</li>
 				<li class=" tsd-kind-method tsd-parent-kind-interface">
-					<a href="ui.html#messageparentaddin" class="tsd-kind-icon">message<wbr>Parent<wbr>Add<wbr>In</a>
+					<a href="ui.html#messageparentextensions" class="tsd-kind-icon">message<wbr>Parent<wbr>Extensions</a>
 				</li>
 			</ul>
 		</li>
@@ -926,8 +926,8 @@ img { max-width: 100%; }
 			<div class="tsd-comment tsd-typography">
 				<dl class="tsd-comment-tags">
 					<dt>notimplemented</dt>
-					<dd><p>This namesapce contains functionality that allows an AddIn to display a popup
-							dialog window, and communicate between that window and the parent AddIn. This can
+					<dd><p>This namesapce contains functionality that allows an Extensions to display a popup
+							dialog window, and communicate between that window and the parent Extensions. This can
 							be useful in auth scenarios and when extra situational UI space is needed.
 						Only one dialog can be displayed at a time.</p>
 					</dd>
@@ -950,7 +950,7 @@ img { max-width: 100%; }
 						<h3>Methods</h3>
 						<ul class="tsd-index-list">
 							<li class="tsd-kind-method tsd-parent-kind-interface"><a href="ui.html#displaydialogasync" class="tsd-kind-icon">display<wbr>Dialog<wbr>Async</a></li>
-							<li class="tsd-kind-method tsd-parent-kind-interface"><a href="ui.html#messageparentaddin" class="tsd-kind-icon">message<wbr>Parent<wbr>Add<wbr>In</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-interface"><a href="ui.html#messageparentextensions" class="tsd-kind-icon">message<wbr>Parent<wbr>Extensions</a></li>
 						</ul>
 					</section>
 				</div>
@@ -962,7 +962,7 @@ img { max-width: 100%; }
 				<a name="displaydialogasync" class="tsd-anchor"></a>
 				<h3>display<wbr>Dialog<wbr>Async</h3>
 				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-					<li class="tsd-signature tsd-kind-icon">display<wbr>Dialog<wbr>Async<span class="tsd-signature-symbol">(</span>url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, height<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, width<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="addindialog.html" class="tsd-signature-type">AddInDialog</a><span class="tsd-signature-symbol">&gt;</span></li>
+					<li class="tsd-signature tsd-kind-icon">display<wbr>Dialog<wbr>Async<span class="tsd-signature-symbol">(</span>url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, height<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, width<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="extensionsdialog.html" class="tsd-signature-type">ExtensionsDialog</a><span class="tsd-signature-symbol">&gt;</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
@@ -983,7 +983,7 @@ img { max-width: 100%; }
 								<h5>url: <span class="tsd-signature-type">string</span></h5>
 								<div class="tsd-comment tsd-typography">
 									<p>The url to navigate to in the popup dialog. The Dialog url must
-									belong to the same domain as the parent AddIn.</p>
+									belong to the same domain as the parent Extensions.</p>
 								</div>
 							</li>
 							<li>
@@ -999,16 +999,16 @@ img { max-width: 100%; }
 								</div>
 							</li>
 						</ul>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="addindialog.html" class="tsd-signature-type">AddInDialog</a><span class="tsd-signature-symbol">&gt;</span></h4>
-						<p>A promise resolving to an AddInDialog.</p>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="extensionsdialog.html" class="tsd-signature-type">ExtensionsDialog</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						<p>A promise resolving to an ExtensionsDialog.</p>
 					</li>
 				</ul>
 			</section>
 			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
-				<a name="messageparentaddin" class="tsd-anchor"></a>
-				<h3>message<wbr>Parent<wbr>Add<wbr>In</h3>
+				<a name="messageparentextensions" class="tsd-anchor"></a>
+				<h3>message<wbr>Parent<wbr>Extensions</h3>
 				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-					<li class="tsd-signature tsd-kind-icon">message<wbr>Parent<wbr>Add<wbr>In<span class="tsd-signature-symbol">(</span>message<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					<li class="tsd-signature tsd-kind-icon">message<wbr>Parent<wbr>Extensions<span class="tsd-signature-symbol">(</span>message<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
@@ -1028,7 +1028,7 @@ img { max-width: 100%; }
 							<li>
 								<h5>message: <span class="tsd-signature-type">string</span></h5>
 								<div class="tsd-comment tsd-typography">
-									<p>The message to send from an AddIn&#39;s dialog to its parent frame.</p>
+									<p>The message to send from an Extensions&#39;s dialog to its parent frame.</p>
 								</div>
 							</li>
 						</ul>

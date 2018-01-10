@@ -908,12 +908,6 @@ img { max-width: 100%; }
 <nav class="tsd-navigation secondary">
 	<ul>
 		<li class=" tsd-kind-enum">
-			<a href="enums/addincontext.html" class="tsd-kind-icon">Add<wbr>InContext</a>
-		</li>
-		<li class=" tsd-kind-enum">
-			<a href="enums/addinmode.html" class="tsd-kind-icon">Add<wbr>InMode</a>
-		</li>
-		<li class=" tsd-kind-enum">
 			<a href="enums/analyticsobjecttype.html" class="tsd-kind-icon">Analytics<wbr>Object<wbr>Type</a>
 		</li>
 		<li class=" tsd-kind-enum">
@@ -936,6 +930,12 @@ img { max-width: 100%; }
 		</li>
 		<li class=" tsd-kind-enum">
 			<a href="enums/errorcodes.html" class="tsd-kind-icon">Error<wbr>Codes</a>
+		</li>
+		<li class=" tsd-kind-enum">
+			<a href="enums/extensioncontext.html" class="tsd-kind-icon">Extension<wbr>Context</a>
+		</li>
+		<li class=" tsd-kind-enum">
+			<a href="enums/extensionmode.html" class="tsd-kind-icon">Extension<wbr>Mode</a>
 		</li>
 		<li class=" tsd-kind-enum">
 			<a href="enums/fieldaggregationtype.html" class="tsd-kind-icon">Field<wbr>Aggregation<wbr>Type</a>
@@ -981,12 +981,6 @@ img { max-width: 100%; }
 		</li>
 		<li class=" tsd-kind-enum">
 			<a href="enums/trendlinemodeltype.html" class="tsd-kind-icon">Trend<wbr>Line<wbr>Model<wbr>Type</a>
-		</li>
-		<li class=" tsd-kind-interface">
-			<a href="interfaces/addin.html" class="tsd-kind-icon">Add<wbr>In</a>
-		</li>
-		<li class=" tsd-kind-interface">
-			<a href="interfaces/addindialog.html" class="tsd-kind-icon">Add<wbr>InDialog</a>
 		</li>
 		<li class=" tsd-kind-interface">
 			<a href="interfaces/analyticsobject.html" class="tsd-kind-icon">Analytics<wbr>Object</a>
@@ -1044,6 +1038,12 @@ img { max-width: 100%; }
 		</li>
 		<li class=" tsd-kind-interface">
 			<a href="interfaces/eventlistenermanager.html" class="tsd-kind-icon">Event<wbr>Listener<wbr>Manager</a>
+		</li>
+		<li class=" tsd-kind-interface">
+			<a href="interfaces/extensions.html" class="tsd-kind-icon">Extensions</a>
+		</li>
+		<li class=" tsd-kind-interface">
+			<a href="interfaces/extensionsdialog.html" class="tsd-kind-icon">Extensions<wbr>Dialog</a>
 		</li>
 		<li class=" tsd-kind-interface">
 			<a href="interfaces/field.html" class="tsd-kind-icon">Field</a>
@@ -1130,6 +1130,9 @@ img { max-width: 100%; }
 			<a href="interfaces/sortingoptions.html" class="tsd-kind-icon">Sorting<wbr>Options</a>
 		</li>
 		<li class=" tsd-kind-interface">
+			<a href="interfaces/tablesummary.html" class="tsd-kind-icon">Table<wbr>Summary</a>
+		</li>
+		<li class=" tsd-kind-interface">
 			<a href="interfaces/tableauevent.html" class="tsd-kind-icon">Tableau<wbr>Event</a>
 		</li>
 		<li class=" tsd-kind-interface">
@@ -1159,7 +1162,7 @@ img { max-width: 100%; }
 	<div class="content-wrap">
 		<div class="tsd-panel tsd-typography">
 			<h1 id="api-external-contract">api-external-contract</h1>
-			<p>This project contains interfaces for all objects used in the AddIn API (and someday the JSApi) that are coded against by developers. This is not the script that developers include in their web apps. Project is also used to generate documentation.</p>
+			<p>This project contains interfaces for all objects used in the Extensions API (and someday the JSApi) that are coded against by developers. This is not the script that developers include in their web apps. Project is also used to generate documentation.</p>
 			<p>Documentation is generated as part of the build (yarn build).  The documentation is generated using a webpack plugin for a tool called typedoc.  To view the documentation after a build, open the file dist/docs/index.html in a browser.</p>
 		</div>
 		<section class="tsd-panel-group tsd-index-group">
@@ -1175,8 +1178,6 @@ img { max-width: 100%; }
 					<section class="tsd-index-section ">
 						<h3>Enumerations</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-enum"><a href="enums/addincontext.html" class="tsd-kind-icon">Add<wbr>InContext</a></li>
-							<li class="tsd-kind-enum"><a href="enums/addinmode.html" class="tsd-kind-icon">Add<wbr>InMode</a></li>
 							<li class="tsd-kind-enum"><a href="enums/analyticsobjecttype.html" class="tsd-kind-icon">Analytics<wbr>Object<wbr>Type</a></li>
 							<li class="tsd-kind-enum"><a href="enums/columntype.html" class="tsd-kind-icon">Column<wbr>Type</a></li>
 							<li class="tsd-kind-enum"><a href="enums/dashboardobjecttype.html" class="tsd-kind-icon">Dashboard<wbr>Object<wbr>Type</a></li>
@@ -1185,6 +1186,8 @@ img { max-width: 100%; }
 							<li class="tsd-kind-enum"><a href="enums/dialogeventtype.html" class="tsd-kind-icon">Dialog<wbr>Event<wbr>Type</a></li>
 							<li class="tsd-kind-enum"><a href="enums/encodingtype.html" class="tsd-kind-icon">Encoding<wbr>Type</a></li>
 							<li class="tsd-kind-enum"><a href="enums/errorcodes.html" class="tsd-kind-icon">Error<wbr>Codes</a></li>
+							<li class="tsd-kind-enum"><a href="enums/extensioncontext.html" class="tsd-kind-icon">Extension<wbr>Context</a></li>
+							<li class="tsd-kind-enum"><a href="enums/extensionmode.html" class="tsd-kind-icon">Extension<wbr>Mode</a></li>
 							<li class="tsd-kind-enum"><a href="enums/fieldaggregationtype.html" class="tsd-kind-icon">Field<wbr>Aggregation<wbr>Type</a></li>
 							<li class="tsd-kind-enum"><a href="enums/fieldroletype.html" class="tsd-kind-icon">Field<wbr>Role<wbr>Type</a></li>
 							<li class="tsd-kind-enum"><a href="enums/filterdomaintype.html" class="tsd-kind-icon">Filter<wbr>Domain<wbr>Type</a></li>
@@ -1205,8 +1208,6 @@ img { max-width: 100%; }
 					<section class="tsd-index-section ">
 						<h3>Interfaces</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-interface"><a href="interfaces/addin.html" class="tsd-kind-icon">Add<wbr>In</a></li>
-							<li class="tsd-kind-interface"><a href="interfaces/addindialog.html" class="tsd-kind-icon">Add<wbr>InDialog</a></li>
 							<li class="tsd-kind-interface"><a href="interfaces/analyticsobject.html" class="tsd-kind-icon">Analytics<wbr>Object</a></li>
 							<li class="tsd-kind-interface"><a href="interfaces/axisencoding.html" class="tsd-kind-icon">Axis<wbr>Encoding</a></li>
 							<li class="tsd-kind-interface"><a href="interfaces/calculatedfield.html" class="tsd-kind-icon">Calculated<wbr>Field</a></li>
@@ -1226,6 +1227,8 @@ img { max-width: 100%; }
 							<li class="tsd-kind-interface"><a href="interfaces/encoding.html" class="tsd-kind-icon">Encoding</a></li>
 							<li class="tsd-kind-interface"><a href="interfaces/environment.html" class="tsd-kind-icon">Environment</a></li>
 							<li class="tsd-kind-interface"><a href="interfaces/eventlistenermanager.html" class="tsd-kind-icon">Event<wbr>Listener<wbr>Manager</a></li>
+							<li class="tsd-kind-interface"><a href="interfaces/extensions.html" class="tsd-kind-icon">Extensions</a></li>
+							<li class="tsd-kind-interface"><a href="interfaces/extensionsdialog.html" class="tsd-kind-icon">Extensions<wbr>Dialog</a></li>
 							<li class="tsd-kind-interface"><a href="interfaces/field.html" class="tsd-kind-icon">Field</a></li>
 							<li class="tsd-kind-interface"><a href="interfaces/filter.html" class="tsd-kind-icon">Filter</a></li>
 							<li class="tsd-kind-interface"><a href="interfaces/filterchangedevent.html" class="tsd-kind-icon">Filter<wbr>Changed<wbr>Event</a></li>
@@ -1254,6 +1257,7 @@ img { max-width: 100%; }
 							<li class="tsd-kind-interface"><a href="interfaces/sheet.html" class="tsd-kind-icon">Sheet</a></li>
 							<li class="tsd-kind-interface"><a href="interfaces/size.html" class="tsd-kind-icon">Size</a></li>
 							<li class="tsd-kind-interface"><a href="interfaces/sortingoptions.html" class="tsd-kind-icon">Sorting<wbr>Options</a></li>
+							<li class="tsd-kind-interface"><a href="interfaces/tablesummary.html" class="tsd-kind-icon">Table<wbr>Summary</a></li>
 							<li class="tsd-kind-interface"><a href="interfaces/tableauevent.html" class="tsd-kind-icon">Tableau<wbr>Event</a></li>
 							<li class="tsd-kind-interface"><a href="interfaces/tableausheetevent.html" class="tsd-kind-icon">Tableau<wbr>Sheet<wbr>Event</a></li>
 							<li class="tsd-kind-interface"><a href="interfaces/tableauworksheetevent.html" class="tsd-kind-icon">Tableau<wbr>Worksheet<wbr>Event</a></li>
@@ -1280,7 +1284,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">Tableau<wbr>Event<wbr>Handler<wbr>Fn<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in EventInterfaces.ts:78</li>
+						<li>Defined in EventInterfaces.ts:76</li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -1321,7 +1325,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">Tableau<wbr>Event<wbr>Unregister<wbr>Fn<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in EventInterfaces.ts:86</li>
+						<li>Defined in EventInterfaces.ts:84</li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">

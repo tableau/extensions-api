@@ -955,6 +955,9 @@ img { max-width: 100%; }
 				<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
 					<a href="errorcodes.html#unsupportedeventname" class="tsd-kind-icon">Unsupported<wbr>Event<wbr>Name</a>
 				</li>
+				<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+					<a href="errorcodes.html#unsupportedmethodfordatasourcetype" class="tsd-kind-icon">Unsupported<wbr>Method<wbr>For<wbr>Data<wbr>Source<wbr>Type</a>
+				</li>
 			</ul>
 		</li>
 	</ul>
@@ -964,7 +967,7 @@ img { max-width: 100%; }
 		<section class="tsd-panel tsd-comment">
 			<div class="tsd-comment tsd-typography">
 				<div class="lead">
-					<p>All error codes used by the AddIn API.</p>
+					<p>All error codes used by the Extensions API.</p>
 				</div>
 			</div>
 		</section>
@@ -990,6 +993,7 @@ img { max-width: 100%; }
 							<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="errorcodes.html#invalidselectionvalue" class="tsd-kind-icon">Invalid<wbr>Selection<wbr>Value</a></li>
 							<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="errorcodes.html#nulloremptyparameter" class="tsd-kind-icon">Null<wbr>OrEmpty<wbr>Parameter</a></li>
 							<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="errorcodes.html#unsupportedeventname" class="tsd-kind-icon">Unsupported<wbr>Event<wbr>Name</a></li>
+							<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="errorcodes.html#unsupportedmethodfordatasourcetype" class="tsd-kind-icon">Unsupported<wbr>Method<wbr>For<wbr>Data<wbr>Source<wbr>Type</a></li>
 						</ul>
 					</section>
 				</div>
@@ -1053,7 +1057,7 @@ img { max-width: 100%; }
 				</aside>
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>An error occurred within the Tableau AddIn API. Contact Tableau Support.</p>
+						<p>An error occurred within the Tableau Extensions API. Contact Tableau Support.</p>
 					</div>
 				</div>
 			</section>
@@ -1098,7 +1102,7 @@ img { max-width: 100%; }
 				</aside>
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>A dialog must first launch to, and send messages from, the same domain as the parent AddIn.</p>
+						<p>A dialog must first launch to, and send messages from, the same domain as the parent Extensions.</p>
 					</div>
 				</div>
 			</section>
@@ -1219,6 +1223,21 @@ img { max-width: 100%; }
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
 						<p>An unknown event name was specified in the call to Viz.addEventListeneror Viz.removeEventListener.</p>
+					</div>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+				<a name="unsupportedmethodfordatasourcetype" class="tsd-anchor"></a>
+				<h3>Unsupported<wbr>Method<wbr>For<wbr>Data<wbr>Source<wbr>Type</h3>
+				<div class="tsd-signature tsd-kind-icon">Unsupported<wbr>Method<wbr>For<wbr>Data<wbr>Source<wbr>Type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;&quot;unsupported-method-for-data-source-type&quot;</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in Enums.ts:165</li>
+					</ul>
+				</aside>
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>A method was used for a type of datasource that doesn&#39;t support that method (see getActiveTablesAsync for an example)</p>
 					</div>
 				</div>
 			</section>
