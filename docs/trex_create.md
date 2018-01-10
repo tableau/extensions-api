@@ -80,10 +80,10 @@ The web app you create controls and interacts with the Tableau dashboard objects
 
 Your web application must include an HTML page. This page should link to the Extensions API JavaScript library and to any other JavaScript, CSS, or HTML resources your web app requires.
 
-1.  In the HTML page, add a link to the JavaScript library (for example, `tableau-extensions-0.7.0.js`).
+1.  In the HTML page, add a link to the JavaScript library (for example, `tableau-extensions-0.8.0.js`).
  ```
        <!-- Tableau Extensions API Library  -->
-       <script src="../../lib/tableau-extensions-0.7.0.js"></script>
+       <script src="../../lib/tableau-extensions-0.8.0.js"></script>
 ```
 2.  Add links to additional JavaScript files and code that you need. You could add the JavaScript code to initialize and call Extensions API functions directly in the HTML page. However, in most cases you want to keep this code in a separate file. The following code is from a simple sample.
        ```html 
@@ -103,7 +103,7 @@ Your web application must include an HTML page. This page should link to the Ext
            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
 
            <!-- Tableau Extensions API Library  -->
-           <script src="./tableau-extensions-0.7.0.js"></script>
+           <script src="./tableau-extensions-0.8.0.js"></script>
 
            <!-- Your JavaScript code that uses the Extensions API goes here -->
            <script src="./hello-extension.js"></script>

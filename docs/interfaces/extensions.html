@@ -925,6 +925,9 @@ img { max-width: 100%; }
 				<li class=" tsd-kind-method tsd-parent-kind-interface">
 					<a href="extensions.html#initializeasync" class="tsd-kind-icon">initialize<wbr>Async</a>
 				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-interface">
+					<a href="extensions.html#initializedialogasync" class="tsd-kind-icon">initialize<wbr>Dialog<wbr>Async</a>
+				</li>
 			</ul>
 		</li>
 	</ul>
@@ -964,6 +967,7 @@ img { max-width: 100%; }
 						<h3>Methods</h3>
 						<ul class="tsd-index-list">
 							<li class="tsd-kind-method tsd-parent-kind-interface"><a href="extensions.html#initializeasync" class="tsd-kind-icon">initialize<wbr>Async</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-interface"><a href="extensions.html#initializedialogasync" class="tsd-kind-icon">initialize<wbr>Dialog<wbr>Async</a></li>
 						</ul>
 					</section>
 				</div>
@@ -977,7 +981,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">dashboard<wbr>Content<span class="tsd-signature-symbol">:</span> <a href="dashboardcontent.html" class="tsd-signature-type">DashboardContent</a></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in Namespaces/Extensions.ts:23</li>
+						<li>Defined in Namespaces/Extensions.ts:31</li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -992,7 +996,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">environment<span class="tsd-signature-symbol">:</span> <a href="environment.html" class="tsd-signature-type">Environment</a></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in Namespaces/Extensions.ts:28</li>
+						<li>Defined in Namespaces/Extensions.ts:36</li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -1007,7 +1011,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">settings<span class="tsd-signature-symbol">:</span> <a href="settings.html" class="tsd-signature-type">Settings</a></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in Namespaces/Extensions.ts:33</li>
+						<li>Defined in Namespaces/Extensions.ts:41</li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -1022,7 +1026,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">ui<span class="tsd-signature-symbol">:</span> <a href="ui.html" class="tsd-signature-type">UI</a></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in Namespaces/Extensions.ts:38</li>
+						<li>Defined in Namespaces/Extensions.ts:46</li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -1044,18 +1048,42 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in Namespaces/Extensions.ts:18</li>
+								<li>Defined in Namespaces/Extensions.ts:17</li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
 							<div class="lead">
-								<p>This is the entry point for an Extensions.  This function must first be called
-								in order to interact with any of the other Extensions APIs.</p>
+								<p>This is the entry point for an Extension.  This function must first be called
+								in order to interact with any of the other Extension APIs.</p>
 							</div>
 						</div>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
-						<p>A promise that the developer must run to initiailze their extension.
-						When resolved, the other Extensions APIs will be available to use.</p>
+						<p>A promise that when resolved, the other Extension APIs will be available to use.</p>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+				<a name="initializedialogasync" class="tsd-anchor"></a>
+				<h3>initialize<wbr>Dialog<wbr>Async</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+					<li class="tsd-signature tsd-kind-icon">initialize<wbr>Dialog<wbr>Async<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in Namespaces/Extensions.ts:26</li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>This is the entry point for an extension that runs inside a dialog created by the
+									UI namespace. This function must be called first in order to use the rest of the Extension
+								API, and should not be called by extensions that are not displayed in a dialog.</p>
+							</div>
+						</div>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						<p>A promise that when resolved, the other Extension APIs will be available to use.</p>
 					</li>
 				</ul>
 			</section>

@@ -911,10 +911,10 @@ img { max-width: 100%; }
 			<a href="ui.html" class="tsd-kind-icon">UI</a>
 			<ul>
 				<li class=" tsd-kind-method tsd-parent-kind-interface">
-					<a href="ui.html#displaydialogasync" class="tsd-kind-icon">display<wbr>Dialog<wbr>Async</a>
+					<a href="ui.html#closedialog" class="tsd-kind-icon">close<wbr>Dialog</a>
 				</li>
 				<li class=" tsd-kind-method tsd-parent-kind-interface">
-					<a href="ui.html#messageparentextensions" class="tsd-kind-icon">message<wbr>Parent<wbr>Extensions</a>
+					<a href="ui.html#displaydialogasync" class="tsd-kind-icon">display<wbr>Dialog<wbr>Async</a>
 				</li>
 			</ul>
 		</li>
@@ -924,14 +924,13 @@ img { max-width: 100%; }
 	<div class="content-wrap">
 		<section class="tsd-panel tsd-comment">
 			<div class="tsd-comment tsd-typography">
-				<dl class="tsd-comment-tags">
-					<dt>notimplemented</dt>
-					<dd><p>This namesapce contains functionality that allows an Extensions to display a popup
-							dialog window, and communicate between that window and the parent Extensions. This can
-							be useful in auth scenarios and when extra situational UI space is needed.
-						Only one dialog can be displayed at a time.</p>
-					</dd>
-				</dl>
+				<div class="lead">
+					<p>This namespace contains functionality that allows an Extension to display a popup
+						dialog window. This can be useful in auth scenarios and when extra situational UI space is needed.
+						Only one dialog can be displayed at a time per extension.  Inside the popup dialog window,
+						another extension can be loaded and run.  This &#39;dialog extension&#39; will have full access
+					to the functions provided by the Extensions API.</p>
+				</div>
 			</div>
 		</section>
 		<section class="tsd-panel tsd-hierarchy">
@@ -949,8 +948,8 @@ img { max-width: 100%; }
 					<section class="tsd-index-section ">
 						<h3>Methods</h3>
 						<ul class="tsd-index-list">
+							<li class="tsd-kind-method tsd-parent-kind-interface"><a href="ui.html#closedialog" class="tsd-kind-icon">close<wbr>Dialog</a></li>
 							<li class="tsd-kind-method tsd-parent-kind-interface"><a href="ui.html#displaydialogasync" class="tsd-kind-icon">display<wbr>Dialog<wbr>Async</a></li>
-							<li class="tsd-kind-method tsd-parent-kind-interface"><a href="ui.html#messageparentextensions" class="tsd-kind-icon">message<wbr>Parent<wbr>Extensions</a></li>
 						</ul>
 					</section>
 				</div>
@@ -959,80 +958,78 @@ img { max-width: 100%; }
 		<section class="tsd-panel-group tsd-member-group ">
 			<h2>Methods</h2>
 			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
-				<a name="displaydialogasync" class="tsd-anchor"></a>
-				<h3>display<wbr>Dialog<wbr>Async</h3>
+				<a name="closedialog" class="tsd-anchor"></a>
+				<h3>close<wbr>Dialog</h3>
 				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-					<li class="tsd-signature tsd-kind-icon">display<wbr>Dialog<wbr>Async<span class="tsd-signature-symbol">(</span>url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, height<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, width<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="extensionsdialog.html" class="tsd-signature-type">ExtensionsDialog</a><span class="tsd-signature-symbol">&gt;</span></li>
+					<li class="tsd-signature tsd-kind-icon">close<wbr>Dialog<span class="tsd-signature-symbol">(</span>payload<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in Namespaces/UI.ts:22</li>
+								<li>Defined in Namespaces/UI.ts:27</li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
-							<dl class="tsd-comment-tags">
-								<dt>notimplemented</dt>
-								<dd></dd>
-							</dl>
+							<div class="lead">
+								<p>Called from dialog extension in order to close itself.</p>
+							</div>
+						</div>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> payload: <span class="tsd-signature-type">string</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<p>optional data to make available to parent extension when this dialog closes.</p>
+								</div>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+				<a name="displaydialogasync" class="tsd-anchor"></a>
+				<h3>display<wbr>Dialog<wbr>Async</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+					<li class="tsd-signature tsd-kind-icon">display<wbr>Dialog<wbr>Async<span class="tsd-signature-symbol">(</span>url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, payload<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, dialogOptions<span class="tsd-signature-symbol">?: </span><a href="dialogoptions.html" class="tsd-signature-type">DialogOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in Namespaces/UI.ts:20</li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
 						</div>
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
 								<h5>url: <span class="tsd-signature-type">string</span></h5>
 								<div class="tsd-comment tsd-typography">
-									<p>The url to navigate to in the popup dialog. The Dialog url must
-									belong to the same domain as the parent Extensions.</p>
+									<p>The url of the &#39;dialog extension&#39; to navigate to in the dialog. The url must
+									belong to the same domain as the parent extension.</p>
 								</div>
 							</li>
 							<li>
-								<h5><span class="tsd-flag ts-flagOptional">Optional</span> height: <span class="tsd-signature-type">number</span></h5>
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> payload: <span class="tsd-signature-type">string</span></h5>
 								<div class="tsd-comment tsd-typography">
-									<p>Optional height the dialog should try and open with.</p>
+									<p>optional data to make available to dialog on startup.  This will be returned
+									to the dialog extension as the return value of tableau.extensions.ui.initializeDialogAsync</p>
 								</div>
 							</li>
 							<li>
-								<h5><span class="tsd-flag ts-flagOptional">Optional</span> width: <span class="tsd-signature-type">number</span></h5>
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> dialogOptions: <a href="dialogoptions.html" class="tsd-signature-type">DialogOptions</a></h5>
 								<div class="tsd-comment tsd-typography">
-									<p>Optional width the dialog should try and open with.</p>
+									<p>configuration options for the dialog appearance</p>
 								</div>
 							</li>
 						</ul>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="extensionsdialog.html" class="tsd-signature-type">ExtensionsDialog</a><span class="tsd-signature-symbol">&gt;</span></h4>
-						<p>A promise resolving to an ExtensionsDialog.</p>
-					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
-				<a name="messageparentextensions" class="tsd-anchor"></a>
-				<h3>message<wbr>Parent<wbr>Extensions</h3>
-				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-					<li class="tsd-signature tsd-kind-icon">message<wbr>Parent<wbr>Extensions<span class="tsd-signature-symbol">(</span>message<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-				</ul>
-				<ul class="tsd-descriptions">
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in Namespaces/UI.ts:29</li>
-							</ul>
-						</aside>
-						<div class="tsd-comment tsd-typography">
-							<dl class="tsd-comment-tags">
-								<dt>notimplemented.</dt>
-								<dd></dd>
-							</dl>
-						</div>
-						<h4 class="tsd-parameters-title">Parameters</h4>
-						<ul class="tsd-parameters">
-							<li>
-								<h5>message: <span class="tsd-signature-type">string</span></h5>
-								<div class="tsd-comment tsd-typography">
-									<p>The message to send from an Extensions&#39;s dialog to its parent frame.</p>
-								</div>
-							</li>
-						</ul>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						<p>A promise that resolves when the dialog has been closed.  It will contain a
+							payload as a string provided by the dialog extension.  The promise is rejected if
+						the user manually closes the dialog (for example, by clicking the &#39;x&#39;).</p>
 					</li>
 				</ul>
 			</section>
