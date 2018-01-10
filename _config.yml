@@ -1,8 +1,7 @@
 # Site settings
-title: Project Frelard
+title: Extensions API
 email: git@tableau.com
-description: Create add-ins to extend the functionality of Tableau.
-repository: d45/tableau.github.io
+description: Create extensions to extend the functionality of Tableau.
 baseurl: "/extensions-api"
 # permalink: pretty
 

@@ -8,6 +8,15 @@
         "source_code": "https://github.com/LGraber/trex-jungle-book"
     },
     {
+        "name": "Display Images",
+        "url": "https://illonage.github.io/DisplayImages/DisplayImage.html",
+        "author": "Geraldine Zanolli",
+        "github_username": "coolPerson2",
+        "tags": ["v_12.0"],
+        "description": "Display one or more images selected on a dashboard",
+        "source_code": "https://github.com/illonage/illonage.github.io/blob/master/DisplayImages/DisplayImage.html"
+    },
+    {
         "name": "Dynamic Parameters",
         "hostedTrexFileName": "DynamicParameter.trex",
         "website": "https://keshiarose.github.io/Dynamic-Parameter/",
