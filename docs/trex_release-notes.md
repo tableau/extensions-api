@@ -38,7 +38,16 @@ Subsequently, when you drag the **Extension** on the dashboard, the dialog box s
 
 For information about the HTTPS requirements for extensions, see [Security and Tableau Extensions]({{site.baseurl}}/docs/trex_security.html)
 
+**Remote Debugging** 
 
+Due to changes in this release, remote debugging does not work as expected in Tableau Desktop. To enable debugging, you must add the `--remote-debugging-port=8696` option to the command used to start Tableau. The easiest way to do this is to open the Tableau shortcut on the **Start** menu. Open the file location of the Tableau shortcut. Right-click the Tableau shortcut and click **Properties**. In the Target text box, append the remote debugging option to the command. Do not enclose the option in quotation marks. 
+```
+   "C:\Program Files\Tableau\Tableau main\bin\tableau.exe" --remote-debugging-port=8696
+```
+For information about debugging extensions, see [Remote Debugging of JavaScript and HTML]({{site.baseurl}}/docs/trex_debugging.html).
+
+
+---
 
 ### Developer Preview (0.7.0)
 *November 29, 2017*
