@@ -1,0 +1,29 @@
+# Site settings
+title: Extensions API
+email: git@tableau.com
+description: Create extensions to extend the functionality of Tableau.
+baseurl: "/extensions-api"
+# permalink: pretty
+
+defaults:
+  -
+    scope:
+      path: "" # Apply to all files
+      type: pages
+    values:
+      layout: "default"
+      permalink: /:path/:basename:output_ext      
+
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+github: [metadata]
+
+kramdown:
+    toc_levels: 1..3
+
+# Exclude
+exclude: ['node_modules', 'Examples']
+
+

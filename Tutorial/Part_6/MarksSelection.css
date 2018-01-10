@@ -1,0 +1,11 @@
+h4, h5 {
+  text-align: center;
+}
+
+div.DTS div.dataTables_scrollBody {
+  background: white;
+}
+
+.sheet_name {
+  font-weight: bold;
+}
