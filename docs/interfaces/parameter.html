@@ -1079,14 +1079,14 @@ img { max-width: 100%; }
 				<a name="addeventlistener" class="tsd-anchor"></a>
 				<h3>add<wbr>Event<wbr>Listener</h3>
 				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-					<li class="tsd-signature tsd-kind-icon">add<wbr>Event<wbr>Listener<span class="tsd-signature-symbol">(</span>eventType<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"filter-changed"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"mark-selection-changed"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"parameter-changed"</span>, handler<span class="tsd-signature-symbol">: </span><a href="../globals.html#tableaueventhandlerfn" class="tsd-signature-type">TableauEventHandlerFn</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../globals.html#tableaueventunregisterfn" class="tsd-signature-type">TableauEventUnregisterFn</a></li>
+					<li class="tsd-signature tsd-kind-icon">add<wbr>Event<wbr>Listener<span class="tsd-signature-symbol">(</span>eventType<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"filter-changed"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"mark-selection-changed"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"parameter-changed"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"settings-changed"</span>, handler<span class="tsd-signature-symbol">: </span><a href="../globals.html#tableaueventhandlerfn" class="tsd-signature-type">TableauEventHandlerFn</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../globals.html#tableaueventunregisterfn" class="tsd-signature-type">TableauEventUnregisterFn</a></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<p>Inherited from <a href="eventlistenermanager.html">EventListenerManager</a>.<a href="eventlistenermanager.html#addeventlistener">addEventListener</a></p>
 							<ul>
-								<li>Defined in EventInterfaces.ts:98</li>
+								<li>Defined in EventInterfaces.ts:109</li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1097,7 +1097,7 @@ img { max-width: 100%; }
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
-								<h5>eventType: <span class="tsd-signature-type">"filter-changed"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"mark-selection-changed"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"parameter-changed"</span></h5>
+								<h5>eventType: <span class="tsd-signature-type">"filter-changed"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"mark-selection-changed"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"parameter-changed"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"settings-changed"</span></h5>
 								<div class="tsd-comment tsd-typography">
 									<p>The type of event to register for.</p>
 								</div>
@@ -1152,14 +1152,14 @@ img { max-width: 100%; }
 				<a name="removeeventlistener" class="tsd-anchor"></a>
 				<h3>remove<wbr>Event<wbr>Listener</h3>
 				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-					<li class="tsd-signature tsd-kind-icon">remove<wbr>Event<wbr>Listener<span class="tsd-signature-symbol">(</span>eventType<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"filter-changed"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"mark-selection-changed"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"parameter-changed"</span>, handler<span class="tsd-signature-symbol">: </span><a href="../globals.html#tableaueventhandlerfn" class="tsd-signature-type">TableauEventHandlerFn</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					<li class="tsd-signature tsd-kind-icon">remove<wbr>Event<wbr>Listener<span class="tsd-signature-symbol">(</span>eventType<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"filter-changed"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"mark-selection-changed"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"parameter-changed"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"settings-changed"</span>, handler<span class="tsd-signature-symbol">: </span><a href="../globals.html#tableaueventhandlerfn" class="tsd-signature-type">TableauEventHandlerFn</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<p>Inherited from <a href="eventlistenermanager.html">EventListenerManager</a>.<a href="eventlistenermanager.html#removeeventlistener">removeEventListener</a></p>
 							<ul>
-								<li>Defined in EventInterfaces.ts:105</li>
+								<li>Defined in EventInterfaces.ts:116</li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1170,7 +1170,7 @@ img { max-width: 100%; }
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
-								<h5>eventType: <span class="tsd-signature-type">"filter-changed"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"mark-selection-changed"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"parameter-changed"</span></h5>
+								<h5>eventType: <span class="tsd-signature-type">"filter-changed"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"mark-selection-changed"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"parameter-changed"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"settings-changed"</span></h5>
 							</li>
 							<li>
 								<h5>handler: <a href="../globals.html#tableaueventhandlerfn" class="tsd-signature-type">TableauEventHandlerFn</a></h5>

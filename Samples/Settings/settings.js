@@ -52,8 +52,8 @@
   }
 
   function saveSetting () {
-    var settingKey = $('#keyInput').val();
-    var settingValue = $('#valueInput').val();
+    let settingKey = $('#keyInput').val();
+    let settingValue = $('#valueInput').val();
 
     tableau.extensions.settings.set(settingKey, settingValue);
 
