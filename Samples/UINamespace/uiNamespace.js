@@ -3,13 +3,13 @@
 /**
  * UINamespace Sample Extension
  * 
- * This sample extensions demonstrates how to use the UI namespace
+ * This sample extension demonstrates how to use the UI namespace
  * to create a popup dialog with additional UI that the user can interact with.
  * The content in this dialog is actually an extension as well (see the 
  * uiNamespaceDialog.js for details).  
  * 
  * This sample is an extension that auto refreshes datasources in the background of 
- * a dashboard.  The extension has little need to take up any dashboard space, except
+ * a dashboard.  The extension has little need to take up much dashboard space, except
  * when the user needs to adjust settings, so the UI namespace is used for that.
  */
 
@@ -34,12 +34,15 @@
   });
 
   function configure() {
-    const popupUrl = 'http://localhost:8765/Samples/UINamespace/uiNamespaceDialog.html';
+    // This uses the window.location.origin property to retrieve the scheme, hostname, and 
+    // port where the parent extension is currently running, so this string doesn't have
+    // to be updated if the extension is deployed to a new location.
+    const popupUrl = `${window.location.origin}/Samples/UINamespace/uiNamespaceDialog.html`;
 
     /**
      * This is the API call that actually displays the popup extension to the user.  The
-     * popup is always a modal dialog.  The only required parameter is the URL of the popup.  
-     * This must be the same domain and scheme as the parent extension.
+     * popup is always a modal dialog.  The only required parameter is the URL of the popup,  
+     * which must be the same domain, port, and scheme as the parent extension.
      * 
      * The developer can optionally control the initial size of the extension by passing in 
      * an object with height and width properties.  The developer can also pass a string as the
@@ -58,7 +61,7 @@
       setupRefreshInterval(closePayload);
     }).catch((error) => {
       // One expected error condition is when the popup is closed by the user (meaning the user
-      // clicks the 'X' in the to pright of the dialog).  This can be checked for like so:
+      // clicks the 'X' in the top right of the dialog).  This can be checked for like so:
       switch(error.errorCode) {
         case tableau.ErrorCodes.DialogClosedByUser:
           console.log("Dialog was closed by user");
@@ -89,7 +92,7 @@
   }
 
   /**
-   * Called when the use clicks the pause button to terminate auto refreshes.
+   * Called when the user clicks the pause button to terminate auto refreshes.
    */
   function pause() {
     clearInterval(refreshInterval);

@@ -5,15 +5,15 @@
  * 
  * This is the popup extension portion of the UINamespace sample, please see
  * uiNamespace.js in addition to this for context.  This extension is 
- * responsible for collecting configurating settings from the user and communicating
- * that info with the parent extension.
+ * responsible for collecting configuration settings from the user and communicating
+ * that info back to the parent extension.
  * 
  * This sample demonstrates two ways to do that:
  *   1) The suggested and most common method is to store the information 
  *      via the settings namespace.  The parent can subscribe to notifications when
  *      the settings are updated, and collect the new info accordingly.
  *   2) The popup extension can receive and send a string payload via the open 
- *      and close payloads of initializeDialogAsync and closeDialog.  This is useful
+ *      and close payloads of initializeDialogAsync and closeDialog methods.  This is useful
  *      for information that does not need to be persisted into settings.
  */
 
@@ -112,8 +112,8 @@
   }
 
   /**
-   * Closes the dialog, sends a payload back to the parent, and stores
-   * the selected datasource IDs in the extension settings.
+   * Stores the selected datasource IDs in the extension settings,
+   * closes the dialog, and sends a payload back to the parent. 
    */
   function closeDialog() {
     let currentSettings = tableau.extensions.settings.getAll();
