@@ -83,7 +83,7 @@ To use the dashboard extension samples, you need to start up a web server on you
 
 1. Start Tableau and open a workbook that has a dashboard, or open a workbook and create a new dashboard. 
 2. In the dashboard, under **Objects**, select **Extension** and drag it on to the dashboard.  
-   ![]({{site.baseurl}}/assets/frelard_objects_extension.png)
+   ![]({{site.baseurl}}/assets/frelard_objects_extension.png){:height="25%" width="25%"}
 
 3. In the **Select an Extension** dialog box, click **Choose an Extension**. 
  Every Tableau extension has a manifest file (`.trex`) that describes the extension and identifies the location of the web application. 
@@ -92,7 +92,7 @@ To use the dashboard extension samples, you need to start up a web server on you
    The sample extension (web application) appears in the dashboard frame. The DataSources sample finds and displays the data source for each worksheet in the dashboard. 
 6. In the DataSources extension, click the **Info** (**i**) button.  This action opens a dialog box that displays more details about the selected data source.  
 
-   ![]({{site.baseurl}}/assets/data_source.gif) 
+   ![]({{site.baseurl}}/assets/data_source.gif)
 
 
 

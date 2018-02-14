@@ -8,10 +8,101 @@ layout: docs
 * TOC
 {:toc}
 
+
+--- 
+
+### Developer Preview (0.9.0)
+*February 14, 2018*
+
+- Update of the Tableau Extensions API 
+- Tableau Extensions API library: `tableau-extensions-0.9.0.js`
+- Tableau Desktop, Tableau Server (from [Extensions API Developer Preview](https://prerelease.tableau.com){:target="_blank"})
+
+Updates in this release:
+- [Updates to the UI namespace](#updates-to-the-ui-namespace) 
+- [Permissions added to access full data](#permissions-added-to-access-full-data)
+- [Error codes for extensions](#error-codes-for-extensions)
+
+
+
+#### Updates to the UI namespace
+
+ This preview release introduces more options for the UI namespace. You can now control the initial sizing (height, width) of a modal dialog box (or *popup*). The modal dialog itself is an extension. Using the `displayDialogAsync()` and `closeDialog()` methods you can pass payloads between the calling extension and the extension running in the modal dialog box. For an example of how you can use the UI namespace to create a configuration dialog box, see the [UINamepace](https://github.com/tableau/extensions-api/tree/master/Samples/UINamepace?=target="_blank") sample.  The sample also shows how to use the settings event to capture the new configuration. The sample source code has extensive comments that describe how to use these new features in the Extensions API. 
+
+- New sample: [UINamepace](https://github.com/tableau/extensions-api/tree/master/Samples/UINamepace?=target="_blank")
+
+
+#### Permissions added to access full data
+
+To access the underlying data along with information about the data source, the extension must declare that it requires full data access in the extension manifest file (`.trex`).
+
+
+An extension requires full data access, if the extension uses any of the following four APIs:
+ 
+`Worksheet.getUnderlyingDataAsync()`
+
+`Datasource.getUnderlyingDataAsync()`
+
+`Datasource.getActiveTablesAsync()`
+
+`Datasource.getConnectionSummariesAsync()`
+
+
+If you use any of these APIs, you need to add a `<permissions>` element to the manifest file (`.trex`) and specify full data permission. The XML looks like the following: 
+
+```xml
+
+<permissions>
+    <permission>full data</permission>
+</permissions>
+
+```
+
+The `<permissions>` element must be added under `<dashboard-extension>` in the manifest file. For a complete description of the manifest, see the [Tableau Extensions Manifest File]({{site.baseurl}}/docs/trex_manifest.html).
+
+If full data is not declared in the manifest file, and the extensions calls one of the APIs that accesses any underlying data or data source information, the API call fails. In addition, an error is written to the Tableau log file (`log.txt`). If you are debugging the extension with the Chromium web browser, an error is reported the console pane. The error message would look similar to the following:
+
+```
+PermissionValidation.ts:26 Extension (name = DataSources Sample, ID = com.tableau.extensions.demo.local) is missing required permission: full-data
+Error: internal-error: permission-denied: Missing required permission to run get-underlying-data(...)
+
+```
+
+
+#### Error codes for extensions  
+
+Errors that are returned from the Extensions API are custom Tableau Error objects that extends the standard JavaScript error object.
+
+
+The Extensions API wraps the standard error object with an `errorCode` property. Any time you encounter an error when you are developing your extension, you can look at this `errorCode` to determine the cause. See [Error Codes]({{site.baseurl}}/docs/enums/errorcodes.html). 
+
+For an example of how to handle error conditions, see the [UINamepace](https://github.com/tableau/extensions-api/tree/master/Samples/UINamepace?=target="_blank") sample. The sample shows how you could handle the error condition that occurs if a user dismisses a modal dialog box (`DialogClosedByUser`).  The following snippet illustrates this pattern: 
+
+```javascript
+tableau.extensions.ui.displayDialogAsync(args... ).then((args... ) => {
+   //
+   // code that sets up the extension in the modal dialog box
+  // 
+    }).catch((error) => {
+      // One expected error condition is when the popup is closed by the user
+      // (meaning the user clicks the 'X' in the top right of the dialog).  
+      // This can be checked for with:
+      switch(error.errorCode) {
+        case tableau.ErrorCodes.DialogClosedByUser:
+          console.log("Dialog was closed by user");
+          break;
+        default:
+          console.error(error.message);
+      }
+    });
+
+```
+
 ---
 
+
 ### Developer Preview (0.8.0)
-*December 21, 2017*
+*January 10, 2017*
 
 - Update of the Tableau Extensions API. 
 - Tableau Extensions API library: `tableau-extensions-0.8.0.js`

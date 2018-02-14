@@ -51,14 +51,14 @@
 
   // Displays a modal dialog with more details about the given dataSource.
   function showModal (dataSource) {
-    var modal = $('#infoModal');
+    let modal = $('#infoModal');
 
     $('#nameDetail').text(dataSource.name);
     $('#idDetail').text(dataSource.id);
     $('#typeDetail').text((dataSource.isExtract) ? 'Extract' : 'Live');
 
     // Loop through every field in the dataSource and concat it to a string.
-    var fieldNamesStr = '';
+    let fieldNamesStr = '';
     dataSource.fields.forEach(function (field) {
       fieldNamesStr += field.name + ', ';
     });
@@ -69,7 +69,7 @@
     dataSource.getConnectionSummariesAsync().then(function (connectionSummaries) {
       // Loop through each connection summary and list the connection's 
       // name and type in the info field
-      var connectionsStr = '';
+      let connectionsStr = '';
       connectionSummaries.forEach(function (summary) {
         connectionsStr += summary.name + ': ' + summary.type + ', ';
       });
@@ -80,7 +80,7 @@
 
     dataSource.getActiveTablesAsync().then(function (activeTables) {
       // Loop through each table that was used in creating this datasource
-      var tableStr = '';
+      let tableStr = '';
       activeTables.forEach(function (table) {
         tableStr += table.name + ', ';
       });
