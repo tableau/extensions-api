@@ -49,17 +49,10 @@ The dashboard extension samples are in the `Samples` folder. There is also a ste
  
      Uses the `settings` namespace to save settings (key-value pairs) for the extension. Demonstrates how you can save settings for each instance of an extension, which enables sharing common views of a workbook.  
 
+-   **[UINamespaces](https://github.com/tableau/extensions-api/tree/master/Samples/UINamespace?=target="_blank")**
 
-
---- 
-### Install the manifest files (`.trex`) for the samples 
-
-
-Every Tableau extension has a manifest file (`.trex`) that describes the extension and identifies the location of the web application. 
-
-1. Close Tableau, if you have it opened. 
-2. Copy the `.trex` files of the samples you wish to run to `~\Documents\My Tableau Repository (Beta)\Extensions` so they are available to Tableau. 
-  The `.trex` files for the samples can be found in the folder with the samples. For example, `\extensions-api\Samples\DataSources\DataSources.trex`.
+     Demonstrates how you can use the `UI` namespace to create a modal dialog box (or popup) that runs another extension, which allows users to interact and change the settings for the parent extension. This sample controls the background auto-refresh interval for data sources in a dashboard. 
+     
 
 
 
@@ -100,3 +93,15 @@ The port you use for the web server also has to match the port specified in the 
 
 ```
 
+---  
+### Run the samples 
+
+After you start the web server to host the sample extensions, you can try the extensions in Tableau. 
+
+1. Start Tableau and open a workbook that has a dashboard, or open a workbook and create a new dashboard. 
+2. In the dashboard, under **Objects**, select **Extension** and drag it on to the dashboard.  
+3. In the **Select an Extension** dialog box, click **Choose an Extension**. 
+ Every Tableau extension has a manifest file (`.trex`) that describes the extension and identifies the location of the web application. 
+4. Browse to the directory where the samples are located. For example, if you downloaded or cloned the GitHub repository, go to `\extensions-api\Samples`. 
+5. Select one of the folders for the samples and open the `.trex` file (for example, `DataSources.trex`).  
+The extension should appear in the dashboard.  Play around with the extension. Examine the HTML and JavaScript source files to see how things work.  
