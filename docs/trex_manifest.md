@@ -42,6 +42,9 @@ If a workbook is saved with an extension and then later opened on another comput
               <url>SCHEME://SERVER[:PORT][/PATH]</url> 
             </source-location>
             <icon>Base64-Encoded ICON</icon>
+            <permissions>
+    	       <permission>full data</permission>
+            </permissions>
           </dashboard-extension>
           <resources>
             <resource id="name">
@@ -114,10 +117,14 @@ The exception is for <code>localhost</code>. In this case, HTTP is allowed. For 
 <td>If specified, the icon is what appears under <strong>Extensions</strong> on a dashboard sheet. The icon must be a 64x64 pixel PNG file that is Base64 encoded. If you need an encoder, see <a href="https://www.base64-image.de/" class="uri">https://www.base64-image.de/</a></td>
 </tr>
 <tr class="odd">
+<td><code>permissions</code></td>
+<td>Declares the types of permissions that this extension requires. The only option is <code>full data</code>. If your extension can access the underlying data or information about the data sources, you must declare full data permission in the manifest. Full data permissions are required if you use any one of the following APIs: <code>Worksheet.getUnderlyingDataAsync()</code>, <code>Datasource.getUnderlyingDataAsync()</code>, <code>Datasource.getActiveTablesAsync()</code>, <code>Datasource.getConnectionSummariesAsync()</code>. If your extension does not use one of these APIs, you do not need include permissions element.</td>
+</tr>
+<tr class="even">
 <td><code>resources</code></td>
 <td>Specifies the resources that can be localized.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>min-api-version</code></td>
 <td>Specifies the minimum API version required to run the extension. This field is not used in this Developer Preview. Versioning support is still in progress.</td>
 </tr>
