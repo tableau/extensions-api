@@ -61,7 +61,7 @@ The dashboard extension samples are in the `Samples` folder. There is also a ste
 
 To use the dashboard extension samples, you need to start up a web server on your computer to host the HTML pages. If you downloaded or cloned the Extensions API repository, you can start the web service in the root directory of the repository on your computer. 
 
-1. Go to to the `extensions-api` folder.
+1. Go to the `extensions-api` folder.
 2. To install the web server components, run the following command:
    ```
    npm install
