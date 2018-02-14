@@ -15,26 +15,16 @@ A dashboard extension embeds a web page and runs a Chromium-based browser inside
 ## Set up Tableau for debugging (Windows)
 
 
-<!--
-
-1. Start Tableau and drag an extension onto the dashboard.
-2. Select the extension in the dashboard. 
-3. Click the **More Options** button in the upper-left or upper-right corner of the extension. Click **Debug Options** > **Enable Debugging**.
-4. After enabling debugging, select **Debug Options** > **Reload** to reinitialize the browser. You might need to stop and restart Tableau for the settings to take effect. 
-
-![Enable and reload]({{site.baseurl}}/assets/TcNTYA9566.gif)
-
-
-After you've done these steps, debugging will be enabled for all extensions until you turn it off.
--->
 If you are using Tableau Desktop on Windows, you need to open a Command Prompt window and run a command to start Tableau with debugging enabled. 
 
-1. Open a Terminal window. 
+1. Open a Command Prompt window. 
 2. Start Tableau using the following command:
 
 ```
 "C:\Program Files\Tableau\Tableau\bin\tableau.exe" --remote-debugging-port=8696
 ```
+
+This command enables remote debugging for all extensions. 
 
 For convenience, you could also create a shortcut for Tableau and add the remote debugging option to Properties dialog box. Select Tableau from the **Start** menu, and then right-click and select **Properties** or select **Open file location**. If you open the file location, you can create a new shortcut to `Tableau.exe` (call it something like *Tableau - Debug* ). Open the Properties for the new shortcut and append `-remote-debugging-port=8696` at the end of the command in the **Target** text box. The debugging option goes after the closing quotation mark for `"Tableau.exe"`. 
 
