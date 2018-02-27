@@ -20,10 +20,7 @@
   let activeDatasourceIdList = [];
 
   $(document).ready(function () {
-    tableau.extensions.initializeAsync().then(function() {
-      $('#play').click(configure);
-      $('#pause').click(pause);
-      
+    tableau.extensions.initializeAsync({'configure': configure}).then(function() {     
       // This event allows for the parent extension and popup extension to keep their
       // settings in sync.  This event will be triggered any time a setting is
       // changed for this extension, in the parent or popup (i.e. when settings.saveAsync is called).
@@ -89,15 +86,6 @@
         });
       });
     }, interval*60*1000);
-  }
-
-  /**
-   * Called when the user clicks the pause button to terminate auto refreshes.
-   */
-  function pause() {
-    clearInterval(refreshInterval);
-    $('#active').hide();
-    $('#inactive').show();
   }
 
   /**
