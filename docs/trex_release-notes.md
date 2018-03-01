@@ -11,12 +11,95 @@ layout: docs
 
 --- 
 
+### Developer Preview (0.10.0)
+*February 28, 2018*
+
+- Update of the Tableau Extensions API 
+- Tableau Extensions API library: `tableau-extensions-0.10.0.js`
+- Tableau Desktop, Tableau Server (from [Extensions API Developer Preview](https://prerelease.tableau.com){:target="_blank"})
+
+Updates in this release:
+
+- New *configure feature*, which allows you to register a custom JavaScript callback for a context menu item in the extension zone. See [Adding a configuration dialog box](#adding-a-configuration-menu-item) and the [UINamespace](https://github.com/tableau/extensions-api/tree/master/Samples/UINamespace?=target="_blank") sample.
+
+-	A fix for a problem that existed in the 0.9.0 release that caused extension initialization to break on Tableau Server.  
+
+
+For other changes with this release, see [Known Issues](https://prerelease.tableau.com/project/article/default.html?cap=52e2710a0793434d82142736c7ab3029&arttypeid=f592dc03830d480a862740e4a6bde998) on the [Extensions API Developer Preview](https://prerelease.tableau.com){:target="_blank"} site.
+
+--- 
+
+#### Adding a configuration menu item 
+
+You can use a new callback function option to `initializeAsync()` as a way to create a configuration option that opens a window or dialog box for your extension. To do this you first add the context-menu option to the extensions manifest file (`.trex`). 
+ 
+ 
+
+**Add `<context-menu>` to the .trex file** 
+
+```xml 
+<!-- add to <dashboard-extension> section
+  after <icon> and <permissions> -->
+
+<context-menu>
+    <configure-context-menu-item />
+</context-menu>
+
+``` 
+
+
+**Create a configuration function** 
+
+When you initialize an extension, you can now pass an optional `contextMenuCallbacks` object to the `initializeAsync()` function. This object  maps a special ID or key (which must be `'configure'`) to a function you create.  The function you create, in conjunction with adding a `<context-menu>` item to the manifest, adds a new **Configure...** context menu item to the zone of extension inside a dashboard.  When the user clicks the context menu item, the configuration function you specified is executed. 
+
+For example, you could use the UI namespace and have the configuration function call the `displayDialogAsync()` function to create a dialog box that can be used to change settings for the extension. The parent (or initial window) for your extension, might have the following JavaScript code. 
+
+```javascript
+
+$(document).ready(function () {
+    // ...
+    // pass the object to initializeAsync() to map 'configure' key to a function called configure()
+    // ...
+    tableau.extensions.initializeAsync({'configure': configure}).then(function() {     
+      // ...
+	  // ... code to set up event handlers for changes to configuration 
+      });
+    });
+  });
+
+
+
+   function configure() { 
+    // ... code to configure the extension
+    // for example, set up and call displayDialogAsync() to create the configuration window 
+	// and set initial settings and handle the return payload 
+	// ...
+    tableau.extensions.ui.displayDialogAsync(popupUrl, defaultIntervalInMin, { height: 500, width: 500 }).then((closePayload) => {
+      // The promise is resolved when the dialog has been expectedly closed, meaning that
+      // the popup extension has called tableau.extensions.ui.closeDialog.
+      // ...
+
+      // The close payload is returned from the popup extension via the closeDialog() method.
+     // ....
+
+    }).catch((error) => {
+      //  ... 
+      // ... code for error handling
+      
+    });
+  }
+```
+To better understand how to use the context menu, and to see it in action, check out the updated [UINamespace](https://github.com/tableau/extensions-api/tree/master/Samples/UINamespace?=target="_blank") sample. 
+
+
+--- 
+
 ### Developer Preview (0.9.0)
 *February 14, 2018*
 
 - Update of the Tableau Extensions API 
 - Tableau Extensions API library: `tableau-extensions-0.9.0.js`
-- Tableau Desktop, Tableau Server (from [Extensions API Developer Preview](https://prerelease.tableau.com){:target="_blank"})
+- Tableau Desktop (from [Extensions API Developer Preview](https://prerelease.tableau.com){:target="_blank"})
 
 Updates in this release:
 - [Updates to the UI namespace](#updates-to-the-ui-namespace) 

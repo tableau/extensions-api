@@ -20,10 +20,12 @@
   let activeDatasourceIdList = [];
 
   $(document).ready(function () {
-    tableau.extensions.initializeAsync().then(function() {
-      $('#play').click(configure);
-      $('#pause').click(pause);
-      
+    // When initializing an extension, an optional object is passed that maps a special ID (which
+    // must be 'configure') to a function.  This, in conjuction with adding the correct context menu
+    // item to the manifest, will add a new "Configure..." context menu item to the zone of extension
+    // inside a dashboard.  When that context menu item is clicked by the user, the function passed
+    // here will be executed.
+    tableau.extensions.initializeAsync({'configure': configure}).then(function() {     
       // This event allows for the parent extension and popup extension to keep their
       // settings in sync.  This event will be triggered any time a setting is
       // changed for this extension, in the parent or popup (i.e. when settings.saveAsync is called).
@@ -89,15 +91,6 @@
         });
       });
     }, interval*60*1000);
-  }
-
-  /**
-   * Called when the user clicks the pause button to terminate auto refreshes.
-   */
-  function pause() {
-    clearInterval(refreshInterval);
-    $('#active').hide();
-    $('#inactive').show();
   }
 
   /**
