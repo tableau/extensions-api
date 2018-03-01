@@ -45,6 +45,9 @@ If a workbook is saved with an extension and then later opened on another comput
             <permissions>
     	       <permission>full data</permission>
             </permissions>
+            <context-menu>
+              <configure-context-menu-item />
+            </context-menu>
           </dashboard-extension>
           <resources>
             <resource id="name">
@@ -121,10 +124,14 @@ The exception is for <code>localhost</code>. In this case, HTTP is allowed. For 
 <td>Declares the types of permissions that this extension requires. The only option is <code>full data</code>. If your extension can access the underlying data or information about the data sources, you must declare full data permission in the manifest. Full data permissions are required if you use any one of the following APIs: <code>Worksheet.getUnderlyingDataAsync()</code>, <code>Datasource.getUnderlyingDataAsync()</code>, <code>Datasource.getActiveTablesAsync()</code>, <code>Datasource.getConnectionSummariesAsync()</code>. If your extension does not use one of these APIs, you do not need include permissions element.</td>
 </tr>
 <tr class="even">
+<td><code>context-menu</code></td>
+<td>Adds a context menu item in the extension zone.  This is a configuration feature that allows you to register a custom JavaScript callback function and associate it with a context menu item. The only allowed element in <code>&lt;context-menu&gt;</code> is <code>&lt;configure-context-menu-item /&gt;</code>. The menu item and your configuration callback function are mapped together in the <code>initializeAsync()</code> function. When the extension is initialized, the menu item <b>Configure...</b> appears in the drop-down menu of the dashboard extension. When the user clicks the menu item, your callback function is executed.</td>
+</tr>
+<tr class="odd">
 <td><code>resources</code></td>
 <td>Specifies the resources that can be localized.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>min-api-version</code></td>
 <td>Specifies the minimum API version required to run the extension. This field is not used in this Developer Preview. Versioning support is still in progress.</td>
 </tr>

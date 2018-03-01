@@ -16,4 +16,4 @@ To see our changes in action, we can either click the reload button in the zone,
 
 ![Part 5 Screenshot](../assets/Part_5.gif)
 
-[Next Section (Part 6 - Persisting Settings in the Workbook)](../Part_6/readme.md)
+[Next Section (Part 6 - Performing Actions)](../Part_6/readme.md)

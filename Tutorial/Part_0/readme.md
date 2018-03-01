@@ -8,11 +8,14 @@ Extensions are simply web pages, so the first thing we'll need to do is make sur
 
 #### Registering the Manifest
 
-The very first thing you need to do is to provide an extension, or manifest file (`.trex`). If you cloned or downloaded the `.zip` file for the repository, you can find the manifests for the tutorial inside the Manifests folder. The `.trex` file contains basic information like the name of the extension (as it will appear in Tableau) and the url where the extension is hosted. To have the extension show up in Tableau, you must copy the `.trex` file into your `My Tableau Repository (Beta)/Extensions` folder and restart Tableau. When Tableau starts up again, you should see the extension listed when authoring a dashboard.
+The very first thing you need to do is to provide an extension, or manifest file (`.trex`). If you cloned or downloaded the `.zip` file for the repository, you can find the manifests for the tutorial inside the Manifests folder. The `.trex` file contains basic information like the name of the extension (as it will appear in Tableau) and the url where the extension is hosted. 
+
+To open an extension, start Tableau and open a workbook that has a dashboard, or open a workbook and create a new dashboard. In the dashboard, under **Objects**, select **Extension** and drag it on to the dashboard. In the **Choose an Extension** dialog box, click **Choose** and browse to the `\extensions-api\Tutorial\Manifests` folder. Select the `.trex` file of the extension you want to open.
+
 
 #### Testing It Out
 
-After starting the server, copying the manifest file over, and restarting Tableau, you should now see your extension in the dashboard authoring pane on the left side of Tableau. Drag out the extension onto a dashboard, and you should see "Hello Extensions" on your dashboard.
+After starting the server and starting Tableau, you can open a workbook and switch to a dashboard. In the dashboard, under **Objects**, select **Extension** and drag it on to the dashboard. Open the file chooser and select the `Tutorial_Part_0.trex` file. You should see "Hello Extensions" on your dashboard.
 
 ![Part 0 Screenshot](../assets/Part_0.png)
 
