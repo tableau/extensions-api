@@ -11,6 +11,32 @@ layout: docs
 
 --- 
 
+### Developer Preview (0.11.0)
+*March 28, 2018*
+
+Update of the Tableau Extensions API 
+- Tableau Extensions API library: `tableau-extensions-0.11.0.js`
+- Tableau Desktop, Tableau Server (from [Extensions API Developer Preview](https://prerelease.tableau.com){:target="_blank"})
+
+Updated in this release:
+
+- Extensions that access the underlying data in a workbook now prompt the user for permission to run. Dashboard authors and users of your extension can decide whether to allow the extension to run or not. See [Accessing Underlying Data]({{site.baseurl}}/docs/trex_data_access.html)
+
+
+Bug fixes:
+
+- 725055	Defect	Canceling extensions selection causes error	  	 
+- 741150	Defect	Parameters (Desktop): Tableau crashes if you add a filter based off of a parameter to a dashboard		 	 
+	 	 
+- 730856	Defect	Saving and Opening wb w/ Extension throws error		 	 
+- 742673	Defect	Parameter Changed Notification not working on server	
+- 747445	Defect	Extension Dialog height and width are reversed	
+
+
+
+
+---
+
 ### Developer Preview (0.10.0)
 *February 28, 2018*
 
@@ -50,7 +76,7 @@ You can use a new callback function option to `initializeAsync()` as a way to cr
 
 **Create a configuration function** 
 
-When you initialize an extension, you can now pass an optional `contextMenuCallbacks` object to the `initializeAsync()` function. This object  maps a special ID or key (which must be `'configure'`) to a function you create.  The function you create, in conjunction with adding a `<context-menu>` item to the manifest, adds a new **Configure...** context menu item to the zone of extension inside a dashboard.  When the user clicks the context menu item, the configuration function you specified is executed. 
+When you initialize an extension, you can now pass an optional `contextMenuCallbacks` object to the `initializeAsync()` function. This object  maps a special ID or key (which must be `'configure'`) to a function you create.  The function you create, in conjunction with adding a `<context-menu>` item to the manifest, adds a new **Configure...** context menu item to the zone of the extension inside a dashboard.  When the user clicks the context menu item, the configuration function you specified is executed. 
 
 For example, you could use the UI namespace and have the configuration function call the `displayDialogAsync()` function to create a dialog box that can be used to change settings for the extension. The parent (or initial window) for your extension, might have the following JavaScript code. 
 

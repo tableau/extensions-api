@@ -27,21 +27,26 @@ This section covers options for setting up your extension to use HTTPS. For info
 When you use HTTPS, all HTTP data is encrypted prior to transmission by the Transport Layer Security (TLS) and decrypted when it is received.  HTTPS ensures a secure channel between the extension (client), running in the Tableau dashboard, and the web server that hosts the extension. The use of HTTPS provides a level of privacy, authentication, and integrity.
 
 If you plan to make your extension available to others, using HTTPS
- assures your customers that their data is safe and that they are connecting to  trusted extension. Because the extension is using HTTPS, Tableau is also able to verify the identity of the server that hosts the extension, which prevents various malicious man-in-the-middle attacks that could occur if the extension were to use HTTP alone.  
+ assures your customers that their data is safe and that they are connecting to a trusted extension. Because the extension is using HTTPS, Tableau is also able to verify the identity of the server that hosts the extension, which prevents various malicious man-in-the-middle attacks that could occur if the extension were to use HTTP alone.  
 
 > Note: For development or internal use, you can run your extension on your local computer as `localhost` and you can use the HTTP protocol.  
 
 
 
 --- 
+
 ## HTTPS and security requirements
+
 The requirements are pretty straight-forward. If you are distributing your extension so that others can use it, the extension must be hosted on a web server that is configured to support the HTTPS protocol. 
 
 - The server that hosts your extension must have a certificate from a Certificate Authority (CA). There are many free and low cost options. Note that self-signed or test-signed certificates are not sufficient. The certificate is sometimes called an SSL certificate, as HTTPS was formerly implemented by the Secure Sockets Layer (SSL). 
-- In the `.trex` file for your extension, the `url` you use for the source location must start with `https://`.  If the HTTPS protocol is not specified, the extension fails registration and does not appear in list of available extensions in Tableau.
-The exception to this requirement is for `localhost`. If you are developing your extension, you can host it on your computer using HTTP (for example, `http://localhost`). You can also use `http://localhost` if you publish the workbook to Tableau Server. In this case, the extension must be running on the same computer as the browser you are using to access the server. 
+
+- In the `.trex` file for your extension, the `url` you use for the source location must start with `https://`.  If the HTTPS protocol is not specified, the extension fails registration and will not load in Tableau. The exception to this requirement is for `localhost`. If you are developing your extension, you can host it on your computer using HTTP (for example, `http://localhost`). You can also use `http://localhost` if you publish the workbook to Tableau Server. In this case, the extension must be running on the same computer as the browser you are using to access the server. 
+
 - Mixed content is not allowed. If your web application uses other libraries or resources, those assets should also use `https`, or use site-relative links. 
+
 - Redirects are permitted, but if they redirect to any other origin, other than the URL of the extension, those pages cannot interact with the Extensions API. For example, if the URL of your extension is `https://example.com` and you redirect to `https://myexample.com`, the page you were redirecting to (`https://myexample.com`) cannot interact with the Extensions API. 
+
 - To run on Tableau Server, your extension must be added to the safe list for the site. Site administrators can add or remove extensions, and can configure how an extension requests permissions for access to data.  
 
 ----
@@ -79,7 +84,7 @@ Or during development, when you can use `localhost`, the entry might look like t
 
 
 ```
-At startup, Tableau looks for and validates the extension `.trex` files. If the extension source location does not specify HTTPS or localhost, validation fails and the extension is not registered. These errors are written to the log file. The extension will not appear in the list of available extensions. If you examine the log files (for example, with Tableau Log Viewer), you will find something similar to the following:
+At startup, Tableau looks for and validates the extension `.trex` files. If the extension source location does not specify HTTPS or localhost, validation fails and the extension is not registered. These errors are written to the log file. The extension will not load in Tableau. If you examine the log files (for example, with Tableau Log Viewer), you will find something similar to the following:
 
 ```
 Error: Registration Failed: XSD Validation Failed
@@ -92,6 +97,7 @@ file: Example.trex
 
 ```
 
+For more information, see [Use Log files to Troubleshoot Dashboard Extensions]({{site.baseurl}}/docs/trex_logging.html).
 
 ## Avoid mixed content - use HTTPS or site-relative paths for resources
 

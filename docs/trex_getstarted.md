@@ -3,7 +3,7 @@ title: Get Started
 layout: docs
 ---
 
-The Tableau Extensions API allows developers to create extensions for Tableau. Tableau extensions are web applications that can interact and communicate with Tableau. 
+The Tableau Extensions API allows developers to create extensions for Tableau. Tableau extensions are web applications that can interact and communicate with Tableau.
  
 This section will take you through the process of setting up Tableau to use one of the sample dashboard extensions. A dashboard extension is a web application that can be placed in the dashboard like any other dashboard object.
 
@@ -18,7 +18,7 @@ This section will take you through the process of setting up Tableau to use one 
 
 ----
 *What's in a Tableau extension? <br/>
-A Tableau extension consists of a manifest file (`.trex`), a web page that uses a Tableau-provided JavaScript library, and the JavaScript file (or files) that contain your extension logic. The Tableau extensions are supported on Tableau Desktop.*
+A Tableau extension consists of a manifest file (`.trex`), a web page that uses a Tableau-provided JavaScript library, and the JavaScript file (or files) that contain your extension logic. The Tableau extensions are supported on Tableau Desktop and Tableau Server.*
 
 ---
 
@@ -30,7 +30,9 @@ A Tableau extension consists of a manifest file (`.trex`), a web page that uses 
 If you want to create an extension or work with the sample code, make sure you have the following dependencies installed:
 
 * [Git](https://git-scm.com/downloads)
-* [Node.js and npm](https://nodejs.org/en/download/) - needed to run the Dashboard Extension demos
+* [Node.js and npm](https://nodejs.org/en/download/) 
+
+You need Node.js and nmp to run the dashboard extension demos. Node.js is a JavaScript runtime. npm is a package manager for Node.js and is installed when you install Node.js.
 
 
 
@@ -51,30 +53,37 @@ You can get the Tableau Extensions API SDK in two ways. Clone the repository if 
 
 
 ---
-### Download and install Tableau Desktop
+### Download and install Tableau
 
 
-The version of Tableau that supports the Extension API is only available from the **Extensions API Developer Preview** on [https://prerelease.tableau.com](https://prerelease.tableau.com). 
-1. Download and install Tableau Desktop from the [Extensions API Developer Preview](https://prerelease.tableau.com) site). 
+The version of Tableau that supports the Extension API is only available from the **Extensions API Developer Preview** on [https://prerelease.tableau.com](https://prerelease.tableau.com/project/home.html?cap=52e2710a0793434d82142736c7ab3029){:target="_blank"}. 
+- Download and install Tableau Desktop or Tableau Server from the [Extensions API Developer Preview](https://prerelease.tableau.com/project/home.html?cap=52e2710a0793434d82142736c7ab3029) site). 
    Under **Resources**, click **Extensions API Software Downloads**. There are separate installation applications for Windows and macOS. You can also download the Extensions API JavaScript library, which is needed if you are going to develop your own extensions.
 
-2. To avoid situations that might cause Tableau to become unresponsive, turn off accelerated graphics. From the **Help** menu, click **Settings and Performance**, and then clear the **Enable Accelerated Graphics** option. 
 
 
 ---
 ### Start a web server to host the sample dashboard extensions
 
-To use the dashboard extension samples, you need to start up a web server on your computer to host the HTML pages. If you downloaded or cloned the Extensions API repository, you can start the web service in the root directory of the repository on your computer. For example, if you downloaded the `extensions-api-master.zip` file to your `Downloads` directory, after you extract the files, the path might be `Downloads\extensions-api-master\extensions-api\`.
+To use the dashboard extension samples, you need to start up a web server on your computer to host the HTML pages. If you downloaded or cloned the Extensions API repository, you can start the web service in the root directory of the repository on your computer. For example, if you downloaded the `extensions-api-master.zip` file to your `Downloads` directory, after you extract the files, the path might be `Downloads\extensions-api-master\extensions-api\`. 
 
-1. Navigate to the the `extensions-api` directory.
-2. To install the web server components, run the following command:
+1. Navigate to the `extensions-api` directory.
+2. To install the web server components, run the following npm command to install the package:
    ```
    npm install
    ```
-3. To start the web server, run the following command:
+
+3. To start the web server, run the following npm command:
    ```
    npm start
    ```
+    The start command runs a script to start the web server over port `8765`.  You only need to install the web server components the first time. Subsequently, you can just start the web server. 
+    
+
+
+    **Note** The web server just serves the extension samples, which have URLs similar to the following: `http://localhost:8765/Samples/DataSources/datasources.html`
+    This local web server is not intended to serve the Help pages. 
+    View the Help on GitHub at [https://tableau.github.io/extensions-api](https://tableau.github.io/extensions-api).
 
 
 
