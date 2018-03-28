@@ -5,7 +5,7 @@ layout: docs
 
 <!--Keep this intro short -->
 
-The Extensions API provides several methods that can access the underlying data in a workbook. The underlying data can include information about the data sources, such as the names of the connection, fields, and tables. Collectively, this information is sometimes called *full data*. Because of the potentially sensitive nature of this data, dashboard authors and people who use extensions need to know if the extension can access their data, and based upon this knowledge they might want to restrict this access. 
+The Extensions API provides several methods that can access the underlying data in a dashboard. The underlying data can include information about the data sources, such as the names of the connection, fields, and tables. Collectively, this information is sometimes called *full data*. Because of the potentially sensitive nature of this data, dashboard authors and people who use extensions need to know if the extension can access their data, and based upon this knowledge they might want to restrict this access. 
 
 To help ensure transparency and to give the users of extensions control, if your extension uses any of these methods that can access full data, you need to configure your extension to require **full-data** permission. The following section describes how you need to set up the permissions for your extension to run. 
 
@@ -33,7 +33,7 @@ If the extension uses any of the four methods, they are considered privileged, i
 
 #### Extensions API methods that access full data 
 
-If your extension uses any one of the following methods, without declaring **full-data** permission in the manifest file, the extension will not load and the method calls will fail. If you have debugging enabled, Tableau will report an error in the JavaScript console and the error is also written to the Tableau log file. 
+If your extension uses any one of the following methods, without declaring **full-data** permission in the manifest file, the extension will load but the method calls will fail. If you have debugging enabled, Tableau will report an error in the JavaScript console and the error is also written to the Tableau log file. 
  
 `Worksheet.getUnderlyingDataAsync()`
 
@@ -90,12 +90,12 @@ The name of the extension and its URL come from the values you add to the manife
 
 ## What happens when users open a workbook that uses an extension
 
-When users open a workbook that has an extension that requires full-data access, Tableau displays a prompt that lists the names of the all the extensions in the workbook. Users can click **Allow** to load the workbook. 
+When users open a dashboard that has an extension that requires full-data access, Tableau displays a prompt that lists the names of the all the extensions in the dashboard. Users can click **Allow** to load the dashboard.
 
 
  ![]({{site.baseurl}}/assets/Load_Extensions_Dialog.png){:height="50%" width="50%"}
 
-The **Allow an Extension** dialog box provides users information about your extension. This information includes links to the your website, as specified by the `website` attribute in manifest file (in the `<author>` element). Users can click on the link under **Create By** to find out more about your extension. 
+The **Allow an Extension** dialog box provides users information about your extension. This information includes links to the your website, as specified by the `website` attribute in manifest file (in the `<author>` element). Users can click on the link under **Created By** to find out more about your extension. 
  The dialog box also indicates whether or not the extension requires full-data access and provides the URL of the extension. 
 
 
@@ -106,7 +106,7 @@ If a user clicks **Cancel**, the workbook is opened, but the extension is not lo
 Permissions approval can be reset through the contect menu.
 
 ```
-Users can use choose to allow the extension to run by using the clicking **Reset Permissions** from the **More Options** drop-down menu of the layout container. This opens up the **Allow Extensions** dialog box where the user can change permissions for the workbook. 
+Users can use choose to allow the extension to run by using the clicking **Reset Permissions** from the **More Options** drop-down menu of the layout container. This opens up the **Allow Extensions** dialog box where the user can change permissions for the extension.
 
 ![]({{site.baseurl}}/assets/reset_perms.png){:height="50%" width="50%"}
  
