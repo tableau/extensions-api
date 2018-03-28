@@ -11,11 +11,11 @@ layout: docs
 
 --- 
 
-### Developer Preview (0.12.0)
+### Developer Preview (0.12.7)
 *March 28, 2018*
 
 Update of the Tableau Extensions API 
-- Tableau Extensions API library: `tableau-extensions-0.12.0.js`
+- Tableau Extensions API library: `tableau-extensions-0.12.7.js`
 - Tableau Desktop, Tableau Server (from [Extensions API Developer Preview](https://prerelease.tableau.com){:target="_blank"})
 
 Updated in this release:
@@ -24,7 +24,7 @@ Updated in this release:
 
 - Dashboard authors and users of your extension can decide whether to allow the extension to run or not. When users add an extension that can access the underlying data in a dashboard, they now see a prompt that lets them allow the extension to run. In addition, when someone opens a dashboard that contains extensions, they see a dialog box that lists information about all the extensions in the dashboard, and a prompt to allow the extensions to run. For more information, see [Accessing Underlying Data]({{site.baseurl}}/docs/trex_data_access.html)
 
-- Starting with the `0.12.0` release, the Extensions API library supports versioning. Future versions of Tableau will be able to run extensions that use earlier versions of the Extensions API library (`0.12.0` and later). You will no longer need to roll the version number of the library in your extension at every release just to enable it to run in Tableau.  For example, a dashboard extension that uses the Extensions API `0.12.0` library should run in a future release of Tableau without modification. And Tableau will provide a meaningful error message if you try to run an extension that requires a later version of the Extensions API library than the version of the API that a particular Tableau release supports. For example, if the extension uses the `0.14.0` library but the version of Tableau only supports an earlier version (`0.12.0`), users of the extension will see a message informing them that they need a later version of Tableau. 
+- Starting with the `0.12.7` release, the Extensions API library supports versioning. Future versions of Tableau will be able to run extensions that use earlier versions of the Extensions API library (`0.12.7` and later). You will no longer need to roll the version number of the library in your extension at every release just to enable it to run in Tableau.  For example, a dashboard extension that uses the Extensions API `0.12.7` library should run in a future release of Tableau without modification. And Tableau will provide a meaningful error message if you try to run an extension that requires a later version of the Extensions API library than the version of the API that a particular Tableau release supports. For example, if the extension uses the `0.14.0` library but the version of Tableau only supports an earlier version (`0.12.7`), users of the extension will see a message informing them that they need a later version of Tableau. 
 
 
 Bug fixes:
