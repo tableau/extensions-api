@@ -64,7 +64,7 @@ Name the manifest file for your extension (for example, `HelloExtensions` and sa
 
 
 
-- To add the extension to a Tableau dashboard, you need to drag the **Extension** object on to the dashboard, and then use the **Choose an Extension** dialog box to locate and open the manifest file. For information about validating the manifest and adding version information, see [Tableau AddIn Manifest]({{site.baseurl}}/docs/trex_manifest.html).
+- To add the extension to a Tableau dashboard, you need to drag the **Extension** object on to the dashboard, and then use the **Choose an Extension** dialog box to locate and open the manifest file. For information about validating the manifest and adding version information, see the [Tableau Extension Manifest]({{site.baseurl}}/docs/trex_manifest.html).
 
 
 
