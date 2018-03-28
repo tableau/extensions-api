@@ -11,6 +11,37 @@ layout: docs
 
 --- 
 
+### Developer Preview (0.12.0)
+*March 28, 2018*
+
+Update of the Tableau Extensions API 
+- Tableau Extensions API library: `tableau-extensions-0.12.0.js`
+- Tableau Desktop, Tableau Server (from [Extensions API Developer Preview](https://prerelease.tableau.com){:target="_blank"})
+
+Updated in this release:
+
+- Extensions API library goes to `12` (one better than `11`). The library has been refactored to be smaller, faster, lighter. 
+
+- Dashboard authors and users of your extension can decide whether to allow the extension to run or not. When users add an extension that can access the underlying data in a dashboard, they now see a prompt that lets them allow the extension to run. In addition, when someone opens a dashboard that contains extensions, they see a dialog box that lists information about all the extensions in the dashboard, and a prompt to allow the extensions to run. For more information, see [Accessing Underlying Data]({{site.baseurl}}/docs/trex_data_access.html)
+
+- Starting with the `0.12.0` release, the Extensions API library supports versioning. Future versions of Tableau will be able to run extensions that use earlier versions of the Extensions API library (`0.12.0` and later). You will no longer need to roll the version number of the library in your extension at every release just to enable it to run in Tableau.  For example, a dashboard extension that uses the Extensions API `0.12.0` library should run in a future release of Tableau without modification. And Tableau will provide a meaningful error message if you try to run an extension that requires a later version of the Extensions API library than the version of the API that a particular Tableau release supports. For example, if the extension uses the `0.14.0` library but the version of Tableau only supports an earlier version (`0.12.0`), users of the extension will see a message informing them that they need a later version of Tableau. 
+
+
+Bug fixes:
+
+- Canceling extensions selection causes error	 
+
+- Parameters (Desktop): Tableau crashes if you add a filter based off of a parameter to a dashboard		 	 
+	 	 
+- Saving and opening a workbook that has an extension throws error	
+
+- Parameter Changed Notification not working on server	
+
+- Extension dialog box height and width are reversed	
+
+
+---
+
 ### Developer Preview (0.10.0)
 *February 28, 2018*
 
@@ -50,7 +81,7 @@ You can use a new callback function option to `initializeAsync()` as a way to cr
 
 **Create a configuration function** 
 
-When you initialize an extension, you can now pass an optional `contextMenuCallbacks` object to the `initializeAsync()` function. This object  maps a special ID or key (which must be `'configure'`) to a function you create.  The function you create, in conjunction with adding a `<context-menu>` item to the manifest, adds a new **Configure...** context menu item to the zone of extension inside a dashboard.  When the user clicks the context menu item, the configuration function you specified is executed. 
+When you initialize an extension, you can now pass an optional `contextMenuCallbacks` object to the `initializeAsync()` function. This object  maps a special ID or key (which must be `'configure'`) to a function you create.  The function you create, in conjunction with adding a `<context-menu>` item to the manifest, adds a new **Configure...** context menu item to the zone of the extension inside a dashboard.  When the user clicks the context menu item, the configuration function you specified is executed. 
 
 For example, you could use the UI namespace and have the configuration function call the `displayDialogAsync()` function to create a dialog box that can be used to change settings for the extension. The parent (or initial window) for your extension, might have the following JavaScript code. 
 
