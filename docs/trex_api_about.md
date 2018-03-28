@@ -24,12 +24,10 @@ The `extensions` name space has one method `initializeAsync()` that is used to i
 
 ## Registering and accessing dashboard extensions
 
-The dashboard extension is one type of extension in the Tableau extensions namespace (and it is accessed using `tableau.extensions`). To register the extension, you declare the type of extension in the manifest file (`.trex`). 
+The dashboard extension is one type of extension in the Tableau extensions namespace (and it is accessed using `tableau.extensions`). To register the extension, you declare the type of extension in the manifest file (`.trex`). For more information about what goes in the file, see [Tableau Manifest File]({{site.baseurl}}\docs\index.html). 
 
 ```xml
-    <addin-type>
-      <dashboard-addin/>
-    </addin-type>
+    <dashboard-extension id="com.example.extensions.name" extension-version="0.1.0">
 ```
 After the extension is initialized, it provides access to the objects in the dashboard, but also has access to the namespaces that are common to all extensions. For example, you can use the `tableau.extensions.environment` to query the environment the dashboard is running in, or `tableau.extensions.settings` to set or get key-value pairs associated with the extension. The `tableau.extensions.settings` can be saved with the workbook, so you can configure the dashboard and the extension in specific ways and then share that configuration with others. 
 

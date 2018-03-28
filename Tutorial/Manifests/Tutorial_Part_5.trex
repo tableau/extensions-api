@@ -4,7 +4,7 @@
     <default-locale>en_US</default-locale>
     <name resource-id="name"/>
     <description>Demonstrates getting the selected marks and responding to user input</description>
-    <author name="projectfrelard" email="projectfrelard@tableau.com" organization="tableau" website="www.tableau.com"/>
+    <author name="projectfrelard" email="projectfrelard@tableau.com" organization="tableau" website="https://www.tableau.com"/>
     <min-api-version>0.6</min-api-version>
     <source-location>
       <url>http://localhost:8765/Tutorial/Part_5/MarksSelection.html</url>
