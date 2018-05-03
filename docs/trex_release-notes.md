@@ -8,6 +8,10 @@ layout: docs
 * TOC
 {:toc}
 
+### Tableau 2018.2 (Beta 1)
+*April 26, 2018*
+
+Download Tableau Desktop, Tableau Server from [Tableau 2018.2 Beta](https://prerelease.tableau.com/project/home.html?cap=c43269484c1f45a68f5ad4fc4660b2ab){:target="_blank"}
 
 ### Developer Preview (0.12.8)
 *April 13, 2018*
