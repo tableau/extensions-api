@@ -55,8 +55,9 @@ You can get the Tableau Extensions API SDK in two ways. Clone the repository if 
 ---
 ### Download and install Tableau
 
+| **Now in Beta**  <br/>You can download the latest version of Tableau from the [Tableau 2018.2 Beta](https://prerelease.tableau.com/project/home.html?cap=c43269484c1f45a68f5ad4fc4660b2ab){:target="_blank"} site. The Beta release supports dashboard extensions. Use the Beta release of Tableau during the 2018.2 Beta Program.
 
-The version of Tableau that supports the Extension API is only available from the **Extensions API Developer Preview** on [https://prerelease.tableau.com](https://prerelease.tableau.com/project/home.html?cap=52e2710a0793434d82142736c7ab3029){:target="_blank"}. 
+The version of Tableau that supports the Extension API is available from the **Extensions API Developer Preview** on [https://prerelease.tableau.com](https://prerelease.tableau.com/project/home.html?cap=52e2710a0793434d82142736c7ab3029){:target="_blank"}. 
 - Download and install Tableau Desktop or Tableau Server from the [Extensions API Developer Preview](https://prerelease.tableau.com/project/home.html?cap=52e2710a0793434d82142736c7ab3029) site). 
    Under **Resources**, click **Extensions API Software Downloads**. There are separate installation applications for Windows and macOS. You can also download the Extensions API JavaScript library, which is needed if you are going to develop your own extensions.
 
