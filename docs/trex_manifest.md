@@ -31,7 +31,7 @@ If a workbook is saved with an extension and then later opened on another comput
 
 ```xml
         <?xml version="1.0" encoding="utf-8"?> 
-        <manifest manifest-version="0.1" xmlns="http://wwww.tableau.com/xml/extension_manifest">
+        <manifest manifest-version="0.1" xmlns="http://www.tableau.com/xml/extension_manifest">
           <dashboard-extension id="com.example.extensions.name" extension-version="0.1.0">
             <default-locale>en_US</default-locale>
             <name resource-id="name"/>
