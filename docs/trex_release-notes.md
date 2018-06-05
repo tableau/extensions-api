@@ -8,10 +8,47 @@ layout: docs
 * TOC
 {:toc}
 
+### Tableau 2018.2 (Beta 2)
+*June 4, 2018*
+
+Download Tableau Desktop, Tableau Server from [Tableau 2018.2 Beta](https://prerelease.tableau.com/project/home.html?cap=c43269484c1f45a68f5ad4fc4660b2ab){:target="_blank"}
+
+
+Changes in this release:
+
+- XML Schema: This release introduces two changes to the XML schema for the extensions manifest file (`.trex`). If you have an existing `.trex` file, you need to make a couple of corrections. 
+<br />
+- The first change is to the URL of the extensions namespace (`xmlns`). The URL is now `www.tableau.com...` instead of `wwww.tableau.com...`
+
+```xml
+  <manifest manifest-version="0.1" xmlns="http://www.tableau.com/xml/extension_manifest">
+  ...      
+
+  </manifest>   
+```
+- The second change is to the author's web site. This link to your web site must now be over HTTPS for security. This link to your web site will become the **Get Support** link in the **About** dialog box for your extension. Users will be able to click the link to get to the help page that you provide. 
+
+```xml
+<author name="tableau" email="github@tableau.com" organization="tableau" website="https://www.tableau.com"/>
+```
+
+- Extensions settings and permissions in Tableau Server <br />
+Server administrators can manage dashboard extensions on the **Settings > Extensions** tab (for each site and for the server). By default, only extensions that do not require full data access are allowed to run. HTTPS is required. Server administrators can enable dashboard extensions that are trusted to access full data by adding them to a safe list for a site. Server administrators can control whether or not the users will see prompts (asking them to allow the extension to access data) when users are adding an extension to a dashboard, or when they are interacting with a view that has an extension.  For more information, see [Dashboard Extensions in Tableau Server](https://onlinehelp.tableau.com/v2018.2/server/en-us/dashboard_extensions_server.htm){:target="_blank"}
+
+- The **About** dialog box. Users can now find out about an extension in the dashboard by selecting the layout container and then clicking **About** from the **More Options** menu. Information from the extension manifest file (`.trex`) is used to populate a dialog box. (Note that the dialog box you see might look slightly different from this example.) 
+
+   ![]({{site.baseurl}}/assets/about_extension_dialog.png){:height="33%" width="33%"}
+
+
+
+---
+
 ### Tableau 2018.2 (Beta 1)
 *April 26, 2018*
 
 Download Tableau Desktop, Tableau Server from [Tableau 2018.2 Beta](https://prerelease.tableau.com/project/home.html?cap=c43269484c1f45a68f5ad4fc4660b2ab){:target="_blank"}
+
+--- 
 
 ### Developer Preview (0.12.8)
 *April 13, 2018*
