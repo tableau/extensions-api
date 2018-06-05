@@ -36,7 +36,7 @@ If a workbook is saved with an extension and then later opened on another comput
             <default-locale>en_US</default-locale>
             <name resource-id="name"/>
             <description>Extension Description</description>
-            <author name="USERNAME" email="USER@example.com" organization="My Company" website="www.example.com"/>
+            <author name="USERNAME" email="USER@example.com" organization="My Company" website="https://www.example.com"/>
             <min-api-version>1.1</min-api-version>
             <source-location>
               <url>SCHEME://SERVER[:PORT][/PATH]</url> 
