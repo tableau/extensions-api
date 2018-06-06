@@ -41,7 +41,7 @@ If a workbook is saved with an extension and then later opened on another comput
             <source-location>
               <url>SCHEME://SERVER[:PORT][/PATH]</url> 
             </source-location>
-            <icon>Base64-Encoded ICON</icon>
+            <icon></icon>
             <permissions>
     	       <permission>full data</permission>
             </permissions>
