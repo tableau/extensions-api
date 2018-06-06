@@ -11,7 +11,10 @@ layout: docs
 ### Tableau 2018.2 (Beta 2)
 *June 4, 2018*
 
-Download Tableau Desktop, Tableau Server from [Tableau 2018.2 Beta](https://prerelease.tableau.com/project/home.html?cap=c43269484c1f45a68f5ad4fc4660b2ab){:target="_blank"}
+Update of the Tableau Extensions API
+
+- Tableau Extensions API library: tableau-extensions-0.16.0.js
+- Download Tableau Desktop, Tableau Server from [Tableau 2018.2 Beta](https://prerelease.tableau.com/project/home.html?cap=c43269484c1f45a68f5ad4fc4660b2ab){:target="_blank"}
 
 
 Changes in this release:
