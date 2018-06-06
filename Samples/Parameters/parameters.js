@@ -89,7 +89,7 @@
         allowable.append(termKey('Max Value'));
         allowable.append(termValue(value.maxValue.formattedValue, 'No Max'));
         allowable.append(termKey('Step Size'));
-        allowable.append(termValue(value.maxValue.stepSize, 'default'));
+        allowable.append(termValue(value.stepSize, 'default'));
         break;
       default:
         console.error('Unknown Parameter value type: ' + value.type);

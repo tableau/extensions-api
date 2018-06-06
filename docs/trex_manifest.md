@@ -31,12 +31,12 @@ If a workbook is saved with an extension and then later opened on another comput
 
 ```xml
         <?xml version="1.0" encoding="utf-8"?> 
-        <manifest manifest-version="0.1" xmlns="http://wwww.tableau.com/xml/extension_manifest">
+        <manifest manifest-version="0.1" xmlns="http://www.tableau.com/xml/extension_manifest">
           <dashboard-extension id="com.example.extensions.name" extension-version="0.1.0">
             <default-locale>en_US</default-locale>
             <name resource-id="name"/>
             <description>Extension Description</description>
-            <author name="USERNAME" email="USER@example.com" organization="My Company" website="www.example.com"/>
+            <author name="USERNAME" email="USER@example.com" organization="My Company" website="https://www.example.com"/>
             <min-api-version>1.1</min-api-version>
             <source-location>
               <url>SCHEME://SERVER[:PORT][/PATH]</url> 
@@ -104,7 +104,7 @@ If a workbook is saved with an extension and then later opened on another comput
 </tr>
 <tr class="even">
 <td><code>author</code></td>
-<td>Specifies metadata about the author of the extension, including <code>name</code>, <code>email</code> address, <code>organization</code>, and <code>website</code>. The <code>name</code> attribute is required.</td>
+<td>Specifies metadata about the author of the extension, including <code>name</code>, <code>email</code> address, <code>organization</code>, and <code>website</code>. The <code>name</code> and <code>website</code> attributes are required. The <code>website</code> URL must use HTTPS. The <code>website</code> URL is the target of the <b>Get Support</b> link that users see in the <b>About</b> dialog box for your extension. The URL should take users to a page where they can learn about your extension and can get help on using it. </td>
 </tr>
 <tr class="odd">
 <td><code>source-location</code></td>
