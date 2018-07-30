@@ -3,7 +3,7 @@ title: Cross-Site Scripting and Extension Security
 layout: docs
 ---
 
-As a developer, there are precautions and best practices to follow to developing secure extensions. A dashboard extension is a web application that runs inside the Tableau dashboard, and as a web application, your dashboard extension could be vulnerable to cross-site scripting (XSS). Cross-site scripting is an attack where a malicious user injects client-side code (typically, JavaScript) to execute in your web application. When other users load the web pages of your extension, the attacker's scripts can run, potentially stealing information or redirecting the browser to another web page.
+As a developer of dashboard extensions, there are certain precautions you should take and best practices you can follow to helo ensure that your extensions are secure. A dashboard extension is a web application that runs inside the Tableau dashboard, and as a web application, your dashboard extension could be vulnerable to cross-site scripting (XSS). Cross-site scripting is an attack where a malicious user injects client-side code (typically, JavaScript) to execute in your web application. When other users load the web pages of your extension, the attacker's scripts can run, potentially stealing information or redirecting the browser to another web page.
 
 
 **In this section**
@@ -24,7 +24,7 @@ If your dashboard extension accepts text input from users through forms or text 
 * Always validate user-provided text input into your HTML pages.
   If your extension uses forms or text boxes to collect user input, be sure to validate and verify that the input conforms to what you expect. Use regular expressions to verify the input. 
 * Use HTML entity encoding and escape the characters `&`, `<`, `>`, `"`, `'`, and `/`.  For example, use entity names or numbers `&gt;` or `&#62;` for the greater than character `>`.
-* If your extension makes use URIs as input, use JavaScript methods, such as `encodeURI` and `encodeURIComponent` for encoding.
+* If your extension makes use of URIs as input, use JavaScript methods, such as `encodeURI` and `encodeURIComponent` for encoding.
 * Follow the XSS Positive Prevention model as outlined by OWASP, and only allow user-provided data in specific HTML locations in your web application.  
 
 ## Additional proposals for prevention
@@ -41,13 +41,13 @@ If your dashboard extension accepts text input from users through forms or text 
   <script src="./myJavaScript.js" </script>
   ```
 
-* Only allow local scripts. Instead of referencing hosted JavaScript libraries, make local copies and link to these. This is a proposal for all dashboard extensions. This is a recommendation and not a requirement. 
+* Only allow local scripts. Instead of referencing externally hosted JavaScript libraries, make local copies and link to these. This is a proposal for all dashboard extensions. This is a recommendation and not a requirement. 
 
 ``` 
-// Instead of this:
+// Instead of linking to libraries on the web:
 <script src="https://cdn.example.net/library.js"></script>
 
- // Do this:
+ // Link to libraries on the local host:
 <script src="./library.js"></script>
 
 ```

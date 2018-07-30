@@ -39,10 +39,10 @@ Name the manifest file for your extension (for example, `HelloExtensions` and sa
             <name resource-id="name"/>
             <description>Extension Description</description>
             <author name="USERNAME" email="USER@example.com" organization="MyCo" website="https://www.example.com"/>
-            <min-api-version>0.8</min-api-version>
+            <min-api-version>1.0</min-api-version>
             <source-location>
               <url>SERVER:PORT/PATH</url>
-            </source-location>            <icon>iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEwAACxMBAJqcGAAAAlhJREFUOI2Nkt9vy1EYh5/3bbsvRSySCZbIxI+ZCKsN2TKtSFyIrV2WuRCJuBiJWxfuxCVXbvwFgiEtposgLFJElnbU1SxIZIIRJDKTrdu+53Uhra4mce7Oe57Pcz7JOULFisViwZ+29LAzOSjQYDgz1ZcCvWuXV11MJpN+OS/lm6179teqH0yDqxPTCyKSA8DcDsyOmOprnCaeP7459pdgy969i0LTC3IO/RQMyoHcQN+3cnljW3dNIFC47qDaK3g7BwdTkwBaBELT4ZPOUVWgKl4ZBnjxJPUlMDnTDrp0pmr6RHFeEjjcUUXPDGeSEwDN0Xg8sivxMhJNjGzbHd8PkM3eHRfkrBM5NkcQaY2vUnTlrDIA0NoaX+KLXFFlowr14tvVpqb2MICzmQcKqxvbumv+NAhZGCCIPwEw6QWXKYRL/VUXO0+rAUJiPwAk5MIlgVfwPjjHLCL1APmHN94ZdqeYN+NW/mn6I4BvwQYchcLnwFhJMDiYmlRxAzjpKWZkYkUCcZ2I61wi37tLbYyjiN0fHk5Oz3nGSLSzBbNHCF35R7f6K1/hN9PRhek11FrymfQQQKB4+Gl05P2qNRtmETlXW7e+b2z01dfycGNbfFMAbqNyKp9Jp4rzOT8RYFs0njJkc2iqsCObvTsOsDWWqA5C1uFy+Uz/oXJeKwVT4h0RmPUXhi79vuC0Ku6yOffTK3g9lfxfDQAisY516sg5kfOCiJk7HoLt2cf9b/9LANAc7dznm98PagG1fUOZ9IP5uMB8Q4CPoyNvausapkTt3rNMuvdf3C/o6+czhtdwmwAAAABJRU5ErkJggg==
+            </source-location> <icon>iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEwAACxMBAJqcGAAAAlhJREFUOI2Nkt9vy1EYh5/3bbsvRSySCZbIxI+ZCKsN2TKtSFyIrV2WuRCJuBiJWxfuxCVXbvwFgiEtposgLFJElnbU1SxIZIIRJDKTrdu+53Uhra4mce7Oe57Pcz7JOULFisViwZ+29LAzOSjQYDgz1ZcCvWuXV11MJpN+OS/lm6179teqH0yDqxPTCyKSA8DcDsyOmOprnCaeP7459pdgy969i0LTC3IO/RQMyoHcQN+3cnljW3dNIFC47qDaK3g7BwdTkwBaBELT4ZPOUVWgKl4ZBnjxJPUlMDnTDrp0pmr6RHFeEjjcUUXPDGeSEwDN0Xg8sivxMhJNjGzbHd8PkM3eHRfkrBM5NkcQaY2vUnTlrDIA0NoaX+KLXFFlowr14tvVpqb2MICzmQcKqxvbumv+NAhZGCCIPwEw6QWXKYRL/VUXO0+rAUJiPwAk5MIlgVfwPjjHLCL1APmHN94ZdqeYN+NW/mn6I4BvwQYchcLnwFhJMDiYmlRxAzjpKWZkYkUCcZ2I61wi37tLbYyjiN0fHk5Oz3nGSLSzBbNHCF35R7f6K1/hN9PRhek11FrymfQQQKB4+Gl05P2qNRtmETlXW7e+b2z01dfycGNbfFMAbqNyKp9Jp4rzOT8RYFs0njJkc2iqsCObvTsOsDWWqA5C1uFy+Uz/oXJeKwVT4h0RmPUXhi79vuC0Ku6yOffTK3g9lfxfDQAisY516sg5kfOCiJk7HoLt2cf9b/9LANAc7dznm98PagG1fUOZ9IP5uMB8Q4CPoyNvausapkTt3rNMuvdf3C/o6+czhtdwmwAAAABJRU5ErkJggg==
             </icon>
           </dashboard-extension>
           <resources>
@@ -80,7 +80,7 @@ The web app you create controls and interacts with the Tableau dashboard objects
 
 Your web application must include an HTML page. This page should link to the Extensions API JavaScript library and to any other JavaScript, CSS, or HTML resources your web app requires.
 
-1.  In the HTML page, add a link to the JavaScript library (for example, `tableau-extensions-0.latest.js`).
+1.  In the HTML page, add a link to the JavaScript library (for example, `tableau-extensions-1.latest.js`).
  ```
        <!-- Tableau Extensions API Library  -->
        <script src="./tableau-extensions-0.latest.js"></script>
@@ -103,7 +103,7 @@ Your web application must include an HTML page. This page should link to the Ext
            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
 
            <!-- Tableau Extensions API Library  -->
-           <script src="./tableau-extensions-0.latest.js"></script>
+           <script src="./tableau-extensions-1.latest.js"></script>
 
            <!-- Your JavaScript code that uses the Extensions API goes here -->
            <script src="./hello-extension.js"></script>
@@ -122,7 +122,7 @@ Your web application must include an HTML page. This page should link to the Ext
 
 3. Save the HTML file and any other files your web app needs.
 
-4. Start the web service to verify you have the web app and files configured. The URL of the server must match the `SERVER` in the manifest file for the add-in. Be sure to include the `http://` or `https` in the URL. If you are using your `localhost` for development work, you might want to set up a lightweight web server, for example, you could use Python 2.7 and the SimpleHTTPServer module:
+4. Start the web service to verify you have the web app and files configured. The URL of the server must match the `SERVER` in the manifest file for the add-in. Be sure to include the `http://` or `https://` in the URL. If you are using your `localhost` for development work, you might want to set up a lightweight web server, for example, you could use Python 2.7 and the SimpleHTTPServer module:
 
         python -m SimpleHTTPServer [PORT]
 

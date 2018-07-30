@@ -33,7 +33,7 @@ If the extension uses any of the four methods, they are considered privileged, i
 
 #### Extensions API methods that access full data 
 
-If your extension uses any one of the following methods, without declaring **full-data** permission in the manifest file, the extension will load but the method calls will fail. If you have debugging enabled, Tableau will report an error in the JavaScript console and the error is also written to the Tableau log file. 
+If your extension uses any one of the following methods, without declaring **full-data** permission in the manifest file, the extension will load but the method call will fail. If you have debugging enabled, Tableau will report an error in the JavaScript console and the error is also written to the Tableau log file. 
  
 `Worksheet.getUnderlyingDataAsync()`
 
@@ -53,14 +53,18 @@ If you use any of these APIs, you need to add a `<permissions>` element to the m
 
 To access the underlying data along or information about the data source, the extension must declare that it requires full data access in the extension manifest file (`.trex`).
 
-The XML element you add looks like the following: 
+The `<permissions>` element you add looks like the following: 
 
 ```xml
-
+<dashboard-extension>
+...
+<icon>
+...
+</icon>
 <permissions>
     <permission>full data</permission>
 </permissions>
-
+</dashboard-extension>
 ```
 
 The `<permissions>` element must be added under `<dashboard-extension>` immediately following the `<icon>` element. For a complete description of the manifest, see the [Tableau Extensions Manifest File]({{site.baseurl}}/docs/trex_manifest.html).
