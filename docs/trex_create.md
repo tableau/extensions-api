@@ -192,7 +192,7 @@ Reload the extension in Tableau.
 Use the **Reload** option to refresh and reload the extension in the dashboard.
 
 
-![]({{site.baseurl}}/assets/extension_reload.png)
+![]({{site.baseurl}}/assets/extension_reload_menu.png){:height="25%" width="25%"}
 
 
 For information about debugging your extension, see [Remote Debugging of JavaScript and HTML]({{site.baseurl}}/docs/trex_debugging.html).

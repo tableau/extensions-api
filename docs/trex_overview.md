@@ -14,7 +14,7 @@ layout: docs
 ## Components of a Tableau dashboard extension 
 A Tableau extension consists of a manifest file (`.trex`), a web page that uses a Tableau-provided JavaScript library, and the JavaScript file (or files) that contain your extension logic. The Tableau extensions are supported on Tableau Desktop.
 
-![]({{site.baseurl}}/assets/extensions_diagram.png) 
+![]({{site.baseurl}}/assets/extensions_dashboard_diagram.png) 
 
 
 ## Extensions API library
