@@ -42,12 +42,12 @@ You need Node.js and nmp to run the dashboard extension demos. Node.js is a Java
 
 You can get the Tableau Extensions API SDK in two ways. Clone the repository if you want to contribute to the open source project or keep current with the latest changes. Download the `.zip` file if you want to view the samples and work on your own.
 
-- Open a terminal in the directory where you want to copy the Tableau Extensions SDK.  Then run the following command to clone
+* Open a terminal in the directory where you want to copy the Tableau Extensions SDK.  Then run the following command to clone
    the Tableau Extensions API git repository:
 
    `git clone https://github.com/tableau/extensions-api.git`
 
-- Download the [Tableau Extensions API SDK (.zip file)](https://github.com/tableau/extensions-api/archive/master.zip) and extract the files to your computer.
+* Download the [Tableau Extensions API SDK (.zip file)](https://github.com/tableau/extensions-api/archive/master.zip) and extract the files to your computer.
 
 
 
@@ -55,12 +55,9 @@ You can get the Tableau Extensions API SDK in two ways. Clone the repository if 
 ---
 ### Download and install Tableau
 
-| **Now in Beta**  <br/>You can download the latest version of Tableau from the [Tableau 2018.2 Beta](https://prerelease.tableau.com/project/home.html?cap=c43269484c1f45a68f5ad4fc4660b2ab){:target="_blank"} site. The Beta release supports dashboard extensions. Use the Beta release of Tableau during the 2018.2 Beta Program.
-
-The version of Tableau that supports the Extension API is available from the **Extensions API Developer Preview** on [https://prerelease.tableau.com](https://prerelease.tableau.com/project/home.html?cap=52e2710a0793434d82142736c7ab3029){:target="_blank"}. 
-- Download and install Tableau Desktop or Tableau Server from the [Extensions API Developer Preview](https://prerelease.tableau.com/project/home.html?cap=52e2710a0793434d82142736c7ab3029) site). 
-   Under **Resources**, click **Extensions API Software Downloads**. There are separate installation applications for Windows and macOS. You can also download the Extensions API JavaScript library, which is needed if you are going to develop your own extensions.
-
+Dashboard extensions are supported in Tableau 2018.2 and later.  
+* Download [Tableau Desktop 2018.2](https://www.tableau.com/support/releases){:target="_blank"} or [Tableau Server 2018.2](https://www.tableau.com/support/releases/server){:target="_blank"}
+ 
 
 
 ---

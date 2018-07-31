@@ -37,7 +37,7 @@ If a workbook is saved with an extension and then later opened on another comput
             <name resource-id="name"/>
             <description>Extension Description</description>
             <author name="USERNAME" email="USER@example.com" organization="My Company" website="https://www.example.com"/>
-            <min-api-version>1.1</min-api-version>
+            <min-api-version>1.0</min-api-version>
             <source-location>
               <url>SCHEME://SERVER[:PORT][/PATH]</url> 
             </source-location>
@@ -133,7 +133,7 @@ The exception is for <code>localhost</code>. In this case, HTTP is allowed. For 
 </tr>
 <tr class="even">
 <td><code>min-api-version</code></td>
-<td>Specifies the minimum API version required to run the extension. This field is not used in this Developer Preview. Versioning support is still in progress.</td>
+<td>Specifies the minimum API version required to run the extension. </td>
 </tr>
 </tbody>
 </table>

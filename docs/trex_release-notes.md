@@ -8,12 +8,22 @@ layout: docs
 * TOC
 {:toc}
 
+### Tableau 2018.2
+*July, 2018*
+
+Release of the Tableau Extensions API
+
+- Tableau Extensions API library: `tableau-extensions-1.0.0.js` <br>
+  (download or clone the Extensions API repository on [GitHub](https://github.com/tableau/extensions-api){:target="_blank"})
+- Download [Tableau Desktop 2018.2](https://www.tableau.com/support/releases){:target="_blank"} or [Tableau Server 2018.2](https://www.tableau.com/support/releases/server){:target="_blank"}
+ 
+
 ### Tableau 2018.2 (Beta 2)
 *June 4, 2018*
 
 Update of the Tableau Extensions API
 
-- Tableau Extensions API library: tableau-extensions-0.16.0.js
+- Tableau Extensions API library: `tableau-extensions-0.16.0.js`
 - Download Tableau Desktop, Tableau Server from [Tableau 2018.2 Beta](https://prerelease.tableau.com/project/home.html?cap=c43269484c1f45a68f5ad4fc4660b2ab){:target="_blank"}
 
 
