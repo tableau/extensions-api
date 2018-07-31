@@ -81,7 +81,7 @@
 							<td style="text-align:left">The <code>extensions</code> namespace is the namespace for Tableau extensions. A dashboard extension is one type of extension. A dashboard extension has access to the <code>dashboardContent</code> namespace, and all of the objects and classes of the dashboard. Some namespaces, like the <code>settings</code>, <code>environment</code>, and <code>ui</code> are available to all extensions.</td>
 						</tr>
 						<tr>
-							<td style="text-align:left"> <a href="./interfaces/dashboardContent.html">DashboardContent</a></td>
+							<td style="text-align:left"> <a href="./interfaces/dashboardcontent.html">DashboardContent</a></td>
 							<td style="text-align:left">The <code>dashboardContent</code> provides access to the dashboard object. When you have the dashboard object, you have access to all elements in the <a href="./interfaces/dashboard.html">dashboard</a>, including the <a href="./interfaces/dashboard.html#worksheets">worksheets</a>, <a href="./interfaces/markscollection.html">marks</a>, <a href="./interfaces/filter.html">filters</a>, <a href="./interfaces/parameter.html">parameters</a>, and <a href="./interfaces/datasource.html">data sources</a>. For example, to access the worksheets in a dashboard (after initialization), you might have a line of code that looks like the following: <br><code>worksheets = tableau.extensions.dashboardContent.dashboard.worksheets</code></td>
 						</tr>
 						<tr>
