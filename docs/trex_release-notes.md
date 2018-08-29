@@ -82,6 +82,25 @@ Bugs fixed in this release:
 - XSD validation of `minApiVersion` accepted only single digit version numbers  (for example, `0.12` would fail).
 - Permissions denied error message would disappear after the dashboard zone was reloaded. 
 
+### Developer Preview (0.12.8)
+*April 13, 2018*
+
+Update of the Tableau Extensions API 
+- Tableau Extensions API library: `tableau-extensions-0.12.8.js`
+- Tableau Desktop, Tableau Server (from [Extensions API Developer Preview](https://prerelease.tableau.com/project/home.html?cap=52e2710a0793434d82142736c7ab3029){:target="_blank"})
+
+Changes in this release:
+
+- This release of Tableau introduces a minor change in the workbook format that affects extensions. If you saved a workbook with an extension using an earlier version of Tableau, and then open the workbook with this current Tableau release, the workbook will open, but it will not have the extension. You will have to add the extension back in using the latest release of Tableau.
+
+Bugs fixed in this release:
+
+- Certain keyboard shortcuts were intercepted by Tableau and not passed on to the extension. This is now fixed, with the excecption of **cmd + V** on Mac, which will be fixed in a later release. ([Issues #76](https://github.com/tableau/extensions-api/issues/76))
+- Calls to `getSummaryDataAsync()` or `getUnderlyingDataAsync()` would not return the correct data types for the columns. Column property `datatype` returned `string` for all columns, regardless of actual data type of column. 
+- Web Authoring would throw an exception when an extension is added. 
+- XSD validation of `minApiVersion` accepted only single digit version numbers  (for example, `0.12` would fail).
+- Permissions denied error message would disappear after the dashboard zone was reloaded. 
+
 --- 
 
 ### Developer Preview (0.12.7)
