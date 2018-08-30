@@ -84,7 +84,7 @@ $(document).ready(function () {
 })();  
 
 ```
-In the JavScript code for the popup dialog window, you would add your code for initializing the dialog and for setting and saving the configuration settings.
+In the JavaScript code for the popup dialog window, you would add your code for initializing the dialog and for setting and saving the configuration settings.
 
 ```javascript
 
