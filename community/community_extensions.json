@@ -25,5 +25,15 @@
         "tags": ["v_0.6"],
         "description": "A Tableau Extension to add dynamic parameter capabilities to Tableau dashboards.",
         "source_code": "https://github.com/KeshiaRose/Dynamic-Parameter"
+    },
+    {
+        "name": "Polyline Viewer",
+        "hostedTrexFileName": "PolylineViewer.trex",
+        "website": "https://jacalata.github.io/PolylineViewer/",
+        "author": "Jac Fitzgerald",
+        "github_username": "jacalata",
+        "tags": ["v_1"],
+        "description": "A Tableau Extension that takes an encoded polyline and displays it as a route on a map.",
+        "source_code": "https://github.com/jacalata/PolylineViewer"
     }
 ]
