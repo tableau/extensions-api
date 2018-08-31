@@ -35,5 +35,14 @@
         "tags": ["v_1"],
         "description": "A Tableau Extension that takes an encoded polyline and displays it as a route on a map.",
         "source_code": "https://github.com/jacalata/PolylineViewer"
+    },
+    {
+        "name": "Amazon Product Search",
+        "url": "https://github.com/hutchijo/my_tableau_extensions",
+        "author": "Joel Hutchison",
+        "github_username": "hutchijo",
+        "tags": ["v_1.0"],
+        "description": "A Python Flask extension which uses the Amazon Product Advertising API to perform product searches on Amazon based on selections in a dashbaord.  This extension also demonstrates writeback to a MySQL database.",
+        "source_code": "https://github.com/hutchijo/my_tableau_extensions"
     }
 ]
