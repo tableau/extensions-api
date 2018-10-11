@@ -92,7 +92,7 @@ To use the dashboard extension samples, you need to start up a web server on you
 2. In the dashboard, under **Objects**, select **Extension** and drag it on to the dashboard.  
    ![]({{site.baseurl}}/assets/frelard_objects_extension.png){:height="25%" width="25%"}
 
-3. In the **Choose an Extension** dialog box, click **Choose**. 
+3. In the **Choose an Extension** dialog box, click **My Extensions**. 
  Every Tableau extension has a manifest file (`.trex`) that describes the extension and identifies the location of the web application. 
 4. Browse to the directory where the samples are located. For example, if you downloaded or cloned the GitHub repository, go to `\extensions-api\Samples`. 
 5. Open the `DataSources.trex` file.     
