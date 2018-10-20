@@ -151,7 +151,7 @@ Note the following considerations:
 
 ### Load and view localhost content on sites that use secure connections
 
-If you want to test your extension (running on `http://localhost`) with Tableau Online or with Tableau Server that uses HTTPS, the default settings of many browsers will block the extension from loading because the extension is not using a secure connection.
+If you want to test your extension (running on `http://localhost`) with Tableau Online, or with Tableau Server that is using HTTPS, the default settings of many browsers will block the extension from loading because the extension is not using a secure connection.
 
 To temporarily get around these safety settings for the session, you can click the shield icon (or lock icon) in the browser's address bar. The alert dialog box will allow you to either load the scripts, or allow you to view the full content of the page. As soon as you load the unsafe scripts or allow the blocked content, the extension will load and will continue to be available for the duration of your session. Be sure to close the browser completely when you are finished testing. The following example shows what you might see in Chrome. 
 <br/>
