@@ -8,6 +8,31 @@ layout: docs
 * TOC
 {:toc}
 
+----
+See also: [Known Issues]({{site.baseurl}}/docs/trex_known_issues.html)
+
+----
+
+### TC18
+*October, 2018*
+
+- Tableau Extensions API library: `tableau-extensions-1.0.0.js` *No change for this release*<br>
+
+New in this release: 
+
+- Use the [Design Guidelines for Dashboard Extensions]({{site.baseurl}}/docs/ux_design.html){:target="_blank"} as roadmap for designing great dashboard extensions. 
+
+- Create extensions with the look-and-feel of Tableau, using the [Tableau UI](https://tableau.github.io/tableau-ui/){:target="_blank"}, a React component library.  
+
+- New and updated documentation. See [Publishing a Dashboard Extension]({{site.baseurl}}/docs/trex_publish.html). <br/>
+For information about developing and running an extension locally on `http://localhost` and testing it on Tableau Online or Tableau Server (over HTTPS), see [Load and view localhost content on sites that use secure connections]({{site.baseurl}}/docs/trex_security.html#load-and-view-localhost-content-on-sites-that-use-secure-connections).
+
+Bugs fixed in this release:
+
+- Extensions are now fully supported in Internet Explorer (IE 11). 
+
+---
+
 ### Tableau 2018.2
 *July, 2018*
 
@@ -17,6 +42,9 @@ Release of the Tableau Extensions API
   (download or clone the Extensions API repository on [GitHub](https://github.com/tableau/extensions-api){:target="_blank"})
 - Download [Tableau Desktop 2018.2](https://www.tableau.com/support/releases){:target="_blank"} or [Tableau Server 2018.2](https://www.tableau.com/support/releases/server){:target="_blank"}
  
+ Bugs fixed in this release:
+
+ - Extensions are now fully supported in Internet Explorer (IE 11). 
 
 ### Tableau 2018.2 (Beta 2)
 *June 4, 2018*
@@ -46,7 +74,7 @@ Changes in this release:
 ```
 
 - Extensions settings and permissions in Tableau Server <br />
-Server administrators can manage dashboard extensions on the **Settings > Extensions** tab (for each site and for the server). By default, only extensions that do not require full data access are allowed to run. HTTPS is required. Server administrators can enable dashboard extensions that are trusted to access full data by adding them to a safe list for a site. Server administrators can control whether or not the users will see prompts (asking them to allow the extension to access data) when users are adding an extension to a dashboard, or when they are interacting with a view that has an extension.  For more information, see [Dashboard Extensions in Tableau Server](https://onlinehelp.tableau.com/v2018.2/server/en-us/dashboard_extensions_server.htm){:target="_blank"}
+Server administrators can manage dashboard extensions on the **Settings > Extensions** tab (for each site and for the server). By default, only extensions that do not require full data access are allowed to run. HTTPS is required. Server administrators can enable dashboard extensions that are trusted to access full data by adding them to a safe list for a site. Server administrators can control whether or not the users will see prompts (asking them to allow the extension to access data) when users are adding an extension to a dashboard, or when they are interacting with a view that has an extension.  For more information, see [Dashboard Extensions in Tableau Server](https://onlinehelp.tableau.com/current/server/en-us/dashboard_extensions_server.htm){:target="_blank"}
 
 - The **About** dialog box. Users can now find out about an extension in the dashboard by selecting the layout container and then clicking **About** from the **More Options** menu. Information from the extension manifest file (`.trex`) is used to populate a dialog box. (Note that the dialog box you see might look slightly different from this example.) 
 
