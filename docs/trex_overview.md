@@ -25,6 +25,18 @@ Plenty! Using the Extensions API, you can create dashboard extensions that enabl
 * Create an extension that has write-back functionality, so users can modify data in a viz and have that change automatically update the source data in the database or web application.
 * Build custom viz and interactivity types, such as a filter replacement with a custom interface and network diagram.
 
+## What can you do with a dashboard extension? 
+
+Plenty! Using the Extensions API, you can create dashboard extensions that enable customers to integrate and interact with data from other applications directly in Tableau.
+
+* Integrate with third-party APIs inside the dashboard.
+* Use third-party charting libraries like `d3.js` to add custom visualizations.
+* Create an extension that has write-back functionality, so users can modify data in a viz and have that change automatically update the source data in the database or web application.
+* Build custom viz and interactivity types, such as a filter replacement with a custom interface and network diagram.
+
+
+
+
 ## Extensions API library
 
 The Extensions API is a JavaScript library that you link to from your web application. The Extensions API library (`tableau-extensions-n.n.n.js`) gives your application access to Tableau dashboard content, including worksheets, filters, marks, and parameters. In your JavaScript code, you can set up event listeners to get notified when events occur on the dashboard. You can use the Extensions API to apply filters, or to get data back from selected marks in a worksheet. 
@@ -37,4 +49,14 @@ The Extensions API and the Embedded API (also known as the [JavaScript API](http
 * You can use the Embedded API for embedding Tableau dashboards in web pages (for example, blog posts), or in line of business applications.
 * You can use the Extensions API for integrating web applications into zones in Tableau dashboards. 
 
-The Extensions API and Embedded API share a similar programming model, but there are differences. The two APIs are not designed to be used together. In the Embedded API, the `Viz` or `VizManager` is the highest-level object. However, in the Extensions API there is no object model or concept for a `Viz` or `VizManager`. For the Extensions API, the workbook is the highest-level object a developer interacts with.
+
+The Extensions API and Embedded API share a similar programming model, but there are differences. 
+
+| JavaScript | Extensions API |
+|------------| ---------------|
+|Brings Tableau into other web applications | Brings other web applications into Tableau |
+| Requires embedding Tableau dashboard into a web page | Can be used in Desktop, Server, Online, or embedded dashboard |
+| Custom-built for each embed scenario	| Can be made as a re-usable, generic-built dashboard component |
+| Written in JavaScript | Written in JavaScript (similar calls) |
+
+

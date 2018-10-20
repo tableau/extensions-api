@@ -117,7 +117,7 @@ The exception is for <code>localhost</code>. In this case, HTTP is allowed. For 
 </tr>
 <tr class="even">
 <td><code>icon</code></td>
-<td>If specified, the icon is what appears under <strong>Extensions</strong> on a dashboard sheet. The icon must be a 64x64 pixel PNG file that is Base64 encoded. If you need an encoder, see <a href="https://www.base64-image.de/" class="uri">https://www.base64-image.de/</a></td>
+<td>If specified, the icon is what appears in the <strong>About</strong> dialog box. The icon must be a 70x70 pixel PNG file that is Base64 encoded. If you need an encoder, see <a href="https://www.base64-image.de/" class="uri">https://www.base64-image.de/</a></td>
 </tr>
 <tr class="odd">
 <td><code>permissions</code></td>
@@ -142,4 +142,4 @@ The exception is for <code>localhost</code>. In this case, HTTP is allowed. For 
 
 - String-based fields: 1000 characters 
 - URI-based fields: 2084 characters
-- Icon field: size of images are restricted to 64x64
+- Icon field: size of images are restricted to 70x70
