@@ -301,7 +301,7 @@
 									<p>This call has the same functionality as clicking the Refresh option on a datasource in
 									Tableau.  This does not refresh an extract.</p>
 								</div>
-								<p><b>Note:</b> The <code>refreshAsync()</code> method is intended to be used in scenarios where manual interaction causes a need to refresh the data in the Tableau visualization. The method is not, as currently designed, meant to support or emulate streaming or live visualizations. Extensions that use the method to refresh aggressively or automatically can cause issues on Tableau Server and Tableau Online and are subject to removal from Tableau Online.</p>
+								<p><b>Note:</b> The <code>refreshAsync()</code> method is intended to be used in scenarios where manual interaction causes a need to refresh the data in the Tableau visualization. The method is not, as currently designed, meant to support or emulate streaming or live visualizations. Extensions that use the method to refresh aggressively or automatically can cause issues on Tableau Server and Tableau Online and are subject to being blocked by the Tableau Online administrator.</p>
 								<p>This call does not currently support refreshing live Google Sheet datasources.</p>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
