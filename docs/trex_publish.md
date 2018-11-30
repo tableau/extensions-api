@@ -39,7 +39,7 @@ However, to run on Tableau Server or Tableau Online, your extension must:
  If your extension requires access to full data (underlying data) the server or site administrator must add the URL of your extension to a safe list and must explicitly grant the extension access to full data. The server or site administrator can also configure whether users of your extension will see prompts requesting permission to run. 
   
  See
- [Manage Dashboard Extensions on Tableau Server](https://onlinehelp.tableau.com/current/server/en-us/dashboard_extensions_server.htm) or [Manage Dashboard Extensions on Tableau Online](https://onlinehelp.tableau.com/current/online/en-us/dashboard_extensions_server.htm) for more information. 
+ [Manage Dashboard Extensions on Tableau Server](https://onlinehelp.tableau.com/current/server/en-us/dashboard_extensions_server.htm) or [Manage Dashboard Extensions on Tableau Online](https://onlinehelp.tableau.com/current/online/en-us/dashboard_extensions_server.htm) for more information.
 
 
 

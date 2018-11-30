@@ -1,5 +1,5 @@
 ---
-title: Create a Tableau Extension
+title: Create a 'Hello World" Dashboard Extension
 layout: docs
 ---
 
@@ -20,16 +20,21 @@ To create a Tableau extension you need the following components.
 
 ### What you need to get started
 
-These instructions assume that you already have cloned or download the Extensions API SDK. For information about setting up your environment and downloading Tableau Desktop for the Developer Preview, see [Get Started]({{site.baseurl}}/docs/trex_getstarted.html).
+These instructions assume that you already have cloned or download the Extensions API SDK. For information about setting up your environment and the Tableau requirements, see [Get Started]({{site.baseurl}}/docs/trex_getstarted.html).
+
+For convenience, you might want to create a folder for your "Hello World" dashboard extension in the same location where you installed or cloned the GitHub repository (for example, `HelloDemo` under `/extensions-api`). That way, you can use the same web server (`http-server`) that is used for the samples. 
 
 
 
 ### Create a manifest file
 
-The manifest file (`EXTENSION-NAME.trex`) is an XML file that describes the extension and provides information to register the extension with Tableau. When they are installed, the registered extensions appear under **Extensions** on the left side of the dashboard.
+The manifest file (`EXTENSION-NAME.trex`) is an XML file that describes the extension and provides information to register the extension with Tableau. 
 
--  Create a manifest file for your extension.
-Name the manifest file for your extension (for example, `HelloExtensions` and save it with the file name extension `.trex`. The manifest file is an XML file that contains elements and attributes that describe the extension. For a description of the contents of this file, see [Elements of the manifest file]({{site.baseurl}}/docs/trex_manifest#elements-of-the-manifest-file). An XSD is available for validation on the pre-release website [here](https://prerelease.tableau.com/project/version/item.html?cap=52e2710a0793434d82142736c7ab3029&arttypeid={0DD668AE-472C-4E70-B465-35F7AE0DEB6D}&artid={939493D2-8000-4192-857A-67624CBCC35A}).
+1.  In the `HelloDemo` folder (or where ever you want to put your files), create a manifest file for your extension.
+Name the manifest file for your extension (for example, `HelloExtensions` and save it with the file name extension `.trex`. <br/>
+The manifest file is an XML file that contains elements and attributes that describe the extension. For a description of the contents of this file, see [Elements of the manifest file]({{site.baseurl}}/docs/trex_manifest#elements-of-the-manifest-file). An XSD is available for validation on the pre-release website [here](https://prerelease.tableau.com/project/version/item.html?cap=52e2710a0793434d82142736c7ab3029&arttypeid={0DD668AE-472C-4E70-B465-35F7AE0DEB6D}&artid={939493D2-8000-4192-857A-67624CBCC35A}).
+
+2. Copy the following XML code into your new file.  
 
    ```xml
         <?xml version="1.0" encoding="utf-8"?>
@@ -57,14 +62,14 @@ Name the manifest file for your extension (for example, `HelloExtensions` and sa
 
 - In this file, you need to provide values for a few elements. Some key pieces are:
 - For `<dashboard-extension id=" ">` use reverse domain name notation to uniquely identify the extension (`com.example.extension.demo`)
-- For `<source-location>` make sure that this specifies the URL of your web application. You must use the HTTPS protocal. The exception to this requirement is `localhost`, where you can use HTTP. For example, if you are doing development work and want to host the file locally on your computer using port 8765, you might use: `http://localhost:8765/myExtension.html`
+- For `<source-location>` make sure that this specifies the URL of your web application. You must use the HTTPS protocol. The exception to this requirement is `localhost`, where you can use HTTP. For example, if you created a `HelloDemo` folder and want to host the file locally on your computer using port 8765, you might use: `http://localhost:8765/HelloDemo/HelloExtension.html`
 - The `<min-api-version>` element that specifies the minimum version of the Extensions API library that is required to run the extension.
 - For `<icon>` you must use a Base64-encoded icon. To use the default icon, copy and paste the `<icon>` example here, or copy one of the manifest files (`.trex`) from the samples.
+- Provide the `name` for your extension (`Hello Extensions!`). The manifest file can be localized, so provide the name (or names) in the appropriate `<text>` elements in the `<resources>` section.  
 
+- After you have create the HTML and JavaScript files for your extension, you use this `.trex` file to add the extension to a Tableau dashboard. To do that, you drag the **Extension** object on to the dashboard. In the **Choose an Extension** dialog box, click **My Extensions** to locate and open the manifest file you just created.
 
-
-
-- To add the extension to a Tableau dashboard, you need to drag the **Extension** object on to the dashboard, and then use the **Choose an Extension** dialog box to locate and open the manifest file. For information about validating the manifest and adding version information, see the [Tableau Extension Manifest]({{site.baseurl}}/docs/trex_manifest.html).
+- For information about validating the manifest and adding version information, see the [Tableau Extension Manifest]({{site.baseurl}}/docs/trex_manifest.html).
 
 
 
@@ -78,14 +83,15 @@ The web app you create controls and interacts with the Tableau dashboard objects
 
 #### Create the HTML page
 
-Your web application must include an HTML page. This page should link to the Extensions API JavaScript library and to any other JavaScript, CSS, or HTML resources your web app requires.
+Your web application must include an HTML page. This page should link to the Extensions API JavaScript library and to any other JavaScript, CSS, or HTML resources your web app requires. You could add the JavaScript code to initialize and call Extensions API functions directly in the HTML page. However, in most cases you want to keep this code in a separate file. 
 
-1.  In the HTML page, add a link to the JavaScript library (for example, `tableau-extensions-1.latest.js`).
- ```
-       <!-- Tableau Extensions API Library  -->
-       <script src="./tableau-extensions-0.latest.js"></script>
-```
-2.  Add links to additional JavaScript files and code that you need. You could add the JavaScript code to initialize and call Extensions API functions directly in the HTML page. However, in most cases you want to keep this code in a separate file. The following code is from a simple sample.
+1.  In the `HelloDemo` folder (or where ever you put your `.trex` file), create a file called `HelloExtension.html`. 
+
+
+2. You can copy and paste the following code into your file. This  code creates a very simple page with a button that when clicked will initialize and use the API to get the name of the dashboard the extension is running in. This HTML code assumes that you are creating your extension in a folder (for example, `HelloDemo`) under the `/extensions-api` directory. 
+
+
+
        ```html
        <!DOCTYPE html>
        <html>
@@ -103,7 +109,8 @@ Your web application must include an HTML page. This page should link to the Ext
            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
 
            <!-- Tableau Extensions API Library  -->
-           <script src="./tableau-extensions-1.latest.js"></script>
+           <!-- library is in the /lib directory -->
+           <script src="../../lib/tableau-extensions-1.latest.js"></script>
 
            <!-- Your JavaScript code that uses the Extensions API goes here -->
            <script src="./hello-extension.js"></script>
@@ -113,19 +120,45 @@ Your web application must include an HTML page. This page should link to the Ext
                <div>
                  <h1>Hello Extensions!</h1>
                  <p id="resultBox" class="lead">Not Initialized</p>
-                 <button id="initializeButton" class="btn btn-primary">Initialize Extensions Api</button>
+                 <button id="initializeButton" class="btn btn-primary">Initialize Extensions API</button>
                </div>
              </div>
            </body>
        </html>
        ```
 
-3. Save the HTML file and any other files your web app needs.
+   The sample code includes a link to the JavaScript library (`tableau-extensions-1.latest.js`), which is available in the `/lib` folder. The sample code also includes links to jQuery and Bootstrap libraries. 
 
-4. Start the web service to verify you have the web app and files configured. The URL of the server must match the `SERVER` in the manifest file for the add-in. Be sure to include the `http://` or `https://` in the URL. If you are using your `localhost` for development work, you might want to set up a lightweight web server, for example, you could use Python 2.7 and the SimpleHTTPServer module:
 
-        python -m SimpleHTTPServer [PORT]
+3. If necessary, adjust the relative path to the Extensions API JavaScript library (`tableau-extensions-1.latest.js`), which is available in the `/lib` folder. 
 
+```html
+
+   <!-- Tableau Extensions API Library  -->
+   <script src="../../lib/tableau-extensions-1.latest.js"></script>
+```
+
+4. The sample code also includes a link to `hello-extension.js`, this is a JavaScript file that you will need to create. The path assumes that the JavaScript file is in the same directory as your HTML file. Adjust the path and name as necessary and save the file. 
+
+```html
+   <!-- Your JavaScript code that uses the Extensions API goes here -->
+   <script src="./hello-extension.js"></script>
+```
+
+#### Start the web service to host the extension
+
+1. Start the web service to verify you have the web app and files configured. <br/> The URL of the server must match the `SERVER` in the manifest file for the extension. Be sure to include the `http://` or `https://` in the URL. If you are using your `localhost` for development work, you might want to use the same lightweight web server that is used for the Extensions API samples and tutorial. Assuming that you've cloned or downloaded the repository, and that you've created a folder under `/extensions-api`, you can start the server by using the `npm start` command. Or if you need to use a different port and location, you can install and start the `http-server` yourself (replacing PORT with the port you need): 
+
+```bash
+        npm install http-server -g && http-server -p PORT
+```
+
+2. Check the HTML page to make sure that your web server is working. Place the URL in the address bar of your browser. Be sure to include the full path to the web page. Use the `<source-location>` URL you specified in the manifest file. 
+
+```html
+     http://localhost:8765/HelloDemo/HelloExtension.html
+
+```
 
 ### Test your extension in Tableau
 
@@ -135,7 +168,7 @@ After you have created the manifest file (`.trex`) and have hosted your web app 
 1. Start up your web page or application (or make sure it is running).
 
 2. Start Tableau and open a workbook with a dashboard or create a new dashboard.
-3. In the dashboard, under **Objects**, select **Extension** and drag it on to the dashboard. In the **Choose an Extension** dialog box, click **Choose** and browse to directory where you have your manifest file.
+3. In the dashboard, under **Objects**, select **Extension** and drag it on to the dashboard. In the **Choose an Extension** dialog box, click **My Extensions** and browse to directory where you have your manifest file.
 
    After you select the manifest file, your web page should appear in the dashboard zone.
 
@@ -148,15 +181,14 @@ After you have created the manifest file (`.trex`) and have hosted your web app 
 
 ### Add code to initialize the extension and call Tableau Extensions API functions
 
-In your JavaScript code (either in your HTML page or in a separate JavaScript file), you first need to initialize the extension. To do this, you call `tableau.extensions.initializeAsync()`. The function returns after the initial bootstrap operation is complete and the extension is available for use. The Extensions API follows the [CommonJS Promises/A standard](http://wiki.commonjs.org/wiki/Promises/A) for asynchronous method calls.
+The next step is to create the JavaScript that calls the Extensions API. In your JavaScript code (either in your HTML page or in a separate JavaScript file), you first need to initialize the extension. To do this, you call `tableau.extensions.initializeAsync()`. The function returns after the initial bootstrap operation is complete and the extension is available for use. The Extensions API follows the [CommonJS Promises/A standard](http://wiki.commonjs.org/wiki/Promises/A) for asynchronous method calls.
 
-**Syntax:**
+1. In the same directory as your HTML page, create a file called `helloextensions.js`. 
 
-`tableau.extensions.initializeAsync()`
+2. Copy the following example code and paste it into the file. 
 
-**Example**
 
-The following code example uses the jQuery document ready function to detect when the web page is loaded and ready. The code also uses an event handler to delay the initialization until the user clicks the `initializeButton`. When the page is ready and the user clicks the button, the initialization function (`initializeAsync`) instantiates a dashboard extension. To handle the promise, the `then` method calls two callback functions to handle successful initialization or failure. In case of success, the example gets the dashboard object from the extension, and then accesses the `name` property  to display the name of the dashboard sheet in the hosting web page. In case of an error, the error message is displayed.
+
 ```javascript
 $(document).ready(function() {
 
@@ -183,6 +215,8 @@ $(document).ready(function() {
 });
 ```
 
+|**About the example code** <br/>The JavaScript example uses the jQuery document ready function to detect when the web page is loaded and ready. The code also uses an event handler to delay the initialization until the user clicks the `initializeButton`. When the page is ready and the user clicks the button, the initialization function (`initializeAsync`) instantiates a dashboard extension. To handle the promise, the `then` method calls two callback functions to handle successful initialization or failure. In case of success, the example gets the dashboard object from the extension, and then accesses the `name` property  to display the name of the dashboard sheet in the hosting web page. In case of an error, the error message is displayed.
+
 
 ### Debugging and testing your extension in Tableau
 
@@ -195,7 +229,7 @@ Use the **Reload** option to refresh and reload the extension in the dashboard.
 ![]({{site.baseurl}}/assets/extension_reload_menu.png){:height="25%" width="25%"}
 
 
-For information about debugging your extension, see [Remote Debugging of JavaScript and HTML]({{site.baseurl}}/docs/trex_debugging.html).
+For information about debugging your extension, see [Debugging Extensions in Tableau Desktop]({{site.baseurl}}/docs/trex_debugging.html).
 
 You can also use the Tableau log files to identify issues, see [Use Log files to Troubleshoot Dashboard Extensions]({{site.baseurl}}/docs/trex_logging.html).
 

@@ -171,3 +171,4 @@ Worksheet.getUnderlyingDataAsync().then(function(success) {
 
 An error is also printed to the console. If you use the `getUnderlyingData()` method, be sure to add error handling for the promise in case of failure.
 
+
