@@ -15,17 +15,25 @@
 
 // Wrap everything in an anonymous function to avoid polluting the global namespace
 (function () {
-  const defaultIntervalInMin = '5';
+  let defaultIntervalInMin = '5';
   let refreshInterval;
   let activeDatasourceIdList = [];
+  let selectedInterval = '10';
 
   $(document).ready(function () {
     // When initializing an extension, an optional object is passed that maps a special ID (which
     // must be 'configure') to a function.  This, in conjuction with adding the correct context menu
     // item to the manifest, will add a new "Configure..." context menu item to the zone of extension
     // inside a dashboard.  When that context menu item is clicked by the user, the function passed
-    // here will be executed.
-    tableau.extensions.initializeAsync({'configure': configure}).then(function() {     
+    // here will be executed.	
+    tableau.extensions.initializeAsync({'configure': configure}).then(function () {
+      // First, check for any saved settings and populate our UI based on them.
+      checkForSettings(tableau.extensions.settings.getAll());
+    }, function (err) {
+      // Something went wrong in initialization
+      console.log('Error while Initializing: ' + err.toString());
+    })
+	.then(function() { 
       // This event allows for the parent extension and popup extension to keep their
       // settings in sync.  This event will be triggered any time a setting is
       // changed for this extension, in the parent or popup (i.e. when settings.saveAsync is called).
@@ -34,6 +42,20 @@
       });
     });
   });
+  
+  function checkForSettings (settings) {
+	if(Object.keys(settings).length > 0)
+	{
+		updateExtensionBasedOnSettings(settings);
+		selectedInterval = JSON.parse(settings.intervalCount);
+		$('#interval').text(selectedInterval);	  
+		setupRefreshInterval(selectedInterval);
+		defaultIntervalInMin = selectedInterval;
+		$('#inactive').hide();
+		$('#active').show();
+	}
+	
+  }
 
   function configure() {
     // This uses the window.location.origin property to retrieve the scheme, hostname, and 
@@ -59,8 +81,10 @@
       $('#active').show();
 
       // The close payload is returned from the popup extension via the closeDialog method.
-      $('#interval').text(closePayload);
-      setupRefreshInterval(closePayload);
+	  selectedInterval = closePayload;
+	  defaultIntervalInMin = selectedInterval;
+      $('#interval').text(selectedInterval);	  
+      setupRefreshInterval(selectedInterval);
     }).catch((error) => {
       // One expected error condition is when the popup is closed by the user (meaning the user
       // clicks the 'X' in the top right of the dialog).  This can be checked for like so:
