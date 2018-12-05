@@ -26,6 +26,8 @@
    */
   const datasourcesSettingsKey = 'selectedDatasources';
   let selectedDatasources = [];
+  const intervalCountKey = 'intervalCount';
+  let intervalCount = '25';
 
   $(document).ready(function () {
     // The only difference between an extension in a dashboard and an extension 
@@ -118,6 +120,7 @@
   function closeDialog() {
     let currentSettings = tableau.extensions.settings.getAll();
     tableau.extensions.settings.set(datasourcesSettingsKey, JSON.stringify(selectedDatasources));
+	tableau.extensions.settings.set(intervalCountKey, JSON.stringify($('#interval').val()));
 
     tableau.extensions.settings.saveAsync().then((newSavedSettings) => {
       tableau.extensions.ui.closeDialog($('#interval').val());
