@@ -1,5 +1,5 @@
 ---
-title: Get Started
+title: Get Started with Dashboard Extensions
 layout: docs
 ---
 
@@ -7,20 +7,7 @@ The Tableau Extensions API allows developers to create extensions for Tableau. T
  
 This section will take you through the process of setting up your environment to use one of the sample dashboard extensions. Using one of the sample extensions is a great way to learn and great way to get started developing your own extensions. In this section, you will start a simple web server on your computer to host the sample. You can use the same process for hosting the extension when you start developing your own. 
 
-
-| If you are looking for information about how you add extensions to your dashboards in Tableau Desktop or in Web Authoring, see [Use Dashboard Extensions](https://onlinehelp.tableau.com/current/pro/desktop/en-us/dashboard_extensions.htm){:target="_blank"}. If you are looking for extensions that are currently available that you can use, see the [Tableau Extension Gallery](https://extensiongallery.tableau.com/){:target="_blank"}.
-
-
-
-
-<!--  move this
-You can examine the sample code and see how the extension works. You can then start modifying the sample to add your own code and explore the Extensions API.
-
-
-A dashboard extension is a web application that can be placed in the dashboard like any other dashboard object. 
-In this section, you will start a simple web server on your computer to host the sample dashboard extension. 
-
--->
+| If you are looking for information about how to add an extension to a dashboard in Tableau, see [Use Dashboard Extensions](https://onlinehelp.tableau.com/current/pro/desktop/en-us/dashboard_extensions.htm){:target="_blank"}. If you are looking for extensions that you can use, see the [Tableau Extension Gallery](https://extensiongallery.tableau.com/){:target="_blank"}.
 
 
 
@@ -79,15 +66,15 @@ To use the dashboard extension samples, you need to start up a web server on you
 
 1. Navigate to the `extensions-api` directory.
 2. To install the web server components, run the following npm command to install the package:
-   ```
-   npm install
-   ```
+
+   **npm install**
+
   
 3. To start the web server, run the following npm command:
-   ```
-   npm start
-   ```
-    The start command runs a script to start the web server over port `8765`. You only need to install the web server components the first time. Subsequently, you can just start the web server, using `npm start`. 
+ 
+   **npm start**
+
+    The start command runs a script to start the web server over port `8765`. You only need to install the web server components the first time. Subsequently, you can just start the web server, using **npm start**.
     The start commands uses the npm [http-server](https://www.npmjs.com/package/http-server){:target="_blank"} package, a simple HTTP server that uses Node.js for serving static files to the browser.
 
 
@@ -172,10 +159,12 @@ You can add multiple instances of an extension to a dashboard or to multiple das
   
 ## What's next?
 
-* Start developing your extension by modifying an existing sample. See [samples (GitHub)](https://github.com/tableau/extensions-api/tree/master/Samples/). Create a copy of the sample directories. For example, if you make the copy in `\extensions-api\` directory, and call it `MySamples`, you just need to modify the URL in the `.trex` files so that you host the extensions using the same web server you created with `npm start` command. 
+* Start developing your extension by modifying an existing sample. See [samples (GitHub)](https://github.com/tableau/extensions-api/tree/master/Samples/). Create a copy of the sample directories. For example, if you make the copy in `\extensions-api\` directory, and call it `MySamples`, you just need to modify the URL in the `.trex` files so that you host the extensions using the same web server you created with `npm start` command.
 
-* Follow the [Tutorial (GitHub)](https://github.com/tableau/extensions-api/tree/master/Tutorial) and learn how to build a dashboard extension, step by step. If you downloaded or cloned the repository, look in the `Tutorial` folder on your computer.  
+* Follow the [Tutorial (GitHub)](https://github.com/tableau/extensions-api/tree/master/Tutorial) and learn how to build a dashboard extension, step by step. If you downloaded or cloned the repository, look in the `Tutorial` folder on your computer.
 
 * For information about creating a simple "Hello World" Tableau extension, see [Creating a Tableau Extension]({{site.baseurl}}/docs/trex_create.html).
+
 * To get familiar with the programming interface for the Extensions API, see the <a href="{{site.baseurl}}/docs/index.html" target="_blank">API Reference</a>.
+
 * For information about debugging your extension, see [Debugging Extensions in Tableau Desktop]({{site.baseurl}}/docs/trex_debugging.html).

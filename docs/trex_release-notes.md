@@ -22,15 +22,11 @@ See also: [Known Issues]({{site.baseurl}}/docs/trex_known_issues.html)
 - Download [Tableau Desktop 2018.3](https://www.tableau.com/support/releases){:target="_blank"} or [Tableau Server 2018.3](https://www.tableau.com/support/releases/server){:target="_blank"}
 
 
-Changes in this release:
-
-- Starting in Tableau 2018.3, when the dashboard is not visible (minimized or in the background), Extensions API method calls are blocked. If you have code that might run when the dashboard is not visible, you should add error handling to catch the `APINotInitialized` error code returned in the blocked state. For more information, see [Handle Extensions API errors when the dashboard is not visible]({{site.baseurl}}/docs/trex_error_handling.html#handle-extensions-api-errors-when-the-dashboard-is-not-visible).
-
 
 
 New in this release:
 
-- Updated documentation. [Getting Started]({{site.baseurl}}/docs/trex_getstarted.html), [Create a "Hello World" Dashboard Extension]({{site.baseurl}}/docs/trex_create.html), <br/>[Debugging Dashboard Extensions on Tableau Server and Tableau Online]({{site.baseurl}}/docs/trex_debug_server.html), [Error Codes and Error Handling for Extensions]({{site.baseurl}}/docs/trex_error_handling.html.html). 
+- Updated documentation. [Getting Started]({{site.baseurl}}/docs/trex_getstarted.html), [Create a "Hello World" Dashboard Extension]({{site.baseurl}}/docs/trex_create.html), <br/>[Debugging Extensions on Tableau Desktop]({{site.baseurl}}/docs/trex_debugging.html), [Debugging Extensions on Tableau Server and Tableau Online]({{site.baseurl}}/docs/trex_debug_server.html), [Error Codes and Error Handling for Extensions]({{site.baseurl}}/docs/trex_error_handling.html.html). 
 
 ---
 

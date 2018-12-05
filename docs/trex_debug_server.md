@@ -17,6 +17,7 @@ The following section describes how you could debug your extension using the [Ch
 
 
 
+---
 
 ## Enable the debugging tools in the browser
 
@@ -28,6 +29,8 @@ The following section describes how you could debug your extension using the [Ch
 2. Locate the source code for your extension. 
 For example, if you were using Chrome for debugging, you can open the Source pane. Under folders shown on the navigation pane, you will find one for the extension. For example, you might see something like `extension_frame_37 (filtering.html)`.
 Under this, you will find the name of the server (for example `localhost`), and you can drill down to your JavaScript source files.
+
+---
 
 ## Set breakpoints and explore the code
 
@@ -46,14 +49,20 @@ If you need to debug your extension, setting a breakpoint in your source code is
 
 4. You can explore the dashboard extension namespace using the Console window. For example, entering the following in the Console window (while you are paused in your extension code) will print out the names of all the worksheets in the dashboard.
 
+
     ```javascript
+
     tableau.extensions.dashboardContent.dashboard.worksheets.forEach(function (worksheet){console.log(worksheet.name)})
+
     ```
 
-![Chrome browser showing an extension breakpoint]({{site.baseurl}}/assets/server_dbg_chrome.png)
+
+
+![alt text]({{site.baseurl}}/assets/server_dbg_chrome.png "Chrome browser showing an extension breakpoint")
 
 
 
+---
 
 ## Debugging during initialization 
 
@@ -66,6 +75,7 @@ After you select the breakpoint and refresh or reload the broswer window, code e
 If your extension fails to load at all, it might be caused by mixed content (trying to load an HTTP web page inside of a secure HTTPS server). See [Load and view localhost content on sites that use secure connections]({{site.baseurl}}/docs/trex_debug_server.html#load-and-view-localhost-content-on-sites-that-use-secure-connections).
 
 
+---
 
 ## Load and view localhost content on sites that use secure connections
 
@@ -74,7 +84,7 @@ If you want to test and debug your extension (running on `http://localhost`) wit
 To temporarily get around these safety settings for the session, you can click the shield icon (or lock icon) in the browser's address bar. The alert dialog box will allow you to either load the scripts, or allow you to view the full content of the page. As soon as you load the unsafe scripts or allow the blocked content, the extension will load and will continue to be available for the duration of your session. Be sure to close the browser completely when you are finished testing. The following example shows what you might see in Chrome. 
 <br/>
 
-![Chrome browser showing alert when extension running on a localhost server]({{site.baseurl}}/assets/online_blocked_extension.png)
+![alt text]({{site.baseurl}}/assets/online_blocked_extension.png "Chrome browser showing alert when extension running on a localhost server")
 
 
 During the session, anytime you refresh or reload the web page, you will see the extensions dialog box requesting permission to run. And in the debugger console, you might see a warning message about mixed content.

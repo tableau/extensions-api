@@ -5,11 +5,11 @@ layout: docs
 
 To create a Tableau extension you need the following components.
 
--   A manifest file that identifies and describes the extension.
--   The Tableau Extensions API JavaScript library (`tableau-extensions-N.N.N.js`)
--   A web page that uses the library. The web page provides controls that interact with Tableau objects and data in the dashboard.
--   Additional JavaScript and HTML and CSS files as needed for your web app.
--   A web server to host your web app.
+- A manifest file that identifies and describes the extension.
+- The Tableau Extensions API JavaScript library (`tableau-extensions-N.N.N.js`)
+- A web page that uses the library. The web page provides controls that interact with Tableau objects and data in the dashboard.
+- Additional JavaScript and HTML and CSS files as needed for your web app.
+- A web server to host your web app.
 
 ---
 **In this section**
@@ -32,7 +32,7 @@ The manifest file (`EXTENSION-NAME.trex`) is an XML file that describes the exte
 
 1.  In the `HelloDemo` folder (or where ever you want to put your files), create a manifest file for your extension.
 Name the manifest file for your extension (for example, `HelloExtensions` and save it with the file name extension `.trex`. <br/>
-The manifest file is an XML file that contains elements and attributes that describe the extension. For a description of the contents of this file, see [Elements of the manifest file]({{site.baseurl}}/docs/trex_manifest#elements-of-the-manifest-file). An XSD is available for validation on the pre-release website [here](https://prerelease.tableau.com/project/version/item.html?cap=52e2710a0793434d82142736c7ab3029&arttypeid={0DD668AE-472C-4E70-B465-35F7AE0DEB6D}&artid={939493D2-8000-4192-857A-67624CBCC35A}).
+The manifest file is an XML file that contains elements and attributes that describe the extension. For a description of the contents of this file, see [Elements of the manifest file]({{site.baseurl}}/docs/trex_manifest#elements-of-the-manifest-file). The XSD that is used for validation is available on the [Tableau Pre-Release website](https://prerelease.tableau.com/project/version/item.html?cap=52e2710a0793434d82142736c7ab3029&arttypeid={0DD668AE-472C-4E70-B465-35F7AE0DEB6D}&artid={939493D2-8000-4192-857A-67624CBCC35A}){:target="_blank"}.
 
 2. Copy the following XML code into your new file.  
 

@@ -16,7 +16,7 @@ For details about a manifest or its fields, see the [Sample Manifest File](#samp
 
 
 ## XSD Validation
-The manifest is an XML-based file. We have provided an XSD (an XML schema definition file) that can be used to validate the manifest file you have created for your extension. The XSD is available from the  [Extensions API Developer Preview](https://prerelease.tableau.com/project/version/item.html?cap=52e2710a0793434d82142736c7ab3029&arttypeid={0DD668AE-472C-4E70-B465-35F7AE0DEB6D}&artid={939493D2-8000-4192-857A-67624CBCC35A}) site. You are strongly encouraged to validate your extensions manifest file before using it for the first time. 
+The manifest is an XML-based file. We have provided an XSD (an XML schema definition file) that can be used to validate the manifest file you have created for your extension. The XSD is available from the  [Extensions API Developer Preview](https://prerelease.tableau.com/project/version/item.html?cap=52e2710a0793434d82142736c7ab3029&arttypeid={0DD668AE-472C-4E70-B465-35F7AE0DEB6D}&artid={939493D2-8000-4192-857A-67624CBCC35A}){:target="_blank"} site. You are strongly encouraged to validate your extensions manifest file before using it for the first time. 
 
 ## Manifest Versioning
 The versioning of the manifest is designed to be semantically simple and support compatibility. The version follows the [Major].[Minor] format. Minor upgrades are backwards compatible while major upgrades involve breaking changes. 
