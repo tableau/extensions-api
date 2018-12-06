@@ -57,7 +57,9 @@ In order to actually do any debugging, you'll need to use a Chromium-based brows
 * [Chromium for macOS (47.0.2526.0)](https://www.googleapis.com/download/storage/v1/b/chromium-browser-snapshots/o/Mac%2F352221%2Fchrome-mac.zip?generation=1443838516381000&alt=media) 
 
 ---
+
 ## Debugging Tableau Desktop using Chrome/Chromium
+
 After you have installed the Chromium browser and have enabled debugging in Tableau, you can start debugging your extension. 
 
 1. Start Tableau and open the dashboard with the extension you want to debug. 
@@ -69,7 +71,9 @@ After you have installed the Chromium browser and have enabled debugging in Tabl
 ![Remote Debugging]({{site.baseurl}}/assets/remote_debugging.gif)
 
 ---
+
 ## Debugging loading and initialization issues
+
 It can be difficult to hit breakpoints that occur during the loading of your page because of the remote debugging process. To help with this, you can select a menu option that causes your extension to wait to load until you trigger it to.
 
 1. In the **Debug Options** drop-down menu, select **Pause Before Loading**.
