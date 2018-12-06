@@ -226,7 +226,7 @@ Reload the extension in Tableau.
 Use the **Reload** option to refresh and reload the extension in the dashboard.
 
 
-![]({{site.baseurl}}/assets/extension_reload_menu.png){:height="25%" width="25%"}
+![alt text]({{site.baseurl}}/assets/extension_reload_menu.png "Shortcut menu showing the Reload option"){:height="25%" width="25%"}
 
 
 For information about debugging your extension, see [Debugging Extensions in Tableau Desktop]({{site.baseurl}}/docs/trex_debugging.html).

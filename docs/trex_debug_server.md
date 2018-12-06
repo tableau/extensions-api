@@ -70,7 +70,7 @@ If you need to troubleshoot or debug issues that prevent your extension from loa
 
 - In the Chrome browser, select **Event Listener Breakpoint > Script > Script First Statement**. 
 
-After you select the breakpoint and refresh or reload the broswer window, code execution will stop when every script is loaded. This might take awhile, as code execution will stop for all the scripts in the dashboard. A better option would be to set the same breakpoint in Tableau Desktop. In Tableau Desktop, there is a debugging option you can set to pause the extension when loading. For more information, see [Debugging loading and intialization issues]({{site.baseurl}}/docs/trex_debugging.html#debugging-loading-and-inialization-issues). 
+After you select the breakpoint and refresh or reload the browser window, code execution will stop when every script is loaded. This might take awhile, as code execution will stop for all the scripts in the dashboard. A better option would be to set the same breakpoint in Tableau Desktop. In Tableau Desktop, there is a debugging option you can set to pause the extension when loading. For more information, see [Debugging loading and initialization issues]({{site.baseurl}}/docs/trex_debugging.html#debugging-loading-and-inialization-issues). 
 
 If your extension fails to load at all, it might be caused by mixed content (trying to load an HTTP web page inside of a secure HTTPS server). See [Load and view localhost content on sites that use secure connections]({{site.baseurl}}/docs/trex_debug_server.html#load-and-view-localhost-content-on-sites-that-use-secure-connections).
 
