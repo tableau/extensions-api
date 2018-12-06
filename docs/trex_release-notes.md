@@ -26,7 +26,7 @@ See also: [Known Issues]({{site.baseurl}}/docs/trex_known_issues.html)
 
 New in this release:
 
-- Updated documentation. [Getting Started]({{site.baseurl}}/docs/trex_getstarted.html), [Create a "Hello World" Dashboard Extension]({{site.baseurl}}/docs/trex_create.html), <br/>[Debugging Extensions on Tableau Desktop]({{site.baseurl}}/docs/trex_debugging.html), [Debugging Extensions on Tableau Server and Tableau Online]({{site.baseurl}}/docs/trex_debug_server.html), [Error Codes and Error Handling for Extensions]({{site.baseurl}}/docs/trex_error_handling.html.html). 
+- Updated documentation. [Getting Started]({{site.baseurl}}/docs/trex_getstarted.html), [Create a "Hello World" Dashboard Extension]({{site.baseurl}}/docs/trex_create.html), <br/>[Debugging Extensions on Tableau Desktop]({{site.baseurl}}/docs/trex_debugging.html), [Debugging Extensions on Tableau Server and Tableau Online]({{site.baseurl}}/docs/trex_debug_server.html), [Error Codes and Error Handling for Extensions]({{site.baseurl}}/docs/trex_error_handling.html). 
 
 ---
 
