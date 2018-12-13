@@ -3,7 +3,7 @@ title: Dashboard Extension Samples
 layout: docs
 ---
 
-The best way to learn how to build your own extensions is to look at the sample code. To examine the sample source files to see how Tableau dashboard extensions work, you can clone or download the [Extensions API](https://github.com/tableau/extensions-api) SDK on GitHub and run the samples and the tutorial. 
+The best way to learn how to build your own extensions is to look at the sample code. To examine the sample source files to see how Tableau dashboard extensions work, you can clone or download the [Extensions API](https://github.com/tableau/extensions-api) SDK on GitHub and run the samples or the tutorial. 
 - To download the Extensions API SDK, if you have not already done so, see [Get Started]({{ site.baseurl }}/doc/trex_getstarted.html).
 
 - You can browse the sample code for the dashboard extensions in the [Samples](https://github.com/tableau/extensions-api/tree/master/Samples?=target="_blank") and the [Tutorial](https://github.com/tableau/extensions-api/tree/master/Tutorial?=target="_blank") folders on GitHub. 
@@ -28,7 +28,7 @@ The following instructions assume that you have already downloaded and extracted
 
 ### About the dashboard extension samples
 
-The dashboard extension samples are in the `Samples` folder. There is also a step-by-step tutorial you can follow in the `Tutorial` folder. 
+The dashboard extension samples are in the `Samples` folder. There is also a step-by-step tutorial you can follow in the `Tutorial` folder.
 
 
 
@@ -56,7 +56,7 @@ The dashboard extension samples are in the `Samples` folder. There is also a ste
 
 - **[Tutorial](https://github.com/tableau/extensions-api/tree/master/Tutorial?=target="_blank")**
      
-     Walks you through tne step-by-step process of creating and refining an extension that display a summarized table of the currently selected marks.  
+     Walks you through the step-by-step process of creating and refining an extension that displays a summarized table of the currently selected marks.  
 
 
 

@@ -33,7 +33,7 @@ If you want to create an extension or work with the sample code, make sure you h
 * [Git](https://git-scm.com/downloads)
 * [Node.js and npm](https://nodejs.org/en/download/) 
 
-You need Node.js and nmp to run the dashboard extension demos. Node.js is a JavaScript runtime. npm is a package manager for Node.js and is installed when you install Node.js.
+You need Node.js and npm to run the dashboard extension demos. Node.js is a JavaScript runtime. npm is a package manager for Node.js and is installed when you install Node.js.
 
 Requirements for using dashboard extensions in Tableau:
 
@@ -41,7 +41,7 @@ Requirements for using dashboard extensions in Tableau:
 * Tableau Server 2018.2 and later
 * Tableau Online
 
-To run extensions on Tableau Server or Tableau Online, support for extensions must be enabled, and depending upon the extension and the data access it requires, the extension might need to be added to safe list. See
+To run extensions on Tableau Server or Tableau Online, support for extensions must be enabled, and depending upon the extension and the data access it requires, the extension might need to be added to the safe list for the site. See
  [Manage Dashboard Extensions on Tableau Server](https://onlinehelp.tableau.com/current/server/en-us/dashboard_extensions_server.htm) or [Manage Dashboard Extensions on Tableau Online](https://onlinehelp.tableau.com/current/online/en-us/dashboard_extensions_server.htm) for more information.
 
 ----
@@ -102,9 +102,11 @@ To use the dashboard extension samples, you need to start up a web server on you
 ---
 ### Examine the source code for the extension 
 
-Looking at the files that make up an extension will give you an idea of how an extension is constructed. 
-1. Browse to the directory where the DataSources samples is located. For example, if you downloaded or cloned the GitHub repository, go to `\extensions-api\Samples\DataSources`. 
-2. Open the `datasources.html` file in your favorite Text or Code editor. This HTML pages provides the interface that users see when they load the extension. This file includes links to the Extensions API library file and to the file that contains all the JavaScript code for the extension.   
+Looking at the files that make up an extension will give you an idea of how an extension is constructed.
+
+1. Browse to the directory where the DataSources sample is located. For example, if you downloaded or cloned the GitHub repository, go to `\extensions-api\Samples\DataSources`.
+
+2. Open the `datasources.html` file in your favorite Text or Code editor. This HTML page provides the interface that users see when they load the extension. This file includes links to the Extensions API library file and to the file that contains all the JavaScript code for the extension.
 
     ```html
     <!-- Extensions Library  -->
@@ -159,12 +161,12 @@ You can add multiple instances of an extension to a dashboard or to multiple das
   
 ## What's next?
 
-* Start developing your extension by modifying an existing sample. See [samples (GitHub)](https://github.com/tableau/extensions-api/tree/master/Samples/). Create a copy of the sample directories. For example, if you make the copy in `\extensions-api\` directory, and call it `MySamples`, you just need to modify the URL in the `.trex` files so that you host the extensions using the same web server you created with `npm start` command.
+* Start developing your extension by modifying an existing sample. See [samples (GitHub)](https://github.com/tableau/extensions-api/tree/master/Samples/). If you cloned or downloaded the repository, create a copy of the Samples directory. For example, if you make the copy in `\extensions-api\` directory, and call it `MySamples`, you just need to modify the URL in the `.trex` files so that you host the extensions using the same web server you created with `npm start` command.
 
 * Follow the [Tutorial (GitHub)](https://github.com/tableau/extensions-api/tree/master/Tutorial) and learn how to build a dashboard extension, step by step. If you downloaded or cloned the repository, look in the `Tutorial` folder on your computer.
 
-* For information about creating a simple "Hello World" Tableau extension, see [Creating a Tableau Extension]({{site.baseurl}}/docs/trex_create.html).
+* For information about creating a simple "Hello World" Tableau extension, see [Create a "Hello World" Dashboard Extension]({{site.baseurl}}/docs/trex_create.html).
 
 * To get familiar with the programming interface for the Extensions API, see the <a href="{{site.baseurl}}/docs/index.html" target="_blank">API Reference</a>.
 
-* For information about debugging your extension, see [Debugging Extensions in Tableau Desktop]({{site.baseurl}}/docs/trex_debugging.html).
+* For information about debugging your extension, see [Debug Extensions in Tableau Desktop]({{site.baseurl}}/docs/trex_debugging.html) and [Debug Extensions in Tableau Server and Tableau Online]({{site.baseurl}}/docs/trex_debug_server.html).
