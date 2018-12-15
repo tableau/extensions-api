@@ -97,14 +97,15 @@ Note that you can only debug one extension, or instance of an extension, at a ti
 
 It can be difficult to hit breakpoints that occur during the loading of your page because of the remote debugging process. To help with this, you can select a menu option that causes your extension to wait to load until you trigger it to proceed.
 
-1. In the **Debug Options** drop-down menu, select **Pause Before Loading**.
-2. Reload your extension (**Debug Options** > **Reload**)
+1. Select the extension in the dashboard and select **Debug Options** > **Pause Before Loading** from the shortcut menu.
+2. Reload your extension. Select **Reload** from the shortcut menu. 
 3. In Chromium, go to the debugging homepage ([http://localhost:8696](http://localhost:8696)). 
-4. To attach to the browser instance, click the *second item* listed (it will be completely blank, but it is really there. The cursor changes so you can select it). 
-4. Click the **Sources** tab in Chromium, under **Event Listener Breakpoints**, click **Script** and enable the **Script First Statement** breakpoint. You just have to do this one time.
-5. Back in Tableau, click the extension zone to load your page.<br/>
+4. Click the *second item* listed to attach to the browser instance of your extension.<br/>
+**Note:** When you click the list item, it will be completely blank, but it is really there. The cursor changes so you can select it.
+5. Click the **Sources** tab in Chromium, under **Event Listener Breakpoints**, click **Script** and enable the **Script First Statement** breakpoint. You just have to do this one time.
+6. In Tableau Desktop, click the extension zone to load your page.<br/>
 The debugger will pause each time the first statement of a script runs, allowing you to debug the startup process.
-6. To get to your JavaScript code, click **Continue** several times. Once your JavaScript is loaded, you can set a breakpoint in your startup code. 
+7. To get to your JavaScript code, click **Continue** several times. After your JavaScript is loaded, you can set a breakpoint in your startup code. 
 
 <!-- ![Startup Debugging]({{site.baseurl}}/assets/foucUWBiUJ.gif) -->
 ![Startup Debugging]({{site.baseurl}}/assets/onload_debugging.gif)
@@ -118,7 +119,9 @@ The debugger will pause each time the first statement of a script runs, allowing
 
 #### Reload closes debugging connection
 
-While you are debugging your extension, there are times you might want to reload or refresh your web page to execute and debug different parts of your code. However, when you click **Reload** from the shortcut menu to reload your extension, the option tears down and re-creates the browser control, which means you'll need to establish a new debugging session. You do not need to close the Chromium browser every time you click **Reload**. You can start another debugging session by entering the URL (`http://localhost:8696`) in the address bar.
+While you are debugging your extension, there are times you might want to reload or refresh your web page to execute and debug different parts of your code. However, when you click **Reload** from the shortcut menu to reload your extension, the remote debugger loses the connection with the extension. The reason for this is that **Reload** option tears down and re-creates the browser control, which means you'll need to establish a new debugging session.
+
+Note that you do not need to close and reopen the Chromium browser every time you click **Reload**. You can start another debugging session by entering the URL (`http://localhost:8696`) in the Chromium address bar and selecting the extension from the page selector.
 
 For more information, see [What Happens When You Reload an Extension]({{site.baseurl}}/docs/trex_reload.html).
 
