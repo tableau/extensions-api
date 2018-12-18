@@ -14,6 +14,7 @@ See also: [Known Issues]({{site.baseurl}}/docs/trex_known_issues.html)
 ----
 
 
+
 ### Tableau 2018.3
 *November, 2018*
 
@@ -30,6 +31,7 @@ New in this release:
 
 ---
 
+
 ### TC18
 *October, 2018*
 
@@ -37,7 +39,9 @@ New in this release:
 
 New in this release: 
 
+
 - Use the [Design Guidelines for Dashboard Extensions]({{site.baseurl}}/docs/ux_design.html){:target="_blank"} as a roadmap for designing great dashboard extensions. 
+
 
 - Create extensions with the look-and-feel of Tableau, using the [Tableau UI](https://tableau.github.io/tableau-ui/){:target="_blank"}, a React component library.  
 

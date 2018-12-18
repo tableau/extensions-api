@@ -25,5 +25,14 @@
         "tags": ["v_0.6"],
         "description": "A Tableau Extension to add dynamic parameter capabilities to Tableau dashboards.",
         "source_code": "https://github.com/KeshiaRose/Dynamic-Parameter"
+    },
+    {
+        "name": "Tableaufans.com’s Write Back Extension",
+        "website": "https://tableaufans.com/extension-api/tableau-extension-api-write-back-updated-source-code-for-tableau-2018-2/",
+        "author": "Timo Tautenhahn",
+        "github_username": "TimoTautenhahn",
+        "tags": ["v_1.0"],
+        "description": "Tableaufans.com’s Write Back Extension is a downloadable extension that allows you to write back to your MySQL database.",
+        "source_code": "https://tableaufans.com/extension-api/tableau-extension-api-write-back-updated-source-code-for-tableau-2018-2/"
     }
 ]

@@ -119,11 +119,15 @@ The debugger will pause each time the first statement of a script runs, allowing
 
 #### Reload closes debugging connection
 
+
 While you are debugging your extension, there are times you might want to reload or refresh your web page to execute and debug different parts of your code. However, when you click **Reload** from the shortcut menu to reload your extension, the remote debugger loses the connection with the extension. The reason for this is that **Reload** option tears down and re-creates the browser control, which means you'll need to establish a new debugging session.
+
 
 Note that you do not need to close and reopen the Chromium browser every time you click **Reload**. You can start another debugging session by entering the URL (`http://localhost:8696`) in the Chromium address bar and selecting the extension from the page selector.
 
 For more information, see [What Happens When You Reload an Extension]({{site.baseurl}}/docs/trex_reload.html).
+
+
 
 
 
