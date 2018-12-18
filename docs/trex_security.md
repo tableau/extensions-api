@@ -12,7 +12,8 @@ A Tableau extension is essentially a web application that runs inside a Tableau 
 - By default, anyone using the extension will be prompted and asked to allow or deny the extension access. The Tableau Server site administrator can control whether the prompt appears for each extension.
 
 
-This section covers options for setting up your extension to use HTTPS. For information about adding an extension to the safe list on Tableau Server, or how to configure the prompts to allow or deny access, see the Tableau Server documentation (*work in progress*). 
+This section covers options for setting up your extension to use HTTPS. For information about adding an extension to the safe list on Tableau Server or Tableau Online, or how to configure the prompts to allow or deny access, see [Manage Dashboard Extensions on Tableau Server](https://onlinehelp.tableau.com/current/server/en-us/dashboard_extensions_server.htm) or [Manage Dashboard Extensions on Tableau Online](https://onlinehelp.tableau.com/current/online/en-us/dashboard_extensions_server.htm) for more information. 
+
 
 
 **In this section**
@@ -142,23 +143,12 @@ For example, you can author a workbook in Tableau Desktop that uses an extension
 
 Note the following considerations:
 
-- If Tableau Server is using HTTPS, your extension might not load if it is using `http://localhost`. The same situation occurs with Tableau Online. This is because it is generally not a good practice to embed an HTTP `<iframe>` inside of an HTTPS web page, and the default settings of most browsers will consider this as unsafe content. To temporarily allow the extension to run while you are testing, see [Load and view localhost content on sites that use secure connections]({{site.baseurl}}/docs/trex_security.html#oad-and-view-localhost-content-on-sites-that-use-secure-connections).
+- If Tableau Server is using HTTPS, your extension might not load if it is using `http://localhost`. The same situation occurs with Tableau Online. This is because it is generally not a good practice to embed an HTTP `<iframe>` inside of an HTTPS web page, and the default settings of most browsers will consider this as unsafe content. To temporarily allow the extension to run while you are testing, see [Load and view localhost content on sites that use secure connections]({{site.baseurl}}/docs/trex_debug_server.html#load-and-view-localhost-content-on-sites-that-use-secure-connections).
 
 
 - In the manifest file (`.trex`) for the extension, you must specify the DNS name `localhost` and **not** the IP address (for example, `127.0.0.1`). 
 
 - To make it easier to migrate your extension to a production server, use relative addresses and use HTTPS when you include resources. 
-
-### Load and view localhost content on sites that use secure connections
-
-If you want to test your extension (running on `http://localhost`) with Tableau Online, or with Tableau Server that is using HTTPS, the default settings of many browsers will block the extension from loading because the extension is not using a secure connection.
-
-To temporarily get around these safety settings for the session, you can click the shield icon (or lock icon) in the browser's address bar. The alert dialog box will allow you to either load the scripts, or allow you to view the full content of the page. As soon as you load the unsafe scripts or allow the blocked content, the extension will load and will continue to be available for the duration of your session. Be sure to close the browser completely when you are finished testing. The following example shows what you might see in Chrome. 
-<br/>
-
-![Chrome browser showing alert when extension running on a localhost server]({{site.baseurl}}/assets/online_blocked_extension.png)
-
-
 
 
 

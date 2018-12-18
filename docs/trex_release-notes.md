@@ -13,6 +13,23 @@ See also: [Known Issues]({{site.baseurl}}/docs/trex_known_issues.html)
 
 ----
 
+
+### Tableau 2018.3
+*November, 2018*
+
+- Tableau Extensions API library: `tableau-extensions-1.0.0.js` *No change for this release*<br>(download or clone the Extensions API repository on [GitHub](https://github.com/tableau/extensions-api){:target="_blank"})
+
+- Download [Tableau Desktop 2018.3](https://www.tableau.com/support/releases){:target="_blank"} or [Tableau Server 2018.3](https://www.tableau.com/support/releases/server){:target="_blank"}
+
+
+
+
+New in this release:
+
+- Updated documentation. [Getting Started]({{site.baseurl}}/docs/trex_getstarted.html), [Create a "Hello World" Dashboard Extension]({{site.baseurl}}/docs/trex_create.html), <br/>[Debugging Extensions on Tableau Desktop]({{site.baseurl}}/docs/trex_debugging.html), [Debugging Extensions on Tableau Server and Tableau Online]({{site.baseurl}}/docs/trex_debug_server.html), [Error Codes and Error Handling for Extensions]({{site.baseurl}}/docs/trex_error_handling.html). 
+
+---
+
 ### TC18
 *October, 2018*
 
@@ -20,7 +37,7 @@ See also: [Known Issues]({{site.baseurl}}/docs/trex_known_issues.html)
 
 New in this release: 
 
-- Use the [Design Guidelines for Dashboard Extensions]({{site.baseurl}}/docs/ux_design.html){:target="_blank"} as roadmap for designing great dashboard extensions. 
+- Use the [Design Guidelines for Dashboard Extensions]({{site.baseurl}}/docs/ux_design.html){:target="_blank"} as a roadmap for designing great dashboard extensions. 
 
 - Create extensions with the look-and-feel of Tableau, using the [Tableau UI](https://tableau.github.io/tableau-ui/){:target="_blank"}, a React component library.  
 
