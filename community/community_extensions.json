@@ -27,6 +27,15 @@
         "source_code": "https://github.com/KeshiaRose/Dynamic-Parameter"
     },
     {
+        "name": "Tableaufans.com’s Commenting Extension",
+        "website": "https://tableaufans.com/extension-api/tableau-commenting-extension/",
+        "author": "Timo Tautenhahn",
+        "github_username": "TimoTautenhahn",
+        "tags": ["v_1.0"],
+        "description": "Tableaufans.com’s Commenting Extension lets you have discussions around particular outliers on Visualizations. You can basically select any mark on a dashboard, create a new comment for it and review what other people discussed.",
+        "source_code": "https://tableaufans.com/extension-api/tableau-commenting-extension/"
+    },
+    {
         "name": "Tableaufans.com’s Write Back Extension",
         "website": "https://tableaufans.com/extension-api/tableau-extension-api-write-back-updated-source-code-for-tableau-2018-2/",
         "author": "Timo Tautenhahn",
