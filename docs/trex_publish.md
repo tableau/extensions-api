@@ -24,7 +24,7 @@ While you don't exactly publish a dashboard extension to Tableau Server or Table
 
 However, to run on Tableau Server or Tableau Online, your extension must:
 
-* Be hosted on a web server that uses HTTPS (`localhost` is the exception during development).
+* Be hosted on a web server that uses HTTPS (`localhost` is the exception during development). Note that hosting your extension on the same computer that is running Tableau Server is not recommended.
 * Declare full data access (if the extension calls any functions that access the underlying data in the dashboard). 
 * Be granted permission to run on the Tableau Server or Tableau Online. 
 
