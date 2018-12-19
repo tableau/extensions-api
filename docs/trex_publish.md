@@ -26,7 +26,7 @@ However, to run on Tableau Server or Tableau Online, your extension must:
 
 * Be hosted on a web server that uses HTTPS (`localhost` is the exception during development). The web server needs to be on a separate computer from the computer(s) running Tableau Server.
 * Declare full data access (if the extension calls any functions that access the underlying data in the dashboard). 
-* Be granted permission to run on the Tableau Server or Tableau Online. 
+* Be granted permission to run on Tableau Server or Tableau Online. 
 
 |---- | 
 |**Note** If you want to test your extension with Tableau Online and you are running an extension on `http://localhost` during development, see [Load and view localhost content on sites that use secure connections]({{site.baseurl}}/docs/trex_security.html#load-and-view-localhost-content-on-sites-that-use-secure-connections)|
