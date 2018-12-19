@@ -85,7 +85,6 @@ After you install the Chromium browser and enable debugging in Tableau, you can 
 3. Pick the extension you want to debug from this page, and debug just like you would any other web application (set breakpoints, step through the code, and examine variables).<br/>
 Note that the name of the extension is based on the title of the web page that was loaded for the extension. If the extension hasn't loaded yet the name might be blank. See [Debugging loading and initialization issues](#debugging-loading-and-initialization-issues).
 
-   <!-- ![Remote Debugging]({{site.baseurl}}/assets/UsWdJEnOiR.gif) -->
 
     ![Remote Debugging]({{site.baseurl}}/assets/remote_debugging.gif)
 
@@ -107,7 +106,7 @@ It can be difficult to hit breakpoints that occur during the loading of your pag
 The debugger will pause each time the first statement of a script runs, allowing you to debug the startup process.
 7. To get to your JavaScript code, click **Continue** several times. After your JavaScript is loaded, you can set a breakpoint in your startup code. 
 
-<!-- ![Startup Debugging]({{site.baseurl}}/assets/foucUWBiUJ.gif) -->
+
 ![Startup Debugging]({{site.baseurl}}/assets/onload_debugging.gif)
 
 ---
