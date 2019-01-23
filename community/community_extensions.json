@@ -1,13 +1,5 @@
 [
     {
-        "name": "Image Filter (Jungle Book)",
-        "author": "Lee Graber & Ang Gao",
-        "github_username": "LGraber",
-        "tags": ["v_0.6"],
-        "description": "Lets you display an image, draw polygons in the image and then use those polygons as filters on a sheet in the viz.",
-        "source_code": "https://github.com/LGraber/trex-jungle-book"
-    },
-    {
         "name": "Display Images",
         "url": "https://illonage.github.io/DisplayImages/DisplayImage.html",
         "author": "Geraldine Zanolli",
@@ -25,6 +17,32 @@
         "tags": ["v_0.6"],
         "description": "A Tableau Extension to add dynamic parameter capabilities to Tableau dashboards.",
         "source_code": "https://github.com/KeshiaRose/Dynamic-Parameter"
+    },
+    {
+        "name": "Image Filter (Jungle Book)",
+        "author": "Lee Graber & Ang Gao",
+        "github_username": "LGraber",
+        "tags": ["v_0.6"],
+        "description": "Lets you display an image, draw polygons in the image and then use those polygons as filters on a sheet in the viz.",
+        "source_code": "https://github.com/LGraber/trex-jungle-book"
+    },
+    {
+        "name": "Run Alteryx in Tableau",
+        "website": "https://github.com/andre347/run-alteryx-tableau-extension",
+        "author": "Andre de Vries",
+        "github_username": "andre347",
+        "tags": ["v_1.0"],
+        "description": "Ever wanted to execute your Alteryx workflows or analytic apps from within your Tableau dashboard? Now you can! If you have an Alteryx Gallery you can run your published apps and workflows.",
+        "source_code": "https://github.com/andre347/run-alteryx-tableau-extension"
+    },
+    {
+        "name": "Semiotic Charts",
+        "website": "https://github.com/demartsc/tableau-tc18-extending-tableau",
+        "author": "Chris DeMartini",
+        "github_username": "demartsc",
+        "tags": ["v_1.0"],
+        "description": "This is a simple repository to support the demostration done at #TC18. The files included provide the assets needed to execute the map projections and semiotic hierarchy extensions presented in Tableau.",
+        "source_code": "https://github.com/demartsc/tableau-tc18-extending-tableau"
     },
     {
         "name": "Tableaufans.com’s Commenting Extension",
