@@ -1,5 +1,14 @@
 [
     {
+        "name": "Amazon Product Search",
+        "website": "https://github.com/hutchijo/my_tableau_extensions",
+        "author": "Joel Hutchison",
+        "github_username": "hutchijo",
+        "tags": ["v_1.0"],
+        "description": "A Python Flask extension which uses the Amazon Product Advertising API to perform product searches on Amazon based on selections in a dashbaord.  This extension also demonstrates writeback to a MySQL database.",
+        "source_code": "https://github.com/hutchijo/my_tableau_extensions"
+    },
+    {
         "name": "Display Images",
         "url": "https://illonage.github.io/DisplayImages/DisplayImage.html",
         "author": "Geraldine Zanolli",
