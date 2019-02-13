@@ -1,15 +1,15 @@
 ---
-title: Security and Tableau Extensions
+title: HTTPS and Tableau Extensions
 layout: docs
 ---
 
 A Tableau extension is essentially a web application that runs inside a Tableau dashboard. The extension can interact with other components in the dashboard and potentially has access to the visible and underlying data in the workbook (through a well-defined API). In addition, the web application can be running code on a server that sits outside of the domain where Tableau Server or Tableau Desktop are located. For security, Tableau requires the following:
  
-- All extensions must use the HTTP Secure (HTTPS) protocol. 
+* All extensions must use the HTTP Secure (HTTPS) protocol. 
 
-- To run on Tableau Server, the URL of the extension must be added to a safe list. The Tableau Server site administrator manages this list.
+* To run on Tableau Server, the URL of the extension must be added to a safe list. The Tableau Server site administrator manages this list.
 
-- By default, anyone using the extension will be prompted and asked to allow or deny the extension access. The Tableau Server site administrator can control whether the prompt appears for each extension.
+* By default, anyone using the extension will be prompted and asked to allow or deny the extension access. The Tableau Server site administrator can control whether the prompt appears for each extension.
 
 
 This section covers options for setting up your extension to use HTTPS. For information about adding an extension to the safe list on Tableau Server or Tableau Online, or how to configure the prompts to allow or deny access, see [Manage Dashboard Extensions on Tableau Server](https://onlinehelp.tableau.com/current/server/en-us/dashboard_extensions_server.htm) or [Manage Dashboard Extensions on Tableau Online](https://onlinehelp.tableau.com/current/online/en-us/dashboard_extensions_server.htm) for more information. 

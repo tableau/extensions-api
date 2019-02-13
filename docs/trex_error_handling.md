@@ -44,3 +44,66 @@ tableau.extensions.ui.displayDialogAsync(args... ).then((args... ) => {
 
 ```
 
+## Handle Extensions API errors when the dashboard is not visible 
+
+ In Tableau Server or Tableau Online version 2018.3 and later, when the dashboard is not visible (that is, when the browser window Tableau is running in is minimized or in the background), the Extensions API method calls are blocked and an error object is returned. If you have code that might run when the extension is not visible, you should add a `catch` method to handle the error. If you are using `tableau-extensions-1.2.0.js` or later, the error code returned in this case is `VISIBILITY_ERROR`.
+
+### What happens when the error occurs
+
+ This error can occur if an Extensions API method is called while Tableau is not in the foreground. For example, this could happen if the user switches tabs or minimizes the browser window and there is a timer that triggers the API call. When the user subsequently returns to the dashboard view, an error dialog box will appear.
+
+   ![]({{site.baseurl}}/assets/ext_visibility_error_dialog.png)
+
+
+### Identifying the error as a visibility-error
+
+ To find out the cause, you can use the debugging tools in the browser. If you check the Console window, in Chrome for example, you might see an error message similar to the following.
+
+   ![]({{site.baseurl}}/assets/ext_visibility_err_console.png)
+
+
+### Add a catch method to handle the error
+
+For example, the Extensions API method, `Datasources.refreshAsync()`, is intended to be used in scenarios where some manual interaction with the dashboard causes a need to refresh the data in the Tableau visualization. The method is not meant to support or emulate streaming or live visualizations. The method will be blocked when the dashboard is not visible and will return the error code.
+
+
+
+The following code example shows how this error could be handled in the `.catch` method. 
+
+
+```javascript
+
+  /**
+   * This function sets up a JavaScript interval based on the time interval selected
+   * by the user.  This interval will refresh all selected data sources.
+   */
+  function setupRefreshInterval(interval) {
+    refreshInterval = setInterval(function() { 
+      let dashboard = tableau.extensions.dashboardContent.dashboard;
+      dashboard.worksheets.forEach(function (worksheet) {
+        worksheet.getDataSourcesAsync().then(function (datasources) {
+          datasources.forEach(function (datasource) {
+             if (activeDatasourceIdList.indexOf(datasource.id) >= 0) {
+               datasource.refreshAsync();
+             }
+          });
+        });
+      });
+    }, interval*60*1000);
+  }.catch((error) => {
+      // One error condition occurs when the extension is not visible. 
+      // This can be checked for like so:
+      switch(error.errorCode) {
+        case tableau.ErrorCodes.VISIBILITY_ERROR  // tableau-extensions-1.2.0.js and later
+          console.log("The page with the extension is not visible.");
+          break;
+        default:
+          console.error(error.message);
+      }
+    });
+
+
+
+
+
+```
