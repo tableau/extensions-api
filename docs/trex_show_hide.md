@@ -13,7 +13,7 @@ Starting with Tableau 2019.1, you can use the `ZoneVisibilityType` enum and `set
 ## Requirements for show and hide 
 
 * Tableau 2019.1 or later (Desktop, Server, Online)
-* Tableau Extensions API library: `tableau-extensions-1.2.0.js` or later
+* Tableau Extensions API library: `tableau-extensions-1.1.0.js` or later
 * The object in the dashboard you want to show and hide must be floating (not tiled)
 
 
@@ -21,7 +21,7 @@ Starting with Tableau 2019.1, you can use the `ZoneVisibilityType` enum and `set
 
 ## Find the objects and object ids in the dashboard
 
-A dashboard contains a group of objects. These objects are worksheets, web pages, UI components like text, vertical or horizontal layout containers, or blank zones for spacing. To be able to show or hide an object in the dashboard, you need to have information to identify the object. Starting with the `tableau-extensions-1.2.0.js` library, objects in the dashboard have properties for `name`, `id`, and `isVisible`.
+A dashboard contains a group of objects. These objects are worksheets, web pages, UI components like text, vertical or horizontal layout containers, or blank zones for spacing. To be able to show or hide an object in the dashboard, you need to have information to identify the object. Starting with the `tableau-extensions-1.1.0.js` library, objects in the dashboard have properties for `name`, `id`, and `isVisible`.
 
 
 <div class="alert alert-info"><b>Note </b>  A dashboard object has another property called <code>isfloating</code>. If the dashboard zone (or object) that contains the extension is not floating, attempting to change the visibility of the object by calling <code>setZoneVisibilityAsync</code> on the the object will fail and cause an error.

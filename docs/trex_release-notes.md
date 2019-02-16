@@ -16,7 +16,7 @@ See also: [Known Issues]({{site.baseurl}}/docs/trex_known_issues.html)
 ### Tableau 2019.1
 *February 2019*
 
-* Tableau Extensions API library: `tableau-extensions-1.2.0.js` <br>(download or clone the Extensions API repository on [GitHub](https://github.com/tableau/extensions-api){:target="_blank"}) <br/>*Note that this is version 1.2 of the library. There was no version 1.1 library.*
+* Tableau Extensions API library: `tableau-extensions-1.1.0.js` <br>(download or clone the Extensions API repository on [GitHub](https://github.com/tableau/extensions-api){:target="_blank"}) <br/>*Note that this is version 1.2 of the library. There was no version 1.1 library.*
 
 * Download [Tableau Desktop 2019.1](https://www.tableau.com/support/releases){:target="_blank"} or [Tableau Server 2019.1](https://www.tableau.com/support/releases/server){:target="_blank"}
 
@@ -26,9 +26,8 @@ Changes in this release:
 
 * Show and hide capabilities for extensions (now you see it, now you don't). For more information, see [Show and Hide Objects in the Dashboard]({{site.baseurl}}/docs/trex_show_hide.html).
 
-* Starting in Tableau 2019.1, when the dashboard is not visible (minimized or in the background), Extensions API method calls are blocked. If you have code that might run when the dashboard is not visible, you should add error handling to catch the `"visibility-error"` that is returned in the blocked state. Be sure to use the latest version of the library (`tableau-extensions-1.2.0.js`). For more information, see [Handle Extensions API errors when the dashboard is not visible]({{site.baseurl}}/docs/trex_error_handling.html#handle-extensions-api-errors-when-the-dashboard-is-not-visible).
+* Starting in Tableau Server and Tableau Online 2019.1, when the dashboard is not visible (minimized or in the background), Extensions API method calls are blocked. If you have code that might run when the browser window is not visible, you should add code to check the state of the window Tableau is running in and then handle that condition appropriately. If you don't check the state, and your extension makes an API call, a `"visibility-error"` could be thrown because of the blocked state. Be sure to use the latest version of the library (`tableau-extensions-1.1.0.js`). For more information, see [Handle Extensions API errors when the dashboard is not visible]({{site.baseurl}}/docs/trex_error_handling.html#handle-extensions-api-errors-when-the-dashboard-is-not-visible).
 
-* New documentation for deployment [Extension Security - Best Practices]({{site.baseurl}}/docs/trex_security_best_practices.html).
 
 
 Bugs fixed in this release: 
