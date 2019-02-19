@@ -18,7 +18,9 @@ Debugging an extension involves starting Tableau with a command option to enable
 
 ---
 
-## Download the Chromium Browser
+## Download the Chromium Browser (Tableau 2018.2, 2018.3)
+
+<div class="alert alert-info"><b>Note </b> If you are using Tableau 2019.1, you no longer need to use the Chromium browser. You can now debug extensions in Tableau Desktop using the latest versions of Chrome. If you are using Tableau 2018.2 or 2018.3, you still need the specific version of the Chromium browser for debugging.</div>
 
 In order to actually do any debugging, you'll need to use a Chromium-based browser (Chromium is the open-source version of Chrome). You can use Chrome, but because of some version incompatibilities in the debugging protocol, we recommend using build 47.0.2526.0 of Chromium, which matches the version of the browser running inside Tableau (just download and unzip the file).
 * [Chromium for Windows (47.0.2526.0)](https://www.googleapis.com/download/storage/v1/b/chromium-browser-snapshots/o/Win%2F352221%2Fchrome-win32.zip?generation=1443839123039000&alt=media)  

@@ -19,7 +19,7 @@ For information about what is new or has changed in each release, see the [Relea
 
 ### HTML drop-down menus in popup dialog windows
 
-- HTML drop-down menus in popup dialog windows do not work as expected on MacOS. Users will not be able to select menu items using the mouse. They can select items with the cursor keys. To avoid issues on MacOS, use radio buttons or another method for user selection in the popup dialog. 
+- **Fixed in Tableau 2019.1** HTML drop-down menus in popup dialog windows do not work as expected on MacOS. Users will not be able to select menu items using the mouse. They can select items with the cursor keys. To avoid issues on MacOS, use radio buttons or another method for user selection in the popup dialog. 
 
 ### Decimal separators in parameters
 
@@ -29,3 +29,14 @@ For information about what is new or has changed in each release, see the [Relea
 
 When an extension needs full data access and the user does not have full data permission on the workbook, Tableau currently allows the extension to run. However, Tableau will throw a console error when the extension calls `getUnderlyingData()` method. See [Handle full data access and permission errors]({{ site.baseurl }}/docs/trex_getdata.html#handle-full-data-access-and-permission-errors).
 
+
+### Tableau Extensions API library version 1.0.0 
+
+If you are debugging your extension, you might see this message in the Debugging Tools console window if you are using the released version of the 1.0.0 library (for example, `tableau-extensions-1.0.0.js`) with a version of Tableau that is newer than Tableau 2018.2.
+
+```
+This is an alpha version of the Extensions API. Please upgrade to an official release.
+
+```
+
+You can safely ignore this warning. However, if you are using the 1.0.0 library, be sure to upgrade to the latest version, or use or `tableau-extensions-1.latest.js`, so that you always pick up the most recent update of that version of the library when it becomes available.
