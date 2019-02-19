@@ -44,9 +44,9 @@ tableau.extensions.ui.displayDialogAsync(args... ).then((args... ) => {
 
 ```
 
-## Handle Extensions API errors when the dashboard is not visible 
+## Handle Extensions API errors when the dashboard is not visible
 
- In Tableau Server or Tableau Online version 2018.3 and later, when the browser window is not visible (that is, when the browser window Tableau is running in is minimized or in the background), the Extensions API method calls are blocked and an error object is returned. If you have code that might run when the dashboard is not visible, you should add code to check if the window is visible so that you can handle the error. If you are using `tableau-extensions-1.2.0.js` or later, the error code returned in this case is `VISIBILITY_ERROR`.
+ In Tableau Server or Tableau Online version 2018.3 and later, when the browser window is not visible (that is, when the browser window Tableau is running in is minimized or in the background), the Extensions API method calls are blocked and an error object is returned. If you have code that might run when the dashboard is not visible, you should add code to check if the window is visible so that you can handle the error. If you are using `tableau-extensions-1.1.0.js` or later, the error code returned in this case is `VISIBILITY_ERROR`.
 
 ### What happens when the error occurs
 
@@ -62,9 +62,9 @@ tableau.extensions.ui.displayDialogAsync(args... ).then((args... ) => {
    ![]({{site.baseurl}}/assets/ext_visibility_err_console.png)
 
 
-### Add a check for visibility and add an event listener 
+### Add a check for visibility and add an event listener
 
-The Extensions API methods are intended to be used in scenarios where some manual interaction is required. However, there might be cases where a method is called on an interval, or there is a delay in execution, and the browser window that contains the extension is no longer visible when the method call is made. In these cases, you could use the [Page Visibility API](https://developer.mozilla.org/en-US/docs/Web/API/Page_Visibility_API) and an event handler to avoid having your users encounter the `visibility-error`. 
+The Extensions API methods are intended to be used in scenarios where some manual interaction is required. However, there might be cases where a method is called on an interval, or there is a delay in execution, and the browser window that contains the extension is no longer visible when the method call is made. In these cases, you could use the [Page Visibility API](https://developer.mozilla.org/en-US/docs/Web/API/Page_Visibility_API) and an event handler to avoid having your users encounter the `visibility-error`.
 
 
 The following example shows how this error could be handled using an event listener for `visibilitychange`. You can create your own `visibilityhandlermethod` method if you need to wrap your Extensions API calls when the browser window is visible.
@@ -79,7 +79,7 @@ The following example shows how this error could be handled using an event liste
     // 
     function visibilityhandlermethod() {
      if (document.hidden) {
-         // do something to pause execution
+         // do something while you pause the extension execution
       }    else  {
             // do stuff
         // call the Extensions API
