@@ -19,7 +19,7 @@ For information about what is new or has changed in each release, see the [Relea
 
 ### HTML drop-down menus in popup dialog windows
 
-- HTML drop-down menus in popup dialog windows do not work as expected on MacOS. Users will not be able to select menu items using the mouse. They can select items with the cursor keys. To avoid issues on MacOS, use radio buttons or another method for user selection in the popup dialog. 
+- **Fixed in Tableau 2019.1** HTML drop-down menus in popup dialog windows do not work as expected on MacOS. Users will not be able to select menu items using the mouse. They can select items with the cursor keys. To avoid issues on MacOS, use radio buttons or another method for user selection in the popup dialog. 
 
 ### Decimal separators in parameters
 

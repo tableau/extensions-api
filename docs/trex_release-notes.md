@@ -16,7 +16,7 @@ See also: [Known Issues]({{site.baseurl}}/docs/trex_known_issues.html)
 ### Tableau 2019.1
 *February 2019*
 
-* Tableau Extensions API library: `tableau-extensions-1.1.0.js` <br>(download or clone the Extensions API repository on [GitHub](https://github.com/tableau/extensions-api){:target="_blank"}) <br/>*Note that this is version 1.2 of the library. There was no version 1.1 library.*
+* Tableau Extensions API library: `tableau-extensions-1.1.0.js` <br>(download or clone the Extensions API repository on [GitHub](https://github.com/tableau/extensions-api){:target="_blank"}) <br/>
 
 * Download [Tableau Desktop 2019.1](https://www.tableau.com/support/releases){:target="_blank"} or [Tableau Server 2019.1](https://www.tableau.com/support/releases/server){:target="_blank"}
 
