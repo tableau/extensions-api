@@ -151,7 +151,7 @@
 					<div class="tsd-comment tsd-typography">
 						<dl class="tsd-comment-tags">
 							<dt>returns</dt>
-							<dd><p>Unique string representing this datasource.</p>
+							<dd><p>Unique string representing this data source.</p>
 							</dd>
 						</dl>
 					</div>
@@ -203,7 +203,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in DataSourceInterfaces.ts:49</li>
+									<li>Defined in DataSourceInterfaces.ts:56</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -214,7 +214,7 @@
 								</dl>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="tablesummary.html" class="tsd-signature-type">TableSummary</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>An array of table summary objects that are currently used in the datasource.</p>
+							<p>An array of table summary objects that are currently used in the data source.</p>
 						</li>
 					</ul>
 				</section>
@@ -228,7 +228,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in DataSourceInterfaces.ts:54</li>
+									<li>Defined in DataSourceInterfaces.ts:61</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -248,7 +248,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in DataSourceInterfaces.ts:79</li>
+									<li>Defined in DataSourceInterfaces.ts:86</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -263,7 +263,7 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="datatable.html" class="tsd-signature-type">DataTable</a><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>Returns a promise containing a page of data from the underlying data of the datasource.</p>
+							<p>Returns a promise containing a page of data from the underlying data of the data source.</p>
 							<p>The following example shows use of the <code>getUnderlyingDataAsync()</code> method to get the underlying data from a specific data source.
 							The example uses the JavaScript <code>find()</code> method to select the workbook and data source.</p>
 							<pre><code>tableau.extensions.dashboardContent.dashboard.worksheets.find(<span class="hljs-function"><span class="hljs-params">w</span> =&gt;</span> w.name === <span class="hljs-string">"Sale Map"</span>).getDataSourcesAsync().then(<span class="hljs-function"><span class="hljs-params">datasources</span> =&gt;</span>
@@ -293,16 +293,21 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in DataSourceInterfaces.ts:42</li>
+									<li>Defined in DataSourceInterfaces.ts:49</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>This call has the same functionality as clicking the Refresh option on a datasource in
+									<p>This call has the same functionality as clicking the Refresh option on a data source in
 									Tableau.  This does not refresh an extract.</p>
 								</div>
-								<p><b>Note:</b> The <code>refreshAsync()</code> method is intended to be used in scenarios where manual interaction causes a need to refresh the data in the Tableau visualization. The method is not, as currently designed, meant to support or emulate streaming or live visualizations. Extensions that use the method to refresh aggressively or automatically can cause issues on Tableau Server and Tableau Online and are subject to being blocked by the Tableau Online administrator.</p>
-								<p>This call does not currently support refreshing live Google Sheet datasources.</p>
+								<p><strong>Note:</strong> The <code>refreshAsync()</code> method is intended to be used in scenarios where manual
+									interaction causes a need to refresh the data in the Tableau visualization. The method is not,
+									as currently designed, meant to support or emulate streaming or <em>live</em> visualizations.
+									Extensions that use the method to refresh aggressively or automatically
+									can cause issues on Tableau Server and Tableau Online and are subject to being blocked
+								by the Tableau Online administrator.</p>
+								<p>This call does not currently support refreshing live Google Sheet data sources.</p>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>Promise that resolves when the data source has finished refreshing.</p>

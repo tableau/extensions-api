@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ConnectionSummary | Dashboard Extensions</title>
+	<title>ZoneVisibilityType | Dashboard Extensions</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -52,10 +52,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="connectionsummary.html">ConnectionSummary</a>
+					<a href="zonevisibilitytype.html">ZoneVisibilityType</a>
 				</li>
 			</ul>
-			<h1>Interface ConnectionSummary</h1>
+			<h1>Enumeration ZoneVisibilityType</h1>
 		</div>
 	</div>
 </header>
@@ -65,103 +65,59 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Represents a connection within a datasource (ex: A SQL Server connection).
-						A data source can be composed of one or more connections.</p>
+						<p>Enum that represents the visibility state of a zone</p>
 					</div>
+					<dl class="tsd-comment-tags">
+						<dt>since</dt>
+						<dd><p>1.1.0</p>
+						</dd>
+					</dl>
 				</div>
-			</section>
-			<section class="tsd-panel tsd-hierarchy">
-				<h3>Hierarchy</h3>
-				<ul class="tsd-hierarchy">
-					<li>
-						<span class="target">ConnectionSummary</span>
-					</li>
-				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Properties</h3>
+							<h3>Enumeration members</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="connectionsummary.html#id" class="tsd-kind-icon">id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="connectionsummary.html#name" class="tsd-kind-icon">name</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="connectionsummary.html#serveruri" class="tsd-kind-icon">serverURI</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="connectionsummary.html#type" class="tsd-kind-icon">type</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="zonevisibilitytype.html#hide" class="tsd-kind-icon">Hide</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="zonevisibilitytype.html#show" class="tsd-kind-icon">Show</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="id" class="tsd-anchor"></a>
-					<h3>id</h3>
-					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+				<h2>Enumeration members</h2>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="hide" class="tsd-anchor"></a>
+					<h3>Hide</h3>
+					<div class="tsd-signature tsd-kind-icon">Hide<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;&quot;hide&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in DataSourceInterfaces.ts:168</li>
+							<li>Defined in Enums.ts:359</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
-						<dl class="tsd-comment-tags">
-							<dt>returns</dt>
-							<dd><p>Unique string representing this connection.</p>
-							</dd>
-						</dl>
+						<div class="lead">
+							<p>Used for turning off the visibity of a zone in the dashboard.</p>
+						</div>
 					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="name" class="tsd-anchor"></a>
-					<h3>name</h3>
-					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="show" class="tsd-anchor"></a>
+					<h3>Show</h3>
+					<div class="tsd-signature tsd-kind-icon">Show<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;&quot;show&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in DataSourceInterfaces.ts:163</li>
+							<li>Defined in Enums.ts:356</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
-						<dl class="tsd-comment-tags">
-							<dt>returns</dt>
-							<dd><p>The name of the connection (i.e. the caption).</p>
-							</dd>
-						</dl>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="serveruri" class="tsd-anchor"></a>
-					<h3>serverURI</h3>
-					<div class="tsd-signature tsd-kind-icon">serverURI<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in DataSourceInterfaces.ts:178</li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<dl class="tsd-comment-tags">
-							<dt>returns</dt>
-							<dd><p>The URI to which the connection is pointing if applicable.</p>
-							</dd>
-						</dl>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="type" class="tsd-anchor"></a>
-					<h3>type</h3>
-					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in DataSourceInterfaces.ts:173</li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<dl class="tsd-comment-tags">
-							<dt>returns</dt>
-							<dd><p>The type of the connection (i.e. SQL Server, web data connector).</p>
-							</dd>
-						</dl>
+						<div class="lead">
+							<p>Used for turning on the visibity of a zone in the dashboard.</p>
+						</div>
 					</div>
 				</section>
 			</section>
@@ -178,20 +134,14 @@
 				<ul class="before-current">
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-interface">
-						<a href="connectionsummary.html" class="tsd-kind-icon">Connection<wbr>Summary</a>
+					<li class="current tsd-kind-enum">
+						<a href="zonevisibilitytype.html" class="tsd-kind-icon">Zone<wbr>Visibility<wbr>Type</a>
 						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="connectionsummary.html#id" class="tsd-kind-icon">id</a>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="zonevisibilitytype.html#hide" class="tsd-kind-icon">Hide</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="connectionsummary.html#name" class="tsd-kind-icon">name</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="connectionsummary.html#serveruri" class="tsd-kind-icon">serverURI</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="connectionsummary.html#type" class="tsd-kind-icon">type</a>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="zonevisibilitytype.html#show" class="tsd-kind-icon">Show</a>
 							</li>
 						</ul>
 					</li>
