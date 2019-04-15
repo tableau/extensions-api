@@ -9,6 +9,15 @@
         "source_code": "https://github.com/hutchijo/my_tableau_extensions"
     },
     {
+        "name": "D3 Zoomable Treemap",
+        "website": "https://mantsui.github.io/Ext_D3_Treemap",
+        "author": "Man Tsui",
+        "github_username": "mantsui",
+        "tags": ["v_1.0"],
+        "description": "Leverages open source D3 javascript library for an interactive treemap chart at dynamic levels of dimensions.",
+        "source_code": "https://github.com/mantsui/Ext_D3_Treemap"
+    },
+    {
         "name": "D3 Sunburst",
         "website": "https://github.com/mantsui/Ext_D3_Sunburst",
         "author": "Man Tsui",
