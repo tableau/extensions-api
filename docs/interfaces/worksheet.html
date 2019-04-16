@@ -672,7 +672,7 @@ worksheet.getSelectedMarksAsync().then(<span class="hljs-function"><span class="
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in SheetInterfaces.ts:373</li>
+									<li>Defined in SheetInterfaces.ts:374</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -699,11 +699,12 @@ worksheet.getSelectedMarksAsync().then(<span class="hljs-function"><span class="
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>Empty promise that resolves when the selection is complete.</p>
 							<p>The following example shows how you might call this method using state names as the <code>SelectionCriteria</code>.
-							The <code>SelectionUpdateType</code> is replace (<code>SelectionUpdateType.Replace</code>), so these values replace the marks that are currently selected.</p>
+								The <code>SelectionUpdateType</code> is replace (<code>tableau.SelectionUpdateType.Replace</code>), so these values replace
+							the marks that are currently selected.</p>
 							<pre><code>   <span class="hljs-selector-tag">worksheet</span><span class="hljs-selector-class">.selectMarksByValueAsync</span>([{
         <span class="hljs-attribute">fieldName</span>: <span class="hljs-string">'State'</span>,
         <span class="hljs-attribute">value</span>: [<span class="hljs-string">'Texas'</span>, <span class="hljs-string">'Washington'</span>, <span class="hljs-string">'California'</span>]
-    }], <span class="hljs-selector-tag">SelectionUpdateType</span><span class="hljs-selector-class">.Replace</span> );
+    }], <span class="hljs-selector-tag">tableau</span><span class="hljs-selector-class">.SelectionUpdateType</span><span class="hljs-selector-class">.Replace</span> );
 
 </code></pre>
 						</li>
