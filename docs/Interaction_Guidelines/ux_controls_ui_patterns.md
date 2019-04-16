@@ -59,8 +59,9 @@ A button communicates what happens when a user touches it. Button labels can con
 ![buttons](imgs/3-buttons-cover.png)
 
 ### Usage
+
 | Button | How to use |
-| --- | --- |
+|----|:-----|
 | **Call-to-Action  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;**  | These buttons are primarily used in dialogues to indicate an action. Use colors to communicate function–for example, green is commonly used for confirmation buttons. Learn more about color usage at **[Colors](Style Guidelines/6 - Color.md)**.<br><br>You may also want to utilize branding practices on buttons. Learn more at **[Branding your Extension](Style Guidelines/4 - Branding your Extension.md)**. |
 | **Greyscale** | Greyscale buttons are used either to indicate a secondary action, or a button that has been disabled and a particular action needs to be taken before proceeding. |
 | **Text Button &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;** | This is a low-attention button, and should only be used to provide a secondary option in the case that the user wants to perform an action that isn’t the primary action. |
