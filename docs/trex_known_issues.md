@@ -32,11 +32,11 @@ When an extension needs full data access and the user does not have full data pe
 
 ### Tableau Extensions API library version 1.0.0 
 
-If you are debugging your extension, you might see this message in the Debugging Tools console window if you are using the released version of the 1.0.0 library (for example, `tableau-extensions-1.0.0.js`) with a version of Tableau that is newer than Tableau 2018.2.
+If you are debugging your extension, you might see this message in the Debugging Tools console window if you are using the released version of the 1.0.0 library (for example, `tableau.extensions.1.0.0.js`) with a version of Tableau that is newer than Tableau 2018.2.
 
 ```
 This is an alpha version of the Extensions API. Please upgrade to an official release.
 
 ```
 
-You can safely ignore this warning. However, if you are using the 1.0.0 library, be sure to upgrade to the latest version, or use or `tableau-extensions-1.latest.js`, so that you always pick up the most recent update of that version of the library when it becomes available.
+You can safely ignore this warning. However, if you are using the 1.0.0 library, be sure to upgrade to the latest version, or use or `tableau.extensions.1.latest.js`, so that you always pick up the most recent update of that version of the library when it becomes available.
