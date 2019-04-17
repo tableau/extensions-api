@@ -111,7 +111,7 @@ Looking at the files that make up an extension will give you an idea of how an e
 
     ```html
     <!-- Extensions Library  -->
-    <script src="../../lib/tableau-extensions-1.latest.js"></script>
+    <script src="../../lib/tableau.extensions.1.latest.js"></script>
 
     <!-- Our extension's code -->
     <script src="./datasources.js"></script>

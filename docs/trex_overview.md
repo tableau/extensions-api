@@ -28,7 +28,7 @@ Plenty! Using the Extensions API, you can create dashboard extensions that enabl
 
 ## Extensions API library
 
-The Extensions API is a JavaScript library that you link to from your web application. The Extensions API library (`tableau-extensions-n.n.n.js`) gives your application access to Tableau dashboard content, including worksheets, filters, marks, and parameters. In your JavaScript code, you can set up event listeners to get notified when events occur on the dashboard. You can use the Extensions API to apply filters, or to get data back from selected marks in a worksheet. 
+The Extensions API is a JavaScript library that you link to from your web application. The Extensions API library (`tableau.extensions.n.n.n.js`) gives your application access to Tableau dashboard content, including worksheets, filters, marks, and parameters. In your JavaScript code, you can set up event listeners to get notified when events occur on the dashboard. You can use the Extensions API to apply filters, or to get data back from selected marks in a worksheet. 
 
 For more information about how you can use Extensions API, go look at the [Samples](https://github.com/tableau/extensions-api/tree/master/Samples/). 
 
