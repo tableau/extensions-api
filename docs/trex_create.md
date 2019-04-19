@@ -6,7 +6,7 @@ layout: docs
 To create a Tableau extension you need the following components.
 
 - A manifest file that identifies and describes the extension.
-- The Tableau Extensions API JavaScript library (`tableau-extensions-N.N.N.js`)
+- The Tableau Extensions API JavaScript library (`tableau.extensions.N.N.N.js`)
 - A web page that uses the library. The web page provides controls that interact with Tableau objects and data in the dashboard.
 - Additional JavaScript and HTML and CSS files as needed for your web app.
 - A web server to host your web app.
@@ -112,7 +112,7 @@ Your web application must include an HTML page. This page should link to the Ext
 
         <!-- Tableau Extensions API Library  -->
         <!-- library is in the /lib directory -->
-        <script src="../../lib/tableau-extensions-1.latest.js"></script>
+        <script src="../../lib/tableau.extensions.1.latest.js"></script>
 
         <!-- Your JavaScript code that uses the Extensions API goes here -->
         <script src="./hello-extension.js"></script>
@@ -129,15 +129,15 @@ Your web application must include an HTML page. This page should link to the Ext
     </html>
     ```
 
-   The sample code includes a link to the JavaScript library (`tableau-extensions-1.latest.js`), which is available in the `/lib` folder. The sample code also includes links to jQuery and Bootstrap libraries. 
+   The sample code includes a link to the JavaScript library (`tableau.extensions.1.latest.js`), which is available in the `/lib` folder. The sample code also includes links to jQuery and Bootstrap libraries. 
 
 
-3. If necessary, adjust the relative path to the Extensions API JavaScript library (`tableau-extensions-1.latest.js`), which is available in the `/lib` folder. 
+3. If necessary, adjust the relative path to the Extensions API JavaScript library (`tableau.extensions.1.latest.js`), which is available in the `/lib` folder. 
 
    ```html
 
    <!-- Tableau Extensions API Library  -->
-   <script src="../../lib/tableau-extensions-1.latest.js"></script>
+   <script src="../../lib/tableau.extensions.1.latest.js"></script>
 
    ```
 

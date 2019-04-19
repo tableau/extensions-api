@@ -4,7 +4,7 @@ layout: docs
 ---
 
 The best way to learn how to build your own extensions is to look at the sample code. To examine the sample source files to see how Tableau dashboard extensions work, you can clone or download the [Extensions API](https://github.com/tableau/extensions-api) SDK on GitHub and run the samples or the tutorial. 
-- To download the Extensions API SDK, if you have not already done so, see [Get Started]({{ site.baseurl }}/doc/trex_getstarted.html).
+- To download the Extensions API SDK, if you have not already done so, see [Get Started]({{ site.baseurl }}/docs/trex_getstarted.html).
 
 - You can browse the sample code for the dashboard extensions in the [Samples](https://github.com/tableau/extensions-api/tree/master/Samples?=target="_blank") and the [Tutorial](https://github.com/tableau/extensions-api/tree/master/Tutorial?=target="_blank") folders on GitHub. 
 

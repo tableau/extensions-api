@@ -39,4 +39,11 @@ This is an alpha version of the Extensions API. Please upgrade to an official re
 
 ```
 
-You can safely ignore this warning. However, if you are using the 1.0.0 library, be sure to upgrade to the latest version, or use or `tableau-extensions-1.latest.js`, so that you always pick up the most recent update of that version of the library when it becomes available.
+You can safely ignore this warning. However, if you are using the 1.0.0 library, be sure to upgrade to the latest version.
+
+To avoid having to update your code to reference a new version of the 1.x library every time you download a new version, you can specify `tableau.extensions.1.latest.js`. That way, when you replace the previous version of the library with the most recent update, your extension should just work.
+
+```
+ <script src="../../lib/tableau.extensions.1.latest.js"></script>
+
+```

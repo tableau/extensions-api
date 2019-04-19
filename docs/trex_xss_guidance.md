@@ -3,7 +3,7 @@ title: Cross-Site Scripting and Extension Security
 layout: docs
 ---
 
-As a developer of dashboard extensions, there are certain precautions you should take and best practices you can follow to helo ensure that your extensions are secure. A dashboard extension is a web application that runs inside the Tableau dashboard, and as a web application, your dashboard extension could be vulnerable to cross-site scripting (XSS). Cross-site scripting is an attack where a malicious user injects client-side code (typically, JavaScript) to execute in your web application. When other users load the web pages of your extension, the attacker's scripts can run, potentially stealing information or redirecting the browser to another web page.
+As a developer of dashboard extensions, there are certain precautions you should take and best practices you can follow to help ensure that your extensions are secure. A dashboard extension is a web application that runs inside the Tableau dashboard, and as a web application, your dashboard extension could be vulnerable to cross-site scripting (XSS). Cross-site scripting is an attack where a malicious user injects client-side code (typically, JavaScript) to execute in your web application. When other users load the web pages of your extension, the attacker's scripts can run, potentially stealing information or redirecting the browser to another web page.
 
 
 **In this section**

@@ -12,6 +12,38 @@ layout: docs
 See also: [Known Issues]({{site.baseurl}}/docs/trex_known_issues.html)
 
 ----
+### Extensions API library v1.2
+*April 2019*
+
+* Tableau Extensions API library: `tableau.extensions.1.2.0.js` <br>(download or clone the Extensions API repository on [GitHub](https://github.com/tableau/extensions-api){:target="_blank"}) <br/>
+
+
+
+
+About this release: 
+
+* The Extensions API library version 1.2 (`tableau.extensions.1.2.0.js`) is backward compatible with previous releases of the library. You can use the Extensions API library version 1.2 for extensions on Tableau 2018.2 and later. The library contains logic to handle any necessary conversions for the supported version of Tableau the extension is running in. For the best experience, you should always use the latest version of the library with the extensions you create. 
+
+* The names of the Extension API library files have changed. The hypens (-) have been removed from the file name (was `tableau-extensions-*`, now `tableau.extensions.*`). Starting with the 1.2 library, the names of the library files are as follows: 
+```
+tableau.extensions.1.2.0.js
+tableau.extensions.1.2.0.min.js
+tableau.extensions.1.latest.js
+tableau.extensions.1.latest.min.js
+```
+**Note** If you have previously been referencing `tableau-extensions-1.latest.js` in your code, you will need to use the new naming convention when you upgrade to the 1.2 library (`tableau.extensions.1.latest.js`). 
+
+
+Bugs fixed in this release: 
+
+* Fixed in the Extensions API library 1.2, the type of `DataValue.value` is now the raw native value as a JavaScript type, rather than always defaulting to **String**. A `DataValue.value` can be one of the following JavaScript types: **String**, **Number**, **Boolean**, or **Date**.
+ A `DataValue` is returned as a property of a `DataTable` in methods, such as `getSummaryDataAsync()` or `getUnderlyingDataAsync()`.  Note that special values, regardless of type, are always returned as **String** values surrounded by percent signs, such as `%null%`, or `%no-access%`. <br/>**Important!** If your code depended on the type of `DataValue.value` always being a **String**, that code will now break with this fix.
+
+* The `environment.apiVersion` property now correctly reports the version of the Extensions API library that the extension is using.
+
+* The documentation for the <a href="{{site.baseurl}}/docs/interfaces/worksheet.html#selectmarksbyvalueasync" target="_blank"><code>selectMarksByValueAsync</code></a> method has been corrected. If you are calling the method, be sure to specify the complete namespace for the `SelectionUpdateType` enum that is passed to the method as the `updateType` parameter.  For example, use `tableau.SelectionUpdateType.Replace`, to replace the currently selected marks with the values you specify in the method call. 
+
+----
 
 ### Tableau 2019.1
 *February 2019*
@@ -26,7 +58,7 @@ Changes in this release:
 
 * Show and hide capabilities for extensions (now you see it, now you don't). For more information, see [Show and Hide Objects in the Dashboard]({{site.baseurl}}/docs/trex_show_hide.html).
 
-* Starting in Tableau Server and Tableau Online 2019.1, when the dashboard is not visible (minimized or in the background), Extensions API method calls are blocked. If you have code that might run when the browser window is not visible, you should add code to check the state of the window Tableau is running in and then handle that condition appropriately. If you don't check the state, and your extension makes an API call, a `"visibility-error"` could be thrown because of the blocked state. Be sure to use the latest version of the library (`tableau-extensions-1.1.0.js`). For more information, see [Handle Extensions API errors when the dashboard is not visible]({{site.baseurl}}/docs/trex_error_handling.html#handle-extensions-api-errors-when-the-dashboard-is-not-visible).
+
 
 
 
