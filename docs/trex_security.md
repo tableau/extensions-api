@@ -127,7 +127,7 @@ Or use site-relative or protocol-agnostic links (that is, where the protocol is 
 ```html
 
     <!-- Extensions Library ) -->
-    <script src="../../lib/tableau.extensions.1.2.0.js"></script>
+    <script src="../../lib/tableau.extensions.1.latest.js"></script>
 
     <!-- The extensions's code -->
     <script src="./example.js"></script>
