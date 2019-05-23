@@ -1,5 +1,14 @@
 [
     {
+        "name": "3-D Scatterplot",
+        "website": "https://github.com/mantsui/Ext_visjs_3d_scatter",
+        "author": "Man Tsui",
+        "github_username": "mantsui",
+        "tags": ["v_1.0"],
+        "description": "Tableau Extension drawing 3-D scatter plot using vis javascript library (vis.js). Requires three measures.",
+        "source_code": "https://github.com/mantsui/Ext_visjs_3d_scatter"
+    },
+    {
         "name": "Amazon Product Search",
         "website": "https://github.com/hutchijo/my_tableau_extensions",
         "author": "Joel Hutchison",
