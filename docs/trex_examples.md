@@ -141,8 +141,13 @@ The TypeScript samples show how you can write your source code in TypeScript and
    ```
       npm run build
    ```
+   Run lint with the semistandard package.
 
-4. Compile and start the HTTP server for the extensions.
+   ```
+      npm run lint
+   ```
+
+4. Compile and start the HTTP server for the extensions. This command also watches the source file directories and automatically builds the samples when you make changes.
 ```
 npm run dev
 ```
