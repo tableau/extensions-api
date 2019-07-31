@@ -11,6 +11,36 @@ layout: docs
 ----
 See also: [Known Issues]({{site.baseurl}}/docs/trex_known_issues.html)
 
+
+
+---
+### Extensions API library v1.3
+*July 2019*
+
+- Tableau Extensions API library: `tableau.extensions.1.3.0.js` <br>(download or clone the Extensions API repository on [GitHub](https://github.com/tableau/extensions-api){:target="_blank"}) <br/>
+
+About this release:
+
+- The Extensions API library version 1.3 (`tableau.extensions.1.3.0.js`) is backward compatible with previous releases of the library.
+
+- Now available: Extensions API type definitions and new TypeScript samples. The latest release provides the TypeScript type definitions so that you can author your extension using TypeScript. See [Use TypeScript with the Extensions API]({{site.baseurl}}/docs/trex_typescript.html) and [TypeScript Sample Extensions](https://github.com/tableau/extensions-api/tree/master/Samples-Typescript){:target="_blank"} on GitHub.
+
+- New all-values-selected property for categorical filters (`filter.isAllSelected`). You can use this new property to determine when all values of categorical filters are selected. The `isAllSelected` property is a Boolean and returns True or False. Prior to this release, there was no way to tell if all values of categorical filters were selected. The `filter.appliedValues` method returns empty array when **(All)** is selected, so there is no way to use that method to determine if all values are selected or if no values are selected. The `isAllSelected` property is available starting with Tableau 2019.2 and the Extensions API library version 1.3 (`tableau.extensions.1.3.0.js`).
+
+    ```javascript
+    worksheet.getFiltersAsync().then((filters) => {
+        let filter = filters[0];
+        if (filter.filterType === tableau.filterType.Categorical)
+        {
+           console.log(filter.isAllSelected);
+        }
+    }
+    
+    ```
+
+
+
+
 ----
 ### Extensions API library v1.2
 *April 2019*
@@ -19,8 +49,7 @@ See also: [Known Issues]({{site.baseurl}}/docs/trex_known_issues.html)
 
 
 
-
-About this release: 
+About this release:
 
 * The Extensions API library version 1.2 (`tableau.extensions.1.2.0.js`) is backward compatible with previous releases of the library. You can use the Extensions API library version 1.2 for extensions on Tableau 2018.2 and later. The library contains logic to handle any necessary conversions for the supported version of Tableau the extension is running in. For the best experience, you should always use the latest version of the library with the extensions you create. 
 
@@ -41,7 +70,7 @@ Bugs fixed in this release:
 
 * The `environment.apiVersion` property now correctly reports the version of the Extensions API library that the extension is using.
 
-* The documentation for the <a href="{{site.baseurl}}/docs/interfaces/worksheet.html#selectmarksbyvalueasync" target="_blank"><code>selectMarksByValueAsync</code></a> method has been corrected. If you are calling the method, be sure to specify the complete namespace for the `SelectionUpdateType` enum that is passed to the method as the `updateType` parameter.  For example, use `tableau.SelectionUpdateType.Replace`, to replace the currently selected marks with the values you specify in the method call. 
+* The documentation for the <a href="{{site.baseurl}}/docs/interfaces/worksheet.html#selectmarksbyvalueasync" target="_blank"><code>selectMarksByValueAsync</code></a> method has been corrected. If you are calling the method, be sure to specify the complete namespace for the `SelectionUpdateType` enum that is passed to the method as the `updateType` parameter.  For example, use `tableau.SelectionUpdateType.Replace`, to replace the currently selected marks with the values you specify in the method call.
 
 ----
 

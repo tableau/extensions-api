@@ -13,6 +13,14 @@ For information about what is new or has changed in each release, see the [Relea
 {:toc}
 
 
+### Time zone not persisted when updating date parameter
+
+When you update a date or date-time parameter using `changeValueAsync()`, the time zone information is not kept. The date/time is still correct, however, it is just that the data/time is converted to UTC.
+
+### The getDataSourcesAsync method is slow
+
+If your extension uses the `getDatSourcesAsync()` method, calling this method might negatively impact performance and responsiveness of the viz that your extension is added to. The method is not entirely asynchronous and includes some serial operations.
+
 ### Unable to print or save image of the extension in a dashboard
 
 - If you print a dashboard to a `.pdf` file, or save the dashboard as an image (or receive an image of the dashboard, as part of subscription) the zone that contains the extension will be blank.
