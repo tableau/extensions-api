@@ -25,12 +25,15 @@ About this release:
 
 - Now available: Extensions API type definitions and new TypeScript samples. The latest release provides the TypeScript type definitions so that you can author your extension using TypeScript. See [Use TypeScript with the Extensions API]({{site.baseurl}}/docs/trex_typescript.html) and [TypeScript Sample Extensions](https://github.com/tableau/extensions-api/tree/master/Samples-Typescript){:target="_blank"} on GitHub.
 
-- New all-values-selected property for categorical filters (`filter.isAllSelected`). You can use this new property to determine when all categorical filters are selected (`isAllSelected` is a Boolean and returns True or False). This property is available starting with Tableau 2019.2 and the Extensions API library version 1.3 (`tableau.extensions.1.3.0.js`).
+- New all-values-selected property for categorical filters (`filter.isAllSelected`). You can use this new property to determine when all values of categorical filters are selected. The `isAllSelected` property is a Boolean and returns True or False. Prior to this release, there was no way to tell if all values of categorical filters were selected. The `filter.appliedValues` method returns empty array when **(All)** is selected, so there is no way to use that method to determine if all values are selected or if no values are selected. The `isAllSelected` property is available starting with Tableau 2019.2 and the Extensions API library version 1.3 (`tableau.extensions.1.3.0.js`).
 
     ```javascript
     worksheet.getFiltersAsync().then((filters) => {
-       let categoricalFilter = filters[0];
-	     console.log(categoricalFilter.isAllSelected);
+        let filter = filters[0];
+        if (filter.filterType === tableau.filterType.Categorical)
+        {
+           console.log(filter.isAllSelected);
+        }
     }
     
     ```
