@@ -32,7 +32,7 @@ The following instructions assume that you have already downloaded and extracted
 
 The dashboard extension samples are in the `Samples` folder. There is also a step-by-step tutorial you can follow in the `Tutorial` folder.
 
-The [Samples-Typescript](https://github.com/tableau/extensions-api/tree/master/Samples-TypeScript) folder shows how you can use the Extensions API type definitions to create extensions in TypeScript. For more information, see [Use TypeScript with the Extensions API]({{site.baseurl}}/docs/trex_typescript.html).
+The [Samples-Typescript](https://github.com/tableau/extensions-api/tree/master/Samples-Typescript?=target="_blank") folder shows how you can use the Extensions API type definitions to create extensions in TypeScript. For more information, see [Use TypeScript with the Extensions API]({{site.baseurl}}/docs/trex_typescript.html).
 
 
 
@@ -62,7 +62,7 @@ The [Samples-Typescript](https://github.com/tableau/extensions-api/tree/master/S
 
      Walks you through the step-by-step process of creating and refining an extension that displays a summarized table of the currently selected marks.
 
-- **[Samples-Typescript](https://github.com/tableau/extensions-api/tree/master/Samples-Typescript)**
+- **[Samples-Typescript](https://github.com/tableau/extensions-api/tree/master/Samples-Typescript?=target="_blank")**
 
     The **Samples-Typscript** folder shows how you can use the Extensions API type definitions to create extensions in TypeScript. The sample extensions include TypeScript versions of the Datasources, Filtering, and Parameters samples. For more information, see [Use the TypeScript samples](#use-the-typescript-samples) and [Use TypeScript with the Extensions API]({{site.baseurl}}/docs/trex_typescript.html).
 
@@ -114,12 +114,12 @@ The port you use for the web server also has to match the port specified in the 
 ---  
 ### Use the extensions in the samples folder
 
-After you start the web server to host the sample extensions, you can try the extensions in Tableau. 
+After you start the web server to host the sample extensions, you can try the extensions in Tableau.
 
-1. Start Tableau and open a workbook that has a dashboard, or open a workbook and create a new dashboard. 
+1. Start Tableau and open a workbook that has a dashboard, or open a workbook and create a new dashboard.
 2. In the dashboard, under **Objects**, select **Extension** and drag it on to the dashboard.  
 3. In the **Choose an Extension** dialog box, click **My Extensions**. 
-4. Browse to the directory where the samples are located. For example, if you downloaded or cloned the GitHub repository, go to `\extensions-api\Samples`. 
+4. Browse to the directory where the samples are located. For example, if you downloaded or cloned the GitHub repository, go to `\extensions-api\Samples`.
 5. Select one of the folders for the samples and open the `.trex` file (for example, `DataSources.trex`). <br/>
 Every Tableau extension has a manifest file (`.trex`) that describes the extension and identifies the location of the web application. 
  
