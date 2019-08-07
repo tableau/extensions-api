@@ -19,7 +19,7 @@ When you update a date or date-time parameter using `changeValueAsync()`, the ti
 
 ### The getDataSourcesAsync method is slow
 
-If your extension uses the `getDatSourcesAsync()` method, calling this method might negatively impact performance and responsiveness of the viz that your extension is added to. The method is not entirely asynchronous and includes some serial operations.
+If your extension uses the `getDataSourcesAsync()` method, calling this method might negatively impact performance and responsiveness of the viz that your extension is added to. The method is not entirely asynchronous and includes some serial operations.
 
 ### Unable to print or save image of the extension in a dashboard
 
