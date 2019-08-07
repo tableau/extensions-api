@@ -6,7 +6,9 @@ layout: docs
 The best way to learn how to build your own extensions is to look at the sample code. To examine the sample source files to see how Tableau dashboard extensions work, you can clone or download the [Extensions API](https://github.com/tableau/extensions-api) SDK on GitHub and run the samples or the tutorial. 
 - To download the Extensions API SDK, if you have not already done so, see [Get Started]({{ site.baseurl }}/docs/trex_getstarted.html).
 
-- You can browse the sample code for the dashboard extensions in the [Samples](https://github.com/tableau/extensions-api/tree/master/Samples?=target="_blank") and the [Tutorial](https://github.com/tableau/extensions-api/tree/master/Tutorial?=target="_blank") folders on GitHub. 
+- You can browse the sample code for the dashboard extensions in the [Samples](https://github.com/tableau/extensions-api/tree/master/Samples?=target="_blank") and the [Tutorial](https://github.com/tableau/extensions-api/tree/master/Tutorial?=target="_blank") folders on GitHub.
+
+- You can also create dashboard extensions using TypeScript. See the TypeScript sample code in [Samples-TypeScript](https://github.com/tableau/extensions-api/tree/master/Samples-Typescript?=target="_blank") on GitHub.
 
 - You can also check out the dashboard extensions from the community, see [Community Extensions]({{ site.baseurl }}/community/).
 
@@ -29,6 +31,8 @@ The following instructions assume that you have already downloaded and extracted
 ### About the dashboard extension samples
 
 The dashboard extension samples are in the `Samples` folder. There is also a step-by-step tutorial you can follow in the `Tutorial` folder.
+
+The [Samples-Typescript](https://github.com/tableau/extensions-api/tree/master/Samples-Typescript?=target="_blank") folder shows how you can use the Extensions API type definitions to create extensions in TypeScript. For more information, see [Use TypeScript with the Extensions API]({{site.baseurl}}/docs/trex_typescript.html).
 
 
 
@@ -55,8 +59,12 @@ The dashboard extension samples are in the `Samples` folder. There is also a ste
 
 
 - **[Tutorial](https://github.com/tableau/extensions-api/tree/master/Tutorial?=target="_blank")**
-     
-     Walks you through the step-by-step process of creating and refining an extension that displays a summarized table of the currently selected marks.  
+
+     Walks you through the step-by-step process of creating and refining an extension that displays a summarized table of the currently selected marks.
+
+- **[Samples-Typescript](https://github.com/tableau/extensions-api/tree/master/Samples-Typescript?=target="_blank")**
+
+    The **Samples-Typscript** folder shows how you can use the Extensions API type definitions to create extensions in TypeScript. The sample extensions include TypeScript versions of the Datasources, Filtering, and Parameters samples. For more information, see [Use the TypeScript samples](#use-the-typescript-samples) and [Use TypeScript with the Extensions API]({{site.baseurl}}/docs/trex_typescript.html).
 
 
 
@@ -64,7 +72,7 @@ The dashboard extension samples are in the `Samples` folder. There is also a ste
 ---
 ### Start a web server to host the sample dashboard extensions
 
-To use the dashboard extension samples, you need to start up a web server on your computer to host the HTML pages. If you downloaded or cloned the Extensions API repository, you can start the web service in the root directory of the repository on your computer. These commands start the Node.js basic service `http-server`. 
+To use the dashboard extension samples, you need to start up a web server on your computer to host the HTML pages. If you downloaded or cloned the Extensions API repository, you can start the web service in the root directory of the repository on your computer. These commands start the Node.js basic service `http-server`.
 
 1. Go to the `extensions-api` folder.
 2. To install the web server components, run the following command:
@@ -104,15 +112,48 @@ The port you use for the web server also has to match the port specified in the 
 ```
 
 ---  
-### Run the samples 
+### Use the extensions in the samples folder
 
-After you start the web server to host the sample extensions, you can try the extensions in Tableau. 
+After you start the web server to host the sample extensions, you can try the extensions in Tableau.
 
-1. Start Tableau and open a workbook that has a dashboard, or open a workbook and create a new dashboard. 
+1. Start Tableau and open a workbook that has a dashboard, or open a workbook and create a new dashboard.
 2. In the dashboard, under **Objects**, select **Extension** and drag it on to the dashboard.  
 3. In the **Choose an Extension** dialog box, click **My Extensions**. 
-4. Browse to the directory where the samples are located. For example, if you downloaded or cloned the GitHub repository, go to `\extensions-api\Samples`. 
+4. Browse to the directory where the samples are located. For example, if you downloaded or cloned the GitHub repository, go to `\extensions-api\Samples`.
 5. Select one of the folders for the samples and open the `.trex` file (for example, `DataSources.trex`). <br/>
 Every Tableau extension has a manifest file (`.trex`) that describes the extension and identifies the location of the web application. 
  
 The extension should appear in the dashboard.  Play around with the extension. Examine the HTML and JavaScript source files to see how things work.  
+
+
+
+## Use the TypeScript samples
+
+The TypeScript samples show how you can write your source code in TypeScript and then use the Extensions API type definitions to compile (or transpile) the code into JavaScript. The samples use Node.js and webpack to build the extensions. These instructions assume that you have cloned or downloaded the Extensions API GitHub repository.
+
+1. Go to the `extensions-api` folder.
+2. Install the web server components:
+   ```
+   npm install
+   ```
+3. Build the TypeScript samples:
+
+   ```
+      npm run build
+   ```
+   Run lint with the semistandard package.
+
+   ```
+      npm run lint
+   ```
+
+4. Compile and start the HTTP server for the extensions. This command also watches the source file directories and automatically builds the samples when you make changes.
+```
+npm run dev
+```
+5. Try the samples.
+  - Start Tableau and open a workbook that has a dashboard, or open a workbook and create a new dashboard.
+  - In the dashboard, under **Objects**, select **Extension** and drag it on to the dashboard.  
+  - In the **Choose an Extension** dialog box, click **My Extensions**.
+  - Browse to the directory where the samples are located. For example, if you downloaded or cloned the GitHub repository, go to `\extensions-api\Samples-Typescript`. The folder contains the TypeScript versions of the Datasources, Filtering, and Parameters samples.
+  - If you want to experiment with your own TypeScript code for extensions, you can use the same infrastructure that the TypeScript samples use. Create a folder in the **Samples-Typescript** directory and then add your extension source files. Add an entry to the `webpack.config.js` file for your extension TypeScript file. Update the path to your extension in the `.trex` file. Build and run your extension using the same commands you use to build the samples. For more information, see [Use TypeScript with the Extensions API]({{site.baseurl}}/docs/trex_typescript.html).
