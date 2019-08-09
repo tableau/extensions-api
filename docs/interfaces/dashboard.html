@@ -38,6 +38,8 @@
 							</div>
 							<input type="checkbox" id="tsd-filter-inherited" checked />
 							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
 						</div>
 					</div>
 					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
@@ -118,7 +120,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="sheet.html">Sheet</a>.<a href="sheet.html#name">name</a></p>
 						<ul>
-							<li>Defined in SheetInterfaces.ts:141</li>
+							<li>Defined in SheetInterfaces.ts:147</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -135,7 +137,7 @@
 					<div class="tsd-signature tsd-kind-icon">objects<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="dashboardobject.html" class="tsd-signature-type">DashboardObject</a><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in SheetInterfaces.ts:18</li>
+							<li>Defined in SheetInterfaces.ts:24</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -149,11 +151,11 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="sheettype" class="tsd-anchor"></a>
 					<h3>sheet<wbr>Type</h3>
-					<div class="tsd-signature tsd-kind-icon">sheet<wbr>Type<span class="tsd-signature-symbol">:</span> <a href="../enums/sheettype.html" class="tsd-signature-type">SheetType</a></div>
+					<div class="tsd-signature tsd-kind-icon">sheet<wbr>Type<span class="tsd-signature-symbol">:</span> <a href="../enums/tableau.sheettype.html" class="tsd-signature-type">SheetType</a></div>
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="sheet.html">Sheet</a>.<a href="sheet.html#sheettype">sheetType</a></p>
 						<ul>
-							<li>Defined in SheetInterfaces.ts:146</li>
+							<li>Defined in SheetInterfaces.ts:152</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -171,7 +173,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="sheet.html">Sheet</a>.<a href="sheet.html#size">size</a></p>
 						<ul>
-							<li>Defined in SheetInterfaces.ts:159</li>
+							<li>Defined in SheetInterfaces.ts:165</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -188,7 +190,7 @@
 					<div class="tsd-signature tsd-kind-icon">worksheets<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="worksheet.html" class="tsd-signature-type">Worksheet</a><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in SheetInterfaces.ts:42</li>
+							<li>Defined in SheetInterfaces.ts:48</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -221,28 +223,54 @@
 					<a name="addeventlistener" class="tsd-anchor"></a>
 					<h3>add<wbr>Event<wbr>Listener</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">add<wbr>Event<wbr>Listener<span class="tsd-signature-symbol">(</span>eventType<span class="tsd-signature-symbol">: </span><a href="../enums/tableaueventtype.html" class="tsd-signature-type">TableauEventType</a>, handler<span class="tsd-signature-symbol">: </span><a href="../globals.html#tableaueventhandlerfn" class="tsd-signature-type">TableauEventHandlerFn</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../globals.html#tableaueventunregisterfn" class="tsd-signature-type">TableauEventUnregisterFn</a></li>
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Event<wbr>Listener<span class="tsd-signature-symbol">(</span>eventType<span class="tsd-signature-symbol">: </span><a href="../enums/tableau.tableaueventtype.html" class="tsd-signature-type">TableauEventType</a>, handler<span class="tsd-signature-symbol">: </span><a href="../globals.html#tableaueventhandlerfn" class="tsd-signature-type">TableauEventHandlerFn</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../globals.html#tableaueventunregisterfn" class="tsd-signature-type">TableauEventUnregisterFn</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="eventlistenermanager.html">EventListenerManager</a>.<a href="eventlistenermanager.html#addeventlistener">addEventListener</a></p>
 								<ul>
-									<li>Defined in EventInterfaces.ts:130</li>
+									<li>Defined in EventInterfaces.ts:137</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Adds a new event listener to the object. If this object does not support the supplied <code>eventType</code>,
-									the method throws an exception.</p>
+									<p>Adds a new event listener to the object. If this object does not support the specified <code>eventType</code>,
+									the method throws an exception. The following table shows the event types supported by objects.</p>
 								</div>
+								<table>
+									<thead>
+										<tr>
+											<th>object</th>
+											<th>eventType</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td><a href="worksheet.html">Worksheet</a></td>
+											<td><code>FilterChanged</code> , <code>MarkSelectionChanged</code></td>
+										</tr>
+										<tr>
+											<td><a href="parameter.html">Parameter</a></td>
+											<td><code>ParameterChanged</code></td>
+										</tr>
+										<tr>
+											<td><a href="settings.html">Settings</a></td>
+											<td><code>SettingsChanged</code></td>
+										</tr>
+										<tr>
+											<td><a href="dashboard.html">Dashboard</a></td>
+											<td>None available</td>
+										</tr>
+									</tbody>
+								</table>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>eventType: <a href="../enums/tableaueventtype.html" class="tsd-signature-type">TableauEventType</a></h5>
+									<h5>eventType: <a href="../enums/tableau.tableaueventtype.html" class="tsd-signature-type">TableauEventType</a></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>The type of event to register for. The types of events are TableauEventTypes.</p>
+										<p>The type of event to register for. The type of event is a <code>TableauEventType</code> enumeration.</p>
 									</div>
 								</li>
 								<li>
@@ -284,7 +312,7 @@ loadSelectedMarks(worksheetName);
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="sheet.html">Sheet</a>.<a href="sheet.html#findparameterasync">findParameterAsync</a></p>
 								<ul>
-									<li>Defined in SheetInterfaces.ts:154</li>
+									<li>Defined in SheetInterfaces.ts:160</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -317,13 +345,13 @@ loadSelectedMarks(worksheetName);
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="sheet.html">Sheet</a>.<a href="sheet.html#getparametersasync">getParametersAsync</a></p>
 								<ul>
-									<li>Defined in SheetInterfaces.ts:164</li>
+									<li>Defined in SheetInterfaces.ts:170</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="parameter.html" class="tsd-signature-type">Parameter</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>A collection of all the Tableau Parameters which are used on this dashboard.</p>
+							<p>A collection of all the Tableau parameters that are used in this workbook.</p>
 						</li>
 					</ul>
 				</section>
@@ -331,14 +359,14 @@ loadSelectedMarks(worksheetName);
 					<a name="removeeventlistener" class="tsd-anchor"></a>
 					<h3>remove<wbr>Event<wbr>Listener</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">remove<wbr>Event<wbr>Listener<span class="tsd-signature-symbol">(</span>eventType<span class="tsd-signature-symbol">: </span><a href="../enums/tableaueventtype.html" class="tsd-signature-type">TableauEventType</a>, handler<span class="tsd-signature-symbol">: </span><a href="../globals.html#tableaueventhandlerfn" class="tsd-signature-type">TableauEventHandlerFn</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+						<li class="tsd-signature tsd-kind-icon">remove<wbr>Event<wbr>Listener<span class="tsd-signature-symbol">(</span>eventType<span class="tsd-signature-symbol">: </span><a href="../enums/tableau.tableaueventtype.html" class="tsd-signature-type">TableauEventType</a>, handler<span class="tsd-signature-symbol">: </span><a href="../globals.html#tableaueventhandlerfn" class="tsd-signature-type">TableauEventHandlerFn</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="eventlistenermanager.html">EventListenerManager</a>.<a href="eventlistenermanager.html#removeeventlistener">removeEventListener</a></p>
 								<ul>
-									<li>Defined in EventInterfaces.ts:140</li>
+									<li>Defined in EventInterfaces.ts:147</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -352,7 +380,7 @@ loadSelectedMarks(worksheetName);
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>eventType: <a href="../enums/tableaueventtype.html" class="tsd-signature-type">TableauEventType</a></h5>
+									<h5>eventType: <a href="../enums/tableau.tableaueventtype.html" class="tsd-signature-type">TableauEventType</a></h5>
 								</li>
 								<li>
 									<h5>handler: <a href="../globals.html#tableaueventhandlerfn" class="tsd-signature-type">TableauEventHandlerFn</a></h5>
@@ -367,13 +395,13 @@ loadSelectedMarks(worksheetName);
 					<a name="setzonevisibilityasync" class="tsd-anchor"></a>
 					<h3>set<wbr>Zone<wbr>Visibility<wbr>Async</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">set<wbr>Zone<wbr>Visibility<wbr>Async<span class="tsd-signature-symbol">(</span>zoneVisibilityMap<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span><a href="../enums/zonevisibilitytype.html" class="tsd-signature-type">ZoneVisibilityType</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Zone<wbr>Visibility<wbr>Async<span class="tsd-signature-symbol">(</span>zoneVisibilityMap<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span><a href="../enums/tableau.zonevisibilitytype.html" class="tsd-signature-type">ZoneVisibilityType</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in SheetInterfaces.ts:65</li>
+									<li>Defined in SheetInterfaces.ts:71</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -399,7 +427,7 @@ loadSelectedMarks(worksheetName);
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>zoneVisibilityMap: <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span><a href="../enums/zonevisibilitytype.html" class="tsd-signature-type">ZoneVisibilityType</a><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>zoneVisibilityMap: <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span><a href="../enums/tableau.zonevisibilitytype.html" class="tsd-signature-type">ZoneVisibilityType</a><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>A map of zone ids to the desired state of visibilty for that zone.</p>
 									</div>
