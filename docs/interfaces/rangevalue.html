@@ -38,6 +38,8 @@
 							</div>
 							<input type="checkbox" id="tsd-filter-inherited" checked />
 							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
 						</div>
 					</div>
 					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
@@ -65,7 +67,10 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>RangeValue interface to provide selection value for range based selections.</p>
+						<p>RangeValue interface to provide selection value for range based selections.
+							The associated field should be a quantitative field.
+							For Date Values, UTC Date objects are expected. (i.e., <code>var min = new Date(Date.UTC(1999, 0, 1))</code>).
+						While date string inputs work, UTC date inputs are officially supproted going forward for RangeValue.</p>
 					</div>
 				</div>
 			</section>
@@ -97,10 +102,10 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="max" class="tsd-anchor"></a>
 					<h3>max</h3>
-					<div class="tsd-signature tsd-kind-icon">max<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Date</span></div>
+					<div class="tsd-signature tsd-kind-icon">max<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Date</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in SelectionInterfaces.ts:75</li>
+							<li>Defined in SelectionInterfaces.ts:83</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -112,10 +117,10 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="min" class="tsd-anchor"></a>
 					<h3>min</h3>
-					<div class="tsd-signature tsd-kind-icon">min<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Date</span></div>
+					<div class="tsd-signature tsd-kind-icon">min<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Date</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in SelectionInterfaces.ts:71</li>
+							<li>Defined in SelectionInterfaces.ts:79</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -127,10 +132,10 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="nulloption" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> null<wbr>Option</h3>
-					<div class="tsd-signature tsd-kind-icon">null<wbr>Option<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Enums.FilterNullOption</span></div>
+					<div class="tsd-signature tsd-kind-icon">null<wbr>Option<span class="tsd-signature-symbol">:</span> <a href="../enums/tableau.filternulloption.html" class="tsd-signature-type">FilterNullOption</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in SelectionInterfaces.ts:79</li>
+							<li>Defined in SelectionInterfaces.ts:87</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">

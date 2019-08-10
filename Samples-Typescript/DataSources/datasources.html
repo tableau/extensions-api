@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Datasources Sample</title>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+
+    <!-- Extensions Library (this will be hosted on a CDN eventually) -->
+    <script src="../../lib/tableau.extensions.1.latest.js"></script>
+
+    <!-- Our webpack'd extension's code -->
+    <script src="../../dist/datasources.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <!-- DataSources Table -->
+      <div id="dataSources">
+        <h4>All DataSources</h4>
+        <div class="table-responsive">
+          <table id="loading" class="table">
+            <tbody><tr><td>Loading...</td></tr></tbody>
+          </table>         
+          <table id="dataSourcesTable" class="table table-striped hidden">
+            <thead>
+              <tr>
+                <th>DataSource Name</th>
+                <th>Auto Refresh</th>
+                <th style="width: 100%">Info</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- More dataSource info modal -->
+      <div class="modal fade" id="infoModal" role="dialog">
+        <div class="modal-dialog">
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">DataSource Details</h4>
+            </div>
+            <div id="dataSourceDetails" class="modal-body">
+              <div class="table-responsive">          
+              <table id="detailsTable" class="table">
+                <tbody>
+                  <tr>
+                    <td>DataSource Name</td>
+                    <td id="nameDetail"></td>
+                  </tr>
+                  <tr>
+                    <td>DataSource Id</td>
+                    <td id="idDetail"></td>
+                  </tr>
+                  <tr>
+                    <td>Type</td>
+                    <td id="typeDetail"></td>
+                  </tr>
+                  <tr>
+                    <td>Fields</td>
+                    <td id="fieldsDetail"></td>
+                  </tr>
+                  <tr>
+                    <td>Connections</td>
+                    <td id="connectionsDetail"></td>
+                  </tr>
+                  <tr>
+                    <td>Active Tables</td>
+                    <td id="activeTablesDetail"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+    </div>
+  </body>
+</html>

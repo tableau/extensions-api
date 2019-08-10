@@ -1,5 +1,14 @@
 [
     {
+        "name": "3-D Scatterplot",
+        "website": "https://github.com/mantsui/Ext_visjs_3d_scatter",
+        "author": "Man Tsui",
+        "github_username": "mantsui",
+        "tags": ["v_1.0"],
+        "description": "Tableau Extension drawing 3-D scatter plot using vis javascript library (vis.js). Requires three measures.",
+        "source_code": "https://github.com/mantsui/Ext_visjs_3d_scatter"
+    },
+    {
         "name": "Amazon Product Search",
         "website": "https://github.com/hutchijo/my_tableau_extensions",
         "author": "Joel Hutchison",
@@ -10,12 +19,21 @@
     },
     {
         "name": "D3 Zoomable Treemap",
-        "website": "https://mantsui.github.io/Ext_D3_Treemap",
+        "website": "https://github.com/mantsui/Ext_D3_Treemap",
         "author": "Man Tsui",
         "github_username": "mantsui",
         "tags": ["v_1.0"],
         "description": "Leverages open source D3 javascript library for an interactive treemap chart at dynamic levels of dimensions.",
         "source_code": "https://github.com/mantsui/Ext_D3_Treemap"
+    },
+    {
+        "name": "D3 Sankey",
+        "website": "https://github.com/mantsui/Ext_D3_Sankey",
+        "author": "Man Tsui",
+        "github_username": "mantsui",
+        "tags": ["v_1.0"],
+        "description": "Leverages open source D3 javascript library for an interactive Sankey chart at dynamic levels of dimensions.",
+        "source_code": "https://github.com/mantsui/Ext_D3_Sankey"
     },
     {
         "name": "D3 Sunburst",

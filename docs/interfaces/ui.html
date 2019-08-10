@@ -38,6 +38,8 @@
 							</div>
 							<input type="checkbox" id="tsd-filter-inherited" checked />
 							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
 						</div>
 					</div>
 					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
@@ -111,7 +113,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in Namespaces/UI.ts:74</li>
+									<li>Defined in Namespaces/UI.ts:80</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -150,10 +152,20 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in Namespaces/UI.ts:53</li>
+									<li>Defined in Namespaces/UI.ts:59</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
+								<dl class="tsd-comment-tags">
+									<dt>since</dt>
+									<dd><p>1.3.0         A relative path may be used beginning with Tableau 2019.3 and version 1.3.0 of the Extensions API library.
+											The relative path must resolve to the directory, or a child directory, of the extension.
+											Root-relative paths are not allowed. For example, <code>./config.html</code> or <code>config.html</code> are allowed,
+											but not the root-relative path <code>/config.html</code>.
+											<strong>Note</strong> If your extension is meant for use in versions of Tableau prior to 2019.3,
+										you should use an absolute url.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
