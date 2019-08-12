@@ -74,6 +74,8 @@ After you have a worksheet object, you can call one of the methods to access the
 
 If your extension uses one of the functions that can access full data, you need to add an element to the manifest file (`.trex`) that declares that the extension requires `full data` permission. If the manifest file does not have this element, the extension can run, but the method to access full data will fail. See [Add permissions to access full data to manifest file]({{ site.baseurl }}/docs/trex_data_access.html#add-permissions-to-access-full-data-to-manifest-file).
 
+Note whoever uses your extension must have the appropriate download permissions (Download Full Data) so that extension can run.
+
 
 ```javascript
 

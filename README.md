@@ -15,10 +15,14 @@ The Extensions API lets you do more without leaving Tableau. Build Tableau exten
 1. Copy the `.trex` files of the sample you wish to run to `~\Documents\My Tableau Repository (Beta)\Extensions` so they are available to Tableau.
 2. Open a command prompt window to the location where you cloned this repo.
 3. Run `npm install`.
-4. Run `npm start`.
-5. Launch Tableau and use the sample in a dashboard.
+4. Run `npm run build`.
+5. Run `npm start`.
+6. Launch Tableau and use the sample in a dashboard.
 
- >**Note** The web server just serves the extension samples and tutorial, which have URLs similar to the following: `http://localhost:8765/Samples/DataSources/datasources.html`
+### Typescript Development
+Samples written in Typescript are located in the Samples-Typescript folder. To support local typescript development, `npm run dev` command starts up the http server and actively listens for changes to the .ts files located in the Sample-Typescript folder.
+
+ >**Note** The web server just serves the extension samples and tutorial, which have URLs similar to the following: `http://localhost:8765/Samples/DataSources/datasources.html` or `http://localhost:8765/Samples-Typescript/DataSources/datasources.html`
  >   This local web server is not intended to serve the Extensions API Help pages. 
  >   View the Help on GitHub at [https://tableau.github.io/extensions-api](https://tableau.github.io/extensions-api).
 

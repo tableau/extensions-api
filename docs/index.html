@@ -38,6 +38,8 @@
 							</div>
 							<input type="checkbox" id="tsd-filter-inherited" checked />
 							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
 						</div>
 					</div>
 					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
@@ -61,9 +63,10 @@
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
 				<h1 id="tableau-dashboard-extensions-api">Tableau Dashboard Extensions API</h1>
-				<p>The Tableau Extensions API is a JavaScript library that is organized into namespaces that contain the classes and methods for communicating with Tableau components. For an overview of how the API is organized, see <a href="./trex_api_about.html">Tableau Extensions API Basics</a>.
-					<!-- Use this link for GitHub [Tableau Extensions API Basics](./trex_api_about.html) -->
-				<!-- Use this link for internal review copy https://tableau.github.io/extensions-api/docs/trex_api_about.html --></p>
+				<p>The Tableau Extensions API is a JavaScript library that is organized into namespaces that contain the classes and methods for communicating with Tableau components. For an overview of how the API is organized, see <a href="./trex_api_about.html">Tableau Extensions API Basics</a>.</p>
+				<div class="alert alert-info">
+					<b>Note:</b> To see all the methods and properties for the Extensions API interfaces, select the <b>Inherited</b> option in the upper-right corner of your browser window. This option shows any methods and properties inherited from base classes.
+				</div>
 				<table>
 					<thead>
 						<tr>
@@ -73,7 +76,7 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td style="text-align:left">Tableau</td>
+							<td style="text-align:left"><a href="./modules/tableau.html">Tableau</a></td>
 							<td style="text-align:left">The top-level or global namespace is the <code>tableau</code> namespace, which has no constructs, but contains the <code>extensions</code> namespace. You use the tableau namespace to access the extensions. For example, you call <code>tableau.extensions.initializeAsync()</code> to initialize the API.</td>
 						</tr>
 						<tr>
@@ -108,85 +111,13 @@
 					<li class="globals  ">
 						<a href="globals.html"><em>Globals</em></a>
 					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/tableau.html">Tableau</a>
+					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-enum">
-						<a href="enums/analyticsobjecttype.html" class="tsd-kind-icon">Analytics<wbr>Object<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/columntype.html" class="tsd-kind-icon">Column<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/dashboardobjecttype.html" class="tsd-kind-icon">Dashboard<wbr>Object<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/datatype.html" class="tsd-kind-icon">Data<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/daterangetype.html" class="tsd-kind-icon">Date<wbr>Range<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/encodingtype.html" class="tsd-kind-icon">Encoding<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/errorcodes.html" class="tsd-kind-icon">Error<wbr>Codes</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/extensioncontext.html" class="tsd-kind-icon">Extension<wbr>Context</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/extensionmode.html" class="tsd-kind-icon">Extension<wbr>Mode</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/fieldaggregationtype.html" class="tsd-kind-icon">Field<wbr>Aggregation<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/fieldroletype.html" class="tsd-kind-icon">Field<wbr>Role<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/filterdomaintype.html" class="tsd-kind-icon">Filter<wbr>Domain<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/filternulloption.html" class="tsd-kind-icon">Filter<wbr>Null<wbr>Option</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/filtertype.html" class="tsd-kind-icon">Filter<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/filterupdatetype.html" class="tsd-kind-icon">Filter<wbr>Update<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/marktype.html" class="tsd-kind-icon">Mark<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/parametervaluetype.html" class="tsd-kind-icon">Parameter<wbr>Value<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/periodtype.html" class="tsd-kind-icon">Period<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/quicktablecalctype.html" class="tsd-kind-icon">Quick<wbr>Table<wbr>Calc<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/selectionupdatetype.html" class="tsd-kind-icon">Selection<wbr>Update<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/sheettype.html" class="tsd-kind-icon">Sheet<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/sortdirection.html" class="tsd-kind-icon">Sort<wbr>Direction</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/tableaueventtype.html" class="tsd-kind-icon">Tableau<wbr>Event<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/trendlinemodeltype.html" class="tsd-kind-icon">Trend<wbr>Line<wbr>Model<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/zonevisibilitytype.html" class="tsd-kind-icon">Zone<wbr>Visibility<wbr>Type</a>
-					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/categoricaldomain.html" class="tsd-kind-icon">Categorical<wbr>Domain</a>
 					</li>
@@ -327,6 +258,9 @@
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/worksheet.html" class="tsd-kind-icon">Worksheet</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#categoricalvalue" class="tsd-kind-icon">Categorical<wbr>Value</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
 						<a href="globals.html#tableaueventhandlerfn" class="tsd-kind-icon">Tableau<wbr>Event<wbr>Handler<wbr>Fn</a>

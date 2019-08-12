@@ -38,6 +38,8 @@
 							</div>
 							<input type="checkbox" id="tsd-filter-inherited" checked />
 							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
 						</div>
 					</div>
 					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
@@ -75,7 +77,12 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Settings</span>
+						<a href="eventlistenermanager.html" class="tsd-signature-type">EventListenerManager</a>
+						<ul class="tsd-hierarchy">
+							<li>
+								<span class="target">Settings</span>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</section>
@@ -92,9 +99,11 @@
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="settings.html#addeventlistener" class="tsd-kind-icon">add<wbr>Event<wbr>Listener</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="settings.html#erase" class="tsd-kind-icon">erase</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="settings.html#get" class="tsd-kind-icon">get</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="settings.html#getall" class="tsd-kind-icon">get<wbr>All</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="settings.html#removeeventlistener" class="tsd-kind-icon">remove<wbr>Event<wbr>Listener</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="settings.html#saveasync" class="tsd-kind-icon">save<wbr>Async</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="settings.html#set" class="tsd-kind-icon">set</a></li>
 							</ul>
@@ -110,7 +119,7 @@
 					<div class="tsd-signature tsd-kind-icon">is<wbr>Modified<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in Namespaces/Settings.ts:36</li>
+							<li>Defined in Namespaces/Settings.ts:38</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -128,6 +137,88 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+					<a name="addeventlistener" class="tsd-anchor"></a>
+					<h3>add<wbr>Event<wbr>Listener</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Event<wbr>Listener<span class="tsd-signature-symbol">(</span>eventType<span class="tsd-signature-symbol">: </span><a href="../enums/tableau.tableaueventtype.html" class="tsd-signature-type">TableauEventType</a>, handler<span class="tsd-signature-symbol">: </span><a href="../globals.html#tableaueventhandlerfn" class="tsd-signature-type">TableauEventHandlerFn</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../globals.html#tableaueventunregisterfn" class="tsd-signature-type">TableauEventUnregisterFn</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="eventlistenermanager.html">EventListenerManager</a>.<a href="eventlistenermanager.html#addeventlistener">addEventListener</a></p>
+								<ul>
+									<li>Defined in EventInterfaces.ts:137</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Adds a new event listener to the object. If this object does not support the specified <code>eventType</code>,
+									the method throws an exception. The following table shows the event types supported by objects.</p>
+								</div>
+								<table>
+									<thead>
+										<tr>
+											<th>object</th>
+											<th>eventType</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td><a href="worksheet.html">Worksheet</a></td>
+											<td><code>FilterChanged</code> , <code>MarkSelectionChanged</code></td>
+										</tr>
+										<tr>
+											<td><a href="parameter.html">Parameter</a></td>
+											<td><code>ParameterChanged</code></td>
+										</tr>
+										<tr>
+											<td><a href="settings.html">Settings</a></td>
+											<td><code>SettingsChanged</code></td>
+										</tr>
+										<tr>
+											<td><a href="dashboard.html">Dashboard</a></td>
+											<td>None available</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>eventType: <a href="../enums/tableau.tableaueventtype.html" class="tsd-signature-type">TableauEventType</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The type of event to register for. The type of event is a <code>TableauEventType</code> enumeration.</p>
+									</div>
+								</li>
+								<li>
+									<h5>handler: <a href="../globals.html#tableaueventhandlerfn" class="tsd-signature-type">TableauEventHandlerFn</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The function which will be called when an event happens.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../globals.html#tableaueventunregisterfn" class="tsd-signature-type">TableauEventUnregisterFn</a></h4>
+							<p>A helper function which can be called to remove this registration.</p>
+							<p>The following example sets up a listener in a worksheet for a mark selection event (<code>MarkSelectionChanged</code>).
+								When the event occurs, the data is reloaded. The <code>addEventListener</code> method returns a function that un-registers
+							the event handler. Call that function, in this case, <code>unregisterEventHandlerFunction()</code> to remove the registration.</p>
+							<pre><code><span class="hljs-comment">// Add an event listener for the selection changed event on this sheet.</span>
+<span class="hljs-comment">// Assigning the event to a variable just to make the example fit on the page here.</span>
+<span class="hljs-keyword">const</span> markSelection = tableau.TableauEventType.MarkSelectionChanged;
+<span class="hljs-comment">//</span>
+unregisterEventHandlerFunction = worksheet.addEventListener(markSelection, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(selectionEvent)</span> </span>{
+<span class="hljs-comment">// When the selection changes, reload the data</span>
+loadSelectedMarks(worksheetName);
+});
+
+<span class="hljs-comment">// remove the event listener when done</span>
+ unregisterEventHandlerFunction();
+
+</code></pre>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
 					<a name="erase" class="tsd-anchor"></a>
 					<h3>erase</h3>
@@ -138,7 +229,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in Namespaces/Settings.ts:12</li>
+									<li>Defined in Namespaces/Settings.ts:14</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -169,7 +260,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in Namespaces/Settings.ts:20</li>
+									<li>Defined in Namespaces/Settings.ts:22</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -204,7 +295,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in Namespaces/Settings.ts:28</li>
+									<li>Defined in Namespaces/Settings.ts:30</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -223,6 +314,42 @@
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+					<a name="removeeventlistener" class="tsd-anchor"></a>
+					<h3>remove<wbr>Event<wbr>Listener</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">remove<wbr>Event<wbr>Listener<span class="tsd-signature-symbol">(</span>eventType<span class="tsd-signature-symbol">: </span><a href="../enums/tableau.tableaueventtype.html" class="tsd-signature-type">TableauEventType</a>, handler<span class="tsd-signature-symbol">: </span><a href="../globals.html#tableaueventhandlerfn" class="tsd-signature-type">TableauEventHandlerFn</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="eventlistenermanager.html">EventListenerManager</a>.<a href="eventlistenermanager.html#removeeventlistener">removeEventListener</a></p>
+								<ul>
+									<li>Defined in EventInterfaces.ts:147</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Removes an event listener if a matching one is found. If no matching listener exists, the method does nothing.
+										The handler function must the handler function specified in the call to the <code>addEventListener</code> method. Alternatively, use the function
+										returned from the call to <code>addEventListener</code> to unregister the event listener.
+									For more information, see <a href="../trex_events.html">Events and Event Handling</a></p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>eventType: <a href="../enums/tableau.tableaueventtype.html" class="tsd-signature-type">TableauEventType</a></h5>
+								</li>
+								<li>
+									<h5>handler: <a href="../globals.html#tableaueventhandlerfn" class="tsd-signature-type">TableauEventHandlerFn</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p>Whether or not an event listener was removed.</p>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
 					<a name="saveasync" class="tsd-anchor"></a>
 					<h3>save<wbr>Async</h3>
@@ -233,7 +360,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in Namespaces/Settings.ts:56</li>
+									<li>Defined in Namespaces/Settings.ts:58</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -266,7 +393,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in Namespaces/Settings.ts:64</li>
+									<li>Defined in Namespaces/Settings.ts:66</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -313,6 +440,9 @@
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="settings.html#ismodified" class="tsd-kind-icon">is<wbr>Modified</a>
 							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+								<a href="settings.html#addeventlistener" class="tsd-kind-icon">add<wbr>Event<wbr>Listener</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
 								<a href="settings.html#erase" class="tsd-kind-icon">erase</a>
 							</li>
@@ -321,6 +451,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
 								<a href="settings.html#getall" class="tsd-kind-icon">get<wbr>All</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+								<a href="settings.html#removeeventlistener" class="tsd-kind-icon">remove<wbr>Event<wbr>Listener</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
 								<a href="settings.html#saveasync" class="tsd-kind-icon">save<wbr>Async</a>
