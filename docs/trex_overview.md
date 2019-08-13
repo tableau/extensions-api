@@ -42,7 +42,7 @@ The Extensions API and the Embedded API (also known as the [JavaScript API](http
 
 The Extensions API and Embedded API share a similar programming model, but there are differences. 
 
-| JavaScript | Extensions API |
+| Embedded API | Extensions API |
 |------------| ---------------|
 |Brings Tableau into other web applications | Brings other web applications into Tableau |
 | Requires embedding Tableau dashboard into a web page | Can be used in Desktop, Server, Online, or embedded dashboard |
