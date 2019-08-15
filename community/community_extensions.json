@@ -71,6 +71,14 @@
         "source_code": "https://github.com/LGraber/trex-jungle-book"
     },
     {
+        "name": "Keep It Fresh",
+        "author": "The Information Lab",
+        "github_username": "TheInformationLab",
+        "tags": ["v_1.2"],
+        "description": "Add a countdown timer to your dashboard to refresh your data source(s) on pre-defined time intervals",
+        "source_code": "https://github.com/TheInformationLab/Tableau-Extension-KeepItFresh/"
+    },
+    {
         "name": "Latest Date Updater",
         "website": "https://github.com/KeshiaRose/latest-date-updater",
         "author": "Keshia Rose",
