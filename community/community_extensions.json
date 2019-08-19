@@ -34,5 +34,14 @@
         "tags": ["v_1.0"],
         "description": "A Python Flask extension which uses the Amazon Product Advertising API to perform product searches on Amazon based on selections in a dashbaord.  This extension also demonstrates writeback to a MySQL database.",
         "source_code": "https://github.com/hutchijo/my_tableau_extensions"
+    },
+    {
+        "name": "Facebook and Twitter Share Button",
+        "url": "https://github.com/caoimhequigles/my_tableau_extensions",
+        "author": "Caoimhe Quigley",
+        "github_username": "caoimhequigles",
+        "tags": ["v_1.0"],
+        "description": "An executable extension which incorporates automation through the use of Python by taking a screenshot of a Dashboard and publishing to either Facebook or Twitter",
+        "source_code": "https://github.com/caoimhequigles/my_tableau_extensions"
     }
 ]
