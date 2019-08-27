@@ -6,16 +6,15 @@ This tutorial demonstrates a number of different aspects of the Dashboard Extens
 
 ### Prerequisites
 
-- Understanding of basic web development (this tutorial makes heavy use of [jQuery](https://jquery.com/) for javascript code and [Bootstrap](http://getbootstrap.com/) for styling)
-- node and npm installed on your machine ([https://nodejs.org](https://nodejs.org))
-- Tableau Desktop with the Extensions feature (Alpha build)
+- Understanding of basic web development (this tutorial makes heavy use of [jQuery](https://jquery.com/) for javascript code and [Bootstrap](https://getbootstrap.com/) for styling).
+- Node and npm installed on your machine ([https://nodejs.org](https://nodejs.org)).
+- Tableau Desktop 2018.2 or higher. Can also use web authoring in Tableau Server or Online. Join our [developer program](https://developer.tableau.com) for a free Online developer sandbox site.
 
 ### Set Up
 
-- Copy the `.trex` files in the Manifests folder into your `My Tableau Repository/Extensions` folder and restart Tableau.
-- In a command prompt, go to the root of the git repo (a directory above this one)
-- Run `npm install`
-- Run `npm start` to initialize the http server to server your content
+- In a command prompt, go to the root of the git repo (a directory above this one).
+- Run `npm install`.
+- Run `npm start` to initialize the http server to server your content.
 
 ### Tutorial
 
@@ -33,7 +32,7 @@ To make it easier to follow along, the tutorial is organized in seven parts. Eac
 
 ### Completed Extension
 
-If you just want to jump to the end, follow the set up steps, then inside of Tableau drag out the "Tutorial - Complete" dashboard extension.
+If you just want to jump to the end, follow the set up steps, then inside of Tableau drag out a new extension object. Find the "Tutorial - Complete" dashboard extension in the Manifest file and allow it to run.
 
 ![Completed Screenshot](./assets/Completed.gif)
 
