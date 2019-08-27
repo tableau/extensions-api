@@ -8,11 +8,11 @@ The DataTables component we are using to display our data makes it a bit tricky 
 
 #### Doing the Filtering
 
-For our filtering code, we first need to get the domain (unique values) of the column which the user has clicked on. Then we get our worksheet object and make a call to `worksheet.applyFilterAsync(fieldName, columnDomain, tableau.FilterUpdateType.Replace)`.
+For our filtering code, we first need to get the domain (unique values) of the column which the user has clicked on. Then we get our worksheet object and make a call to [`worksheet.applyFilterAsync(fieldName, columnDomain, tableau.FilterUpdateType.Replace)`](https://tableau.github.io/extensions-api/docs/interfaces/worksheet.html#applyfilterasync).
 
 #### Resetting the Filter
 
-The final thing we want to add is an ability to clear the filter we have just applied. We do this by first keeping track of all the columns which we have filtered by. The next step is to add a button which the user can click to reset the filter. The final step is to add the `resetFilters()` function which calls `worksheet.clearFilterAsync(columnName)` for each filtered column.
+The final thing we want to add is an ability to clear the filter we have just applied. We do this by first keeping track of all the columns which we have filtered by. The next step is to add a button which the user can click to reset the filter. The final step is to add the `resetFilters()` function which calls [`worksheet.clearFilterAsync(columnName)`](https://tableau.github.io/extensions-api/docs/interfaces/worksheet.html#clearfilterasync) for each filtered column.
 
 #### Trying it out
 
