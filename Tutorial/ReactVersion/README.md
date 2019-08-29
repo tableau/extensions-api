@@ -7,7 +7,7 @@ This folder contains a version of our finalized tutorial written in React instea
 - Navigate to this folder in a command prompt.
 - Run `npm install`.
 - Run `npm start` to start the web server and compile the code (automatic updates are enabled).
-- Open Tableau to use the extension.
+- Open Tableau, add a new extension object, and locate the `TutorialReact.trex` file in this folder to use the extension.
 
 ## Project Structure
 
