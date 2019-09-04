@@ -5,7 +5,7 @@
   "scripts": {
     "build": "yarn tslint && webpack --config webpack.config.js --display-error-details",
     "start": "node node_modules/http-server/bin/http-server -p 8765",
-    "start-sandbox": "tabextsandbox --config sandbox-config.json",
+    "start-sandbox": "npx tabextsandbox --config sandbox-config.json",
     "lint": "yarn jslint && yarn tslint",
     "jslint": "semistandard ./Samples/*/*.js",
     "tslint": "./node_modules/.bin/tslint --config ./tslint.json ./Samples-Typescript/*/*.ts",
@@ -25,12 +25,12 @@
     "@types/jquery": "^3.3.29",
     "concurrently": "^4.1.0",
     "semistandard": "^11.0.0",
+    "tabextsandbox": ">=1.0.0",
     "ts-loader": "^5.4.5",
     "tslint": "^5.16.0",
     "typescript": "^3.4.5",
     "webpack": "^4.30.0",
-    "webpack-cli": "^3.3.1",
-    "tabextsandbox": ">=1.0.0"
+    "webpack-cli": "^3.3.1"
   },
   "semistandard": {
     "env": {
