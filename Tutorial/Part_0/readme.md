@@ -6,16 +6,11 @@ This section contains a couple of very basic files which will become the basis o
 
 Extensions are simply web pages, so the first thing we'll need to do is make sure we have a web server up and running to serve our content. To do that, navigate to the root of the extensions repository in a command prompt, and run `npm start`. This command will start a simple http server listening on port 8765 and just serving up the contents of this repository over http.
 
-#### Registering the Manifest
-
-The very first thing you need to do is to provide an extension, or manifest file (`.trex`). If you cloned or downloaded the `.zip` file for the repository, you can find the manifests for the tutorial inside the Manifests folder. The `.trex` file contains basic information like the name of the extension (as it will appear in Tableau) and the url where the extension is hosted. 
-
-To open an extension, start Tableau and open a workbook that has a dashboard, or open a workbook and create a new dashboard. In the dashboard, under **Objects**, select **Extension** and drag it on to the dashboard. In the **Choose an Extension** dialog box, click **Choose** and browse to the `\extensions-api\Tutorial\Manifests` folder. Select the `.trex` file of the extension you want to open.
-
-
 #### Testing It Out
 
-After starting the server and starting Tableau, you can open a workbook and switch to a dashboard. In the dashboard, under **Objects**, select **Extension** and drag it on to the dashboard. Open the file chooser and select the `Tutorial_Part_0.trex` file. You should see "Hello Extensions" on your dashboard.
+The very first thing you need to do is to provide an extension, or manifest file (`.trex`). If you cloned or downloaded the `.zip` file for this repository, you can find the manifests for the tutorial inside the Manifests folder. The `.trex` file contains basic information like the name of the extension (as it will appear in Tableau) and the url where the extension is hosted. 
+
+To open an extension, start Tableau and open a workbook that has a dashboard, or open a workbook and create a new dashboard. In the dashboard, under **Objects**, select **Extension** and drag it on to the dashboard. In the **Choose an Extension** dialog box, click **My Extensions** and browse to the `\extensions-api\Tutorial\Manifests` folder. Select the `Tutorial_Part_0.trex` file. You should see "Hello Extensions" on your dashboard.
 
 ![Part 0 Screenshot](../assets/Part_0.png)
 
