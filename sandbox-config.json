@@ -1,0 +1,9 @@
+{
+    "port": 8765,
+
+    "extensions": {
+        "uinamespace": {
+            "path": "./Samples/UINamespace-sandboxed"
+        }
+    }
+}
