@@ -6,6 +6,6 @@
     "sourceMap": true,                     /* Generates corresponding '.map' file. */
     "alwaysStrict": true,                  /* Parse in strict mode and emit "use strict" for each source file. */
     "baseUrl": "./Samples-Typescript",
-    "typeRoots": ["./node_modules/@tableau", "./node_modules/@types"]
+    "types": ["@tableau/extensions-api-types", "jquery"]
   }
 }
