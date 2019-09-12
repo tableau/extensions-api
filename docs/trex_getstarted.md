@@ -66,7 +66,7 @@ You can get the Tableau Extensions API SDK in two ways. Clone the repository if 
 To use the dashboard extension samples, you need to start up a web server on your computer to host the HTML pages. If you downloaded or cloned the Extensions API repository, you can start the web service in the root directory of the repository on your computer. For example, if you downloaded the `extensions-api-master.zip` file to your `Downloads` directory, after you extract the files, the path might be `Downloads\extensions-api-master\extensions-api\`. 
 
 1. Navigate to the `extensions-api` directory.
-2. To install the web server components, run the following npm command to install the package:
+2. To install the web server components, run the following npm commands to install the package:
 
    **npm install**
 
@@ -93,7 +93,7 @@ To use the dashboard extension samples, you need to start up a web server on you
 3. In the **Choose an Extension** dialog box, click **My Extensions**. 
  Every Tableau extension has a manifest file (`.trex`) that describes the extension and identifies the location of the web application. 
 4. Browse to the directory where the samples are located. For example, if you downloaded or cloned the GitHub repository, go to `\extensions-api\Samples\DataSources`. 
-5. Open the `DataSources.trex` file.     
+5. Open the `DataSources.trex` file. <br/>
    The sample extension (web application) appears in the dashboard frame. The DataSources sample finds and displays the data source for each worksheet in the dashboard.
 6. In the DataSources extension, click the **Info** (**i**) button.  This action opens a dialog box that displays more details about the selected data source.  
 

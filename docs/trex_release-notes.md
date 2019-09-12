@@ -11,6 +11,13 @@ layout: docs
 ----
 See also: [Known Issues]({{site.baseurl}}/docs/trex_known_issues.html)
 
+---
+### Tableau Sandboxed Extensions Development Environment
+*September 2019*
+
+* Sandboxed Extensions are Tableau dashboard extensions that are not permitted to external network requests. Test support available in Tableau 2019.3.
+
+* The Extensions API SDK provides a local development environment that replicates the Tableau Hosting Cloud Service for Sandboxed Extension. You can test your Sandboxed extensions locally with the same sandbox policies before submitting the extension to Tableau for publication. See [Create and Test Sandboxed Extensions]({{site.baseurl}}/docs/trex_sandbox_test.html) and [Publish Sandboxed Extensions]({{site.baseurl}}/docs/trex_sandbox_publish.html). 
 
 
 ---
