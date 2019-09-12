@@ -44,7 +44,7 @@
     "ignore": [
       "/lib",
       "/docs",
-      "tableau.extensions.1.latest.js"
+      "tableau.extensions.*.latest.js"
     ]
   }
 }
