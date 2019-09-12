@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Sample code and documentation for the Tableau Extensions API.",
   "scripts": {
-    "build": "npm run tslint && webpack --config webpack.config.js --display-error-details",
+    "build": "npm run lint && webpack --config webpack.config.js --display-error-details",
     "start": "node node_modules/http-server/bin/http-server -p 8765",
     "start-sandbox": "npx tabextsandbox --config sandbox-config.json",
     "lint": "npm run jslint && npm run tslint",
@@ -43,7 +43,8 @@
     ],
     "ignore": [
       "/lib",
-      "/docs"
+      "/docs",
+      "tableau.extensions.1.latest.js"
     ]
   }
 }
