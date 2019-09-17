@@ -11,7 +11,7 @@ The Extensions API lets you do more without leaving Tableau. Build Tableau exten
 ### Prerequisites
 * You must have Node.js and npm installed. You can get these from [http://nodejs.org](http://nodejs.org).
 
-### Install Extensions API SDK components
+### Install Extensions API SDK Components and Start Server
 
 1. Open a command prompt window to the location where you cloned this repo.
 

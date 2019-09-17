@@ -70,6 +70,8 @@ To use the dashboard extension samples, you need to start up a web server on you
 
    **npm install**
 
+   **npm run build**
+
   
 3. To start the web server, run the following npm command:
  
