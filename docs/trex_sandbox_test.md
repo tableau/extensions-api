@@ -3,10 +3,10 @@ title:  Create and Test Sandboxed Extensions
 layout: docs
 --- 
 
-To provide security for customers, Tableau supports a type of dashboard extension that runs in a virtual sandbox. These Sandboxed Extensions are hosted by Tableau and employee W3C standards, such as Content Security Policy (CSP), to ensure the extension can't make network calls outside of the hosting Tableau Server. This means a Sandboxed Extension can query data in the dashboard using the Extensions API, but it can't send that data anywhere outside of the sandbox. This topic provides information to help you get started creating and testing Sandboxed Extensions.
+To provide security for customers, Tableau supports a type of dashboard extension that runs in a virtual sandbox. These Sandboxed Extensions are hosted by Tableau and employ W3C standards, such as Content Security Policy (CSP), to ensure the extension can't make network calls outside of the hosting Tableau Server. This means a Sandboxed Extension can query data in the dashboard using the Extensions API, but it can't send that data anywhere outside of the sandbox. This topic provides information to help you get started creating and testing Sandboxed Extensions.
 
 
-<div class="alert alert-info"><b>Note</b> If your extension requires resources of outside services, you probably don't need to create a Sandboxed Extension. Dashboard Extensions that don't run in the sandbox environment are called Network Enabled Extensions. While Sandboxed Extensions are allowed to run by default on Tableau Server and Tableau Online, Network Enabled Extensions require server and site administrator approval and need to be added to safe list for a site.
+<div class="alert alert-info"><b>Note</b> If your extension requires resources of outside services, you should not create a Sandboxed Extension. Dashboard Extensions that don't run in the sandbox environment are called Network Enabled Extensions. While Sandboxed Extensions are allowed to run by default on Tableau Server and Tableau Online, Network Enabled Extensions require server and site administrator approval and need to be added to safe list for a site.
 </div>
 
 <!-- 
@@ -29,21 +29,21 @@ Tableau supports two types of dashboard extensions:
 
 * **Network Enabled Extensions** - can access resources and applications outside of Tableau. Supported in Tableau 2018.2 and later.
 
-* **Sandboxed Extensions** - run in a Tableau hosted environment and cannot make network calls. Supported in Tableau 2019.4 and later.
+* **Sandboxed Extensions** - run in a Tableau hosted environment and cannot make network calls. Supported in Tableau 2019.4 and later. Available for testing with Tableau 2019.3.
 
 
 ## Create Sandboxed Extensions
 
-You can create Sandboxed Extensions from scratch, or you can port your existing (Network Enabled) extensions to work in the sandbox environment. The components of a Sandboxed Extension are the same as for a Network Enabled one. Each extension consists of a web page that calls your JavaScript code and the Extensions API JavaScript library. Each extension provides a `.trex` file. 
+You can create Sandboxed Extensions from scratch, or you can port your existing (Network Enabled) extensions to work in the sandbox environment. The components of a Sandboxed Extension are the same as for a Network Enabled one. Each extension consists of a web page that calls your JavaScript code and the Extensions API JavaScript library. Each extension provides a `.trex` file.
 
-To port an existing extension, make sure all resources and libraries are local to your extension source code. No network access is allowed. And you need to modify the path to your extension in the `.trex` file to have it load in the sandbox environment. Information about changing your `.trex` file is described below. 
+To port an existing extension, make sure all resources and libraries are local to your extension source code. No network access is allowed. And you need to modify the path to your extension in the `.trex` file to have it load in the sandbox environment. Information about changing your `.trex` file is described in [Test your own Sandboxed Extensions in the local sandbox](#test-your-own-sandboxed-extensions-in-the-local-sandbox).
 
 
 ### Requirements for Sandboxed Extensions
 
 * Sandboxed Extensions cannot make calls to remote or external external resources or libraries. All content must be local to the extension. For example, if your extension uses the JQuery library, the library can't be accessed via HTTPS (`src="https://code.jquery.com/jquery-3.2.1.min.js"`). The library must be downloaded and on the same computer as the extension. All links must be relative (`src="./jquery-3.2.1.min.js`).
 
-* All resources must be static files (`.js`, `.css`, images, etc.). 
+* All resources must be static files (`.js`, `.css`, images, etc.).
 
 * Resources should be placed in the same folder as your extension web page(s), or in a sub-folder of that directory. All references must be relative.
 
@@ -51,17 +51,15 @@ To port an existing extension, make sure all resources and libraries are local t
 
 * Sandboxed Extensions cannot connect to sites outside of the sandbox and cannot transfer data. For example, a Sandboxed extension cannot transfer data to be processed by other applications. If you need to connect to outside services or resources, you can create a Network Enabled extension. Network Enabled extensions can't run in the local sandbox environment or in the Tableau Hosting Cloud Service for Sandboxed Extensions.
 
-* **React.js** - If you are creating your Sandboxed Extension using React.js, you should avoid using hash-based routing in your extension URL(`.../index.html#/configDialog`)and in any dialog boxes your extension will use.
+* **React.js** - If you are creating your Sandboxed Extension using React.js, routing will not work, including hash-based routing (`.../index.html#/configDialog`) in your URL. If you want to use multiple pages in your extension, the alternatives to routing in React.js include using [react-app-rewired](https://www.npmjs.com/package/react-app-rewired){:target="_blank"}{:ref="noopener"} and [react-app-rewire-multiple-entry](https://www.npmjs.com/package/react-app-rewire-multiple-entry){:target="_blank"}{:ref="noopener"}, or [Gatsby](https://www.gatsbyjs.org/){:target="_blank"}{:ref="noopener"}.
 
-* Sandboxed Extension must be tested in the local sandbox environment. Issues discovered with the extension must be fixed and verified before submitting the Sandboxed Extension package to Tableau.
+* Sandboxed Extensions must be tested in the local sandbox environment. Issues discovered with the extension must be fixed and verified before submitting the Sandboxed Extension package to Tableau.
 
 ---
 
-## Tableau Sandboxed Extension development environment
+## Sandboxed Extensions development environment
 
-The Extensions API SDK provides a local development environment that replicates the Tableau Hosting Cloud Service for Sandboxed Extension. You can test your Sandboxed extensions locally with the same sandbox policies before submitting the extension to Tableau for publication. See [Publish Sandboxed Extensions]({{site.baseurl}}/docs/trex_sandbox_publish.html) for information about making your extension available to others in the cloud service for Sandboxed Extensions.
-
-
+The Extensions API SDK provides a local development environment that replicates the Tableau Hosting Cloud Service for Sandboxed Extensions. You can test your Sandboxed extensions locally with the same sandbox policies before submitting the extension to Tableau for publication. See [Publish Sandboxed Extensions]({{site.baseurl}}/docs/trex_sandbox_publish.html) for information about making your extension available to others in the cloud service for Sandboxed Extensions. The local development environment can't be used to deploy or publish your extension.
 
 ---
 
@@ -89,13 +87,13 @@ The following instructions assume that you have downloaded or cloned the Extensi
 
 The Extensions API GitHub project provides an example of a Sandboxed Extension. The Sandboxed Extension is configured to run in the test sandbox environment.
 
-1. After you start the local sandbox environment, start Tableau Desktop or Tableau Server 2019.4 (beta or later) and open a workbook that has a dashboard, or open a workbook and create a new dashboard.
+1. After you start the local sandbox environment, start Tableau Desktop or Tableau Server 2019.3 (or later) and open a workbook that has a dashboard, or open a workbook and create a new dashboard.
 
 2. In the dashboard, under **Objects**, select **Extension** and drag it on to the dashboard.  
 
 3. In the **Choose an Extension** dialog box, click **My Extensions**, and then navigate to the `Extensions API\Samples\UINamespace-sandboxed` folder. Open the `uiNamespace.trex` file.  
 
-    The sample extension (web application) appears in the dashboard frame. The UINamespace-sandboxed sample finds and displays the data source for each worksheet in the dashboard and lets you configure the refresh rate. The **UINamespace-sandboxed** sample is a *sandboxed* version of the Network Enabled Extension, UINamespace sample.  You can compare the source files for both extensions to better understand the differences and to see what it takes to port existing extensions (Network Enabled) to be Sandboxed Extensions. The sample extension make use of a popup dialog box for configuration.
+    The sample extension (web application) appears in the dashboard frame. The UINamespace-sandboxed sample finds and displays the data source for each worksheet in the dashboard and lets you configure the refresh rate. The **UINamespace-sandboxed** sample is a *sandboxed* version of the Network Enabled Extension, UINamespace sample.  You can compare the source files for both extensions to better understand the differences and to see what it takes to port existing extensions (Network Enabled) to be Sandboxed Extensions. The sample extension makes use of a popup dialog box for configuration.
 
 
 
@@ -106,7 +104,7 @@ When you start the local sandbox server (**npm run start-sandbox**), the server 
 
 Before testing your extension in the sandbox, check to make sure that you are only loading resources and libraries from the folder that contains your extension's web page. See [Requirements](#requirements-for-sandboxed-extensions).
 
-### Add your extension to the sandbox-config.json
+### Add your extension to the sandbox-config.json file
 
 If you have an extension that is ready to test in the sandbox, follow these instructions.
 
@@ -128,18 +126,26 @@ If you have an extension that is ready to test in the sandbox, follow these inst
 
     ```
 
-2. Add an new entry under `"extensions":`, for your extension. The syntax for an entry is as follows.
+2. Add an new entry under `"extensions"`, for your extension. The syntax for an entry is as follows.
 
-    ```
+    ```json
     
         "name": {
-            "path": "relative-path-to-extensions-folder"
+            "path": "relative-or-absolute-path-to-extensions-folder-on-disk"
         }
 
     ```
-    Replace `name` with the name of your extension. This name becomes part of the URL. For example, if the name of the extension is `uninamespace`, that name becomes part of the URL that you specify in the `.trex` file. `http://localhost:8765/sandbox/uinamespace/`. 
+    Replace `name` with the name of your extension. This name is the ID for the extension and becomes part of the URL. The local server for Sandboxed Extensions hosts pages with the following syntax.
 
-    For the `"path"` value, provide the relative path to the folder that contains your extension web page and source files. The path is relative to the `extensions-api` parent folder. For example, the `uinamespace` sample is in the `.\Samples\UINamespace-sandboxed` folder.
+    ```
+
+    http://localhost[:port]/sandbox/[name]
+
+    ```
+
+    For example, the default value for port is `8765`. If the name of the extension is `uninamespace`, that name becomes part of the URL that you specify in the `.trex` file: `http://localhost:8765/sandbox/uinamespace/`. Note that in the `.trex` file the full URL also includes the name of the web page in the URL. An implied `index.html` does not work.
+
+    For the `"path"` value, provide the relative or absolute path to the folder on your computer that contains your extension web page and source files. The path is relative to the `extensions-api` parent folder. For example, the `uinamespace` sample is in the `.\Samples\UINamespace-sandboxed` folder.
 
     The following example adds an extension called `helloworld` that has its source files in the `./mySamples/HelloWorld` folder. You can enter multiple extensions. Be sure to separate each entry with a comma (,).
 
@@ -162,7 +168,7 @@ If you have an extension that is ready to test in the sandbox, follow these inst
     ```
 
 
-3. Restart the local server (**npm start-sandbox**). The local Sandboxed Extensions server only reads the configuration file at start up. Anytime you make changes to the `sandbox-config.json` file you need to stop and restart the server.
+3. Restart the local server (**npm run start-sandbox**). The local Sandboxed Extensions server only reads the configuration file at start up. Anytime you make changes to the `sandbox-config.json` file you need to stop and restart the server.
 
 
 ### Use the local sandbox path to the extension in the .trex file
@@ -179,8 +185,10 @@ The `<url>` for `<source-location>` must use the name of local server (`localhos
 
 ```
 
-After you update the `.trex` file to point to the sandboxed instance, you can start the sandbox sever (**npm run start-sandbox**), start Tableau and try it out.
+After you update the `.trex` file to point to the sandboxed instance, you can start the local sandbox sever (**npm run start-sandbox**), and then open Tableau and try it out.
 
+For information about making your Sandboxed Extension available to others, see [Publish Sandboxed Extensions]({{site.baseurl}}/docs/trex_sandbox_publish.html).
+The local development environment can't be used to deploy or publish your extension.
 
 
 ## Troubleshoot the test environment

@@ -24,7 +24,7 @@ npm install @tableau/extensions-api-types
 
 ## Import the type definitions
 
-Import the Extensions API type definitions into your TypeScript code. It is best to only import the modules and interfaces  that you need in your code.
+Import the Extensions API type definitions into your TypeScript code. It is best to only import the modules and interfaces that you need in your code.
 
 For example, to import the module, `Parameter`, from `@tableau/extensions-api-types` you would use the following:
 
