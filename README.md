@@ -52,7 +52,7 @@ Tableau is introducing development support for Sandboxed Extensions with Tableau
 
     **npm run start-sandbox**
 
-2. Launch Tableau (Tableau 2019.3 and later) and try the sample Sandboxed Extension in a dashboard. The sample is located in the `Samples\UINamespace-sandboxed` folder. 
+2. Launch Tableau (Tableau 2019.3 and later) and try the sample Sandboxed Extension in a dashboard. You can find the `.trex` file and sample code in the `Samples\UINamespace-sandboxed` folder.
 
 For more information, see [Create and Test Sandboxed Extensions](https://tableau.github.io/extensions-api/docs/trex_sandbox_test.html).
 

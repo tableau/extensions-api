@@ -3,25 +3,18 @@ title:  Create and Test Sandboxed Extensions
 layout: docs
 --- 
 
-To provide security for customers, Tableau supports a type of dashboard extension that runs in a virtual sandbox. These Sandboxed Extensions are hosted by Tableau and employ W3C standards, such as Content Security Policy (CSP), to ensure the extension can't make network calls outside of the hosting Tableau Server. This means a Sandboxed Extension can query data in the dashboard using the Extensions API, but it can't send that data anywhere outside of the sandbox. This topic provides information to help you get started creating and testing Sandboxed Extensions.
+To provide security for customers, Tableau supports a type of dashboard extension that runs in a sandbox. These Sandboxed Extensions are hosted by Tableau and employ W3C standards, such as Content Security Policy (CSP), to ensure the extension can't make network calls outside of the hosting Tableau Server. This means a Sandboxed Extension can query data in the dashboard using the Extensions API, but it can't send that data anywhere outside of the sandbox. This topic provides information to help you get started creating and testing Sandboxed Extensions.
 
 
 <div class="alert alert-info"><b>Note</b> If your extension requires resources of outside services, you should not create a Sandboxed Extension. Dashboard Extensions that don't run in the sandbox environment are called Network Enabled Extensions. While Sandboxed Extensions are allowed to run by default on Tableau Server and Tableau Online, Network Enabled Extensions require server and site administrator approval and need to be added to safe list for a site.
 </div>
-
-<!-- 
-Sandboxed Extensions are a type of Tableau Extension that are not permitted to make external network requests and thus cannot exfiltrate end-user data. A Sandboxed Extension is hosted by Tableau and, using W3C standards, is wrapped inside an environment which prevents communication to anything except the Tableau hosting server. For further details, see Tableau Extensions API.  -->
-
-
 
 **In this section**
 
 * TOC
 {:toc}
 
-
 ---
-
 
 ## Sandboxed Extensions and Network Enabled Extensions
 
@@ -36,7 +29,7 @@ Tableau supports two types of dashboard extensions:
 
 You can create Sandboxed Extensions from scratch, or you can port your existing (Network Enabled) extensions to work in the sandbox environment. The components of a Sandboxed Extension are the same as for a Network Enabled one. Each extension consists of a web page that calls your JavaScript code and the Extensions API JavaScript library. Each extension provides a `.trex` file.
 
-To port an existing extension, make sure all resources and libraries are local to your extension source code. No network access is allowed. And you need to modify the path to your extension in the `.trex` file to have it load in the sandbox environment. Information about changing your `.trex` file is described in [Test your own Sandboxed Extensions in the local sandbox](#test-your-own-sandboxed-extensions-in-the-local-sandbox).
+To port an existing extension, make sure all resources and libraries are local to your extension source code. No network access outside the sandbox container is allowed. And you need to modify the path to your extension in the `.trex` file to have it load in the sandbox environment. Information about changing your `.trex` file is described in [Test your own Sandboxed Extensions in the local sandbox](#test-your-own-sandboxed-extensions-in-the-local-sandbox).
 
 
 ### Requirements for Sandboxed Extensions
@@ -71,15 +64,11 @@ The following instructions assume that you have downloaded or cloned the Extensi
 
 2. If you haven't done so already, install the web server the sandbox test components:
 
-   ```cmd
-   npm install
-   ```
+   **npm install**
 
 3. Start the sandbox server:
 
-   ```npm
-   npm run start-sandbox
-   ```
+   **npm run start-sandbox**
 
 ---
 
