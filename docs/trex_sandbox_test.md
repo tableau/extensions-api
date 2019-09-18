@@ -34,7 +34,7 @@ To port an existing extension, make sure all resources and libraries are local t
 
 ### Requirements for Sandboxed Extensions
 
-* Sandboxed Extensions cannot make calls to remote or external external resources or libraries. All content must be local to the extension. For example, if your extension uses the JQuery library, the library can't be accessed via HTTPS (`src="https://code.jquery.com/jquery-3.2.1.min.js"`). The library must be downloaded and on the same computer as the extension. All links must be relative (`src="./jquery-3.2.1.min.js`).
+* Sandboxed Extensions cannot make calls to remote or external resources or libraries. All content must be local to the extension. For example, if your extension uses the JQuery library, the library can't be accessed via HTTPS (`src="https://code.jquery.com/jquery-3.2.1.min.js"`). The library must be downloaded and on the same computer as the extension. All links must be relative (`src="./jquery-3.2.1.min.js`).
 
 * All resources must be static files (`.js`, `.css`, images, etc.).
 
