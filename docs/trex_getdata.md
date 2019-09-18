@@ -3,8 +3,8 @@ title: Get Data from the Dashboard
 layout: docs
 ---
 
-The Extensions API provides methods that you can use to access the data in a dashboard. 
-The data you can access includes the summary or aggregated data, that is, the data visible in the worksheet, and also to the underlying data or full data, which can include data from all fields and tables in the data source. If your extension needs to access the full data, there are security implications and your extension needs to declare its intent, so that users of your extension can choose to allow or deny the extension access. See  [Accessing Underlying Data]({{ site.baseurl }}/docs/trex_data_access.html) for more information. 
+The Extensions API provides methods that you can use to access the data in a dashboard.
+The data you can access includes the summary or aggregated data, that is, the data visible in the worksheet, and also to the underlying data or full data, which can include data from all fields and tables in the data source. If your extension needs to access the full data, there are security implications and your extension needs to declare its intent, so that users of your extension can choose to allow or deny the extension access. See  [Accessing Underlying Data]({{ site.baseurl }}/docs/trex_data_access.html) for more information.
 
 ---
 **In this section**
@@ -159,7 +159,7 @@ The following table illustrates what happens to calls to `getUnderlyingDataAsync
 
 # Handle full data access and permission errors
 
-When an extension needs full data access and the user does not have full data permission on the workbook, Tableau currently allows the extension to run, but Tableau will call the promise failure function if the extension calls `getUnderlyingData()`. This is shown in the following example. 
+When an extension needs full data access and the user does not have full data permission on the workbook, Tableau currently allows the extension to run, but Tableau will call the promise failure function if the extension calls `getUnderlyingData()`. This is shown in the following example.
 
 ```Javascript
 Worksheet.getUnderlyingDataAsync().then(function(success) {
@@ -172,5 +172,3 @@ Worksheet.getUnderlyingDataAsync().then(function(success) {
 ```
 
 An error is also printed to the console. If you use the `getUnderlyingData()` method, be sure to add error handling for the promise in case of failure.
-
-

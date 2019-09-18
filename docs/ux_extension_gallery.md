@@ -53,18 +53,4 @@ Users reach pages like this when they want to know more about a particular exten
 
 ## How to Submit your Extension
 
-After completing your extension, fill out [this](https://airtable.com/shr6WBBTEuZIpZ3Gj) form with your information and extension details. The extension name in the template needs to match the name you specified for your extension in the manifest file (`.trex`). The 280x280 pixel `.png` icon that you attach with your submission must look like the icon you included in your manifest file (they just have different dimensions). Our developers from the Developer Platform team at Tableau will let you know the next steps including legal agreements after you submit. If you have any questions about the gallery please send them to [extensiongallery@tableau.com](extensiongallery@tableau.com).
-
-
-
-&nbsp;
-
-&nbsp;
-
----
-
-<!-- ### <div id="expand-box"><div id="expand-box-header">[<span style="float: right;">Parts of an Extension &#8594;</span>](3 - Parts of an Extension.md)</div></div>
-
-##### <div id="expand-box"><div id="expand-box-header">[<span style="float: left;">&#8592; Lifecycle of an Extension</span>](1 - Lifecycle of an Extension.md)</div></div>
--->
-
+After completing your extension, fill out the [Extension Gallery Submission form](https://tabsoft.co/gallerysubmit){:target="_blank"}{:ref="noopener"} with your information and extension details. The extension name in the template needs to match the name you specified for your extension in the manifest file (`.trex`). The 280x280 pixel `.png` icon that you attach with your submission must look like the icon you included in your manifest file (they just have different dimensions). Our developers from the Developer Platform team at Tableau will let you know the next steps including legal agreements after you submit. If you have any questions about the gallery please send them to [extensiongallery@tableau.com](extensiongallery@tableau.com){:target="_blank"}{:ref="noopener"}.
