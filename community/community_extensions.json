@@ -1,5 +1,13 @@
 [
     {
+        "name": "GordonData DataVisualisation",
+        "author": "GordonData.com",
+        "github_username": "GordonData",
+        "tags": ["v_1.0"],
+        "description": "GordonData Data Visualisation enables you to visualise data in three simple steps. Step 1: Choose worksheet; Step 2: Choose chart type and configure it; Step 3: Click to 'Visualise It!'",
+        "source_code": "https://GordonData.com/DataVis/tableau.trex"
+    },
+    {
         "name": "Image Filter (Jungle Book)",
         "author": "Lee Graber & Ang Gao",
         "github_username": "LGraber",
