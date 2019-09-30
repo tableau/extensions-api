@@ -36,13 +36,13 @@
         "source_code": "https://github.com/hutchijo/my_tableau_extensions"
     },
     {
-		"name": "Tableau Extension Demo",
-		"hostedTrexFileName": "TutorialOne.trex.xml",
-		"website": "https://gain-insights.com/",
-		"author": "Vatsal Aima",
-		"github_username": "VAimAGI",
-		"tags": ["v_1.0"],
-		"description": "A Tableau Extension API Demo",
-		"source_code": "https://github.com/VAimAGI/Tableau-Extensions-Experiment.git"
-	}
+	"name": "Tableau Extension Demo",
+	"hostedTrexFileName": "EXP1.trex",
+	"website": "https://gain-insights.com/",
+	"author": "Vatsal Aima",
+	"github_username": "VAimAGI",
+	"tags": ["v_0.6"],
+	"description": "A Tableau Extension API Demo, Lists out worksheets used in Dashboards",
+	"source_code": "https://github.com/VAimAGI/tableau-extensions-tutorial-part-one.git"
+    }
 ]
