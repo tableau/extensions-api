@@ -34,5 +34,15 @@
         "tags": ["v_1.0"],
         "description": "A Python Flask extension which uses the Amazon Product Advertising API to perform product searches on Amazon based on selections in a dashbaord.  This extension also demonstrates writeback to a MySQL database.",
         "source_code": "https://github.com/hutchijo/my_tableau_extensions"
-    }
+    },
+    {
+		"name": "Tableau Extension Demo",
+		"hostedTrexFileName": "TutorialOne.trex.xml",
+		"website": "https://gain-insights.com/",
+		"author": "Vatsal Aima",
+		"github_username": "VAimAGI",
+		"tags": ["v_1.0"],
+		"description": "A Tableau Extension API Demo",
+		"source_code": "https://github.com/VAimAGI/Tableau-Extensions-Experiment.git"
+	}
 ]
