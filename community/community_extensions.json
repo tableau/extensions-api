@@ -63,6 +63,15 @@
         "source_code": "https://github.com/KeshiaRose/Dynamic-Parameter"
     },
     {
+        "name": "GordonData Data Visualisation",
+        "website": "https://GordonData.com",
+        "author": "Gordon Chen",
+        "github_username": "",
+        "tags": ["v_1.0"],
+        "description": "GordonData Data Visualisation enables you to visualise data in three simple steps.",
+        "source_code": ""
+    },
+    {
         "name": "Image Filter (Jungle Book)",
         "author": "Lee Graber & Ang Gao",
         "github_username": "LGraber",
