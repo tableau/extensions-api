@@ -60,7 +60,8 @@
         "github_username": "KeshiaRose",
         "tags": ["v_0.6"],
         "description": "A Tableau Extension to add dynamic parameter capabilities to Tableau dashboards.",
-        "source_code": "https://github.com/KeshiaRose/Dynamic-Parameter"
+        "source_code": "https://github.com/KeshiaRose/Dynamic-Parameter",
+        "hostedTrexFileName": "DynamicParameters.trex"
     },
     {
         "name": "GordonData Data Visualisation",
