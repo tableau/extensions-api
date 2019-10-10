@@ -10,7 +10,7 @@ function append(extension) {
     h += '<div class="caption">';
 
     if (extension.hostedTrexFileName) {
-        var filePath = '../../community/CommunityManifests/' + extension.hostedTrexFileName;
+        var filePath = '/extensions-api/community/CommunityManifests/' + extension.hostedTrexFileName;
         h += '<p><b>Manifest File: </b><a href="' + filePath + '" alt="Source code link" download>Download</a></p>';        
     }        
 
