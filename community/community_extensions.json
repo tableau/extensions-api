@@ -4,61 +4,92 @@
         "website": "https://github.com/mantsui/Ext_visjs_3d_scatter",
         "author": "Man Tsui",
         "github_username": "mantsui",
-        "tags": ["v_1.0"],
+        "tags": [
+            "v_1.0"
+        ],
         "description": "Tableau Extension drawing 3-D scatter plot using vis javascript library (vis.js). Requires three measures.",
-        "source_code": "https://github.com/mantsui/Ext_visjs_3d_scatter"
+        "source_code": "https://github.com/mantsui/Ext_visjs_3d_scatter",
+        "hostedTrexFileName": "3-D Scatterplot.trex"
     },
     {
         "name": "Amazon Product Search",
         "website": "https://github.com/hutchijo/my_tableau_extensions",
         "author": "Joel Hutchison",
         "github_username": "hutchijo",
-        "tags": ["v_1.0"],
+        "tags": [
+            "v_1.0"
+        ],
         "description": "A Python Flask extension which uses the Amazon Product Advertising API to perform product searches on Amazon based on selections in a dashbaord.  This extension also demonstrates writeback to a MySQL database.",
         "source_code": "https://github.com/hutchijo/my_tableau_extensions"
     },
     {
-        "name": "D3 Zoomable Treemap",
-        "website": "https://github.com/mantsui/Ext_D3_Treemap",
-        "author": "Man Tsui",
-        "github_username": "mantsui",
-        "tags": ["v_1.0"],
-        "description": "Leverages open source D3 javascript library for an interactive treemap chart at dynamic levels of dimensions.",
-        "source_code": "https://github.com/mantsui/Ext_D3_Treemap"
+        "name": "D3 Projections",
+        "website": "https://github.com/demartsc/tableau-tc18-extending-tableau",
+        "author": "Chris DeMartini",
+        "github_username": "demartsc",
+        "tags": [
+            "v_1.0"
+        ],
+        "description": "This is a simple repository to support the demostration done at #TC18. The files included provide the assets needed to execute the map projections and semiotic hierarchy extensions presented in Tableau.",
+        "source_code": "https://github.com/demartsc/tableau-tc18-extending-tableau",
+        "hostedTrexFileName": "D3 Projections.trex"
     },
     {
         "name": "D3 Sankey",
         "website": "https://github.com/mantsui/Ext_D3_Sankey",
         "author": "Man Tsui",
         "github_username": "mantsui",
-        "tags": ["v_1.0"],
+        "tags": [
+            "v_1.0"
+        ],
         "description": "Leverages open source D3 javascript library for an interactive Sankey chart at dynamic levels of dimensions.",
-        "source_code": "https://github.com/mantsui/Ext_D3_Sankey"
+        "source_code": "https://github.com/mantsui/Ext_D3_Sankey",
+        "hostedTrexFileName": "D3 Sankey.trex"
     },
     {
         "name": "D3 Sunburst",
         "website": "https://github.com/mantsui/Ext_D3_Sunburst",
         "author": "Man Tsui",
         "github_username": "mantsui",
-        "tags": ["v_1.0"],
+        "tags": [
+            "v_1.0"
+        ],
         "description": "Leverages open source D3 javascript library for an interactive sunburst chart at dynamic levels of dimensions.",
-        "source_code": "https://github.com/mantsui/Ext_D3_Sunburst"
+        "source_code": "https://github.com/mantsui/Ext_D3_Sunburst",
+        "hostedTrexFileName": "D3 Sunburst.trex"
+    },
+    {
+        "name": "D3 Zoomable Treemap",
+        "website": "https://github.com/mantsui/Ext_D3_Treemap",
+        "author": "Man Tsui",
+        "github_username": "mantsui",
+        "tags": [
+            "v_1.0"
+        ],
+        "description": "Leverages open source D3 javascript library for an interactive treemap chart at dynamic levels of dimensions.",
+        "source_code": "https://github.com/mantsui/Ext_D3_Treemap",
+        "hostedTrexFileName": "D3 Zoomable Treemap.trex"
     },
     {
         "name": "Display Images",
         "url": "https://illonage.github.io/DisplayImages/DisplayImage.html",
         "author": "Geraldine Zanolli",
         "github_username": "illonage",
-        "tags": ["v_12.0"],
+        "tags": [
+            "v_12.0"
+        ],
         "description": "Display one or more images selected on a dashboard",
-        "source_code": "https://github.com/illonage/illonage.github.io/blob/master/DisplayImages/DisplayImage.html"
+        "source_code": "https://github.com/illonage/illonage.github.io/blob/master/DisplayImages/DisplayImage.html",
+        "hostedTrexFileName": "Display Images.trex"
     },
     {
         "name": "Dynamic Parameters",
         "website": "https://keshiarose.github.io/Dynamic-Parameter/",
         "author": "Keshia Rose",
         "github_username": "KeshiaRose",
-        "tags": ["v_0.6"],
+        "tags": [
+            "v_0.6"
+        ],
         "description": "A Tableau Extension to add dynamic parameter capabilities to Tableau dashboards.",
         "source_code": "https://github.com/KeshiaRose/Dynamic-Parameter",
         "hostedTrexFileName": "DynamicParameters.trex"
@@ -68,15 +99,20 @@
         "website": "https://GordonData.com",
         "author": "Gordon Chen",
         "github_username": "",
-        "tags": ["v_1.0"],
+        "tags": [
+            "v_1.0"
+        ],
         "description": "GordonData Data Visualisation enables you to visualise data in three simple steps.",
-        "source_code": ""
+        "source_code": "",
+        "hostedTrexFileName": "GordonData Data Visualisation.trex"
     },
     {
         "name": "Image Filter (Jungle Book)",
         "author": "Lee Graber & Ang Gao",
         "github_username": "LGraber",
-        "tags": ["v_0.6"],
+        "tags": [
+            "v_0.6"
+        ],
         "description": "Lets you display an image, draw polygons in the image and then use those polygons as filters on a sheet in the viz.",
         "source_code": "https://github.com/LGraber/trex-jungle-book"
     },
@@ -84,43 +120,81 @@
         "name": "Keep It Fresh",
         "author": "The Information Lab",
         "github_username": "TheInformationLab",
-        "tags": ["v_1.2"],
+        "tags": [
+            "v_1.2"
+        ],
         "description": "Add a countdown timer to your dashboard to refresh your data source(s) on pre-defined time intervals",
-        "source_code": "https://github.com/TheInformationLab/Tableau-Extension-KeepItFresh/"
+        "source_code": "https://github.com/TheInformationLab/Tableau-Extension-KeepItFresh/",
+        "hostedTrexFileName": "Keep It Fresh.trex"
     },
     {
         "name": "Latest Date Updater",
         "website": "https://github.com/KeshiaRose/latest-date-updater",
         "author": "Keshia Rose",
         "github_username": "KeshiaRose",
-        "tags": ["v_1.0"],
+        "tags": [
+            "v_1.0"
+        ],
         "description": "Automatically update a parameter to the latest date based on your data.",
-        "source_code": "https://github.com/KeshiaRose/latest-date-updater"
+        "source_code": "https://github.com/KeshiaRose/latest-date-updater",
+        "hostedTrexFileName": "Latest Date Updater.trex"
     },
     {
         "name": "Run Alteryx in Tableau",
         "website": "https://github.com/andre347/run-alteryx-tableau-extension",
         "author": "Andre de Vries",
         "github_username": "andre347",
-        "tags": ["v_1.0"],
+        "tags": [
+            "v_1.0"
+        ],
         "description": "Ever wanted to execute your Alteryx workflows or analytic apps from within your Tableau dashboard? Now you can! If you have an Alteryx Gallery you can run your published apps and workflows.",
-        "source_code": "https://github.com/andre347/run-alteryx-tableau-extension"
+        "source_code": "https://github.com/andre347/run-alteryx-tableau-extension",
+        "hostedTrexFileName": "Run Alteryx in Tableau.trex"
     },
     {
-        "name": "Semiotic Charts",
+        "name": "Semiotic Hierarchy",
         "website": "https://github.com/demartsc/tableau-tc18-extending-tableau",
         "author": "Chris DeMartini",
         "github_username": "demartsc",
-        "tags": ["v_1.0"],
+        "tags": [
+            "v_1.0"
+        ],
         "description": "This is a simple repository to support the demostration done at #TC18. The files included provide the assets needed to execute the map projections and semiotic hierarchy extensions presented in Tableau.",
-        "source_code": "https://github.com/demartsc/tableau-tc18-extending-tableau"
+        "source_code": "https://github.com/demartsc/tableau-tc18-extending-tableau",
+        "hostedTrexFileName": "Semiotic Hierarchy.trex"
+    },
+    {
+        "name": "Semiotic Network Charts",
+        "website": "https://github.com/demartsc/tableau-tc18-extending-tableau",
+        "author": "Chris DeMartini",
+        "github_username": "demartsc",
+        "tags": [
+            "v_1.0"
+        ],
+        "description": "This is a simple repository to support the demostration done at #TC18. The files included provide the assets needed to execute the map projections and semiotic hierarchy extensions presented in Tableau.",
+        "source_code": "https://github.com/demartsc/tableau-tc18-extending-tableau",
+        "hostedTrexFileName": "Semiotic Network Charts.trex"
+    },
+    {
+        "name": "Semiotic Swarm",
+        "website": "https://github.com/demartsc/tableau-tc18-extending-tableau",
+        "author": "Chris DeMartini",
+        "github_username": "demartsc",
+        "tags": [
+            "v_1.0"
+        ],
+        "description": "This is a simple repository to support the demostration done at #TC18. The files included provide the assets needed to execute the map projections and semiotic hierarchy extensions presented in Tableau.",
+        "source_code": "https://github.com/demartsc/tableau-tc18-extending-tableau",
+        "hostedTrexFileName": "Semiotic Swarm.trex"
     },
     {
         "name": "Tableaufans.com’s Commenting Extension",
         "website": "https://tableaufans.com/extension-api/tableau-commenting-extension/",
         "author": "Timo Tautenhahn",
         "github_username": "TimoTautenhahn",
-        "tags": ["v_1.0"],
+        "tags": [
+            "v_1.0"
+        ],
         "description": "Tableaufans.com’s Commenting Extension lets you have discussions around particular outliers on Visualizations. You can basically select any mark on a dashboard, create a new comment for it and review what other people discussed.",
         "source_code": "https://tableaufans.com/extension-api/tableau-commenting-extension/"
     },
@@ -129,7 +203,9 @@
         "website": "https://tableaufans.com/extension-api/tableau-extension-api-write-back-updated-source-code-for-tableau-2018-2/",
         "author": "Timo Tautenhahn",
         "github_username": "TimoTautenhahn",
-        "tags": ["v_1.0"],
+        "tags": [
+            "v_1.0"
+        ],
         "description": "Tableaufans.com’s Write Back Extension is a downloadable extension that allows you to write back to your MySQL database.",
         "source_code": "https://tableaufans.com/extension-api/tableau-extension-api-write-back-updated-source-code-for-tableau-2018-2/"
     }
