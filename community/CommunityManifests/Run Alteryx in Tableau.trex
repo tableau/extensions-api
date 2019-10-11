@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest manifest-version="0.1" 
+    xmlns="http://www.tableau.com/xml/extension_manifest">
+    <dashboard-extension id="com.theinformationlab.extensions.alteryxInTableau" extension-version="1.0.0">
+        <default-locale>en_US</default-locale>
+        <name resource-id="name"></name>
+        <description>Alteryx in Tableau</description>
+        <author name="Andre de Vries" email="andre.devries@theinformationlab.co.uk" organization="The Information Lab" website="https://www.theinformationlab.co.uk"></author>
+        <min-api-version>1.0</min-api-version>
+        <source-location>
+            <url>https://andre347.github.io/run-alteryx-tableau-extension/#/index</url>
+        </source-location>
+        <icon></icon>
+        <context-menu>
+            <configure-context-menu-item />
+        </context-menu>
+    </dashboard-extension>
+    <resources>
+        <resource id="name">
+            <text locale="en_US">Alteryx in Tableau</text>
+        </resource>
+    </resources>
+</manifest>
