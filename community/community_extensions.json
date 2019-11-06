@@ -23,6 +23,18 @@
         "source_code": "https://github.com/hutchijo/my_tableau_extensions"
     },
     {
+        "name": "Annotate All The (Tableau) Things!",
+        "website": "https://github.com/demartsc/tableau-react-annotation",
+        "author": "Chris DeMartini",
+        "github_username": "demartsc",
+        "tags": [
+            "v_1.0"
+        ],
+        "description": "Leverage the brilliance of Susie Lu's React-Annotation library, directly within (or on top of) Tableau! Works best when deployed directly onto Tableau Server.",
+        "source_code": "https://github.com/demartsc/tableau-react-annotation",
+        "hostedTrexFileName": "React Annotation.trex"
+    },
+    {
         "name": "D3 Projections",
         "website": "https://github.com/demartsc/tableau-tc18-extending-tableau",
         "author": "Chris DeMartini",
