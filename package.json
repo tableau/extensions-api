@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "@tableau/extensions-api-types": "1.3.1",
-    "@tableau/tabextsandbox": "^1.0.1",
+    "@tableau/tabextsandbox": "^1.1.0",
     "@types/jquery": "^3.3.29",
     "concurrently": "^4.1.0",
     "semistandard": "^11.0.0",
