@@ -18,7 +18,7 @@
   "author": "tableau",
   "license": "MIT",
   "dependencies": {
-    "http-server": "^0.11.1"
+    "http-server": "^0.9.0"
   },
   "devDependencies": {
     "@tableau/extensions-api-types": "1.3.1",
