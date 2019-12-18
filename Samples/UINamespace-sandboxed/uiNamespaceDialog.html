@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Settings Sample</title>
+
+    <!-- jQuery -->
+    <script src="./jquery-3.2.1.min.js"></script>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="./bootstrap.min.css" >
+    <script src="./bootstrap.min.js" ></script>
+
+    <!-- Extensions Library (hosted from extension hosting server) -->
+    <script src="/resources/tableau.extensions.1.latest.js"></script>
+
+    <!-- Our extension's code -->
+    <script src="./uiNamespaceDialog.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h4>Auto Data Source Refresh Extension</h4>
+      <p>
+        This Extension refreshes the selected datasources at the selected interval.
+      </p>
+      <hr />
+
+      <h5>Apply to these datasources: </h5>
+      <div style="margin-left: 14px" id="datasources">
+      </div>
+      <h5>Refresh interval in minutes:</h5>
+      <input style="margin-left: 14px" type="number" id="interval" name="quantity" min="1" max="60">
+
+      <hr />
+      <button id="closeButton">Start Auto Refresh</button>
+    </div>
+  </body>
+</html>
