@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest manifest-version="0.1" xmlns="http://www.tableau.com/xml/extension_manifest">
+  <dashboard-extension id="com.tableau.extensions.samples.filtering" extension-version="0.6.0">
+    <default-locale>en_US</default-locale>
+    <name resource-id="name"/>
+    <description>D3 Zoomable Sunburst</description>
+    <author name="mantsui" email="mantsui@ucdavis.edu" organization="personal" website="https://www.linkedin.com/in/man-tsui-83840415/"/>
+    <min-api-version>0.8</min-api-version>
+    <source-location>
+      <url>https://mantsui.github.io/Ext_D3_Sunburst</url>
+    </source-location>
+    <icon></icon>
+		<context-menu>
+			 <configure-context-menu-item/>
+		</context-menu>		
+  </dashboard-extension>
+  <resources>
+    <resource id="name">
+      <text locale="en_US">D3 Zoomable Sunburst</text>
+    </resource>
+  </resources>
+</manifest>
