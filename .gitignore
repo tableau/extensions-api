@@ -4,9 +4,6 @@ node_modules/
 _site/
 node_modules/
 npm-debug.log
-package-lock.json
-Gemfile.lock
-yarn.lock
 
 # Ignore webpack generated files
 dist/
