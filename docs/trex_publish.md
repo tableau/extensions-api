@@ -73,9 +73,9 @@ For information about designing an extension, see [Design Guidelines for Dashboa
 
 ![]({{ site.baseurl }}/assets/trex_gallery.png){:height="50%" width="50%"}
 
-## Publishing or sharing a dashboard extension on the Communities page 
+## Publishing or sharing a dashboard extension on the Communities page
 
-Another way to share your work with other developers is to add it to the [Community Portal fpr Dashboard Extensions]({{ site.baseurl }}/community/). You can use the portal to provide links to your source code and you can also provide a `.trex` file for users to download. To make it easier for others to use your extension, we ask that your `.trex` file specifies a link to a hosted version of your extension
+Another way to share your work with other developers is to add it to the [Community Portal for Dashboard Extensions]({{ site.baseurl }}/community/). You can use the portal to provide links to your source code and you can also provide a `.trex` file for users to download. To make it easier for others to use your extension, we ask that your `.trex` file specifies a link to a hosted version of your extension
 See [Hosting and Contributing to the Community Portal]({{site.baseurl}}/docs/trex_contributing.html)
 
 Submit your extension to the [Community Portal for Dashboard Extensions]({{ site.baseurl }}/community/)
