@@ -3,7 +3,7 @@ title: Known Issues for the Tableau Extensions API
 layout: docs
 --- 
 
-The following section describes some issues in the current release of the Extensions API where the API or the platform does not behave as expected.  
+The following section describes some issues in the current release of the Extensions API where the API or the platform does not behave as expected.
 
 For information about what is new or has changed in each release, see the [Release Notes for the Tableau Extensions API]({{ site.baseurl }}/docs/trex_release-notes.html)
 
@@ -11,6 +11,10 @@ For information about what is new or has changed in each release, see the [Relea
 
 * TOC
 {:toc}
+
+### Unable to debug extensions using Chrome version 80 or later
+
+Because of incompatibilities between Chrome and the internal Chromium-based browser used in Tableau, you can't use Chrome version 80 or later to debug your extensions. If you are using Tableau Desktop 2019.1 or later, you can debug extensions using Chrome version 79 or Chromium version 79. If you are using Tableau Desktop versions 2018.2 or 2018.3, you can use Chromium version 47. For more information about debugging extensions and using the Chromium browser, see [Debug Extensions in Tableau Desktop]({{site.baseurl}}/docs/trex_debugging.html) and [Download the Chromium Browser]({{site.baseurl}}/docs/trex_debugging.html#download-the-chromium-browser).
 
 
 ### Time zone not persisted when updating date parameter
