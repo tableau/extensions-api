@@ -3,11 +3,13 @@ title: Get Started with Dashboard Extensions
 layout: docs
 ---
 
-The Tableau Extensions API allows developers to create extensions for Tableau. Tableau extensions are web applications that can interact and communicate with Tableau. A dashboard extension can be placed in the dashboard like any other dashboard object. 
- 
-This section will take you through the process of setting up your environment to use one of the sample dashboard extensions. Using one of the sample extensions is a great way to learn and great way to get started developing your own extensions. In this section, you will start a simple web server on your computer to host the sample. You can use the same process for hosting the extension when you start developing your own. 
+The Tableau Dashboard Extensions API allows developers to create extensions for Tableau. Tableau extensions are web applications that can interact and communicate with Tableau. A dashboard extension can be placed in the dashboard like any other dashboard object.
 
-<div class="alert alert-info"><b>Note</b> If you are looking for information about how to add an extension to a dashboard in Tableau, see <a href="https://onlinehelp.tableau.com/current/pro/desktop/en-us/dashboard_extensions.htm" target="_blank">Use Dashboard Extensions</a>. If you are looking for extensions that you can use, see the <a href="https://extensiongallery.tableau.com/" target="_blank">Tableau Extension Gallery</a>.
+<div class="alert alert-info"><b>Note</b> If you are looking for information about how to extend Tableau calculations to include popular data science programming languages and external tools, see the <a href="https://tableau.github.io/analytics-extensions-api/" target="_blank" ref="noopener">Tableau Analytics Extensions API</a>.</div>
+ 
+This section will take you through the process of setting up your environment to use one of the sample dashboard extensions. Using one of the sample extensions is a great way to learn and great way to get started developing your own extensions. In this section, you will start a simple web server on your computer to host the sample. You can use the same process for hosting the extension when you start developing your own.
+
+<div class="alert alert-info"><p><b>Note</b> If you are looking for information about how to add an extension to a dashboard in Tableau, see <a href="https://onlinehelp.tableau.com/current/pro/desktop/en-us/dashboard_extensions.htm" target="_blank" ref="noopener">Use Dashboard Extensions</a>. If you are looking for extensions that you can use, see the <a href="https://extensiongallery.tableau.com/" target="_blank" ref="noopener">Tableau Extension Gallery</a>.</p>
 </div>
 
 
