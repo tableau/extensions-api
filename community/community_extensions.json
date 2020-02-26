@@ -152,6 +152,18 @@
         "hostedTrexFileName": "Latest Date Updater.trex"
     },
     {
+        "name": "Node Tree Compact",
+        "website": "https://github.com/vizEpic/TREX/tree/master/nodeTreeCompact",
+        "author": "Jeffrey Strauss",
+        "github_username": "jstrauss18",
+        "tags": [
+            "v_1.0"
+        ],
+        "description": "Fully integrate a D3 compact dynamic hierarchy onto your dashboard by leveraging the summary data already included within your dashboard.",
+        "source_code": "https://github.com/vizEpic/TREX/tree/master/nodeTreeCompact",
+        "hostedTrexFileName": "Node Tree Compact.trex"
+    },    
+    {
         "name": "Run Alteryx in Tableau",
         "website": "https://github.com/andre347/run-alteryx-tableau-extension",
         "author": "Andre de Vries",
