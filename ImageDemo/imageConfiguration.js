@@ -47,10 +47,15 @@
       selectedWorkbooks = parseSettingsForActiveWorkbooks();
 
       // Set values of inputs
-      document.getElementById("title").value = selectedWorkbooks.title;
-      document.getElementById("subtitle").value = selectedWorkbooks.subtitle;
-      document.getElementById("descripcion").value = selectedWorkbooks.descripcion;
-      console.log(selectedWorkbooks.image);
+      try {
+        document.getElementById("title").value = selectedWorkbooks.title;
+        document.getElementById("subtitle").value = selectedWorkbooks.subtitle;
+        document.getElementById("descripcion").value =
+          selectedWorkbooks.descripcion;
+        console.log(selectedWorkbooks.image);
+      } catch (error) {
+        console.log("No se encontró información en las configuraciones");
+      }
       // Loop through datasources in this sheet and create a checkbox UI
       // element for each one.  The existing settings are used to
       // determine whether a datasource is checked by default or not.
@@ -170,13 +175,21 @@
     let title = document.getElementById("title").value;
     let subtitle = document.getElementById("subtitle").value;
     let descripcion = document.getElementById("descripcion").value;
+
+    let imageSelected;
+    try {
+      imageSelected = selectedWorkbooks.image;
+    } catch (error) {
+      console.log("No hay imagen registrada");
+    }
+
     selectedWorkbooks = {
       workbook: selectedWorkbook,
       column: selectedColumn,
       title: title,
       subtitle: subtitle,
       descripcion: descripcion,
-      image: selectedWorkbooks.image
+      image: imageSelected
     };
     console.log(selectedWorkbooks);
     console.log(JSON.stringify(selectedWorkbooks));
