@@ -29,6 +29,17 @@
     tableau.extensions
       .initializeAsync({ configure: configure })
       .then(function() {
+        // Charge settings if there's one
+        try {
+          let settings = tableau.extensions.settings.getAll();
+          infoSettings = JSON.parse(settings.selectedWorkbooks);
+          console.log(infoSettings);
+          $("#configListener").hide();
+          $("#main").show();
+          setTitles(document, infoSettings);
+        } catch (error) {
+          console.log("No hay configuraciones precargadas");
+        }
         // This event allows for the parent extension and popup extension to keep their
         // settings in sync.  This event will be triggered any time a setting is
         // changed for this extension, in the parent or popup (i.e. when settings.saveAsync is called).
