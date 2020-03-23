@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hello Extensions</title>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="imageExtension.css" />
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"
+    ></script>
+
+    <!-- Tableau Extensions API Library  -->
+    <!-- library is in the /lib directory -->
+    <script src="../../lib/tableau.extensions.1.latest.js"></script>
+
+    <!-- Your JavaScript code that uses the Extensions API goes here -->
+    <script src="./imageExtension.js"></script>
+  </head>
+
+  <ion-app>
+    <div class="ion-page" id="main" style="display: none;">
+      <ion-content class="ion-padding">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-subtitle id="subtitle">Card Subtitle</ion-card-subtitle>
+            <ion-card-title id="title">Card Title</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content class="ion-padding">
+            <ion-img
+              id="selectedItem"
+              src="https://estaticos.muyinteresante.es/media/cache/1140x_thumb/uploads/images/gallery/5b0fcfa25bafe83df2c203b3/pokemon0_0.jpg"
+            >
+            </ion-img>
+            <p id="descripcion">
+              Keep close to Nature's heart... and break clear away, once in
+              awhile, and climb a mountain or spend a week in the woods. Wash
+              your spirit clean.
+            </p>
+          </ion-card-content>
+        </ion-card>
+      </ion-content>
+      <ion-alert-controller></ion-alert-controller>
+    </div>
+    <div class="ion-page" id="configListener">
+      <ion-title size="large">Termina de configurar la herramienta</ion-title>
+    </div>
+  </ion-app>
+  <ion-menu-controller></ion-menu-controller>
+</html>

@@ -1,0 +1,5 @@
+@import "https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css";
+
+.my-custom-menu {
+  --width: 500px;
+}
