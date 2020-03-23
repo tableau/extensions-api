@@ -19,6 +19,10 @@
   const defaultIntervalInMin = "5";
 
   let infoSettings;
+  let dashboard;
+  let workbookSelected;
+  let selectedWorkbooks;
+  let numofElements;
 
   $(document).ready(function() {
     // When initializing an extension, an optional object is passed that maps a special ID (which
@@ -29,15 +33,90 @@
     tableau.extensions
       .initializeAsync({ configure: configure })
       .then(function() {
+        dashboard = tableau.extensions.dashboardContent.dashboard;
         // Charge settings if there's one
         try {
-          let settings = tableau.extensions.settings.getAll();
-          infoSettings = JSON.parse(settings.selectedWorkbooks);
+          updateExtensionBasedOnSettings(tableau.extensions.settings.getAll());
           console.log(infoSettings);
           $("#configListener").hide();
           $("#main").show();
           setTitles(document, infoSettings);
+
+          dashboard.worksheets.forEach(function(worksheet) {
+            if (worksheet.name == infoSettings.workbook) {
+              workbookSelected = worksheet;
+            }
+            console.log(workbookSelected);
+          });
+
+          let options = {
+            maxRows: 0, // Max rows to return. Use 0 to return all rows
+
+            ignoreAliases: false,
+            ignoreSelection: true
+          };
+
+          workbookSelected.getSummaryDataAsync(options).then(function(sumdata) {
+            console.log("-------------------");
+            const worksheetData = sumdata;
+            console.log(worksheetData);
+            numofElements = worksheetData._totalRowCount;
+            console.log(numofElements);
+            console.log("-------------------");
+          });
+
+          const markSelection = tableau.TableauEventType.MarkSelectionChanged;
+
+          let unregisterEventHandlerFunction = workbookSelected.addEventListener(
+            markSelection,
+            function(selectionEvent) {
+              console.log("Click");
+              // When the selection changes, reload the data
+              // Initialization succeeded! Get the dashboard
+
+              workbookSelected.getUnderlyingDataAsync().then(dataTable => {
+                let field = dataTable.columns.find(
+                  column => column.fieldName === infoSettings.column
+                );
+                let list = [];
+                for (let row of dataTable.data) {
+                  list.push(row[field.index].value);
+                }
+                console.log("||||||||||||");
+                console.log(list.length);
+                console.log(numofElements);
+                console.log("||||||||||||");
+                if (list.length != numofElements) {
+                  document.getElementById("selectedItem").src = list[0];
+
+                  let settings = tableau.extensions.settings.getAll();
+                  //selectedWorkbooks = JSON.parse(settings.selectedWorkbooks);
+                  infoSettings.image = list[0];
+
+                  console.log("Test: ");
+                  console.log(infoSettings);
+                  console.log(JSON.stringify(infoSettings));
+                  try {
+                    tableau.extensions.settings.set(
+                      workbooksSettingsKey,
+                      JSON.stringify(infoSettings)
+                    );
+                    console.log(infoSettings);
+                    tableau.extensions.settings.saveAsync().then(result => {
+                      console.log("Settings saved.");
+                      // ... process results
+                    });
+                  } catch (error) {
+                    console.log("No pudo guardar");
+                  }
+                }
+              });
+              // remove the event listener when done
+              //unregisterEventHandlerFunction();
+            }
+          );
         } catch (error) {
+          console.error(error);
           console.log("No hay configuraciones precargadas");
         }
         // This event allows for the parent extension and popup extension to keep their
@@ -51,63 +130,15 @@
 
             setTitles(document, infoSettings);
 
-            const markSelection = tableau.TableauEventType.MarkSelectionChanged;
-
-            let dashboard = tableau.extensions.dashboardContent.dashboard;
-
             console.log(dashboard);
-
-            let workbookSelected;
 
             dashboard.worksheets.forEach(function(worksheet) {
               if (worksheet.name == infoSettings.workbook) {
                 workbookSelected = worksheet;
               }
+              console.log("Se actualiza");
               console.log(workbookSelected);
             });
-
-            let unregisterEventHandlerFunction = workbookSelected.addEventListener(
-              markSelection,
-              function(selectionEvent) {
-                // When the selection changes, reload the data
-                // Initialization succeeded! Get the dashboard
-                workbookSelected.getUnderlyingDataAsync().then(dataTable => {
-                  let field = dataTable.columns.find(
-                    column => column.fieldName === infoSettings.column
-                  );
-                  let list = [];
-                  for (let row of dataTable.data) {
-                    list.push(row[field.index].value);
-                  }
-
-                  document.getElementById("selectedItem").src = list[0];
-
-                  let settings = tableau.extensions.settings.getAll();
-                  let selectedWorkbooks = JSON.parse(
-                    settings.selectedWorkbooks
-                  );
-                  selectedWorkbooks.image = list[0];
-                  tableau.extensions.settings.set(
-                    workbooksSettingsKey,
-                    JSON.stringify(selectedWorkbooks)
-                  );
-                  console.log(selectedWorkbooks);
-                });
-
-                tableau.extensions.settings
-                  .saveAsync()
-                  .then(result => {
-                    console.log("Settings saved.");
-                    // ... process results
-                  })
-                  .catch(error => {
-                    // ...
-                    // ... code for error handling
-                  });
-                // remove the event listener when done
-                //unregisterEventHandlerFunction();
-              }
-            );
           }
         );
       });
