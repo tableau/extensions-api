@@ -177,14 +177,14 @@
     },
     {
         "name": "Semiotic Hierarchy",
-        "website": "https://github.com/demartsc/tableau-tc18-extending-tableau",
+        "website": "https://github.com/demartsc/tableau-semiotic-hierarchy",
         "author": "Chris DeMartini",
         "github_username": "demartsc",
         "tags": [
             "v_1.0"
         ],
-        "description": "This is a simple repository to support the demostration done at #TC18. The files included provide the assets needed to execute the map projections and semiotic hierarchy extensions presented in Tableau.",
-        "source_code": "https://github.com/demartsc/tableau-tc18-extending-tableau",
+        "description": "This is the Semiotic hierarchy extension, it will enable you to build hierarchical charts in Tableau without a ton of hacking and extra work. Drag and drop your way to dynamic trees, circle pack and network layouts. You can see more information in our #TC18 presentation (https://youtu.be/dAosQtZQBq0).",
+        "source_code": "https://github.com/demartsc/tableau-semiotic-hierarchy",
         "hostedTrexFileName": "Semiotic Hierarchy.trex"
     },
     {
