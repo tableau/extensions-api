@@ -111,7 +111,7 @@
         }
 
         if (filter.maxValue) {
-          filterValues += 'min: ' + filter.maxValue.formattedValue + ', ';
+          filterValues += 'max: ' + filter.maxValue.formattedValue + ', ';
         }
         break;
       case 'relative-date':
