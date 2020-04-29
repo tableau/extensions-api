@@ -34,5 +34,14 @@
         "tags": ["v_1.0"],
         "description": "A Python Flask extension which uses the Amazon Product Advertising API to perform product searches on Amazon based on selections in a dashbaord.  This extension also demonstrates writeback to a MySQL database.",
         "source_code": "https://github.com/hutchijo/my_tableau_extensions"
+    },
+    {
+        "name": "Hierarchy Navigator",
+        "url": "https://github.com/tableau/extension-hierarchy-navigator-sandboxed",
+        "author": "Russ Goldin",
+        "github_username": "tagyoureit",
+        "tags": ["v_1.0"],
+        "description": "This extension allows you to take flat/dimensional or recursive data and visualize it and enable interactions with other dashboard components.",
+        "source_code": "https://github.com/tableau/extension-hierarchy-navigator-sandboxed"
     }
 ]
