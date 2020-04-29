@@ -10,7 +10,6 @@ The Extensions API is a JavaScript library. If you author in TypeScript, Tableau
 * TOC
 {:toc}
 
-
 <div class="alert alert-info"><b>Note</b> If you want to examine and use TypeScript versions of several of the sample extensions in the <b>Samples</b> folder, see <a href="https://github.com/tableau/extensions-api/tree/master/Samples-Typescript" target="_blank">Samples-Typescript (GitHub)</a> and follow the instructions to <a href="https://tableau.github.io/extensions-api/docs/trex_examples.html#use-the-typescript-samples" target="_blank">Use the TypeScript Samples</a>.
 </div>
 
@@ -21,6 +20,8 @@ The Tableau Extension API type definitions are available as an npm @types packag
 ```cmd
 npm install @tableau/extensions-api-types
 ```
+
+<div class="alert alert-info"><b>Note</b> The version of the types package must match the version of the Extensions API library you are using. You can specify the library version by appending the version number to the package name (<code>@n.n.n</code>). For example, <code>npm install @tableau/extensions-api-types@1.3.1</code>. If you don't specify a version number, npm will install the latest released package.</div>
 
 ## Import the type definitions
 

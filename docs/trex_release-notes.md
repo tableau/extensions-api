@@ -11,7 +11,32 @@ layout: docs
 ----
 See also: [Known Issues]({{site.baseurl}}/docs/trex_known_issues.html)
 
----
+----
+
+### Tableau Dashboard Extensions API version 1.4
+*March 2020*
+
+* Tableau Dashboard Extensions API library: `tableau.extensions.1.4.0.js` <br>(download or clone the Extensions API repository on [GitHub](https://github.com/tableau/extensions-api){:target="_blank"}). <br/>
+
+* To support the logical and physical tables introduced in Tableau 2020.2, the Tableau Dashboard Extensions API (version 1.4) provides new APIs and data structures. Use these new methods to get the underlying data from data sources and worksheets. The new methods replace `getUnderlyingDataAsync`. Starting in Tableau 2020.2, a data source could have multiple logical tables, and logical tables can contain one or more physical tables. If you have an existing extension that uses one of the deprecated methods to get underlying data, the method call could fail if the data source contains more than one logical table. You should update your extensions to use these new methods. The new methods are backward compatible with previous versions of Tableau.
+
+    | Interface | Deprecated method (v1.3 and earlier) | New method (v1.4 and later) |
+    | :------------------| :-------------- |:-----------|
+    | `Datasource` | `datasource.getActiveTablesAsync` |  `datasource.getLogicalTablesAsync` |
+    | `Datasource` | `datasource.getUnderlyingDataAsync` | `datasource.getLogicalTableDataAsync` |
+    | `Worksheet` |   Not Applicable                     | `worksheet.getUnderlyingTablesAsync`  |
+    | `Worksheet` | `worksheet.getUnderlyingDataAsync` | `worksheet.getUnderlyingTableDataAsync` |
+
+   To support the data model, the API also includes the `LogicalTable` object that has two properties: `caption` and `id`. The `caption` is the name of the logical table as it appears in Tableau.
+
+   For more information about getting underlying data from data sources and worksheets, see [Get Data from the Dashboard]({{site.baseurl}}/docs/trex_getdata.html).
+
+   For information about the data model, see [The Tableau Data Model](https://help.tableau.com/current/pro/desktop/en-us/datasource_datamodel.htm){:target="_blank"}{:ref="noopener"}.
+
+* `DataValue` now has a `nativeValue` member. This member represents the raw native value as a JavaScript type, which is one of string, number, boolean, or Date object. Note that special values are returned as null. The `nativeValue` helps simplify error checking as all values will either be their native type value or null. The `nativeValue` exists for *ALL* `DataValue` objects, including those returned from parameters, filters, selections, and underlying or summary data.
+
+----
+
 ### Tableau Sandboxed Extensions Development Environment
 *September 2019*
 
@@ -20,7 +45,7 @@ See also: [Known Issues]({{site.baseurl}}/docs/trex_known_issues.html)
 * The Extensions API SDK provides a local development environment that replicates the Tableau Hosting Cloud Service for Sandboxed Extensions. You can test your Sandboxed extensions locally with the same sandbox policies before submitting the extension to Tableau for publication. See [Create and Test Sandboxed Extensions]({{site.baseurl}}/docs/trex_sandbox_test.html) and [Publish Sandboxed Extensions]({{site.baseurl}}/docs/trex_sandbox_publish.html).
 
 
----
+----
 ### Extensions API library v1.3
 *July 2019*
 
