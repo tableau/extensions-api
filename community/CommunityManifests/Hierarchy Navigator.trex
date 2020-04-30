@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+   <manifest manifest-version="0.1" xmlns="http://www.tableau.com/xml/extension_manifest">
+     <dashboard-extension id="com.tableau.extensions.hierarchynavigatorparameter" extension-version="1.0.0">
+       <default-locale>en_US</default-locale>
+       <name resource-id="name"/>
+       <description>Hierarchy Navigator Parameter</description>
+       <author name="Russ Goldin" email="Rgoldin@tableau.com" organization="Tableau" website="https://tableau.github.io/extension-hierarchy-navigator-sandboxed/" />
+       <min-api-version>1.0</min-api-version>
+       <source-location>
+          <url>https://tableau.github.io/extension-hierarchy-navigator-sandboxed/hierarchynavigator.html</url>
+       </source-location>
+       <icon>
+       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</icon>
+    <permissions>
+        <permission>full data</permission>
+    </permissions>
+    <context-menu>
+      <configure-context-menu-item />
+    </context-menu>
+     </dashboard-extension>
+     <resources>
+       <resource id="name">
+         <text locale="en_US">Hierarchy Navigator Parameter</text>
+       </resource>
+     </resources>
+
+   </manifest>
