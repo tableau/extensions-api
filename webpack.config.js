@@ -26,5 +26,9 @@ module.exports = {
     extensions: [
       '*', '.ts', '.js'
     ]
-  }
+  },
+  optimization: {
+    minimize: false
+  },
+  devtool: 'inline-source-map'
 };
