@@ -106,8 +106,8 @@ When users open a dashboard that has an extension that requires full-data access
 
  ![]({{site.baseurl}}/assets/Load_Extensions_Dialog.png){:height="50%" width="50%"}
 
-The **Allow an Extension** dialog box provides users information about your extension. This information includes links to the your website, as specified by the `website` attribute in manifest file (in the `<author>` element). Users can click on the link under **Created By** to find out more about your extension.
- The dialog box also indicates whether or not the extension requires full-data access and provides the URL of the extension. 
+The **Allow an Extension** dialog box provides users information about your extension. This information includes links to your website, as specified by the `website` attribute in manifest file (in the `<author>` element). Users can click on the link under **Created By** to find out more about your extension.
+ The dialog box also indicates whether or not the extension requires full-data access and provides the URL of the extension.
 
 
 If a user clicks **Cancel**, the workbook is opened, but the extension is not loaded. In the layout container where the extension would normally appear, the following message appears:
