@@ -34,5 +34,16 @@
         "tags": ["v_1.0"],
         "description": "A Python Flask extension which uses the Amazon Product Advertising API to perform product searches on Amazon based on selections in a dashbaord.  This extension also demonstrates writeback to a MySQL database.",
         "source_code": "https://github.com/hutchijo/my_tableau_extensions"
+    },
+    {
+        "name": "UpSet.js Plot",
+        "url": "https://github.com/upsetjs/upsetjs_tableau_extension",
+        "author": "Samuel Gratzl",
+        "github_username": "sgratzl",
+        "tags": [
+            "v1.0.0"
+        ],
+        "description": "A Sandbox extension of UpSet.js to create interactive set visualizations for more than three sets",
+        "source_code": "https://github.com/upsetjs/upsetjs_tableau_extension"
     }
 ]
