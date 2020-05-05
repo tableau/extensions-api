@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest manifest-version="0.1" xmlns="http://www.tableau.com/xml/extension_manifest">
+    <dashboard-extension id="com.sgratzl.upsetjs" extension-version="1.0.0">
+        <default-locale>en_US</default-locale>
+        <name resource-id="name"/>
+        <description>UpSet.js is a re-implementation of UpSetR to create interactive set visualizations for more than three sets</description>
+        <author name="Samuel Gratzl" email="sam@sgratzl.com" organization="Freelancer" website="https://wwww.sgratzl.com"/>
+        <min-api-version>0.9</min-api-version>
+        <source-location>
+            <url>https://upset.js.org/integrations/tableau/extension.html</url>
+        </source-location>
+        <icon>iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAOwAAADsAEnxA+tAAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm+48GgAAAtJJREFUeJztms9u2jAcxz9MUVGjTXmAnnMZk8aFtQ/BE6zntSf2Lut24lz6BN0zbJM4ROrYJefdQZuQmKJmh/ypgQDGtnBD/JUiRY4//tk/SGI7X3BqtloVZW3gGngPvMnLfgIjYAgsdrSpxcdx3J7NZpV8EATDMAyNxl9NwBnwFXi7ofEI6AO/N1zX4qMoOkuSZCvveV6/2+0aiy8moA382AKLjVyw/ktq8fkvL8UHQXBR8U9Qiv9CuHAtAQN0gQ8V5Vp8/reX4qfTqfH4kGUvbcjxrRi0eAv8AV5KZPAY9Bd4Bcu3QJP0WJyICfhloSO2VI7VEwpvgXeSDQyALxVlN6r8eDyW5tM0HfR6PZ34o+Jk9TX4newpuU0RcA78WynX4vPXoBR/enp63ul0jMQXb4EF2SQh2gH3Vztvgg/DcOF53k7e87x+xeCV41dNhU+AK+CSp6nkA3BHNpWsCm6Mn0wmJ/P5/KrVapV8mqYPwJ3v+8MNgzfZfycnpwZp7SF46PW46fj78ksJsLEeNxlfhS/nAXEct3fAAN0kSe7jOG5XXGuzffCQTVLu87pL0o2vypcJsL0e142vyoszwUsJGIB8krIqaX5D3YPFF3kxAa9lG+Dp4SKqlrzqfsDj7ir14FX3A6rq1pIXE3ArS6dpOqooluYR1uM24ot8mYAgCIZsX0oWinzfH1aUS/N53SXpxlflywTYWo+biq/Kr02Fba/HdeMb6L+Tk1ODZNwfYHs/YV/eqD/A9n6CCm/MH2Dr+74ub8wfYHs/wQDv/AHOH9AgOX9AcWLMH3Dg7/u6/gTz/gBb3/d1eWP+ANv7Caq8cX+A7f0EA7yTk1OD9Oz8Abp8rf0BurxK/8sE1HU9X0i1/8/GH6DL180f8Jn1NfqnPfja+wN0VXt/gK5q7w/QVe39AQOyN5B4fNyDPz5/gC5fe3+ALn80/gBd3vkDnPbTf61pOwuXYz1lAAAAAElFTkSuQmCC</icon>
+        <permissions>
+            <permission>full data</permission>
+        </permissions>
+        <context-menu>
+            <configure-context-menu-item/>
+        </context-menu>
+    </dashboard-extension>
+    <resources>
+        <resource id="name">
+            <text locale="en_US">UpSet.js Plot</text>
+        </resource>
+    </resources>
+</manifest>
