@@ -14,7 +14,7 @@ See also: [Known Issues]({{site.baseurl}}/docs/trex_known_issues.html)
 ----
 
 ### Tableau Dashboard Extensions API version 1.4
-*March 2020*
+*May 2020*
 
 * Tableau Dashboard Extensions API library: `tableau.extensions.1.4.0.js` <br>(download or clone the Extensions API repository on [GitHub](https://github.com/tableau/extensions-api){:target="_blank"}). <br/>
 
