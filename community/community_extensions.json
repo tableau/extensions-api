@@ -176,6 +176,18 @@
         "hostedTrexFileName": "Node Tree Compact.trex"
     },
     {
+        "name": "Polyline Viewer",
+        "hostedTrexFileName": "PolylineViewer.trex",
+        "website": "https://jacalata.github.io/PolylineViewer/",
+        "author": "Jac Fitzgerald",
+        "github_username": "jacalata",
+        "tags": [
+            "v_1"
+        ],
+        "description": "A Tableau Extension that takes an encoded polyline and displays it as a route on a map.",
+        "source_code": "https://github.com/jacalata/PolylineViewer"
+    },
+    {
         "name": "Run Alteryx in Tableau",
         "website": "https://github.com/andre347/run-alteryx-tableau-extension",
         "author": "Andre de Vries",
