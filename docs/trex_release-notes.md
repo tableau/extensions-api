@@ -38,7 +38,7 @@ About this release:
 
 * `DataValue` now has a `nativeValue` member. This member represents the raw native value as a JavaScript type, which is one of string, number, boolean, or Date object. Note that special values are returned as null. The `nativeValue` helps simplify error checking as all values will either be their native type value or null. The `nativeValue` exists for *ALL* `DataValue` objects, including those returned from parameters, filters, selections, and underlying or summary data. Dates values are in UTC.
 
-* •	Added documentation for the [clearSelectedMarksAsync()]({{site.baseurl}}/docs/interfaces/worksheet.html#clearselectedmarksasync) method, which clears the selected marks in the current worksheet.
+* Added documentation for the [clearSelectedMarksAsync()]({{site.baseurl}}/docs/interfaces/worksheet.html#clearselectedmarksasync) method, which clears the selected marks in the current worksheet.
 
 Bugs fixed in this release:
 
