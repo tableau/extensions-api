@@ -42,11 +42,13 @@ About this release:
 
 Bugs fixed in this release:
 
+* Previously, when a user was viewing a dashboard on Tableau Server or Tableau Online and an extension API call was denied because the user did not have permission for that functionality, the dashboard would be refreshed and extension reloaded. This caused the user to potentially lose state. Now the permission will be properly denied, but the dashboard and extension will not reload.
+
 * Range filters now work correctly when the minimum or maximum values are equal to zero (0). Previously, calls to the `applyRangeFilterAsync()` method would ignore the `RangeFilterOptions` if the `min` or `max` properties were equal to zero (0).
 
-* The `isVisble` states for dashboard zones now work as expected. Prior to this release, if you used the  `setZoneVisibilityAsync()` method to hide a zone, the `isVisible` attribute for that zone wouldn't be updated to **false**. Consequently, the `isVisible` attribute would say that dashboard zone was visible when it was not.
+* The `isVisible` attribute for dashboard zones is now set properly to true or false when the extension is initialized.
 
-* The `setZoneVisibilityAsync()` method now supports ES6 map objects as the `zoneVisibilityMap` parameters.  
+* The `setZoneVisibilityAsync()` method now supports ES6 map objects for the `zoneVisibilityMap` parameter.  
 
 ----
 
