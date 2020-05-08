@@ -16,7 +16,10 @@ See also: [Known Issues]({{site.baseurl}}/docs/trex_known_issues.html)
 ### Tableau Dashboard Extensions API version 1.4
 *May 2020*
 
+
 * Tableau Dashboard Extensions API library: `tableau.extensions.1.4.0.js` <br>(download or clone the Extensions API repository on [GitHub](https://github.com/tableau/extensions-api){:target="_blank"}). <br/>
+
+About this release:
 
 * To support the logical and physical tables introduced in Tableau 2020.2, the Tableau Dashboard Extensions API (version 1.4) provides new APIs and data structures. Use these new methods to get the underlying data from data sources and worksheets. The new methods replace `getUnderlyingDataAsync`. Starting in Tableau 2020.2, a data source could have multiple logical tables, and logical tables can contain one or more physical tables. If you have an existing extension that uses one of the deprecated methods to get underlying data, the method call could fail if the data source contains more than one logical table. You should update your extensions to use these new methods. The new methods are backward compatible with previous versions of Tableau.
 
@@ -33,7 +36,17 @@ See also: [Known Issues]({{site.baseurl}}/docs/trex_known_issues.html)
 
    For information about the data model, see [The Tableau Data Model](https://help.tableau.com/current/pro/desktop/en-us/datasource_datamodel.htm){:target="_blank"}{:ref="noopener"}.
 
-* `DataValue` now has a `nativeValue` member. This member represents the raw native value as a JavaScript type, which is one of string, number, boolean, or Date object. Note that special values are returned as null. The `nativeValue` helps simplify error checking as all values will either be their native type value or null. The `nativeValue` exists for *ALL* `DataValue` objects, including those returned from parameters, filters, selections, and underlying or summary data.
+* `DataValue` now has a `nativeValue` member. This member represents the raw native value as a JavaScript type, which is one of string, number, boolean, or Date object. Note that special values are returned as null. The `nativeValue` helps simplify error checking as all values will either be their native type value or null. The `nativeValue` exists for *ALL* `DataValue` objects, including those returned from parameters, filters, selections, and underlying or summary data. Dates values are in UTC.
+
+* •	Added documentation for the [clearSelectedMarksAsync()]({{site.baseurl}}/docs/interfaces/worksheet.html#clearselectedmarksasync) method, which clears the selected marks in the current worksheet.
+
+Bugs fixed in this release:
+
+* Range filters now work correctly when the minimum or maximum values are equal to zero (0). Previously, calls to the `applyRangeFilterAsync()` method would ignore the `RangeFilterOptions` if the `min` or `max` properties were equal to zero (0).
+
+* The `isVisble` states for dashboard zones now work as expected. Prior to this release, if you used the  `setZoneVisibilityAsync()` method to hide a zone, the `isVisible` attribute for that zone wouldn't be updated to **false**. Consequently, the `isVisible` attribute would say that dashboard zone was visible when it was not.
+
+* The `setZoneVisibilityAsync()` method now supports ES6 map objects as the `zoneVisibilityMap` parameters.  
 
 ----
 
@@ -44,8 +57,8 @@ See also: [Known Issues]({{site.baseurl}}/docs/trex_known_issues.html)
 
 * The Extensions API SDK provides a local development environment that replicates the Tableau Hosting Cloud Service for Sandboxed Extensions. You can test your Sandboxed extensions locally with the same sandbox policies before submitting the extension to Tableau for publication. See [Create and Test Sandboxed Extensions]({{site.baseurl}}/docs/trex_sandbox_test.html) and [Publish Sandboxed Extensions]({{site.baseurl}}/docs/trex_sandbox_publish.html).
 
-
 ----
+
 ### Extensions API library v1.3
 *July 2019*
 
@@ -95,7 +108,7 @@ tableau.extensions.1.latest.min.js
 **Note** If you have previously been referencing `tableau-extensions-1.latest.js` in your code, you will need to use the new naming convention when you upgrade to the 1.2 library (`tableau.extensions.1.latest.js`). 
 
 
-Bugs fixed in this release: 
+Bugs fixed in this release:
 
 * Fixed in the Extensions API library 1.2, the type of `DataValue.value` is now the raw native value as a JavaScript type, rather than always defaulting to **String**. A `DataValue.value` can be one of the following JavaScript types: **String**, **Number**, **Boolean**, or **Date**.
  A `DataValue` is returned as a property of a `DataTable` in methods, such as `getSummaryDataAsync()` or `getUnderlyingDataAsync()`.  Note that special values, regardless of type, are always returned as **String** values surrounded by percent signs, such as `%null%`, or `%no-access%`. <br/>**Important!** If your code depended on the type of `DataValue.value` always being a **String**, that code will now break with this fix.
