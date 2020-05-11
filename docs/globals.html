@@ -54,7 +54,7 @@
 					<a href="globals.html">Globals</a>
 				</li>
 			</ul>
-			<h1> Dashboard Extensions</h1>
+			<h1>Dashboard Extensions</h1>
 		</div>
 	</div>
 </header>
@@ -95,6 +95,7 @@
 								<li class="tsd-kind-interface"><a href="interfaces/filteroptions.html" class="tsd-kind-icon">Filter<wbr>Options</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/getsummarydataoptions.html" class="tsd-kind-icon">Get<wbr>Summary<wbr>Data<wbr>Options</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/getunderlyingdataoptions.html" class="tsd-kind-icon">Get<wbr>Underlying<wbr>Data<wbr>Options</a></li>
+								<li class="tsd-kind-interface"><a href="interfaces/logicaltable.html" class="tsd-kind-icon">Logical<wbr>Table</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/markinfo.html" class="tsd-kind-icon">Mark<wbr>Info</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/markscollection.html" class="tsd-kind-icon">Marks<wbr>Collection</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/marksselectedevent.html" class="tsd-kind-icon">Marks<wbr>Selected<wbr>Event</a></li>
@@ -129,6 +130,7 @@
 								<li class="tsd-kind-type-alias"><a href="globals.html#categoricalvalue" class="tsd-kind-icon">Categorical<wbr>Value</a></li>
 								<li class="tsd-kind-type-alias"><a href="globals.html#tableaueventhandlerfn" class="tsd-kind-icon">Tableau<wbr>Event<wbr>Handler<wbr>Fn</a></li>
 								<li class="tsd-kind-type-alias"><a href="globals.html#tableaueventunregisterfn" class="tsd-kind-icon">Tableau<wbr>Event<wbr>Unregister<wbr>Fn</a></li>
+								<li class="tsd-kind-type-alias"><a href="globals.html#zonevisibilitymap" class="tsd-kind-icon">Zone<wbr>Visibility<wbr>Map</a></li>
 							</ul>
 						</section>
 					</div>
@@ -142,7 +144,7 @@
 					<div class="tsd-signature tsd-kind-icon">Categorical<wbr>Value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in SelectionInterfaces.ts:67</li>
+							<li>Defined in src/ExternalContract/SelectionInterfaces.ts:67</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -154,10 +156,10 @@
 				<section class="tsd-panel tsd-member tsd-kind-type-alias">
 					<a name="tableaueventhandlerfn" class="tsd-anchor"></a>
 					<h3>Tableau<wbr>Event<wbr>Handler<wbr>Fn</h3>
-					<div class="tsd-signature tsd-kind-icon">Tableau<wbr>Event<wbr>Handler<wbr>Fn<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+					<div class="tsd-signature tsd-kind-icon">Tableau<wbr>Event<wbr>Handler<wbr>Fn<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><a href="interfaces/tableauevent.html" class="tsd-signature-type">TableauEvent</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in EventInterfaces.ts:87</li>
+							<li>Defined in src/ExternalContract/EventInterfaces.ts:87</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -174,7 +176,7 @@
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
 							<li class="tsd-parameter-siganture">
-								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-alias tsd-is-not-exported">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-alias">
 									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><a href="interfaces/tableauevent.html" class="tsd-signature-type">TableauEvent</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 								</ul>
 								<ul class="tsd-descriptions">
@@ -195,10 +197,10 @@
 				<section class="tsd-panel tsd-member tsd-kind-type-alias">
 					<a name="tableaueventunregisterfn" class="tsd-anchor"></a>
 					<h3>Tableau<wbr>Event<wbr>Unregister<wbr>Fn</h3>
-					<div class="tsd-signature tsd-kind-icon">Tableau<wbr>Event<wbr>Unregister<wbr>Fn<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+					<div class="tsd-signature tsd-kind-icon">Tableau<wbr>Event<wbr>Unregister<wbr>Fn<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in EventInterfaces.ts:95</li>
+							<li>Defined in src/ExternalContract/EventInterfaces.ts:95</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -216,7 +218,7 @@
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
 							<li class="tsd-parameter-siganture">
-								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-alias tsd-is-not-exported">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-alias">
 									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 								</ul>
 								<ul class="tsd-descriptions">
@@ -226,6 +228,21 @@
 								</ul>
 							</li>
 						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias">
+					<a name="zonevisibilitymap" class="tsd-anchor"></a>
+					<h3>Zone<wbr>Visibility<wbr>Map</h3>
+					<div class="tsd-signature tsd-kind-icon">Zone<wbr>Visibility<wbr>Map<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span><a href="enums/tableau.zonevisibilitytype.html" class="tsd-signature-type">ZoneVisibilityType</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/ExternalContract/SheetInterfaces.ts:463</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Map object that can be passed into setVisibility</p>
+						</div>
 					</div>
 				</section>
 			</section>
@@ -305,6 +322,9 @@
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/getunderlyingdataoptions.html" class="tsd-kind-icon">Get<wbr>Underlying<wbr>Data<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/logicaltable.html" class="tsd-kind-icon">Logical<wbr>Table</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/markinfo.html" class="tsd-kind-icon">Mark<wbr>Info</a>
@@ -393,6 +413,9 @@
 					<li class=" tsd-kind-type-alias">
 						<a href="globals.html#tableaueventunregisterfn" class="tsd-kind-icon">Tableau<wbr>Event<wbr>Unregister<wbr>Fn</a>
 					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#zonevisibilitymap" class="tsd-kind-icon">Zone<wbr>Visibility<wbr>Map</a>
+					</li>
 				</ul>
 			</nav>
 		</div>
@@ -410,6 +433,7 @@
 				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
 				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
 				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
@@ -466,7 +490,7 @@
                 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-        ga('create', 'UA-625217-51', '');
+        ga('create', 'UA-625217-51', 'auto');
         ga('send', 'pageview');
     </script>
 </body>

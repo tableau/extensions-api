@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>DataSourceUnderlyingDataOptions | Dashboard Extensions</title>
+	<title>LogicalTable | Dashboard Extensions</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="datasourceunderlyingdataoptions.html">DataSourceUnderlyingDataOptions</a>
+					<a href="logicaltable.html">LogicalTable</a>
 				</li>
 			</ul>
-			<h1>Interface DataSourceUnderlyingDataOptions</h1>
+			<h1>Interface LogicalTable</h1>
 		</div>
 	</div>
 </header>
@@ -66,16 +66,19 @@
 		<div class="col-8 col-content">
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Configuration object for fetching data from an data source object.</p>
-					</div>
+					<dl class="tsd-comment-tags">
+						<dt>since</dt>
+						<dd><p>1.4.0
+							Represents a logical table in a data source or a logical table used in a worksheet</p>
+						</dd>
+					</dl>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">DataSourceUnderlyingDataOptions</span>
+						<span class="target">LogicalTable</span>
 					</li>
 				</ul>
 			</section>
@@ -86,9 +89,8 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="datasourceunderlyingdataoptions.html#columnstoinclude" class="tsd-kind-icon">columns<wbr>ToInclude</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="datasourceunderlyingdataoptions.html#ignorealiases" class="tsd-kind-icon">ignore<wbr>Aliases</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="datasourceunderlyingdataoptions.html#maxrows" class="tsd-kind-icon">max<wbr>Rows</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="logicaltable.html#caption" class="tsd-kind-icon">caption</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="logicaltable.html#id" class="tsd-kind-icon">id</a></li>
 							</ul>
 						</section>
 					</div>
@@ -97,49 +99,24 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="columnstoinclude" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> columns<wbr>ToInclude</h3>
-					<div class="tsd-signature tsd-kind-icon">columns<wbr>ToInclude<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<a name="caption" class="tsd-anchor"></a>
+					<h3>caption</h3>
+					<div class="tsd-signature tsd-kind-icon">caption<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/ExternalContract/DataSourceInterfaces.ts:278</li>
+							<li>Defined in src/ExternalContract/DataSourceInterfaces.ts:295</li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The columns to return by name, returns all by default.</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="ignorealiases" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> ignore<wbr>Aliases</h3>
-					<div class="tsd-signature tsd-kind-icon">ignore<wbr>Aliases<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></div>
+					<a name="id" class="tsd-anchor"></a>
+					<h3>id</h3>
+					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/ExternalContract/DataSourceInterfaces.ts:273</li>
+							<li>Defined in src/ExternalContract/DataSourceInterfaces.ts:293</li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Do not use aliases specified in the data source in Tableau. Default is false.</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="maxrows" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> max<wbr>Rows</h3>
-					<div class="tsd-signature tsd-kind-icon">max<wbr>Rows<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in src/ExternalContract/DataSourceInterfaces.ts:283</li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The maximum number of rows to return. 10,000 by default (this goes away once pagination is implemented)</p>
-						</div>
-					</div>
 				</section>
 			</section>
 		</div>
@@ -156,16 +133,13 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="datasourceunderlyingdataoptions.html" class="tsd-kind-icon">Data<wbr>Source<wbr>Underlying<wbr>Data<wbr>Options</a>
+						<a href="logicaltable.html" class="tsd-kind-icon">Logical<wbr>Table</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="datasourceunderlyingdataoptions.html#columnstoinclude" class="tsd-kind-icon">columns<wbr>ToInclude</a>
+								<a href="logicaltable.html#caption" class="tsd-kind-icon">caption</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="datasourceunderlyingdataoptions.html#ignorealiases" class="tsd-kind-icon">ignore<wbr>Aliases</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="datasourceunderlyingdataoptions.html#maxrows" class="tsd-kind-icon">max<wbr>Rows</a>
+								<a href="logicaltable.html#id" class="tsd-kind-icon">id</a>
 							</li>
 						</ul>
 					</li>

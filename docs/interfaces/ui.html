@@ -113,7 +113,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in Namespaces/UI.ts:80</li>
+									<li>Defined in src/ExternalContract/Namespaces/UI.ts:80</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -129,12 +129,10 @@
 										<p>The <code>payload</code> is optional, and if specified, it is made available to parent extension when
 											this popup dialog closes. If the extension running in the popup dialog window does not return
 										a payload, you must still provide an empty string <code>&quot; &quot;</code> as a return value.</p>
-										<pre><code>   <span class="hljs-selector-tag">tableau</span><span class="hljs-selector-class">.extensions</span><span class="hljs-selector-class">.ui</span><span class="hljs-selector-class">.closeDialog</span>(<span class="hljs-string">'myPayload string'</span>);
-
+										<pre><code>   tableau.extensions.ui.close<span class="hljs-constructor">Dialog('<span class="hljs-params">myPayload</span> <span class="hljs-params">string</span>')</span>;
 </code></pre><p>The following example shows a call to the closeDialog method when the dialog extension does not return a payload.</p>
-										<pre><code>   <span class="hljs-regexp">//</span> specify an empty string <span class="hljs-keyword">if</span> <span class="hljs-literal">no</span> payload <span class="hljs-keyword">is</span> returned
-   tableau.extensions.ui.closeDialog(<span class="hljs-string">''</span>);
-</code></pre>
+										<pre><code>   <span class="hljs-comment">// specify an empty string if no payload is returned</span>
+   <span class="hljs-selector-tag">tableau</span><span class="hljs-selector-class">.extensions</span><span class="hljs-selector-class">.ui</span><span class="hljs-selector-class">.closeDialog</span>(<span class="hljs-string">''</span>);</code></pre>
 									</div>
 								</li>
 							</ul>
@@ -152,7 +150,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in Namespaces/UI.ts:59</li>
+									<li>Defined in src/ExternalContract/Namespaces/UI.ts:59</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -190,7 +188,7 @@
 									<div class="tsd-comment tsd-typography">
 										<p>Specifies the options for the popup dialog window.
 											The <code>dialogOptions</code> has two properties for width and height (in pixels). You pass these properties
-										to the <code>displayDialogAsync</code> function, as follows: <code>{width:</code> <em>number</em><code>, height:</code> <em>number</em> <code>}</code></p>
+										to the <code>displayDialogAsync</code> function, as follows: <code>{width:</code> <em>number*<code>, height:</code> *number</em> <code>}</code></p>
 									</div>
 								</li>
 							</ul>
@@ -216,8 +214,7 @@
         <span class="hljs-keyword">default</span>:
       <span class="hljs-built_in">console</span>.error(error.message);
       }
-    });
-</code></pre>
+    });</code></pre>
 						</li>
 					</ul>
 				</section>
@@ -265,6 +262,7 @@
 				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
 				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
 				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
@@ -321,7 +319,7 @@
                 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-        ga('create', 'UA-625217-51', '');
+        ga('create', 'UA-625217-51', 'auto');
         ga('send', 'pageview');
     </script>
 </body>

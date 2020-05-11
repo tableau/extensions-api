@@ -97,6 +97,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="worksheet.html#applyfilterasync" class="tsd-kind-icon">apply<wbr>Filter<wbr>Async</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="worksheet.html#applyrangefilterasync" class="tsd-kind-icon">apply<wbr>Range<wbr>Filter<wbr>Async</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="worksheet.html#clearfilterasync" class="tsd-kind-icon">clear<wbr>Filter<wbr>Async</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="worksheet.html#clearselectedmarksasync" class="tsd-kind-icon">clear<wbr>Selected<wbr>Marks<wbr>Async</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="worksheet.html#findparameterasync" class="tsd-kind-icon">find<wbr>Parameter<wbr>Async</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="worksheet.html#getdatasourcesasync" class="tsd-kind-icon">get<wbr>Data<wbr>Sources<wbr>Async</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="worksheet.html#getfiltersasync" class="tsd-kind-icon">get<wbr>Filters<wbr>Async</a></li>
@@ -105,6 +106,8 @@
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="worksheet.html#getselectedmarksasync" class="tsd-kind-icon">get<wbr>Selected<wbr>Marks<wbr>Async</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="worksheet.html#getsummarydataasync" class="tsd-kind-icon">get<wbr>Summary<wbr>Data<wbr>Async</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="worksheet.html#getunderlyingdataasync" class="tsd-kind-icon">get<wbr>Underlying<wbr>Data<wbr>Async</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="worksheet.html#getunderlyingtabledataasync" class="tsd-kind-icon">get<wbr>Underlying<wbr>Table<wbr>Data<wbr>Async</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="worksheet.html#getunderlyingtablesasync" class="tsd-kind-icon">get<wbr>Underlying<wbr>Tables<wbr>Async</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="worksheet.html#removeeventlistener" class="tsd-kind-icon">remove<wbr>Event<wbr>Listener</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="worksheet.html#selectmarksbyvalueasync" class="tsd-kind-icon">select<wbr>Marks<wbr>ByValue<wbr>Async</a></li>
 							</ul>
@@ -119,9 +122,9 @@
 					<h3>name</h3>
 					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="sheet.html">Sheet</a>.<a href="sheet.html#name">name</a></p>
+						<p>Inherited from <a href="dashboard.html">Dashboard</a>.<a href="dashboard.html#name">name</a></p>
 						<ul>
-							<li>Defined in SheetInterfaces.ts:147</li>
+							<li>Defined in src/ExternalContract/SheetInterfaces.ts:152</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -138,7 +141,7 @@
 					<div class="tsd-signature tsd-kind-icon">parent<wbr>Dashboard<span class="tsd-signature-symbol">:</span> <a href="dashboard.html" class="tsd-signature-type">Dashboard</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in SheetInterfaces.ts:192</li>
+							<li>Defined in src/ExternalContract/SheetInterfaces.ts:197</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -154,9 +157,9 @@
 					<h3>sheet<wbr>Type</h3>
 					<div class="tsd-signature tsd-kind-icon">sheet<wbr>Type<span class="tsd-signature-symbol">:</span> <a href="../enums/tableau.sheettype.html" class="tsd-signature-type">SheetType</a></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="sheet.html">Sheet</a>.<a href="sheet.html#sheettype">sheetType</a></p>
+						<p>Inherited from <a href="dashboard.html">Dashboard</a>.<a href="dashboard.html#sheettype">sheetType</a></p>
 						<ul>
-							<li>Defined in SheetInterfaces.ts:152</li>
+							<li>Defined in src/ExternalContract/SheetInterfaces.ts:157</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -172,9 +175,9 @@
 					<h3>size</h3>
 					<div class="tsd-signature tsd-kind-icon">size<span class="tsd-signature-symbol">:</span> <a href="size.html" class="tsd-signature-type">Size</a></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="sheet.html">Sheet</a>.<a href="sheet.html#size">size</a></p>
+						<p>Inherited from <a href="dashboard.html">Dashboard</a>.<a href="dashboard.html#size">size</a></p>
 						<ul>
-							<li>Defined in SheetInterfaces.ts:165</li>
+							<li>Defined in src/ExternalContract/SheetInterfaces.ts:170</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -197,15 +200,18 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="eventlistenermanager.html">EventListenerManager</a>.<a href="eventlistenermanager.html#addeventlistener">addEventListener</a></p>
+								<p>Inherited from <a href="parameter.html">Parameter</a>.<a href="parameter.html#addeventlistener">addEventListener</a></p>
 								<ul>
-									<li>Defined in EventInterfaces.ts:137</li>
+									<li>Defined in src/ExternalContract/EventInterfaces.ts:140</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Adds a new event listener to the object. If this object does not support the specified <code>eventType</code>,
-									the method throws an exception. The following table shows the event types supported by objects.</p>
+										the method throws an exception. Note that you can&#39;t add an event listener to a dashboard. This is because the <code>Dashboard</code> object
+										does not support any event types, even though the <code>Dashboard</code> object inherits the event listener methods from <a href="eventlistenermanager.html">EventListenerManager</a>.
+										For more information, see <a href="../trex_events.html">Events and Event Handling</a>.
+									The following table shows the event types supported by objects.</p>
 								</div>
 								<table>
 									<thead>
@@ -214,8 +220,7 @@
 											<th>eventType</th>
 										</tr>
 									</thead>
-									<tbody>
-										<tr>
+									<tbody><tr>
 											<td><a href="worksheet.html">Worksheet</a></td>
 											<td><code>FilterChanged</code> , <code>MarkSelectionChanged</code></td>
 										</tr>
@@ -231,8 +236,7 @@
 											<td><a href="dashboard.html">Dashboard</a></td>
 											<td>None available</td>
 										</tr>
-									</tbody>
-								</table>
+								</tbody></table>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -256,16 +260,15 @@
 							the event handler. Call that function, in this case, <code>unregisterEventHandlerFunction()</code> to remove the registration.</p>
 							<pre><code><span class="hljs-comment">// Add an event listener for the selection changed event on this sheet.</span>
 <span class="hljs-comment">// Assigning the event to a variable just to make the example fit on the page here.</span>
-<span class="hljs-keyword">const</span> markSelection = tableau.TableauEventType.MarkSelectionChanged;
+const markSelection = tableau.TableauEventType.MarkSelectionChanged;
 <span class="hljs-comment">//</span>
-unregisterEventHandlerFunction = worksheet.addEventListener(markSelection, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(selectionEvent)</span> </span>{
+unregisterEventHandlerFunction = worksheet.add<span class="hljs-constructor">EventListener(<span class="hljs-params">markSelection</span>, <span class="hljs-params">function</span> (<span class="hljs-params">selectionEvent</span>)</span> {
 <span class="hljs-comment">// When the selection changes, reload the data</span>
-loadSelectedMarks(worksheetName);
+load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">worksheetName</span>)</span>;
 });
 
 <span class="hljs-comment">// remove the event listener when done</span>
- unregisterEventHandlerFunction();
-
+ unregister<span class="hljs-constructor">EventHandlerFunction()</span>;
 </code></pre>
 						</li>
 					</ul>
@@ -280,7 +283,7 @@ loadSelectedMarks(worksheetName);
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in SheetInterfaces.ts:204</li>
+									<li>Defined in src/ExternalContract/SheetInterfaces.ts:209</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -330,7 +333,7 @@ loadSelectedMarks(worksheetName);
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in SheetInterfaces.ts:218</li>
+									<li>Defined in src/ExternalContract/SheetInterfaces.ts:223</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -369,7 +372,7 @@ loadSelectedMarks(worksheetName);
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in SheetInterfaces.ts:229</li>
+									<li>Defined in src/ExternalContract/SheetInterfaces.ts:234</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -393,6 +396,34 @@ loadSelectedMarks(worksheetName);
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="clearselectedmarksasync" class="tsd-anchor"></a>
+					<h3>clear<wbr>Selected<wbr>Marks<wbr>Async</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">clear<wbr>Selected<wbr>Marks<wbr>Async<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in src/ExternalContract/SheetInterfaces.ts:457</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Clears selected marks in the current worksheet.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Empty promise that resolves when the selection has been cleared.</p>
+							<p>The following example assumes that you have some marks already selected in the worksheet. After it has run,
+							you should have no marks selected, and you should see the console message.</p>
+							<pre><code>   worksheet.clearSelectedMarksAsync().then(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+       <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Your marks selection has been cleared!'</span>);
+   })</code></pre>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
 					<a name="findparameterasync" class="tsd-anchor"></a>
 					<h3>find<wbr>Parameter<wbr>Async</h3>
@@ -402,9 +433,9 @@ loadSelectedMarks(worksheetName);
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="sheet.html">Sheet</a>.<a href="sheet.html#findparameterasync">findParameterAsync</a></p>
+								<p>Inherited from <a href="dashboard.html">Dashboard</a>.<a href="dashboard.html#findparameterasync">findParameterAsync</a></p>
 								<ul>
-									<li>Defined in SheetInterfaces.ts:160</li>
+									<li>Defined in src/ExternalContract/SheetInterfaces.ts:165</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -436,7 +467,7 @@ loadSelectedMarks(worksheetName);
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in SheetInterfaces.ts:254</li>
+									<li>Defined in src/ExternalContract/SheetInterfaces.ts:259</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -458,7 +489,6 @@ loadSelectedMarks(worksheetName);
 }).then(<span class="hljs-function"><span class="hljs-params">dataTable</span> =&gt;</span> {
 <span class="hljs-comment">// process the dataTable...</span>
 });
-
 </code></pre>
 						</li>
 					</ul>
@@ -473,7 +503,7 @@ loadSelectedMarks(worksheetName);
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in SheetInterfaces.ts:262</li>
+									<li>Defined in src/ExternalContract/SheetInterfaces.ts:267</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -496,7 +526,7 @@ loadSelectedMarks(worksheetName);
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in SheetInterfaces.ts:270</li>
+									<li>Defined in src/ExternalContract/SheetInterfaces.ts:275</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -519,9 +549,9 @@ loadSelectedMarks(worksheetName);
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="sheet.html">Sheet</a>.<a href="sheet.html#getparametersasync">getParametersAsync</a></p>
+								<p>Inherited from <a href="dashboard.html">Dashboard</a>.<a href="dashboard.html#getparametersasync">getParametersAsync</a></p>
 								<ul>
-									<li>Defined in SheetInterfaces.ts:170</li>
+									<li>Defined in src/ExternalContract/SheetInterfaces.ts:175</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -541,7 +571,7 @@ loadSelectedMarks(worksheetName);
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in SheetInterfaces.ts:293</li>
+									<li>Defined in src/ExternalContract/SheetInterfaces.ts:298</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -559,8 +589,7 @@ worksheet.getSelectedMarksAsync().then(<span class="hljs-function"><span class="
 
   <span class="hljs-comment">// Map the data into a format for display, etc.</span>
 
-});
-</code></pre>
+});</code></pre>
 						</li>
 					</ul>
 				</section>
@@ -574,7 +603,7 @@ worksheet.getSelectedMarksAsync().then(<span class="hljs-function"><span class="
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in SheetInterfaces.ts:316</li>
+									<li>Defined in src/ExternalContract/SheetInterfaces.ts:321</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -603,7 +632,6 @@ worksheet.getSelectedMarksAsync().then(<span class="hljs-function"><span class="
   <span class="hljs-comment">// Map the worksheetData into a format for display, etc.</span>
 
  });
-
 </code></pre>
 						</li>
 					</ul>
@@ -618,13 +646,18 @@ worksheet.getSelectedMarksAsync().then(<span class="hljs-function"><span class="
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in SheetInterfaces.ts:348</li>
+									<li>Defined in src/ExternalContract/SheetInterfaces.ts:353</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Gets the underlying data table for this worksheet.</p>
 								</div>
+								<dl class="tsd-comment-tags">
+									<dt>deprecated</dt>
+									<dd><p>since version 1.4.0.  Use Worksheet.getUnderlyingTableDataAsync.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -654,8 +687,102 @@ worksheet.getSelectedMarksAsync().then(<span class="hljs-function"><span class="
   <span class="hljs-keyword">let</span> values = list.filter(<span class="hljs-function">(<span class="hljs-params">el, i, arr</span>) =&gt;</span> arr.indexOf(el) === i);
   <span class="hljs-built_in">console</span>.log(values)
 });
-
 </code></pre>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="getunderlyingtabledataasync" class="tsd-anchor"></a>
+					<h3>get<wbr>Underlying<wbr>Table<wbr>Data<wbr>Async</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Underlying<wbr>Table<wbr>Data<wbr>Async<span class="tsd-signature-symbol">(</span>logicalTableId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><a href="getunderlyingdataoptions.html" class="tsd-signature-type">GetUnderlyingDataOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="datatable.html" class="tsd-signature-type">DataTable</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in src/ExternalContract/SheetInterfaces.ts:405</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets the underlying data table for the given logical table id.
+									Use the <code>getUnderlyingTablesAsync</code> method to identify the logical tables.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>since</dt>
+									<dd><p>1.4.0</p>
+										<p>You can use the <code>getUnderlyingDataOptions.maxRows</code> property to request the number of rows of data to return.
+											If unspecified (maxRows == &#39;0&#39;), the call to <code>getUnderlyingTableDataAsync</code> requests all rows in the logical table.
+											Note that the maximum number of rows returned from the <code>getUnderlyingTableDataAsync()</code> method is currently limited
+											to 10,000 rows. You can use the <code>DataTable</code> property, <code>isTotalRowCountLimited</code>, to test whether there is
+											more data. A value of true indicates that the calling function requested more rows than the current limit (10,000) and the
+										underlying data source contains more rows than can be returned.</p>
+										<pre><code> <span class="hljs-keyword">var</span> worksheet = tableau.extensions.dashboardContent.dashboard.worksheets.find(<span class="hljs-function"><span class="hljs-params">w</span> =&gt;</span> w.name === <span class="hljs-string">"Sale Map"</span>);
+ worksheet.getUnderlyingTablesAsync().then(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">logicalTables</span>) </span>{
+     worksheet.getUnderlyingTableDataAsync(logicalTables[<span class="hljs-number">0</span>].id).then(<span class="hljs-function">(<span class="hljs-params">dataTable</span>) =&gt;</span> {
+       <span class="hljs-comment">// process the dataTable...</span>
+     });
+ });
+</code></pre></dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>logicalTableId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>logical table id.</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <a href="getunderlyingdataoptions.html" class="tsd-signature-type">GetUnderlyingDataOptions</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Collection of options to change the behavior of the call.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="datatable.html" class="tsd-signature-type">DataTable</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>A data table containing the underlying data for the given logical table id</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="getunderlyingtablesasync" class="tsd-anchor"></a>
+					<h3>get<wbr>Underlying<wbr>Tables<wbr>Async</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Underlying<wbr>Tables<wbr>Async<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="logicaltable.html" class="tsd-signature-type">LogicalTable</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in src/ExternalContract/SheetInterfaces.ts:376</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets the underlying logical tables used by the worksheet. The resulting logical tables are determined by the measures in the worksheet.
+										If a worksheet&#39;s data source contains multiple logical tables and the worksheet contains only measures from one logical table, this API
+									will return one logical table.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>since</dt>
+									<dd><p>1.4.0</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="logicaltable.html" class="tsd-signature-type">LogicalTable</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>An array of logical tables corresponding to the measures referenced by the worksheet.</p>
+							<pre><code>// <span class="hljs-keyword">Call</span> <span class="hljs-keyword">to</span> <span class="hljs-keyword">get</span> the underlying logical <span class="hljs-keyword">tables</span> used <span class="hljs-keyword">by</span> the worksheet
+worksheet.getUnderlyingTablesAsync().<span class="hljs-keyword">then</span>(<span class="hljs-keyword">function</span> (logicalTables) {
+  // <span class="hljs-keyword">Get</span> the first logical tabl<span class="hljs-string">e's id
+  const logicalTableId = logicalTables[0].id;
+
+  // Use the above logicalTableId to then get worksheet'</span>s underlying data
+  // <span class="hljs-keyword">by</span> calling worksheet.getUnderlyingTableDataAsync(logicalTableId)
+
+});</code></pre>
 						</li>
 					</ul>
 				</section>
@@ -668,9 +795,9 @@ worksheet.getSelectedMarksAsync().then(<span class="hljs-function"><span class="
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="eventlistenermanager.html">EventListenerManager</a>.<a href="eventlistenermanager.html#removeeventlistener">removeEventListener</a></p>
+								<p>Inherited from <a href="parameter.html">Parameter</a>.<a href="parameter.html#removeeventlistener">removeEventListener</a></p>
 								<ul>
-									<li>Defined in EventInterfaces.ts:147</li>
+									<li>Defined in src/ExternalContract/EventInterfaces.ts:150</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -678,7 +805,7 @@ worksheet.getSelectedMarksAsync().then(<span class="hljs-function"><span class="
 									<p>Removes an event listener if a matching one is found. If no matching listener exists, the method does nothing.
 										The handler function must the handler function specified in the call to the <code>addEventListener</code> method. Alternatively, use the function
 										returned from the call to <code>addEventListener</code> to unregister the event listener.
-									For more information, see <a href="../trex_events.html">Events and Event Handling</a></p>
+									For more information, see <a href="../trex_events.html">Events and Event Handling</a>.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -705,7 +832,7 @@ worksheet.getSelectedMarksAsync().then(<span class="hljs-function"><span class="
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in SheetInterfaces.ts:384</li>
+									<li>Defined in src/ExternalContract/SheetInterfaces.ts:441</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -738,7 +865,6 @@ worksheet.getSelectedMarksAsync().then(<span class="hljs-function"><span class="
         <span class="hljs-attribute">fieldName</span>: <span class="hljs-string">'State'</span>,
         <span class="hljs-attribute">value</span>: [<span class="hljs-string">'Texas'</span>, <span class="hljs-string">'Washington'</span>, <span class="hljs-string">'California'</span>]
     }], <span class="hljs-selector-tag">tableau</span><span class="hljs-selector-class">.SelectionUpdateType</span><span class="hljs-selector-class">.Replace</span> );
-
 </code></pre>
 						</li>
 					</ul>
@@ -784,6 +910,9 @@ worksheet.getSelectedMarksAsync().then(<span class="hljs-function"><span class="
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
 								<a href="worksheet.html#clearfilterasync" class="tsd-kind-icon">clear<wbr>Filter<wbr>Async</a>
 							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="worksheet.html#clearselectedmarksasync" class="tsd-kind-icon">clear<wbr>Selected<wbr>Marks<wbr>Async</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
 								<a href="worksheet.html#findparameterasync" class="tsd-kind-icon">find<wbr>Parameter<wbr>Async</a>
 							</li>
@@ -807,6 +936,12 @@ worksheet.getSelectedMarksAsync().then(<span class="hljs-function"><span class="
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
 								<a href="worksheet.html#getunderlyingdataasync" class="tsd-kind-icon">get<wbr>Underlying<wbr>Data<wbr>Async</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="worksheet.html#getunderlyingtabledataasync" class="tsd-kind-icon">get<wbr>Underlying<wbr>Table<wbr>Data<wbr>Async</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="worksheet.html#getunderlyingtablesasync" class="tsd-kind-icon">get<wbr>Underlying<wbr>Tables<wbr>Async</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
 								<a href="worksheet.html#removeeventlistener" class="tsd-kind-icon">remove<wbr>Event<wbr>Listener</a>
@@ -835,6 +970,7 @@ worksheet.getSelectedMarksAsync().then(<span class="hljs-function"><span class="
 				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
 				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
 				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
@@ -891,7 +1027,7 @@ worksheet.getSelectedMarksAsync().then(<span class="hljs-function"><span class="
                 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-        ga('create', 'UA-625217-51', '');
+        ga('create', 'UA-625217-51', 'auto');
         ga('send', 'pageview');
     </script>
 </body>

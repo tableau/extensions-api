@@ -118,9 +118,9 @@
 					<h3>name</h3>
 					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="sheet.html">Sheet</a>.<a href="sheet.html#name">name</a></p>
+						<p>Inherited from <a href="dashboard.html">Dashboard</a>.<a href="dashboard.html#name">name</a></p>
 						<ul>
-							<li>Defined in SheetInterfaces.ts:147</li>
+							<li>Defined in src/ExternalContract/SheetInterfaces.ts:152</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -137,7 +137,7 @@
 					<div class="tsd-signature tsd-kind-icon">objects<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="dashboardobject.html" class="tsd-signature-type">DashboardObject</a><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in SheetInterfaces.ts:24</li>
+							<li>Defined in src/ExternalContract/SheetInterfaces.ts:23</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -153,9 +153,9 @@
 					<h3>sheet<wbr>Type</h3>
 					<div class="tsd-signature tsd-kind-icon">sheet<wbr>Type<span class="tsd-signature-symbol">:</span> <a href="../enums/tableau.sheettype.html" class="tsd-signature-type">SheetType</a></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="sheet.html">Sheet</a>.<a href="sheet.html#sheettype">sheetType</a></p>
+						<p>Inherited from <a href="dashboard.html">Dashboard</a>.<a href="dashboard.html#sheettype">sheetType</a></p>
 						<ul>
-							<li>Defined in SheetInterfaces.ts:152</li>
+							<li>Defined in src/ExternalContract/SheetInterfaces.ts:157</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -171,9 +171,9 @@
 					<h3>size</h3>
 					<div class="tsd-signature tsd-kind-icon">size<span class="tsd-signature-symbol">:</span> <a href="size.html" class="tsd-signature-type">Size</a></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="sheet.html">Sheet</a>.<a href="sheet.html#size">size</a></p>
+						<p>Inherited from <a href="dashboard.html">Dashboard</a>.<a href="dashboard.html#size">size</a></p>
 						<ul>
-							<li>Defined in SheetInterfaces.ts:165</li>
+							<li>Defined in src/ExternalContract/SheetInterfaces.ts:170</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -190,7 +190,7 @@
 					<div class="tsd-signature tsd-kind-icon">worksheets<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="worksheet.html" class="tsd-signature-type">Worksheet</a><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in SheetInterfaces.ts:48</li>
+							<li>Defined in src/ExternalContract/SheetInterfaces.ts:47</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -211,7 +211,6 @@
     <span class="hljs-comment">// do something with the worksheets..</span>
       <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"The worksheet name is "</span> + worksheet.name)
     });
-
 </code></pre></dd>
 						</dl>
 					</div>
@@ -228,15 +227,18 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="eventlistenermanager.html">EventListenerManager</a>.<a href="eventlistenermanager.html#addeventlistener">addEventListener</a></p>
+								<p>Inherited from <a href="parameter.html">Parameter</a>.<a href="parameter.html#addeventlistener">addEventListener</a></p>
 								<ul>
-									<li>Defined in EventInterfaces.ts:137</li>
+									<li>Defined in src/ExternalContract/EventInterfaces.ts:140</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Adds a new event listener to the object. If this object does not support the specified <code>eventType</code>,
-									the method throws an exception. The following table shows the event types supported by objects.</p>
+										the method throws an exception. Note that you can&#39;t add an event listener to a dashboard. This is because the <code>Dashboard</code> object
+										does not support any event types, even though the <code>Dashboard</code> object inherits the event listener methods from <a href="eventlistenermanager.html">EventListenerManager</a>.
+										For more information, see <a href="../trex_events.html">Events and Event Handling</a>.
+									The following table shows the event types supported by objects.</p>
 								</div>
 								<table>
 									<thead>
@@ -245,8 +247,7 @@
 											<th>eventType</th>
 										</tr>
 									</thead>
-									<tbody>
-										<tr>
+									<tbody><tr>
 											<td><a href="worksheet.html">Worksheet</a></td>
 											<td><code>FilterChanged</code> , <code>MarkSelectionChanged</code></td>
 										</tr>
@@ -262,8 +263,7 @@
 											<td><a href="dashboard.html">Dashboard</a></td>
 											<td>None available</td>
 										</tr>
-									</tbody>
-								</table>
+								</tbody></table>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -287,16 +287,15 @@
 							the event handler. Call that function, in this case, <code>unregisterEventHandlerFunction()</code> to remove the registration.</p>
 							<pre><code><span class="hljs-comment">// Add an event listener for the selection changed event on this sheet.</span>
 <span class="hljs-comment">// Assigning the event to a variable just to make the example fit on the page here.</span>
-<span class="hljs-keyword">const</span> markSelection = tableau.TableauEventType.MarkSelectionChanged;
+const markSelection = tableau.TableauEventType.MarkSelectionChanged;
 <span class="hljs-comment">//</span>
-unregisterEventHandlerFunction = worksheet.addEventListener(markSelection, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(selectionEvent)</span> </span>{
+unregisterEventHandlerFunction = worksheet.add<span class="hljs-constructor">EventListener(<span class="hljs-params">markSelection</span>, <span class="hljs-params">function</span> (<span class="hljs-params">selectionEvent</span>)</span> {
 <span class="hljs-comment">// When the selection changes, reload the data</span>
-loadSelectedMarks(worksheetName);
+load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">worksheetName</span>)</span>;
 });
 
 <span class="hljs-comment">// remove the event listener when done</span>
- unregisterEventHandlerFunction();
-
+ unregister<span class="hljs-constructor">EventHandlerFunction()</span>;
 </code></pre>
 						</li>
 					</ul>
@@ -310,9 +309,9 @@ loadSelectedMarks(worksheetName);
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="sheet.html">Sheet</a>.<a href="sheet.html#findparameterasync">findParameterAsync</a></p>
+								<p>Inherited from <a href="dashboard.html">Dashboard</a>.<a href="dashboard.html#findparameterasync">findParameterAsync</a></p>
 								<ul>
-									<li>Defined in SheetInterfaces.ts:160</li>
+									<li>Defined in src/ExternalContract/SheetInterfaces.ts:165</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -343,9 +342,9 @@ loadSelectedMarks(worksheetName);
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="sheet.html">Sheet</a>.<a href="sheet.html#getparametersasync">getParametersAsync</a></p>
+								<p>Inherited from <a href="dashboard.html">Dashboard</a>.<a href="dashboard.html#getparametersasync">getParametersAsync</a></p>
 								<ul>
-									<li>Defined in SheetInterfaces.ts:170</li>
+									<li>Defined in src/ExternalContract/SheetInterfaces.ts:175</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -364,9 +363,9 @@ loadSelectedMarks(worksheetName);
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="eventlistenermanager.html">EventListenerManager</a>.<a href="eventlistenermanager.html#removeeventlistener">removeEventListener</a></p>
+								<p>Inherited from <a href="parameter.html">Parameter</a>.<a href="parameter.html#removeeventlistener">removeEventListener</a></p>
 								<ul>
-									<li>Defined in EventInterfaces.ts:147</li>
+									<li>Defined in src/ExternalContract/EventInterfaces.ts:150</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -374,7 +373,7 @@ loadSelectedMarks(worksheetName);
 									<p>Removes an event listener if a matching one is found. If no matching listener exists, the method does nothing.
 										The handler function must the handler function specified in the call to the <code>addEventListener</code> method. Alternatively, use the function
 										returned from the call to <code>addEventListener</code> to unregister the event listener.
-									For more information, see <a href="../trex_events.html">Events and Event Handling</a></p>
+									For more information, see <a href="../trex_events.html">Events and Event Handling</a>.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -395,13 +394,13 @@ loadSelectedMarks(worksheetName);
 					<a name="setzonevisibilityasync" class="tsd-anchor"></a>
 					<h3>set<wbr>Zone<wbr>Visibility<wbr>Async</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">set<wbr>Zone<wbr>Visibility<wbr>Async<span class="tsd-signature-symbol">(</span>zoneVisibilityMap<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span><a href="../enums/tableau.zonevisibilitytype.html" class="tsd-signature-type">ZoneVisibilityType</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Zone<wbr>Visibility<wbr>Async<span class="tsd-signature-symbol">(</span>zoneVisibilityMap<span class="tsd-signature-symbol">: </span><a href="../globals.html#zonevisibilitymap" class="tsd-signature-type">ZoneVisibilityMap</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in SheetInterfaces.ts:71</li>
+									<li>Defined in src/ExternalContract/SheetInterfaces.ts:76</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -415,19 +414,23 @@ loadSelectedMarks(worksheetName);
 										<p>The following example shows how you can update the visibility of multiple (valid, floating) zones in a dashboard
 										<br/></p>
 										<pre><code>  var zoneVisibilityMap = {}<span class="hljs-comment">;</span>
-  zoneVisibilityMap[<span class="hljs-number">10</span>] =  tableau.ZoneVisibilityType.<span class="hljs-keyword">Show;
-</span>  zoneVisibilityMap[<span class="hljs-number">8</span>] =  tableau.ZoneVisibilityType.Hide<span class="hljs-comment">;</span>
-  tableau.<span class="hljs-keyword">extensions.dashboardContent.dashboard.setZoneVisibilityAsync(zoneVisibilityMap).then(() </span>=&gt; {
+  zoneVisibilityMap[<span class="hljs-number">10</span>] =  tableau.ZoneVisibilityType.Show<span class="hljs-comment">;</span>
+  zoneVisibilityMap[<span class="hljs-number">8</span>] =  tableau.ZoneVisibilityType.Hide<span class="hljs-comment">;</span>
+  tableau.extensions.dashboardContent.dashboard.setZoneVisibilityAsync(zoneVisibilityMap).then(() =&gt; {
     console.log(<span class="hljs-string">"done"</span>)<span class="hljs-comment">;</span>
   })<span class="hljs-comment">;</span>
-
 </code></pre></dd>
+									<dt>since</dt>
+									<dd><p>1.4.0 The zoneVisibilityMap can be either an untyped object, or a Map.</p>
+										<pre><code>  <span class="hljs-keyword">var</span> zoneVisibilityMap = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>;
+  zoneVisibilityMap.<span class="hljs-keyword">set</span>(<span class="hljs-number">10</span>, tableau.ZoneVisibilityType.Show);
+  zoneVisibilityMap.<span class="hljs-keyword">set</span>(<span class="hljs-number">8</span>, tableau.ZoneVisibilityType.Hide);</code></pre></dd>
 								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>zoneVisibilityMap: <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span><a href="../enums/tableau.zonevisibilitytype.html" class="tsd-signature-type">ZoneVisibilityType</a><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>zoneVisibilityMap: <a href="../globals.html#zonevisibilitymap" class="tsd-signature-type">ZoneVisibilityMap</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>A map of zone ids to the desired state of visibilty for that zone.</p>
 									</div>
@@ -506,6 +509,7 @@ loadSelectedMarks(worksheetName);
 				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
 				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
 				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
@@ -562,7 +566,7 @@ loadSelectedMarks(worksheetName);
                 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-        ga('create', 'UA-625217-51', '');
+        ga('create', 'UA-625217-51', 'auto');
         ga('send', 'pageview');
     </script>
 </body>
