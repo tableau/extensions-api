@@ -42,7 +42,7 @@ Tableau Desktop version  |  Chromium version  | Chrome version
 * [Chromium for macOS (`chrome-mac.zip`) (79.0.3945.0)](https://commondatastorage.googleapis.com/chromium-browser-snapshots/index.html?prefix=Mac/706915/)
 
 
-<div class="alert alert-info"><b>Note </b> If you are using Tableau 2019.1 or later, you can debug extensions in Tableau Desktop using the certain versions of Chrome (versions prior to 80). Currently, you can't use Chrome version 80 (or later) for debugging your extension.</div>
+<div class="alert alert-info"><b>Note </b> If you are using Tableau 2019.1 or later, you can debug extensions in Tableau Desktop using certain versions of Chrome (versions prior to 80). Currently, you can't use Chrome version 80 (or later) for debugging your extension.</div>
 
 
 ---
