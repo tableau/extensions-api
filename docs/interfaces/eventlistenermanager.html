@@ -117,13 +117,16 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in EventInterfaces.ts:137</li>
+									<li>Defined in src/ExternalContract/EventInterfaces.ts:140</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Adds a new event listener to the object. If this object does not support the specified <code>eventType</code>,
-									the method throws an exception. The following table shows the event types supported by objects.</p>
+										the method throws an exception. Note that you can&#39;t add an event listener to a dashboard. This is because the <code>Dashboard</code> object
+										does not support any event types, even though the <code>Dashboard</code> object inherits the event listener methods from <a href="eventlistenermanager.html">EventListenerManager</a>.
+										For more information, see <a href="../trex_events.html">Events and Event Handling</a>.
+									The following table shows the event types supported by objects.</p>
 								</div>
 								<table>
 									<thead>
@@ -132,8 +135,7 @@
 											<th>eventType</th>
 										</tr>
 									</thead>
-									<tbody>
-										<tr>
+									<tbody><tr>
 											<td><a href="worksheet.html">Worksheet</a></td>
 											<td><code>FilterChanged</code> , <code>MarkSelectionChanged</code></td>
 										</tr>
@@ -149,8 +151,7 @@
 											<td><a href="dashboard.html">Dashboard</a></td>
 											<td>None available</td>
 										</tr>
-									</tbody>
-								</table>
+								</tbody></table>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -174,16 +175,15 @@
 							the event handler. Call that function, in this case, <code>unregisterEventHandlerFunction()</code> to remove the registration.</p>
 							<pre><code><span class="hljs-comment">// Add an event listener for the selection changed event on this sheet.</span>
 <span class="hljs-comment">// Assigning the event to a variable just to make the example fit on the page here.</span>
-<span class="hljs-keyword">const</span> markSelection = tableau.TableauEventType.MarkSelectionChanged;
+const markSelection = tableau.TableauEventType.MarkSelectionChanged;
 <span class="hljs-comment">//</span>
-unregisterEventHandlerFunction = worksheet.addEventListener(markSelection, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(selectionEvent)</span> </span>{
+unregisterEventHandlerFunction = worksheet.add<span class="hljs-constructor">EventListener(<span class="hljs-params">markSelection</span>, <span class="hljs-params">function</span> (<span class="hljs-params">selectionEvent</span>)</span> {
 <span class="hljs-comment">// When the selection changes, reload the data</span>
-loadSelectedMarks(worksheetName);
+load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">worksheetName</span>)</span>;
 });
 
 <span class="hljs-comment">// remove the event listener when done</span>
- unregisterEventHandlerFunction();
-
+ unregister<span class="hljs-constructor">EventHandlerFunction()</span>;
 </code></pre>
 						</li>
 					</ul>
@@ -198,7 +198,7 @@ loadSelectedMarks(worksheetName);
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in EventInterfaces.ts:147</li>
+									<li>Defined in src/ExternalContract/EventInterfaces.ts:150</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -206,7 +206,7 @@ loadSelectedMarks(worksheetName);
 									<p>Removes an event listener if a matching one is found. If no matching listener exists, the method does nothing.
 										The handler function must the handler function specified in the call to the <code>addEventListener</code> method. Alternatively, use the function
 										returned from the call to <code>addEventListener</code> to unregister the event listener.
-									For more information, see <a href="../trex_events.html">Events and Event Handling</a></p>
+									For more information, see <a href="../trex_events.html">Events and Event Handling</a>.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -267,6 +267,7 @@ loadSelectedMarks(worksheetName);
 				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
 				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
 				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>

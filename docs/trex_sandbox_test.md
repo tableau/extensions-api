@@ -40,7 +40,7 @@ To port an existing extension, make sure all resources and libraries are local t
 
 * Resources should be placed in the same folder as your extension web page(s), or in a sub-folder of that directory. All references must be relative.
 
-* Review the suggested guidelines that all extensions should follow to reduce XSS vulnerabilities, see [Cross-Site Scripting and Extension Security]({{site.baseure}}/docs/trex_xss_guidance.html).
+* Review the suggested guidelines that all extensions should follow to reduce XSS vulnerabilities, see [Cross-Site Scripting and Extension Security]({{site.baseurl}}/docs/trex_xss_guidance.html).
 
 * Sandboxed Extensions cannot connect to sites outside of the sandbox and cannot transfer data. For example, a Sandboxed extension cannot transfer data to be processed by other applications. If you need to connect to outside services or resources, you can create a Network Enabled extension. Network Enabled extensions can't run in the local sandbox environment or in the Tableau Hosting Cloud Service for Sandboxed Extensions.
 

@@ -62,7 +62,9 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
-				<h1 id="tableau-dashboard-extensions-api">Tableau Dashboard Extensions API</h1>
+				<a href="#tableau-dashboard-extensions-api" id="tableau-dashboard-extensions-api" style="color: inherit; text-decoration: none;">
+					<h1>Tableau Dashboard Extensions API</h1>
+				</a>
 				<p>The Tableau Extensions API is a JavaScript library that is organized into namespaces that contain the classes and methods for communicating with Tableau components. For an overview of how the API is organized, see <a href="./trex_api_about.html">Tableau Extensions API Basics</a>.</p>
 				<div class="alert alert-info">
 					<b>Note:</b> To see all the methods and properties for the Extensions API interfaces, select the <b>Inherited</b> option in the upper-right corner of your browser window. This option shows any methods and properties inherited from base classes.
@@ -70,37 +72,35 @@
 				<table>
 					<thead>
 						<tr>
-							<th style="text-align:left">Namespace</th>
-							<th style="text-align:left">Description</th>
+							<th align="left">Namespace</th>
+							<th align="left">Description</th>
 						</tr>
 					</thead>
-					<tbody>
-						<tr>
-							<td style="text-align:left"><a href="./modules/tableau.html">Tableau</a></td>
-							<td style="text-align:left">The top-level or global namespace is the <code>tableau</code> namespace, which has no constructs, but contains the <code>extensions</code> namespace. You use the tableau namespace to access the extensions. For example, you call <code>tableau.extensions.initializeAsync()</code> to initialize the API.</td>
+					<tbody><tr>
+							<td align="left"><a href="./modules/tableau.html">Tableau</a></td>
+							<td align="left">The top-level or global namespace is the <code>tableau</code> namespace, which has no constructs, but contains the <code>extensions</code> namespace. You use the tableau namespace to access the extensions. For example, you call <code>tableau.extensions.initializeAsync()</code> to initialize the API.</td>
 						</tr>
 						<tr>
-							<td style="text-align:left"><a href="./interfaces/extensions.html">Extensions</a></td>
-							<td style="text-align:left">The <code>extensions</code> namespace is the namespace for Tableau extensions. A dashboard extension is one type of extension. A dashboard extension has access to the <code>dashboardContent</code> namespace, and all of the objects and classes of the dashboard. Some namespaces, like the <code>settings</code>, <code>environment</code>, and <code>ui</code> are available to all extensions.</td>
+							<td align="left"><a href="./interfaces/extensions.html">Extensions</a></td>
+							<td align="left">The <code>extensions</code> namespace is the namespace for Tableau extensions. A dashboard extension is one type of extension. A dashboard extension has access to the <code>dashboardContent</code> namespace, and all of the objects and classes of the dashboard. Some namespaces, like the <code>settings</code>, <code>environment</code>, and <code>ui</code> are available to all extensions.</td>
 						</tr>
 						<tr>
-							<td style="text-align:left"> <a href="./interfaces/dashboardcontent.html">DashboardContent</a></td>
-							<td style="text-align:left">The <code>dashboardContent</code> provides access to the dashboard object. When you have the dashboard object, you have access to all elements in the <a href="./interfaces/dashboard.html">dashboard</a>, including the <a href="./interfaces/dashboard.html#worksheets">worksheets</a>, <a href="./interfaces/markscollection.html">marks</a>, <a href="./interfaces/filter.html">filters</a>, <a href="./interfaces/parameter.html">parameters</a>, and <a href="./interfaces/datasource.html">data sources</a>. For example, to access the worksheets in a dashboard (after initialization), you might have a line of code that looks like the following: <br><code>worksheets = tableau.extensions.dashboardContent.dashboard.worksheets</code></td>
+							<td align="left"><a href="./interfaces/dashboardcontent.html">DashboardContent</a></td>
+							<td align="left">The <code>dashboardContent</code> provides access to the dashboard object. When you have the dashboard object, you have access to all elements in the <a href="./interfaces/dashboard.html">dashboard</a>, including the <a href="./interfaces/dashboard.html#worksheets">worksheets</a>, <a href="./interfaces/markscollection.html">marks</a>, <a href="./interfaces/filter.html">filters</a>, <a href="./interfaces/parameter.html">parameters</a>, and <a href="./interfaces/datasource.html">data sources</a>. For example, to access the worksheets in a dashboard (after initialization), you might have a line of code that looks like the following: <br><code>worksheets = tableau.extensions.dashboardContent.dashboard.worksheets</code></td>
 						</tr>
 						<tr>
-							<td style="text-align:left"><a href="./interfaces/settings.html">Settings</a></td>
-							<td style="text-align:left">The <code>settings</code> namespace provides methods to get and set values which will be persisted in a workbook. You can use the settings to configure an extension.</td>
+							<td align="left"><a href="./interfaces/settings.html">Settings</a></td>
+							<td align="left">The <code>settings</code> namespace provides methods to get and set values which will be persisted in a workbook. You can use the settings to configure an extension.</td>
 						</tr>
 						<tr>
-							<td style="text-align:left"><a href="./interfaces/environment.html">Environment</a></td>
-							<td style="text-align:left">The <code>environment</code> namespace provides methods to programmatically gather information about the environment in which the extension is running.</td>
+							<td align="left"><a href="./interfaces/environment.html">Environment</a></td>
+							<td align="left">The <code>environment</code> namespace provides methods to programmatically gather information about the environment in which the extension is running.</td>
 						</tr>
 						<tr>
-							<td style="text-align:left"><a href="./interfaces/ui.html">UI</a></td>
-							<td style="text-align:left">The <code>ui</code> namespace provides methods for an extension to display a popup dialog window.</td>
+							<td align="left"><a href="./interfaces/ui.html">UI</a></td>
+							<td align="left">The <code>ui</code> namespace provides methods for an extension to display a popup dialog window.</td>
 						</tr>
-					</tbody>
-				</table>
+				</tbody></table>
 				<p>The following diagram shows the relationship between the extensions namespace and the worksheets in the dashboard. For more information, see <a href="./trex_api_about.html">Tableau Extensions API Basics</a>.</p>
 				<p><img src="../assets/tab_ext_class_worksheet.png" alt="Extensions API namespace hierarchy"></p>
 			</div>
@@ -180,6 +180,9 @@
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/getunderlyingdataoptions.html" class="tsd-kind-icon">Get<wbr>Underlying<wbr>Data<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/logicaltable.html" class="tsd-kind-icon">Logical<wbr>Table</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/markinfo.html" class="tsd-kind-icon">Mark<wbr>Info</a>
@@ -268,6 +271,9 @@
 					<li class=" tsd-kind-type-alias">
 						<a href="globals.html#tableaueventunregisterfn" class="tsd-kind-icon">Tableau<wbr>Event<wbr>Unregister<wbr>Fn</a>
 					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#zonevisibilitymap" class="tsd-kind-icon">Zone<wbr>Visibility<wbr>Map</a>
+					</li>
 				</ul>
 			</nav>
 		</div>
@@ -285,6 +291,7 @@
 				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
 				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
 				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
