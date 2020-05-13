@@ -176,6 +176,18 @@
         "hostedTrexFileName": "Node Tree Compact.trex"
     },
     {
+        "name": "Polyline Viewer",
+        "hostedTrexFileName": "PolylineViewer.trex",
+        "website": "https://jacalata.github.io/PolylineViewer/",
+        "author": "Jac Fitzgerald",
+        "github_username": "jacalata",
+        "tags": [
+            "v_1"
+        ],
+        "description": "A Tableau Extension that takes an encoded polyline and displays it as a route on a map.",
+        "source_code": "https://github.com/jacalata/PolylineViewer"
+    },
+    {
         "name": "Run Alteryx in Tableau",
         "website": "https://github.com/andre347/run-alteryx-tableau-extension",
         "author": "Andre de Vries",
@@ -244,5 +256,17 @@
         ],
         "description": "Tableaufans.com’s Write Back Extension is a downloadable extension that allows you to write back to your MySQL database.",
         "source_code": "https://tableaufans.com/extension-api/tableau-extension-api-write-back-updated-source-code-for-tableau-2018-2/"
+    },
+    {
+        "name": "UpSet.js Plot",
+        "url": "https://github.com/upsetjs/upsetjs_tableau_extension",
+        "author": "Samuel Gratzl",
+        "github_username": "sgratzl",
+        "tags": [
+            "v_1.0"
+        ],
+        "description": "An extension of UpSet.js to create interactive set visualizations for more than three sets.",
+        "source_code": "https://github.com/upsetjs/upsetjs_tableau_extension",
+        "hostedTrexFileName": "UpSetjs.trex"
     }
 ]
