@@ -266,7 +266,7 @@
             "v_1.0"
         ],
         "description": "An extension of UpSet.js to create interactive set visualizations for more than three sets.",
-        "source_code": "https://github.com/upsetjs/upsetjs_tableau_extension",
+        "source_code": "",
         "hostedTrexFileName": "UpSetjs.trex"
     }
 ]
