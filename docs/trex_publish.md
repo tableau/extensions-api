@@ -20,7 +20,7 @@ The easiest way to share an extension with others is to share the workbook that 
 
 ## Publishing a dashboard extension to Tableau Server or Tableau Online
 
-While you don't exactly publish a dashboard extension to Tableau Server or Tableau Online. You can publish the workbook that contains an extension to Tableau Server. You can also add a dashboard extension to a dashboard on Tableau Server or Tableau Online when you are in authoring mode.
+While you don't exactly publish a dashboard extension to Tableau Server or Tableau Online, you can publish the workbook that contains an extension to Tableau Server. You can also add a dashboard extension to a dashboard on Tableau Server or Tableau Online when you are in authoring mode.
 
 However, to run on Tableau Server or Tableau Online, your extension must:
 
@@ -52,7 +52,7 @@ The following flowchart shows how the settings on Tableau Server or Tableau Onli
 
 ## Publishing a dashboard extension to the Extension Gallery
 
-If you want to make your dashboard extension readily available to a large number of people, you can take steps to have your extension added the the [Tableau Extension Gallery](https://extensiongallery.tableau.com/).
+If you want to make your dashboard extension readily available to a large number of people, you can take steps to have your extension added to the [Tableau Extension Gallery](https://extensiongallery.tableau.com/).
 
 Publishing your extension to the gallery means that people will be able to discover your extension, find out what it can do, and then add the extension to their dashboards, all while working within Tableau.
 
