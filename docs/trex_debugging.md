@@ -138,7 +138,7 @@ The debugger will pause each time the first statement of a script runs, allowing
 ---
 
 
-#### Reload closes debugging connection
+#### Reload closes debugging connection (2020.1 and earlier)
 
 
 While you are debugging your extension, there are times you might want to reload or refresh your web page to execute and debug different parts of your code. However, when you click **Reload** from the shortcut menu to reload your extension, the remote debugger loses the connection with the extension. The reason for this is that **Reload** option tears down and re-creates the browser control, which means you'll need to establish a new debugging session.
