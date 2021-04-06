@@ -17,9 +17,9 @@ For information about what is new or has changed in each release, see the [Relea
 Because of incompatibilities between Chrome and the internal Chromium-based browser used in Tableau, you can't use Chrome version 80 or later to debug your extensions. If you are using Tableau Desktop 2019.1 or later, you can debug extensions using Chrome version 79 or Chromium version 79. If you are using Tableau Desktop versions 2018.2 or 2018.3, you can use Chromium version 47. For more information about debugging extensions and using the Chromium browser, see [Debug Extensions in Tableau Desktop]({{site.baseurl}}/docs/trex_debugging.html) and [Download the Chromium Browser]({{site.baseurl}}/docs/trex_debugging.html#download-the-chromium-browser).
 
 
-### Unable to run dashboard extension on localhost or use self-signed certificates
+### Unable to run dashboard extension using self-signed certificates
 
-Tableau uses Qt WebEngine to embed browser pages within a dashboard. Qt WebEngine is built on Chromium. Because Tableau is now using a newer version of Qt WebEngine (5.15), and consequently, a newer version of Chromium, dashboard extensions running on localhost or with self-signed certificates (SSL) might not work in Tableau 2021.1, or in the most recent Tableau maintenance releases: 2020.2.7+, 2020.3.6+, and 2020.4.2+.
+Tableau uses Qt WebEngine to embed browser pages within a dashboard. Tableau now uses Qt WebEngine 5.15, which is based on Chromium version 87.0.4280, with additional security fixes from newer versions of Chromium. Because Tableau is now using Qt WebEngine (5.15), dashboard extensions running with self-signed certificates (SSL) might not work in Tableau 2021.1, or in the most recent Tableau maintenance releases: 2020.2.7+, 2020.3.6+, and 2020.4.2+.
 You might see one of the following errors:
 
 * `Failed to load resource: net::ERR_CERT_COMMON_NAME_INVALID`
