@@ -13,9 +13,17 @@ See also: [Known Issues]({{site.baseurl}}/docs/trex_known_issues.html)
 
 ----
 
+### Tableau 2021.1 Updates
+*March 2021*
+
+* You can now use Chrome version 80 and later to debug your dashboard extension in Tableau Desktop. If you are using Tableau 2021.1, or the latest maintenance releases of Tableau 2020.2, 2020.3, or 2020.4, you no longer need to use Chromium (version 79 or earlier) for debugging. For more information, see [Debug Extensions in Tableau Desktop]({{site.baseurl}}/docs/trex_debugging.html) and [Download the Chromium Browser]({{site.baseurl}}/docs/trex_debugging.html#download-the-chromium-browser).
+
+* If you plan to implement OAuth in your dashboard extension, you'll want to check out [Add OAuth to Dashboard Extensions]({{site.baseurl}}/docs/trex_oauth.html), and the OAuth sample ([datadev-oauth-sign-in](https://glitch.com/~datadev-oauth-sign-in){:target="_blank"}) on Glitch.
+
+* Because of browser changes in Tableau, dashboard extensions running with self-signed certificates (SSL) might not work in Tableau 2021.1, or in the most recent Tableau maintenance releases: 2020.2.7+, 2020.3.6+, and 2020.4.2+. For more information, see [Known Issues]({{site.baseurl}}/docs/trex_known_issues.html#unable-to-run-dashboard-extension-on-localhost-or-use-self-signed-certificates).
+
 ### Tableau Dashboard Extensions API version 1.4
 *May 2020*
-
 
 * Tableau Dashboard Extensions API library: `tableau.extensions.1.4.0.js` <br>(download or clone the Extensions API repository on [GitHub](https://github.com/tableau/extensions-api){:target="_blank"}). <br/>
 
