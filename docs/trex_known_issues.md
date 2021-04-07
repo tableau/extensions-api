@@ -19,7 +19,7 @@ Because of incompatibilities between Chrome and the internal Chromium-based brow
 
 ### Unable to run dashboard extension using self-signed certificates
 
-Tableau uses Qt WebEngine to embed browser pages within a dashboard. Tableau now uses Qt WebEngine 5.15, which is based on Chromium version 87.0.4280, with additional security fixes from newer versions of Chromium. Because Tableau is now using Qt WebEngine (5.15), dashboard extensions running with self-signed certificates (SSL) might not work in Tableau 2021.1, or in the most recent Tableau maintenance releases: 2020.2.7+, 2020.3.6+, and 2020.4.2+.
+Tableau now uses Qt WebEngine 5.15, which is based on Chromium version 87.0.4280, with additional security fixes from newer versions of Chromium. Because of this update, dashboard extensions hosted on web servers that use self-signed certificates (SSL) might not work in Tableau 2021.1, or in the most recent Tableau maintenance releases: 2020.2.7+, 2020.3.6+, and 2020.4.2+.
 You might see one of the following errors:
 
 * `Failed to load resource: net::ERR_CERT_COMMON_NAME_INVALID`
