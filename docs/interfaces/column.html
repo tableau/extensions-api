@@ -80,6 +80,7 @@
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="column.html#datatype" class="tsd-kind-icon">data<wbr>Type</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="column.html#fieldid" class="tsd-kind-icon">field<wbr>Id</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="column.html#fieldname" class="tsd-kind-icon">field<wbr>Name</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="column.html#index" class="tsd-kind-icon">index</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="column.html#isreferenced" class="tsd-kind-icon">is<wbr>Referenced</a></li>
@@ -96,7 +97,7 @@
 					<div class="tsd-signature tsd-kind-icon">data<wbr>Type<span class="tsd-signature-symbol">:</span> <a href="../enums/tableau.datatype.html" class="tsd-signature-type">DataType</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/ExternalContract/DataTableInterfaces.ts:14</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/DataTableInterfaces.ts:25</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -109,18 +110,43 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="fieldid" class="tsd-anchor"></a>
+					<h3>field<wbr>Id</h3>
+					<div class="tsd-signature tsd-kind-icon">field<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/DataTableInterfaces.ts:19</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<dl class="tsd-comment-tags">
+							<dt>since</dt>
+							<dd><p>1.5.0</p>
+							</dd>
+							<dt>returns</dt>
+							<dd><p>The fieldId of the field in the column. In summary data, this includes the aggregation.
+									The fieldId is not stable across replacing data sources.
+									For example after replacing the data source [Clipboard_20210305T164000].[sum:Sales:qk] could become
+								[federated.12usuoq1171o1b1ebdyh60fjnev1].[sum:Sales:qk].</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="fieldname" class="tsd-anchor"></a>
 					<h3>field<wbr>Name</h3>
 					<div class="tsd-signature tsd-kind-icon">field<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/ExternalContract/DataTableInterfaces.ts:8</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/DataTableInterfaces.ts:10</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<dl class="tsd-comment-tags">
 							<dt>returns</dt>
-							<dd><p>The name of the column.</p>
+							<dd><p>The name of the field in the column. In summary data, this includes the aggregation.
+									The summary data field name is not stable across languages.
+								For example, in an English version of Tableau, the field name might be SUM(Sales). In French, this would be SOMME(Sales).</p>
 							</dd>
 						</dl>
 					</div>
@@ -131,7 +157,7 @@
 					<div class="tsd-signature tsd-kind-icon">index<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/ExternalContract/DataTableInterfaces.ts:24</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/DataTableInterfaces.ts:35</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -148,7 +174,7 @@
 					<div class="tsd-signature tsd-kind-icon">is<wbr>Referenced<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/ExternalContract/DataTableInterfaces.ts:19</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/DataTableInterfaces.ts:30</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -178,6 +204,9 @@
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="column.html#datatype" class="tsd-kind-icon">data<wbr>Type</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="column.html#fieldid" class="tsd-kind-icon">field<wbr>Id</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="column.html#fieldname" class="tsd-kind-icon">field<wbr>Name</a>

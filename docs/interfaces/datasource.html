@@ -115,7 +115,7 @@
 					<div class="tsd-signature tsd-kind-icon">extract<wbr>Update<wbr>Time<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/ExternalContract/DataSourceInterfaces.ts:27</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/DataSourceInterfaces.ts:27</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -132,7 +132,7 @@
 					<div class="tsd-signature tsd-kind-icon">fields<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="field.html" class="tsd-signature-type">Field</a><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/ExternalContract/DataSourceInterfaces.ts:22</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/DataSourceInterfaces.ts:22</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -149,7 +149,7 @@
 					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/ExternalContract/DataSourceInterfaces.ts:17</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/DataSourceInterfaces.ts:17</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -166,7 +166,7 @@
 					<div class="tsd-signature tsd-kind-icon">is<wbr>Extract<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/ExternalContract/DataSourceInterfaces.ts:32</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/DataSourceInterfaces.ts:32</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -183,7 +183,7 @@
 					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/ExternalContract/DataSourceInterfaces.ts:12</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/DataSourceInterfaces.ts:12</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -207,7 +207,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/ExternalContract/DataSourceInterfaces.ts:58</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/DataSourceInterfaces.ts:58</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -235,7 +235,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/ExternalContract/DataSourceInterfaces.ts:63</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/DataSourceInterfaces.ts:63</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -255,7 +255,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/ExternalContract/DataSourceInterfaces.ts:143</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/DataSourceInterfaces.ts:146</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -266,6 +266,29 @@
 									<dt>since</dt>
 									<dd><p>1.4.0</p>
 									</dd>
+									<dt>since</dt>
+									<dd><p>1.5.0 You can use the <code>DataSourceUnderlyingDataOptions.includeDataValuesOption</code> property to optimize performance
+										by restricting the properties included in the returned DataValues.</p>
+										<p>The following example shows use of the <code>getLogicalTableDataAsync()</code> method to get the data from a specific logical
+											table in a data source.
+											The example uses the JavaScript <code>find()</code> method to select the workbook,
+										and uses the <code>getLogicalTablesAsync</code> method to identify the logical table id.</p>
+										<pre><code>tableau.extensions.dashboardContent.dashboard.worksheets.find(<span class="hljs-function"><span class="hljs-params">w</span> =&gt;</span> w.name === <span class="hljs-string">"Sale Map"</span>).getDataSourcesAsync().then(<span class="hljs-function"><span class="hljs-params">datasources</span> =&gt;</span> {
+  dataSource = datasources.find(<span class="hljs-function"><span class="hljs-params">datasource</span> =&gt;</span> datasource.name === <span class="hljs-string">"Sample - Superstore"</span>);
+  <span class="hljs-keyword">return</span> dataSource.getLogicalTablesAsync().then(<span class="hljs-function">(<span class="hljs-params">logicalTables</span>) =&gt;</span> {
+   <span class="hljs-keyword">return</span> dataSource.getLogicalTableDataAsync(logicalTables[<span class="hljs-number">0</span>].id)
+  });
+ }).then(<span class="hljs-function"><span class="hljs-params">dataTable</span> =&gt;</span> {
+    <span class="hljs-built_in">console</span>.log(dataTable);
+    <span class="hljs-keyword">let</span> field = dataTable.columns.find(<span class="hljs-function"><span class="hljs-params">column</span> =&gt;</span> column.fieldName === <span class="hljs-string">"Sub-Category"</span>);
+    <span class="hljs-keyword">let</span> list = [];
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> row <span class="hljs-keyword">of</span> dataTable.data) {
+        list.push(row[field.index].value);
+    }
+    <span class="hljs-keyword">let</span> values = list.filter(<span class="hljs-function">(<span class="hljs-params">el, i, arr</span>) =&gt;</span> arr.indexOf(el) === i);
+    <span class="hljs-built_in">console</span>.log(values)
+});
+</code></pre></dd>
 								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -281,27 +304,7 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="datatable.html" class="tsd-signature-type">DataTable</a><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>Returns a promise containing a page of data from the underlying data of the data source.</p>
-							<p>The following example shows use of the <code>getLogicalTableDataAsync()</code> method to get the data from a specific logical
-								table in a data source.
-								The example uses the JavaScript <code>find()</code> method to select the workbook,
-							and uses the <code>getLogicalTablesAsync</code> method to identify the logical table id.</p>
-							<pre><code>tableau.extensions.dashboardContent.dashboard.worksheets.find(<span class="hljs-function"><span class="hljs-params">w</span> =&gt;</span> w.name === <span class="hljs-string">"Sale Map"</span>).getDataSourcesAsync().then(<span class="hljs-function"><span class="hljs-params">datasources</span> =&gt;</span> {
-  dataSource = datasources.find(<span class="hljs-function"><span class="hljs-params">datasource</span> =&gt;</span> datasource.name === <span class="hljs-string">"Sample - Superstore"</span>);
-  <span class="hljs-keyword">return</span> dataSource.getLogicalTablesAsync().then(<span class="hljs-function">(<span class="hljs-params">logicalTables</span>) =&gt;</span> {
-   <span class="hljs-keyword">return</span> dataSource.getLogicalTableDataAsync(logicalTables[<span class="hljs-number">0</span>].id)
-  });
- }).then(<span class="hljs-function"><span class="hljs-params">dataTable</span> =&gt;</span> {
-    <span class="hljs-built_in">console</span>.log(dataTable);
-    <span class="hljs-keyword">let</span> field = dataTable.columns.find(<span class="hljs-function"><span class="hljs-params">column</span> =&gt;</span> column.fieldName === <span class="hljs-string">"Sub-Category"</span>);
-    <span class="hljs-keyword">let</span> list = [];
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> row <span class="hljs-keyword">of</span> dataTable.data) {
-        list.push(row[field.index].value);
-    }
-    <span class="hljs-keyword">let</span> values = list.filter(<span class="hljs-function">(<span class="hljs-params">el, i, arr</span>) =&gt;</span> arr.indexOf(el) === i);
-    <span class="hljs-built_in">console</span>.log(values)
-});
-</code></pre>
+							<p>A data table containing the underlying data of the data source.</p>
 						</li>
 					</ul>
 				</section>
@@ -315,7 +318,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/ExternalContract/DataSourceInterfaces.ts:110</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/DataSourceInterfaces.ts:110</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -351,7 +354,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/ExternalContract/DataSourceInterfaces.ts:89</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/DataSourceInterfaces.ts:89</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -400,7 +403,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/ExternalContract/DataSourceInterfaces.ts:49</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/DataSourceInterfaces.ts:49</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">

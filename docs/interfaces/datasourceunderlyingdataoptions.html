@@ -87,7 +87,9 @@
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="datasourceunderlyingdataoptions.html#columnstoinclude" class="tsd-kind-icon">columns<wbr>ToInclude</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="datasourceunderlyingdataoptions.html#columnstoincludebyid" class="tsd-kind-icon">columns<wbr>ToInclude<wbr>ById</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="datasourceunderlyingdataoptions.html#ignorealiases" class="tsd-kind-icon">ignore<wbr>Aliases</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="datasourceunderlyingdataoptions.html#includedatavaluesoption" class="tsd-kind-icon">include<wbr>Data<wbr>Values<wbr>Option</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="datasourceunderlyingdataoptions.html#maxrows" class="tsd-kind-icon">max<wbr>Rows</a></li>
 							</ul>
 						</section>
@@ -102,13 +104,34 @@
 					<div class="tsd-signature tsd-kind-icon">columns<wbr>ToInclude<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/ExternalContract/DataSourceInterfaces.ts:278</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/DataSourceInterfaces.ts:281</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The columns to return by name, returns all by default.</p>
+							<p>The columns to return specified by field name, returns all by default.</p>
 						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="columnstoincludebyid" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> columns<wbr>ToInclude<wbr>ById</h3>
+					<div class="tsd-signature tsd-kind-icon">columns<wbr>ToInclude<wbr>ById<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/DataSourceInterfaces.ts:288</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The columns to return specified by field id, returns all by default.
+							Since 1.5.0, fieldId is a property of the Column object.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>since</dt>
+							<dd><p>1.5.0</p>
+							</dd>
+						</dl>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
@@ -117,7 +140,7 @@
 					<div class="tsd-signature tsd-kind-icon">ignore<wbr>Aliases<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/ExternalContract/DataSourceInterfaces.ts:273</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/DataSourceInterfaces.ts:276</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -127,12 +150,34 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="includedatavaluesoption" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> include<wbr>Data<wbr>Values<wbr>Option</h3>
+					<div class="tsd-signature tsd-kind-icon">include<wbr>Data<wbr>Values<wbr>Option<span class="tsd-signature-symbol">:</span> <a href="../enums/tableau.includedatavaluesoption.html" class="tsd-signature-type">IncludeDataValuesOption</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/DataSourceInterfaces.ts:302</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Specify which properties to return in DataValues. The default is <code>IncludeDataValuesOption.AllValues</code>.
+								This is a performance optimization only, and will be ignored in Tableau versions prior to 2021.2.
+							Please note that all properties not requested will be <code>undefined</code> in the DataValue results.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>since</dt>
+							<dd><p>1.5.0</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="maxrows" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> max<wbr>Rows</h3>
 					<div class="tsd-signature tsd-kind-icon">max<wbr>Rows<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/ExternalContract/DataSourceInterfaces.ts:283</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/DataSourceInterfaces.ts:293</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -162,7 +207,13 @@
 								<a href="datasourceunderlyingdataoptions.html#columnstoinclude" class="tsd-kind-icon">columns<wbr>ToInclude</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="datasourceunderlyingdataoptions.html#columnstoincludebyid" class="tsd-kind-icon">columns<wbr>ToInclude<wbr>ById</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="datasourceunderlyingdataoptions.html#ignorealiases" class="tsd-kind-icon">ignore<wbr>Aliases</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="datasourceunderlyingdataoptions.html#includedatavaluesoption" class="tsd-kind-icon">include<wbr>Data<wbr>Values<wbr>Option</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="datasourceunderlyingdataoptions.html#maxrows" class="tsd-kind-icon">max<wbr>Rows</a>

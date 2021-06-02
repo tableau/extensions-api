@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>PaginationOptions | Dashboard Extensions</title>
+	<title>IncludeDataValuesOption | Dashboard Extensions</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="paginationoptions.html">PaginationOptions</a>
+					<a href="../modules/tableau.html">Tableau</a>
+				</li>
+				<li>
+					<a href="tableau.includedatavaluesoption.html">IncludeDataValuesOption</a>
 				</li>
 			</ul>
-			<h1>Interface PaginationOptions</h1>
+			<h1>Enumeration IncludeDataValuesOption</h1>
 		</div>
 	</div>
 </header>
@@ -67,61 +70,78 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Option for pagination of the returned data.</p>
+						<p>Enum that serves as a filter on the DataValues returned from <code>getSummaryDataAsync</code>,
+							<code>getUnderlyingTableDataAsync</code> and <code>getLogicalTableDataAsync</code>.
+							This is an optimization of returned data values only. Tableau versions prior to 2021.2
+							will pass the data across and populate the DataValue properties.
+						Please note that all properties not requested will be <code>undefined</code> in the DataValue results.</p>
 					</div>
+					<dl class="tsd-comment-tags">
+						<dt>since</dt>
+						<dd><p>1.5.0</p>
+						</dd>
+					</dl>
 				</div>
-			</section>
-			<section class="tsd-panel tsd-hierarchy">
-				<h3>Hierarchy</h3>
-				<ul class="tsd-hierarchy">
-					<li>
-						<span class="target">PaginationOptions</span>
-					</li>
-				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Properties</h3>
+							<h3>Enumeration members</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="paginationoptions.html#pagenumber" class="tsd-kind-icon">page<wbr>Number</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="paginationoptions.html#pagesize" class="tsd-kind-icon">page<wbr>Size</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="tableau.includedatavaluesoption.html#allvalues" class="tsd-kind-icon">All<wbr>Values</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="tableau.includedatavaluesoption.html#onlyformattedvalues" class="tsd-kind-icon">Only<wbr>Formatted<wbr>Values</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="tableau.includedatavaluesoption.html#onlynativevalues" class="tsd-kind-icon">Only<wbr>Native<wbr>Values</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="pagenumber" class="tsd-anchor"></a>
-					<h3>page<wbr>Number</h3>
-					<div class="tsd-signature tsd-kind-icon">page<wbr>Number<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+				<h2>Enumeration members</h2>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="allvalues" class="tsd-anchor"></a>
+					<h3>All<wbr>Values</h3>
+					<div class="tsd-signature tsd-kind-icon">All<wbr>Values<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;&quot;all-values&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/DataTableInterfaces.ts:180</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Namespaces/Tableau.ts:377</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The page of data to be returned.</p>
+							<p>DataValues will include all properties.</p>
 						</div>
 					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="pagesize" class="tsd-anchor"></a>
-					<h3>page<wbr>Size</h3>
-					<div class="tsd-signature tsd-kind-icon">page<wbr>Size<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="onlyformattedvalues" class="tsd-anchor"></a>
+					<h3>Only<wbr>Formatted<wbr>Values</h3>
+					<div class="tsd-signature tsd-kind-icon">Only<wbr>Formatted<wbr>Values<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;&quot;only-formatted-values&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/DataTableInterfaces.ts:175</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Namespaces/Tableau.ts:383</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The number of rows in a page.</p>
+							<p>DataValues will only include formattedValue properties.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="onlynativevalues" class="tsd-anchor"></a>
+					<h3>Only<wbr>Native<wbr>Values</h3>
+					<div class="tsd-signature tsd-kind-icon">Only<wbr>Native<wbr>Values<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;&quot;only-native-values&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Namespaces/Tableau.ts:380</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>DataValues will only include value and nativeValue properties.</p>
 						</div>
 					</div>
 				</section>
@@ -133,25 +153,109 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
+					<li class="current tsd-kind-module">
+						<a href="../modules/tableau.html">Tableau</a>
+					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="tableau.analyticsobjecttype.html" class="tsd-kind-icon">Analytics<wbr>Object<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="tableau.columntype.html" class="tsd-kind-icon">Column<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="tableau.dashboardobjecttype.html" class="tsd-kind-icon">Dashboard<wbr>Object<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="tableau.datatype.html" class="tsd-kind-icon">Data<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="tableau.daterangetype.html" class="tsd-kind-icon">Date<wbr>Range<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="tableau.encodingtype.html" class="tsd-kind-icon">Encoding<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="tableau.errorcodes.html" class="tsd-kind-icon">Error<wbr>Codes</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="tableau.extensioncontext.html" class="tsd-kind-icon">Extension<wbr>Context</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="tableau.extensionmode.html" class="tsd-kind-icon">Extension<wbr>Mode</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="tableau.fieldaggregationtype.html" class="tsd-kind-icon">Field<wbr>Aggregation<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="tableau.fieldroletype.html" class="tsd-kind-icon">Field<wbr>Role<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="tableau.filterdomaintype.html" class="tsd-kind-icon">Filter<wbr>Domain<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="tableau.filternulloption.html" class="tsd-kind-icon">Filter<wbr>Null<wbr>Option</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="tableau.filtertype.html" class="tsd-kind-icon">Filter<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="tableau.filterupdatetype.html" class="tsd-kind-icon">Filter<wbr>Update<wbr>Type</a>
+					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-interface">
-						<a href="paginationoptions.html" class="tsd-kind-icon">Pagination<wbr>Options</a>
+					<li class="current tsd-kind-enum tsd-parent-kind-module">
+						<a href="tableau.includedatavaluesoption.html" class="tsd-kind-icon">Include<wbr>Data<wbr>Values<wbr>Option</a>
 						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="paginationoptions.html#pagenumber" class="tsd-kind-icon">page<wbr>Number</a>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="tableau.includedatavaluesoption.html#allvalues" class="tsd-kind-icon">All<wbr>Values</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="paginationoptions.html#pagesize" class="tsd-kind-icon">page<wbr>Size</a>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="tableau.includedatavaluesoption.html#onlyformattedvalues" class="tsd-kind-icon">Only<wbr>Formatted<wbr>Values</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="tableau.includedatavaluesoption.html#onlynativevalues" class="tsd-kind-icon">Only<wbr>Native<wbr>Values</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="tableau.marktype.html" class="tsd-kind-icon">Mark<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="tableau.parametervaluetype.html" class="tsd-kind-icon">Parameter<wbr>Value<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="tableau.periodtype.html" class="tsd-kind-icon">Period<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="tableau.quicktablecalctype.html" class="tsd-kind-icon">Quick<wbr>Table<wbr>Calc<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="tableau.selectionupdatetype.html" class="tsd-kind-icon">Selection<wbr>Update<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="tableau.sheettype.html" class="tsd-kind-icon">Sheet<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="tableau.sortdirection.html" class="tsd-kind-icon">Sort<wbr>Direction</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="tableau.tableaueventtype.html" class="tsd-kind-icon">Tableau<wbr>Event<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="tableau.trendlinemodeltype.html" class="tsd-kind-icon">Trend<wbr>Line<wbr>Model<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="tableau.zonevisibilitytype.html" class="tsd-kind-icon">Zone<wbr>Visibility<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="../modules/tableau.html#extensions" class="tsd-kind-icon">extensions</a>
+					</li>
 				</ul>
 			</nav>
 		</div>
