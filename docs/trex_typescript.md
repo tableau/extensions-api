@@ -21,7 +21,7 @@ The Tableau Extension API type definitions are available as an npm @types packag
 npm install @tableau/extensions-api-types
 ```
 
-<div class="alert alert-info"><b>Note</b> The version of the types package must match the version of the Extensions API library you are using. You can specify the library version by appending the version number to the package name (<code>@n.n.n</code>). For example, <code>npm install @tableau/extensions-api-types@1.3.1</code>. If you don't specify a version number, npm will install the latest released package.</div>
+<div class="alert alert-info"><b>Note</b> The version of the types package must match the version of the Extensions API library you are using. You can specify the library version by appending the version number to the package name (<code>@n.n.n</code>). For example, <code>npm install @tableau/extensions-api-types@1.3</code>. You only need to match major and minor versions (e.g. types 1.3.1 works with any 1.3.x version of the extensions library). If you don't specify a version number, npm will install the latest released package.</div>
 
 ## Import the type definitions
 
