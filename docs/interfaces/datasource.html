@@ -255,7 +255,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/DataSourceInterfaces.ts:146</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/DataSourceInterfaces.ts:147</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -269,26 +269,7 @@
 									<dt>since</dt>
 									<dd><p>1.5.0 You can use the <code>DataSourceUnderlyingDataOptions.includeDataValuesOption</code> property to optimize performance
 										by restricting the properties included in the returned DataValues.</p>
-										<p>The following example shows use of the <code>getLogicalTableDataAsync()</code> method to get the data from a specific logical
-											table in a data source.
-											The example uses the JavaScript <code>find()</code> method to select the workbook,
-										and uses the <code>getLogicalTablesAsync</code> method to identify the logical table id.</p>
-										<pre><code>tableau.extensions.dashboardContent.dashboard.worksheets.find(<span class="hljs-function"><span class="hljs-params">w</span> =&gt;</span> w.name === <span class="hljs-string">"Sale Map"</span>).getDataSourcesAsync().then(<span class="hljs-function"><span class="hljs-params">datasources</span> =&gt;</span> {
-  dataSource = datasources.find(<span class="hljs-function"><span class="hljs-params">datasource</span> =&gt;</span> datasource.name === <span class="hljs-string">"Sample - Superstore"</span>);
-  <span class="hljs-keyword">return</span> dataSource.getLogicalTablesAsync().then(<span class="hljs-function">(<span class="hljs-params">logicalTables</span>) =&gt;</span> {
-   <span class="hljs-keyword">return</span> dataSource.getLogicalTableDataAsync(logicalTables[<span class="hljs-number">0</span>].id)
-  });
- }).then(<span class="hljs-function"><span class="hljs-params">dataTable</span> =&gt;</span> {
-    <span class="hljs-built_in">console</span>.log(dataTable);
-    <span class="hljs-keyword">let</span> field = dataTable.columns.find(<span class="hljs-function"><span class="hljs-params">column</span> =&gt;</span> column.fieldName === <span class="hljs-string">"Sub-Category"</span>);
-    <span class="hljs-keyword">let</span> list = [];
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> row <span class="hljs-keyword">of</span> dataTable.data) {
-        list.push(row[field.index].value);
-    }
-    <span class="hljs-keyword">let</span> values = list.filter(<span class="hljs-function">(<span class="hljs-params">el, i, arr</span>) =&gt;</span> arr.indexOf(el) === i);
-    <span class="hljs-built_in">console</span>.log(values)
-});
-</code></pre></dd>
+									</dd>
 								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -305,6 +286,26 @@
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="datatable.html" class="tsd-signature-type">DataTable</a><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>A data table containing the underlying data of the data source.</p>
+							<p>The following example shows use of the <code>getLogicalTableDataAsync()</code> method to get the data from a specific logical
+								table in a data source.
+								The example uses the JavaScript <code>find()</code> method to select the workbook,
+							and uses the <code>getLogicalTablesAsync</code> method to identify the logical table id.</p>
+							<pre><code>tableau.extensions.dashboardContent.dashboard.worksheets.find(<span class="hljs-function"><span class="hljs-params">w</span> =&gt;</span> w.name === <span class="hljs-string">"Sale Map"</span>).getDataSourcesAsync().then(<span class="hljs-function"><span class="hljs-params">datasources</span> =&gt;</span> {
+  dataSource = datasources.find(<span class="hljs-function"><span class="hljs-params">datasource</span> =&gt;</span> datasource.name === <span class="hljs-string">"Sample - Superstore"</span>);
+  <span class="hljs-keyword">return</span> dataSource.getLogicalTablesAsync().then(<span class="hljs-function">(<span class="hljs-params">logicalTables</span>) =&gt;</span> {
+   <span class="hljs-keyword">return</span> dataSource.getLogicalTableDataAsync(logicalTables[<span class="hljs-number">0</span>].id)
+  });
+ }).then(<span class="hljs-function"><span class="hljs-params">dataTable</span> =&gt;</span> {
+    <span class="hljs-built_in">console</span>.log(dataTable);
+    <span class="hljs-keyword">let</span> field = dataTable.columns.find(<span class="hljs-function"><span class="hljs-params">column</span> =&gt;</span> column.fieldName === <span class="hljs-string">"Sub-Category"</span>);
+    <span class="hljs-keyword">let</span> list = [];
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> row <span class="hljs-keyword">of</span> dataTable.data) {
+        list.push(row[field.index].value);
+    }
+    <span class="hljs-keyword">let</span> values = list.filter(<span class="hljs-function">(<span class="hljs-params">el, i, arr</span>) =&gt;</span> arr.indexOf(el) === i);
+    <span class="hljs-built_in">console</span>.log(values)
+});
+</code></pre>
 						</li>
 					</ul>
 				</section>

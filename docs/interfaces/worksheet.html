@@ -609,7 +609,7 @@ worksheet.getSelectedMarksAsync().then(<span class="hljs-function"><span class="
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Gets the columns that are returned with <code>getSummaryDataAsync</code>.</p>
+									<p>Gets the column information for all columns that are returned with <code>getSummaryDataAsync</code>.</p>
 								</div>
 								<dl class="tsd-comment-tags">
 									<dt>since</dt>
@@ -649,7 +649,7 @@ worksheet.getSelectedMarksAsync().then(<span class="hljs-function"><span class="
 										by restricting the properties included in the returned DataValues.</p>
 									</dd>
 									<dt>since</dt>
-									<dd><p>1.5.0 You can specify the desired columns by field id with <code>columnsToIncludeById</code>.</p>
+									<dd><p>1.5.0 You can use the <code>columnsToIncludeById</code> property to request the columns to return.</p>
 										<p> Example showing the method call to get the summary data from a worksheet.</p>
 										<pre><code><span class="hljs-comment">// After getting the worksheet,</span>
  <span class="hljs-comment">// get the summary data for the sheet</span>
@@ -753,16 +753,16 @@ worksheet.getSelectedMarksAsync().then(<span class="hljs-function"><span class="
 								<dl class="tsd-comment-tags">
 									<dt>since</dt>
 									<dd><p>1.4.0</p>
+									</dd>
+									<dt>since</dt>
+									<dd><p>1.5.0 You can use the <code>GetUnderlyingDataOptions.includeDataValuesOption</code> property to optimize performance
+										by restricting the properties included in the returned DataValues.</p>
 										<p>You can use the <code>getUnderlyingDataOptions.maxRows</code> property to request the number of rows of data to return.
 											If unspecified (maxRows == &#39;0&#39;), the call to <code>getUnderlyingTableDataAsync</code> requests all rows in the logical table.
 											Note that the maximum number of rows returned from the <code>getUnderlyingTableDataAsync()</code> method is currently limited
 											to 10,000 rows. You can use the <code>DataTable</code> property, <code>isTotalRowCountLimited</code>, to test whether there is
 											more data. A value of true indicates that the calling function requested more rows than the current limit (10,000) and the
 										underlying data source contains more rows than can be returned.</p>
-									</dd>
-									<dt>since</dt>
-									<dd><p>1.5.0 You can use the <code>GetUnderlyingDataOptions.includeDataValuesOption</code> property to optimize performance
-										by restricting the properties included in the returned DataValues.</p>
 										<pre><code> <span class="hljs-keyword">var</span> worksheet = tableau.extensions.dashboardContent.dashboard.worksheets.find(<span class="hljs-function"><span class="hljs-params">w</span> =&gt;</span> w.name === <span class="hljs-string">"Sale Map"</span>);
  worksheet.getUnderlyingTablesAsync().then(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">logicalTables</span>) </span>{
      worksheet.getUnderlyingTableDataAsync(logicalTables[<span class="hljs-number">0</span>].id).then(<span class="hljs-function">(<span class="hljs-params">dataTable</span>) =&gt;</span> {

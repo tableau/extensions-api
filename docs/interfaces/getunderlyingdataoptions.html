@@ -111,13 +111,13 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="getsummarydataoptions.html">GetSummaryDataOptions</a>.<a href="getsummarydataoptions.html#columnstoincludebyid">columnsToIncludeById</a></p>
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/DataTableInterfaces.ts:135</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/DataTableInterfaces.ts:137</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
 							<p>The columns to return specified by field id, returns all by default.
-							Since 1.5.0, fieldId is a property of the Column object.</p>
+							Since 1.5.0, the fieldId is a property of the Column object.</p>
 						</div>
 						<dl class="tsd-comment-tags">
 							<dt>since</dt>
@@ -133,7 +133,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="getsummarydataoptions.html">GetSummaryDataOptions</a>.<a href="getsummarydataoptions.html#ignorealiases">ignoreAliases</a></p>
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/DataTableInterfaces.ts:123</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/DataTableInterfaces.ts:124</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -149,7 +149,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="getsummarydataoptions.html">GetSummaryDataOptions</a>.<a href="getsummarydataoptions.html#ignoreselection">ignoreSelection</a></p>
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/DataTableInterfaces.ts:128</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/DataTableInterfaces.ts:129</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -164,7 +164,7 @@
 					<div class="tsd-signature tsd-kind-icon">include<wbr>All<wbr>Columns<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/DataTableInterfaces.ts:165</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/DataTableInterfaces.ts:166</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -180,14 +180,14 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="getsummarydataoptions.html">GetSummaryDataOptions</a>.<a href="getsummarydataoptions.html#includedatavaluesoption">includeDataValuesOption</a></p>
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/DataTableInterfaces.ts:155</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/DataTableInterfaces.ts:156</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
 							<p>Specify which properties to return in DataValues. The default is <code>IncludeDataValuesOption.AllValues</code>.
-								This is a performance optimization only, and will be ignored in Tableau versions prior to 2021.2.
-							Please note that all properties not requested will be undefined in the DataValue results.</p>
+								All properties not requested will be <code>undefined</code> in the DataValue results.
+							This is a performance optimization only, and will be ignored in Tableau versions prior to 2021.2.</p>
 						</div>
 						<dl class="tsd-comment-tags">
 							<dt>since</dt>
@@ -203,19 +203,19 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="getsummarydataoptions.html">GetSummaryDataOptions</a>.<a href="getsummarydataoptions.html#maxrows">maxRows</a></p>
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/DataTableInterfaces.ts:146</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/DataTableInterfaces.ts:147</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
 							<p>The number of rows of data that you want to return. A value of <code>0</code> will attempt to return all rows.
 								<code>0</code> is the default if maxRows is not specified.
-							<code>getUnderlyingTableDataAsync&#39; - maximum number of rows returned is capped at 10,000 regardless of maxRows.</code>getSummaryDataAsync` - maximum number of rows returned is not capped, but performance will suffer over 100,000.</p>
+								<code>getUnderlyingTableDataAsync</code> - maximum number of rows returned is capped at 10,000 regardless of maxRows.
+							<code>getSummaryDataAsync</code> - maximum number of rows returned is not capped, but performance may suffer with large row counts.</p>
 						</div>
 						<dl class="tsd-comment-tags">
 							<dt>since</dt>
-							<dd><p>1.5.0 maxRows is now supported in both <code>GetSummaryDataOptions</code> and <code>GetUnderlyingDataOptions</code>.
-								However, maxRows will be ignored in <code>GetSummaryDataOptions</code> in Tableau versions prior to 2021.2.</p>
+							<dd><p>1.5.0 maxRows is now supported in both <code>GetSummaryDataOptions</code> and <code>GetUnderlyingDataOptions</code>.</p>
 							</dd>
 						</dl>
 					</div>
