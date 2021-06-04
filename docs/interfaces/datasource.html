@@ -115,7 +115,7 @@
 					<div class="tsd-signature tsd-kind-icon">extract<wbr>Update<wbr>Time<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/ExternalContract/DataSourceInterfaces.ts:27</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/DataSourceInterfaces.ts:27</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -132,7 +132,7 @@
 					<div class="tsd-signature tsd-kind-icon">fields<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="field.html" class="tsd-signature-type">Field</a><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/ExternalContract/DataSourceInterfaces.ts:22</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/DataSourceInterfaces.ts:22</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -149,7 +149,7 @@
 					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/ExternalContract/DataSourceInterfaces.ts:17</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/DataSourceInterfaces.ts:17</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -166,7 +166,7 @@
 					<div class="tsd-signature tsd-kind-icon">is<wbr>Extract<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/ExternalContract/DataSourceInterfaces.ts:32</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/DataSourceInterfaces.ts:32</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -183,7 +183,7 @@
 					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/ExternalContract/DataSourceInterfaces.ts:12</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/DataSourceInterfaces.ts:12</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -207,7 +207,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/ExternalContract/DataSourceInterfaces.ts:58</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/DataSourceInterfaces.ts:58</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -235,7 +235,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/ExternalContract/DataSourceInterfaces.ts:63</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/DataSourceInterfaces.ts:63</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -255,7 +255,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/ExternalContract/DataSourceInterfaces.ts:143</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/DataSourceInterfaces.ts:149</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -265,6 +265,13 @@
 								<dl class="tsd-comment-tags">
 									<dt>since</dt>
 									<dd><p>1.4.0</p>
+									</dd>
+									<dt>since</dt>
+									<dd><p>1.5.0 Use the <code>DataSourceUnderlyingDataOptions.includeDataValuesOption</code> option to optimize performance
+										by restricting the properties included in the returned DataValues.</p>
+									</dd>
+									<dt>since</dt>
+									<dd><p>1.5.0 Columns to include can be specified by id using the <code>DataSourceUnderlyingDataOptions.columnsToIncludeById</code> option.</p>
 									</dd>
 								</dl>
 							</div>
@@ -281,7 +288,7 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="datatable.html" class="tsd-signature-type">DataTable</a><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>Returns a promise containing a page of data from the underlying data of the data source.</p>
+							<p>A data table containing the underlying data of the data source.</p>
 							<p>The following example shows use of the <code>getLogicalTableDataAsync()</code> method to get the data from a specific logical
 								table in a data source.
 								The example uses the JavaScript <code>find()</code> method to select the workbook,
@@ -315,7 +322,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/ExternalContract/DataSourceInterfaces.ts:110</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/DataSourceInterfaces.ts:110</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -351,7 +358,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/ExternalContract/DataSourceInterfaces.ts:89</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/DataSourceInterfaces.ts:89</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -400,7 +407,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/ExternalContract/DataSourceInterfaces.ts:49</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/DataSourceInterfaces.ts:49</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
