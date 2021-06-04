@@ -407,7 +407,7 @@ load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">works
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/SheetInterfaces.ts:474</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/SheetInterfaces.ts:477</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -641,26 +641,16 @@ worksheet.getSelectedMarksAsync().then(<span class="hljs-function"><span class="
 								</div>
 								<dl class="tsd-comment-tags">
 									<dt>since</dt>
-									<dd><p>1.5.0 You can use the <code>GetSummaryDataOptions.maxRows</code> property to request the number of rows of data
+									<dd><p>1.5.0 Use the <code>GetSummaryDataOptions.maxRows</code> option to request the number of rows of data
 										to return. If unspecified, the call to <code>getSummaryDataAsync</code> requests all rows.</p>
 									</dd>
 									<dt>since</dt>
-									<dd><p>1.5.0 You can use the <code>GetUnderlyingDataOptions.includeDataValuesOption</code> property to optimize performance
+									<dd><p>1.5.0 Use the <code>GetSummaryDataOptions.includeDataValuesOption</code> option to optimize performance
 										by restricting the properties included in the returned DataValues.</p>
 									</dd>
 									<dt>since</dt>
-									<dd><p>1.5.0 You can use the <code>columnsToIncludeById</code> property to request the columns to return.</p>
-										<p> Example showing the method call to get the summary data from a worksheet.</p>
-										<pre><code><span class="hljs-comment">// After getting the worksheet,</span>
- <span class="hljs-comment">// get the summary data for the sheet</span>
- worksheet.getSummaryDataAsync().then(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(sumdata)</span> </span>{
-
-  <span class="hljs-keyword">const</span> worksheetData = sumdata;
-
-  <span class="hljs-comment">// Map the worksheetData into a format for display, etc.</span>
-
- });
-</code></pre></dd>
+									<dd><p>1.5.0 Use the <code>GetSummaryDataOptions.columnsToIncludeById</code> option to request the columns to return.</p>
+									</dd>
 								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -674,6 +664,17 @@ worksheet.getSelectedMarksAsync().then(<span class="hljs-function"><span class="
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="datatable.html" class="tsd-signature-type">DataTable</a><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>A data table containing the summary data for the worksheet.</p>
+							<p> Example showing the method call to get 1,000 rows of summary data from a worksheet.</p>
+							<pre><code><span class="hljs-comment">// After getting the worksheet,</span>
+ <span class="hljs-comment">// get the summary data for the sheet</span>
+ worksheet.getSummaryDataAsync({maxRows: <span class="hljs-number">1000</span>}).then(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(sumdata)</span> </span>{
+
+  <span class="hljs-keyword">const</span> worksheetData = sumdata;
+
+  <span class="hljs-comment">// Map the worksheetData into a format for display, etc.</span>
+
+ });
+</code></pre>
 						</li>
 					</ul>
 				</section>
@@ -711,10 +712,10 @@ worksheet.getSelectedMarksAsync().then(<span class="hljs-function"><span class="
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="datatable.html" class="tsd-signature-type">DataTable</a><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>A data table containing the underlying data for the worksheet.</p>
-							<p>You can use the <code>GetUnderlyingDataOptions.maxRows</code> property to request the number of rows of data to return.
+							<p>Use the <code>GetUnderlyingDataOptions.maxRows</code> property to request the number of rows of data to return.
 								If unspecified (maxRows == &#39;0&#39;), the call to <code>getUnderlyingDataAsync</code> requests all rows in the data source.
 								Note that the maximum number of rows returned from the <code>getUnderlyingDataAsync()</code> method is currently limited
-								to 10,000 rows. You can use the <code>DataTable</code> property, <code>isTotalRowCountLimited</code>, to test whether there is
+								to 10,000 rows. Use the <code>DataTable</code> property, <code>isTotalRowCountLimited</code>, to test whether there is
 								more data. A value of true indicates that the calling function requested more rows than the current limit (10,000) and the
 							underlying data source contains more rows than can be returned.</p>
 							<p>In the following example, the <code>getUnderlyingDataAsync()</code> method is used to get the underlying data for
@@ -742,7 +743,7 @@ worksheet.getSelectedMarksAsync().then(<span class="hljs-function"><span class="
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/SheetInterfaces.ts:422</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/SheetInterfaces.ts:425</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -755,21 +756,12 @@ worksheet.getSelectedMarksAsync().then(<span class="hljs-function"><span class="
 									<dd><p>1.4.0</p>
 									</dd>
 									<dt>since</dt>
-									<dd><p>1.5.0 You can use the <code>GetUnderlyingDataOptions.includeDataValuesOption</code> property to optimize performance
+									<dd><p>1.5.0 Use the <code>GetUnderlyingDataOptions.includeDataValuesOption</code> option to optimize performance
 										by restricting the properties included in the returned DataValues.</p>
-										<p>You can use the <code>getUnderlyingDataOptions.maxRows</code> property to request the number of rows of data to return.
-											If unspecified (maxRows == &#39;0&#39;), the call to <code>getUnderlyingTableDataAsync</code> requests all rows in the logical table.
-											Note that the maximum number of rows returned from the <code>getUnderlyingTableDataAsync()</code> method is currently limited
-											to 10,000 rows. You can use the <code>DataTable</code> property, <code>isTotalRowCountLimited</code>, to test whether there is
-											more data. A value of true indicates that the calling function requested more rows than the current limit (10,000) and the
-										underlying data source contains more rows than can be returned.</p>
-										<pre><code> <span class="hljs-keyword">var</span> worksheet = tableau.extensions.dashboardContent.dashboard.worksheets.find(<span class="hljs-function"><span class="hljs-params">w</span> =&gt;</span> w.name === <span class="hljs-string">"Sale Map"</span>);
- worksheet.getUnderlyingTablesAsync().then(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">logicalTables</span>) </span>{
-     worksheet.getUnderlyingTableDataAsync(logicalTables[<span class="hljs-number">0</span>].id).then(<span class="hljs-function">(<span class="hljs-params">dataTable</span>) =&gt;</span> {
-       <span class="hljs-comment">// process the dataTable...</span>
-     });
- });
-</code></pre></dd>
+									</dd>
+									<dt>since</dt>
+									<dd><p>1.5.0 Use the <code>GetUnderlyingDataOptions.columnsToIncludeById</code> option to request the columns to return.</p>
+									</dd>
 								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -789,6 +781,19 @@ worksheet.getSelectedMarksAsync().then(<span class="hljs-function"><span class="
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="datatable.html" class="tsd-signature-type">DataTable</a><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>A data table containing the underlying data for the given logical table id</p>
+							<p>Use the <code>getUnderlyingDataOptions.maxRows</code> option to request the number of rows of data to return.
+								If unspecified (maxRows == &#39;0&#39;), the call to <code>getUnderlyingTableDataAsync</code> requests all rows in the logical table.
+								Note that the maximum number of rows returned from the <code>getUnderlyingTableDataAsync()</code> method is currently limited
+								to 10,000 rows. Use the <code>DataTable</code> property, <code>isTotalRowCountLimited</code>, to test whether there is
+								more data. A value of true indicates that the calling function requested more rows than the current limit (10,000) and the
+							underlying data source contains more rows than can be returned.</p>
+							<pre><code> <span class="hljs-keyword">var</span> worksheet = tableau.extensions.dashboardContent.dashboard.worksheets.find(<span class="hljs-function"><span class="hljs-params">w</span> =&gt;</span> w.name === <span class="hljs-string">"Sale Map"</span>);
+ worksheet.getUnderlyingTablesAsync().then(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">logicalTables</span>) </span>{
+     worksheet.getUnderlyingTableDataAsync(logicalTables[<span class="hljs-number">0</span>].id).then(<span class="hljs-function">(<span class="hljs-params">dataTable</span>) =&gt;</span> {
+       <span class="hljs-comment">// process the dataTable...</span>
+     });
+ });
+</code></pre>
 						</li>
 					</ul>
 				</section>
@@ -877,7 +882,7 @@ worksheet.getUnderlyingTablesAsync().<span class="hljs-keyword">then</span>(<spa
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/SheetInterfaces.ts:458</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/SheetInterfaces.ts:461</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
