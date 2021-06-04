@@ -91,10 +91,12 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="getunderlyingdataoptions.html#columnstoincludebyid" class="tsd-kind-icon">columns<wbr>ToInclude<wbr>ById</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="getunderlyingdataoptions.html#ignorealiases" class="tsd-kind-icon">ignore<wbr>Aliases</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="getunderlyingdataoptions.html#ignoreselection" class="tsd-kind-icon">ignore<wbr>Selection</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="getunderlyingdataoptions.html#includeallcolumns" class="tsd-kind-icon">include<wbr>All<wbr>Columns</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="getunderlyingdataoptions.html#maxrows" class="tsd-kind-icon">max<wbr>Rows</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="getunderlyingdataoptions.html#includedatavaluesoption" class="tsd-kind-icon">include<wbr>Data<wbr>Values<wbr>Option</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="getunderlyingdataoptions.html#maxrows" class="tsd-kind-icon">max<wbr>Rows</a></li>
 							</ul>
 						</section>
 					</div>
@@ -103,13 +105,35 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="columnstoincludebyid" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> columns<wbr>ToInclude<wbr>ById</h3>
+					<div class="tsd-signature tsd-kind-icon">columns<wbr>ToInclude<wbr>ById<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="getsummarydataoptions.html">GetSummaryDataOptions</a>.<a href="getsummarydataoptions.html#columnstoincludebyid">columnsToIncludeById</a></p>
+						<ul>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/DataTableInterfaces.ts:137</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The columns to return specified by field id, returns all by default.
+							Since 1.5.0, fieldId is a property of the Column object.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>since</dt>
+							<dd><p>1.5.0</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="ignorealiases" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> ignore<wbr>Aliases</h3>
 					<div class="tsd-signature tsd-kind-icon">ignore<wbr>Aliases<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></div>
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="getsummarydataoptions.html">GetSummaryDataOptions</a>.<a href="getsummarydataoptions.html#ignorealiases">ignoreAliases</a></p>
 						<ul>
-							<li>Defined in src/ExternalContract/DataTableInterfaces.ts:112</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/DataTableInterfaces.ts:124</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -125,7 +149,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="getsummarydataoptions.html">GetSummaryDataOptions</a>.<a href="getsummarydataoptions.html#ignoreselection">ignoreSelection</a></p>
 						<ul>
-							<li>Defined in src/ExternalContract/DataTableInterfaces.ts:117</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/DataTableInterfaces.ts:129</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -140,7 +164,7 @@
 					<div class="tsd-signature tsd-kind-icon">include<wbr>All<wbr>Columns<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/ExternalContract/DataTableInterfaces.ts:127</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/DataTableInterfaces.ts:166</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -149,21 +173,51 @@
 						</div>
 					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="maxrows" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> max<wbr>Rows</h3>
-					<div class="tsd-signature tsd-kind-icon">max<wbr>Rows<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="includedatavaluesoption" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> include<wbr>Data<wbr>Values<wbr>Option</h3>
+					<div class="tsd-signature tsd-kind-icon">include<wbr>Data<wbr>Values<wbr>Option<span class="tsd-signature-symbol">:</span> <a href="../enums/tableau.includedatavaluesoption.html" class="tsd-signature-type">IncludeDataValuesOption</a></div>
 					<aside class="tsd-sources">
+						<p>Inherited from <a href="getsummarydataoptions.html">GetSummaryDataOptions</a>.<a href="getsummarydataoptions.html#includedatavaluesoption">includeDataValuesOption</a></p>
 						<ul>
-							<li>Defined in src/ExternalContract/DataTableInterfaces.ts:134</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/DataTableInterfaces.ts:156</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The number of rows of data that you want to return. Enter <code>0</code> to return all rows.
-								A value of <code>0</code> will attempt to return all rows, but the maximum number of rows returned
-							from <code>getUnderlyingDataAsync</code> is currently set to 10,000.</p>
+							<p>Specify which properties to return in DataValues. The default is <code>IncludeDataValuesOption.AllValues</code>.
+								All properties not requested will be <code>undefined</code> in the DataValue results.
+							This is a performance optimization only, and will be ignored in Tableau versions prior to 2021.2.</p>
 						</div>
+						<dl class="tsd-comment-tags">
+							<dt>since</dt>
+							<dd><p>1.5.0</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="maxrows" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> max<wbr>Rows</h3>
+					<div class="tsd-signature tsd-kind-icon">max<wbr>Rows<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="getsummarydataoptions.html">GetSummaryDataOptions</a>.<a href="getsummarydataoptions.html#maxrows">maxRows</a></p>
+						<ul>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/DataTableInterfaces.ts:147</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The number of rows of data that you want to return. A value of <code>0</code> will attempt to return all rows.
+								<code>0</code> is the default if maxRows is not specified.
+								<code>getUnderlyingTableDataAsync</code> - maximum number of rows returned is capped at 10,000 regardless of maxRows.
+							<code>getSummaryDataAsync</code> - maximum number of rows returned is not capped, but performance may suffer with large row counts.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>since</dt>
+							<dd><p>1.5.0 maxRows is now supported in both <code>GetSummaryDataOptions</code> and <code>GetUnderlyingDataOptions</code>.</p>
+							</dd>
+						</dl>
 					</div>
 				</section>
 			</section>
@@ -184,6 +238,9 @@
 						<a href="getunderlyingdataoptions.html" class="tsd-kind-icon">Get<wbr>Underlying<wbr>Data<wbr>Options</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="getunderlyingdataoptions.html#columnstoincludebyid" class="tsd-kind-icon">columns<wbr>ToInclude<wbr>ById</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 								<a href="getunderlyingdataoptions.html#ignorealiases" class="tsd-kind-icon">ignore<wbr>Aliases</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
@@ -192,7 +249,10 @@
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="getunderlyingdataoptions.html#includeallcolumns" class="tsd-kind-icon">include<wbr>All<wbr>Columns</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="getunderlyingdataoptions.html#includedatavaluesoption" class="tsd-kind-icon">include<wbr>Data<wbr>Values<wbr>Option</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 								<a href="getunderlyingdataoptions.html#maxrows" class="tsd-kind-icon">max<wbr>Rows</a>
 							</li>
 						</ul>
