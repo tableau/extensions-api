@@ -100,7 +100,7 @@ This command enables remote debugging of extensions for this session of Tableau.
 
 ## Debugging Tableau Desktop using Chrome/Chromium
 
-After you install the Chromium browser and enable debugging in Tableau, you can start debugging your extension.
+After you install the Chrome (or Chromium) browser and enable debugging in Tableau, you can start debugging your extension.
 
 1. Open the dashboard with the extension you want to debug in Tableau. 
 2. Start Chromium and set the URL to [`http://localhost:8696`](http://localhost:8696)  
@@ -115,9 +115,24 @@ Note that you can only debug one extension, or instance of an extension, at a ti
 
 ---
 
-## Debugging loading and initialization issues
+## Debugging loading and initialization issues (Tableau 2021.1 and later)
 
-It can be difficult to hit breakpoints that occur during the loading of your page because of the remote debugging process. To help with this, you can select a menu option that causes your extension to wait to load until you trigger it to proceed.
+If you need to troubleshoot or debug issues that prevent your extension from loading or initializing, you can set breakpoints that trigger when your JavaScript code is loaded.
+
+1. Start the debugging session as described in [Debugging Tableau Desktop using Chrome/Chromium](#debugging-tableau-desktop-using-chromechromium).
+
+1. Click the **Sources** tab in Chrome/Chromium, under **Event Listener Breakpoints**, click **Script** and enable the **Script First Statement** breakpoint. You just have to do this one time.
+
+1. In Tableau Desktop, select the extension in the dashboard and click **Reload** from the **More Options** shortcut menu. <br/>
+The debugger will pause each time the first statement of a script runs, allowing you to debug the startup process.
+
+1. To get to your JavaScript code, click **Continue** several times. After your JavaScript is loaded, you can set a breakpoint in your startup code.
+
+---
+
+## Debugging loading and initialization issues (Tableau 2020.4 and earlier)
+
+It can be difficult to hit breakpoints that occur during the loading of your page because of the remote debugging process, and because of the way loading was handled prior to Tableau 2021.1. To help with this, you can select a menu option that causes your extension to wait to load until you trigger it to proceed.
 
 1. Select the extension in the dashboard and select **Debug Options** > **Pause Before Loading** from the shortcut menu.
 2. Reload your extension. Select **Reload** from the shortcut menu.

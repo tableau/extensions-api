@@ -33,6 +33,30 @@ The following outlines some of the basic steps in using a secondary window for O
 * In response to the signal, the extension retrieves and stores the OAuth token in local storage on the client's computer. The extension can then use the access token to send subsequent requests for services from the OAuth provider.
 
 ---
+<div class="mermaid">
+sequenceDiagram
+    participant User
+    participant E as Extension (client)
+    participant S as Server (web host)
+    participant O as OAuth provider
+    User->>E: Load dashboard extension
+    E->>S: Open communication channel
+    S-->>E: Use this socket session ID (socket.id)
+    E->>O: Request the OAuth login page (with client ID)
+    O-->>User: Prompt user: Allow or deny access?
+    User->>O: Allow!
+    O-->>S: Here's the auth code
+    S->>O: Auth code request + client ID, client secret, session ID
+    O-->>S: Here's the access token
+    Note right of E: Route the access token based on session ID
+    S->>E: This access token is for this session ID.
+    Note right of E: Use the access token to request data
+
+</div>
+
+
+
+---
 
 ## An example of the OAuth code path using Socket.IO
 
