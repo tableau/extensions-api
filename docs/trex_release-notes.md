@@ -27,17 +27,17 @@ About this release:
 
 * The `selectMarksByValueAsync` method now supports combined selection criteria types (bug fixed).
 
-* The following are all improvements to the `getSummaryData` method:
+* The following are all improvements to the [`getSummaryDataAsync`](https://tableau.github.io/extensions-api/docs/interfaces/worksheet.html#getsummarydataasync){:target="_blank"} method:
 
-  * `getSummaryData` now has a smaller and faster payload.
+  * `getSummaryDataAsync` now has a smaller and faster payload.
 
-  * `maxRows` can be applied to `getSummaryData` to restrict the number of rows fetched.
+  * `maxRows` can be applied to `getSummaryDataAsync` to restrict the number of rows fetched.
 
-  * `columnsToIncludeById` can be applied to `getSummaryData` to restrict the columns fetched.
+  * `columnsToIncludeById` can be applied to `getSummaryDataAsync` to restrict the columns fetched.
 
   * `includeDataValuesOnly` or `includeFormattedValuesOnly` can be applied to `getSummaryData` to restrict the amount of information returned to what you really need.
 
-  * The `getSummaryColumnsInfoAsync` method is a new in this release. It returns the column information for each column that will be returned in `getSummaryData`.
+  * The `getSummaryColumnsInfoAsync` method is new in this release. It returns the column information for each column that will be returned in `getSummaryDataAsync`.
 
 * The column information now includes the `fieldId` as well as the field name.
 
