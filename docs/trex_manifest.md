@@ -25,10 +25,7 @@ The versioning of the manifest is designed to be semantically simple and support
 
 ## Error Reporting
 
-At start up, Tableau checks the manifest file. If any errors are found while parsing the file, Tableau writes these errors to the `log.txt` file in the `My Tableau Repository (Beta)/Logs` folder. This is the same location that Tableau Desktop uses to report other errors and activity. 
-
-If a workbook is saved with an extension and then later opened on another computer that does not have the extension installed, Tableau displays a message in the dashboard zone where the extension would have appeared that states the extension is not available.
-
+At start up, Tableau checks the manifest file. If any errors are found while parsing the file, Tableau writes these errors to the `log.txt` file in the `My Tableau Repository/Logs` folder. This is the same location that Tableau Desktop uses to report other errors and activity.
 
 ## Sample Manifest File
 
