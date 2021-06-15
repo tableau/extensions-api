@@ -13,7 +13,7 @@ Errors that are returned from the Extensions API are custom Tableau error object
 
 ## Using Extensions API error codes
 
-The Extensions API wraps the standard error object with an `errorCode` property. You can use this error code for debugging or troubleshooting your extension. Any time you encounter an error when you are running your extension, you can look at this `errorCode` to determine the cause. See [Error Codes]({{site.baseurl}}/docs/enums/errorcodes.html). 
+The Extensions API wraps the standard error object with an `errorCode` property. You can use this error code for debugging or troubleshooting your extension. Any time you encounter an error when you are running your extension, you can look at this `errorCode` to determine the cause. See [Error Codes]({{site.baseurl}}/docs/enums/tableau.errorcodes.html){:target="_blank"}.
 
 As you create your extension, you want to be sure to catch potential error conditions. For example, you should validate user input and make use of `try`  ... `catch` statements. The Extensions API makes use of JavaScript promises. You can use the `.catch` method to field the errors that could be returned in the promise and any subsequent `.then` methods. 
 

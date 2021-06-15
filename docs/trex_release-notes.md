@@ -13,7 +13,42 @@ See also: [Known Issues]({{site.baseurl}}/docs/trex_known_issues.html)
 
 ----
 
+### Tableau Dashboard Extensions API version 1.5
+
+*June 2021*
+
+* Tableau Dashboard Extensions API library: `tableau.extensions.1.5.0.js` <br>(download or clone the Extensions API repository on [GitHub](https://github.com/tableau/extensions-api){:target="_blank"}.) <br/>
+
+About this release:
+
+* The `Filter.getFieldAsync` method now works as expected and properly returns the field. This fix requires Tableau 2019.2 and later.
+
+* Show/Hide (`setZoneVisibilityAsync`) can now be applied to any dashboard zone.
+
+* The `selectMarksByValueAsync` method now supports combined selection criteria types (bug fixed).
+
+* The following are all improvements to the [`getSummaryDataAsync`](https://tableau.github.io/extensions-api/docs/interfaces/worksheet.html#getsummarydataasync){:target="_blank"} method:
+
+  * `getSummaryDataAsync` now has a smaller and faster payload.
+
+  * `maxRows` can be applied to `getSummaryDataAsync` to restrict the number of rows fetched.
+
+  * `columnsToIncludeById` can be applied to `getSummaryDataAsync` to restrict the columns fetched.
+
+  * `includeDataValuesOnly` or `includeFormattedValuesOnly` can be applied to `getSummaryData` to restrict the amount of information returned to what you really need.
+
+  * The `getSummaryColumnsInfoAsync` method is new in this release. It returns the column information for each column that will be returned in `getSummaryDataAsync`.
+
+* The column information now includes the `fieldId` as well as the field name.
+
+For more information about changes in this release, see [Tableau Extensions v1.5.0](https://github.com/tableau/extensions-api/releases/tag/v1.5.0){:target="_blank"}.
+
+
+
+----
+
 ### Tableau 2021.1 Updates
+
 *March 2021*
 
 * You can now use Chrome version 80 and later to debug your dashboard extension in Tableau Desktop. If you are using Tableau 2021.1, or the latest maintenance releases of Tableau 2020.2, 2020.3, or 2020.4, you no longer need to use Chromium (version 79 or earlier) for debugging. For more information, see [Debug Extensions in Tableau Desktop]({{site.baseurl}}/docs/trex_debugging.html) and [Download the Chromium Browser]({{site.baseurl}}/docs/trex_debugging.html#download-the-chromium-browser).
