@@ -35,7 +35,7 @@ About this release:
 
   * `columnsToIncludeById` can be applied to `getSummaryDataAsync` to restrict the columns fetched.
 
-  * `includeDataValuesOnly` or `includeFormattedValuesOnly` can be applied to `getSummaryData` to restrict the amount of information returned to what you really need.
+  * `includeDataValuesOnly` or `includeFormattedValuesOnly` can be applied to `getSummaryDataAysnc` to restrict the amount of information returned to what you really need.
 
   * The `getSummaryColumnsInfoAsync` method is new in this release. It returns the column information for each column that will be returned in `getSummaryDataAsync`.
 
