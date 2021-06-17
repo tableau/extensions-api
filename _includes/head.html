@@ -14,5 +14,13 @@
   <script src="{{ site.baseurl }}/assets/js/redirect-to-search.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({
+      startOnLoad:true,
+      sequence: { showSequenceNumbers: true }, 
+    });
+  </script>
+
 
 {% if jekyll.environment == "production" %}{% include analytics.html %}{% endif %}
