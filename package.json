@@ -4,7 +4,7 @@
   "description": "Sample code and documentation for the Tableau Extensions API.",
   "scripts": {
     "build": "npm run lint && webpack --config webpack.config.js --display-error-details",
-    "start": "node node_modules/http-server/bin/http-server -p 8765",
+    "start": "node node_modules/http-server/bin/http-server -p 8765 -c-1",
     "start-sandbox": "npx tabextsandbox --config sandbox-config.json",
     "lint": "npm run jslint && npm run tslint",
     "jslint": "semistandard ./Samples/*/*.js",
