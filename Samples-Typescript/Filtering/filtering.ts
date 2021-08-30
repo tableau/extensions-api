@@ -155,7 +155,6 @@ import {
 
             dashboard.worksheets.forEach(function(worksheet) {
                 worksheet.getFiltersAsync().then(async (filtersForWorksheet) => {
-                    console.log(filtersForWorksheet);
                     const filterClearPromises = [];
 
                     filtersForWorksheet.forEach(function(filter) {
