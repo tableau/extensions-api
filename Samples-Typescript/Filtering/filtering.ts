@@ -163,7 +163,7 @@ import {
 
                     // Same pattern as in fetchFilters, wait until all promises have finished
                     // before updating the UI state.
-                    await Promise.all(filterClearPromises);
+                    await Promise.allSettled(filterClearPromises);
                     this.updateUIState(false);
                 });
             }, this);
