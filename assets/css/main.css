@@ -191,6 +191,10 @@ html {
 
 
 /* Community connectors */
+.wrapLink {
+    overflow-wrap: anywhere;
+}
+
 .thumbnail {
     background-color: #fff;
     border: 1px solid #ccc;
