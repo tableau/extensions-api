@@ -22,17 +22,17 @@ To create a Tableau extension you need the following components.
 
 These instructions assume that you already have cloned or download the Extensions API SDK. For information about setting up your environment and the Tableau requirements, see [Get Started]({{site.baseurl}}/docs/trex_getstarted.html).
 
-For convenience, you might want to create a folder for your "Hello World" dashboard extension in the same location where you installed or cloned the GitHub repository (for example, `HelloDemo` under `/extensions-api`). That way, you can use the same web server (`http-server`) that is used for the samples. 
+For convenience, you might want to create a folder for your "Hello World" dashboard extension in the same location where you installed or cloned the GitHub repository (for example, `HelloDemo` under `/extensions-api`). That way, you can use the same web server (`http-server`) that is used for the samples.
 
 
 
 ### Create a manifest file
 
-The manifest file (`EXTENSION-NAME.trex`) is an XML file that describes the extension and provides information to register the extension with Tableau. 
+The manifest file (`EXTENSION-NAME.trex`) is an XML file that describes the extension and provides information to register the extension with Tableau.
 
 1.  In the `HelloDemo` folder (or where ever you want to put your files), create a manifest file for your extension.
 Name the manifest file for your extension (for example, `HelloExtension` and save it with the file name extension `.trex`. <br/>
-The manifest file is an XML file that contains elements and attributes that describe the extension. For a description of the contents of this file, see [Elements of the manifest file]({{site.baseurl}}/docs/trex_manifest#elements-of-the-manifest-file). The XSD that is used for validation is available on the [Tableau Pre-Release website](https://prerelease.tableau.com/project/version/item.html?cap=52e2710a0793434d82142736c7ab3029&arttypeid={0DD668AE-472C-4E70-B465-35F7AE0DEB6D}&artid={939493D2-8000-4192-857A-67624CBCC35A}){:target="_blank"}.
+The manifest file is an XML file that contains elements and attributes that describe the extension. For a description of the contents of this file, see [Elements of the manifest file]({{site.baseurl}}/docs/trex_manifest#elements-of-the-manifest-file).
 
 2. Copy the following XML code into your new file. Make sure that the `<?xml ...>` declaration appears as the first element in the file (line 1, column 1). Any blank spaces in front of the declaration will cause an error when you load the extension.  
 
