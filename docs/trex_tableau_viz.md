@@ -149,6 +149,8 @@ You can use the same tools that you use to debug dashboard extensions to debug p
 
 The following is a list of common error messages that you might encounter and includes steps for fixing those errors. The error messages appear in the Console window when you use the Chrome or Chromium debugging tools.
 
+For specific issues with the current release, see [Tableau Viz - Known Issues]({{site.baseurl}}/docs/trex_known_issues.html#tableau-viz---known-issues).
+
 #### Invalid Palette Name
 
 `Error: internal-error: {"vizapiErrorMsg":"Invalid Palette Name"}`
