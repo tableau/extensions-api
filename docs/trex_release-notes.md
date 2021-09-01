@@ -27,7 +27,7 @@ About this release:
 
 ![Tableau Viz SVG image]({{site.baseurl }}/assets/vizapi_demo3.svg)
 
-Starting with version 1.6 of the Dashboard Extensions API library and Tableau 2021.3, you can now add Tableau visualizations to your dashboard extensions. Tableau Viz takes a declarative description of your visualization and renders it as an SVG file that you can embed in your extension.  Version 1.6 of the Dashboard Extensions library adds the [`tableau.extensions.createVizImageAsync`]({{site.baseurl}}/docs/interfaces/extensions.html#createvizimageasync){:target="_blank"} method, which takes the JSON description of the image as an input.<br/> 
+Starting with version 1.6 of the Dashboard Extensions API library and Tableau 2021.3, you can now add Tableau visualizations to your dashboard extensions. Tableau Viz takes a declarative description of your visualization and renders it as an SVG image that you can embed in your extension.  Version 1.6 of the Dashboard Extensions library adds the [`tableau.extensions.createVizImageAsync`]({{site.baseurl}}/docs/interfaces/extensions.html#createvizimageasync){:target="_blank"} method, which takes the JSON description of the image as an input.<br/> 
 For more information about using Tableau Viz, see: <br/>
   - [Add Tableau Viz to Your Dashboard Extensions]({{site.baseurl}}/docs/trex_tableau_viz.html)
   - [Tableau Viz Reference]({{site.baseurl}}/docs/trex_tableau_viz_ref.html)

@@ -24,15 +24,14 @@ These instructions assume that you already have cloned or download the Extension
 
 For convenience, you might want to create a folder for your "Hello World" dashboard extension in the same location where you installed or cloned the GitHub repository (for example, `HelloDemo` under `/extensions-api`). That way, you can use the same web server (`http-server`) that is used for the samples.
 
-
+---
 
 ### Create a manifest file
 
-The manifest file (`EXTENSION-NAME.trex`) is an XML file that describes the extension and provides information to register the extension with Tableau.
+The manifest file (`EXTENSION-NAME.trex`) is an XML file that describes the extension and provides information to register the extension with Tableau. For a description of the contents of this file, see [Elements of the manifest file]({{site.baseurl}}/docs/trex_manifest#elements-of-the-manifest-file).
 
 1.  In the `HelloDemo` folder (or where ever you want to put your files), create a manifest file for your extension.
-Name the manifest file for your extension (for example, `HelloExtension` and save it with the file name extension `.trex`. <br/>
-The manifest file is an XML file that contains elements and attributes that describe the extension. For a description of the contents of this file, see [Elements of the manifest file]({{site.baseurl}}/docs/trex_manifest#elements-of-the-manifest-file).
+Name the manifest file for your extension (for example, `HelloExtension` and save it with the file name extension `.trex`.
 
 2. Copy the following XML code into your new file. Make sure that the `<?xml ...>` declaration appears as the first element in the file (line 1, column 1). Any blank spaces in front of the declaration will cause an error when you load the extension.  
 
@@ -71,11 +70,10 @@ The manifest file is an XML file that contains elements and attributes that desc
 
 - After you have created the HTML and JavaScript files for your extension, you use this `.trex` file to add the extension to a Tableau dashboard. To do that, you drag the **Extension** object on to the dashboard. In the **Choose an Extension** dialog box, click **My Extensions** to locate and open the manifest file you just created.
 
-- For information about validating the manifest and adding version information, see the [Tableau Extension Manifest]({{site.baseurl}}/docs/trex_manifest.html).
+- For information about the manifest file and about adding version information, see the [Tableau Extension Manifest]({{site.baseurl}}/docs/trex_manifest.html).
 
 
-
-
+---
 
 ### Create your web app
 
@@ -87,11 +85,9 @@ The web app you create controls and interacts with the Tableau dashboard objects
 
 Your web application must include an HTML page. This page should link to the Extensions API JavaScript library and to any other JavaScript, CSS, or HTML resources your web app requires. You could add the JavaScript code to initialize and call Extensions API functions directly in the HTML page. However, in most cases you want to keep this code in a separate file. 
 
-1.  In the `HelloDemo` folder (or where ever you put your `.trex` file), create a file called `HelloExtension.html`. 
-
+1. In the `HelloDemo` folder (or where ever you put your `.trex` file), create a file called `HelloExtension.html`.
 
 2. You can copy and paste the following code into your file. This code creates a very simple page with a button that when clicked will initialize and use the API to get the name of the dashboard the extension is running in. This HTML code assumes that you are creating your extension in a folder (for example, `HelloDemo`) under the `/extensions-api` directory. 
-
 
 
    ```html
@@ -131,7 +127,6 @@ Your web application must include an HTML page. This page should link to the Ext
 
    The sample code includes a link to the JavaScript library (`tableau.extensions.1.latest.js`), which is available in the `/lib` folder. The sample code also includes links to jQuery and Bootstrap libraries. 
 
-
 3. If necessary, adjust the relative path to the Extensions API JavaScript library (`tableau.extensions.1.latest.js`), which is available in the `/lib` folder. 
 
    ```html
@@ -149,6 +144,8 @@ Your web application must include an HTML page. This page should link to the Ext
    <script src="./hello-extension.js"></script>
 
    ```
+
+---
 
 #### Start the web service to host the extension
 
@@ -168,6 +165,9 @@ Your web application must include an HTML page. This page should link to the Ext
 
    ```
 
+
+---
+
 ### Test your extension in Tableau
 
 After you have created the manifest file (`.trex`) and have hosted your web app you can test it in Tableau. It's a good idea to do this even if your application isn't completed.
@@ -185,7 +185,7 @@ After you have created the manifest file (`.trex`) and have hosted your web app 
    - Tableau parses the `.trex` file when you add the extension to the dashboard. If you make changes to the `.trex` file after you have added it to the dashboard, you need to remove the extension and re-add it. See [What Happens When you Reload an Extension]({{site.baseurl}}/docs/trex_reload.html)
 
 
-
+---
 
 ### Add code to initialize the extension and call Tableau Extensions API functions
 
@@ -225,6 +225,7 @@ The next step is to create the JavaScript that calls the Extensions API. In your
 
 |**About the example code** <br/>The JavaScript example uses the jQuery document ready function to detect when the web page is loaded and ready. The code also uses an event handler to delay the initialization until the user clicks the `initializeButton`. When the page is ready and the user clicks the button, the initialization function (`initializeAsync`) instantiates a dashboard extension. To handle the promise, the `then` method calls two callback functions to handle successful initialization or failure. In case of success, the example gets the dashboard object from the extension, and then accesses the `name` property  to display the name of the dashboard sheet in the hosting web page. In case of an error, the error message is displayed.
 
+---
 
 ### Debugging and testing your extension in Tableau
 

@@ -44,13 +44,13 @@ graph LR
 
 ## Input specification
 
-A Tableau Viz is defined by a specification. This is the `inputSpec` that you pass  as an argument to the `createVizImageAsync` method. The `inputSpec` is a JavaScript object that contains the embedded data and visual specification details. There are two main parts to the `inputSpec`:
+A Tableau Viz is defined by a specification. This is the `inputSpec` that you pass as an argument to the `createVizImageAsync` method. The `inputSpec` is a JavaScript object that contains the embedded data and visual specification details. There are two main parts to the `inputSpec`:
 
 * the `data:` (an array of objects, for example, the selected measures and dimensions in the dashboard)
 
 * information about how to format that data (size of viz, mark type, mark color, encoding)
 
-The `inputSpec` is structured in JSON format. The following example shows a specification that creates a simple bar chart. In this example, the data values are statically assigned as part of the specification. In many cases, you would probably programmatically assign the values based upon marks selection in the dashboard or based on some other selection criteria.
+The `inputSpec` is a structured JavaScript object. The following example shows a specification that creates a simple bar chart. In this example, the data values are statically assigned as part of the specification. In many cases, you would probably programmatically assign the values based upon mark selection in the dashboard or based on some other selection criteria.
 
 
 ```javascript
@@ -70,13 +70,13 @@ The `inputSpec` is structured in JSON format. The following example shows a spec
                         { Category: 'I', Sales: 52 }
                     ]
                 },
-                mark: 'bar',
+                mark: tableau.MarkType.Bar,
                 encoding: {
-                    columns: { field: 'Category', type: 'discrete' },
-                    rows: { field: 'Sales', type: 'continuous', hidden: true},
-                    color: { field: 'Sales', type: 'continuous', palette: 'tableau-map-temperatur'},
-                    text: { field: 'Category', type: 'discrete' },
-                    size: { field: 'Category', type: 'discrete'}
+                    columns: { field: 'Category', type: tableau.VizImageEncodingType.Discrete },
+                    rows: { field: 'Sales', type: tableau.VizImageEncodingType.Continuous, hidden: true},
+                    color: { field: 'Sales', type: tableau.VizImageEncodingType.Continuous, palette: 'tableau-map-temperatur'},
+                    text: { field: 'Category', type: tableau.VizImageEncodingType.Discrete },
+                    size: { field: 'Category', type: tableau.VizImageEncodingType.Discrete}
                 }
             };
 
@@ -88,7 +88,7 @@ For more information about the `inputSpec`, see [Tableau Viz Reference]({{site.b
 
 ## Call createVizImageAsync
 
-After you create the `inputSpec` you pass it as an argument to the `createVizImageAsync` method. The method returns an SVG image that can be used by the extension. This example takes the `yourEmbeddedDataSpec` that was defined in the previous step, and uses that to describe the SVG to create.
+After you create the `inputSpec` you pass it as an argument to the `createVizImageAsync` method. The method returns an SVG image that can be used by the extension. This example takes the `yourEmbeddedDataSpec` that was defined in the previous step, and uses that to describe the chart to create.
   
  ```javascript
  tableau.extensions.createVizImageAsync(yourEmbeddedDataSpec).then((svg) => {
@@ -114,7 +114,6 @@ The asynchronous method returns an SVG image as the promise. Here is one way of 
                 vizApiElement.appendChild(image);
                 image.addEventListener('load', function () { return URL.revokeObjectURL(url); }, { once: true });
             }, (err) => {
-                console.log('We are here');
                 console.log(err);
             });
 
@@ -162,10 +161,10 @@ Be sure that you use one of the palette names listed for the `color` key under e
 
 `Error: internal-error: {"vizapiErrorMsg":"Encoding columns has invalid type. Accepted values are Continuous and Discrete"}`
 
-When you encode the fields in the `inputSpec`, you need to make sure that the discrete fields (dimensions, or blue pills) and continuous fields (measures, or green pills) are mapped to the correct types.
+When you encode the fields in the `inputSpec`, you need to make sure that the discrete fields (blue pills) and continuous fields (green pills) are mapped to the correct types: `tableau.VizImageEncodingType.Discrete` and `tableau.VizImageEncodingType.Continuous`.
 
 
 #### Invalid JSON
 
-The `inputSpec` needs to be in JSON format and must include all required elements. You must encode columns and fields. Use a JSON validator, if possible, to check that your format is correct.
+The `inputSpec` is a JavaScript object, which Tableau converts to JSON for processing. The `inputSpec` needs to be in the correct format and must include all required elements. You must encode columns and fields. For the list of required elements, see [Tableau Viz Reference]({{site.baseurl}}/docs/trex_tableau_viz_ref.html).
 
