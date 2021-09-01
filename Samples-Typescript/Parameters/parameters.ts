@@ -1,10 +1,9 @@
 import {
+    DataType,
     Parameter,
     ParameterChangedEvent,
     ParameterDomainRestriction
 } from '@tableau/extensions-api-types';
-
-import { DataType } from '@tableau/extensions-api-types/ExternalContract/Namespaces/Tableau';
 
 // Wrap everything in an anonymous function to avoid polluting the global namespace
 (async () => {
