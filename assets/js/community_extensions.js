@@ -21,7 +21,7 @@ function append(extension) {
     }
 
     if (extension.website) {
-        h += '<p><b>More Details: </b><a href="' + extension.website + '" alt="Source code link">' + extension.website + '</a></p>';
+        h += '<p><b>More Details: </b><a href="' + extension.website + '" alt="Source code link" class="wrapLink">' + extension.website + '</a></p>';
     }
 
     if (extension.source_code) {
