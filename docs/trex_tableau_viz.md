@@ -166,5 +166,5 @@ When you encode the fields in the `inputSpec`, you need to make sure that the di
 
 #### Invalid JSON
 
-The `inputSpec` is a JavaScript object, which Tableau converts to JSON for processing. The `inputSpec` needs to be in the correct format and must include all required elements. You must encode columns and fields. For the list of required elements, see [Tableau Viz Reference]({{site.baseurl}}/docs/trex_tableau_viz_ref.html).
+The `inputSpec` is a JavaScript object that Tableau converts to JSON for processing. The `inputSpec` needs to be in the correct format and must include all required elements. You must encode columns and fields. For the list of required elements, see [Tableau Viz Reference]({{site.baseurl}}/docs/trex_tableau_viz_ref.html).
 

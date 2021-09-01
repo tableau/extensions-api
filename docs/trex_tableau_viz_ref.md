@@ -45,14 +45,14 @@ The following shows an example `inputSpec` that creates a bar chart image.
       {"Category": "C", "Sales": 43, "Weather": "Sun", "Quantity": 9}
     ]
   },
-  "mark": "bar",
+  "mark": tableau.MarkType.Bar,
   "markcolor": "#FFA500",
   "encoding": {
-    "columns": {"field": "Sales", "type": "continuous"},
-    "rows": {"field": "Category", "type": "discrete", "hidden": "true"},
-    "color": {"field": "Weather", "type": "discrete", "palette": "seattle_grays_10_0"},
-    "size": {"field": "Quantity", "type": "continuous"},
-    "text": {"field": "Category", "type": "discrete"}
+    "columns": {"field": "Sales", "type": tableau.VizImageEncodingType.Continuous},
+    "rows": {"field": "Category", "type": tableau.VizImageEncodingType.Discrete, "hidden": "true"},
+    "color": {"field": "Weather", "type": tableau.VizImageEncodingType.Discrete, "palette": "seattle_grays_10_0"},
+    "size": {"field": "Quantity", "type": tableau.VizImageEncodingType.Continuous},
+    "text": {"field": "Category", "type": tableau.VizImageEncodingType.Discrete}
   }
 }
 
@@ -101,7 +101,7 @@ data: {
 
 ### `mark`
 
-(Optional) Supported mark types include: `bar`, `line`, `area`, `square`, `circle`, `text`. If no mark type is specified, the generated image will use the Tableau default for that data.
+(Optional) Supported mark types include: `tableau.MarkType.Bar`, `tableau.MarkType.Line`, `tableau.MarkType.Area`, `tableau.MarkType.Square`, `tableau.MarkType.Circle`, `tableau.MarkType.Text`. If no mark type is specified, the generated image will use the Tableau default for that data.
 
 
 ### `markcolor`
@@ -133,7 +133,7 @@ If you specify the size, you must specify both the width and height. If you don'
 ### `encoding`
 
 Corresponds to the Marks card in Tableau and describes how the marks (measures and dimensions) are encoded. In Tableau, when you drag fields onto the properties on the Marks card it encodes the data in the view. The `encoding` key lets you set the properties of the marks for the image. <br/> The `columns`, `rows` keys allow you to define the layout of your view, just like you do in Tableau today. You can also map fields to the `color`, `size`, and `text` properties. 
-Within these properties, you must specify the field to encode and its type (`continuous` or `discrete`). Some keys allow you to set additional values as shown in the following table.
+Within these properties, you must specify the field to encode and its type (`tableau.VizImageEncodingType.Continuous` or `tableau.VizImageEncodingType.Discrete`). Some keys allow you to set additional values as shown in the following table.
 
 ---
 
@@ -142,7 +142,7 @@ Within these properties, you must specify the field to encode and its type (`con
 | Key |  Value |
 |:--- |:--- |
 |`field` | The name of the field to encode. |
-|`type`| The type of field, either `discrete` (blue "pill") or `continuous` (green "pill"). You can also specify the type using the enumerations: `tableau.VizImageEncodingType.Discrete` or `tableau.VizImageEncodingType.Continuous`.|
+|`type`| The type of field, either `tableau.VizImageEncodingType.Discrete` (blue "pill") or `tableau.VizImageEncodingType.Continuous` (green "pill"). |
 |`hidden` | Boolean (`true`, `false`). Specifies whether to show or hide the column or row header. |
 |`title` | Specifies a custom field label (x-axis, or header) or custom axis title (y-axis) for the columns and rows. |
 | `showtitle` | Boolean (`true`, `false`). Specifies whether to show or hide the custom column or row title. |
@@ -152,8 +152,8 @@ The following is an example of how you might specify the encodings for columns a
 ```json
 
 encoding: {
-  columns: {field: "Sales", type: "continuous", title: "My Custom Title", showtitle: false},
-  rows: {field: "Category", type: "discrete"  }
+  columns: {field: "Sales", type: tableau.VizImageEncodingType.Continuous, title: "My Custom Title", showtitle: false},
+  rows: {field: "Category", type: tableau.VizImageEncodingType.Discrete  }
 } 
 
 ```
@@ -170,7 +170,7 @@ The `color` key corresponds to the Color button on the Marks card. The color can
 |`showlegend` | Boolean (`true`, `false`). Specifies whether to show or hide the color legend. |
 
 
-**`palette` names for `continuous` fields**
+**`palette` names for continuous fields**
 
 You can specify one of the following Tableau color palettes with the `palette` key for continuous fields. Note that the list of available palettes depends upon the version of Tableau that is being used. Be aware that the palette colors are subject to change.
 
@@ -180,7 +180,7 @@ The following is an example that shows how you might encode a continuous field w
 
 encoding: {
    ...
-   color: { field: 'Measure', type: 'continuous', palette: 'green_blue_white_diverging_10_0'},
+   color: { field: 'Measure', type: tableau.VizImageEncodingType.Continuous, palette: 'green_blue_white_diverging_10_0'},
    ...
 }
 
@@ -193,7 +193,7 @@ encoding: {
 
 
 
-**`palette` names for `discrete` fields**
+**`palette` names for discrete fields**
 
 You can specify one of the following Tableau color palettes with the `palette` key for discrete fields. Note that the list of available palettes depends upon the version of Tableau that is being used. Be aware that the palette colors are subject to change.
 
@@ -202,7 +202,7 @@ The following is an example that shows how you might encode a discrete field wit
 ```json
 encoding: {
    ...
-   color: { field: 'Category', type: 'discrete', palette: 'seattle_grays_10_0'},
+   color: { field: 'Category', type: tableau.VizImageEncodingType.Discrete, palette: 'seattle_grays_10_0'},
    ...
 }
 
