@@ -24,35 +24,36 @@ createVizImageAsync( inputSpec:  *object* ): Promise<string>
 ```
 
 This method takes a single argument, the `inputSpec`, a JavaScript object, and returns the SVG description of that image. To call this method, you first initialize the Dashboard Extensions API (`tableau.extensions.initialize()`). You then create the `inputSpec` object that defines your graphic.
+For more information about the method, see [`tableau.extensions.createVizImageAsync`]({{site.baseurl}}/docs/interfaces/extensions.html#createvizimageasync){:target="_blank"} in the Dashboard Extensions API reference. 
 
 
-## JSON specification for `inputSpec` object
+## Specification for `inputSpec` object
 
-The `inputSpec` is a JavaScript object that uses JSON format and specifies the attribute-value pairs to use to create the SVG image. The object consists of the `data` and the attributes that specify how to format the data, for example, `mark`, `markcolor`, `size`, and `encoding`. The `data` is an array of objects. The `data` is listed in row-level order, where each object represents one item. The `mark` attribute specifies the type of mark to use in the image,for example, you can change the marks from bars to lines. 
+The `inputSpec` is a JavaScript object that specifies the name-value pairs to use to create the SVG image. The object consists of the `data` and the properties that specify how to format the data, for example, `mark`, `markcolor`, `size`, and `encoding`. The `data` is an array of objects. The `data` is listed in row-level order, where each object represents one item. The `mark` property specifies the type of mark to use in the image, for example, you can change the mark type from bars to lines.
 
 The following shows an example `inputSpec` that creates a bar chart image.
 
-```json
+```javascript
 
 
 {
-  "description": "A bar chart with multiple encodings",
-  "size": {"width": 800, "height": 600},
-  "data": {
-    "values": [
+  description: "A bar chart with multiple encodings",
+  size: {width: 800, height: 600},
+  data: {
+    values: [
       {"Category": "A", "Sales": 28, "Weather": "Sun", "Quantity": 3},
       {"Category": "B", "Sales": 55, "Weather": "Sun", "Quantity": 6},
       {"Category": "C", "Sales": 43, "Weather": "Sun", "Quantity": 9}
     ]
   },
-  "mark": tableau.MarkType.Bar,
-  "markcolor": "#FFA500",
-  "encoding": {
-    "columns": {"field": "Sales", "type": tableau.VizImageEncodingType.Continuous},
-    "rows": {"field": "Category", "type": tableau.VizImageEncodingType.Discrete, "hidden": "true"},
-    "color": {"field": "Weather", "type": tableau.VizImageEncodingType.Discrete, "palette": "seattle_grays_10_0"},
-    "size": {"field": "Quantity", "type": tableau.VizImageEncodingType.Continuous},
-    "text": {"field": "Category", "type": tableau.VizImageEncodingType.Discrete}
+  mark: tableau.MarkType.Bar,
+  markcolor: "#FFA500",
+  encoding: {
+    columns: {field: "Sales", type: tableau.VizImageEncodingType.Continuous},
+    rows: {field: "Category", type: tableau.VizImageEncodingType.Discrete, hidden: "true"},
+    color: {field: "Weather", type: tableau.VizImageEncodingType.Discrete, palette: "seattle_grays_10_0"},
+    size: {field: "Quantity", type: tableau.VizImageEncodingType.Continuous},
+    text: {field: "Category", type: tableau.VizImageEncodingType.Discrete}
   }
 }
 
@@ -60,9 +61,9 @@ The following shows an example `inputSpec` that creates a bar chart image.
 ```
 
 ---
-## Descripion of `inputSpec` keys
+## Descripion of `inputSpec` properties
 
-The following table describes the keys of the elements in the `inputSpec`, the JavaScript JSON object.
+The following table describes the properties in the `inputSpec`, the JavaScript object that you provide as input to the `createVizImageAsync` method.
 
 
 ### `description`
@@ -73,16 +74,16 @@ The following table describes the keys of the elements in the `inputSpec`, the J
 
 (Optional)    Creates a title for the image.
 
-```json
+```javascript
 title: "My Custom Viz", 
 
 ```
 
 ### `data`
 
-(Required) The data to use to create the image. The `data` consists of an array of objects, specified with the `"values"` key. Data is listed in row level order, where each object represents one item.
+(Required) The data to use to create the image. The `data` consists of an array of objects, specified with the `"values"` property. Data is listed in row level order, where each object represents one item.
 
-```json
+```javascript
 data: {
   values: [
    { Category: 'A', Sales: 28 },
@@ -108,7 +109,7 @@ data: {
 
 Specifies a mark color for all marks, for example, hex values. This is equivalent to selecting an arbitrary color in the Color Shelf of the Marks card in Tableau.
 
-```json
+```javascript
  markcolor: "#FFA500",
 
 ```
@@ -117,7 +118,7 @@ Specifies a mark color for all marks, for example, hex values. This is equivalen
 
 (Optional) Specifies the size of the image in pixels. The size is described with width and height dimensions.
 
-| Key |  Value |
+| Property |  Value |
 |:--- |:--- |
 |`width` | Width of the SVG image. |
 |`height`| Height of the SVG image.|
@@ -125,21 +126,21 @@ Specifies a mark color for all marks, for example, hex values. This is equivalen
 
 If you specify the size, you must specify both the width and height. If you don't specify a size, the image uses the default size (600 x 400).
 
-```json
-"size": {"width": 800, "height": 600},
+```javascript
+size: {width: 800, height: 600},
 
 ```
 
 ### `encoding`
 
-Corresponds to the Marks card in Tableau and describes how the marks (measures and dimensions) are encoded. In Tableau, when you drag fields onto the properties on the Marks card it encodes the data in the view. The `encoding` key lets you set the properties of the marks for the image. <br/> The `columns`, `rows` keys allow you to define the layout of your view, just like you do in Tableau today. You can also map fields to the `color`, `size`, and `text` properties. 
-Within these properties, you must specify the field to encode and its type (`tableau.VizImageEncodingType.Continuous` or `tableau.VizImageEncodingType.Discrete`). Some keys allow you to set additional values as shown in the following table.
+Corresponds to the Marks card in Tableau and describes how the marks (measures and dimensions) are encoded. In Tableau, when you drag fields onto the properties on the Marks card it encodes the data in the view. The `encoding` property lets you set the properties of the marks for the image. <br/> The `columns`, `rows` properties allow you to define the layout of your view, just like you do in Tableau today. You can also map fields to the `color`, `size`, and `text` properties. 
+Within these properties, you must specify the field to encode and its type (`tableau.VizImageEncodingType.Continuous` or `tableau.VizImageEncodingType.Discrete`). Some properties allow you to set additional values as shown in the following table.
 
 ---
 
 #### `columns` and `rows`
 
-| Key |  Value |
+| Property |  Value |
 |:--- |:--- |
 |`field` | The name of the field to encode. |
 |`type`| The type of field, either `tableau.VizImageEncodingType.Discrete` (blue "pill") or `tableau.VizImageEncodingType.Continuous` (green "pill"). |
@@ -149,7 +150,7 @@ Within these properties, you must specify the field to encode and its type (`tab
 
 The following is an example of how you might specify the encodings for columns and rows:
 
-```json
+```javascript
 
 encoding: {
   columns: {field: "Sales", type: tableau.VizImageEncodingType.Continuous, title: "My Custom Title", showtitle: false},
@@ -160,9 +161,9 @@ encoding: {
 
 #### `color`
 
-The `color` key corresponds to the Color button on the Marks card. The color can contain the following keys:
+The `color` property corresponds to the Color button on the Marks card. The color can contain additional properties:
 
-| Key |  Value |
+| Property |  Value |
 |:--- |:--- |
 |`field` | The name of the field to encode. |
 |`type`| The way the data is distributed in the view (`discrete` or `continuous`).|
@@ -172,11 +173,11 @@ The `color` key corresponds to the Color button on the Marks card. The color can
 
 **`palette` names for continuous fields**
 
-You can specify one of the following Tableau color palettes with the `palette` key for continuous fields. Note that the list of available palettes depends upon the version of Tableau that is being used. Be aware that the palette colors are subject to change.
+You can specify one of the following Tableau color palettes with the `palette` property for continuous fields. Note that the list of available palettes depends upon the version of Tableau that is being used. Be aware that the palette colors are subject to change.
 
 The following is an example that shows how you might encode a continuous field with a Tableau palette.
 
-```json
+```javascript
 
 encoding: {
    ...
@@ -195,11 +196,11 @@ encoding: {
 
 **`palette` names for discrete fields**
 
-You can specify one of the following Tableau color palettes with the `palette` key for discrete fields. Note that the list of available palettes depends upon the version of Tableau that is being used. Be aware that the palette colors are subject to change.
+You can specify one of the following Tableau color palettes with the `palette` property for discrete fields. Note that the list of available palettes depends upon the version of Tableau that is being used. Be aware that the palette colors are subject to change.
 
 The following is an example that shows how you might encode a discrete field with a Tableau palette.
 
-```json
+```javascript
 encoding: {
    ...
    color: { field: 'Category', type: tableau.VizImageEncodingType.Discrete, palette: 'seattle_grays_10_0'},
