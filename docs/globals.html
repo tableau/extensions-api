@@ -95,6 +95,7 @@
 								<li class="tsd-kind-interface"><a href="interfaces/filteroptions.html" class="tsd-kind-icon">Filter<wbr>Options</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/getsummarydataoptions.html" class="tsd-kind-icon">Get<wbr>Summary<wbr>Data<wbr>Options</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/getunderlyingdataoptions.html" class="tsd-kind-icon">Get<wbr>Underlying<wbr>Data<wbr>Options</a></li>
+								<li class="tsd-kind-interface"><a href="interfaces/hierarchicalfilteroptions.html" class="tsd-kind-icon">Hierarchical<wbr>Filter<wbr>Options</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/logicaltable.html" class="tsd-kind-icon">Logical<wbr>Table</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/markinfo.html" class="tsd-kind-icon">Mark<wbr>Info</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/markscollection.html" class="tsd-kind-icon">Marks<wbr>Collection</a></li>
@@ -110,6 +111,7 @@
 								<li class="tsd-kind-interface"><a href="interfaces/rangefilteroptions.html" class="tsd-kind-icon">Range<wbr>Filter<wbr>Options</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/rangevalue.html" class="tsd-kind-icon">Range<wbr>Value</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/relativedatefilter.html" class="tsd-kind-icon">Relative<wbr>Date<wbr>Filter</a></li>
+								<li class="tsd-kind-interface"><a href="interfaces/relativedatefilteroptions.html" class="tsd-kind-icon">Relative<wbr>Date<wbr>Filter<wbr>Options</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/selectioncriteria.html" class="tsd-kind-icon">Selection<wbr>Criteria</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/settings.html" class="tsd-kind-icon">Settings</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/settingschangedevent.html" class="tsd-kind-icon">Settings<wbr>Changed<wbr>Event</a></li>
@@ -121,6 +123,7 @@
 								<li class="tsd-kind-interface"><a href="interfaces/tableausheetevent.html" class="tsd-kind-icon">Tableau<wbr>Sheet<wbr>Event</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/tableauworksheetevent.html" class="tsd-kind-icon">Tableau<wbr>Worksheet<wbr>Event</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/ui.html" class="tsd-kind-icon">UI</a></li>
+								<li class="tsd-kind-interface"><a href="interfaces/workbook.html" class="tsd-kind-icon">Workbook</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/worksheet.html" class="tsd-kind-icon">Worksheet</a></li>
 							</ul>
 						</section>
@@ -144,7 +147,7 @@
 					<div class="tsd-signature tsd-kind-icon">Categorical<wbr>Value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/SelectionInterfaces.ts:67</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/SelectionInterfaces.ts:67</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -159,7 +162,7 @@
 					<div class="tsd-signature tsd-kind-icon">Tableau<wbr>Event<wbr>Handler<wbr>Fn<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/EventInterfaces.ts:87</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/EventInterfaces.ts:41</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -200,7 +203,7 @@
 					<div class="tsd-signature tsd-kind-icon">Tableau<wbr>Event<wbr>Unregister<wbr>Fn<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/EventInterfaces.ts:95</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/EventInterfaces.ts:49</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -236,7 +239,7 @@
 					<div class="tsd-signature tsd-kind-icon">Zone<wbr>Visibility<wbr>Map<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span><a href="enums/tableau.zonevisibilitytype.html" class="tsd-signature-type">ZoneVisibilityType</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/SheetInterfaces.ts:483</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:392</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -324,6 +327,9 @@
 						<a href="interfaces/getunderlyingdataoptions.html" class="tsd-kind-icon">Get<wbr>Underlying<wbr>Data<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-interface">
+						<a href="interfaces/hierarchicalfilteroptions.html" class="tsd-kind-icon">Hierarchical<wbr>Filter<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
 						<a href="interfaces/logicaltable.html" class="tsd-kind-icon">Logical<wbr>Table</a>
 					</li>
 					<li class=" tsd-kind-interface">
@@ -369,6 +375,9 @@
 						<a href="interfaces/relativedatefilter.html" class="tsd-kind-icon">Relative<wbr>Date<wbr>Filter</a>
 					</li>
 					<li class=" tsd-kind-interface">
+						<a href="interfaces/relativedatefilteroptions.html" class="tsd-kind-icon">Relative<wbr>Date<wbr>Filter<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
 						<a href="interfaces/selectioncriteria.html" class="tsd-kind-icon">Selection<wbr>Criteria</a>
 					</li>
 					<li class=" tsd-kind-interface">
@@ -400,6 +409,9 @@
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/ui.html" class="tsd-kind-icon">UI</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/workbook.html" class="tsd-kind-icon">Workbook</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/worksheet.html" class="tsd-kind-icon">Worksheet</a>
