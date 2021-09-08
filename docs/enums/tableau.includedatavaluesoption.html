@@ -72,8 +72,9 @@
 					<div class="lead">
 						<p>Enum that serves as a filter on the DataValues returned from <code>getSummaryDataAsync</code>,
 							<code>getUnderlyingTableDataAsync</code> and <code>getLogicalTableDataAsync</code>.
-							All properties not requested will be <code>undefined</code> in the DataValue results.
-						This is a performance optimization only, and will be ignored in Tableau versions prior to 2021.2.</p>
+							This is an optimization of returned data values only. Tableau versions prior to 2021.2
+							will pass the data across and populate the DataValue properties.
+						Please note that all properties not requested will be <code>undefined</code> in the DataValue results.</p>
 					</div>
 					<dl class="tsd-comment-tags">
 						<dt>since</dt>
@@ -105,7 +106,7 @@
 					<div class="tsd-signature tsd-kind-icon">All<wbr>Values<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;&quot;all-values&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Namespaces/Tableau.ts:376</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Namespaces/Tableau.ts:185</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -120,7 +121,7 @@
 					<div class="tsd-signature tsd-kind-icon">Only<wbr>Formatted<wbr>Values<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;&quot;only-formatted-values&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Namespaces/Tableau.ts:382</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Namespaces/Tableau.ts:191</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -135,7 +136,7 @@
 					<div class="tsd-signature tsd-kind-icon">Only<wbr>Native<wbr>Values<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;&quot;only-native-values&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Namespaces/Tableau.ts:379</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Namespaces/Tableau.ts:188</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -248,6 +249,9 @@
 					</li>
 					<li class=" tsd-kind-enum tsd-parent-kind-module">
 						<a href="tableau.trendlinemodeltype.html" class="tsd-kind-icon">Trend<wbr>Line<wbr>Model<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="tableau.vizimageencodingtype.html" class="tsd-kind-icon">Viz<wbr>Image<wbr>Encoding<wbr>Type</a>
 					</li>
 					<li class=" tsd-kind-enum tsd-parent-kind-module">
 						<a href="tableau.zonevisibilitytype.html" class="tsd-kind-icon">Zone<wbr>Visibility<wbr>Type</a>

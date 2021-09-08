@@ -82,6 +82,8 @@
 							<h3>Enumeration members</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="tableau.tableaueventtype.html#filterchanged" class="tsd-kind-icon">Filter<wbr>Changed</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="tableau.tableaueventtype.html#firstinteractive" class="tsd-kind-icon">First<wbr>Interactive</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="tableau.tableaueventtype.html#firstvizsizeknown" class="tsd-kind-icon">First<wbr>Viz<wbr>Size<wbr>Known</a></li>
 								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="tableau.tableaueventtype.html#markselectionchanged" class="tsd-kind-icon">Mark<wbr>Selection<wbr>Changed</a></li>
 								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="tableau.tableaueventtype.html#parameterchanged" class="tsd-kind-icon">Parameter<wbr>Changed</a></li>
 								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="tableau.tableaueventtype.html#settingschanged" class="tsd-kind-icon">Settings<wbr>Changed</a></li>
@@ -98,7 +100,7 @@
 					<div class="tsd-signature tsd-kind-icon">Filter<wbr>Changed<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;&quot;filter-changed&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Namespaces/Tableau.ts:336</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Namespaces/Tableau.ts:278</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -108,17 +110,48 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="firstinteractive" class="tsd-anchor"></a>
+					<h3>First<wbr>Interactive</h3>
+					<div class="tsd-signature tsd-kind-icon">First<wbr>Interactive<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;&quot;first-interactive&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Namespaces/Tableau.ts:294</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Fired when a viz first becomes interactive when embedded</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="firstvizsizeknown" class="tsd-anchor"></a>
+					<h3>First<wbr>Viz<wbr>Size<wbr>Known</h3>
+					<div class="tsd-signature tsd-kind-icon">First<wbr>Viz<wbr>Size<wbr>Known<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;&quot;first-viz-size-known&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Namespaces/Tableau.ts:291</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Fired when viz size is known when embedded</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
 					<a name="markselectionchanged" class="tsd-anchor"></a>
 					<h3>Mark<wbr>Selection<wbr>Changed</h3>
 					<div class="tsd-signature tsd-kind-icon">Mark<wbr>Selection<wbr>Changed<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;&quot;mark-selection-changed&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Namespaces/Tableau.ts:339</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Namespaces/Tableau.ts:282</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The selected marks on a visualization has changed. You can use this event type with <a href="../interfaces/worksheet.html">Worksheet</a> objects.</p>
+							<p>The selected marks on a visualization has changed.
+							You can use this event type with <a href="../interfaces/worksheet.html">Worksheet</a> objects.</p>
 						</div>
 					</div>
 				</section>
@@ -128,7 +161,7 @@
 					<div class="tsd-signature tsd-kind-icon">Parameter<wbr>Changed<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;&quot;parameter-changed&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Namespaces/Tableau.ts:342</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Namespaces/Tableau.ts:285</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -143,7 +176,7 @@
 					<div class="tsd-signature tsd-kind-icon">Settings<wbr>Changed<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;&quot;settings-changed&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Namespaces/Tableau.ts:345</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Namespaces/Tableau.ts:288</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -245,6 +278,12 @@
 								<a href="tableau.tableaueventtype.html#filterchanged" class="tsd-kind-icon">Filter<wbr>Changed</a>
 							</li>
 							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="tableau.tableaueventtype.html#firstinteractive" class="tsd-kind-icon">First<wbr>Interactive</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="tableau.tableaueventtype.html#firstvizsizeknown" class="tsd-kind-icon">First<wbr>Viz<wbr>Size<wbr>Known</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
 								<a href="tableau.tableaueventtype.html#markselectionchanged" class="tsd-kind-icon">Mark<wbr>Selection<wbr>Changed</a>
 							</li>
 							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
@@ -259,6 +298,9 @@
 				<ul class="after-current">
 					<li class=" tsd-kind-enum tsd-parent-kind-module">
 						<a href="tableau.trendlinemodeltype.html" class="tsd-kind-icon">Trend<wbr>Line<wbr>Model<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="tableau.vizimageencodingtype.html" class="tsd-kind-icon">Viz<wbr>Image<wbr>Encoding<wbr>Type</a>
 					</li>
 					<li class=" tsd-kind-enum tsd-parent-kind-module">
 						<a href="tableau.zonevisibilitytype.html" class="tsd-kind-icon">Zone<wbr>Visibility<wbr>Type</a>

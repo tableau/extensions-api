@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>MarksCollection | Dashboard Extensions</title>
+	<title>Workbook | Dashboard Extensions</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="markscollection.html">MarksCollection</a>
+					<a href="workbook.html">Workbook</a>
 				</li>
 			</ul>
-			<h1>Interface MarksCollection</h1>
+			<h1>Interface Workbook</h1>
 		</div>
 	</div>
 </header>
@@ -67,16 +67,20 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Represents a collection of marks on a viz. This collection could be
-						marks that are either selected or highlighted.</p>
+						<p>The <code>Workbook</code> represents the currently open workbook.</p>
 					</div>
+					<dl class="tsd-comment-tags">
+						<dt>since</dt>
+						<dd><p>1.6.0 and Tableau 2021.3</p>
+						</dd>
+					</dl>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">MarksCollection</span>
+						<span class="target">Workbook</span>
 					</li>
 				</ul>
 			</section>
@@ -85,34 +89,45 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Properties</h3>
+							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="markscollection.html#data" class="tsd-kind-icon">data</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="workbook.html#getalldatasourcesasync" class="tsd-kind-icon">get<wbr>All<wbr>Data<wbr>Sources<wbr>Async</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="data" class="tsd-anchor"></a>
-					<h3>data</h3>
-					<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="datatable.html" class="tsd-signature-type">DataTable</a><span class="tsd-signature-symbol">&gt;</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/SelectionInterfaces.ts:14</li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<dl class="tsd-comment-tags">
-							<dt>returns</dt>
-							<dd><p>A collection of data tables. Each row in each data table represents a single
-									mark on the viz. Since marks can contain columns different than the columns of another mark,
-								for example, a dual axis chart, each table represents one specific schema of a mark.</p>
-							</dd>
-						</dl>
-					</div>
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="getalldatasourcesasync" class="tsd-anchor"></a>
+					<h3>get<wbr>All<wbr>Data<wbr>Sources<wbr>Async</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>All<wbr>Data<wbr>Sources<wbr>Async<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="datasource.html" class="tsd-signature-type">DataSource</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/WorkbookInterfaces.ts:17</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p> Gets the data sources for this workbook. Note that calling this method might negatively impact performance
+										and responsiveness of the viz that your extension is added to. The method is not entirely
+									asynchronous and includes some serial operations.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>since</dt>
+									<dd><p>1.6.0 and Tableau 2021.3</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="datasource.html" class="tsd-signature-type">DataSource</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>All data sources used in this workbook.</p>
+						</li>
+					</ul>
 				</section>
 			</section>
 		</div>
@@ -129,10 +144,10 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="markscollection.html" class="tsd-kind-icon">Marks<wbr>Collection</a>
+						<a href="workbook.html" class="tsd-kind-icon">Workbook</a>
 						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="markscollection.html#data" class="tsd-kind-icon">data</a>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="workbook.html#getalldatasourcesasync" class="tsd-kind-icon">get<wbr>All<wbr>Data<wbr>Sources<wbr>Async</a>
 							</li>
 						</ul>
 					</li>

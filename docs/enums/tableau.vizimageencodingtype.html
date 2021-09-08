@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>MarksCollection | Dashboard Extensions</title>
+	<title>VizImageEncodingType | Dashboard Extensions</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="markscollection.html">MarksCollection</a>
+					<a href="../modules/tableau.html">Tableau</a>
+				</li>
+				<li>
+					<a href="tableau.vizimageencodingtype.html">VizImageEncodingType</a>
 				</li>
 			</ul>
-			<h1>Interface MarksCollection</h1>
+			<h1>Enumeration VizImageEncodingType</h1>
 		</div>
 	</div>
 </header>
@@ -67,52 +70,50 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Represents a collection of marks on a viz. This collection could be
-						marks that are either selected or highlighted.</p>
+						<p>Enum that represents the data type of encodings for createVizImageAsync.</p>
 					</div>
+					<dl class="tsd-comment-tags">
+						<dt>since</dt>
+						<dd><p>1.6.0</p>
+						</dd>
+					</dl>
 				</div>
-			</section>
-			<section class="tsd-panel tsd-hierarchy">
-				<h3>Hierarchy</h3>
-				<ul class="tsd-hierarchy">
-					<li>
-						<span class="target">MarksCollection</span>
-					</li>
-				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Properties</h3>
+							<h3>Enumeration members</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="markscollection.html#data" class="tsd-kind-icon">data</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="tableau.vizimageencodingtype.html#continuous" class="tsd-kind-icon">Continuous</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="tableau.vizimageencodingtype.html#discrete" class="tsd-kind-icon">Discrete</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="data" class="tsd-anchor"></a>
-					<h3>data</h3>
-					<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="datatable.html" class="tsd-signature-type">DataTable</a><span class="tsd-signature-symbol">&gt;</span></div>
+				<h2>Enumeration members</h2>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="continuous" class="tsd-anchor"></a>
+					<h3>Continuous</h3>
+					<div class="tsd-signature tsd-kind-icon">Continuous<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;&quot;continuous&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/SelectionInterfaces.ts:14</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Namespaces/Tableau.ts:322</li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<dl class="tsd-comment-tags">
-							<dt>returns</dt>
-							<dd><p>A collection of data tables. Each row in each data table represents a single
-									mark on the viz. Since marks can contain columns different than the columns of another mark,
-								for example, a dual axis chart, each table represents one specific schema of a mark.</p>
-							</dd>
-						</dl>
-					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="discrete" class="tsd-anchor"></a>
+					<h3>Discrete</h3>
+					<div class="tsd-signature tsd-kind-icon">Discrete<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;&quot;discrete&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Namespaces/Tableau.ts:321</li>
+						</ul>
+					</aside>
 				</section>
 			</section>
 		</div>
@@ -122,22 +123,109 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
+					<li class="current tsd-kind-module">
+						<a href="../modules/tableau.html">Tableau</a>
+					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="tableau.analyticsobjecttype.html" class="tsd-kind-icon">Analytics<wbr>Object<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="tableau.columntype.html" class="tsd-kind-icon">Column<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="tableau.dashboardobjecttype.html" class="tsd-kind-icon">Dashboard<wbr>Object<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="tableau.datatype.html" class="tsd-kind-icon">Data<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="tableau.daterangetype.html" class="tsd-kind-icon">Date<wbr>Range<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="tableau.encodingtype.html" class="tsd-kind-icon">Encoding<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="tableau.errorcodes.html" class="tsd-kind-icon">Error<wbr>Codes</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="tableau.extensioncontext.html" class="tsd-kind-icon">Extension<wbr>Context</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="tableau.extensionmode.html" class="tsd-kind-icon">Extension<wbr>Mode</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="tableau.fieldaggregationtype.html" class="tsd-kind-icon">Field<wbr>Aggregation<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="tableau.fieldroletype.html" class="tsd-kind-icon">Field<wbr>Role<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="tableau.filterdomaintype.html" class="tsd-kind-icon">Filter<wbr>Domain<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="tableau.filternulloption.html" class="tsd-kind-icon">Filter<wbr>Null<wbr>Option</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="tableau.filtertype.html" class="tsd-kind-icon">Filter<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="tableau.filterupdatetype.html" class="tsd-kind-icon">Filter<wbr>Update<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="tableau.includedatavaluesoption.html" class="tsd-kind-icon">Include<wbr>Data<wbr>Values<wbr>Option</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="tableau.marktype.html" class="tsd-kind-icon">Mark<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="tableau.parametervaluetype.html" class="tsd-kind-icon">Parameter<wbr>Value<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="tableau.periodtype.html" class="tsd-kind-icon">Period<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="tableau.quicktablecalctype.html" class="tsd-kind-icon">Quick<wbr>Table<wbr>Calc<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="tableau.selectionupdatetype.html" class="tsd-kind-icon">Selection<wbr>Update<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="tableau.sheettype.html" class="tsd-kind-icon">Sheet<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="tableau.sortdirection.html" class="tsd-kind-icon">Sort<wbr>Direction</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="tableau.tableaueventtype.html" class="tsd-kind-icon">Tableau<wbr>Event<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="tableau.trendlinemodeltype.html" class="tsd-kind-icon">Trend<wbr>Line<wbr>Model<wbr>Type</a>
+					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-interface">
-						<a href="markscollection.html" class="tsd-kind-icon">Marks<wbr>Collection</a>
+					<li class="current tsd-kind-enum tsd-parent-kind-module">
+						<a href="tableau.vizimageencodingtype.html" class="tsd-kind-icon">Viz<wbr>Image<wbr>Encoding<wbr>Type</a>
 						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="markscollection.html#data" class="tsd-kind-icon">data</a>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="tableau.vizimageencodingtype.html#continuous" class="tsd-kind-icon">Continuous</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="tableau.vizimageencodingtype.html#discrete" class="tsd-kind-icon">Discrete</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="tableau.zonevisibilitytype.html" class="tsd-kind-icon">Zone<wbr>Visibility<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="../modules/tableau.html#extensions" class="tsd-kind-icon">extensions</a>
+					</li>
 				</ul>
 			</nav>
 		</div>
