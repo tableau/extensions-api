@@ -12,6 +12,15 @@ For information about what is new or has changed in each release, see the [Relea
 * TOC
 {:toc}
 
+### Tableau Viz - Known Issues
+
+Tableau Viz provides a way to create visualizations in dashboard extensions. The following is a list of issues with the current release of Tableau Viz.
+
+* The vertical header text appears slightly cropped in the SVG output.
+* Tableau fonts are not available in the SVG output.
+
+For information about Tableau Viz, see [Add Tableau Viz to Your Dashboard Extension]({{site.baseurl}}/docs/trex_tableau_viz.html).
+
 ### Unable to debug extensions using Chrome version 80 or later
 
 Because of incompatibilities between Chrome and the internal Chromium-based browser used in Tableau, you can't use Chrome version 80 or later to debug your extensions. If you are using Tableau Desktop 2019.1 or later, you can debug extensions using Chrome version 79 or Chromium version 79. If you are using Tableau Desktop versions 2018.2 or 2018.3, you can use Chromium version 47. For more information about debugging extensions and using the Chromium browser, see [Debug Extensions in Tableau Desktop]({{site.baseurl}}/docs/trex_debugging.html) and [Download the Chromium Browser]({{site.baseurl}}/docs/trex_debugging.html#download-the-chromium-browser).
