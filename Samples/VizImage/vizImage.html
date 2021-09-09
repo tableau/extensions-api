@@ -21,9 +21,28 @@
   </head>
   <body>
     <div class="container">
-      <div id="viz-container">
-        
-      </div>
+        <h4>Viz Image Sample</h4>
+        <div id="viz-options">
+            <select id="mark-select" class="form-select" aria-label="Default select example" disabled="true">
+                <option selected value="bar" disabled>Mark Type</option>
+                <option value="bar">Bar</option>
+                <option value="line">Line</option>
+                <option value="area">Area</option>
+                <option value="square">Square</option>
+                <option value="circle">Circle</option>
+                <option value="text">Text</option>
+            </select>
+            <!-- See all color palettes available: https://tableau.github.io/extensions-api/docs/trex_tableau_viz_ref.html -->
+            <select id="color-select" class="form-select" aria-label="Default select example" disabled="true">
+                <option selected value="tableau_20_10_0" disabled>Color Palette</option>
+                <option value="tableau20_10_0">Tableau 20</option>
+                <option value="summer_10_0">Summer</option>
+                <option value="winter_10_0">Winter</option>
+                <option value="color_blind_10_0">Color Blind</option>
+            </select>
+        </div>
+        <hr>
+        <div id="viz-container"></div>
     </div>
   </body>
 </html>
