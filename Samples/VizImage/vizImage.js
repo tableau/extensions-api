@@ -12,7 +12,7 @@
       markSelector.prop('disabled', false);
       colorSelector.prop('disabled', false);
 
-      // updating viz images with new values upon a selector change
+      // updating viz images with new values upon a selector change.
       markSelector.change(function () {
         addVizImage(markSelector.val(), colorSelector.val());
       });
@@ -27,7 +27,7 @@
     // Building the input specification object that is used to create the viz image.
     // Data values used in the viz image are prefilled.
     const vizInputSpec = {
-      description: 'A sample viz', // optional parameter
+      description: 'A sample viz', // optional parameter.
       size: {width: 400, height: 300},
       data: {
         values: [
@@ -40,7 +40,7 @@
         ]
       },
       mark: markType,
-      markcolor: '#FFED5F', // may not get used in viz if color is encoded in viz
+      markcolor: '#FFED5F', // may not get used in viz if color is encoded in viz.
       encoding: {
         columns: {field: 'Region', type: tableau.VizImageEncodingType.Discrete},
         rows: {field: 'Sales', type: tableau.VizImageEncodingType.Continuous},
@@ -48,15 +48,15 @@
       }
     };
 
-    // defaulting values if null
+    // defaulting values if null.
     if (markType === null) {
-      vizInputSpec.mark = 'bar';
+      vizInputSpec.mark = tableau.MarkType.Bar;
     }
     if (palette === null) {
       vizInputSpec.encoding.color.palette = 'tableau20_10_0';
     }
 
-    // making call to create viz image from the input specifications
+    // making call to create viz image from the input specifications.
     tableau.extensions.createVizImageAsync(vizInputSpec).then(function (svg) {
       var blob = new Blob([svg], { type: 'image/svg+xml' });
       var url = URL.createObjectURL(blob);
@@ -66,7 +66,7 @@
       image.style.maxHeight = '100%';
       image.className = 'center-block';
       var vizApiElement = document.getElementById('viz-container');
-      // clearing UI and adding in new viz
+      // clearing UI and adding in new viz.
       vizApiElement.innerHTML = '';
       vizApiElement.appendChild(image);
       image.addEventListener('load', function () { return URL.revokeObjectURL(url); }, { once: true });

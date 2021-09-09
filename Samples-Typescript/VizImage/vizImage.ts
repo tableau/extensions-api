@@ -38,8 +38,8 @@ import { MarkType } from '@tableau/extensions-api-types';
      * @param colorPalette
      */
     private async addVizImage(markType: MarkType, palette: string) {
-      // Building the input specification object that is used to create the viz image.
-      // Data values used in the viz image are prefilled.
+      // Building the input specification object that is used to create the viz image
+      // Data values used in the viz image are prefilled
       const vizInputSpec = {
         data: {
           values: [
