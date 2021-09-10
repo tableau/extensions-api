@@ -31,6 +31,7 @@ Starting with version 1.6 of the Dashboard Extensions API library and Tableau 20
 For more information about using Tableau Viz, see: <br/>
   - [Add Tableau Viz to Your Dashboard Extensions]({{site.baseurl}}/docs/trex_tableau_viz.html)
   - [Tableau Viz Reference]({{site.baseurl}}/docs/trex_tableau_viz_ref.html)
+  - [Tableau Viz Sample - VizImage](https://github.com/tableau/extensions-api/tree/main/Samples/VizImage){:target="_blank"}
 
 New Dashboard Extension API methods in this release:
 
