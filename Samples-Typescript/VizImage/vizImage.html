@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Viz Image Sample</title>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+
+    <!-- Extensions Library (this will be hosted on a CDN eventually) -->
+    <script src="../../lib/tableau.extensions.1.latest.js"></script>
+
+    <!-- Our extension's code -->
+    <script src="../../dist/vizImage.js"></script>
+  </head>
+  <body>
+    <div class="container">
+        <h4>Viz Image Sample</h4>
+        <div id="viz-options">
+            <select id="mark-select" class="form-select" aria-label="Default select example" disabled="true">
+                <option selected disabled>Mark Type</option>
+                <option value="bar">Bar</option>
+                <option value="line">Line</option>
+                <option value="area">Area</option>
+                <option value="square">Square</option>
+                <option value="circle">Circle</option>
+                <option value="text">Text</option>
+            </select>
+            <!-- See all color palettes available: https://tableau.github.io/extensions-api/docs/trex_tableau_viz_ref.html -->
+            <select id="color-select" class="form-select" aria-label="Default select example" disabled="true">
+                <option selected disabled>Color Palette</option>
+                <option value="tableau20_10_0">Tableau 20</option>
+                <option value="summer_10_0">Summer</option>
+                <option value="winter_10_0">Winter</option>
+                <option value="color_blind_10_0">Color Blind</option>
+            </select>
+        </div>
+        <hr>
+        <div id="viz-container"></div>
+    </div>
+  </body>
+</html>

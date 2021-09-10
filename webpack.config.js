@@ -7,6 +7,7 @@ module.exports = {
     datasources: './Samples-Typescript/DataSources/datasources.ts',
     filtering: './Samples-Typescript/Filtering/filtering.ts',
     parameters: './Samples-Typescript/Parameters/parameters.ts',
+    vizImage: './Samples-Typescript/VizImage/vizImage.ts',
   },
   mode: 'production',
   output: {
