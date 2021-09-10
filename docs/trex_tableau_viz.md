@@ -136,6 +136,8 @@ Now that you have seen the basic steps for adding a Tableau Viz to a dashboard e
 
 * Review the [`tableau.extensions.createVizImageAsync`]({{site.baseurl}}/docs/interfaces/extensions.html#createvizimageasync){:target="_blank"} method for information about the API.
 
+* Check out the [Tableau Viz Sample - VizImage](https://github.com/tableau/extensions-api/tree/main/Samples/VizImage){:target="_blank"} and see how it works. Examine the source code to find out ways you can incorporate Tableau Viz into your own dashboard extensions.
+
 ---
 
 ## Troubleshoot Tableau Viz images in dashboard extensions
