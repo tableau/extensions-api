@@ -22,7 +22,7 @@ Submitting to the Community Portal {#portal}
 
 1. First, host your extension on a web server (see below for suggestions). Second, create a manifest file (`.trex`) where the URL points to the hosted location of your extension.  Finally, in your pull request, place the manifest file in the `community/CommunityManifests` folder.  Also place the file name into your entry in community_extensions.json.  Ensure the filename matches your manifest file and it is unique from others in the folder.
 
-1. Submit a pull request from your fork to the master branch in the official repository.
+1. Submit a pull request from your fork to the main branch in the official repository.
 
 
 After that, a member of the Tableau Extensibility team will review your submission.
