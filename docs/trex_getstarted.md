@@ -58,14 +58,14 @@ You can get the Tableau Extensions API SDK in two ways. Clone the repository if 
 
    `git clone https://github.com/tableau/extensions-api.git`
 
-* Download the [Tableau Extensions API SDK (.zip file)](https://github.com/tableau/extensions-api/archive/master.zip) and extract the files to your computer.
+* Download the [Tableau Extensions API SDK (.zip file)](https://github.com/tableau/extensions-api/archive/main.zip) and extract the files to your computer.
 
 
 
 ---
 ### Start a web server to host the sample dashboard extensions
 
-To use the dashboard extension samples, you need to start up a web server on your computer to host the HTML pages. If you downloaded or cloned the Extensions API repository, you can start the web service in the root directory of the repository on your computer. For example, if you downloaded the `extensions-api-master.zip` file to your `Downloads` directory, after you extract the files, the path might be `Downloads\extensions-api-master\extensions-api\`. 
+To use the dashboard extension samples, you need to start up a web server on your computer to host the HTML pages. If you downloaded or cloned the Extensions API repository, you can start the web service in the root directory of the repository on your computer. For example, if you downloaded the `extensions-api-main.zip` file to your `Downloads` directory, after you extract the files, the path might be `Downloads\extensions-api-main\extensions-api\`. 
 
 1. Navigate to the `extensions-api` directory.
 
