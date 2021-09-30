@@ -19,8 +19,9 @@
   // When changes are made to the dashboard we get all the details for each of the
   // dashboard objects that were changed and compare it with their previous values.
   // The dashboardLayoutChangeDetails property is a map of dashboard obejct ids to an array of dashboard layout changes.
-  // Dashboard layout change events are invoked when dashboard objects are resized, repositioned, added, removed,
-  // hidden, shown, renamed, made floating, and made tiled. Extension reloads when worksheets are added / removed.
+  // Dashboard layout change events are invoked when dashboard objects are resized, repositioned,
+  // added, and more. See DashboardLayoutChange in the API documentation for all possible actions.
+  // Extension reloads when worksheets are added / removed.
   function onDashboardLayoutChange (event) {
     console.log(event);
 
@@ -88,12 +89,14 @@
         li.text(`Floating is now ${dashboardObject.isFloating}, was ${oldDashboardObject.isFloating}`);
         ul.append(li);
       }
+
       // checking if the dashbaord object had changes to its visibility.
       if (changesMade.includes('is-visible-changed')) {
         let li = $('<li/>');
         li.text(`Visibility is now ${dashboardObject.isVisible}, was ${oldDashboardObject.isVisible}`);
         ul.append(li);
       }
+
       // checking if the dashboard object was repositioned.
       if (changesMade.includes('position-changed')) {
         let li = $('<li/>');
@@ -102,6 +105,7 @@
         li.text(`Position is now (${newPos.x},${newPos.y}), was (${oldPos.x},${oldPos.y})`);
         ul.append(li);
       }
+
       // checking if the dashboard object was resized.
       if (changesMade.includes('size-changed')) {
         let li = $('<li/>');
@@ -110,6 +114,7 @@
         li.text(`Size is now ${newSize.width}x${newSize.height}, was ${oldSize.width}x${oldSize.height}`);
         ul.append(li);
       }
+
       // checking if the dashboard object was renamed.
       if (changesMade.includes('name-changed')) {
         let li = $('<li/>');

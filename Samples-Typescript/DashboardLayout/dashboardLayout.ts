@@ -31,8 +31,10 @@ import { DashboardLayoutChange, DashboardLayoutChangedEvent, DashboardObject, Ta
     // dashboard objects that were changed and compare it with their previous values.
     // The dashboardLayoutChangeDetails property is a map of dashboard obj3ct ids to
     // an array of dashboard layout changes.
-    // Dashboard layout change events are invoked when dashboard objects are resized, repositioned, added, removed,
-    // hidden, shown, renamed, made floating, and made tiled. Extension reloads when worksheets are added / removed.
+    // Dashboard layout change events are invoked when dashboard objects are resized,
+    // repositioned, added, and more. See DashboardLayoutChange in the API documentation
+    // for all possible actions.
+    // Extension reloads when worksheets are added / removed.
     private onDashboardLayoutChange(event: TableauEvent) {
       console.log(event);
       const dashboardEvent = event as DashboardLayoutChangedEvent;
@@ -70,14 +72,7 @@ import { DashboardLayoutChange, DashboardLayoutChangedEvent, DashboardObject, Ta
         }
 
         // getting old dashboard object before event to compare it with the current one.
-        let oldDashboardObject;
-        // tslint:disable-next-line: prefer-for-of
-        for (let i = 0; i < oldDashboardObjects.length; i++) {
-          if (oldDashboardObjects[i].id === dashboardObjectId) {
-            oldDashboardObject = oldDashboardObjects[i];
-            break;
-          }
-        }
+        const oldDashboardObject = oldDashboardObjects.find(o => o.id === dashboardObjectId);
 
         // checking if this dashboard object was removed as part of the event.
         if (changesMade.includes(tableau.DashboardLayoutChange.Removed)) {
@@ -100,12 +95,14 @@ import { DashboardLayoutChange, DashboardLayoutChangedEvent, DashboardObject, Ta
           li.text(`Floating is now ${dashboardObject.isFloating}, was ${oldDashboardObject.isFloating}`);
           ul.append(li);
         }
+
         // checking if the dashbaord object had changes to its visibility.
         if (changesMade.includes(tableau.DashboardLayoutChange.IsVisibleChanged)) {
           const li = this._$('<li/>');
           li.text(`Visibility is now ${dashboardObject.isVisible}, was ${oldDashboardObject.isVisible}`);
           ul.append(li);
         }
+
         // checking if the dashboard object was repositioned.
         if (changesMade.includes(tableau.DashboardLayoutChange.PositionChanged)) {
           const li = this._$('<li/>');
@@ -114,6 +111,7 @@ import { DashboardLayoutChange, DashboardLayoutChangedEvent, DashboardObject, Ta
           li.text(`Position is now (${newPos.x},${newPos.y}), was (${oldPos.x},${oldPos.y})`);
           ul.append(li);
         }
+
         // checking if the dashboard object was resized.
         if (changesMade.includes(tableau.DashboardLayoutChange.SizeChanged)) {
           const li = this._$('<li/>');
@@ -122,6 +120,7 @@ import { DashboardLayoutChange, DashboardLayoutChangedEvent, DashboardObject, Ta
           li.text(`Size is now ${newSize.width}x${newSize.height}, was ${oldSize.width}x${oldSize.height}`);
           ul.append(li);
         }
+
         // checking if the dashboard object was renamed.
         if (changesMade.includes(tableau.DashboardLayoutChange.NameChanged)) {
           const li = this._$('<li/>');
@@ -138,12 +137,12 @@ import { DashboardLayoutChange, DashboardLayoutChangedEvent, DashboardObject, Ta
     private onEventButtonClick() {
       const dashboard = tableau.extensions.dashboardContent.dashboard;
       if ($('#dashboard-event-btn').text() === 'Add Dashboard Event') {
-        // tslint:disable-next-line: max-line-length
-        dashboard.addEventListener(tableau.TableauEventType.DashboardLayoutChanged, (event) => this.onDashboardLayoutChange(event));
+        dashboard.addEventListener(tableau.TableauEventType.DashboardLayoutChanged,
+          (event) => this.onDashboardLayoutChange(event));
         $('#dashboard-event-btn').text('Remove Dashboard Event');
       } else {
-        // tslint:disable-next-line: max-line-length
-        dashboard.removeEventListener(tableau.TableauEventType.DashboardLayoutChanged, (event) => this.onDashboardLayoutChange(event));
+        dashboard.removeEventListener(tableau.TableauEventType.DashboardLayoutChanged,
+          (event) => this.onDashboardLayoutChange(event));
         $('#dashboard-layout-change-list').empty();
         $('#dashboard-event-btn').text('Add Dashboard Event');
       }
