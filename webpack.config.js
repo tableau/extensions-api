@@ -4,6 +4,7 @@ const path = require('path');
 
 module.exports = {
   entry: {
+    dashboardLayout: './Samples-Typescript/DashboardLayout/dashboardLayout.ts',
     datasources: './Samples-Typescript/DataSources/datasources.ts',
     filtering: './Samples-Typescript/Filtering/filtering.ts',
     formatting: './Samples-Typescript/Formatting/formatting.tsx',
