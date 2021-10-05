@@ -14,16 +14,32 @@ import * as ReactDOM from 'react-dom';
     }
 
     private async Render() {
+      if (tableau.extensions.environment.workbookFormatting) {
+        await this.RenderFormatting();
+      } else {
+        await this.RenderInfoMissing();
+      }
+    }
+
+    private async RenderFormatting() {
       const tooltipClassNames = 'tooltiptext ' + tableau.ClassNameKey.Tooltip;
 
       ReactDOM.render(<>
         <h2 className={tableau.ClassNameKey.WorksheetTitle}>Subheader, using tableau-worksheet-title class</h2>
-        <text className={tableau.ClassNameKey.Worksheet}>Text, using worksheet class</text>
+        <text className={tableau.ClassNameKey.Worksheet}>Text, using tableau-worksheet class</text>
         <h3 className='tooltip-header'>Hover to see tooltip text, which is using tableau-tooltip class
             <span className={tooltipClassNames}>Tooltip text, using tableau-tooltip class</span>
         </h3>
         <li className={tableau.ClassNameKey.StoryTitle}>Bullet Point, using tableau-story-title class</li>
         <text className={tableau.ClassNameKey.DashboardTitle}>Text, using tableau-dashboard-title class</text>
+      </>, document.getElementById('formattingExample'));
+    }
+
+    private async RenderInfoMissing() {
+      const message = 'Tableau formatting information for extensions is missing from this version of Tableau.';
+
+      ReactDOM.render(<>
+        <div style={{color: 'blue'}}>{message}</div>
       </>, document.getElementById('formattingExample'));
     }
   }

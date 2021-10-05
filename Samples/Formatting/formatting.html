@@ -58,7 +58,7 @@
       <h1>Tableau Formatting Sample</h1>
       <button id="initTableauButton" class="btn btn-primary">Click to Initialize the Extension</button>
       <h2 class="tableau-worksheet-title">Subheader, using tableau-worksheet-title class</h2>
-      <text class="tableau-worksheet">Text, using worksheet class</text>
+      <text class="tableau-worksheet">Text, using tableau-worksheet class</text>
       <h3 class="tooltip-header">Hover to see tooltip text, which is using tableau-tooltip class
         <span class="tooltiptext tableau-tooltip">Tooltip text, using tableau-tooltip class</span>
       </h3>
@@ -77,13 +77,17 @@
 <script>
   $("#initTableauButton").click(function () {
     tableau.extensions.initializeAsync().then(function () {
-      console.log("Done!!!");
+      console.log("initializeAsync finished");
       console.log(tableau.extensions.dashboardContent.dashboard);
-      console.log(tableau.extensions.environment.workbookFormatting.formattingSheets);
+      if (tableau.extensions.environment.workbookFormatting) {
+        console.log(tableau.extensions.environment.workbookFormatting.formattingSheets);
+        $('#initializeExtensionComment').hide();
+      } else {
+        $('#initializeExtensionComment').text('Tableau formatting information for extensions is missing from this version of Tableau');
+      }
       $('#initTableauButton').text('Extension Initialized');
-      $('#initializeExtensionComment').hide();
     }, function (err) {
-      console.log("Error!!!: " + err);
+      console.error("Error during initializeAsync: " + err);
     });
   })
   function toggleClassAndText(newClass) {
@@ -93,11 +97,11 @@
     $('#toggleFormattingButton').text('Currently ' + newClass + ' below');
   }
   $('#toggleFormattingButton').click(function () {
-    if ($('#toggleFormattingButton').text().includes('tableau-worksheet-title')) {
-      toggleClassAndText('tableau-dashboard-title');
+    if ($('#toggleFormattingButton').text().includes(tableau.ClassNameKey.WorksheetTitle)) {
+      toggleClassAndText(tableau.ClassNameKey.DashboardTitle);
     }
     else {
-      toggleClassAndText('tableau-worksheet-title');
+      toggleClassAndText(tableau.ClassNameKey.WorksheetTitle);
     }
   })
 </script>
