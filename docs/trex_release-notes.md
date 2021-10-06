@@ -11,6 +11,51 @@ layout: docs
 ----
 See also: [Known Issues]({{site.baseurl}}/docs/trex_known_issues.html)
 
+
+### Tableau Dashboard Extensions API version 1.7
+
+*October 2021*
+
+
+* Tableau Dashboard Extensions API library: `tableau.extensions.1.7.0.js` <br>(download or clone the Extensions API repository on [GitHub](https://github.com/tableau/extensions-api){:target="_blank"}.) <br/>
+
+* Certain features in this release are only available in Tableau 2021.4 or later. Preview the features and test your extension with the latest version of Tableau in the Developer Sandbox. To gain access to the Developer Sandbox, join the [Tableau Developer Program](http://www.tableau.com/developer){:target="_blank"} and request your own Tableau Online developer site.
+
+About this release:
+
+* Added a new method, [`moveAndResizeDashboardObjectsAsync`]({{site.baseurl}}/docs/interfaces/dashboard.html#dashboard.html#moveandresizedashboardobjectsasync){:target="_blank"} you can use to set the position and size of one or more floating dashboard objects. This can be useful for creating overlays, annotations, popups, or dynamic layouts.
+  
+* Added a new method that can replay an animation in a dashboard. You can control the replay speed (`tableau.ReplaySpeedType.Slow`, `tableau.ReplaySpeedType.Normal`, or `tableau.ReplaySpeedType.Fast`). For more information see the [`replayAnimationAsync`]({{site.baseurl}}/docs/interfaces/dashboard.html#replayanimationasync){:target="_blank"} method.
+
+* Dashboard extensions can now use workbook formatting by setting the appropriate class on the HTML elements. The specific Tableau classes to use are defined in the [`ClassNameKey`]({{site.baseurl}}/docs/enums/tableau.classnamekey.html){:target="_blank"} enum. To apply the formatting in the body of your HTML page, use the string literal `tableau-*` for the enum. For example, to apply the worksheet title formatting you set the `class` for the HTML element in your extension (`div`, `h2`, etc.) to `"tableau-worksheet-title"`.  
+
+     ```html
+     <h2 class="tableau-worksheet-title">Subheader, using tableau-worksheet-title class</h2>
+     
+     ```
+
+  To reference the workbook formatting in places outside of the HTML body, use the enum directly (for example, `tableau.ClassNameKey.WorksheetTitle`).
+
+    ```html
+   <script>
+     ...
+     someFunction(tableau.ClassNameKey.WorksheetTitle);
+     ...
+    </script>
+    ```
+
+  You can access the formatting in the Tableau workbook from `tableau.extensions.environment.workbookFormatting`. The property `formattingSheets` contains the array of CSS properties for the workbook, organized by `ClassNameKey`. For more information about using workbook formatting, see the [Formatting](https://github.com/tableau/extensions-api/tree/main/Samples/Formatting?=target="_blank") sample in the Samples folder.
+
+* You can now set an event listener on changes to the dashboard layout. The new event type is `DashboardLayoutChanged`. The event is triggered whenever a dashboard object is added, removed, repositioned or resized, or whenever the floating state, visibility, object name, or dashboard size changes. See the [DashboardLayoutChanged]({{site.baseurl}}/docs/interfaces/dashboard.html#){:target="_blank"} event.
+
+* Transparency - Tableau now supports dashboard extension transparency for Sandboxed extensions.
+
+* Added a new method (`SetClickThroughAsync`) that allows clicks to pass through the dashboard extension window on Tableau Server. You can use this method in conjunction with transparency for Sandboxed extensions. See the [SetClickThroughAsync]({{site.baseurl}}/docs/interfaces/extensions.html#setclickthroughasync){:target="_blank"} method.
+
+
+
+
+
 ----
 
 ### Tableau Dashboard Extensions API version 1.6
