@@ -5,7 +5,7 @@ layout: docs
 
 Using the Extensions API, you can listen for events on objects, such as worksheets, parameters, and settings. The Tableau Extension API supports a range of events and provides methods for adding and removing event listeners. To manage the event listener, each object has an *event listener manager*. The manager provides a way to add or remove multiple events on objects independently.
 
-In the Extensions API, the `sheet` is an abstract class that both `dashboard` and `worksheet` inherit from. Note that `sheet` inherits from the `EventListenerManager` (as do `parameter` and `settings` objects). You can add event listeners on individual sheets in a dashboard. However, you can't add an event listener on the entire dashboard itself. If you have an event listener, when the specified event is raised, the callback method you provide is called to handle the event. You can use event listeners to trigger specific actions based upon worksheet interactions.
+In the Extensions API, the `sheet` is an abstract class that both `dashboard` and `worksheet` inherit from. Note that `sheet` inherits from the `EventListenerManager` (as do `parameter` and `settings` objects). You can add event listeners on the dashboard and on individual sheets. If you have an event listener, when the specified event is raised, the callback method you provide is called to handle the event. You can use event listeners to trigger specific actions based upon worksheet interactions.
 
 For example, a marks selection event can be raised for a particular sheet in a dashboard. Each event contains an anonymous object with information pertaining to that event, such as the type or name of event and object the event occurred on.
 Listening to an event is done by calling the `addEventListener(eventType, callback)` method and passing in a callback function to handle the event.
@@ -20,7 +20,7 @@ the method throws an exception. The following table shows the event types suppor
 | Worksheet | `FilterChanged` , `MarkSelectionChanged` |
 | Parameter | `ParameterChanged` |
 | Settings |  `SettingsChanged` |
-| Dashboard |  None available    |
+| Dashboard |  `DashboardLayoutChanged` , `WorkbookFormattingChanged`   |
 
 
 ## Add an event listener  
