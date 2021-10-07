@@ -54,7 +54,7 @@ About this release:
 
 * Transparency - Tableau now supports dashboard extension transparency for Sandboxed extensions. To take advantage of extension transparency, set your background style to a transparent or partially transparent color.
 
-* Added a new method (`SetClickThroughAsync`) that allows clicks to pass through the dashboard extension window. You can use this method in conjunction with transparency. See the [SetClickThroughAsync]({{site.baseurl}}/docs/interfaces/extensions.html#setclickthroughasync){:target="_blank"} method.
+* Added a new method (`setClickThroughAsync`) that allows clicks to pass through the dashboard extension window. You can use this method in conjunction with transparency. See the [setClickThroughAsync]({{site.baseurl}}/docs/interfaces/extensions.html#setclickthroughasync){:target="_blank"} method.
 
 
 
