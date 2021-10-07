@@ -20,7 +20,7 @@ the method throws an exception. The following table shows the event types suppor
 | Worksheet | `FilterChanged` , `MarkSelectionChanged` |
 | Parameter | `ParameterChanged` |
 | Settings |  `SettingsChanged` |
-| Dashboard |  `DashboardLayoutChanged`    |
+| Dashboard |  `DashboardLayoutChanged` , `WorkbookFormattingChanged`   |
 
 
 ## Add an event listener  

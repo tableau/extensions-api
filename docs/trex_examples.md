@@ -64,7 +64,7 @@ The [Samples-Typescript](https://github.com/tableau/extensions-api/tree/master/S
 
 - **[Samples-Typescript](https://github.com/tableau/extensions-api/tree/master/Samples-Typescript?=target="_blank")**
 
-    The **Samples-Typescript** folder shows how you can use the Extensions API type definitions to create extensions in TypeScript. The sample extensions include TypeScript versions of the Datasources, Filtering, and Parameters samples. For more information, see [Use the TypeScript samples](#use-the-typescript-samples) and [Use TypeScript with the Extensions API]({{site.baseurl}}/docs/trex_typescript.html).
+    The **Samples-Typescript** folder shows how you can use the Extensions API type definitions to create extensions in TypeScript. The sample extensions include TypeScript versions of many of the JavaScript samples. For more information, see [Use the TypeScript samples](#use-the-typescript-samples) and [Use TypeScript with the Extensions API]({{site.baseurl}}/docs/trex_typescript.html).
 
 - **[VizImage](https://github.com/tableau/extensions-api/tree/main/Samples/VizImage?=target="_blank")**
 

@@ -44,13 +44,17 @@ About this release:
     </script>
     ```
 
-  You can access the formatting in the Tableau workbook from `tableau.extensions.environment.workbookFormatting`. The property `formattingSheets` contains the array of CSS properties for the workbook, organized by `ClassNameKey`. For more information about using workbook formatting, see the [Formatting](https://github.com/tableau/extensions-api/tree/main/Samples/Formatting?=target="_blank") sample in the Samples folder.
+  You can access the formatting in the Tableau workbook from `tableau.extensions.environment.workbookFormatting`. The property `formattingSheets` contains the array of CSS properties for the workbook, organized by `ClassNameKey`. For more information about using workbook formatting, see the [Formatting](https://github.com/tableau/extensions-api/tree/main/Samples/Formatting){:target="_blank"} sample in the Samples folder.
 
-* You can now set an event listener on changes to the dashboard layout. The new event type is `DashboardLayoutChanged`. The event is triggered whenever a dashboard object is added, removed, repositioned or resized, or whenever the floating state, visibility, object name, or dashboard size changes. See the [DashboardLayoutChanged]({{site.baseurl}}/docs/interfaces/dashboard.html#){:target="_blank"} event.
+* You can now set an event listener on changes to the dashboard layout and to the dashboard formatting. The new event types are `DashboardLayoutChanged` and `WorkbookFormattingChanged`. 
 
-* Transparency - Tableau now supports dashboard extension transparency for Sandboxed extensions.
+  The `DashboardLayoutChanged` event is triggered whenever a dashboard object is added, removed, repositioned or resized, or whenever the floating state, visibility, object name, or dashboard size changes. See the [DashboardLayoutChanged]({{site.baseurl}}/docs/interfaces/dashboard.html#dashboardlayoutchanged){:target="_blank"} event. 
 
-* Added a new method (`SetClickThroughAsync`) that allows clicks to pass through the dashboard extension window on Tableau Server. You can use this method in conjunction with transparency for Sandboxed extensions. See the [SetClickThroughAsync]({{site.baseurl}}/docs/interfaces/extensions.html#setclickthroughasync){:target="_blank"} method.
+  The `WorkbookFormattingChanged` event is triggered whenever the workbook text formatting is changed in Tableau authoring mode. This includes changes in the font, the font size, whether it is bold, italic, or underlined, and the color. For more information about workbook formatting, see [workbookFormatting]({{site.baseurl}}/docs/interfaces/environment.html#workbookformatting){:target="_blank"}.
+
+* Transparency - Tableau now supports dashboard extension transparency for Sandboxed extensions. To take advantage of extension transparency, set your background style to a transparent or partially transparent color.
+
+* Added a new method (`SetClickThroughAsync`) that allows clicks to pass through the dashboard extension window. You can use this method in conjunction with transparency. See the [SetClickThroughAsync]({{site.baseurl}}/docs/interfaces/extensions.html#setclickthroughasync){:target="_blank"} method.
 
 
 
