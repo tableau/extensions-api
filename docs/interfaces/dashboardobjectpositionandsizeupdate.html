@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Field | Dashboard Extensions</title>
+	<title>DashboardObjectPositionAndSizeUpdate | Dashboard Extensions</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="field.html">Field</a>
+					<a href="dashboardobjectpositionandsizeupdate.html">DashboardObjectPositionAndSizeUpdate</a>
 				</li>
 			</ul>
-			<h1>Interface Field</h1>
+			<h1>Interface DashboardObjectPositionAndSizeUpdate</h1>
 		</div>
 	</div>
 </header>
@@ -67,8 +67,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>A field contains information about what data source it belongs to,
-						its role, and the ability to fetch the domain values.</p>
+						<p>An object to specify a dashboard object and its new position and size in a dashboard.</p>
 					</div>
 				</div>
 			</section>
@@ -76,7 +75,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Field</span>
+						<span class="target">DashboardObjectPositionAndSizeUpdate</span>
 					</li>
 				</ul>
 			</section>
@@ -87,17 +86,11 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="field.html#aggregation" class="tsd-kind-icon">aggregation</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="field.html#columntype" class="tsd-kind-icon">column<wbr>Type</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="field.html#datasource" class="tsd-kind-icon">data<wbr>Source</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="field.html#description" class="tsd-kind-icon">description</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="field.html#id" class="tsd-kind-icon">id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="field.html#iscalculatedfield" class="tsd-kind-icon">is<wbr>Calculated<wbr>Field</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="field.html#iscombinedfield" class="tsd-kind-icon">is<wbr>Combined<wbr>Field</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="field.html#isgenerated" class="tsd-kind-icon">is<wbr>Generated</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="field.html#ishidden" class="tsd-kind-icon">is<wbr>Hidden</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="field.html#name" class="tsd-kind-icon">name</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="field.html#role" class="tsd-kind-icon">role</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="dashboardobjectpositionandsizeupdate.html#dashboardobjectid" class="tsd-kind-icon">dashboard<wbr>ObjectID</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="dashboardobjectpositionandsizeupdate.html#height" class="tsd-kind-icon">height</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="dashboardobjectpositionandsizeupdate.html#width" class="tsd-kind-icon">width</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="dashboardobjectpositionandsizeupdate.html#x" class="tsd-kind-icon">x</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="dashboardobjectpositionandsizeupdate.html#y" class="tsd-kind-icon">y</a></li>
 							</ul>
 						</section>
 					</div>
@@ -106,194 +99,86 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="aggregation" class="tsd-anchor"></a>
-					<h3>aggregation</h3>
-					<div class="tsd-signature tsd-kind-icon">aggregation<span class="tsd-signature-symbol">:</span> <a href="../enums/tableau.fieldaggregationtype.html" class="tsd-signature-type">FieldAggregationType</a></div>
+					<a name="dashboardobjectid" class="tsd-anchor"></a>
+					<h3>dashboard<wbr>ObjectID</h3>
+					<div class="tsd-signature tsd-kind-icon">dashboard<wbr>ObjectID<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataSourceInterfaces.ts:219</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:517</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<dl class="tsd-comment-tags">
 							<dt>returns</dt>
-							<dd><p>The type of aggregation for this field.</p>
+							<dd><p>dashboard object ID</p>
 							</dd>
 						</dl>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="columntype" class="tsd-anchor"></a>
-					<h3>column<wbr>Type</h3>
-					<div class="tsd-signature tsd-kind-icon">column<wbr>Type<span class="tsd-signature-symbol">:</span> <a href="../enums/tableau.columntype.html" class="tsd-signature-type">ColumnType</a></div>
+					<a name="height" class="tsd-anchor"></a>
+					<h3>height</h3>
+					<div class="tsd-signature tsd-kind-icon">height<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataSourceInterfaces.ts:225</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:537</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<dl class="tsd-comment-tags">
-							<dt>notimplemented</dt>
-							<dd></dd>
 							<dt>returns</dt>
-							<dd><p>The type of the column, either discrete or continuous.</p>
+							<dd><p>height</p>
 							</dd>
 						</dl>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="datasource" class="tsd-anchor"></a>
-					<h3>data<wbr>Source</h3>
-					<div class="tsd-signature tsd-kind-icon">data<wbr>Source<span class="tsd-signature-symbol">:</span> <a href="datasource.html" class="tsd-signature-type">DataSource</a></div>
+					<a name="width" class="tsd-anchor"></a>
+					<h3>width</h3>
+					<div class="tsd-signature tsd-kind-icon">width<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataSourceInterfaces.ts:190</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:532</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<dl class="tsd-comment-tags">
 							<dt>returns</dt>
-							<dd><p>The data source to which this field belongs.</p>
+							<dd><p>width</p>
 							</dd>
 						</dl>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="description" class="tsd-anchor"></a>
-					<h3>description</h3>
-					<div class="tsd-signature tsd-kind-icon">description<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></div>
+					<a name="x" class="tsd-anchor"></a>
+					<h3>x</h3>
+					<div class="tsd-signature tsd-kind-icon">x<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataSourceInterfaces.ts:185</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:522</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<dl class="tsd-comment-tags">
 							<dt>returns</dt>
-							<dd><p>User description of field, undefined if there is none.</p>
+							<dd><p>X coordinate</p>
 							</dd>
 						</dl>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="id" class="tsd-anchor"></a>
-					<h3>id</h3>
-					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="y" class="tsd-anchor"></a>
+					<h3>y</h3>
+					<div class="tsd-signature tsd-kind-icon">y<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataSourceInterfaces.ts:180</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:527</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<dl class="tsd-comment-tags">
 							<dt>returns</dt>
-							<dd><p>Unique string representing this field in this datasource.</p>
-							</dd>
-						</dl>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="iscalculatedfield" class="tsd-anchor"></a>
-					<h3>is<wbr>Calculated<wbr>Field</h3>
-					<div class="tsd-signature tsd-kind-icon">is<wbr>Calculated<wbr>Field<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataSourceInterfaces.ts:214</li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<dl class="tsd-comment-tags">
-							<dt>returns</dt>
-							<dd><p>True if this field is a table calculation.</p>
-							</dd>
-						</dl>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="iscombinedfield" class="tsd-anchor"></a>
-					<h3>is<wbr>Combined<wbr>Field</h3>
-					<div class="tsd-signature tsd-kind-icon">is<wbr>Combined<wbr>Field<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataSourceInterfaces.ts:230</li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<dl class="tsd-comment-tags">
-							<dt>returns</dt>
-							<dd><p>True if this field is a combination of multiple fields, false otherwise.</p>
-							</dd>
-						</dl>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="isgenerated" class="tsd-anchor"></a>
-					<h3>is<wbr>Generated</h3>
-					<div class="tsd-signature tsd-kind-icon">is<wbr>Generated<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataSourceInterfaces.ts:209</li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<dl class="tsd-comment-tags">
-							<dt>returns</dt>
-							<dd><p>True if this field is generated by Tableau, false otherwise.
-									Tableau generates a number of fields for a data source, such as Number
-									of Records, or Measure Values.  This property can be used to
-									distinguish between those fields and fields that come from the underlying
-								data connection, or were created by a user.</p>
-							</dd>
-						</dl>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="ishidden" class="tsd-anchor"></a>
-					<h3>is<wbr>Hidden</h3>
-					<div class="tsd-signature tsd-kind-icon">is<wbr>Hidden<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataSourceInterfaces.ts:200</li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<dl class="tsd-comment-tags">
-							<dt>returns</dt>
-							<dd><p>True if this field is hidden, false otherwise.</p>
-							</dd>
-						</dl>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="name" class="tsd-anchor"></a>
-					<h3>name</h3>
-					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataSourceInterfaces.ts:175</li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<dl class="tsd-comment-tags">
-							<dt>returns</dt>
-							<dd><p>The name of the field (i.e. the caption).</p>
-							</dd>
-						</dl>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="role" class="tsd-anchor"></a>
-					<h3>role</h3>
-					<div class="tsd-signature tsd-kind-icon">role<span class="tsd-signature-symbol">:</span> <a href="../enums/tableau.fieldroletype.html" class="tsd-signature-type">FieldRoleType</a></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataSourceInterfaces.ts:195</li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<dl class="tsd-comment-tags">
-							<dt>returns</dt>
-							<dd><p>The role of this field.</p>
+							<dd><p>Y coordinate</p>
 							</dd>
 						</dl>
 					</div>
@@ -313,40 +198,22 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="field.html" class="tsd-kind-icon">Field</a>
+						<a href="dashboardobjectpositionandsizeupdate.html" class="tsd-kind-icon">Dashboard<wbr>Object<wbr>Position<wbr>And<wbr>Size<wbr>Update</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="field.html#aggregation" class="tsd-kind-icon">aggregation</a>
+								<a href="dashboardobjectpositionandsizeupdate.html#dashboardobjectid" class="tsd-kind-icon">dashboard<wbr>ObjectID</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="field.html#columntype" class="tsd-kind-icon">column<wbr>Type</a>
+								<a href="dashboardobjectpositionandsizeupdate.html#height" class="tsd-kind-icon">height</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="field.html#datasource" class="tsd-kind-icon">data<wbr>Source</a>
+								<a href="dashboardobjectpositionandsizeupdate.html#width" class="tsd-kind-icon">width</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="field.html#description" class="tsd-kind-icon">description</a>
+								<a href="dashboardobjectpositionandsizeupdate.html#x" class="tsd-kind-icon">x</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="field.html#id" class="tsd-kind-icon">id</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="field.html#iscalculatedfield" class="tsd-kind-icon">is<wbr>Calculated<wbr>Field</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="field.html#iscombinedfield" class="tsd-kind-icon">is<wbr>Combined<wbr>Field</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="field.html#isgenerated" class="tsd-kind-icon">is<wbr>Generated</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="field.html#ishidden" class="tsd-kind-icon">is<wbr>Hidden</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="field.html#name" class="tsd-kind-icon">name</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="field.html#role" class="tsd-kind-icon">role</a>
+								<a href="dashboardobjectpositionandsizeupdate.html#y" class="tsd-kind-icon">y</a>
 							</li>
 						</ul>
 					</li>

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>DateRangeType | Dashboard Extensions</title>
+	<title>DashboardLayoutChange | Dashboard Extensions</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -57,10 +57,10 @@
 					<a href="../modules/tableau.html">Tableau</a>
 				</li>
 				<li>
-					<a href="tableau.daterangetype.html">DateRangeType</a>
+					<a href="tableau.dashboardlayoutchange.html">DashboardLayoutChange</a>
 				</li>
 			</ul>
-			<h1>Enumeration DateRangeType</h1>
+			<h1>Enumeration DashboardLayoutChange</h1>
 		</div>
 	</div>
 </header>
@@ -70,7 +70,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Valid date ranges for a relative date filter.</p>
+						<p>Enum that represents the changes that occur to a dashboard object.</p>
 					</div>
 				</div>
 			</section>
@@ -81,12 +81,13 @@
 						<section class="tsd-index-section ">
 							<h3>Enumeration members</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="tableau.daterangetype.html#current" class="tsd-kind-icon">Current</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="tableau.daterangetype.html#last" class="tsd-kind-icon">Last</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="tableau.daterangetype.html#lastn" class="tsd-kind-icon">LastN</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="tableau.daterangetype.html#next" class="tsd-kind-icon">Next</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="tableau.daterangetype.html#nextn" class="tsd-kind-icon">NextN</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="tableau.daterangetype.html#todate" class="tsd-kind-icon">To<wbr>Date</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="tableau.dashboardlayoutchange.html#added" class="tsd-kind-icon">Added</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="tableau.dashboardlayoutchange.html#isfloatingchanged" class="tsd-kind-icon">Is<wbr>Floating<wbr>Changed</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="tableau.dashboardlayoutchange.html#isvisiblechanged" class="tsd-kind-icon">Is<wbr>Visible<wbr>Changed</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="tableau.dashboardlayoutchange.html#namechanged" class="tsd-kind-icon">Name<wbr>Changed</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="tableau.dashboardlayoutchange.html#positionchanged" class="tsd-kind-icon">Position<wbr>Changed</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="tableau.dashboardlayoutchange.html#removed" class="tsd-kind-icon">Removed</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="tableau.dashboardlayoutchange.html#sizechanged" class="tsd-kind-icon">Size<wbr>Changed</a></li>
 							</ul>
 						</section>
 					</div>
@@ -95,64 +96,109 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Enumeration members</h2>
 				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="current" class="tsd-anchor"></a>
-					<h3>Current</h3>
-					<div class="tsd-signature tsd-kind-icon">Current<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;&quot;current&quot;</span></div>
+					<a name="added" class="tsd-anchor"></a>
+					<h3>Added</h3>
+					<div class="tsd-signature tsd-kind-icon">Added<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;&quot;added&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Namespaces/Tableau.ts:101</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Namespaces/Tableau.ts:72</li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>A dashboard object was added</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="last" class="tsd-anchor"></a>
-					<h3>Last</h3>
-					<div class="tsd-signature tsd-kind-icon">Last<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;&quot;last&quot;</span></div>
+					<a name="isfloatingchanged" class="tsd-anchor"></a>
+					<h3>Is<wbr>Floating<wbr>Changed</h3>
+					<div class="tsd-signature tsd-kind-icon">Is<wbr>Floating<wbr>Changed<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;&quot;is-floating-changed&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Namespaces/Tableau.ts:97</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Namespaces/Tableau.ts:78</li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>A dashboard object&#39;s floating state changed</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="lastn" class="tsd-anchor"></a>
-					<h3>LastN</h3>
-					<div class="tsd-signature tsd-kind-icon">LastN<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;&quot;last-n&quot;</span></div>
+					<a name="isvisiblechanged" class="tsd-anchor"></a>
+					<h3>Is<wbr>Visible<wbr>Changed</h3>
+					<div class="tsd-signature tsd-kind-icon">Is<wbr>Visible<wbr>Changed<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;&quot;is-visible-changed&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Namespaces/Tableau.ts:98</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Namespaces/Tableau.ts:81</li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>A dashboard object&#39;s visibility changed</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="next" class="tsd-anchor"></a>
-					<h3>Next</h3>
-					<div class="tsd-signature tsd-kind-icon">Next<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;&quot;next&quot;</span></div>
+					<a name="namechanged" class="tsd-anchor"></a>
+					<h3>Name<wbr>Changed</h3>
+					<div class="tsd-signature tsd-kind-icon">Name<wbr>Changed<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;&quot;name-changed&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Namespaces/Tableau.ts:99</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Namespaces/Tableau.ts:90</li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>A dashboard object was renamed</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="nextn" class="tsd-anchor"></a>
-					<h3>NextN</h3>
-					<div class="tsd-signature tsd-kind-icon">NextN<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;&quot;next-n&quot;</span></div>
+					<a name="positionchanged" class="tsd-anchor"></a>
+					<h3>Position<wbr>Changed</h3>
+					<div class="tsd-signature tsd-kind-icon">Position<wbr>Changed<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;&quot;position-changed&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Namespaces/Tableau.ts:100</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Namespaces/Tableau.ts:84</li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>A dashboard object&#39;s position changed</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="todate" class="tsd-anchor"></a>
-					<h3>To<wbr>Date</h3>
-					<div class="tsd-signature tsd-kind-icon">To<wbr>Date<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;&quot;to-date&quot;</span></div>
+					<a name="removed" class="tsd-anchor"></a>
+					<h3>Removed</h3>
+					<div class="tsd-signature tsd-kind-icon">Removed<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;&quot;removed&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Namespaces/Tableau.ts:102</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Namespaces/Tableau.ts:75</li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>A dashboard object was removed</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="sizechanged" class="tsd-anchor"></a>
+					<h3>Size<wbr>Changed</h3>
+					<div class="tsd-signature tsd-kind-icon">Size<wbr>Changed<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;&quot;size-changed&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Namespaces/Tableau.ts:87</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>A dashboard object&#39;s size changed</p>
+						</div>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -178,9 +224,36 @@
 					<li class=" tsd-kind-enum tsd-parent-kind-module">
 						<a href="tableau.columntype.html" class="tsd-kind-icon">Column<wbr>Type</a>
 					</li>
-					<li class=" tsd-kind-enum tsd-parent-kind-module">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-enum tsd-parent-kind-module">
 						<a href="tableau.dashboardlayoutchange.html" class="tsd-kind-icon">Dashboard<wbr>Layout<wbr>Change</a>
+						<ul>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="tableau.dashboardlayoutchange.html#added" class="tsd-kind-icon">Added</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="tableau.dashboardlayoutchange.html#isfloatingchanged" class="tsd-kind-icon">Is<wbr>Floating<wbr>Changed</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="tableau.dashboardlayoutchange.html#isvisiblechanged" class="tsd-kind-icon">Is<wbr>Visible<wbr>Changed</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="tableau.dashboardlayoutchange.html#namechanged" class="tsd-kind-icon">Name<wbr>Changed</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="tableau.dashboardlayoutchange.html#positionchanged" class="tsd-kind-icon">Position<wbr>Changed</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="tableau.dashboardlayoutchange.html#removed" class="tsd-kind-icon">Removed</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="tableau.dashboardlayoutchange.html#sizechanged" class="tsd-kind-icon">Size<wbr>Changed</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-enum tsd-parent-kind-module">
 						<a href="tableau.dashboardobjecttype.html" class="tsd-kind-icon">Dashboard<wbr>Object<wbr>Type</a>
 					</li>
@@ -190,33 +263,9 @@
 					<li class=" tsd-kind-enum tsd-parent-kind-module">
 						<a href="tableau.datatype.html" class="tsd-kind-icon">Data<wbr>Type</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-enum tsd-parent-kind-module">
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
 						<a href="tableau.daterangetype.html" class="tsd-kind-icon">Date<wbr>Range<wbr>Type</a>
-						<ul>
-							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="tableau.daterangetype.html#current" class="tsd-kind-icon">Current</a>
-							</li>
-							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="tableau.daterangetype.html#last" class="tsd-kind-icon">Last</a>
-							</li>
-							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="tableau.daterangetype.html#lastn" class="tsd-kind-icon">LastN</a>
-							</li>
-							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="tableau.daterangetype.html#next" class="tsd-kind-icon">Next</a>
-							</li>
-							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="tableau.daterangetype.html#nextn" class="tsd-kind-icon">NextN</a>
-							</li>
-							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="tableau.daterangetype.html#todate" class="tsd-kind-icon">To<wbr>Date</a>
-							</li>
-						</ul>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-enum tsd-parent-kind-module">
 						<a href="tableau.encodingtype.html" class="tsd-kind-icon">Encoding<wbr>Type</a>
 					</li>
