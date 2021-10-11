@@ -117,15 +117,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/EventInterfaces.ts:94</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/EventInterface.ts:166</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Adds a new event listener to the object. If this object does not support the specified <code>eventType</code>,
-										the method throws an exception. Note that you can&#39;t add an event listener to a dashboard. This is because the <code>Dashboard</code> object
-										does not support any event types, even though the <code>Dashboard</code> object inherits the event listener methods from <a href="eventlistenermanager.html">EventListenerManager</a>.
-										For more information, see <a href="../trex_events.html">Events and Event Handling</a>.
+										the method throws an exception.
 									The following table shows the event types supported by objects.</p>
 								</div>
 								<table>
@@ -149,7 +147,7 @@
 										</tr>
 										<tr>
 											<td><a href="dashboard.html">Dashboard</a></td>
-											<td>None available</td>
+											<td><code>DashboardLayoutChanged</code>, <code>WorkbookFormattingChanged</code></td>
 										</tr>
 								</tbody></table>
 							</div>
@@ -198,7 +196,7 @@ load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">works
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/EventInterfaces.ts:104</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/EventInterface.ts:176</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">

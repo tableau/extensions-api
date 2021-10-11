@@ -9,3 +9,6 @@ npm-debug.log
 dist/
 
 .DS_Store
+
+# ignore local npmrc files
+.npmrc

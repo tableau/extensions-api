@@ -103,8 +103,12 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="dashboard.html#addeventlistener" class="tsd-kind-icon">add<wbr>Event<wbr>Listener</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="dashboard.html#findparameterasync" class="tsd-kind-icon">find<wbr>Parameter<wbr>Async</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="dashboard.html#getdashboardobjectbyid" class="tsd-kind-icon">get<wbr>Dashboard<wbr>Object<wbr>ById</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="dashboard.html#getparametersasync" class="tsd-kind-icon">get<wbr>Parameters<wbr>Async</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="dashboard.html#moveandresizedashboardobjectsasync" class="tsd-kind-icon">move<wbr>And<wbr>Resize<wbr>Dashboard<wbr>Objects<wbr>Async</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="dashboard.html#removeeventlistener" class="tsd-kind-icon">remove<wbr>Event<wbr>Listener</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="dashboard.html#replayanimationasync" class="tsd-kind-icon">replay<wbr>Animation<wbr>Async</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="dashboard.html#setdashboardobjectvisibilityasync" class="tsd-kind-icon">set<wbr>Dashboard<wbr>Object<wbr>Visibility<wbr>Async</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="dashboard.html#setzonevisibilityasync" class="tsd-kind-icon">set<wbr>Zone<wbr>Visibility<wbr>Async</a></li>
 							</ul>
 						</section>
@@ -120,7 +124,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="sheet.html">Sheet</a>.<a href="sheet.html#name">name</a></p>
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:15</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:23</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -137,7 +141,7 @@
 					<div class="tsd-signature tsd-kind-icon">objects<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="dashboardobject.html" class="tsd-signature-type">DashboardObject</a><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:332</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:340</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -155,7 +159,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="sheet.html">Sheet</a>.<a href="sheet.html#sheettype">sheetType</a></p>
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:20</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:28</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -173,7 +177,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="sheet.html">Sheet</a>.<a href="sheet.html#size">size</a></p>
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:33</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:41</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -190,7 +194,7 @@
 					<div class="tsd-signature tsd-kind-icon">worksheets<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="worksheet.html" class="tsd-signature-type">Worksheet</a><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:356</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:364</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -229,15 +233,13 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="eventlistenermanager.html">EventListenerManager</a>.<a href="eventlistenermanager.html#addeventlistener">addEventListener</a></p>
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/EventInterfaces.ts:94</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/EventInterface.ts:166</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Adds a new event listener to the object. If this object does not support the specified <code>eventType</code>,
-										the method throws an exception. Note that you can&#39;t add an event listener to a dashboard. This is because the <code>Dashboard</code> object
-										does not support any event types, even though the <code>Dashboard</code> object inherits the event listener methods from <a href="eventlistenermanager.html">EventListenerManager</a>.
-										For more information, see <a href="../trex_events.html">Events and Event Handling</a>.
+										the method throws an exception.
 									The following table shows the event types supported by objects.</p>
 								</div>
 								<table>
@@ -261,7 +263,7 @@
 										</tr>
 										<tr>
 											<td><a href="dashboard.html">Dashboard</a></td>
-											<td>None available</td>
+											<td><code>DashboardLayoutChanged</code>, <code>WorkbookFormattingChanged</code></td>
 										</tr>
 								</tbody></table>
 							</div>
@@ -311,7 +313,7 @@ load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">works
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="sheet.html">Sheet</a>.<a href="sheet.html#findparameterasync">findParameterAsync</a></p>
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:28</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:36</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -333,6 +335,49 @@ load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">works
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="getdashboardobjectbyid" class="tsd-anchor"></a>
+					<h3>get<wbr>Dashboard<wbr>Object<wbr>ById</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Dashboard<wbr>Object<wbr>ById<span class="tsd-signature-symbol">(</span>dashboardObjectId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="dashboardobject.html" class="tsd-signature-type">DashboardObject</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:436</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets the specified dashboard object by its id. If a dashboard object is not found this method returns undefined.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>since</dt>
+									<dd><p>1.7.0 and Tableau 2021.4</p>
+										<p>The following example shows how you can get a dashboard object using its id.
+										<br/></p>
+										<pre><code>  var dashboard = tableau.extensions.dashboardContent.dashboard<span class="hljs-comment">;</span>
+  var myDashboardObject = dashboard.getDashboardObjectById(<span class="hljs-number">8</span>)<span class="hljs-comment">;</span></code></pre></dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>dashboardObjectId: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The id of an object on the dashboard.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="dashboardobject.html" class="tsd-signature-type">DashboardObject</a>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">undefined</span>
+							</h4>
+							<p>The dashboard object with that id. Returns undefined if the dashboard object is not found.</p>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
 					<a name="getparametersasync" class="tsd-anchor"></a>
 					<h3>get<wbr>Parameters<wbr>Async</h3>
@@ -344,13 +389,69 @@ load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">works
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="sheet.html">Sheet</a>.<a href="sheet.html#getparametersasync">getParametersAsync</a></p>
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:38</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:46</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="parameter.html" class="tsd-signature-type">Parameter</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>A collection of all the Tableau parameters that are used in this workbook.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="moveandresizedashboardobjectsasync" class="tsd-anchor"></a>
+					<h3>move<wbr>And<wbr>Resize<wbr>Dashboard<wbr>Objects<wbr>Async</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">move<wbr>And<wbr>Resize<wbr>Dashboard<wbr>Objects<wbr>Async<span class="tsd-signature-symbol">(</span>dashboardObjectPositionAndSizeUpdateArray<span class="tsd-signature-symbol">: </span><a href="../globals.html#dashboardobjectpositionandsizeupdatearray" class="tsd-signature-type">DashboardObjectPositionAndSizeUpdateArray</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:472</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Sets the position and size of one or more floating dashboard objects.
+									Throws an error if the dashboard object is invalid</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>since</dt>
+									<dd><p>1.7.0 and Tableau 2021.4</p>
+										<p>The following example shows how you can update the position and size of multiple (valid, floating) dashboard objects in a dashboard
+										<br/></p>
+										<pre><code>  <span class="hljs-string">let</span> <span class="hljs-string">dashboardObjectPositionAndSizeUpdateArray</span> <span class="hljs-string">=</span> <span class="hljs-string">[];</span>
+  <span class="hljs-string">let</span> <span class="hljs-string">dashboardObjectPositionAndSizeUpdate1</span> <span class="hljs-string">=</span> <span class="hljs-string">{</span>
+    <span class="hljs-attr">dashboardObjectID:</span> <span class="hljs-number">1</span><span class="hljs-string">,</span>
+    <span class="hljs-attr">x:</span> <span class="hljs-number">0</span><span class="hljs-string">,</span>
+    <span class="hljs-attr">y:</span> <span class="hljs-number">0</span><span class="hljs-string">,</span>
+    <span class="hljs-attr">width:</span> <span class="hljs-number">50</span><span class="hljs-string">,</span>
+    <span class="hljs-attr">height:</span> <span class="hljs-number">50</span>
+  <span class="hljs-string">};</span>
+  <span class="hljs-string">let</span> <span class="hljs-string">dashboardObjectPositionAndSizeUpdate2</span> <span class="hljs-string">=</span> <span class="hljs-string">{</span>
+    <span class="hljs-attr">dashboardObjectID:</span> <span class="hljs-number">2</span><span class="hljs-string">,</span>
+    <span class="hljs-attr">x:</span> <span class="hljs-number">75</span><span class="hljs-string">,</span>
+    <span class="hljs-attr">y:</span> <span class="hljs-number">75</span><span class="hljs-string">,</span>
+    <span class="hljs-attr">width:</span> <span class="hljs-number">60</span><span class="hljs-string">,</span>
+    <span class="hljs-attr">height:</span> <span class="hljs-number">60</span>
+  <span class="hljs-string">};</span>
+  <span class="hljs-string">dashboardObjectPositionAndSizeUpdateArray.push(dashboardObjectPositionAndSizeUpdate1,</span> <span class="hljs-string">dashboardObjectPositionAndsizeUpdate2);</span>
+  <span class="hljs-string">tableau.extensions.dashboardContent.dashboard.moveAndResizeDashboardObjectsAsync(dashboardObjectPositionAndSizeUpdateArray)</span>
+  <span class="hljs-string">.then(()</span> <span class="hljs-string">=&gt;</span> <span class="hljs-string">{</span>
+    <span class="hljs-string">console.log("done");</span>
+  <span class="hljs-string">});</span></code></pre></dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>dashboardObjectPositionAndSizeUpdateArray: <a href="../globals.html#dashboardobjectpositionandsizeupdatearray" class="tsd-signature-type">DashboardObjectPositionAndSizeUpdateArray</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Empty promise that resolves when the position and size of the dashboard objects have been changed.</p>
 						</li>
 					</ul>
 				</section>
@@ -365,7 +466,7 @@ load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">works
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="eventlistenermanager.html">EventListenerManager</a>.<a href="eventlistenermanager.html#removeeventlistener">removeEventListener</a></p>
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/EventInterfaces.ts:104</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/EventInterface.ts:176</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -391,6 +492,93 @@ load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">works
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="replayanimationasync" class="tsd-anchor"></a>
+					<h3>replay<wbr>Animation<wbr>Async</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">replay<wbr>Animation<wbr>Async<span class="tsd-signature-symbol">(</span>replaySpeed<span class="tsd-signature-symbol">: </span><a href="../enums/tableau.replayspeedtype.html" class="tsd-signature-type">ReplaySpeedType</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:491</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Replays an animation for the active sheet
+									Throws an error if the replay speed is invalid</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>since</dt>
+									<dd><p>1.7.0 and Tableau 2021.4</p>
+										<p>The following example shows how you can replay an animation in a dashboard.
+										<br/></p>
+										<pre><code>  let replaySpeed = tableau.ReplaySpeedType.Normal;
+  tableau.extensions.dashboardContent.dashboard.replayAnimationAsync(replaySpeed).<span class="hljs-keyword">then</span>(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"done"</span>);
+  });</code></pre></dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>replaySpeed: <a href="../enums/tableau.replayspeedtype.html" class="tsd-signature-type">ReplaySpeedType</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Empty promise that resolves when the animation has been replayed.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="setdashboardobjectvisibilityasync" class="tsd-anchor"></a>
+					<h3>set<wbr>Dashboard<wbr>Object<wbr>Visibility<wbr>Async</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Dashboard<wbr>Object<wbr>Visibility<wbr>Async<span class="tsd-signature-symbol">(</span>dashboardObjectVisibilityMap<span class="tsd-signature-symbol">: </span><a href="../globals.html#dashboardobjectvisibilitymap" class="tsd-signature-type">DashboardObjectVisibilityMap</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:419</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Sets the visibility of one or more dashboard objects.
+									Throws an error if the dashboard object is invalid</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>since</dt>
+									<dd><p>1.7.0 and Tableau 2021.4</p>
+										<p>The following example shows how you can update the visibility of multiple valid dashboard objects
+										<br/></p>
+										<pre><code>  <span class="hljs-keyword">var</span> dashboardObjectVisibilityMap = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>();
+  dashboardObjectVisibilityMap.<span class="hljs-keyword">set</span>(<span class="hljs-number">10</span>, tableau.DashboardObjectVisibilityType.Show);
+  dashboardObjectVisibilityMap.<span class="hljs-keyword">set</span>(<span class="hljs-number">8</span>, tableau.DashboardObjectVisibilityType.Hide);
+  <span class="hljs-keyword">var</span> dashboard = tableau.extensions.dashboardContent.dashboard;
+  dashboard.setDashboardObjectVisibilityAsync(dashboardObjectVisibilityMap).then(() =&gt; {
+    console.log(<span class="hljs-string">"done"</span>);
+  });
+</code></pre></dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>dashboardObjectVisibilityMap: <a href="../globals.html#dashboardobjectvisibilitymap" class="tsd-signature-type">DashboardObjectVisibilityMap</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A map of dashboard object ids to its desired state of visibilty.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Empty promise that resolves when the visibility has been changed.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
 					<a name="setzonevisibilityasync" class="tsd-anchor"></a>
 					<h3>set<wbr>Zone<wbr>Visibility<wbr>Async</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
@@ -400,7 +588,7 @@ load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">works
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:386</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:395</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -411,6 +599,9 @@ load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">works
 								<dl class="tsd-comment-tags">
 									<dt>since</dt>
 									<dd><p>1.1.0</p>
+									</dd>
+									<dt>deprecated</dt>
+									<dd><p>use setDashboardObjectVisibilityAsync</p>
 										<p>The following example shows how you can update the visibility of multiple (valid, floating) zones in a dashboard
 										<br/></p>
 										<pre><code>  var zoneVisibilityMap = {}<span class="hljs-comment">;</span>
@@ -482,11 +673,23 @@ load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">works
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
 								<a href="dashboard.html#findparameterasync" class="tsd-kind-icon">find<wbr>Parameter<wbr>Async</a>
 							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="dashboard.html#getdashboardobjectbyid" class="tsd-kind-icon">get<wbr>Dashboard<wbr>Object<wbr>ById</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
 								<a href="dashboard.html#getparametersasync" class="tsd-kind-icon">get<wbr>Parameters<wbr>Async</a>
 							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="dashboard.html#moveandresizedashboardobjectsasync" class="tsd-kind-icon">move<wbr>And<wbr>Resize<wbr>Dashboard<wbr>Objects<wbr>Async</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
 								<a href="dashboard.html#removeeventlistener" class="tsd-kind-icon">remove<wbr>Event<wbr>Listener</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="dashboard.html#replayanimationasync" class="tsd-kind-icon">replay<wbr>Animation<wbr>Async</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="dashboard.html#setdashboardobjectvisibilityasync" class="tsd-kind-icon">set<wbr>Dashboard<wbr>Object<wbr>Visibility<wbr>Async</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
 								<a href="dashboard.html#setzonevisibilityasync" class="tsd-kind-icon">set<wbr>Zone<wbr>Visibility<wbr>Async</a>

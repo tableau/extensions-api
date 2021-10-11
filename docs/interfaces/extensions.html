@@ -88,6 +88,7 @@
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="extensions.html#dashboardcontent" class="tsd-kind-icon">dashboard<wbr>Content</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="extensions.html#dashboardobjectid" class="tsd-kind-icon">dashboard<wbr>Object<wbr>Id</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="extensions.html#environment" class="tsd-kind-icon">environment</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="extensions.html#settings" class="tsd-kind-icon">settings</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="extensions.html#ui" class="tsd-kind-icon">ui</a></li>
@@ -100,6 +101,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="extensions.html#createvizimageasync" class="tsd-kind-icon">create<wbr>Viz<wbr>Image<wbr>Async</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="extensions.html#initializeasync" class="tsd-kind-icon">initialize<wbr>Async</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="extensions.html#initializedialogasync" class="tsd-kind-icon">initialize<wbr>Dialog<wbr>Async</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="extensions.html#setclickthroughasync" class="tsd-kind-icon">set<wbr>Click<wbr>Through<wbr>Async</a></li>
 							</ul>
 						</section>
 					</div>
@@ -124,6 +126,26 @@
 								<a href="./filter.html">filters</a>, <a href="./parameter.html">parameters</a>, and <a href="./datasource.html">data sources</a>.
 							To access the objects in this name space, specify <code>tableau.extensions.dashboardContent</code>.</p>
 						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="dashboardobjectid" class="tsd-anchor"></a>
+					<h3>dashboard<wbr>Object<wbr>Id</h3>
+					<div class="tsd-signature tsd-kind-icon">dashboard<wbr>Object<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/Namespaces/Extensions.ts:93</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The dashboard object id for the extension that is running.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>since</dt>
+							<dd><p>1.7.0</p>
+							</dd>
+						</dl>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
@@ -209,7 +231,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/Namespaces/Extensions.ts:125</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/Namespaces/Extensions.ts:131</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -326,6 +348,51 @@
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="setclickthroughasync" class="tsd-anchor"></a>
+					<h3>set<wbr>Click<wbr>Through<wbr>Async</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Click<wbr>Through<wbr>Async<span class="tsd-signature-symbol">(</span>clickThroughEnabled<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/Namespaces/Extensions.ts:153</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>This method allows for clicks to pass through the extension window on Tableau Server.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>since</dt>
+									<dd><p>1.7.0 and Tableau 2021.4</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>clickThroughEnabled: <span class="tsd-signature-type">boolean</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A boolean which represents if clicks should pass through the extension window</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>A promise that resolves when the click through property has been set.</p>
+							<p>The following example shows a call made to setClickThroughAsync.</p>
+							<pre><code>   <span class="hljs-regexp">//</span> disabling pointer events <span class="hljs-literal">on</span> the extension <span class="hljs-built_in">window</span>
+   tableau.extensions.setClickThroughAsync(<span class="hljs-literal">true</span>).<span class="hljs-keyword">then</span>(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Successfully enabled extension window click through'</span>);
+   }).<span class="hljs-keyword">catch</span>(<span class="hljs-function"><span class="hljs-params">(error)</span> =&gt;</span> {
+    <span class="hljs-regexp">//</span> Can <span class="hljs-keyword">throw</span> an error <span class="hljs-keyword">if</span> called <span class="hljs-keyword">from</span> a dialog <span class="hljs-keyword">or</span> <span class="hljs-literal">on</span> Tableau Desktop
+      <span class="hljs-built_in">console</span>.error(error.message);
+    });</code></pre>
+						</li>
+					</ul>
+				</section>
 			</section>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -347,6 +414,9 @@
 								<a href="extensions.html#dashboardcontent" class="tsd-kind-icon">dashboard<wbr>Content</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="extensions.html#dashboardobjectid" class="tsd-kind-icon">dashboard<wbr>Object<wbr>Id</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="extensions.html#environment" class="tsd-kind-icon">environment</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
@@ -366,6 +436,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
 								<a href="extensions.html#initializedialogasync" class="tsd-kind-icon">initialize<wbr>Dialog<wbr>Async</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="extensions.html#setclickthroughasync" class="tsd-kind-icon">set<wbr>Click<wbr>Through<wbr>Async</a>
 							</li>
 						</ul>
 					</li>

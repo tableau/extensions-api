@@ -64,13 +64,15 @@ The [Samples-Typescript](https://github.com/tableau/extensions-api/tree/master/S
 
 - **[Samples-Typescript](https://github.com/tableau/extensions-api/tree/master/Samples-Typescript?=target="_blank")**
 
-    The **Samples-Typscript** folder shows how you can use the Extensions API type definitions to create extensions in TypeScript. The sample extensions include TypeScript versions of the Datasources, Filtering, and Parameters samples. For more information, see [Use the TypeScript samples](#use-the-typescript-samples) and [Use TypeScript with the Extensions API]({{site.baseurl}}/docs/trex_typescript.html).
+    The **Samples-Typescript** folder shows how you can use the Extensions API type definitions to create extensions in TypeScript. The sample extensions include TypeScript versions of many of the JavaScript samples. For more information, see [Use the TypeScript samples](#use-the-typescript-samples) and [Use TypeScript with the Extensions API]({{site.baseurl}}/docs/trex_typescript.html).
 
 - **[VizImage](https://github.com/tableau/extensions-api/tree/main/Samples/VizImage?=target="_blank")**
 
     Shows how you can use Tableau Viz to add visualizations to your dashboard extensions. This sample demonstrates the effects of different mark types and color palettes. For more information about Tableau Viz, see [Add Tableau Viz to Your Dashboard Extensions]({{site.baseurl}}/docs/trex_tableau_viz.html).
 
+**[Formatting](https://github.com/tableau/extensions-api/tree/main/Samples/Formatting?=target="_blank")**
 
+   Shows how you can access the CSS formatting in the Tableau workbook and apply it to the HTML elements in your dashboard extension. Create a consistent look and feel across the extension and the dashboard.
 
 
 ---
