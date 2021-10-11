@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>SettingsChangedEvent | Dashboard Extensions</title>
+	<title>FormattingSheet | Dashboard Extensions</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,34 +54,21 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="settingschangedevent.html">SettingsChangedEvent</a>
+					<a href="formattingsheet.html">FormattingSheet</a>
 				</li>
 			</ul>
-			<h1>Interface SettingsChangedEvent</h1>
+			<h1>Interface FormattingSheet</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>An event which is raised when the settings of an extension are updated.
-						Should be listened for directly from the <code>tableau.extensions.settings</code> object.</p>
-					</div>
-				</div>
-			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<a href="tableauevent.html" class="tsd-signature-type">TableauEvent</a>
-						<ul class="tsd-hierarchy">
-							<li>
-								<span class="target">SettingsChangedEvent</span>
-							</li>
-						</ul>
+						<span class="target">FormattingSheet</span>
 					</li>
 				</ul>
 			</section>
@@ -92,8 +79,8 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="settingschangedevent.html#newsettings" class="tsd-kind-icon">new<wbr>Settings</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="settingschangedevent.html#type" class="tsd-kind-icon">type</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="formattingsheet.html#classnamekey" class="tsd-kind-icon">class<wbr>Name<wbr>Key</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="formattingsheet.html#cssproperties" class="tsd-kind-icon">css<wbr>Properties</a></li>
 							</ul>
 						</section>
 					</div>
@@ -102,47 +89,35 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="newsettings" class="tsd-anchor"></a>
-					<h3>new<wbr>Settings</h3>
-					<div class="tsd-signature tsd-kind-icon">new<wbr>Settings<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<a name="classnamekey" class="tsd-anchor"></a>
+					<h3>class<wbr>Name<wbr>Key</h3>
+					<div class="tsd-signature tsd-kind-icon">class<wbr>Name<wbr>Key<span class="tsd-signature-symbol">:</span> <a href="../enums/tableau.classnamekey.html" class="tsd-signature-type">ClassNameKey</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/EventInterface.ts:89</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/WorkbookFormattingInterfaces.ts:22</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<dl class="tsd-comment-tags">
 							<dt>returns</dt>
-							<dd><p>the new settings that were recently saved.</p>
+							<dd><p>Is an object that contains a ClassNameKey which represents a type of
+								formatting in a workbook: WorksheetTitle, Worksheet, Tooltip, StoryTitle, and DashboardTitle.</p>
+							</dd>
+							<dt>since</dt>
+							<dd><p>1.7.0 and Tableau 2021.4</p>
 							</dd>
 						</dl>
-					</div>
-					<div class="tsd-type-declaration">
-						<h4>Type declaration</h4>
-						<ul class="tsd-parameters">
-							<li class="tsd-parameter-index-signature">
-								<h5><span class="tsd-signature-symbol">[</span>key: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-type">string</span></h5>
-							</li>
-						</ul>
 					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-					<a name="type" class="tsd-anchor"></a>
-					<h3>type</h3>
-					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <a href="../enums/tableau.tableaueventtype.html" class="tsd-signature-type">TableauEventType</a></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="cssproperties" class="tsd-anchor"></a>
+					<h3>css<wbr>Properties</h3>
+					<div class="tsd-signature tsd-kind-icon">css<wbr>Properties<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">CSSProperties</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="tableauevent.html">TableauEvent</a>.<a href="tableauevent.html#type">type</a></p>
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/EventInterface.ts:68</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/WorkbookFormattingInterfaces.ts:23</li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<dl class="tsd-comment-tags">
-							<dt>returns</dt>
-							<dd><p>The type of event which this class is representing.</p>
-							</dd>
-						</dl>
-					</div>
 				</section>
 			</section>
 		</div>
@@ -159,13 +134,13 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="settingschangedevent.html" class="tsd-kind-icon">Settings<wbr>Changed<wbr>Event</a>
+						<a href="formattingsheet.html" class="tsd-kind-icon">Formatting<wbr>Sheet</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="settingschangedevent.html#newsettings" class="tsd-kind-icon">new<wbr>Settings</a>
+								<a href="formattingsheet.html#classnamekey" class="tsd-kind-icon">class<wbr>Name<wbr>Key</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="settingschangedevent.html#type" class="tsd-kind-icon">type</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="formattingsheet.html#cssproperties" class="tsd-kind-icon">css<wbr>Properties</a>
 							</li>
 						</ul>
 					</li>
