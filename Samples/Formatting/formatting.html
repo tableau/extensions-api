@@ -71,6 +71,7 @@
       <br/>
       <br/>
       <div id="initializeExtensionComment" style='color:blue'>You will not see Tableau formatting until you have initialized the extension.</div>
+      <div id="formattingUpdatedComment" style='color:blue'></div>
     </div>
   </div>
 </body>
@@ -78,10 +79,15 @@
   $("#initTableauButton").click(function () {
     tableau.extensions.initializeAsync().then(function () {
       console.log("initializeAsync finished");
-      console.log(tableau.extensions.dashboardContent.dashboard);
+      const dashboard = tableau.extensions.dashboardContent.dashboard;
+      console.log(dashboard);
       if (tableau.extensions.environment.workbookFormatting) {
         console.log(tableau.extensions.environment.workbookFormatting.formattingSheets);
         $('#initializeExtensionComment').hide();
+        dashboard.addEventListener(tableau.TableauEventType.WorkbookFormattingChanged, (event) => {
+          console.log(event.formatting);
+          $('#formattingUpdatedComment').text('Workbook formatting updated');
+        });
       } else {
         $('#initializeExtensionComment').text('Tableau formatting information for extensions is missing from this version of Tableau');
       }
