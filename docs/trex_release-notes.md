@@ -55,6 +55,9 @@ For example, you could set the custom palette as shown in the following examples
 
 * Added support to show or hide grid lines in the view for rows or columns, or both.
 
+* Starting with the v1.8 release of the Dashboard Extensions API library and Tableau 2021.4, Tableau Viz now uses the Tableau fonts as the default font for text in the output SVG image.
+
+
 For more information, see [Tableau Viz Reference]({{site.baseurl}}/docs/trex_tableau_viz_ref.html){:target="_blank"}
 
 
