@@ -3,7 +3,7 @@
   "version": "1.7.0",
   "description": "Sample code and documentation for the Tableau Extensions API.",
   "scripts": {
-    "build": "npm install && npm run lint && webpack --config webpack.config.js --display-error-details",
+    "build": "npm install && npm run lint && webpack --config webpack.config.js",
     "start": "node node_modules/http-server/bin/http-server -p 8765 -c-1",
     "start-sandbox": "npx tabextsandbox --config sandbox-config.json",
     "lint": "npm run jslint && npm run tslint",
@@ -28,11 +28,11 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "semistandard": "^11.0.0",
-    "ts-loader": "^5.4.5",
+    "ts-loader": "9",
     "tslint": "^5.16.0",
     "typescript": "^3.9.10",
-    "webpack": "^4.44.1",
-    "webpack-cli": "^3.3.1"
+    "webpack": "5",
+    "webpack-cli": "4"
   },
   "semistandard": {
     "env": {
