@@ -177,15 +177,15 @@ Specifies the size encoding of the mark. The `size` property corresponds to the 
 | `size` Property |  Value |
 |:--- |:--- |
 |`field` | The name of the field to encode. |
-|`type`| The way the data is distributed in the view (`discrete` or `continuous`).|
-|`setting` | For continuous fields of the bar mark type, specifies the size and alignment properties of a mark.   The options are `manual` or `fixed` size. For `manual`, you can specify a `size` value from `0` to `2`. For `fixed` you can set the alignment and width in axis units. See the `setting` properties for more information. |
+|`type`| The way the data is distributed in the view (discrete or continuous).|
+|`setting` | For continuous fields of the bar mark type, specifies the size and alignment properties of a mark.   The options are manual (`tableau.VizImageSizeSettingType.Manual`) or fixed size (`tableau.VizImageSizeSettingType.Fixed`). For manual, you can specify a `size` value from `0` to `2`. For fixed, you can set the alignment and width in axis units. See the `setting` properties for more information. |
 |`showlegend` | Boolean (`true`, `false`). Specifies whether to show or hide the color legend. |
 
 
 |`setting` Property |  Value |
 |:--- |:--- |
-|`fixed` | Mark size is fixed. When `fixed` is selected, you can set the `alignment` to `right`, `left`, or `center`. You can set the `width_in_axis_units` to a fixed number of units (floating point values accepted). |
-|`manual` | Specifies that the mark size type is manual. When this is selected, set the `marksize` value (from 0 to 2, floating point values accepted). |
+|`tableau.VizImageSizeSettingType.Fixed` | Mark size is fixed. When `Fixed` is selected, you can set the `alignment` to `tableau.VizImageSizeSettingAlignmentType.Right`, `tableau.VizImageSizeSettingAlignmentType.Left`, or `tableau.VizImageSizeSettingAlignmentType.Center`. You can set the `width_in_axis_units` to a fixed number of units (floating point values accepted). |
+|`tableau.VizImageSizeSettingType.Manual` | Specifies that the mark size type is manual. When this is selected, set the `marksize` value (from 0 to 2, floating point values accepted). |
 
 Example of fixed sized type: 
 
@@ -193,7 +193,7 @@ Example of fixed sized type:
 
 encoding: {
     ...
-    size: {field: "Age", setting: "fixed", alignment: "right", width_in_axis_units: 3}
+    size: {field: "Age", setting: tableau.VizImageSizeSettingType.Fixed, alignment: tableau.VizImageSizeSettingAlignmentType.Right, width_in_axis_units: 3}
 
   } 
 ```
@@ -203,7 +203,7 @@ Example of manual sized type:
 ```javascript
 encoding: {
     ...
-    size: {field: "Measure", type: tableau.VizImageEncodingType.Continuous, setting: "manual", marksize: 0.35}
+    size: {field: "Measure", type: tableau.VizImageEncodingType.Continuous, setting: tableau.VizImageSizeSettingType.Manual, marksize: 0.35}
   }
 ```
 
@@ -284,8 +284,8 @@ You can set the color palette to a custom diverging or custom sequential color p
 
 | Custom Palette Property |  Value |
 |:--- |:--- |
-|`custom-diverging` | Defines a custom diverging palette. Specify the `start` value and an `end` value, each as a hexadecimal value. |
-| `custom-sequential` | Defines a custom sequential palette. Specify the `end` value as a hexadecimal value. |
+|`tableau.VizImagePaletteType.CustomDiverging` | Defines a custom diverging palette. Specify the `start` value and an `end` value, each as a hexadecimal value. |
+| `tableau.VizImagePaletteType.CustomSequential` | Defines a custom sequential palette. Specify the `end` value as a hexadecimal value. |
 
 
 For example, you could set a custom palette as shown in the following examples:
@@ -293,7 +293,7 @@ For example, you could set a custom palette as shown in the following examples:
 
   ```javascript
 
-    palette: "custom-diverging", start: "#FFB6C1", end: "#90ee90"
+    palette: tableau.VizImagePaletteType.CustomDiverging, start: "#FFB6C1", end: "#90ee90"
 
   ```
 
@@ -301,6 +301,6 @@ For example, you could set a custom palette as shown in the following examples:
 
   ```javascript
 
-   palette: "custom-sequential",  end: "#FFB6C1"
+   palette: tableau.VizImagePaletteType.CustomSequential,  end: "#FFB6C1"
 
   ```

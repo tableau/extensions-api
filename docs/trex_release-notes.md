@@ -29,19 +29,18 @@ This release contains updates for [Tableau Viz]({{site.baseurl}}/docs/trex_table
 
 * Added support for setting the size of a bar mark to be manual or fixed. You can also set the mark’s size and alignment.
 
-* Added support for sorting. You can sort a field (continuous or discrete). Supports sorting by ascending or descending values for continuous fields and discrete fields  (`VizImageSortDirectionType.Ascending`, `VizImageSortDirectionType.Descending`). 
+* Added support for sorting. You can sort a field (continuous or discrete) by ascending or descending values (`VizImageSortDirectionType.Ascending`, `VizImageSortDirectionType.Descending`).
 
   ```javascript
   sort: { field: "Category", sortby: "Weather", direction: tableau.VizImageSortDirectionType.Ascending }
   ```
 
-* For continuous fields, you can set the color palette to a custom diverging or custom sequential color palette and not just a Tableau defined palate, such as, `green_blue_white_diverging_10_0`. 
+* For continuous fields, you can set the color palette to a custom-diverging, or custom-sequential color palette. You are not restricted to using only a Tableau defined palate, such as, `green_blue_white_diverging_10_0`.
 For example, you could set the custom palette as shown in the following examples:
-
 
   ```javascript
 
-    palette: "custom-diverging", start: "#FFB6C1", end: "#90ee90"
+    palette: tableau.VizImagePaletteType.CustomDiverging, start: "#FFB6C1", end: "#90ee90"
 
   ```
 
@@ -49,17 +48,15 @@ For example, you could set the custom palette as shown in the following examples
 
   ```javascript
 
-   palette: "custom-sequential",  end: "#FFB6C1"
+   palette: tableau.VizImagePaletteType.CustomSequential,  end: "#FFB6C1"
 
   ```
 
 * Added support to show or hide grid lines in the view for rows or columns, or both.
 
-* Starting with the v1.8 release of the Dashboard Extensions API library and Tableau 2021.4, Tableau Viz now uses the Tableau fonts as the default font for text in the output SVG image.
-
+* Starting with the v1.8 release of the Dashboard Extensions API library and Tableau 2021.4, Tableau Viz now uses Tableau fonts as the default font for text in the output SVG image.
 
 For more information, see [Tableau Viz Reference]({{site.baseurl}}/docs/trex_tableau_viz_ref.html){:target="_blank"}
-
 
 ----
 
