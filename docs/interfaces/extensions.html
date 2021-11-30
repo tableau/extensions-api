@@ -231,7 +231,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/Namespaces/Extensions.ts:131</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/Namespaces/Extensions.ts:132</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -247,18 +247,20 @@
       <span class="hljs-attr">description:</span> <span class="hljs-string">'A simple bar chart with embedded data.'</span><span class="hljs-string">,</span>
       <span class="hljs-attr">data:</span> <span class="hljs-string">{</span>
           <span class="hljs-attr">values:</span> <span class="hljs-string">[</span>
-              <span class="hljs-string">{</span> <span class="hljs-attr">a:</span> <span class="hljs-string">'A'</span><span class="hljs-string">,</span> <span class="hljs-attr">b:</span> <span class="hljs-number">28</span> <span class="hljs-string">},</span>
-              <span class="hljs-string">{</span> <span class="hljs-attr">a:</span> <span class="hljs-string">'B'</span><span class="hljs-string">,</span> <span class="hljs-attr">b:</span> <span class="hljs-number">55</span> <span class="hljs-string">},</span>
-              <span class="hljs-string">{</span> <span class="hljs-attr">a:</span> <span class="hljs-string">'C'</span><span class="hljs-string">,</span> <span class="hljs-attr">b:</span> <span class="hljs-number">43</span> <span class="hljs-string">},</span>
+              <span class="hljs-string">{</span> <span class="hljs-attr">Category:</span> <span class="hljs-string">'A'</span><span class="hljs-string">,</span> <span class="hljs-attr">Measure:</span> <span class="hljs-number">28</span><span class="hljs-string">,</span> <span class="hljs-attr">Weather:</span> <span class="hljs-number">10</span> <span class="hljs-string">},</span>
+              <span class="hljs-string">{</span> <span class="hljs-attr">Category:</span> <span class="hljs-string">'B'</span><span class="hljs-string">,</span> <span class="hljs-attr">Measure:</span> <span class="hljs-number">55</span><span class="hljs-string">,</span> <span class="hljs-attr">Weather:</span> <span class="hljs-number">9</span> <span class="hljs-string">},</span>
+              <span class="hljs-string">{</span> <span class="hljs-attr">Category:</span> <span class="hljs-string">'C'</span><span class="hljs-string">,</span> <span class="hljs-attr">Measure:</span> <span class="hljs-number">43</span><span class="hljs-string">,</span> <span class="hljs-attr">Weather:</span> <span class="hljs-number">8</span> <span class="hljs-string">},</span>
           <span class="hljs-string">]</span>
       <span class="hljs-string">},</span>
       <span class="hljs-attr">mark:</span> <span class="hljs-string">tableau.MarkType.Bar,</span>
       <span class="hljs-attr">encoding:</span> <span class="hljs-string">{</span>
-          <span class="hljs-attr">x:</span> <span class="hljs-string">{</span> <span class="hljs-attr">field:</span> <span class="hljs-string">'a'</span><span class="hljs-string">,</span> <span class="hljs-attr">type:</span> <span class="hljs-string">tableau.VizImageEncodingType.Discrete</span> <span class="hljs-string">},</span>
-          <span class="hljs-attr">y:</span> <span class="hljs-string">{</span> <span class="hljs-attr">field:</span> <span class="hljs-string">'b'</span><span class="hljs-string">,</span> <span class="hljs-attr">type:</span> <span class="hljs-string">tableau.VizImageEncodingType.Continuous</span> <span class="hljs-string">}</span>
+          <span class="hljs-attr">columns:</span> <span class="hljs-string">{</span> <span class="hljs-attr">field:</span> <span class="hljs-string">'Category'</span><span class="hljs-string">,</span> <span class="hljs-attr">type:</span> <span class="hljs-string">tableau.VizImageEncodingType.Discrete</span> <span class="hljs-string">},</span>
+          <span class="hljs-attr">rows:</span> <span class="hljs-string">{</span> <span class="hljs-attr">field:</span> <span class="hljs-string">'Measure'</span><span class="hljs-string">,</span> <span class="hljs-attr">type:</span> <span class="hljs-string">tableau.VizImageEncodingType.Continuous</span> <span class="hljs-string">},</span>
+          <span class="hljs-attr">sort:</span> <span class="hljs-string">{</span> <span class="hljs-attr">field:</span> <span class="hljs-string">'Category'</span><span class="hljs-string">,</span> <span class="hljs-attr">'sortby':</span> <span class="hljs-string">'Weather'</span><span class="hljs-string">,</span> <span class="hljs-attr">direction:</span> <span class="hljs-string">tableau.VizImageSortDirectionType.Ascending</span> <span class="hljs-string">}</span>
       <span class="hljs-string">}</span>
  <span class="hljs-string">};</span></code></pre><p> @returns  A promise that when resolved, returns the viz as an svg.</p>
-										<p> @since 1.6.0 and Tableau 2021.3</p>
+										<p> Supports sorting by field.
+										@since 1.8.0 and Tableau 2021.4</p>
 										<p>For additional information on using the <code>createVizImageAsync</code> method,
 										see <a href="https://tableau.github.io/extensions-api/docs/trex_tableau_viz.html">Add Tableau Viz to Your Dashboard Extensions</a>.</p>
 										<p>For additional information about setting options in the <code>inputSpec</code> object,
@@ -358,7 +360,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/Namespaces/Extensions.ts:153</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/Namespaces/Extensions.ts:154</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
