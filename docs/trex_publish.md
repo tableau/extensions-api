@@ -52,7 +52,7 @@ The following flowchart shows how the settings on Tableau Server or Tableau Onli
 
 ## Publishing a dashboard extension to the Tableau Exchange
 
-If you want to make your dashboard extension readily available to a large number of people, you can take steps to have your extension added the the [Tableau Exchange](https://exchange.tableau.com/).
+If you want to make your dashboard extension readily available to a large number of people, you can take steps to have your extension added to the [Tableau Exchange](https://exchange.tableau.com/).
 
 Publishing your extension to the gallery means that people will be able to discover your extension, find out what it can do, and then add the extension to their dashboards, all while working within Tableau.
 
