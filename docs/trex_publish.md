@@ -54,7 +54,7 @@ The following flowchart shows how the settings on Tableau Server or Tableau Onli
 
 If you want to make your dashboard extension readily available to a large number of people, you can take steps to have your extension added to the [Tableau Exchange](https://exchange.tableau.com/).
 
-Publishing your extension to the gallery means that people will be able to discover your extension, find out what it can do, and then add the extension to their dashboards, all while working within Tableau.
+Publishing your extension to the Tableau Exchange means that people will be able to discover your extension, find out what it can do, and then add the extension to their dashboards, all while working within Tableau.
 
 In addition to the requirements for all extensions to ensure security and usability, such as:
  * Using HTTPS
@@ -65,9 +65,9 @@ In addition to the requirements for all extensions to ensure security and usabil
  Dashboard extensions that appear in the Exchange must also:
 
 * Follow the Design Guidelines for Dashboard Extensions (user interaction and style guidelines for user interface elements).
-* Ensure that the information in the extension manifest file (`.trex`) matches the content that you will publish in the Extension Gallery. For example, the `name`, `description` fields are used to populate the name and description fields in the Extension Gallery.  The icon you use in the manifest should also be the icon that is used in the gallery. You need to provide a 280x280 pixel `.png` version of the icon. 
+* Ensure that the information in the extension manifest file (`.trex`) matches the content that you will publish in the Exchange. For example, the `name`, `description` fields are used to populate the name and description fields in the Exchange.  The icon you use in the manifest should also be the icon that is used in the Exchange. You need to provide a 280x280 pixel `.png` version of the icon. 
 
-For information about getting your extension into the Extension Gallery, see the <a href="{{site.baseurl}}/docs/ux_extension_gallery.html" target="_blank">Submitting your Extension to the Tableau Exchange</a>.
+For information about getting your extension into the Exchange, see the <a href="{{site.baseurl}}/docs/ux_extension_gallery.html" target="_blank">Submitting your Extension to the Tableau Exchange</a>.
 
 For information about designing an extension, see the <a href="{{site.baseurl}}/docs/ux_design.html" target="_blank">Design Guidelines for Dashboard Extensions</a>.
 
