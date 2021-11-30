@@ -17,7 +17,7 @@ See also: [Known Issues]({{site.baseurl}}/docs/trex_known_issues.html)
 
 ### Tableau Dashboard Extensions API version 1.8
 
-*October 2021*
+*November 2021*
 
 * Tableau Dashboard Extensions API library: `tableau.extensions.1.8.0.js` <br>(download or clone the Extensions API repository on [GitHub](https://github.com/tableau/extensions-api){:target="_blank"}.) <br/>
 
@@ -27,7 +27,7 @@ About this release:
 
 This release contains updates for [Tableau Viz]({{site.baseurl}}/docs/trex_tableau_viz.html){:target="_blank"}, including:
 
-* Added support for setting the size of a bar mark to be manual or fixed. You can also set the mark’s size and alignment.
+* Added support for setting the size of a bar mark to be manual (`VizImageSizeSettingType.Manual`) or fixed (`VizImageSizeSettingType.Fixed`). If the type is manual, you can set the mark’s size. If the type is fixed, you can set the alignment (`VizImageSizeSettingAlignmentType`).
 
 * Added support for sorting. You can sort a field (continuous or discrete) by ascending or descending values (`VizImageSortDirectionType.Ascending`, `VizImageSortDirectionType.Descending`).
 
