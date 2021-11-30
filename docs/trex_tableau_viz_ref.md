@@ -51,6 +51,7 @@ The following shows an example `inputSpec` that creates a bar chart image.
   encoding: {
     columns: {field: "Sales", type: tableau.VizImageEncodingType.Continuous},
     rows: {field: "Category", type: tableau.VizImageEncodingType.Discrete, hidden: "true"},
+    sort: { field: "Category", sortby: "Sales", direction: tableau.VizImageSortDirectionType.Ascending }
     color: {field: "Weather", type: tableau.VizImageEncodingType.Discrete, palette: "seattle_grays_10_0"},
     size: {field: "Quantity", type: tableau.VizImageEncodingType.Continuous},
     text: {field: "Category", type: tableau.VizImageEncodingType.Discrete}
@@ -138,17 +139,18 @@ Within these properties, you must specify the field to encode and its type (`tab
 
 ---
 
-#### `columns` and `rows`
+#### encoding: `columns` and `rows`
 
 | Property |  Value |
 |:--- |:--- |
 |`field` | The name of the field to encode. |
 |`type`| The type of field, either `tableau.VizImageEncodingType.Discrete` (blue "pill") or `tableau.VizImageEncodingType.Continuous` (green "pill"). |
 |`hidden` | Boolean (`true`, `false`). Specifies whether to show or hide the column or row header. |
+| `showgridline` | Boolean (`true`, `false`). Specifies whether to show or hide the gridlines. |
 |`title` | Specifies a custom field label (x-axis, or header) or custom axis title (y-axis) for the columns and rows. |
 | `showtitle` | Boolean (`true`, `false`). Specifies whether to show or hide the custom column or row title. |
 
-The following is an example of how you might specify the encodings for columns and rows:
+The following are examples of how you might specify the encodings for columns and rows:
 
 ```javascript
 
@@ -159,23 +161,81 @@ encoding: {
 
 ```
 
-#### `color`
+```javascript
+mark: tableau.MarkType.Line,
+  encoding: {
+    columns: {field: "Category", type: tableau.VizImageEncodingType.Discrete, showgridline: true},
+    rows: {field: "Measure", type: tableau.VizImageEncodingType.Continuous, showgridline: true},
+  }
+```
+
+
+#### encoding: `size`
+
+Specifies the size encoding of the mark. The `size` property corresponds to the Size button on the Marks card. For continuous fields, you can set the bar mark to either manual or fixed size. You can also set the mark’s alignment.
+
+| `size` Property |  Value |
+|:--- |:--- |
+|`field` | The name of the field to encode. |
+|`type`| The way the data is distributed in the view (discrete or continuous).|
+|`setting` | For continuous fields of the bar mark type, specifies the size and alignment properties of a mark.   The options are manual (`tableau.VizImageSizeSettingType.Manual`) or fixed size (`tableau.VizImageSizeSettingType.Fixed`). For manual, you can specify a `size` value from `0` to `2`. For fixed, you can set the alignment and width in axis units. See the `setting` properties for more information. |
+|`showlegend` | Boolean (`true`, `false`). Specifies whether to show or hide the color legend. |
+
+
+|`setting` Property |  Value |
+|:--- |:--- |
+|`tableau.VizImageSizeSettingType.Fixed` | Mark size is fixed. When `Fixed` is selected, you can set the `alignment` to `tableau.VizImageSizeSettingAlignmentType.Right`, `tableau.VizImageSizeSettingAlignmentType.Left`, or `tableau.VizImageSizeSettingAlignmentType.Center`. You can set the `width_in_axis_units` to a fixed number of units (floating point values accepted). |
+|`tableau.VizImageSizeSettingType.Manual` | Specifies that the mark size type is manual. When this is selected, set the `marksize` value (from 0 to 2, floating point values accepted). |
+
+Example of fixed sized type: 
+
+```javascript
+
+encoding: {
+    ...
+    size: {field: "Age", setting: tableau.VizImageSizeSettingType.Fixed, alignment: tableau.VizImageSizeSettingAlignmentType.Right, width_in_axis_units: 3}
+
+  } 
+```
+
+Example of manual sized type:
+
+```javascript
+encoding: {
+    ...
+    size: {field: "Measure", type: tableau.VizImageEncodingType.Continuous, setting: tableau.VizImageSizeSettingType.Manual, marksize: 0.35}
+  }
+```
+
+
+#### encoding: `sort`
+
+Specifies the sort order for a field (continuous or discrete). Supports sorting the field by ascending or descending values (`VizImageSortDirectionType.Ascending`, `VizImageSortDirectionType.Descending`), based on the `sortby` criteria you provide.
+
+```javascript
+  sort: { field: "Category", sortby: "Weather", direction: tableau.VizImageSortDirectionType.Ascending }
+  ```
+
+
+
+
+
+#### encoding: `color`
 
 The `color` property corresponds to the Color button on the Marks card. The color can contain additional properties:
 
 | Property |  Value |
 |:--- |:--- |
 |`field` | The name of the field to encode. |
-|`type`| The way the data is distributed in the view (`discrete` or `continuous`).|
-|`palette` | Specifies color encoding for the field from the Tableau palette. Note that there are separate palettes for `discrete` or `continuous` fields. |
+|`type`| The way the data is distributed in the view (discrete or continuous).|
+|`palette` | Specifies color encoding for the field from the Tableau palette. Note that there are separate palettes for discrete or continuous fields. You can also create custom color palettes for continuous fields. See [Create Custom Color Palettes](#create-custom-color-palettes). |
 |`showlegend` | Boolean (`true`, `false`). Specifies whether to show or hide the color legend. |
-
 
 **`palette` names for continuous fields**
 
 You can specify one of the following Tableau color palettes with the `palette` property for continuous fields. Note that the list of available palettes depends upon the version of Tableau that is being used. Be aware that the palette colors are subject to change.
 
-The following is an example that shows how you might encode a continuous field with a Tableau palette.
+The following is an example that shows how you might encode a continuous field with a Tableau palette. You can also create custom color palettes for continuous fields. See [Create Custom Color Palettes](#create-custom-color-palettes).
 
 ```javascript
 
@@ -214,3 +274,33 @@ encoding: {
 | ![Tableau Discrete Palette]({{site.baseurl}}/assets/discrete_palette.png) |  `tableau10_10_0` <br/> `tableau20_10_0` <br/> `color_blind_10_0` <br/>`seattle_grays_10_0`<br/>`traffic_light_10_0` <br/>`superfishel_stone_10_0` <br/>`miller_stone_10_0` <br/>`nuriel_stone_10_0`<br/>`jewel_bright_10_0`<br/>`summer_10_0`<br/>`winter_10_0`<br/>`green_orange_cyan_yellow_10_0`<br/>`blue_red_brown_10_0`<br/>`purple_pink_gray_10_0`<br/>`tableau-10`<br/>`tableau-10-medium`<br/>`tableau-20`<br/>`blue_10_0`<br/>`orange_10_0`<br/>`green_10_0`<br/>`red_10_0`<br/>`purple_10_0`<br/>`brown_10_0`<br/>`gray_10_0`<br/>`gray_warm_10_0`<br/>`blue_teal_10_0`<br/>`orange_gold_10_0`<br/>`green_gold_10_0`<br/>`red_gold_10_0`<br/>`cyclic_10_0` |
 
 ---
+
+
+
+#### Create custom color palettes
+
+You can set the color palette to a custom diverging or custom sequential color palette that you specify, and not just the Tableau defined palates, such as, `green_blue_white_diverging_10_0`.
+
+
+| Custom Palette Property |  Value |
+|:--- |:--- |
+|`tableau.VizImagePaletteType.CustomDiverging` | Defines a custom diverging palette. Specify the `start` value and an `end` value, each as a hexadecimal value. |
+| `tableau.VizImagePaletteType.CustomSequential` | Defines a custom sequential palette. Specify the `end` value as a hexadecimal value. |
+
+
+For example, you could set a custom palette as shown in the following examples:
+
+
+  ```javascript
+
+    palette: tableau.VizImagePaletteType.CustomDiverging, start: "#FFB6C1", end: "#90ee90"
+
+  ```
+
+  Or
+
+  ```javascript
+
+   palette: tableau.VizImagePaletteType.CustomSequential,  end: "#FFB6C1"
+
+  ```
