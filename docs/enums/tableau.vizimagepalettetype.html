@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ExtensionContext | Dashboard Extensions</title>
+	<title>VizImagePaletteType | Dashboard Extensions</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -57,10 +57,10 @@
 					<a href="../modules/tableau.html">Tableau</a>
 				</li>
 				<li>
-					<a href="tableau.extensioncontext.html">ExtensionContext</a>
+					<a href="tableau.vizimagepalettetype.html">VizImagePaletteType</a>
 				</li>
 			</ul>
-			<h1>Enumeration ExtensionContext</h1>
+			<h1>Enumeration VizImagePaletteType</h1>
 		</div>
 	</div>
 </header>
@@ -70,8 +70,13 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>The context in which the Extensions is currently running.</p>
+						<p>Enum that represents the palette type for createVizImageAsync.</p>
 					</div>
+					<dl class="tsd-comment-tags">
+						<dt>since</dt>
+						<dd><p>1.8.0 and Tableau 2021.4</p>
+						</dd>
+					</dl>
 				</div>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -81,8 +86,8 @@
 						<section class="tsd-index-section ">
 							<h3>Enumeration members</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="tableau.extensioncontext.html#desktop" class="tsd-kind-icon">Desktop</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="tableau.extensioncontext.html#server" class="tsd-kind-icon">Server</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="tableau.vizimagepalettetype.html#customdiverging" class="tsd-kind-icon">Custom<wbr>Diverging</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="tableau.vizimagepalettetype.html#customsequential" class="tsd-kind-icon">Custom<wbr>Sequential</a></li>
 							</ul>
 						</section>
 					</div>
@@ -91,22 +96,22 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Enumeration members</h2>
 				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="desktop" class="tsd-anchor"></a>
-					<h3>Desktop</h3>
-					<div class="tsd-signature tsd-kind-icon">Desktop<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;&quot;desktop&quot;</span></div>
+					<a name="customdiverging" class="tsd-anchor"></a>
+					<h3>Custom<wbr>Diverging</h3>
+					<div class="tsd-signature tsd-kind-icon">Custom<wbr>Diverging<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;&quot;custom-diverging&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/Namespaces/Tableau.ts:70</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/Namespaces/Tableau.ts:129</li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="server" class="tsd-anchor"></a>
-					<h3>Server</h3>
-					<div class="tsd-signature tsd-kind-icon">Server<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;&quot;server&quot;</span></div>
+					<a name="customsequential" class="tsd-anchor"></a>
+					<h3>Custom<wbr>Sequential</h3>
+					<div class="tsd-signature tsd-kind-icon">Custom<wbr>Sequential<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;&quot;custom-sequential&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/Namespaces/Tableau.ts:71</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/Namespaces/Tableau.ts:130</li>
 						</ul>
 					</aside>
 				</section>
@@ -155,21 +160,9 @@
 					<li class=" tsd-kind-enum tsd-parent-kind-module">
 						<a href="tableau.errorcodes.html" class="tsd-kind-icon">Error<wbr>Codes</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-enum tsd-parent-kind-module">
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
 						<a href="tableau.extensioncontext.html" class="tsd-kind-icon">Extension<wbr>Context</a>
-						<ul>
-							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="tableau.extensioncontext.html#desktop" class="tsd-kind-icon">Desktop</a>
-							</li>
-							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="tableau.extensioncontext.html#server" class="tsd-kind-icon">Server</a>
-							</li>
-						</ul>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-enum tsd-parent-kind-module">
 						<a href="tableau.extensionmode.html" class="tsd-kind-icon">Extension<wbr>Mode</a>
 					</li>
@@ -227,9 +220,21 @@
 					<li class=" tsd-kind-enum tsd-parent-kind-module">
 						<a href="tableau.vizimageencodingtype.html" class="tsd-kind-icon">Viz<wbr>Image<wbr>Encoding<wbr>Type</a>
 					</li>
-					<li class=" tsd-kind-enum tsd-parent-kind-module">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-enum tsd-parent-kind-module">
 						<a href="tableau.vizimagepalettetype.html" class="tsd-kind-icon">Viz<wbr>Image<wbr>Palette<wbr>Type</a>
+						<ul>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="tableau.vizimagepalettetype.html#customdiverging" class="tsd-kind-icon">Custom<wbr>Diverging</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="tableau.vizimagepalettetype.html#customsequential" class="tsd-kind-icon">Custom<wbr>Sequential</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-enum tsd-parent-kind-module">
 						<a href="tableau.vizimagesizesettingalignmenttype.html" class="tsd-kind-icon">Viz<wbr>Image<wbr>Size<wbr>Setting<wbr>Alignment<wbr>Type</a>
 					</li>

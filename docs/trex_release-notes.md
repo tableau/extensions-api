@@ -12,6 +12,54 @@ layout: docs
 See also: [Known Issues]({{site.baseurl}}/docs/trex_known_issues.html)
 
 
+
+
+
+### Tableau Dashboard Extensions API version 1.8
+
+*November 2021*
+
+* Tableau Dashboard Extensions API library: `tableau.extensions.1.8.0.js` <br>(download or clone the Extensions API repository on [GitHub](https://github.com/tableau/extensions-api){:target="_blank"}.) <br/>
+
+* Certain features in this release are only available in Tableau 2021.4 or later. Preview the features and test your extension with the latest version of Tableau in the Developer Sandbox. To gain access to the Developer Sandbox, join the [Tableau Developer Program](http://www.tableau.com/developer){:target="_blank"} and request your own Tableau Online developer site.
+
+About this release:
+
+This release contains updates for [Tableau Viz]({{site.baseurl}}/docs/trex_tableau_viz.html){:target="_blank"}, including:
+
+* Added support for setting the size of a bar mark to be manual (`VizImageSizeSettingType.Manual`) or fixed (`VizImageSizeSettingType.Fixed`). If the type is manual, you can set the mark’s size. If the type is fixed, you can set the alignment (`VizImageSizeSettingAlignmentType`).
+
+* Added support for sorting. You can sort a field (continuous or discrete) by ascending or descending values (`VizImageSortDirectionType.Ascending`, `VizImageSortDirectionType.Descending`).
+
+  ```javascript
+  sort: { field: "Category", sortby: "Weather", direction: tableau.VizImageSortDirectionType.Ascending }
+  ```
+
+* For continuous fields, you can set the color palette to a custom-diverging, or custom-sequential color palette. You are not restricted to using only a Tableau defined palate, such as, `green_blue_white_diverging_10_0`.
+For example, you could set the custom palette as shown in the following examples:
+
+  ```javascript
+
+    palette: tableau.VizImagePaletteType.CustomDiverging, start: "#FFB6C1", end: "#90ee90"
+
+  ```
+
+  Or
+
+  ```javascript
+
+   palette: tableau.VizImagePaletteType.CustomSequential,  end: "#FFB6C1"
+
+  ```
+
+* Added support to show or hide grid lines in the view for rows or columns, or both.
+
+* Starting with the v1.8 release of the Dashboard Extensions API library and Tableau 2021.4, Tableau Viz now uses Tableau fonts as the default font for text in the output SVG image.
+
+For more information, see [Tableau Viz Reference]({{site.baseurl}}/docs/trex_tableau_viz_ref.html){:target="_blank"}
+
+----
+
 ### Tableau Dashboard Extensions API version 1.7
 
 *October 2021*
