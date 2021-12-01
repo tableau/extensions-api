@@ -38,6 +38,8 @@
 							</div>
 							<input type="checkbox" id="tsd-filter-inherited" checked />
 							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
 						</div>
 					</div>
 					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
@@ -118,7 +120,7 @@
 					<div class="tsd-signature tsd-kind-icon">field<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in FilterInterfaces.ts:30</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/FilterInterfaces.ts:30</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -135,7 +137,7 @@
 					<div class="tsd-signature tsd-kind-icon">field<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in FilterInterfaces.ts:24</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/FilterInterfaces.ts:24</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -150,10 +152,10 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="filtertype" class="tsd-anchor"></a>
 					<h3>filter<wbr>Type</h3>
-					<div class="tsd-signature tsd-kind-icon">filter<wbr>Type<span class="tsd-signature-symbol">:</span> <a href="../enums/filtertype.html" class="tsd-signature-type">FilterType</a></div>
+					<div class="tsd-signature tsd-kind-icon">filter<wbr>Type<span class="tsd-signature-symbol">:</span> <a href="../enums/tableau.filtertype.html" class="tsd-signature-type">FilterType</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in FilterInterfaces.ts:18</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/FilterInterfaces.ts:18</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -170,7 +172,7 @@
 					<div class="tsd-signature tsd-kind-icon">worksheet<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in FilterInterfaces.ts:13</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/FilterInterfaces.ts:13</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -194,10 +196,15 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in FilterInterfaces.ts:35</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/FilterInterfaces.ts:36</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
+								<dl class="tsd-comment-tags">
+									<dt>since</dt>
+									<dd><p>1.5.0 Fixed to properly return the field. Also requires Tableau 2019.2+.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="field.html" class="tsd-signature-type">Field</a><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>a promise containing the field for the filter.</p>
@@ -257,6 +264,7 @@
 				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
 				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
 				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>

@@ -20,7 +20,7 @@ The easiest way to share an extension with others is to share the workbook that 
 
 ## Publishing a dashboard extension to Tableau Server or Tableau Online
 
-While you don't exactly publish a dashboard extension to Tableau Server or Tableau Online. You can publish the workbook that contains an extension to Tableau Server. You can also add a dashboard extension to a dashboard on Tableau Server or Tableau Online when you are in authoring mode.
+While you don't exactly publish a dashboard extension to Tableau Server or Tableau Online, you can publish the workbook that contains an extension to Tableau Server. You can also add a dashboard extension to a dashboard on Tableau Server or Tableau Online when you are in authoring mode.
 
 However, to run on Tableau Server or Tableau Online, your extension must:
 
@@ -32,7 +32,7 @@ However, to run on Tableau Server or Tableau Online, your extension must:
 |**Note** If you want to test your extension with Tableau Online and you are running an extension on `http://localhost` during development, see [Load and view localhost content on sites that use secure connections]({{site.baseurl}}/docs/trex_security.html#load-and-view-localhost-content-on-sites-that-use-secure-connections)|
 
 
- Tableau Server and Tableau Online have settings that control whether dashboard extensions are allowed to run and whether specific extensions can access the the underlying data in a dashboard. 
+ Tableau Server and Tableau Online have settings that control whether dashboard extensions are allowed to run and whether specific extensions can access the the underlying data in a dashboard.
 
 
  To enable a dashboard extension on Tableau Server or Tableau Online, the server administrator or the site administrator (Tableau Online) must allow extensions for the site. The administrators can then choose to enable the default policy that allows *unknown* extensions that only request summary data to run, provided users grant the extension permission. These extensions are unknown in the sense that they have not been explicitly added to the safe list or to the blocked list on Tableau Server or Tableau Online.  
@@ -69,13 +69,13 @@ In addition to the requirements for all extensions to ensure security and usabil
 
 For information about getting your extension into the Exchange, see the <a href="{{site.baseurl}}/docs/ux_extension_gallery.html" target="_blank">Submitting your Extension to the Tableau Exchange</a>.
 
-For information about designing an extension, see the <a href="{{site.baseurl}}/docs/ux_design.html" target="_blank">Design Guidelines for Dashboard Extensions</a>.
+For information about designing an extension, see [Design Guidelines for Dashboard Extensions]({{site.baseurl}}/docs/ux_design.html){:target="_blank"}.
 
 ![]({{ site.baseurl }}/assets/trex_gallery.png){:height="50%" width="50%"}
 
-## Publishing or sharing a dashboard extension on the Communities page 
+## Publishing or sharing a dashboard extension on the Communities page
 
-Another way to share your work with other developers is to add it to the [Community Portal fpr Dashboard Extensions]({{ site.baseurl }}/community/). You can use the portal to provide links to your source code and you can also provide a `.trex` file for users to download. To make it easier for others to use your extension, we ask that your `.trex` file specifies a link to a hosted version of your extension
+Another way to share your work with other developers is to add it to the [Community Portal for Dashboard Extensions]({{ site.baseurl }}/community/). You can use the portal to provide links to your source code and you can also provide a `.trex` file for users to download. To make it easier for others to use your extension, we ask that your `.trex` file specifies a link to a hosted version of your extension
 See [Hosting and Contributing to the Community Portal]({{site.baseurl}}/docs/trex_contributing.html)
 
 Submit your extension to the [Community Portal for Dashboard Extensions]({{ site.baseurl }}/community/)

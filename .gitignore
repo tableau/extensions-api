@@ -4,5 +4,11 @@ node_modules/
 _site/
 node_modules/
 npm-debug.log
-package-lock.json
-Gemfile.lock
+
+# Ignore webpack generated files
+dist/
+
+.DS_Store
+
+# ignore local npmrc files
+.npmrc

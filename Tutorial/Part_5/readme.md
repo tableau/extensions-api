@@ -4,7 +4,7 @@ As you may have noticed when playing with our sample up to this point, when the 
 
 #### Saving Settings
 
-To take advantage of the settings API, we add calls to `tableau.extensions.settings.set('sheet', worksheetName)` and `tableau.extensions.settings.saveAsync()` once the user has selected their sheet. These APIs together will persist the sheet name into the workbook for it to be available between reloads and will go with the workbook if you publish to server or send to another user.
+To take advantage of the [settings API](https://tableau.github.io/extensions-api/docs/interfaces/settings.html), we add calls to `tableau.extensions.settings.set('sheet', worksheetName)` and `tableau.extensions.settings.saveAsync()` once the user has selected their sheet. These APIs together will persist the sheet name into the workbook for it to be available between reloads and will go with the workbook if you publish to server or send to another user.
 
 #### Retrieving values
 

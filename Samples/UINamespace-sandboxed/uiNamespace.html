@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Settings Sample</title>
+
+    <!-- jQuery -->
+    <script src="./jquery-3.2.1.min.js"></script>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="./bootstrap.min.css" >
+    <script src="./bootstrap.min.js" ></script>
+
+    <!-- Extensions Library (hosted from extension hosting server) -->
+    <script src="/resources/tableau.extensions.1.latest.js"></script>
+
+    <!-- Our extension's code -->
+    <script src="./uiNamespace.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <p id="mainContent">
+        <div id="active" style="display: none;">
+          Refreshing <b><span id="datasourceCount">0</span></b> datasource(s) every <b><span id="interval">5</span></b> minutes.
+        </div>
+        <div id="inactive">
+          Configure extension to proceed.
+        </div>
+      </p>
+    </div>
+  </body>
+</html>

@@ -67,7 +67,7 @@
     $('#fieldsDetail').text(fieldNamesStr.slice(0, -2));
 
     dataSource.getConnectionSummariesAsync().then(function (connectionSummaries) {
-      // Loop through each connection summary and list the connection's 
+      // Loop through each connection summary and list the connection's
       // name and type in the info field
       let connectionsStr = '';
       connectionSummaries.forEach(function (summary) {

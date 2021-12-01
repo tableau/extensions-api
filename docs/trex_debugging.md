@@ -18,15 +18,36 @@ Debugging an extension involves starting Tableau with a command option to enable
 
 ---
 
-## Download the Chromium Browser (Tableau 2018.2, 2018.3)
+## Download the Chromium Browser
 
-<div class="alert alert-info"><b>Note </b> If you are using Tableau 2019.1, you no longer need to use the Chromium browser. You can now debug extensions in Tableau Desktop using the latest versions of Chrome. If you are using Tableau 2018.2 or 2018.3, you still need the specific version of the Chromium browser for debugging.</div>
+To debug your extension, you'll need to use a Chromium-based browser (Chromium is the open-source version of Chrome). In some cases you could use Chrome, but because of version incompatibilities in the debugging protocol, we recommend using specific builds of Chromium, which matches the version of the browser running inside Tableau. Just download and unzip the file and run `chrome.exe` (Windows) or `chromium` (macOS).
 
-In order to actually do any debugging, you'll need to use a Chromium-based browser (Chromium is the open-source version of Chrome). You can use Chrome, but because of some version incompatibilities in the debugging protocol, we recommend using build 47.0.2526.0 of Chromium, which matches the version of the browser running inside Tableau (just download and unzip the file).
-* [Chromium for Windows (47.0.2526.0)](https://www.googleapis.com/download/storage/v1/b/chromium-browser-snapshots/o/Win%2F352221%2Fchrome-win32.zip?generation=1443839123039000&alt=media)  
-* [Chromium for macOS (47.0.2526.0)](https://www.googleapis.com/download/storage/v1/b/chromium-browser-snapshots/o/Mac%2F352221%2Fchrome-mac.zip?generation=1443838516381000&alt=media) 
+Tableau Desktop version  |  Chromium version  | Chrome version
+|----|----|----|
+2018.2, 2018.3 | 47.0.2526.0 |  Not available
+2019.1 and later | 79.0.3945.0  | Chrome version 79 or earlier.
+Latest maintenance release of 2020.2.7+, 2020.3.6+, 2020.4.2+ | 87.0.4280 | Chrome version 80 or later.
+2021.1 and later | 87.0.4280 | Chrome version 80 or later.
+
+
+
+**Chromium downloads for debugging Tableau 2018.2, 2018.3**
+
+* [Chromium for Windows (47.0.2526.0)](https://www.googleapis.com/download/storage/v1/b/chromium-browser-snapshots/o/Win%2F352221%2Fchrome-win32.zip?generation=1443839123039000&alt=media)
+
+* [Chromium for macOS (47.0.2526.0)](https://www.googleapis.com/download/storage/v1/b/chromium-browser-snapshots/o/Mac%2F352221%2Fchrome-mac.zip?generation=1443838516381000&alt=media)
+
+
+**Chromium downloads for debugging Tableau 2019.1 and later**
+
+* [Chromium for Windows (`chrome-win.zip`) (79.0.3945.0)](https://commondatastorage.googleapis.com/chromium-browser-snapshots/index.html?prefix=Win_x64/706915/)
+
+* [Chromium for macOS (`chrome-mac.zip`) (79.0.3945.0)](https://commondatastorage.googleapis.com/chromium-browser-snapshots/index.html?prefix=Mac/706915/)
+
+<div class="alert alert-info"><b>Note </b> If you are using Tableau 2021.1, or the latest maintenance releases of Tableau 2020.2.2.7+, 2020.3.3.6+, and 2020.4.2+, you can use Chrome version 80 (or later) for debugging your extension.</div>
 
 ---
+
 
 ## Start Tableau Desktop and enable debugging (Windows)
 
@@ -42,7 +63,7 @@ In order to actually do any debugging, you'll need to use a Chromium-based brows
 
 This command enables remote debugging of extensions for this session of Tableau. 
 
-**Note:** The remote debugging port (for example, `8696`) must match the port address you use with Chromium for debugging. This is *not* the HTTP port that you are using to host your extension, the port that is specified in the manifest file (`.trex`). 
+**Note:** The remote debugging port (for example, `8696`) must match the port address you use with Chromium for debugging. This is *not* the HTTP port that you are using to host your extension, the port that is specified in the manifest file (`.trex`).
 
 ---
 
@@ -71,7 +92,7 @@ If you open the file location, you can create a new shortcut to `Tableau.exe` (c
 
 This command enables remote debugging of extensions for this session of Tableau.
 
-**Note:** The remote debugging port (for example, `8696`) must match the port address you use with Chromium for debugging. This is *not* the HTTP port that you are using to host your extension, the port that is specified in the manifest file (`.trex`). 
+**Note:** The remote debugging port (for example, `8696`) must match the port address you use with Chromium for debugging. This is *not* the HTTP port that you are using to host your extension, the port that is specified in the manifest file (`.trex`).
 
 
 ---
@@ -79,7 +100,7 @@ This command enables remote debugging of extensions for this session of Tableau.
 
 ## Debugging Tableau Desktop using Chrome/Chromium
 
-After you install the Chromium browser and enable debugging in Tableau, you can start debugging your extension. 
+After you install the Chrome (or Chromium) browser and enable debugging in Tableau, you can start debugging your extension.
 
 1. Open the dashboard with the extension you want to debug in Tableau. 
 2. Start Chromium and set the URL to [`http://localhost:8696`](http://localhost:8696)  
@@ -90,16 +111,31 @@ Note that the name of the extension is based on the title of the web page that w
 
     ![Remote Debugging]({{site.baseurl}}/assets/remote_debugging.gif)
 
-Note that you can only debug one extension, or instance of an extension, at a time. However, you can open a new Chromium tab or window to debug additional extensions. 
+Note that you can only debug one extension, or instance of an extension, at a time. However, you can open a new Chromium tab or window to debug additional extensions.
 
 ---
 
-## Debugging loading and initialization issues
+## Debugging loading and initialization issues (Tableau 2021.1 and later)
 
-It can be difficult to hit breakpoints that occur during the loading of your page because of the remote debugging process. To help with this, you can select a menu option that causes your extension to wait to load until you trigger it to proceed.
+If you need to troubleshoot or debug issues that prevent your extension from loading or initializing, you can set breakpoints that trigger when your JavaScript code is loaded.
+
+1. Start the debugging session as described in [Debugging Tableau Desktop using Chrome/Chromium](#debugging-tableau-desktop-using-chromechromium).
+
+1. Click the **Sources** tab in Chrome/Chromium, under **Event Listener Breakpoints**, click **Script** and enable the **Script First Statement** breakpoint. You just have to do this one time.
+
+1. In Tableau Desktop, select the extension in the dashboard and click **Reload** from the **More Options** shortcut menu. <br/>
+The debugger will pause each time the first statement of a script runs, allowing you to debug the startup process.
+
+1. To get to your JavaScript code, click **Continue** several times. After your JavaScript is loaded, you can set a breakpoint in your startup code.
+
+---
+
+## Debugging loading and initialization issues (Tableau 2020.4 and earlier)
+
+It can be difficult to hit breakpoints that occur during the loading of your page because of the remote debugging process, and because of the way loading was handled prior to Tableau 2021.1. To help with this, you can select a menu option that causes your extension to wait to load until you trigger it to proceed.
 
 1. Select the extension in the dashboard and select **Debug Options** > **Pause Before Loading** from the shortcut menu.
-2. Reload your extension. Select **Reload** from the shortcut menu. 
+2. Reload your extension. Select **Reload** from the shortcut menu.
 3. In Chromium, go to the debugging homepage ([http://localhost:8696](http://localhost:8696)). 
 4. Click the *second item* listed to attach to the browser instance of your extension.<br/>
 **Note:** When you click the list item, it will be completely blank, but it is really there. The cursor changes so you can select it.
@@ -118,7 +154,7 @@ The debugger will pause each time the first statement of a script runs, allowing
 ---
 
 
-#### Reload closes debugging connection
+#### Reload closes debugging connection (2020.1 and earlier)
 
 
 While you are debugging your extension, there are times you might want to reload or refresh your web page to execute and debug different parts of your code. However, when you click **Reload** from the shortcut menu to reload your extension, the remote debugger loses the connection with the extension. The reason for this is that **Reload** option tears down and re-creates the browser control, which means you'll need to establish a new debugging session.

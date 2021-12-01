@@ -38,6 +38,8 @@
 							</div>
 							<input type="checkbox" id="tsd-filter-inherited" checked />
 							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
 						</div>
 					</div>
 					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
@@ -111,7 +113,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in Namespaces/UI.ts:74</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/Namespaces/UI.ts:80</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -127,12 +129,10 @@
 										<p>The <code>payload</code> is optional, and if specified, it is made available to parent extension when
 											this popup dialog closes. If the extension running in the popup dialog window does not return
 										a payload, you must still provide an empty string <code>&quot; &quot;</code> as a return value.</p>
-										<pre><code>   <span class="hljs-selector-tag">tableau</span><span class="hljs-selector-class">.extensions</span><span class="hljs-selector-class">.ui</span><span class="hljs-selector-class">.closeDialog</span>(<span class="hljs-string">'myPayload string'</span>);
-
+										<pre><code>   tableau.extensions.ui.close<span class="hljs-constructor">Dialog('<span class="hljs-params">myPayload</span> <span class="hljs-params">string</span>')</span>;
 </code></pre><p>The following example shows a call to the closeDialog method when the dialog extension does not return a payload.</p>
-										<pre><code>   <span class="hljs-regexp">//</span> specify an empty string <span class="hljs-keyword">if</span> <span class="hljs-literal">no</span> payload <span class="hljs-keyword">is</span> returned
-   tableau.extensions.ui.closeDialog(<span class="hljs-string">''</span>);
-</code></pre>
+										<pre><code>   <span class="hljs-comment">// specify an empty string if no payload is returned</span>
+   <span class="hljs-selector-tag">tableau</span><span class="hljs-selector-class">.extensions</span><span class="hljs-selector-class">.ui</span><span class="hljs-selector-class">.closeDialog</span>(<span class="hljs-string">''</span>);</code></pre>
 									</div>
 								</li>
 							</ul>
@@ -150,10 +150,20 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in Namespaces/UI.ts:53</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/Namespaces/UI.ts:59</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
+								<dl class="tsd-comment-tags">
+									<dt>since</dt>
+									<dd><p>1.3.0         A relative path may be used beginning with Tableau 2019.3 and version 1.3.0 of the Extensions API library.
+											The relative path must resolve to the directory, or a child directory, of the extension.
+											Root-relative paths are not allowed. For example, <code>./config.html</code> or <code>config.html</code> are allowed,
+											but not the root-relative path <code>/config.html</code>.
+											<strong>Note</strong> If your extension is meant for use in versions of Tableau prior to 2019.3,
+										you should use an absolute url.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -178,7 +188,7 @@
 									<div class="tsd-comment tsd-typography">
 										<p>Specifies the options for the popup dialog window.
 											The <code>dialogOptions</code> has two properties for width and height (in pixels). You pass these properties
-										to the <code>displayDialogAsync</code> function, as follows: <code>{width:</code> <em>number</em><code>, height:</code> <em>number</em> <code>}</code></p>
+										to the <code>displayDialogAsync</code> function, as follows: <code>{width:</code> <em>number*<code>, height:</code> *number</em> <code>}</code></p>
 									</div>
 								</li>
 							</ul>
@@ -204,8 +214,7 @@
         <span class="hljs-keyword">default</span>:
       <span class="hljs-built_in">console</span>.error(error.message);
       }
-    });
-</code></pre>
+    });</code></pre>
 						</li>
 					</ul>
 				</section>
@@ -253,6 +262,7 @@
 				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
 				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
 				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>

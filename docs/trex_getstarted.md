@@ -3,11 +3,13 @@ title: Get Started with Dashboard Extensions
 layout: docs
 ---
 
-The Tableau Extensions API allows developers to create extensions for Tableau. Tableau extensions are web applications that can interact and communicate with Tableau. A dashboard extension can be placed in the dashboard like any other dashboard object. 
- 
-This section will take you through the process of setting up your environment to use one of the sample dashboard extensions. Using one of the sample extensions is a great way to learn and great way to get started developing your own extensions. In this section, you will start a simple web server on your computer to host the sample. You can use the same process for hosting the extension when you start developing your own. 
+The Tableau Dashboard Extensions API allows developers to create extensions for Tableau. Tableau extensions are web applications that can interact and communicate with Tableau. A dashboard extension can be placed in the dashboard like any other dashboard object.
 
-<div class="alert alert-info"><b>Note</b> If you are looking for information about how to add an extension to a dashboard in Tableau, see <a href="https://onlinehelp.tableau.com/current/pro/desktop/en-us/dashboard_extensions.htm" target="_blank">Use Dashboard Extensions</a>. If you are looking for extensions that you can use, see the <a href="https://extensiongallery.tableau.com/" target="_blank">Tableau Extension Gallery</a>.
+<div class="alert alert-info"><b>Note</b> If you are looking for information about how to extend Tableau calculations to include popular data science programming languages and external tools, see the <a href="https://tableau.github.io/analytics-extensions-api/" target="_blank" ref="noopener">Tableau Analytics Extensions API</a>.</div>
+ 
+This section will take you through the process of setting up your environment to use one of the sample dashboard extensions. Using one of the sample extensions is a great way to learn and great way to get started developing your own extensions. In this section, you will start a simple web server on your computer to host the sample. You can use the same process for hosting the extension when you start developing your own.
+
+<div class="alert alert-info"><p><b>Note</b> If you are looking for information about how to add an extension to a dashboard in Tableau, see <a href="https://onlinehelp.tableau.com/current/pro/desktop/en-us/dashboard_extensions.htm" target="_blank" ref="noopener">Use Dashboard Extensions</a>. If you are looking for extensions that you can use, see the <a href="https://extensiongallery.tableau.com/" target="_blank" ref="noopener">Tableau Extension Gallery</a>.</p>
 </div>
 
 
@@ -56,19 +58,22 @@ You can get the Tableau Extensions API SDK in two ways. Clone the repository if 
 
    `git clone https://github.com/tableau/extensions-api.git`
 
-* Download the [Tableau Extensions API SDK (.zip file)](https://github.com/tableau/extensions-api/archive/master.zip) and extract the files to your computer.
+* Download the [Tableau Extensions API SDK (.zip file)](https://github.com/tableau/extensions-api/archive/main.zip) and extract the files to your computer.
 
 
 
 ---
 ### Start a web server to host the sample dashboard extensions
 
-To use the dashboard extension samples, you need to start up a web server on your computer to host the HTML pages. If you downloaded or cloned the Extensions API repository, you can start the web service in the root directory of the repository on your computer. For example, if you downloaded the `extensions-api-master.zip` file to your `Downloads` directory, after you extract the files, the path might be `Downloads\extensions-api-master\extensions-api\`. 
+To use the dashboard extension samples, you need to start up a web server on your computer to host the HTML pages. If you downloaded or cloned the Extensions API repository, you can start the web service in the root directory of the repository on your computer. For example, if you downloaded the `extensions-api-main.zip` file to your `Downloads` directory, after you extract the files, the path might be `Downloads\extensions-api-main\extensions-api\`. 
 
 1. Navigate to the `extensions-api` directory.
-2. To install the web server components, run the following npm command to install the package:
+
+2. To install the web server components, run the following npm commands to install the package:
 
    **npm install**
+
+   **npm run build**
 
   
 3. To start the web server, run the following npm command:
@@ -86,22 +91,27 @@ To use the dashboard extension samples, you need to start up a web server on you
 ---
 ### Start Tableau and add an extension to the dashboard
 
-1. Start Tableau and open a workbook that has a dashboard, or open a workbook and create a new dashboard. 
-2. In the dashboard, under **Objects**, select **Extension** and drag it on to the dashboard.  
+1. Start Tableau and open a workbook that has a dashboard, or open a workbook and create a new dashboard.
+
+2. In the dashboard, under **Objects**, select **Extension** and drag it on to the dashboard.
+
    ![]({{site.baseurl}}/assets/frelard_objects_extension.png){:height="25%" width="25%"}
 
-3. In the **Choose an Extension** dialog box, click **My Extensions**. 
- Every Tableau extension has a manifest file (`.trex`) that describes the extension and identifies the location of the web application. 
-4. Browse to the directory where the samples are located. For example, if you downloaded or cloned the GitHub repository, go to `\extensions-api\Samples\DataSources`. 
-5. Open the `DataSources.trex` file.     
+3. In the **Choose an Extension** dialog box, click **My Extensions**.
+   Every Tableau extension has a manifest file (`.trex`) that describes the extension and identifies the location of the web application.
+
+4. Browse to the directory where the samples are located. For example, if you downloaded or cloned the GitHub repository, go to `\extensions-api\Samples\DataSources`.
+
+5. Open the `DataSources.trex` file.
    The sample extension (web application) appears in the dashboard frame. The DataSources sample finds and displays the data source for each worksheet in the dashboard.
+
 6. In the DataSources extension, click the **Info** (**i**) button.  This action opens a dialog box that displays more details about the selected data source.  
 
    ![]({{site.baseurl}}/assets/data_source.gif)
 
+----
 
----
-### Examine the source code for the extension 
+### Examine the source code for the extension
 
 Looking at the files that make up an extension will give you an idea of how an extension is constructed.
 
@@ -116,6 +126,7 @@ Looking at the files that make up an extension will give you an idea of how an e
     <!-- Our extension's code -->
     <script src="./datasources.js"></script>
     ```
+
 3. Open the `datasources.js` file. This file contains code to initialize the Extensions API, and contains functions to gather all the data sources used by the workbooks in the dashboard. Read through the code and the code comments to get an understanding about how this extension works. The Extensions API makes use of JavaScript Promises to collect the data returned from the asynchronous function calls. Look for the code that initializes the extension. An extension will often place the initialization code in the JQuery `$(document).ready()` function so that it will run when the page is loaded.
 
     ```javascript
@@ -135,13 +146,14 @@ Looking at the files that make up an extension will give you an idea of how an e
     
     ```
   
-4. Open the `DataSources.trex` file. This is the manifest file for the extension. This is the file that you selected to add the extension to the dashboard. This file defines certain properties for the extension, such as the name, and author, and the location (URL) of the extension. 
- 
+4. Open the `DataSources.trex` file. This is the manifest file for the extension. This is the file that you selected to add the extension to the dashboard. This file defines certain properties for the extension, such as the name, and author, and the location (URL) of the extension.
+
     ```xml
     <source-location>
       <url>http://localhost:8765/Samples/DataSources/datasources.html</url>
     </source-loc>
     ```
+
     If you make a copy of the sample directory so that you can start to modify the code and experiment with the Extensions API, you just need to modify this path so that the URL reflects the new location.
 
     ```xml
@@ -157,8 +169,7 @@ You can add multiple instances of an extension to a dashboard or to multiple das
  
  -->
 
-
-------------------------------------------------------------------------
+----
   
 ## What's next?
 

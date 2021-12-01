@@ -111,7 +111,7 @@
         }
 
         if (filter.maxValue) {
-          filterValues += 'min: ' + filter.maxValue.formattedValue + ', ';
+          filterValues += 'max: ' + filter.maxValue.formattedValue + ', ';
         }
         break;
       case 'relative-date':
@@ -144,7 +144,7 @@
 
         // Same pattern as in fetchFilters, wait until all promises have finished
         // before updating the UI state.
-        Promise.all(filterClearPromises).then(function () {
+        Promise.allSettled(filterClearPromises).then(function () {
           updateUIState(false);
         });
       });

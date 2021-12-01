@@ -32,21 +32,21 @@ The Extensions API is a JavaScript library that you link to from your web applic
 
 For more information about how you can use Extensions API, go look at the [Samples](https://github.com/tableau/extensions-api/tree/master/Samples/). 
 
-## Comparing the Extensions API and the Embedded API (JavaScript API) 
+## Comparing the Extensions API and the Embedding JavaScript API 
 
-The Extensions API and the Embedded API (also known as the [JavaScript API](https://onlinehelp.tableau.com/current/api/js_api/en-us/JavaScriptAPI/js_api.htm){:target="_blank"}) are both JavaScript libraries that allow you to interact with Tableau, but they do so in two fundamental ways:  
-* You can use the Embedded API for embedding Tableau dashboards in web pages (for example, blog posts), or in line of business applications.
+The Extensions API and the Embedding JavaScript API (also known as the [JavaScript API](https://onlinehelp.tableau.com/current/api/js_api/en-us/JavaScriptAPI/js_api.htm){:target="_blank"}) are both JavaScript libraries that allow you to interact with Tableau, but they do so in two fundamental ways:  
+* You can use the Embedding JavaScript API for embedding Tableau dashboards in web pages (for example, blog posts), or in line of business applications.
 * You can use the Extensions API for integrating web applications into zones in Tableau dashboards. 
 
 
 
-The Extensions API and Embedded API share a similar programming model, but there are differences. 
+The Extensions API and Embedding JavaScript API share a similar programming model, but there are differences. 
 
-| JavaScript | Extensions API |
+| Embedding JavaScript API | Extensions API |
 |------------| ---------------|
 |Brings Tableau into other web applications | Brings other web applications into Tableau |
 | Requires embedding Tableau dashboard into a web page | Can be used in Desktop, Server, Online, or embedded dashboard |
-| Custom-built for each embed scenario	| Can be made as a re-usable, generic-built dashboard component |
+| Custom-built for each embedded scenario	| Can be made as a re-usable, generic-built dashboard component |
 | Written in JavaScript | Written in JavaScript (similar calls) |
 
 

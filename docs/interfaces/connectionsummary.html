@@ -38,6 +38,8 @@
 							</div>
 							<input type="checkbox" id="tsd-filter-inherited" checked />
 							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
 						</div>
 					</div>
 					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
@@ -102,7 +104,7 @@
 					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in DataSourceInterfaces.ts:168</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataSourceInterfaces.ts:243</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -119,7 +121,7 @@
 					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in DataSourceInterfaces.ts:163</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataSourceInterfaces.ts:238</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -136,13 +138,15 @@
 					<div class="tsd-signature tsd-kind-icon">serverURI<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in DataSourceInterfaces.ts:178</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataSourceInterfaces.ts:255</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<dl class="tsd-comment-tags">
 							<dt>returns</dt>
-							<dd><p>The URI to which the connection is pointing if applicable.</p>
+							<dd><p>The URI to which the connection is pointing, if applicable.
+									If a data source is a published data source, the URI is returned
+								as <code>localhost</code>.</p>
 							</dd>
 						</dl>
 					</div>
@@ -153,7 +157,7 @@
 					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in DataSourceInterfaces.ts:173</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataSourceInterfaces.ts:248</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -214,6 +218,7 @@
 				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
 				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
 				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
