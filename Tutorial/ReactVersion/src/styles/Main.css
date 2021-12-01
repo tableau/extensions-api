@@ -1,0 +1,24 @@
+h4, h5 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sheet_name {
+  font-weight: bold;
+  margin: 0px 5px;
+}
+
+.summary_header {
+  height: 50px;
+}
+
+body, html {
+  padding: 0px;
+  margin: 0px;
+}
+
+.icon {
+  height: 16px;
+  filter: invert(43%) sepia(100%) saturate(2614%) hue-rotate(195deg) brightness(101%) contrast(102%);
+}

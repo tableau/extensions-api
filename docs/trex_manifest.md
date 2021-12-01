@@ -3,8 +3,8 @@ title: Tableau Extension Manifest File
 layout: docs
 ---
 
-The extension manifest file (`.trex`) contains metadata for the extension and is used for registration. 
- 
+The extension manifest file (`.trex`) contains metadata for the extension and is used for registration.
+
 For details about a manifest or its fields, see the [Sample Manifest File](#sample-manifest-file) and [Elements of the Manifest File](#elements-of-the-manifest-file).  
 
 
@@ -13,19 +13,19 @@ For details about a manifest or its fields, see the [Sample Manifest File](#samp
 * TOC
 {:toc}
 
+---
 
+## Tableau TREX Generator
 
-## XSD Validation
-The manifest is an XML-based file. We have provided an XSD (an XML schema definition file) that can be used to validate the manifest file you have created for your extension. The XSD is available from the  [Extensions API Developer Preview](https://prerelease.tableau.com/project/version/item.html?cap=52e2710a0793434d82142736c7ab3029&arttypeid={0DD668AE-472C-4E70-B465-35F7AE0DEB6D}&artid={939493D2-8000-4192-857A-67624CBCC35A}){:target="_blank"} site. You are strongly encouraged to validate your extensions manifest file before using it for the first time. 
+To create a new manifest file (`.trex`) for your extension the easy way, use the [Tableau TREX Generator](https://trex-generator.glitch.me/){:target="_blank"} on [Glitch](https://glitch.com){:target="_blank"}. The Tableau TREX Generator allows you to create the manifest file by filing in a form. You can also upload an existing `.trex` file and use that as a starting point. You can use the generator to edit and modify your `.trex` file as needed. When you are finished, just download the file to use with your extension.
 
 ## Manifest Versioning
+
 The versioning of the manifest is designed to be semantically simple and support compatibility. The version follows the [Major].[Minor] format. Minor upgrades are backwards compatible while major upgrades involve breaking changes. 
 
 ## Error Reporting
-At start up, Tableau checks the manifest file. If any errors are found while parsing the file, Tableau writes these errors to the `log.txt` file in the `My Tableau Repository (Beta)/Logs` folder. This is the same location that Tableau Desktop uses to report other errors and activity. 
 
-If a workbook is saved with an extension and then later opened on another computer that does not have the extension installed, Tableau displays a message in the dashboard zone where the extension would have appeared that states the extension is not available. 
-
+At start up, Tableau checks the manifest file. If any errors are found while parsing the file, Tableau writes these errors to the `log.txt` file in the `My Tableau Repository/Logs` folder. This is the same location that Tableau Desktop uses to report other errors and activity.
 
 ## Sample Manifest File
 

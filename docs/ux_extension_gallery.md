@@ -47,46 +47,10 @@ Users reach pages like this when they want to know more about a particular exten
 | --- | ------- | 
 | **Description**  | Describe what your extension does in one paragraph. The description must describe how your extension works, how it might help with one’s workflow, or how it might enhance data insights. |
 | **Developer Info**  | Take credit for your work. Gather links, files, and/or contact info for the following items: <br>**Policy**: Privacy Policy (website link or PDF) <br>**Usage**: Terms of Service (website link or PDF), and terms of service <br>**Support**: Personal or company website, FAQ, PDF, and contact info for feedback and inquires <br>**Version**: Current version of your extension. |
-| **Featured Images** | You can upload one to three images of your extension in action. Take caution that screenshots do not reveal any sensitive or confidential data. |
+| **Featured Images** | You can upload one to three images of your extension in action. Dimensions for the screenshots must be 1200x680 pixels and uploaded as `.png` files. Take caution that screenshots do not reveal any sensitive or confidential data. |
 
 &nbsp;
 
 ## How to Submit your Extension
 
-After completing your extension, fill out the template below and email your extension information to [devplat@tableau.com](mailto:devplat@tableau.com). The extension name in the template needs to match the name you specified for your extension in the manifest file (`.trex`). The 280x280 pixel `.png` icon that you attach with your submission must look like the icon you included in your manifest file (they just have different dimensions). Our developers from the Developer Platform team at Tableau will let you know any next steps for sharing your extension. 
-
-```
-EMAIL SUBJECT: Extension Gallery Submission
--------------------------------------------
-EXTENSION NAME:
-
-TAGLINE:
-
-DESCRIPTION:
-
-DEVELOPER INFO:
-– Privacy Policy:
-– Usage:
-– Support:
-```
-
-Lastly, be sure to **attach these files** before sending the email.
-
-* Extension `.trex` manifest
-* Extension Icon (a 280x280 pixel `.png`)
-* Featured Images
-* Additional/optional PDF files (for Developer Info section)
-
-
-
-&nbsp;
-
-&nbsp;
-
----
-
-<!-- ### <div id="expand-box"><div id="expand-box-header">[<span style="float: right;">Parts of an Extension &#8594;</span>](3 - Parts of an Extension.md)</div></div>
-
-##### <div id="expand-box"><div id="expand-box-header">[<span style="float: left;">&#8592; Lifecycle of an Extension</span>](1 - Lifecycle of an Extension.md)</div></div>
--->
-
+After completing your extension, fill out the [Extension Gallery Submission form](https://tabsoft.co/gallerysubmit){:target="_blank"}{:ref="noopener"} with your information and extension details. The extension name in the template needs to match the name you specified for your extension in the manifest file (`.trex`). The 280x280 pixel `.png` icon that you attach with your submission must look like the icon you included in your manifest file (they just have different dimensions). Our developers from the Developer Platform team at Tableau will let you know the next steps including legal agreements after you submit. If you have any questions about the gallery please send them to [extensiongallery@tableau.com](extensiongallery@tableau.com){:target="_blank"}{:ref="noopener"}.

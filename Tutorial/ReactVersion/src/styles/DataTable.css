@@ -27,3 +27,20 @@
 .dataTable {
   height: calc(100vh - 60px);
 }
+
+.link-button {
+  color: #1C8AFF;
+  font-weight: bold;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  text-decoration: underline;
+  display: inline;
+  margin: 0;
+  padding: 0;
+}
+
+.link-button:hover,
+.link-button:focus {
+text-decoration: none;
+}

@@ -11,6 +11,248 @@ layout: docs
 ----
 See also: [Known Issues]({{site.baseurl}}/docs/trex_known_issues.html)
 
+
+
+
+
+### Tableau Dashboard Extensions API version 1.8
+
+*November 2021*
+
+* Tableau Dashboard Extensions API library: `tableau.extensions.1.8.0.js` <br>(download or clone the Extensions API repository on [GitHub](https://github.com/tableau/extensions-api){:target="_blank"}.) <br/>
+
+* Certain features in this release are only available in Tableau 2021.4 or later. Preview the features and test your extension with the latest version of Tableau in the Developer Sandbox. To gain access to the Developer Sandbox, join the [Tableau Developer Program](http://www.tableau.com/developer){:target="_blank"} and request your own Tableau Online developer site.
+
+About this release:
+
+This release contains updates for [Tableau Viz]({{site.baseurl}}/docs/trex_tableau_viz.html){:target="_blank"}, including:
+
+* Added support for setting the size of a bar mark to be manual (`VizImageSizeSettingType.Manual`) or fixed (`VizImageSizeSettingType.Fixed`). If the type is manual, you can set the mark’s size. If the type is fixed, you can set the alignment (`VizImageSizeSettingAlignmentType`).
+
+* Added support for sorting. You can sort a field (continuous or discrete) by ascending or descending values (`VizImageSortDirectionType.Ascending`, `VizImageSortDirectionType.Descending`).
+
+  ```javascript
+  sort: { field: "Category", sortby: "Weather", direction: tableau.VizImageSortDirectionType.Ascending }
+  ```
+
+* For continuous fields, you can set the color palette to a custom-diverging, or custom-sequential color palette. You are not restricted to using only a Tableau defined palate, such as, `green_blue_white_diverging_10_0`.
+For example, you could set the custom palette as shown in the following examples:
+
+  ```javascript
+
+    palette: tableau.VizImagePaletteType.CustomDiverging, start: "#FFB6C1", end: "#90ee90"
+
+  ```
+
+  Or
+
+  ```javascript
+
+   palette: tableau.VizImagePaletteType.CustomSequential,  end: "#FFB6C1"
+
+  ```
+
+* Added support to show or hide grid lines in the view for rows or columns, or both.
+
+* Starting with the v1.8 release of the Dashboard Extensions API library and Tableau 2021.4, Tableau Viz now uses Tableau fonts as the default font for text in the output SVG image.
+
+For more information, see [Tableau Viz Reference]({{site.baseurl}}/docs/trex_tableau_viz_ref.html){:target="_blank"}
+
+----
+
+### Tableau Dashboard Extensions API version 1.7
+
+*October 2021*
+
+
+* Tableau Dashboard Extensions API library: `tableau.extensions.1.7.0.js` <br>(download or clone the Extensions API repository on [GitHub](https://github.com/tableau/extensions-api){:target="_blank"}.) <br/>
+
+* Certain features in this release are only available in Tableau 2021.4 or later. Preview the features and test your extension with the latest version of Tableau in the Developer Sandbox. To gain access to the Developer Sandbox, join the [Tableau Developer Program](http://www.tableau.com/developer){:target="_blank"} and request your own Tableau Online developer site.
+
+About this release:
+
+* Added a new method, [`moveAndResizeDashboardObjectsAsync`]({{site.baseurl}}/docs/interfaces/dashboard.html#dashboard.html#moveandresizedashboardobjectsasync){:target="_blank"} you can use to set the position and size of one or more floating dashboard objects. This can be useful for creating overlays, annotations, popups, or dynamic layouts.
+  
+* Added a new method that can replay an animation in a dashboard. You can control the replay speed (`tableau.ReplaySpeedType.Slow`, `tableau.ReplaySpeedType.Normal`, or `tableau.ReplaySpeedType.Fast`). For more information see the [`replayAnimationAsync`]({{site.baseurl}}/docs/interfaces/dashboard.html#replayanimationasync){:target="_blank"} method.
+
+* Dashboard extensions can now use workbook formatting by setting the appropriate class on the HTML elements. The specific Tableau classes to use are defined in the [`ClassNameKey`]({{site.baseurl}}/docs/enums/tableau.classnamekey.html){:target="_blank"} enum. To apply the formatting in the body of your HTML page, use the string literal `tableau-*` for the enum. For example, to apply the worksheet title formatting you set the `class` for the HTML element in your extension (`div`, `h2`, etc.) to `"tableau-worksheet-title"`.  
+
+     ```html
+     <h2 class="tableau-worksheet-title">Subheader, using tableau-worksheet-title class</h2>
+     
+     ```
+
+  To reference the workbook formatting in places outside of the HTML body, use the enum directly (for example, `tableau.ClassNameKey.WorksheetTitle`).
+
+    ```html
+   <script>
+     ...
+     someFunction(tableau.ClassNameKey.WorksheetTitle);
+     ...
+    </script>
+    ```
+
+  You can access the formatting in the Tableau workbook from `tableau.extensions.environment.workbookFormatting`. The property `formattingSheets` contains the array of CSS properties for the workbook, organized by `ClassNameKey`. For more information about using workbook formatting, see the [Formatting](https://github.com/tableau/extensions-api/tree/main/Samples/Formatting){:target="_blank"} sample in the Samples folder.
+
+* You can now set an event listener on changes to the dashboard layout and to the dashboard formatting. The new event types are `DashboardLayoutChanged` and `WorkbookFormattingChanged`. 
+
+  The `DashboardLayoutChanged` event is triggered whenever a dashboard object is added, removed, repositioned or resized, or whenever the floating state, visibility, object name, or dashboard size changes. See the [DashboardLayoutChanged]({{site.baseurl}}/docs/interfaces/dashboard.html#dashboardlayoutchanged){:target="_blank"} event. 
+
+  The `WorkbookFormattingChanged` event is triggered whenever the workbook text formatting is changed in Tableau authoring mode. This includes changes in the font, the font size, whether it is bold, italic, or underlined, and the color. For more information about workbook formatting, see [workbookFormatting]({{site.baseurl}}/docs/interfaces/environment.html#workbookformatting){:target="_blank"}.
+
+* Transparency - Tableau now supports dashboard extension transparency for Sandboxed extensions. To take advantage of extension transparency, set your background style to a transparent or partially transparent color.
+
+* Added a new method (`setClickThroughAsync`) that allows clicks to pass through the dashboard extension window. You can use this method in conjunction with transparency. See the [setClickThroughAsync]({{site.baseurl}}/docs/interfaces/extensions.html#setclickthroughasync){:target="_blank"} method.
+
+
+
+
+
+----
+
+### Tableau Dashboard Extensions API version 1.6
+
+*September 2021*
+
+* Tableau Dashboard Extensions API library: `tableau.extensions.1.6.0.js` <br>(download or clone the Extensions API repository on [GitHub](https://github.com/tableau/extensions-api){:target="_blank"}.) <br/>
+
+* Download [Tableau Desktop 2021.3](https://www.tableau.com/support/releases){:target="_blank"} or [Tableau Server 2021.3](https://www.tableau.com/support/releases/server){:target="_blank"}.
+
+About this release:
+
+* Tableau Viz is here! <br/>
+
+![Tableau Viz SVG image]({{site.baseurl }}/assets/vizapi_demo3.svg)
+
+Starting with version 1.6 of the Dashboard Extensions API library and Tableau 2021.3, you can now add Tableau visualizations to your dashboard extensions. Tableau Viz takes a declarative description of your visualization and renders it as an SVG image that you can embed in your extension.  Version 1.6 of the Dashboard Extensions library adds the [`tableau.extensions.createVizImageAsync`]({{site.baseurl}}/docs/interfaces/extensions.html#createvizimageasync){:target="_blank"} method, which takes a JavaScript object describing the image as an input.<br/> 
+For more information about using Tableau Viz, see: <br/>
+  - [Add Tableau Viz to Your Dashboard Extensions]({{site.baseurl}}/docs/trex_tableau_viz.html)
+  - [Tableau Viz Reference]({{site.baseurl}}/docs/trex_tableau_viz_ref.html)
+  - [Tableau Viz Sample - VizImage](https://github.com/tableau/extensions-api/tree/main/Samples/VizImage){:target="_blank"}
+
+New Dashboard Extension API methods in this release:
+
+* Added the `getAllDataSourcesAsync()` method to get the data sources for a workbook.
+* Added the `createVizImageAsync()` method to support Tableau Viz.
+
+----
+
+### Tableau Dashboard Extensions API version 1.5
+
+*June 2021*
+
+* Tableau Dashboard Extensions API library: `tableau.extensions.1.5.0.js` <br>(download or clone the Extensions API repository on [GitHub](https://github.com/tableau/extensions-api){:target="_blank"}.) <br/>
+
+About this release:
+
+* The `Filter.getFieldAsync` method now works as expected and properly returns the field. This fix requires Tableau 2019.2 and later.
+
+* Show/Hide (`setZoneVisibilityAsync`) can now be applied to any dashboard zone.
+
+* The `selectMarksByValueAsync` method now supports combined selection criteria types (bug fixed).
+
+* The following are all improvements to the [`getSummaryDataAsync`](https://tableau.github.io/extensions-api/docs/interfaces/worksheet.html#getsummarydataasync){:target="_blank"} method:
+
+  * `getSummaryDataAsync` now has a smaller and faster payload.
+
+  * `maxRows` can be applied to `getSummaryDataAsync` to restrict the number of rows fetched.
+
+  * `columnsToIncludeById` can be applied to `getSummaryDataAsync` to restrict the columns fetched.
+
+  * `includeDataValuesOnly` or `includeFormattedValuesOnly` can be applied to `getSummaryDataAsync` to restrict the amount of information returned to what you really need.
+
+  * The `getSummaryColumnsInfoAsync` method is new in this release. It returns the column information for each column that will be returned in `getSummaryDataAsync`.
+
+* The column information now includes the `fieldId` as well as the field name.
+
+For more information about changes in this release, see [Tableau Extensions v1.5.0](https://github.com/tableau/extensions-api/releases/tag/v1.5.0){:target="_blank"}.
+
+
+
+----
+
+### Tableau 2021.1 Updates
+
+*March 2021*
+
+* You can now use Chrome version 80 and later to debug your dashboard extension in Tableau Desktop. If you are using Tableau 2021.1, or the latest maintenance releases of Tableau 2020.2, 2020.3, or 2020.4, you no longer need to use Chromium (version 79 or earlier) for debugging. For more information, see [Debug Extensions in Tableau Desktop]({{site.baseurl}}/docs/trex_debugging.html) and [Download the Chromium Browser]({{site.baseurl}}/docs/trex_debugging.html#download-the-chromium-browser).
+
+* If you plan to implement OAuth in your dashboard extension, you'll want to check out [Add OAuth to Dashboard Extensions]({{site.baseurl}}/docs/trex_oauth.html), and the OAuth sample ([datadev-oauth-sign-in](https://glitch.com/~datadev-oauth-sign-in){:target="_blank"}) on Glitch.
+
+* Because of browser changes in Tableau, dashboard extensions running with self-signed certificates (SSL) might not work in Tableau 2021.1, or in the most recent Tableau maintenance releases: 2020.2.7+, 2020.3.6+, and 2020.4.2+. For more information, see [Known Issues]({{site.baseurl}}/docs/trex_known_issues.html#unable-to-run-dashboard-extension-on-localhost-or-use-self-signed-certificates).
+
+### Tableau Dashboard Extensions API version 1.4
+*May 2020*
+
+* Tableau Dashboard Extensions API library: `tableau.extensions.1.4.0.js` <br>(download or clone the Extensions API repository on [GitHub](https://github.com/tableau/extensions-api){:target="_blank"}). <br/>
+
+About this release:
+
+* To support the logical and physical tables introduced in Tableau 2020.2, the Tableau Dashboard Extensions API (version 1.4) provides new APIs and data structures. Use these new methods to get the underlying data from data sources and worksheets. The new methods replace `getUnderlyingDataAsync`. Starting in Tableau 2020.2, a data source could have multiple logical tables, and logical tables can contain one or more physical tables. If you have an existing extension that uses one of the deprecated methods to get underlying data, the method call could fail if the data source contains more than one logical table. You should update your extensions to use these new methods. The new methods are backward compatible with previous versions of Tableau.
+
+    | Interface | Deprecated method (v1.3 and earlier) | New method (v1.4 and later) |
+    | :------------------| :-------------- |:-----------|
+    | `Datasource` | `datasource.getActiveTablesAsync` |  `datasource.getLogicalTablesAsync` |
+    | `Datasource` | `datasource.getUnderlyingDataAsync` | `datasource.getLogicalTableDataAsync` |
+    | `Worksheet` |   Not Applicable                     | `worksheet.getUnderlyingTablesAsync`  |
+    | `Worksheet` | `worksheet.getUnderlyingDataAsync` | `worksheet.getUnderlyingTableDataAsync` |
+
+   To support the data model, the API also includes the `LogicalTable` object that has two properties: `caption` and `id`. The `caption` is the name of the logical table as it appears in Tableau.
+
+   For more information about getting underlying data from data sources and worksheets, see [Get Data from the Dashboard]({{site.baseurl}}/docs/trex_getdata.html).
+
+   For information about the data model, see [The Tableau Data Model](https://help.tableau.com/current/pro/desktop/en-us/datasource_datamodel.htm){:target="_blank"}{:ref="noopener"}.
+
+* `DataValue` now has a `nativeValue` member. This member represents the raw native value as a JavaScript type, which is one of string, number, boolean, or Date object. Note that special values are returned as null. The `nativeValue` helps simplify error checking as all values will either be their native type value or null. The `nativeValue` exists for *ALL* `DataValue` objects, including those returned from parameters, filters, selections, and underlying or summary data. Dates values are in UTC.
+
+* Added documentation for the [clearSelectedMarksAsync()]({{site.baseurl}}/docs/interfaces/worksheet.html#clearselectedmarksasync) method, which clears the selected marks in the current worksheet.
+
+Bugs fixed in this release:
+
+* Range filters now work correctly when the minimum or maximum values are equal to zero (0). Previously, calls to the `applyRangeFilterAsync()` method would ignore the `RangeFilterOptions` if the `min` or `max` properties were equal to zero (0).
+
+* The `isVisible` attribute for dashboard zones is now set properly to true or false when the extension is initialized.
+
+* The `setZoneVisibilityAsync()` method now supports ES6 map objects for the `zoneVisibilityMap` parameter.  
+
+----
+
+### Tableau Sandboxed Extensions Development Environment
+*September 2019*
+
+* Sandboxed Extensions are Tableau dashboard extensions that are not permitted to make external network requests. Available for testing with Tableau 2019.3. Fully supported in Tableau 2019.4.
+
+* The Extensions API SDK provides a local development environment that replicates the Tableau Hosting Cloud Service for Sandboxed Extensions. You can test your Sandboxed extensions locally with the same sandbox policies before submitting the extension to Tableau for publication. See [Create and Test Sandboxed Extensions]({{site.baseurl}}/docs/trex_sandbox_test.html) and [Publish Sandboxed Extensions]({{site.baseurl}}/docs/trex_sandbox_publish.html).
+
+----
+
+### Extensions API library v1.3
+*July 2019*
+
+- Tableau Extensions API library: `tableau.extensions.1.3.0.js` <br>(download or clone the Extensions API repository on [GitHub](https://github.com/tableau/extensions-api){:target="_blank"}) <br/>
+
+About this release:
+
+- The Extensions API library version 1.3 (`tableau.extensions.1.3.0.js`) is backward compatible with previous releases of the library.
+
+- Now available: Extensions API type definitions and new TypeScript samples. The latest release provides the TypeScript type definitions so that you can author your extension using TypeScript. See [Use TypeScript with the Extensions API]({{site.baseurl}}/docs/trex_typescript.html) and [TypeScript Sample Extensions](https://github.com/tableau/extensions-api/tree/master/Samples-Typescript){:target="_blank"} on GitHub.
+
+- New all-values-selected property for categorical filters (`filter.isAllSelected`). You can use this new property to determine when all values of categorical filters are selected. The `isAllSelected` property is a Boolean and returns True or False. Prior to this release, there was no way to tell if all values of categorical filters were selected. The `filter.appliedValues` method returns empty array when **(All)** is selected, so there is no way to use that method to determine if all values are selected or if no values are selected. The `isAllSelected` property is available starting with Tableau 2019.2 and the Extensions API library version 1.3 (`tableau.extensions.1.3.0.js`).
+
+    ```javascript
+    worksheet.getFiltersAsync().then((filters) => {
+        let filter = filters[0];
+        if (filter.filterType === tableau.filterType.Categorical)
+        {
+           console.log(filter.isAllSelected);
+        }
+    }
+    
+    ```
+
+
+
+
 ----
 ### Extensions API library v1.2
 *April 2019*
@@ -19,8 +261,7 @@ See also: [Known Issues]({{site.baseurl}}/docs/trex_known_issues.html)
 
 
 
-
-About this release: 
+About this release:
 
 * The Extensions API library version 1.2 (`tableau.extensions.1.2.0.js`) is backward compatible with previous releases of the library. You can use the Extensions API library version 1.2 for extensions on Tableau 2018.2 and later. The library contains logic to handle any necessary conversions for the supported version of Tableau the extension is running in. For the best experience, you should always use the latest version of the library with the extensions you create. 
 
@@ -34,16 +275,17 @@ tableau.extensions.1.latest.min.js
 **Note** If you have previously been referencing `tableau-extensions-1.latest.js` in your code, you will need to use the new naming convention when you upgrade to the 1.2 library (`tableau.extensions.1.latest.js`). 
 
 
-Bugs fixed in this release: 
+Bugs fixed in this release:
 
 * Fixed in the Extensions API library 1.2, the type of `DataValue.value` is now the raw native value as a JavaScript type, rather than always defaulting to **String**. A `DataValue.value` can be one of the following JavaScript types: **String**, **Number**, **Boolean**, or **Date**.
  A `DataValue` is returned as a property of a `DataTable` in methods, such as `getSummaryDataAsync()` or `getUnderlyingDataAsync()`.  Note that special values, regardless of type, are always returned as **String** values surrounded by percent signs, such as `%null%`, or `%no-access%`. <br/>**Important!** If your code depended on the type of `DataValue.value` always being a **String**, that code will now break with this fix.
 
 * The `environment.apiVersion` property now correctly reports the version of the Extensions API library that the extension is using.
 
-* The documentation for the <a href="{{site.baseurl}}/docs/interfaces/worksheet.html#selectmarksbyvalueasync" target="_blank"><code>selectMarksByValueAsync</code></a> method has been corrected. If you are calling the method, be sure to specify the complete namespace for the `SelectionUpdateType` enum that is passed to the method as the `updateType` parameter.  For example, use `tableau.SelectionUpdateType.Replace`, to replace the currently selected marks with the values you specify in the method call. 
+* The documentation for the <a href="{{site.baseurl}}/docs/interfaces/worksheet.html#selectmarksbyvalueasync" target="_blank"><code>selectMarksByValueAsync</code></a> method has been corrected. If you are calling the method, be sure to specify the complete namespace for the `SelectionUpdateType` enum that is passed to the method as the `updateType` parameter.  For example, use `tableau.SelectionUpdateType.Replace`, to replace the currently selected marks with the values you specify in the method call.
 
 ----
+
 
 ### Tableau 2019.1
 *February 2019*

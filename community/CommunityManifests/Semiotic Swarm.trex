@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest manifest-version="0.1" xmlns="http://www.tableau.com/xml/extension_manifest">
+  <dashboard-extension id="com.datablick.extension.semiotic.swarm" extension-version="0.1.0">
+    <default-locale>en_US</default-locale>
+    <name resource-id="name"/>
+    <description>Semiotic Violin Plot</description>
+    <author name="DataBlick" email="extensions@datablick.com" organization="DataBlick" website="https://www.datablick.com"/>
+    <min-api-version>1.1</min-api-version>
+    <source-location>
+      <url>https://demartsc.github.io/tableau-semiotic-swarm-charts</url>
+    </source-location>
+    <icon></icon>
+    <context-menu>
+      <configure-context-menu-item />
+    </context-menu>
+  </dashboard-extension>
+  <resources>
+    <resource id="name">
+      <text locale="en_US">Semiotic Swarm</text>
+    </resource>
+  </resources>
+</manifest>

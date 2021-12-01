@@ -8,7 +8,7 @@ We make use of bootstrap's dialog functionality in this section of the tutorial 
 
 #### Getting the list of worksheets
 
-In order to prompt the user, we first need to ask Tableau which worksheets are on the dashboard with our extension by calling `tableau.extensions.dashboardContent.dashboard.worksheets` to get a list of all the worksheets. For each worksheet, we create a new button and add a click event handler for that button. When the button is clicked, we will take action. This action is described in a later part of the tutorial, but for now we simply display an alert with the name of the selected sheet.
+In order to prompt the user, we first need to ask Tableau which worksheets are on the dashboard with our extension by calling [`tableau.extensions.dashboardContent.dashboard.worksheets`](https://tableau.github.io/extensions-api/docs/interfaces/worksheet.html) to get a list of all the worksheets. For each worksheet, we create a new button and add a click event handler for that button. When the button is clicked, we will take action. This action is described in a later part of the tutorial, but for now we simply display an alert with the name of the selected sheet.
 
 #### Trying it out
 
