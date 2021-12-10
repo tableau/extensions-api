@@ -9,6 +9,7 @@ module.exports = {
     filtering: './Samples-Typescript/Filtering/filtering.ts',
     formatting: './Samples-Typescript/Formatting/formatting.tsx',
     parameters: './Samples-Typescript/Parameters/parameters.ts',
+    dashboardObjectVisibility: './Samples-Typescript/DashboardObjectVisibility/dashboardObjectVisibility.tsx',
     vizImage: './Samples-Typescript/VizImage/vizImage.ts',
   },
   mode: 'production',
