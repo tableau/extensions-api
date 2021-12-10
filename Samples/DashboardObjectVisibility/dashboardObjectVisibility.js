@@ -69,6 +69,5 @@ var ReactDOM;
     }
   }
 
-  console.log('Initializing DashboardObjectVisibility extension.');
   await DashboardObjectVisibility.initializeAndRender();
 })();

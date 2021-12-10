@@ -61,6 +61,5 @@ import * as ReactDOM from 'react-dom';
     }
   }
 
-  console.log('Initializing Formatting extension.');
   await Formatting.initializeAndRender();
 })();
