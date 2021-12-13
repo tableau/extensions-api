@@ -59,6 +59,6 @@ import * as ReactDOM from 'react-dom';
       });
     }
   }
-  console.log('Initializing Replay Animation extension.');
+
   await ReplayAnimation.initialize();
 })();

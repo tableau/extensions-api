@@ -13,6 +13,8 @@ import * as ReactDOM from 'react-dom';
     x: number;
   }
 
+// Utilizes DashboardObjectPositionAndSizeUpdate to store resizeable dashboard objects (are floating and visible)
+// Calls moveAndResizeDashboardObjects to resize and reposition objects stored in the array
   class MoveAndResize extends React.Component {
 
     public static async initialize() {
