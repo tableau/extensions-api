@@ -36,5 +36,10 @@ module.exports = {
   optimization: {
     minimize: false
   },
-  devtool: 'inline-source-map'
+  devtool: 'inline-source-map',
+  performance: {
+    hints: false,
+    maxEntrypointSize: 370,
+    maxAssetSize: 370
+  }
 };
