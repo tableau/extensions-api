@@ -11,6 +11,7 @@ assignees: ''
 A clear and concise description of what the bug is.
 
 **Version information:**
+ - Tableau Server version: (or note if using Tableau Online)
  - OS: [e.g. iOS]
  - Browser [e.g. chrome, safari]
  - Version [e.g. 22]
