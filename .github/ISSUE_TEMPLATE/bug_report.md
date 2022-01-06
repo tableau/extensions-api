@@ -1,5 +1,5 @@
 ---
-name: Bug report
+name: Issue report
 about: Create a report or request for help
 title: ''
 labels: ''
@@ -7,11 +7,12 @@ assignees: ''
 
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+**Describe the issue**
+
+A clear and concise description of what the issue is.
 
 **Version information:**
- - Tableau Server version: (or note if using Tableau Online)
+ - Tableau version: (or note if using Tableau Online)
  - OS: [e.g. iOS]
  - Browser [e.g. chrome, safari]
  - Version [e.g. 22]
@@ -24,7 +25,8 @@ A clear and concise description of what the bug is.
 
 A clear and concise description of what you expected to happen.
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+**Screenshots and workbook**
+
+If possible, attach a workbook with sample data add/or screenshots to help explain your problem.
 
 **NOTE:** Be careful not to post user names, passwords, auth tokens or any other private or sensitive information.
