@@ -12,3 +12,6 @@ dist/
 
 # ignore local npmrc files
 .npmrc
+
+# Ignore IDE specific files
+.idea
