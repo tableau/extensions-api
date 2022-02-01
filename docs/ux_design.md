@@ -44,12 +44,10 @@ These guidelines cover the main things you need to know about designing a great 
 ### Deploying your Extension
 
 | ---------| ------- | 
-|[Submitting your Extension to the Extension Gallery]({{site.baseurl}}/docs/ux_extension_gallery.html) | How to style your extension in accordance with the Tableau brand and your personal/company brand.|
+|[Submitting your Extension to the Tableau Exchange]({{site.baseurl}}/docs/ux_extension_gallery.html) | How to style your extension in accordance with the Tableau brand and your personal/company brand.|
 
 
 ---
 &nbsp;
 
 ![Extensions are made using a manifest file called a .trex! FreLard stands for the Seattle neighborhoods of Fremont and Wallingford, where Tableau's headquarters stands.](imgs/trex.png)
-
->*This document is a work-in-progress. To give feedback, ask questions, or if you have technical questions about extensions, contact [devplat@tableau.com](mailto:devplat@tableau.com).*

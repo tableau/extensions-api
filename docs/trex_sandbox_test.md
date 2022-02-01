@@ -6,7 +6,7 @@ layout: docs
 To provide security for customers, Tableau supports a type of dashboard extension that runs in a sandbox. These Sandboxed Extensions are hosted by Tableau and employ W3C standards, such as Content Security Policy (CSP), to ensure the extension can't make network calls outside of the hosting Tableau Server. This means a Sandboxed Extension can query data in the dashboard using the Extensions API, but it can't send that data anywhere outside of the sandbox. This topic provides information to help you get started creating and testing Sandboxed Extensions.
 
 
-<div class="alert alert-info"><b>Note</b> If your extension requires resources of outside services, you should not create a Sandboxed Extension. Dashboard Extensions that don't run in the sandbox environment are called Network Enabled Extensions. While Sandboxed Extensions are allowed to run by default on Tableau Server and Tableau Online, Network Enabled Extensions require server and site administrator approval and need to be added to safe list for a site.
+<div class="alert alert-info"><b>Note</b> If your extension requires resources or outside services, you should not create a Sandboxed Extension. Dashboard Extensions that don't run in the sandbox environment are called Network Enabled Extensions. While Sandboxed Extensions are allowed to run by default on Tableau Server and Tableau Online, Network Enabled Extensions require server and site administrator approval and need to be added to the safe list for a site.
 </div>
 
 **In this section**
@@ -22,7 +22,7 @@ Tableau supports two types of dashboard extensions:
 
 * **Network Enabled Extensions** - can access resources and applications outside of Tableau. Supported in Tableau 2018.2 and later.
 
-* **Sandboxed Extensions** - run in a Tableau hosted environment and cannot make network calls. Supported in Tableau 2019.4 and later. Available for testing with Tableau 2019.3.
+* **Sandboxed Extensions** - run in a Tableau hosted environment and cannot make network calls. Supported in Tableau 2019.4 and later.
 
 
 ## Create Sandboxed Extensions
@@ -97,7 +97,6 @@ Before testing your extension in the sandbox, check to make sure that you are on
 
 If you have an extension that is ready to test in the sandbox, follow these instructions.
 
-
 1. Open the `sandbox-config.json` file.
 
    The configuration file has two main entries. The first, specifies the `port` that the sandbox web server will use. You can change this as needed, however, it must match the port you specify in the `.trex` file for your extension. The `sandbox-config.json` file has one entry for the sandboxed version of the UINamespace sample. The file looks like the following:
@@ -112,7 +111,6 @@ If you have an extension that is ready to test in the sandbox, follow these inst
             }
         }
     }
-
     ```
 
 2. Add an new entry under `"extensions"`, for your extension. The syntax for an entry is as follows.
@@ -122,15 +120,8 @@ If you have an extension that is ready to test in the sandbox, follow these inst
         "name": {
             "path": "relative-or-absolute-path-to-extensions-folder-on-disk"
         }
-
     ```
-    Replace `name` with the name of your extension. This name is the ID for the extension and becomes part of the URL. The local server for Sandboxed Extensions hosts pages with the following syntax.
-
-    ```
-
-    http://localhost[:port]/sandbox/[name]
-
-    ```
+    Replace `name` with the name of your extension. This name is the ID for the extension and becomes part of the URL. The local server for Sandboxed Extensions hosts pages with the following syntax: `http://localhost[:port]/sandbox/[name]`.
 
     For example, the default value for port is `8765`. If the name of the extension is `uninamespace`, that name becomes part of the URL that you specify in the `.trex` file: `http://localhost:8765/sandbox/uinamespace/`. Note that in the `.trex` file the full URL also includes the name of the web page in the URL. An implied `index.html` does not work.
 
@@ -150,15 +141,11 @@ If you have an extension that is ready to test in the sandbox, follow these inst
             "helloworld": {
                 "path": "./mySamples/HelloWorld"
             }
-
         }
     }
-
     ```
 
-
 3. Restart the local server (**npm run start-sandbox**). The local Sandboxed Extensions server only reads the configuration file at start up. Anytime you make changes to the `sandbox-config.json` file you need to stop and restart the server.
-
 
 ### Use the local sandbox path to the extension in the .trex file
 
@@ -167,18 +154,14 @@ In the `.trex` file for your extension you need to specify the URL of extension 
 The `<url>` for `<source-location>` must use the name of local server (`localhost`) and port setting assigned in the `sandboxed-config.json` file (`8765` is the default). This is followed by `sandbox` and the name of your extension, as you specified in the `sandbox-config.json` file. Finally, you specify the name of the HTML page that serves as the home page for your extension. The following example shows the URL for the UINamespace-sandboxed extension.
 
 ```xml
-
-    <source-location>
-      <url>http://localhost:8765/sandbox/uinamespace/uinamespace.html</url>
-    </source-location>
-
+<source-location>
+  <url>http://localhost:8765/sandbox/uinamespace/uinamespace.html</url>
+</source-location>
 ```
 
 After you update the `.trex` file to point to the sandboxed instance, you can start the local sandbox sever (**npm run start-sandbox**), and then open Tableau and try it out.
 
-For information about making your Sandboxed Extension available to others, see [Publish Sandboxed Extensions]({{site.baseurl}}/docs/trex_sandbox_publish.html).
-The local development environment can't be used to deploy or publish your extension.
-
+For information about making your Sandboxed Extension available to others, see [Publish Sandboxed Extensions]({{site.baseurl}}/docs/trex_sandbox_publish.html). The local development environment can't be used to deploy or publish your extension.
 
 ## Troubleshoot the test environment
 
@@ -187,4 +170,3 @@ To troubleshoot issues with your Sandboxed Extension in the test environment, yo
 Error `Cannot find extension with id: <xxxxxx>`
 
 If you see this error in the console of your debugging tools, be sure the name (or ID) of the extension in the `sandbox-config.json` file matches the name you specified in the `<url>` in the `.trex` file.
-

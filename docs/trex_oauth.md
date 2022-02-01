@@ -68,39 +68,32 @@ One way to manage OAuth sign in for your dashboard extension is to employee web 
 In the OAuth sample, when the extension loads in the dashboard, a unique socket session ID is generated. The socket instance is assigned a random 20-character identifier (`socket.id`). This code is on the client-side, the extension's web page (`index.js`). The code also initializes the sign-in button on the extension's home page.
 
 ```javascript
-
 const socket = io();
 
-// Wait to make sure you've made the socket connection so when you press the button there is a socket ID available to send with the request
+// Wait to make sure you've made the socket connection so when you press
+// the button there is a socket ID available to send with the request
 socket.on("connect", () => {
   $("#submit").prop("disabled", false);
 });
-
-
 ```
 
  On the Express server (`server.js`), in addition to serving the web pages, the server initializes `socket.io`.
 
 ```javascript
-
 const express = require("express");
 const app = express();
 const server = require("http").createServer(app);
 const io = require("socket.io")(server);
 const fetch = require("node-fetch");
-
-
 ```
-
-
 
 ### Sign in and get the authorization code
 
 When a user clicks the sign-in button, it opens a new window or tab in the user's native browser (`window.open`) passing with it the client ID and the socket session ID (`socket.id`). In this example, the URL goes to the authorization endpoint on Spotify and specifies the authorization code response type. Note that this sample uses the client ID for the OAuth sample project on Glitch. You need to change this to match your client ID for your dashboard extension. The method also provides a redirect URL back to the server, where the response will return the authorization code.
 
 ```javascript
-
-// Open a new window to manage the OAuth process outside of Desktop, passing the socket ID so the broker knows where to return the token
+// Open a new window to manage the OAuth process outside of Desktop,
+// passing the socket ID so the broker knows where to return the token
 function openSignInWindow() {
   const scopes = "user-top-read";
   const redirect_uri = "https://datadev-oauth-sign-in.glitch.me/complete";
@@ -115,8 +108,6 @@ function openSignInWindow() {
     socket.id;
   window.open(url, "_blank");
 }
-
-
 ```
 
 ### Request the access token (server-side)
@@ -151,9 +142,6 @@ app.get("/complete", async (req, res) => {
   io.to(sessionid).emit("signedin", data.access_token);
   res.sendFile(__dirname + "/views/complete.html");
 });
-
-
-
 ```
 
 ### Pass the access token to the client and make requests
@@ -161,7 +149,6 @@ app.get("/complete", async (req, res) => {
 In response to the `signedin` event, the client checks to see if the OAuth access token was received. If the token is present, the client stores it locally and then uses the access token to make a new request to retrieve the user's top artist from Spotify. In case of error, the access token is removed from local storage and the user is asked to sign in again.
 
 ```javascript
-
 socket.on("signedin", function(token) {
   if (token) {
     localStorage.setItem("spotifyAuth", token);
@@ -196,7 +183,6 @@ function updateTopArtist(data) {
   $("#signIn").hide();
   $("#name").html("<b>" + data.items[0].name + "</b> is your favorite artist!");
 }
-
 ```
 
 ### Next steps

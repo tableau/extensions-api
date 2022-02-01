@@ -44,7 +44,7 @@ Latest maintenance release of 2020.2.7+, 2020.3.6+, 2020.4.2+ | 87.0.4280 | Chro
 
 * [Chromium for macOS (`chrome-mac.zip`) (79.0.3945.0)](https://commondatastorage.googleapis.com/chromium-browser-snapshots/index.html?prefix=Mac/706915/)
 
-<div class="alert alert-info"><b>Note </b> If you are using Tableau 2021.1, or the latest maintenance releases of Tableau 2020.2.2.7+, 2020.3.3.6+, and 2020.4.2+, you can use Chrome version 80 (or later) for debugging your extension.</div>
+<div class="alert alert-info"><b>Note</b> If you are using Tableau 2021.1 or newer, or the latest maintenance releases of Tableau 2020.2.2.7+, 2020.3.3.6+, and 2020.4.2+, you can use Chrome version 80 (or later) for debugging your extension.</div>
 
 ---
 
@@ -55,7 +55,7 @@ Latest maintenance release of 2020.2.7+, 2020.3.6+, 2020.4.2+ | 87.0.4280 | Chro
 1. Exit Tableau if it is already running on your computer. 
 2. Open a Command Prompt window.
 2. Start Tableau using the following command.
-<br/>Replace `<version>` with the version of Tableau you are using (for example, `Tableau 2018.3`).
+<br/>Replace `<version>` with the version of Tableau you are using (for example, `Tableau 2021.4`).
 
 ```
 "C:\Program Files\Tableau\Tableau <version>\bin\tableau.exe" --remote-debugging-port=8696
@@ -83,11 +83,10 @@ If you open the file location, you can create a new shortcut to `Tableau.exe` (c
 
 1. Open a Terminal window.
 2. Start Tableau using the following command.
-<br/> Replace `<version>` with the version of Tableau you are using (for example,`2018.3.app`).
+<br/> Replace `<version>` with the version of Tableau you are using (for example,`2021.4.app`).
 
    ```
    open /Applications/Tableau\ Desktop\ <version>.app --args --remote-debugging-port=8696
-
    ```
 
 This command enables remote debugging of extensions for this session of Tableau.
@@ -115,22 +114,21 @@ Note that you can only debug one extension, or instance of an extension, at a ti
 
 ---
 
-## Debugging loading and initialization issues (Tableau 2021.1 and later)
+## Debugging loading and initialization issues
+
+### Tableau 2021.1 and later
 
 If you need to troubleshoot or debug issues that prevent your extension from loading or initializing, you can set breakpoints that trigger when your JavaScript code is loaded.
 
 1. Start the debugging session as described in [Debugging Tableau Desktop using Chrome/Chromium](#debugging-tableau-desktop-using-chromechromium).
-
-1. Click the **Sources** tab in Chrome/Chromium, under **Event Listener Breakpoints**, click **Script** and enable the **Script First Statement** breakpoint. You just have to do this one time.
-
-1. In Tableau Desktop, select the extension in the dashboard and click **Reload** from the **More Options** shortcut menu. <br/>
+2. Click the **Sources** tab in Chrome/Chromium, under **Event Listener Breakpoints**, click **Script** and enable the **Script First Statement** breakpoint. You just have to do this one time.
+3. In Tableau Desktop, select the extension in the dashboard and click **Reload** from the **More Options** shortcut menu. <br/>
 The debugger will pause each time the first statement of a script runs, allowing you to debug the startup process.
-
-1. To get to your JavaScript code, click **Continue** several times. After your JavaScript is loaded, you can set a breakpoint in your startup code.
+4. To get to your JavaScript code, click **Continue** several times. After your JavaScript is loaded, you can set a breakpoint in your startup code.
 
 ---
 
-## Debugging loading and initialization issues (Tableau 2020.4 and earlier)
+### Tableau 2020.4 and earlier
 
 It can be difficult to hit breakpoints that occur during the loading of your page because of the remote debugging process, and because of the way loading was handled prior to Tableau 2021.1. To help with this, you can select a menu option that causes your extension to wait to load until you trigger it to proceed.
 

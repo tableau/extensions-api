@@ -5,9 +5,6 @@ layout: docs
 
 The extension manifest file (`.trex`) contains metadata for the extension and is used for registration.
 
-For details about a manifest or its fields, see the [Sample Manifest File](#sample-manifest-file) and [Elements of the Manifest File](#elements-of-the-manifest-file).  
-
-
 **In this section**
 
 * TOC
@@ -30,33 +27,33 @@ At start up, Tableau checks the manifest file. If any errors are found while par
 ## Sample Manifest File
 
 ```xml
-        <?xml version="1.0" encoding="utf-8"?> 
-        <manifest manifest-version="0.1" xmlns="http://www.tableau.com/xml/extension_manifest">
-          <dashboard-extension id="com.example.extensions.name" extension-version="0.1.0">
-            <default-locale>en_US</default-locale>
-            <name resource-id="name"/>
-            <description>Extension Description</description>
-            <author name="USERNAME" email="USER@example.com" organization="My Company" website="https://www.example.com"/>
-            <min-api-version>1.0</min-api-version>
-            <source-location>
-              <url>SCHEME://SERVER[:PORT][/PATH]</url> 
-            </source-location>
-            <icon>Base64-Encoded ICON</icon>
-            <permissions>
-    	       <permission>full data</permission>
-            </permissions>
-            <context-menu>
-              <configure-context-menu-item />
-            </context-menu>
-          </dashboard-extension>
-          <resources>
-            <resource id="name">
-              <text locale="en_US">name in English</text>
-              <text locale="fr_BE">name in French</text>
-              <text locale="de_DE">name in German</text>
-            </resource>
-          </resources>
-        </manifest>
+<?xml version="1.0" encoding="utf-8"?> 
+<manifest manifest-version="0.1" xmlns="http://www.tableau.com/xml/extension_manifest">
+  <dashboard-extension id="com.example.extensions.name" extension-version="0.1.0">
+    <default-locale>en_US</default-locale>
+    <name resource-id="name"/>
+    <description>Extension Description</description>
+    <author name="USERNAME" email="USER@example.com" organization="My Company" website="https://www.example.com"/>
+    <min-api-version>1.0</min-api-version>
+    <source-location>
+      <url>SCHEME://SERVER[:PORT][/PATH]</url>
+    </source-location>
+    <icon>Base64-Encoded ICON</icon>
+    <permissions>
+      <permission>full data</permission>
+    </permissions>
+    <context-menu>
+      <configure-context-menu-item />
+    </context-menu>
+  </dashboard-extension>
+  <resources>
+    <resource id="name">
+      <text locale="en_US">name in English</text>
+      <text locale="fr_BE">name in French</text>
+      <text locale="de_DE">name in German</text>
+    </resource>
+  </resources>
+</manifest>
 ```
 
 

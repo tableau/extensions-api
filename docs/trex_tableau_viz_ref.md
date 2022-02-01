@@ -18,9 +18,7 @@ The following section describes the components and syntax of the `inputSpec`. Fo
 The `createVizImageAsync` method is one of the methods in the Tableau Dashboard Extensions API `extensions` namespace. The method has the following syntax:
 
 ```javascript
-
 createVizImageAsync( inputSpec:  *object* ): Promise<string> 
-
 ```
 
 This method takes a single argument, the `inputSpec`, a JavaScript object, and returns the SVG description of that image. To call this method, you first initialize the Dashboard Extensions API (`tableau.extensions.initialize()`). You then create the `inputSpec` object that defines your graphic.
@@ -34,8 +32,6 @@ The `inputSpec` is a JavaScript object that specifies the name-value pairs to us
 The following shows an example `inputSpec` that creates a bar chart image.
 
 ```javascript
-
-
 {
   description: "A bar chart with multiple encodings",
   size: {width: 800, height: 600},
@@ -57,8 +53,6 @@ The following shows an example `inputSpec` that creates a bar chart image.
     text: {field: "Category", type: tableau.VizImageEncodingType.Discrete}
   }
 }
-
-
 ```
 
 ---
@@ -77,7 +71,6 @@ The following table describes the properties in the `inputSpec`, the JavaScript 
 
 ```javascript
 title: "My Custom Viz", 
-
 ```
 
 ### `data`
@@ -98,7 +91,6 @@ data: {
    { Category: 'I', Sales: 52 }
   ]
 },
-
 ```
 
 ### `mark`
@@ -112,7 +104,6 @@ Specifies a mark color for all marks, for example, hex values. This is equivalen
 
 ```javascript
  markcolor: "#FFA500",
-
 ```
 
 ### `size`
@@ -129,7 +120,6 @@ If you specify the size, you must specify both the width and height. If you don'
 
 ```javascript
 size: {width: 800, height: 600},
-
 ```
 
 ### `encoding`
@@ -153,12 +143,10 @@ Within these properties, you must specify the field to encode and its type (`tab
 The following are examples of how you might specify the encodings for columns and rows:
 
 ```javascript
-
 encoding: {
   columns: {field: "Sales", type: tableau.VizImageEncodingType.Continuous, title: "My Custom Title", showtitle: false},
   rows: {field: "Category", type: tableau.VizImageEncodingType.Discrete  }
 } 
-
 ```
 
 ```javascript
@@ -190,7 +178,6 @@ Specifies the size encoding of the mark. The `size` property corresponds to the 
 Example of fixed sized type: 
 
 ```javascript
-
 encoding: {
     ...
     size: {field: "Age", setting: tableau.VizImageSizeSettingType.Fixed, alignment: tableau.VizImageSizeSettingAlignmentType.Right, width_in_axis_units: 3}
@@ -217,9 +204,6 @@ Specifies the sort order for a field (continuous or discrete). Supports sorting 
   ```
 
 
-
-
-
 #### encoding: `color`
 
 The `color` property corresponds to the Color button on the Marks card. The color can contain additional properties:
@@ -238,21 +222,16 @@ You can specify one of the following Tableau color palettes with the `palette` p
 The following is an example that shows how you might encode a continuous field with a Tableau palette. You can also create custom color palettes for continuous fields. See [Create Custom Color Palettes](#create-custom-color-palettes).
 
 ```javascript
-
 encoding: {
    ...
    color: { field: 'Measure', type: tableau.VizImageEncodingType.Continuous, palette: 'green_blue_white_diverging_10_0'},
    ...
 }
-
 ```
-
 
 | Continuous colors palettes |  Palette name |
 |:--- |:--- |
 | ![Tableau Continuous Palette]({{site.baseurl}}/assets/continuous_palette.png) | `blue_10_0` <br/>  `orange_10_0` <br/> `green_10_0` <br/> `red_10_0` <br/> `purple_10_0` <br/> `brown_10_0` <br/> `gray_10_0` <br/> `gray_warm_10_0` <br/> `blue_teal_10_0` <br/> `orange_gold_10_0` <br/> `green_gold_10_0` <br/> `red_gold_10_0` <br/> `orange_blue_diverging_10_0` <br/> `red_green_diverging_10_0` <br/> `green_blue_diverging_10_0` <br/> `red_blue_diverging_10_0` <br/> `red_black_10_0` <br/> `gold_purple_diverging_10_0` <br/> `red_green_gold_diverging_10_0` <br/> `sunrise_sunset_diverging_10_0` <br/> `orange_blue_white_diverging_10_0` <br/> `red_green_white_diverging_10_0` <br/> `green_blue_white_diverging_10_0` <br/> `red_blue_white_diverging_10_0` <br/> `red_black_white_diverging_10_0` <br/> `tableau-blue-light` <br/> `tableau-orange-light` <br/> `tableau-orange-blue-light` <br/> `tableau-map-blue-green` <br/> `tableau-map-temperatur`  |
-
-
 
 **`palette` names for discrete fields**
 
@@ -266,7 +245,6 @@ encoding: {
    color: { field: 'Category', type: tableau.VizImageEncodingType.Discrete, palette: 'seattle_grays_10_0'},
    ...
 }
-
 ```
 
 | Discrete color palettes |  Palette name |
@@ -274,7 +252,6 @@ encoding: {
 | ![Tableau Discrete Palette]({{site.baseurl}}/assets/discrete_palette.png) |  `tableau10_10_0` <br/> `tableau20_10_0` <br/> `color_blind_10_0` <br/>`seattle_grays_10_0`<br/>`traffic_light_10_0` <br/>`superfishel_stone_10_0` <br/>`miller_stone_10_0` <br/>`nuriel_stone_10_0`<br/>`jewel_bright_10_0`<br/>`summer_10_0`<br/>`winter_10_0`<br/>`green_orange_cyan_yellow_10_0`<br/>`blue_red_brown_10_0`<br/>`purple_pink_gray_10_0`<br/>`tableau-10`<br/>`tableau-10-medium`<br/>`tableau-20`<br/>`blue_10_0`<br/>`orange_10_0`<br/>`green_10_0`<br/>`red_10_0`<br/>`purple_10_0`<br/>`brown_10_0`<br/>`gray_10_0`<br/>`gray_warm_10_0`<br/>`blue_teal_10_0`<br/>`orange_gold_10_0`<br/>`green_gold_10_0`<br/>`red_gold_10_0`<br/>`cyclic_10_0` |
 
 ---
-
 
 
 #### Create custom color palettes
@@ -287,20 +264,14 @@ You can set the color palette to a custom diverging or custom sequential color p
 |`tableau.VizImagePaletteType.CustomDiverging` | Defines a custom diverging palette. Specify the `start` value and an `end` value, each as a hexadecimal value. |
 | `tableau.VizImagePaletteType.CustomSequential` | Defines a custom sequential palette. Specify the `end` value as a hexadecimal value. |
 
-
 For example, you could set a custom palette as shown in the following examples:
 
-
-  ```javascript
-
-    palette: tableau.VizImagePaletteType.CustomDiverging, start: "#FFB6C1", end: "#90ee90"
-
-  ```
+```javascript
+palette: tableau.VizImagePaletteType.CustomDiverging, start: "#FFB6C1", end: "#90ee90"
+```
 
   Or
 
-  ```javascript
-
-   palette: tableau.VizImagePaletteType.CustomSequential,  end: "#FFB6C1"
-
-  ```
+```javascript
+palette: tableau.VizImagePaletteType.CustomSequential,  end: "#FFB6C1"
+```

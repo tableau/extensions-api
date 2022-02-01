@@ -6,9 +6,9 @@ layout: docs
 The best way to learn how to build your own extensions is to look at the sample code. To examine the sample source files to see how Tableau dashboard extensions work, you can clone or download the [Extensions API](https://github.com/tableau/extensions-api) SDK on GitHub and run the samples or the tutorial. 
 - To download the Extensions API SDK, if you have not already done so, see [Get Started]({{ site.baseurl }}/docs/trex_getstarted.html).
 
-- You can browse the sample code for the dashboard extensions in the [Samples](https://github.com/tableau/extensions-api/tree/master/Samples?=target="_blank") and the [Tutorial](https://github.com/tableau/extensions-api/tree/master/Tutorial?=target="_blank") folders on GitHub.
+- You can browse the sample code for the dashboard extensions in the [Samples](https://github.com/tableau/extensions-api/tree/main/Samples?=target="_blank") and the [Tutorial](https://github.com/tableau/extensions-api/tree/main/Tutorial?=target="_blank") folders on GitHub.
 
-- You can also create dashboard extensions using TypeScript. See the TypeScript sample code in [Samples-TypeScript](https://github.com/tableau/extensions-api/tree/master/Samples-Typescript?=target="_blank") on GitHub.
+- You can also create dashboard extensions using TypeScript. See the TypeScript sample code in [Samples-TypeScript](https://github.com/tableau/extensions-api/tree/main/Samples-Typescript?=target="_blank") on GitHub.
 
 - You can also check out the dashboard extensions from the community, see [Community Extensions]({{ site.baseurl }}/community/).
 
@@ -32,37 +32,37 @@ The following instructions assume that you have already downloaded and extracted
 
 The dashboard extension samples are in the `Samples` folder. There is also a step-by-step tutorial you can follow in the `Tutorial` folder.
 
-The [Samples-Typescript](https://github.com/tableau/extensions-api/tree/master/Samples-Typescript?=target="_blank") folder shows how you can use the Extensions API type definitions to create extensions in TypeScript. For more information, see [Use TypeScript with the Extensions API]({{site.baseurl}}/docs/trex_typescript.html).
+The [Samples-Typescript](https://github.com/tableau/extensions-api/tree/main/Samples-Typescript?=target="_blank") folder shows how you can use the Extensions API type definitions to create extensions in TypeScript. For more information, see [Use TypeScript with the Extensions API]({{site.baseurl}}/docs/trex_typescript.html).
 
 
 
 
--   **[DataSources](https://github.com/tableau/extensions-api/tree/master/Samples/DataSources?=target="_blank")** 
+-   **[DataSources](https://github.com/tableau/extensions-api/tree/main/Samples/DataSources?=target="_blank")**
      
     Shows how to use the `getDataSourcesAsync` function to find the names of the data sources for each worksheet in the dashboard. Like the Filtering sample, the DataSources sample makes use the `Promise.all` function to combine the promises from the asynchronous calls together, and then waits for them to resolve. 
  
--   **[Filtering](https://github.com/tableau/extensions-api/tree/master/Samples/Filtering?=target="_blank")** 
+-   **[Filtering](https://github.com/tableau/extensions-api/tree/main/Samples/Filtering?=target="_blank")**
 
      Demonstrates how to use the `getFiltersAsync` function to find and display the active filters in the dashboard and calls the `addEventListener` function to set a `FilterChanged` event on each workbook in the dashboard. Any time a filter value is changed, the extension refreshes the table that displays the active filters. 
 
--   **[Parameters](https://github.com/tableau/extensions-api/tree/master/Samples/Parameters?=target="_blank")**
+-   **[Parameters](https://github.com/tableau/extensions-api/tree/main/Samples/Parameters?=target="_blank")**
      
     Finds and displays all the parameters in the dashboard and then sets an event listener that waits for a parameter to change, which triggers a refresh. 
 
--   **[Settings](https://github.com/tableau/extensions-api/tree/master/Samples/Settings?=target="_blank")**
+-   **[Settings](https://github.com/tableau/extensions-api/tree/main/Samples/Settings?=target="_blank")**
  
      Uses the `settings` namespace to save settings (key-value pairs) for the extension. Demonstrates how you can save settings for each instance of an extension, which enables sharing common views of a workbook.  
 
--   **[UINamespaces](https://github.com/tableau/extensions-api/tree/master/Samples/UINamespace?=target="_blank")**
+-   **[UINamespaces](https://github.com/tableau/extensions-api/tree/main/Samples/UINamespace?=target="_blank")**
 
      Demonstrates how you can use the `UI` namespace to create a modal dialog box (or popup) that runs another extension, which allows users to interact and change the settings for the parent extension. This sample controls the background auto-refresh interval for data sources in a dashboard. 
 
 
-- **[Tutorial](https://github.com/tableau/extensions-api/tree/master/Tutorial?=target="_blank")**
+- **[Tutorial](https://github.com/tableau/extensions-api/tree/main/Tutorial?=target="_blank")**
 
      Walks you through the step-by-step process of creating and refining an extension that displays a summarized table of the currently selected marks.
 
-- **[Samples-Typescript](https://github.com/tableau/extensions-api/tree/master/Samples-Typescript?=target="_blank")**
+- **[Samples-Typescript](https://github.com/tableau/extensions-api/tree/main/Samples-Typescript?=target="_blank")**
 
     The **Samples-Typescript** folder shows how you can use the Extensions API type definitions to create extensions in TypeScript. The sample extensions include TypeScript versions of many of the JavaScript samples. For more information, see [Use the TypeScript samples](#use-the-typescript-samples) and [Use TypeScript with the Extensions API]({{site.baseurl}}/docs/trex_typescript.html).
 
@@ -70,9 +70,9 @@ The [Samples-Typescript](https://github.com/tableau/extensions-api/tree/master/S
 
     Shows how you can use Tableau Viz to add visualizations to your dashboard extensions. This sample demonstrates the effects of different mark types and color palettes. For more information about Tableau Viz, see [Add Tableau Viz to Your Dashboard Extensions]({{site.baseurl}}/docs/trex_tableau_viz.html).
 
-**[Formatting](https://github.com/tableau/extensions-api/tree/main/Samples/Formatting?=target="_blank")**
+- **[Formatting](https://github.com/tableau/extensions-api/tree/main/Samples/Formatting?=target="_blank")**
 
-   Shows how you can access the CSS formatting in the Tableau workbook and apply it to the HTML elements in your dashboard extension. Create a consistent look and feel across the extension and the dashboard.
+    Shows how you can access the CSS formatting in the Tableau workbook and apply it to the HTML elements in your dashboard extension. Create a consistent look and feel across the extension and the dashboard.
 
 
 ---
@@ -114,7 +114,6 @@ The port you use for the web server also has to match the port specified in the 
 <source-location>
       <url>http://localhost:PORT/samples/parameters/parameters.html</url>
 </source-location>
-
 ```
 
 ---  
@@ -125,7 +124,7 @@ After you start the web server to host the sample extensions, you can try the ex
 1. Start Tableau and open a workbook that has a dashboard, or open a workbook and create a new dashboard.
 2. In the dashboard, under **Objects**, select **Extension** and drag it on to the dashboard.  
 3. In the **Choose an Extension** dialog box, click **My Extensions**. 
-4. Browse to the directory where the samples are located. For example, if you downloaded or cloned the GitHub repository, go to `\extensions-api\Samples`.
+4. Browse to the directory where the samples are located. For example, if you downloaded or cloned the GitHub repository, go to `extensions-api\Samples`.
 5. Select one of the folders for the samples and open the `.trex` file (for example, `DataSources.trex`). <br/>
 Every Tableau extension has a manifest file (`.trex`) that describes the extension and identifies the location of the web application. 
  
@@ -145,12 +144,12 @@ The TypeScript samples show how you can write your source code in TypeScript and
 3. Build the TypeScript samples:
 
    ```
-      npm run build
+   npm run build
    ```
    Run lint with the semistandard package.
 
    ```
-      npm run lint
+   npm run lint
    ```
 
 4. Compile and start the HTTP server for the extensions. This command also watches the source file directories and automatically builds the samples when you make changes.

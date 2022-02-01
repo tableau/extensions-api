@@ -30,7 +30,7 @@ When you use HTTPS, all HTTP data is encrypted prior to transmission by the Tran
 If you plan to make your extension available to others, using HTTPS
  assures your customers that their data is safe and that they are connecting to a trusted extension. Because the extension is using HTTPS, Tableau is also able to verify the identity of the server that hosts the extension, which prevents various malicious man-in-the-middle attacks that could occur if the extension were to use HTTP alone.  
 
-> Note: For development or internal use, you can run your extension on your local computer as `localhost` and you can use the HTTP protocol. See [Use HTTP and localhost for development or internal use](#use-http-and-localhost-for-development-or-internal-use).
+| Note: For development or internal use, you can run your extension on your local computer as `localhost` and you can use the HTTP protocol. See [Use HTTP and localhost for development or internal use](#use-http-and-localhost-for-development-or-internal-use).
 
 
 
@@ -62,7 +62,6 @@ The `<source-location>` element in the `.trex` file, looks like the following:
 <source-location>
     <url>SCHEME://SERVER[:PORT][/PATH]</url> 
 </source-location>
-
 ```
 
 For example, if the extension is hosted on example.com, the entry might look like the following: 
@@ -71,19 +70,14 @@ For example, if the extension is hosted on example.com, the entry might look lik
 <source-location>
     <url>https://example.com:4043/extension</url> 
 </source-location>
-
-
 ``` 
 
 Or during development, when you can use `localhost`, the entry might look like the following: 
 
 ```xml 
-
 <source-location>
     <url>http://localhost:8080/extension</url> 
 </source-location>
-
-
 ```
 At startup, Tableau looks for and validates the extension `.trex` files. If the extension source location does not specify HTTPS or localhost, validation fails and the extension is not registered. These errors are written to the log file. The extension will not load in Tableau. If you examine the log files (for example, with Tableau Log Viewer), you will find something similar to the following:
 
@@ -94,8 +88,6 @@ file: Example.trex
 
 Error: Error(11,67): value 'http://example.com/example.html' does not match regular expression facet '[Hh][Tt][Tt][Pp][Ss]://.+|[Hh][Tt][Tt][Pp]://[Ll][Oo][Cc][Aa][Ll][Hh][Oo][Ss][Tt]|[Hh][Tt][Tt][Pp]://[Ll][Oo][Cc][Aa][Ll][Hh][Oo][Ss][Tt][:/].*' (id: C:\Users\<user>\Documents\My Tableau Repository (Beta)\Extensions\example.trex)
 file: Example.trex
-
-
 ```
 
 For more information, see [Use Log files to Troubleshoot Dashboard Extensions]({{site.baseurl}}/docs/trex_logging.html).
@@ -116,22 +108,18 @@ For example:
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
 
-
 </head>
-
 ``` 
 
 
 Or use site-relative or protocol-agnostic links (that is, where the protocol is not specified).
 
 ```html
-
-    <!-- Extensions Library ) -->
+    <!-- Extensions Library -->
     <script src="../../lib/tableau.extensions.1.latest.js"></script>
 
     <!-- The extensions's code -->
     <script src="./example.js"></script>
-
 ``` 
 
 
@@ -183,7 +171,7 @@ There are some free and low-cost options that you can use to host your extension
     you are currently reading!).
 
     GitHub Pages makes it really easy to host content, especially if your extension code
-    is already on GitHub.  Check out their tutorial for details: [pages.github.com/](https://pages.github.com)
+    is already on GitHub.  Check out their tutorial for details: [pages.github.com](https://pages.github.com)
 
 2. Host your extension on Heroku.
 
@@ -219,7 +207,7 @@ Information about requesting and creating the TLS/SSL certificates is available 
 
 - If you have control over your own domain, you can request free certificates from the Certificate Authority [Let's Encrypt](https://letsencrypt.org/){:target="_blank"}. 
 
-- You can also request free 90 day TLS/SSL certificates from Comodo, see [Comodo Free SSL](https://ssl.comodo.com/free-ssl-certificate.php?track=8177){:target="_blank"}
+- You can also request free 90 day TLS/SSL certificates from Comodo, see [Comodo Free SSL](https://ssl.comodo.com/free-ssl-certificate.php?track=8177){:target="_blank"}.
 
 - [Secure your site with HTTPS (Google)](https://support.google.com/webmasters/answer/6073543?hl=en){:target="_blank"}.
 

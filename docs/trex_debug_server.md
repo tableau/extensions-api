@@ -35,7 +35,7 @@ Under this, you will find the name of the server (for example `localhost`), and 
 
 ## Set breakpoints and explore the code
 
-If you need to debug your extension, setting a breakpoint in your source code is a good way to get started. When the breakpoint is hit, the code execution is paused in the debugger. You can then use the debugger controls to step through your code. You can use the debugging tools to see the values of local variables, and the call stack. You can also hover over in-scope variables in source window and see the current values.
+If you need to debug your extension, setting a breakpoint in your source code is a good way to get started. When the breakpoint is hit, the code execution is paused in the debugger. You can then use the debugger controls to step through your code. You can use the debugging tools to see the values of local variables, and the call stack. You can also hover over in-scope variables in the source window and see the current values.
 
 1. Locate the line in your source code and set the breakpoint. 
 <br/>For example, you want to set this early in your code after the `initializeAsync()` function call.
@@ -46,7 +46,7 @@ You might see the permission dialog box prompt as the extension gets loaded.
 3. Step through your code or set other breakpoints. <br/>
 You can examine variables to see what information the extension has access to. For example, if you step or stop on the source line where you have access to the dashboard object, you can examine the values of the available resources in the dashboard. 
 
-    ```javascript/
+    ```javascript
     // To get filter info, first get the dashboard.
     const dashboard = tableau.extensions.dashboardContent.dashboard;
     ```
@@ -56,9 +56,7 @@ For example, entering the following in the Console window (while you are paused 
 
 
     ```javascript
-
     tableau.extensions.dashboardContent.dashboard.worksheets.forEach(function (worksheet){console.log(worksheet.name)})
-
     ```
     The following screenshot illustrates what your debugging session might look like if you use the Chrome DevTools. A breakpoint was set and the extension's JavaScript code is paused in the debugger.
 
@@ -83,7 +81,7 @@ You might need to click **Continue** many times, as code execution stops for all
 
 In Tableau Desktop, there is a debugging option you can set to pause the extension when it is loading. For more information, see [Debugging loading and initialization issues]({{site.baseurl}}/docs/trex_debugging.html#debugging-loading-and-initialization-issues). 
 
-If your extension fails to load at all on Tableau Server or Tableau Online, check the console window of the debugger to see if there is an error message of some kind. The console messages can give you clues about where to begin investigating when something goes wrong. If the error is caused by mixed content (trying to load an HTTP web page inside of a secure HTTPS server), see [Load and view localhost content on sites that use secure connections]({{site.baseurl}}/docs/trex_debug_server.html#load-and-view-localhost-content-on-sites-that-use-secure-connections).
+If your extension fails to load at all on Tableau Server or Tableau Online, check the console window of the debugger to see if there is an error message of some kind. The console messages can give you clues about where to begin investigating when something goes wrong. If the error is caused by mixed content (trying to load an HTTP web page inside of a secure HTTPS server), see the next section.
 
 
 ---
@@ -100,10 +98,8 @@ To temporarily get around these safety settings for the session, you can click t
 ![alt text]({{site.baseurl}}/assets/online_blocked_extension.png "Chrome browser showing alert when extension running on a localhost server")
 
 
-During the session, anytime you refresh or reload the web page, you will see the extensions dialog box requesting permission to run. And in the debugger console, you might see a warning message about mixed content.
+During the session, any time you refresh or reload the web page, you will see the extensions dialog box requesting permission to run. And in the debugger console, you might see a warning message about mixed content.
 
 ```
 Mixed Content: The page at 'https:/some_URLs#4' was loaded over HTTPS, but requested an insecure resource 'http://localhost:8765/Samples/Filtering/filtering.html'. This content should also be served over HTTPS.
-
 ```
-

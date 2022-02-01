@@ -51,20 +51,18 @@ You can also get the data from the selected marks in the worksheet, or the marks
 The first step for accessing data of any kind is to get the worksheet object (or objects) that you want.
 
 ```javascript
+//  After initialization, ask Tableau what sheets are available
+const worksheets = tableau.extensions.dashboardContent.dashboard.worksheets;
 
-    //  After initialization, ask Tableau what sheets are available
-    const worksheets = tableau.extensions.dashboardContent.dashboard.worksheets;
+// Find a specific worksheet
+var worksheet = worksheets.find(function (sheet) {
+  return sheet.name === "Name of Worksheet I want";
+});
 
-    // Find a specific worksheet
-    var worksheet = worksheets.find(function (sheet) {
-      return sheet.name === "Name of Worksheet I want";
-    });
-
-    // Or iterate through the array of worksheets
-    worksheets.forEach(function (worksheet) {
-      //  process each worksheet...
-    });
-
+// Or iterate through the array of worksheets
+worksheets.forEach(function (worksheet) {
+  //  process each worksheet...
+});
 ```
 
 After you have a worksheet object, you can call one of the methods to access the data for that worksheet. For summary data, or the data from the selected or highlighted marks, the steps are straight forward. If you want access the underlying data (or full data), there are additional steps and considerations. See [Accessing Underlying Data]({{site.baseurl}}/docs/trex_data_access.html).
@@ -73,16 +71,14 @@ After you have a worksheet object, you can call one of the methods to access the
 ## Get summary data from a worksheet
 
 ```javascript
+// get the summary data for the sheet
+worksheet.getSummaryDataAsync().then(function (sumdata) {
 
- // get the summary data for the sheet
- worksheet.getSummaryDataAsync().then(function (sumdata) {
+const worksheetData = sumdata;
+// The getSummaryDataAsync() method returns a DataTable
+// Map the DataTable (worksheetData) into a format for display, etc.
 
-  const worksheetData = sumdata;
-  // The getSummaryDataAsync() method returns a DataTable
-  // Map the DataTable (worksheetData) into a format for display, etc.
-
- });
-
+});
 ```
 
 ## Get full data from a worksheet
@@ -104,7 +100,6 @@ The first step is to use the `Worksheet.getUnderlyingTablesAsync()` method to re
 To get the underlying data for each logical table, you use the `LogicalTable.id` property of the table to call `Worksheet.getUnderlyingTableDataAsync()`. Note that when you use the `getUnderlyingTablesAsync()` in Tableau 2020.1 and earlier, the method will only return a single table, and that table uses  `single-table-id-sentinel` as the `LogicalTable.id`.
 
 ```javascript
-
 // Call to get the underlying logical tables used by the worksheet
 worksheet.getUnderlyingTablesAsync().then(logicalTables => {
   // Get the first logical table's id
@@ -115,8 +110,6 @@ worksheet.getUnderlyingTablesAsync().then(logicalTables => {
   // by calling worksheet.getUnderlyingTableDataAsync(logicalTableId)
 
 });
-
-
 ```
 
 #### 2. Get data from the logical table(s) using getUnderlyingTableDataAsync()
@@ -124,14 +117,12 @@ worksheet.getUnderlyingTablesAsync().then(logicalTables => {
 The following example returns data for the first logical table that is used by a worksheet called *"Sale Map"*.  
 
 ```javascript
-
  var worksheet = tableau.extensions.dashboardContent.dashboard.worksheets.find(w => w.name === "Sale Map");
  worksheet.getUnderlyingTablesAsync().then(logicalTables => {
      worksheet.getUnderlyingTableDataAsync(logicalTables[0].id).then(dataTable => {
        // process the dataTable...
      });
  });
-
 ```
 ---
 
@@ -143,7 +134,6 @@ If you want your extension to work in all versions of Tableau, you should use th
 
 
 ```javascript
-
 // the following example uses the Superstore workbook and gets the underlying data // for a specific worksheet.
 // The example writes the values for a single column (states names) to the console.
 tableau.extensions.dashboardContent.dashboard.worksheets.find(w => w.name === "Sale Map").getUnderlyingDataAsync().then(dataTable => {
@@ -155,8 +145,6 @@ tableau.extensions.dashboardContent.dashboard.worksheets.find(w => w.name === "S
   let values = list.filter((el, i, arr) => arr.indexOf(el) === i);
   console.log(values)
 });
-
-
 ```
 
 # Get data from a data source 
@@ -164,7 +152,6 @@ tableau.extensions.dashboardContent.dashboard.worksheets.find(w => w.name === "S
 You can also get the underlying data from the data sources for the worksheet. To do that, you must acquire the data sources for the worksheet with a call to the `getDataSourcesAsync()` method, which returns an array of the primary and all the secondary data sources of a worksheet. Once you have the data source object, you can access the underlying data and access information about the data source, such as the names of tables and fields and information about the connection.
 
 Just like worksheet methods that access full data, the following methods for the data source also require that your extension specifies `full data` permissions in the `trex` file. See [Add permissions to access full data to manifest file]({{ site.baseurl }}/docs/trex_data_access.html#add-permissions-to-access-full-data-to-manifest-file).
-
 
 | Method | Tableau Version | Extensions API Library | Status |
 |:------ | :---------------| :--------------------- |
@@ -176,19 +163,15 @@ Just like worksheet methods that access full data, the following methods for the
 | `Datasource.getLogicalTableDataAsync()` | Tableau 2018.2 and later | version 1.4 and later | Current |
 
 
-
 ## Get the data sources from a worksheet
 
 To get the data sources a worksheet uses, you call the `getDataSourcesAsync()` method on the worksheet object. The following code snippet shows how you might select a specific data source of a worksheet.
 
 ```javascript
-
 tableau.extensions.dashboardContent.dashboard.worksheets.find(w => w.name === "Sale Map").getDataSourcesAsync().then(datasources => {
   let dataSource = datasources.find(datasource => datasource.name === "Sample - Superstore");
   // return dataSource for further processing
 });
-
-
 ```
 
 ## Get full data from a worksheet using the v1.4 library (and later)
@@ -204,7 +187,6 @@ To get the underlying data for each logical table, use the `LogicalTable.id` pro
 Example using a single table:
 
 ```javascript
-
 // Call to get the logical tables used by the worksheet
 dataSource.getLogicalTablesAsync().then(logicalTables => {
   // Get the first logical table's id
@@ -213,16 +195,12 @@ dataSource.getLogicalTablesAsync().then(logicalTables => {
 
   // Use the logicalTableId to then get worksheet's underlying data
   // by calling worksheet.getUnderlyingTableDataAsync(logicalTableId)
-
 });
-
-
 ```
 
 Example that writes the names of all the logical tables in the data source to the console:
 
 ```javascript
-
 // Call to get the logical tables used by the worksheet
 dataSource.getLogicalTablesAsync().then(logicalTables => {
   // Loop through each table in this data source
@@ -230,8 +208,6 @@ dataSource.getLogicalTablesAsync().then(logicalTables => {
     console.log(table.caption);
     });
 });
-
-
 ```
 
 #### 2. Get data from the logical table(s) using getLogicalTableDataAsync()
@@ -241,19 +217,17 @@ The following example returns the column names of the first logical table that i
 
 
 ```javascript
-
-  dataSource.getLogicalTablesAsync().then(logicalTables =>  {
-    // get the underlying data from the first logical table
-    dataSource.getLogicalTableDataAsync(logicalTables[0].id).then(dataTable => {
-      // get the names of the columns in the dataTable
-    let list = [];  
-    for (let col of dataTable.columns) {
-      list.push(col.fieldName);
-    }
-   console.log(list);
-    });
+dataSource.getLogicalTablesAsync().then(logicalTables =>  {
+  // get the underlying data from the first logical table
+  dataSource.getLogicalTableDataAsync(logicalTables[0].id).then(dataTable => {
+    // get the names of the columns in the dataTable
+  let list = [];
+  for (let col of dataTable.columns) {
+    list.push(col.fieldName);
+  }
+  console.log(list);
   });
-
+});
 ```
 
 
@@ -264,14 +238,12 @@ If you were using 1.3 version of the Extensions API library (or earlier), you ha
 If you want your extension to work in all versions of Tableau, you should use the latest library (version 1.4 or later) and the `Datasource.getLogicalTablesAsync()` and `Datasource.getLogicalTableDataAsync` methods.
 
 ```javascript
-
 tableau.extensions.dashboardContent.dashboard.worksheets.find(w => w.name === "Sale Map").getDataSourcesAsync().then(datasources => {
   dataSource = datasources.find(datasource => datasource.name === "Sample - Superstore");
   return dataSource.getUnderlyingDataAsync();
 }).then(dataTable => {
 // process the dataTable...
 });
-
 ```
 
 ---
@@ -330,7 +302,6 @@ Worksheet.getUnderlyingTableDataAsync(logicalTables[0].id).then(function(success
     // called on any error, such as when the extension 
     // doesn’t have full data permission
 });
-
 ```
 
 An error is also printed to the console. If you use any of these methods to get the full data, be sure to add error handling for the promise in case of failure.

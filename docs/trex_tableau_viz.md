@@ -3,7 +3,7 @@ title: Add Tableau Viz to your Dashboard Extensions
 layout: docs
 ---
 
-Tableau Viz provides a lightweight method for creating visualizations in Tableau. You provide a declarative description of graph or chart, and then call a method to render the description as an SVG image that you can embed in your dashboard extension. The description includes the data (or programmatically adds the data) and specifies the type of chart you wish to create and how it should be encoded. This feature is available through the Dashboard Extensions API and employs the same visualization pipeline that Tableau uses.
+Tableau Viz provides a lightweight method for creating visualizations in Tableau. You provide a declarative description of a graph or chart, and then call a method to render the description as an SVG image that you can embed in your dashboard extension. The description includes the data (or programmatically adds the data) and specifies the type of chart you wish to create and how it should be encoded. This feature is available through the Dashboard Extensions API and employs the same visualization pipeline that Tableau uses.
 
 
 
@@ -46,7 +46,7 @@ graph LR
 
 A Tableau Viz is defined by a specification. This is the `inputSpec` that you pass as an argument to the `createVizImageAsync` method. The `inputSpec` is a JavaScript object that contains the embedded data and visual specification details. There are two main parts to the `inputSpec`:
 
-* the `data:` (an array of objects, for example, the selected measures and dimensions in the dashboard)
+* the data (an array of objects, for example, the selected measures and dimensions in the dashboard)
 
 * information about how to format that data (size of viz, mark type, mark color, encoding)
 
@@ -54,32 +54,30 @@ The `inputSpec` is a structured JavaScript object. The following example shows a
 
 
 ```javascript
-
-            var yourEmbeddedDataSpec = {
-                description: 'A simple chart with embedded data.',
-                data: {
-                    values: [
-                        { Category: 'A', Sales: 28 },
-                        { Category: 'B', Sales: 55 },
-                        { Category: 'C', Sales: 43 },
-                        { Category: 'D', Sales: 91 },
-                        { Category: 'E', Sales: 81 },
-                        { Category: 'F', Sales: 53 },
-                        { Category: 'G', Sales: 19 },
-                        { Category: 'H', Sales: 87 },
-                        { Category: 'I', Sales: 52 }
-                    ]
-                },
-                mark: tableau.MarkType.Bar,
-                encoding: {
-                    columns: { field: 'Category', type: tableau.VizImageEncodingType.Discrete },
-                    rows: { field: 'Sales', type: tableau.VizImageEncodingType.Continuous, hidden: true},
-                    color: { field: 'Sales', type: tableau.VizImageEncodingType.Continuous, palette: 'tableau-map-temperatur'},
-                    text: { field: 'Category', type: tableau.VizImageEncodingType.Discrete },
-                    size: { field: 'Category', type: tableau.VizImageEncodingType.Discrete}
-                }
-            };
-
+var yourEmbeddedDataSpec = {
+    description: 'A simple chart with embedded data.',
+    data: {
+        values: [
+            { Category: 'A', Sales: 28 },
+            { Category: 'B', Sales: 55 },
+            { Category: 'C', Sales: 43 },
+            { Category: 'D', Sales: 91 },
+            { Category: 'E', Sales: 81 },
+            { Category: 'F', Sales: 53 },
+            { Category: 'G', Sales: 19 },
+            { Category: 'H', Sales: 87 },
+            { Category: 'I', Sales: 52 }
+        ]
+    },
+    mark: tableau.MarkType.Bar,
+    encoding: {
+        columns: { field: 'Category', type: tableau.VizImageEncodingType.Discrete },
+        rows: { field: 'Sales', type: tableau.VizImageEncodingType.Continuous, hidden: true},
+        color: { field: 'Sales', type: tableau.VizImageEncodingType.Continuous, palette: 'tableau-map-temperatur'},
+        text: { field: 'Category', type: tableau.VizImageEncodingType.Discrete },
+        size: { field: 'Category', type: tableau.VizImageEncodingType.Discrete}
+    }
+};
 ```
 
 For more information about the `inputSpec`, see [Tableau Viz Reference]({{site.baseurl}}/docs/trex_tableau_viz_ref.html).
@@ -90,12 +88,11 @@ For more information about the `inputSpec`, see [Tableau Viz Reference]({{site.b
 
 After you create the `inputSpec` you pass it as an argument to the `createVizImageAsync` method. The method returns an SVG image that can be used by the extension. This example takes the `yourEmbeddedDataSpec` that was defined in the previous step, and uses that to describe the chart to create.
   
- ```javascript
- tableau.extensions.createVizImageAsync(yourEmbeddedDataSpec).then((svg) => {
-     ...         
-            });
-  
-  ```
+```javascript
+tableau.extensions.createVizImageAsync(yourEmbeddedDataSpec).then((svg) => {
+    ...
+});
+```
   
 
 ## Display the SVG image in the dashboard extension
@@ -103,20 +100,19 @@ After you create the `inputSpec` you pass it as an argument to the `createVizIma
 The asynchronous method returns an SVG image as the promise. Here is one way of taking that SVG and embedding it as a an element in your extension web page. In this example, the `svg` is converted to a JavaScript `Blob`, and the `Blob` is used as the image data source in the hosting dashboard extensions page.
 
 ```javascript
-            tableau.extensions.createVizImageAsync(yourEmbeddedDataSpec).then((svg) => {
-                console.log(svg);
-                var blob = new Blob([svg], { type: 'image/svg+xml' });
-                var url = URL.createObjectURL(blob);
-                var image = document.createElement('img');
-                image.src = url;
-                image.style.maxWidth = '100%';
-                var vizApiElement = document.getElementById('viz-container');
-                vizApiElement.appendChild(image);
-                image.addEventListener('load', function () { return URL.revokeObjectURL(url); }, { once: true });
-            }, (err) => {
-                console.log(err);
-            });
-
+tableau.extensions.createVizImageAsync(yourEmbeddedDataSpec).then((svg) => {
+    console.log(svg);
+    var blob = new Blob([svg], { type: 'image/svg+xml' });
+    var url = URL.createObjectURL(blob);
+    var image = document.createElement('img');
+    image.src = url;
+    image.style.maxWidth = '100%';
+    var vizApiElement = document.getElementById('viz-container');
+    vizApiElement.appendChild(image);
+    image.addEventListener('load', function () { return URL.revokeObjectURL(url); }, { once: true });
+}, (err) => {
+    console.log(err);
+});
 ```
  
 Tableau renders an image that looks something like this:

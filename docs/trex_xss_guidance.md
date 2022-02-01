@@ -34,7 +34,7 @@ If your dashboard extension accepts text input from users through forms or text 
   Do not use or allow JavaScript code within the `<script>` tags.
 
   ```
-   <script> alert("XSS attack")</script>
+  <script>alert("XSS attack")</script>
   ```
   Only allow or use references to JavaScript files within the script tags. 
   ```
@@ -49,7 +49,6 @@ If your dashboard extension accepts text input from users through forms or text 
 
  // Link to libraries on the local host:
 <script src="./library.js"></script>
-
 ```
-For more information, see [https://github.com/tableau/extensions-api/issues/103](https://github.com/tableau/extensions-api/issues/103){:target="_blank"}
 
+For more information, see [https://github.com/tableau/extensions-api/issues/103](https://github.com/tableau/extensions-api/issues/103){:target="_blank"}.

@@ -83,7 +83,6 @@ If full data is not declared in the manifest file, and the extensions calls one 
 ```
 PermissionValidation.ts:26 Extension (name = DataSources Sample, ID = com.tableau.extensions.demo.local) is missing required permission: full-data
 Error: internal-error: permission-denied: Missing required permission to run get-underlying-data(...)
-
 ```
 
 --- 
@@ -115,7 +114,6 @@ If a user clicks **Cancel**, the workbook is opened, but the extension is not lo
 ```
 Extension was denied the required permission to run.
 Permissions approval can be reset through the context menu.
-
 ```
 
 Users can use choose to allow the extension to run by using the clicking **Reset Permissions** from the **More Options** drop-down menu of the layout container. This opens up the **Allow Extensions** dialog box where the user can change permissions for the extension.

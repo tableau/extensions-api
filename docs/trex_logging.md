@@ -16,21 +16,13 @@ Support for extensions is built-in to Tableau, so there is nothing you need to s
 
 ## Locate the Tableau log files
 
-By default, the Tableau Desktop log file (`log.txt`) is are stored in the following location:
-
-```
-Users/<username>/Documents/My Tableau Repository
-
-``` 
-The `log.txt` file contains information about dashboard extension registration and information about extension command execution. 
+By default, the Tableau Desktop log file (`log.txt`) is stored under `Users/<username>/Documents/My Tableau Repository`. The log file contains information about dashboard extension registration and information about extension command execution.
 
 ## Download and install the Tableau Log Viewer
 
 The Tableau Log Viewer is an open source tool that makes it easier to read Tableau log files. You can install the Log Viewer by downloading a `.zip` file for either Windows or MacOS. If you want to build the Tableau Log Viewer yourself, you can also download or clone the Log Viewer repository.
-  
 
 1. Download the latest release in the [Releases Section](https://github.com/tableau/tableau-log-viewer/releases){:target="_blank"} of the [Tableau Log Viewer](https://github.com/tableau/tableau-log-viewer){:target="_blank"} repository on GitHub.
-
 2. Extract `.zip` file on your local computer. Launch the Log Viewer application (`Log Viewer.exe` on Windows, or `Log Viewer.app` on MacOS). 
 3. Open the log file from the File menu, or drag and drop the Tableau log file into the Log Viewer window. 
 
@@ -42,7 +34,7 @@ The Desktop Tableau log file (`log.txt`) is a JSON formatted file. The extension
 
 ```json
 {"ts":"2017-11-27T17:55:55.665",
- pid":12100,"tid":"3d08","sev":"info","req":"-",
+ "pid":12100,"tid":"3d08","sev":"info","req":"-",
  "sess":"-",
  "site":"{FA6345B5-D64A-4ADB-9435-12F170D9B2AB}",
  "user":"-",
@@ -92,7 +84,6 @@ The extensions manifest file (`.trex`) is an XML-based file. As part of the regi
 ```xml
 Error: Registration Failed: XSD Validation Failed
 file: Sample.trex
-
 ```
 
 Each XSD validation error in the file is logged separately, which makes it easier to locate and fix problems. For example, the following error shows the exact line number and location where the error occurred. In this case, the value for `extension-version` number was left blank `""`.    
@@ -118,7 +109,6 @@ When no errors are found with the manifest file, Tableau completes the registrat
 Event: Extension Successfully Registered
 id: com.tableau.extensions.dashboard.tutorial.final
 name: Tutorial - Complete
-
 ```
 
 You can use the `id` of the extension, in this case `com.tableau.extensions.dashboard.tutorial.final` to search for instances where the extension is used. 
@@ -141,7 +131,6 @@ Event: Executing Command: initialize-add-in-instance
 id: com.tableau.extensions.dashboard.tutorial.final 
 instance-id: com.tableau.extensions.dashboard.tutorial.final 
 name: Tutorial - Complete 
-
 ```
 A key part of this is that the extension is assigned an `add-in-instance-id`. This instance id is something you can use to further track activity.
 
@@ -164,7 +153,7 @@ name: Tutorial - Complete
 In this case, the selection was the name of a worksheet ("Sale Map"). 
 
 ```
- args: tabdoc:save-add-in-settings add-in-locator-pres-model={"add-in-instance-id": "36C4012514F042DB8F2AB466B445726A","sheet-path":{"sheet-name": "Overview","is-dashboard": true}} add-in-settings={"sheet":"Sale Map"}
+args: tabdoc:save-add-in-settings add-in-locator-pres-model={"add-in-instance-id": "36C4012514F042DB8F2AB466B445726A","sheet-path":{"sheet-name": "Overview","is-dashboard": true}} add-in-settings={"sheet":"Sale Map"}
 name: tabdoc:save-add-in-settings
 ```
 
