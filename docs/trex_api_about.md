@@ -51,5 +51,5 @@ The following code fragment shows an example of setting an event listener `addEv
 
 ```javascript
 // Add an event listener for the selection changed event on this sheet.
-unregisterEventHandlerFunction = worksheet.addEventListener('mark-selection-changed', myfunctionHandleSelectionEvent);
+let unregisterEventHandlerFunction = worksheet.addEventListener('mark-selection-changed', myfunctionHandleSelectionEvent);
 ``` 

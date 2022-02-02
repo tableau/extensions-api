@@ -32,7 +32,7 @@ Consider that dashboard extensions can be both **configured** and **viewed** in 
 After you've completed making your extension, you may want to share your extension for others to use. Here are some places you might think about sharing your extension.
 
 ### Tableau Exchange
-Tableau has released the [Tableau Exchange](https://exchange.tableau.com/) (formerly, Tableau Extension Gallery), a place to explore and download some extensions that our partners have created. If you would like to share your extension, learn more at [Sharing to the Tableau Exchange]({{site.baseurl}}/docs/ux_extension_gallery.html).
+Tableau has released the [Tableau Exchange](https://exchange.tableau.com/), a place to explore and download some extensions that our partners have created. If you would like to share your extension, learn more at [Sharing to the Tableau Exchange]({{site.baseurl}}/docs/ux_extension_gallery.html).
 
 ### Community Forums
 Tableau also has a [Community Forum](https://community.tableau.com/s/) for developers to discuss extensions and the Extensions API.
