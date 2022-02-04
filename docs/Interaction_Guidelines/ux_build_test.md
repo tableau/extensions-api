@@ -13,7 +13,7 @@ This section serves as a broad overview of the developer experience and consider
 &nbsp;
 
 ## Build
-The first thing to do is start running sample extension code from the Extensions API Documentation. **Make sure that your sample code works** and your environment is set up properly before jumping into building a new extension. 
+The first thing to do is start running sample extension code from the Extensions API Documentation. **Make sure that your sample code works** and your environment is set up properly before jumping into building a new extension.
 
 Once you're ready to go, you can start building and customizing your extension. Expect to iterate through cycles of developing and designing your extension using our API documentation and these design guidelines.
 
@@ -23,9 +23,9 @@ Once you're ready to go, you can start building and customizing your extension. 
 
 * [Community Forums](https://community.tableau.com/community/developers/extensions-api/overview)<br>Participate in a community of developers that are passionate about creating extensions.
 
-* [Extension Gallery (beta)](https://extensiongallery.tableau.com/)<br>Explore and use some of the extensions our partners have created.
+* [Tableau Exchange](https://exchange.tableau.com/)<br>Explore and use some of the extensions our partners have created.
 
-* [Developer Preview](https://prerelease.tableau.com/extensions-api)<br>Participate in the Developer Preview for our Extensions API. Be invited to bi-weekly sprint demos with Tableau's development team and have the opportunity to give ongoing feedback.
+* [Tableau Developer Program](https://www.tableau.com/developer)<br>Participate in the Tableau Developer Program. Be invited to monthly sprint demos with Tableau's development team and have the opportunity to give ongoing feedback.
 
 &nbsp;
 
