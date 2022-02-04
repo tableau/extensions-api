@@ -8,7 +8,10 @@ module.exports = {
     datasources: './Samples-Typescript/DataSources/datasources.ts',
     filtering: './Samples-Typescript/Filtering/filtering.ts',
     formatting: './Samples-Typescript/Formatting/formatting.tsx',
+    moveAndResize: './Samples-Typescript/MoveAndResize/moveAndResize.tsx',
     parameters: './Samples-Typescript/Parameters/parameters.ts',
+    dashboardObjectVisibility: './Samples-Typescript/DashboardObjectVisibility/dashboardObjectVisibility.tsx',
+    replayAnimation: './Samples-Typescript/ReplayAnimation/replayAnimation.tsx',
     vizImage: './Samples-Typescript/VizImage/vizImage.ts',
   },
   mode: 'production',
@@ -33,5 +36,10 @@ module.exports = {
   optimization: {
     minimize: false
   },
-  devtool: 'inline-source-map'
+  devtool: 'inline-source-map',
+  performance: {
+    hints: false,
+    maxEntrypointSize: 370,
+    maxAssetSize: 370
+  }
 };
