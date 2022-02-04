@@ -91,7 +91,7 @@ To use the dashboard extension samples, you need to start up a web server on you
 ---
 ### Start Tableau and add an extension to the dashboard
 
-1. Start Tableau and open a workbook that has a dashboard, or open a workbook and create a new dashboard with at least one worksheet.
+1. Start Tableau and open a workbook that has a dashboard, or open a workbook and create a new dashboard. For example, you could use one of the Tableau sample workbooks like Superstore to start with.
 
 2. In the dashboard, under **Objects**, select **Extension** and drag it on to the dashboard.
 

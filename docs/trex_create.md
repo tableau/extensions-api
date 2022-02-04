@@ -174,7 +174,7 @@ After you have created the manifest file (`.trex`) and have hosted your web app 
 
 1. Start up your web page or application (or make sure it is running).
 
-2. Start Tableau and open a workbook with a dashboard, or create a new dashboard with at least one worksheet.
+2. Start Tableau and open a workbook with a dashboard, or create a new dashboard.
 
 3. In the dashboard, under **Objects**, select **Extension** and drag it on to the dashboard. In the **Add an Extension** dialog box, click **Access Local Extensions** and browse to directory where you have your manifest file.
 

@@ -25,7 +25,7 @@ You may be interested in sharing your extension for others to download and use i
 ---
 
 ## Exchange Card Example
-This is what an extension looks like to a user while browsing the Extension Gallery. 
+This is what an extension looks like to a user while browsing the Tableau Exchange. 
 
 ![gallery card example](imgs/gallery_card_example.png)
 
