@@ -147,7 +147,7 @@ Within these properties, you must specify the field to encode and its type (`tab
 |`type`| The type of field, either `tableau.VizImageEncodingType.Discrete` (blue "pill") or `tableau.VizImageEncodingType.Continuous` (green "pill"). |
 |`hidden` | Boolean (`true`, `false`). Specifies whether to show or hide the column or row header. |
 | `showgridline` | Boolean (`true`, `false`). Specifies whether to show or hide the gridlines. |
-|`title` | Specifies a custom field label (x-axis, or header) or custom axis title (y-axis) for the columns and rows. |
+|`title` | Specifies a custom axis title (x-, or y-axis) for the columns and rows. A `title` can only be used for continuous fields (`tableau.VizImageEncodingType.Continuous`). Custom titles for discrete fields are not supported. |
 | `showtitle` | Boolean (`true`, `false`). Specifies whether to show or hide the custom column or row title. |
 
 The following are examples of how you might specify the encodings for columns and rows:
@@ -155,7 +155,7 @@ The following are examples of how you might specify the encodings for columns an
 ```javascript
 
 encoding: {
-  columns: {field: "Sales", type: tableau.VizImageEncodingType.Continuous, title: "My Custom Title", showtitle: false},
+  columns: {field: "Sales", type: tableau.VizImageEncodingType.Continuous, title: "My Custom Title", showtitle: true},
   rows: {field: "Category", type: tableau.VizImageEncodingType.Discrete  }
 } 
 

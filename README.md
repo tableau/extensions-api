@@ -9,7 +9,7 @@ The Extensions API lets you do more without leaving Tableau. Build Tableau exten
 ## Setup and Running Samples
 
 ### Prerequisites
-* You must have Node.js and npm installed. You can get these from [http://nodejs.org](http://nodejs.org).
+* You must have Node.js and npm installed. You can get these from [https://nodejs.org](https://nodejs.org).
 
 ### Install Extensions API SDK Components and Start Server
 
@@ -35,14 +35,13 @@ The Extensions API lets you do more without leaving Tableau. Build Tableau exten
 
 ### Typescript Development
 Samples written in Typescript are located in the `Samples-Typescript` folder.
-If you want to use TypeScript to write your extensions, you can run a script that starts up the HTTP server and actively listens for changes to the `.ts` files located in the `Sample-Typescript` folder. You can then add your extension to the folder and use the script to transpile your extension to JavaScript.
+If you want to use TypeScript to write your extensions, you can run a script that starts up the HTTP server and actively listens for changes to the `.ts` files located in the `Samples-Typescript` folder. You can then add your extension to the folder and use the script to transpile your extension to JavaScript.
 
 * To start the the HTTP server and listen for changes to the `.ts` files.
 
     **npm run dev**
 
 For more information, see [Use TypeScript with the Extensions API](https://tableau.github.io/extensions-api/docs/trex_typescript.html).
-
 
 ### Sandboxed Extension Development Environment
 
@@ -56,22 +55,17 @@ Tableau is introducing development support for Sandboxed Extensions with Tableau
 
 For more information, see [Create and Test Sandboxed Extensions](https://tableau.github.io/extensions-api/docs/trex_sandbox_test.html).
 
+## Contributions
+Contributions and improvements by the community are welcomed!
+See the LICENSE file for current open-source licensing and use information.
 
-## Submissions
-We would love submissions to either the Docs or Sample code! To contribute, first sign our CLA that can be found [here](https://tableau.github.io/contributing.html).  To submit a contribution, please fork the repository then submit a pull request to the `submissions` branch.
+Before we can accept pull requests from contributors, we require a signed [Contributor License Agreement (CLA)](https://tableau.github.io/contributing.html). To submit a contribution, please fork the repository then submit a pull request to the `main` branch.
 
 ## Code Style
 Our sample code follows the [Semi-Standard Style](https://github.com/Flet/semistandard) for JavaScript samples linting and [tslint](https://palantir.github.io/tslint/) for TypeScript.  If you add your own extension code to the Samples or Samples-Typescript directories, you can run `npm run lint` to validate the style of your code.  Please run this command before submitting any pull requests for Sample code.
 
-## Contributions
-Code contributions and improvements by the community are welcomed!
-See the LICENSE file for current open-source licensing and use information.
-
-Before we can accept pull requests from contributors, we require a signed [Contributor License Agreement (CLA)](http://tableau.github.io/contributing.html).
-
 ## Documentation
 [Visit the project website and read the documentation here.](https://tableau.github.io/extensions-api/)
 
-
 ## Issues
-Use [Issues](https://github.com/tableau/ProjectFrelard/issues) to log any problems or bugs you encounter in the docs or sample  code. 
+Use [Issues](https://github.com/tableau/extensions-api/issues) to log any problems or bugs you encounter in the docs or sample code, or to discuss any proposed changes or additions.

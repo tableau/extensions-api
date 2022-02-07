@@ -24,7 +24,7 @@ The `extensions` name space has one method `initializeAsync()` that is used to i
 
 ## Registering and accessing dashboard extensions
 
-The dashboard extension is one type of extension in the Tableau extensions namespace (and it is accessed using `tableau.extensions`). To register the extension, you declare the type of extension in the manifest file (`.trex`). For more information about what goes in the file, see [Tableau Manifest File]({{site.baseurl}}\docs\index.html). 
+The dashboard extension is one type of extension in the Tableau extensions namespace (and it is accessed using `tableau.extensions`). To register the extension, you declare the type of extension in the manifest file (`.trex`). For more information about what goes in the file, see [Tableau Manifest File]({{site.baseurl}}\docs\trex_manifest.html). 
 
 ```xml
     <dashboard-extension id="com.example.extensions.name" extension-version="0.1.0">
@@ -37,7 +37,7 @@ To access the objects in the dashboard, you specify the namespace reserved for d
    const worksheets = tableau.extensions.dashboardContent.dashboard.worksheets ;
 ```
 
-The following diagram shows an outline of the namespace hierarchy that you traverse to get to worksheets.     
+The following diagram shows an outline of the namespace hierarchy that you traverse to get to worksheets.
 
 ![]({{site.baseurl}}/assets/tab_ext_class_worksheet.png)
 
@@ -49,11 +49,13 @@ For example, after you extract a worksheet object from the dashboard, you can us
 
 The following code fragment shows an example of setting an event listener `addEventListener` on a worksheet. 
 
-```python
-
+```javascript
     // Add an event listener for the selection changed event on this sheet.
-    unregisterEventHandlerFunction = worksheet.addEventListener('mark-selection-changed', myfunctionHandleSelectionEvent);
-``` 
+    // Assigning the event type to a variable just to make the example fit on the page here.
+    const markSelection = tableau.TableauEventType.MarkSelectionChanged;
+    let unregisterEventHandlerFunction = worksheet.addEventListener( markSelection, myfunctionHandleSelectionEvent);
+
+```
 
 
 

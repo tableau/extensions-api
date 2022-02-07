@@ -9,7 +9,7 @@ The Tableau Dashboard Extensions API allows developers to create extensions for 
  
 This section will take you through the process of setting up your environment to use one of the sample dashboard extensions. Using one of the sample extensions is a great way to learn and great way to get started developing your own extensions. In this section, you will start a simple web server on your computer to host the sample. You can use the same process for hosting the extension when you start developing your own.
 
-<div class="alert alert-info"><p><b>Note</b> If you are looking for information about how to add an extension to a dashboard in Tableau, see <a href="https://onlinehelp.tableau.com/current/pro/desktop/en-us/dashboard_extensions.htm" target="_blank" ref="noopener">Use Dashboard Extensions</a>. If you are looking for extensions that you can use, see the <a href="https://extensiongallery.tableau.com/" target="_blank" ref="noopener">Tableau Extension Gallery</a>.</p>
+<div class="alert alert-info"><p><b>Note</b> If you are looking for information about how to add an extension to a dashboard in Tableau, see <a href="https://onlinehelp.tableau.com/current/pro/desktop/en-us/dashboard_extensions.htm" target="_blank" ref="noopener">Use Dashboard Extensions</a>. If you are looking for extensions that you can use, see the <a href="https://exchange.tableau.com/" target="_blank" ref="noopener">Tableau Exchange</a>.</p>
 </div>
 
 
@@ -91,13 +91,13 @@ To use the dashboard extension samples, you need to start up a web server on you
 ---
 ### Start Tableau and add an extension to the dashboard
 
-1. Start Tableau and open a workbook that has a dashboard, or open a workbook and create a new dashboard.
+1. Start Tableau and open a workbook that has a dashboard, or open a workbook and create a new dashboard. For example, you could use one of the Tableau sample workbooks like Superstore to start with.
 
 2. In the dashboard, under **Objects**, select **Extension** and drag it on to the dashboard.
 
    ![]({{site.baseurl}}/assets/frelard_objects_extension.png){:height="25%" width="25%"}
 
-3. In the **Choose an Extension** dialog box, click **My Extensions**.
+3. In the **Add an Extension** dialog box, click **Access Local Extensions**.
    Every Tableau extension has a manifest file (`.trex`) that describes the extension and identifies the location of the web application.
 
 4. Browse to the directory where the samples are located. For example, if you downloaded or cloned the GitHub repository, go to `\extensions-api\Samples\DataSources`.
