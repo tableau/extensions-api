@@ -24,7 +24,7 @@
     // item to the manifest, will add a new "Configure..." context menu item to the zone of extension
     // inside a dashboard.  When that context menu item is clicked by the user, the function passed
     // here will be executed.
-    tableau.extensions.initializeAsync({'configure': configure}).then(function () {
+    tableau.extensions.initializeAsync({ configure: configure }).then(function () {
       // This event allows for the parent extension and popup extension to keep their
       // settings in sync.  This event will be triggered any time a setting is
       // changed for this extension, in the parent or popup (i.e. when settings.saveAsync is called).
@@ -34,7 +34,7 @@
     });
   });
 
-  function configure () {
+  function configure() {
     // This uses the window.location.origin property to retrieve the scheme, hostname, and
     // port where the parent extension is currently running, so this string doesn't have
     // to be updated if the extension is deployed to a new location.
@@ -51,33 +51,36 @@
      * the popup extension.  In this example, the value '5' is passed, which will serve as the
      * default interval of refresh.
      */
-    tableau.extensions.ui.displayDialogAsync(popupUrl, defaultIntervalInMin, { height: 500, width: 500 }).then((closePayload) => {
-      // The promise is resolved when the dialog has been expectedly closed, meaning that
-      // the popup extension has called tableau.extensions.ui.closeDialog.
-      $('#inactive').hide();
-      $('#active').show();
+    tableau.extensions.ui
+      .displayDialogAsync(popupUrl, defaultIntervalInMin, { height: 500, width: 500 })
+      .then((closePayload) => {
+        // The promise is resolved when the dialog has been expectedly closed, meaning that
+        // the popup extension has called tableau.extensions.ui.closeDialog.
+        $('#inactive').hide();
+        $('#active').show();
 
-      // The close payload is returned from the popup extension via the closeDialog method.
-      $('#interval').text(closePayload);
-      setupRefreshInterval(closePayload);
-    }).catch((error) => {
-      // One expected error condition is when the popup is closed by the user (meaning the user
-      // clicks the 'X' in the top right of the dialog).  This can be checked for like so:
-      switch (error.errorCode) {
-        case tableau.ErrorCodes.DialogClosedByUser:
-          console.log('Dialog was closed by user');
-          break;
-        default:
-          console.error(error.message);
-      }
-    });
+        // The close payload is returned from the popup extension via the closeDialog method.
+        $('#interval').text(closePayload);
+        setupRefreshInterval(closePayload);
+      })
+      .catch((error) => {
+        // One expected error condition is when the popup is closed by the user (meaning the user
+        // clicks the 'X' in the top right of the dialog).  This can be checked for like so:
+        switch (error.errorCode) {
+          case tableau.ErrorCodes.DialogClosedByUser:
+            console.log('Dialog was closed by user');
+            break;
+          default:
+            console.error(error.message);
+        }
+      });
   }
 
   /**
    * This function sets up a JavaScript interval based on the time interval selected
    * by the user.  This interval will refresh all selected datasources.
    */
-  function setupRefreshInterval (interval) {
+  function setupRefreshInterval(interval) {
     setInterval(function () {
       const dashboard = tableau.extensions.dashboardContent.dashboard;
       dashboard.worksheets.forEach(function (worksheet) {
@@ -95,7 +98,7 @@
   /**
    * Helper that is called to set state anytime the settings are changed.
    */
-  function updateExtensionBasedOnSettings (settings) {
+  function updateExtensionBasedOnSettings(settings) {
     if (settings.selectedDatasources) {
       activeDatasourceIdList = JSON.parse(settings.selectedDatasources);
       $('#datasourceCount').text(activeDatasourceIdList.length);
