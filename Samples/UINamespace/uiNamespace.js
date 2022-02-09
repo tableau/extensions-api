@@ -34,7 +34,7 @@
     });
   });
 
-  function configure() {
+  function configure () {
     // This uses the window.location.origin property to retrieve the scheme, hostname, and
     // port where the parent extension is currently running, so this string doesn't have
     // to be updated if the extension is deployed to a new location.
@@ -80,7 +80,7 @@
    * This function sets up a JavaScript interval based on the time interval selected
    * by the user.  This interval will refresh all selected datasources.
    */
-  function setupRefreshInterval(interval) {
+  function setupRefreshInterval (interval) {
     setInterval(function () {
       const dashboard = tableau.extensions.dashboardContent.dashboard;
       dashboard.worksheets.forEach(function (worksheet) {
@@ -98,7 +98,7 @@
   /**
    * Helper that is called to set state anytime the settings are changed.
    */
-  function updateExtensionBasedOnSettings(settings) {
+  function updateExtensionBasedOnSettings (settings) {
     if (settings.selectedDatasources) {
       activeDatasourceIdList = JSON.parse(settings.selectedDatasources);
       $('#datasourceCount').text(activeDatasourceIdList.length);

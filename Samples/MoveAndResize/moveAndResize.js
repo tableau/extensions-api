@@ -7,7 +7,7 @@ let ReactDOM;
   // Utilizes DashboardObjectPositionAndSizeUpdate to store resizeable dashboard objects (must be floating and visible)
   // Calls moveAndResizeDashboardObjects to resize and reposition objects stored in the array
   class MoveAndResize extends React.Component {
-    constructor() {
+    constructor () {
       super(...arguments);
       this.handleClickAndResizeZones = () => {
         const dashboard = tableau.extensions.dashboardContent.dashboard;
@@ -16,17 +16,17 @@ let ReactDOM;
       };
     }
 
-    static async initialize() {
+    static async initialize () {
       console.log('Initializing extension API');
       await tableau.extensions.initializeAsync();
       ReactDOM.render(React.createElement(MoveAndResize, null), document.getElementById('moveAndResizeExample'));
     }
 
-    render() {
+    render () {
       return React.createElement('button', { className: 'btn btn-primary', onClick: this.handleClickAndResizeZones }, 'Click to resize');
     }
 
-    moveAndResizeDashboardObjects(dashboardSize) {
+    moveAndResizeDashboardObjects (dashboardSize) {
       const dashboardObjectPositionAndSizeUpdateArray = [];
       const dashboardObjects = tableau.extensions.dashboardContent.dashboard.objects;
       const floatingItems = this.getFloatingAndVisibleItemsCount(dashboardObjects);
@@ -43,7 +43,7 @@ let ReactDOM;
             height: heightSize,
             width: widthSize,
             x: currentX * widthSize,
-            y: currentY * heightSize,
+            y: currentY * heightSize
           };
           dashboardObjectPositionAndSizeUpdateArray.push(dashboardObjectPositionAndSizeUpdate);
           currentX++;
@@ -57,7 +57,7 @@ let ReactDOM;
       return dashboardObjectPositionAndSizeUpdateArray;
     }
 
-    getFloatingAndVisibleItemsCount(dashboardObjects) {
+    getFloatingAndVisibleItemsCount (dashboardObjects) {
       let totalFloatingItems = 0;
       dashboardObjects.forEach((dashboardObject) => {
         if (dashboardObject.isFloating && dashboardObject.isVisible) {

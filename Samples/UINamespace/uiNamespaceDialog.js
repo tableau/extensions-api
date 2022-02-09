@@ -65,7 +65,7 @@
    * returns a list of IDs of the datasources that were previously
    * selected by the user.
    */
-  function parseSettingsForActiveDataSources() {
+  function parseSettingsForActiveDataSources () {
     let activeDatasourceIdList = [];
     const settings = tableau.extensions.settings.getAll();
     if (settings.selectedDatasources) {
@@ -79,7 +79,7 @@
    * Helper that updates the internal storage of datasource IDs
    * any time a datasource checkbox item is toggled.
    */
-  function updateDatasourceList(id) {
+  function updateDatasourceList (id) {
     const idIndex = selectedDatasources.indexOf(id);
     if (idIndex < 0) {
       selectedDatasources.push(id);
@@ -91,7 +91,7 @@
   /**
    * UI helper that adds a checkbox item to the UI for a datasource.
    */
-  function addDataSourceItemToUI(datasource, isActive) {
+  function addDataSourceItemToUI (datasource, isActive) {
     const containerDiv = $('<div />');
 
     $('<input />', {
@@ -101,12 +101,12 @@
       checked: isActive,
       click: function () {
         updateDatasourceList(datasource.id);
-      },
+      }
     }).appendTo(containerDiv);
 
     $('<label />', {
       for: datasource.id,
-      text: datasource.name,
+      text: datasource.name
     }).appendTo(containerDiv);
 
     $('#datasources').append(containerDiv);
@@ -116,7 +116,7 @@
    * Stores the selected datasource IDs in the extension settings,
    * closes the dialog, and sends a payload back to the parent.
    */
-  function closeDialog() {
+  function closeDialog () {
     tableau.extensions.settings.set(datasourcesSettingsKey, JSON.stringify(selectedDatasources));
 
     tableau.extensions.settings.saveAsync().then((newSavedSettings) => {

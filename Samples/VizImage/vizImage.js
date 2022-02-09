@@ -23,7 +23,7 @@
   });
 
   // This function creates and displays a viz image.
-  function addVizImage(markType, palette) {
+  function addVizImage (markType, palette) {
     // Building the input specification object that is used to create the viz image.
     // Data values used in the viz image are prefilled.
     const vizInputSpec = {
@@ -36,16 +36,16 @@
           { Product: 'Rulers', Sales: 35, Region: 'East' },
           { Product: 'Rulers', Sales: 43, Region: 'South' },
           { Product: 'Paper', Sales: 50, Region: 'West' },
-          { Product: 'Pens', Sales: 56, Region: 'West' },
-        ],
+          { Product: 'Pens', Sales: 56, Region: 'West' }
+        ]
       },
       mark: markType,
       markcolor: '#FFED5F', // may not get used in viz if color is encoded in viz.
       encoding: {
         columns: { field: 'Region', type: tableau.VizImageEncodingType.Discrete },
         rows: { field: 'Sales', type: tableau.VizImageEncodingType.Continuous },
-        color: { field: 'Product', type: tableau.VizImageEncodingType.Discrete, palette },
-      },
+        color: { field: 'Product', type: tableau.VizImageEncodingType.Discrete, palette }
+      }
     };
 
     // defaulting values if null.
@@ -75,12 +75,12 @@
           function () {
             return URL.revokeObjectURL(url);
           },
-          { once: true },
+          { once: true }
         );
       },
       function (err) {
         console.log(err);
-      },
+      }
     );
   }
 })();
