@@ -1,11 +1,11 @@
 'use strict';
-var React;
-var ReactDOM;
+let React;
+let ReactDOM;
 
 // Wrap everything in an anonymous function to avoid polluting the global namespace
 (async () => {
-// Utilizes DashboardObjectPositionAndSizeUpdate to store resizeable dashboard objects (must be floating and visible)
-// Calls moveAndResizeDashboardObjects to resize and reposition objects stored in the array
+  // Utilizes DashboardObjectPositionAndSizeUpdate to store resizeable dashboard objects (must be floating and visible)
+  // Calls moveAndResizeDashboardObjects to resize and reposition objects stored in the array
   class MoveAndResize extends React.Component {
     constructor () {
       super(...arguments);
@@ -15,16 +15,15 @@ var ReactDOM;
         dashboard.moveAndResizeDashboardObjectsAsync(positionAndSizeUpdateArray);
       };
     }
+
     static async initialize () {
       console.log('Initializing extension API');
       await tableau.extensions.initializeAsync();
-      ReactDOM.render(React.createElement(MoveAndResize, null),
-       document.getElementById('moveAndResizeExample'));
+      ReactDOM.render(React.createElement(MoveAndResize, null), document.getElementById('moveAndResizeExample'));
     }
 
     render () {
-      return React.createElement('button', { className: 'btn btn-primary',
-        onClick: this.handleClickAndResizeZones }, 'Click to resize');
+      return React.createElement('button', { className: 'btn btn-primary', onClick: this.handleClickAndResizeZones }, 'Click to resize');
     }
 
     moveAndResizeDashboardObjects (dashboardSize) {

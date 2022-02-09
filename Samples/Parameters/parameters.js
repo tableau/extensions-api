@@ -100,7 +100,7 @@
 
   // This function creates a subtree of a row for a specific parameter.
   function parameterRow (p) {
-    let row = $('<tr>').attr('data-fieldname', p.id);
+    const row = $('<tr>').attr('data-fieldname', p.id);
     row.append(textCell(p.name));
     row.append(textCell(p.dataType));
     row.append(textCell(p.currentValue.formattedValue));

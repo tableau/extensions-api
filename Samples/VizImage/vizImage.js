@@ -6,8 +6,8 @@
     tableau.extensions.initializeAsync().then(function () {
       addVizImage(tableau.MarkType.Bar, 'tableau20_10_0');
 
-      let markSelector = $('#mark-select');
-      let colorSelector = $('#color-select');
+      const markSelector = $('#mark-select');
+      const colorSelector = $('#color-select');
 
       markSelector.prop('disabled', false);
       colorSelector.prop('disabled', false);
@@ -28,23 +28,23 @@
     // Data values used in the viz image are prefilled.
     const vizInputSpec = {
       description: 'A sample viz', // optional parameter.
-      size: {width: 400, height: 300},
+      size: { width: 400, height: 300 },
       data: {
         values: [
-          {'Product': 'Paper', 'Sales': 28, 'Region': 'Central'},
-          {'Product': 'Pens', 'Sales': 45, 'Region': 'East'},
-          {'Product': 'Rulers', 'Sales': 35, 'Region': 'East'},
-          {'Product': 'Rulers', 'Sales': 43, 'Region': 'South'},
-          {'Product': 'Paper', 'Sales': 50, 'Region': 'West'},
-          {'Product': 'Pens', 'Sales': 56, 'Region': 'West'}
+          { Product: 'Paper', Sales: 28, Region: 'Central' },
+          { Product: 'Pens', Sales: 45, Region: 'East' },
+          { Product: 'Rulers', Sales: 35, Region: 'East' },
+          { Product: 'Rulers', Sales: 43, Region: 'South' },
+          { Product: 'Paper', Sales: 50, Region: 'West' },
+          { Product: 'Pens', Sales: 56, Region: 'West' }
         ]
       },
       mark: markType,
       markcolor: '#FFED5F', // may not get used in viz if color is encoded in viz.
       encoding: {
-        columns: {field: 'Region', type: tableau.VizImageEncodingType.Discrete},
-        rows: {field: 'Sales', type: tableau.VizImageEncodingType.Continuous},
-        color: {field: 'Product', type: tableau.VizImageEncodingType.Discrete, palette}
+        columns: { field: 'Region', type: tableau.VizImageEncodingType.Discrete },
+        rows: { field: 'Sales', type: tableau.VizImageEncodingType.Continuous },
+        color: { field: 'Product', type: tableau.VizImageEncodingType.Discrete, palette }
       }
     };
 
@@ -57,21 +57,30 @@
     }
 
     // making call to create viz image from the input specifications.
-    tableau.extensions.createVizImageAsync(vizInputSpec).then(function (svg) {
-      var blob = new Blob([svg], { type: 'image/svg+xml' });
-      var url = URL.createObjectURL(blob);
-      var image = document.createElement('img');
-      image.src = url;
-      image.style.maxWidth = '100%';
-      image.style.maxHeight = '100%';
-      image.className = 'center-block';
-      var vizApiElement = document.getElementById('viz-container');
-      // clearing UI and adding in new viz.
-      vizApiElement.innerHTML = '';
-      vizApiElement.appendChild(image);
-      image.addEventListener('load', function () { return URL.revokeObjectURL(url); }, { once: true });
-    }, function (err) {
-      console.log(err);
-    });
+    tableau.extensions.createVizImageAsync(vizInputSpec).then(
+      function (svg) {
+        const blob = new Blob([svg], { type: 'image/svg+xml' });
+        const url = URL.createObjectURL(blob);
+        const image = document.createElement('img');
+        image.src = url;
+        image.style.maxWidth = '100%';
+        image.style.maxHeight = '100%';
+        image.className = 'center-block';
+        const vizApiElement = document.getElementById('viz-container');
+        // clearing UI and adding in new viz.
+        vizApiElement.innerHTML = '';
+        vizApiElement.appendChild(image);
+        image.addEventListener(
+          'load',
+          function () {
+            return URL.revokeObjectURL(url);
+          },
+          { once: true }
+        );
+      },
+      function (err) {
+        console.log(err);
+      }
+    );
   }
 })();

@@ -38,8 +38,8 @@
       $('#interval').val(openPayload);
       $('#closeButton').click(closeDialog);
 
-      let dashboard = tableau.extensions.dashboardContent.dashboard;
-      let visibleDatasources = [];
+      const dashboard = tableau.extensions.dashboardContent.dashboard;
+      const visibleDatasources = [];
       selectedDatasources = parseSettingsForActiveDataSources();
 
       // Loop through datasources in this sheet and create a checkbox UI
@@ -48,7 +48,7 @@
       dashboard.worksheets.forEach(function (worksheet) {
         worksheet.getDataSourcesAsync().then(function (datasources) {
           datasources.forEach(function (datasource) {
-            let isActive = (selectedDatasources.indexOf(datasource.id) >= 0);
+            const isActive = selectedDatasources.indexOf(datasource.id) >= 0;
 
             if (visibleDatasources.indexOf(datasource.id) < 0) {
               addDataSourceItemToUI(datasource, isActive);
@@ -67,7 +67,7 @@
    */
   function parseSettingsForActiveDataSources () {
     let activeDatasourceIdList = [];
-    let settings = tableau.extensions.settings.getAll();
+    const settings = tableau.extensions.settings.getAll();
     if (settings.selectedDatasources) {
       activeDatasourceIdList = JSON.parse(settings.selectedDatasources);
     }
@@ -80,7 +80,7 @@
    * any time a datasource checkbox item is toggled.
    */
   function updateDatasourceList (id) {
-    let idIndex = selectedDatasources.indexOf(id);
+    const idIndex = selectedDatasources.indexOf(id);
     if (idIndex < 0) {
       selectedDatasources.push(id);
     } else {
@@ -92,18 +92,20 @@
    * UI helper that adds a checkbox item to the UI for a datasource.
    */
   function addDataSourceItemToUI (datasource, isActive) {
-    let containerDiv = $('<div />');
+    const containerDiv = $('<div />');
 
     $('<input />', {
       type: 'checkbox',
       id: datasource.id,
       value: datasource.name,
       checked: isActive,
-      click: function () { updateDatasourceList(datasource.id); }
+      click: function () {
+        updateDatasourceList(datasource.id);
+      }
     }).appendTo(containerDiv);
 
     $('<label />', {
-      'for': datasource.id,
+      for: datasource.id,
       text: datasource.name
     }).appendTo(containerDiv);
 

@@ -18,7 +18,7 @@
   "author": "tableau",
   "license": "MIT",
   "dependencies": {
-    "http-server": "^0.12.3"
+    "http-server": "^14.1.0"
   },
   "devDependencies": {
     "@tableau/extensions-api-types": "1.8.0",
@@ -29,7 +29,7 @@
     "concurrently": "^6.2.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "semistandard": "^11.0.0",
+    "semistandard": "^16.0.1",
     "ts-loader": "9",
     "tslint": "^5.16.0",
     "typescript": "^3.9.10",
@@ -39,8 +39,7 @@
   "semistandard": {
     "env": {
       "jquery": true,
-      "browser": true,
-      "tableau": true
+      "browser": true
     },
     "globals": [
       "tableau"

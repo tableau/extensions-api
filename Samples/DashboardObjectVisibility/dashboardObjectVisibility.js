@@ -1,6 +1,6 @@
 'use strict';
-var React;
-var ReactDOM;
+let React;
+let ReactDOM;
 
 // Wrap everything in an anonymous function to avoid polluting the global namespace
 (async () => {
@@ -22,14 +22,21 @@ var ReactDOM;
     }
 
     render () {
-      return React.createElement(React.Fragment, null, this.state.dashboardObjects.map(dashboardObject => (this.renderListItem(dashboardObject))));
+      return React.createElement(
+        React.Fragment,
+        null,
+        this.state.dashboardObjects.map((dashboardObject) => this.renderListItem(dashboardObject))
+      );
     }
 
     renderListItem (dashboardObject) {
       const isVisible = this.getCurrentIsVisible(dashboardObject);
       const buttonText = (isVisible ? 'Hide "' : 'Show "') + dashboardObject.name + '"';
-      return React.createElement('li', { className: 'list-group-item list-group-item-primary' },
-        React.createElement('button', { onClick: () => this.showHideDashboardObject(dashboardObject) }, buttonText));
+      return React.createElement(
+        'li',
+        { className: 'list-group-item list-group-item-primary' },
+        React.createElement('button', { onClick: () => this.showHideDashboardObject(dashboardObject) }, buttonText)
+      );
     }
 
     getCurrentIsVisible (dashboardObject) {
@@ -49,8 +56,9 @@ var ReactDOM;
       const currentIsVisible = this.getCurrentIsVisible(dashboardObject);
       this.updateStateForVisiblityChange(dashboardObject, currentIsVisible);
       const dashboardObjectVisibilityMap = new Map();
-      const newDashboardObjectVisibilityType = currentIsVisible ? tableau.DashboardObjectVisibilityType.Hide
-       : tableau.DashboardObjectVisibilityType.Show;
+      const newDashboardObjectVisibilityType = currentIsVisible
+        ? tableau.DashboardObjectVisibilityType.Hide
+        : tableau.DashboardObjectVisibilityType.Show;
       dashboardObjectVisibilityMap.set(dashboardObject.id, newDashboardObjectVisibilityType);
       const dashboard = tableau.extensions.dashboardContent.dashboard;
       dashboard.setDashboardObjectVisibilityAsync(dashboardObjectVisibilityMap).then(() => {
@@ -61,7 +69,7 @@ var ReactDOM;
     updateStateForVisiblityChange (dashboardObject, currentIsVisible) {
       const id = dashboardObject.id;
       const newIsVisible = !currentIsVisible;
-      this.setState(prevState => {
+      this.setState((prevState) => {
         const newVisiblityOverrides = new Map(prevState.visiblityOverrides);
         newVisiblityOverrides.set(id, newIsVisible);
         return { visiblityOverrides: newVisiblityOverrides };

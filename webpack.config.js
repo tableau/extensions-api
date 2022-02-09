@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const path = require('path');
 
@@ -12,7 +12,7 @@ module.exports = {
     parameters: './Samples-Typescript/Parameters/parameters.ts',
     dashboardObjectVisibility: './Samples-Typescript/DashboardObjectVisibility/dashboardObjectVisibility.tsx',
     replayAnimation: './Samples-Typescript/ReplayAnimation/replayAnimation.tsx',
-    vizImage: './Samples-Typescript/VizImage/vizImage.ts',
+    vizImage: './Samples-Typescript/VizImage/vizImage.ts'
   },
   mode: 'production',
   output: {

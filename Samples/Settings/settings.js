@@ -34,12 +34,12 @@
 
     // Add an entry to the settings table for each setting.
     for (const settingKey in settings) {
-      let newRow = settingsTable.insertRow(settingsTable.rows.length);
-      let keyCell = newRow.insertCell(0);
-      let valueCell = newRow.insertCell(1);
-      let eraseCell = newRow.insertCell(2);
+      const newRow = settingsTable.insertRow(settingsTable.rows.length);
+      const keyCell = newRow.insertCell(0);
+      const valueCell = newRow.insertCell(1);
+      const eraseCell = newRow.insertCell(2);
 
-      let eraseSpan = document.createElement('span');
+      const eraseSpan = document.createElement('span');
       eraseSpan.className = 'glyphicon glyphicon-trash';
       eraseSpan.addEventListener('click', function () { eraseSetting(settingKey, newRow); });
 
@@ -52,8 +52,8 @@
   }
 
   function saveSetting () {
-    let settingKey = $('#keyInput').val();
-    let settingValue = $('#valueInput').val();
+    const settingKey = $('#keyInput').val();
+    const settingValue = $('#valueInput').val();
 
     tableau.extensions.settings.set(settingKey, settingValue);
 

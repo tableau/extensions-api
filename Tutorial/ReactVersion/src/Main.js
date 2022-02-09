@@ -8,7 +8,7 @@ import './styles/Main.css';
 // Declare this so our linter knows that tableau is a global object
 /* global tableau */
 
-function MainComponent() {
+function MainComponent () {
   const [isLoading, setIsLoading] = useState(true);
   const [selectedSheet, setSelectedSheet] = useState(undefined);
   const [sheetNames, setSheetNames] = useState([]);
@@ -18,7 +18,7 @@ function MainComponent() {
   const [filteredFields, setFilteredFields] = useState([]);
   const [dashboardName, setDashboardName] = useState('');
 
-  let unregisterEventFn = undefined;
+  let unregisterEventFn;
 
   useEffect(() => {
     tableau.extensions.initializeAsync().then(() => {
@@ -34,10 +34,9 @@ function MainComponent() {
       const sheetSelected = !!selectedSheet;
       setIsLoading(sheetSelected);
 
-      if (!!selectedSheet) {
+      if (selectedSheet) {
         loadSelectedMarks(selectedSheet);
       }
-
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -45,7 +44,7 @@ function MainComponent() {
   const getSelectedSheet = (sheet) => {
     const sheetName = sheet || selectedSheet;
     return tableau.extensions.dashboardContent.dashboard.worksheets.find(worksheet => worksheet.name === sheetName);
-  }
+  };
 
   const onSelectSheet = (sheet) => {
     tableau.extensions.settings.set('sheet', sheet);
@@ -55,7 +54,7 @@ function MainComponent() {
       setFilteredFields([]);
       loadSelectedMarks(sheet);
     });
-  }
+  };
 
   const loadSelectedMarks = (sheet) => {
     if (unregisterEventFn) {
@@ -71,18 +70,17 @@ function MainComponent() {
       const rows = worksheetData.data.map(row => row.map(cell => cell.formattedValue));
       const headers = worksheetData.columns.map(column => column.fieldName);
 
-      setRows(rows)
-      setHeaders(headers)
-      setDataKey(Date.now())
-      setIsLoading(false)
-
+      setRows(rows);
+      setHeaders(headers);
+      setDataKey(Date.now());
+      setIsLoading(false);
     });
 
     unregisterEventFn = worksheet.addEventListener(tableau.TableauEventType.MarkSelectionChanged, () => {
       setIsLoading(true);
       loadSelectedMarks(sheet);
     });
-  }
+  };
 
   const onHeaderClicked = (fieldName) => {
     const headerIndex = headers.indexOf(fieldName);
@@ -99,7 +97,7 @@ function MainComponent() {
       setFilteredFields(updatedFilteredFields);
       setIsLoading(false);
     });
-  }
+  };
 
   const onResetFilters = () => {
     const worksheet = getSelectedSheet();
@@ -109,13 +107,13 @@ function MainComponent() {
       setFilteredFields([]);
       setIsLoading(false);
     });
-  }
+  };
 
   const mainContent = rows.length > 0
     ? (<DataTableComponent rows={rows} headers={headers} dataKey={dataKey} onHeaderClicked={onHeaderClicked} />)
     : (<h4>No marks selected</h4>);
 
-  let output =
+  let output = (
     <div>
       <div className='summary_header'>
         <h4>
@@ -126,13 +124,14 @@ function MainComponent() {
       </div>
       {mainContent}
     </div>
+  );
 
   if (isLoading) {
     output = <LoadingIndicatorComponent msg='Loading' />;
   }
 
   if (!selectedSheet) {
-    output =
+    output = (
       <Modal show>
         <Modal.Header>
           <Modal.Title>Choose a Sheet from <span className='sheet_name'>{dashboardName}</span></Modal.Title>
@@ -140,7 +139,8 @@ function MainComponent() {
         <Modal.Body>
           <SheetListComponent sheetNames={sheetNames} onSelectSheet={onSelectSheet} />
         </Modal.Body>
-      </Modal>;
+      </Modal>
+    );
   }
 
   return (
