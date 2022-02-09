@@ -31,7 +31,7 @@ We recommend that you use a **sans serif font family** in your extension. Here, 
 &nbsp;
 
 #### Benton Sans
-Benton Sans Book is the default font for the Tableau UI elements. <i>Learn more about Tableau font colors at **[Color](6 - Color.md)**.</i>
+Benton Sans Book is the default font for the Tableau UI elements. <i>Learn more about Tableau font colors at **[Color](ux_fonts.md)**.</i>
 
 Other weight variations of Benton Sans should be used infrequently. For example, Benton Sans Medium is typically used for section titles in dialogs. Benton Sans Light and Book Italic are used in more specific cases like lightweight captions and should not be overused. 
 

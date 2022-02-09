@@ -47,7 +47,7 @@ It is common for extensions to take up a smaller size due to most of the functio
 
 ## Spacing
 
-Specifications about spacing have been detailed in **[Controls and UI Patterns](Interaction Guidelines/3 - Controls and UI Patterns.md)** and **[Branding your Extension](4 - Branding your Extension.md)**. 
+Specifications about spacing have been detailed in **[Controls and UI Patterns](../Interaction_Guidelines/ux_controls_ui_patterns.md)** and **[Branding your Extension](ux_branding.md)**.
 
 Here are some links to specific parts of your extension that you may need spacing guidance on:
 
