@@ -6,8 +6,8 @@
     tableau.extensions.initializeAsync().then(function () {
       addVizImage(tableau.MarkType.Bar, 'tableau20_10_0');
 
-      let markSelector = $('#mark-select');
-      let colorSelector = $('#color-select');
+      const markSelector = $('#mark-select');
+      const colorSelector = $('#color-select');
 
       markSelector.prop('disabled', false);
       colorSelector.prop('disabled', false);
@@ -58,14 +58,14 @@
 
     // making call to create viz image from the input specifications.
     tableau.extensions.createVizImageAsync(vizInputSpec).then(function (svg) {
-      var blob = new Blob([svg], { type: 'image/svg+xml' });
-      var url = URL.createObjectURL(blob);
-      var image = document.createElement('img');
+      const blob = new Blob([svg], { type: 'image/svg+xml' });
+      const url = URL.createObjectURL(blob);
+      const image = document.createElement('img');
       image.src = url;
       image.style.maxWidth = '100%';
       image.style.maxHeight = '100%';
       image.className = 'center-block';
-      var vizApiElement = document.getElementById('viz-container');
+      const vizApiElement = document.getElementById('viz-container');
       // clearing UI and adding in new viz.
       vizApiElement.innerHTML = '';
       vizApiElement.appendChild(image);

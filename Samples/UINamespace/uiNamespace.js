@@ -79,7 +79,7 @@
    */
   function setupRefreshInterval (interval) {
     setInterval(function () {
-      let dashboard = tableau.extensions.dashboardContent.dashboard;
+      const dashboard = tableau.extensions.dashboardContent.dashboard;
       dashboard.worksheets.forEach(function (worksheet) {
         worksheet.getDataSourcesAsync().then(function (datasources) {
           datasources.forEach(function (datasource) {

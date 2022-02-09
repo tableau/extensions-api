@@ -2,7 +2,7 @@
 
 // Wrap everything in an anonymous function to avoid polluting the global namespace
 (function () {
-  let unregisterHandlerFunctions = [];
+  const unregisterHandlerFunctions = [];
 
   $(document).ready(function () {
     tableau.extensions.initializeAsync().then(function () {
@@ -30,10 +30,10 @@
     // one async call per worksheet to get every filter used in this
     // dashboard.  This demonstrates the use of Promise.all to combine
     // promises together and wait for each of them to resolve.
-    let filterFetchPromises = [];
+    const filterFetchPromises = [];
 
     // List of all filters in a dashboard.
-    let dashboardfilters = [];
+    const dashboardfilters = [];
 
     // To get filter info, first get the dashboard.
     const dashboard = tableau.extensions.dashboardContent.dashboard;
@@ -44,7 +44,7 @@
 
       // Add filter event to each worksheet.  AddEventListener returns a function that will
       // remove the event listener when called.
-      let unregisterHandlerFunction = worksheet.addEventListener(tableau.TableauEventType.FilterChanged, filterChangedHandler);
+      const unregisterHandlerFunction = worksheet.addEventListener(tableau.TableauEventType.FilterChanged, filterChangedHandler);
       unregisterHandlerFunctions.push(unregisterHandlerFunction);
     });
 
@@ -76,11 +76,11 @@
     const filtersTable = $('#filtersTable > tbody')[0];
 
     filters.forEach(function (filter) {
-      let newRow = filtersTable.insertRow(filtersTable.rows.length);
-      let nameCell = newRow.insertCell(0);
-      let worksheetCell = newRow.insertCell(1);
-      let typeCell = newRow.insertCell(2);
-      let valuesCell = newRow.insertCell(3);
+      const newRow = filtersTable.insertRow(filtersTable.rows.length);
+      const nameCell = newRow.insertCell(0);
+      const worksheetCell = newRow.insertCell(1);
+      const typeCell = newRow.insertCell(2);
+      const valuesCell = newRow.insertCell(3);
 
       const valueStr = getFilterValues(filter);
 
@@ -136,7 +136,7 @@
 
     dashboard.worksheets.forEach(function (worksheet) {
       worksheet.getFiltersAsync().then(function (filtersForWorksheet) {
-        let filterClearPromises = [];
+        const filterClearPromises = [];
 
         filtersForWorksheet.forEach(function (filter) {
           filterClearPromises.push(worksheet.clearFilterAsync(filter.fieldName));
