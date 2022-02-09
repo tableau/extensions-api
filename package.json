@@ -39,8 +39,7 @@
   "semistandard": {
     "env": {
       "jquery": true,
-      "browser": true,
-      "tableau": true
+      "browser": true
     },
     "globals": [
       "tableau"
