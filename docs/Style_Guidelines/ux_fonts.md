@@ -56,7 +56,7 @@ Using some of these common fonts that are likely available on your user's machin
 
 
 ###### Font Size
-It is important to compensate for OS and device speciﬁc DPI and font rendering. Since these are alternative fonts that aren't directly used in Tableau, you may choose to use different font sizes and weights based on your extension's design needs.
+It is important to compensate for OS and device specific DPI and font rendering. Since these are alternative fonts that aren't directly used in Tableau, you may choose to use different font sizes and weights based on your extension's design needs.
 
 &nbsp;
 
