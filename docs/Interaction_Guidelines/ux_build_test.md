@@ -21,7 +21,7 @@ Once you're ready to go, you can start building and customizing your extension. 
 
 * [Extensions API Documentation](https://tableau.github.io/extensions-api/)<br>The Extensions API includes all the information you need to build an extension.
 
-* [Community Forums](https://community.tableau.com/community/developers/extensions-api/overview)<br>Participate in a community of developers that are passionate about creating extensions.
+* [Community Forums](https://community.tableau.com/s/topic/0TO4T000000QFALWA4/extensions-api)<br>Participate in a community of developers that are passionate about creating extensions.
 
 * [Tableau Exchange](https://exchange.tableau.com/)<br>Explore and use some of the extensions our partners have created.
 
@@ -45,7 +45,7 @@ After you've completed making your extension, you may want to share your extensi
 Tableau has released the [Extension Gallery](https://extensiongallery.tableau.com/), a place to explore and download some extensions that our partners have created. If you would like to share your extension to our gallery, learn more at [Sharing to the Extension Gallery]({{site.baseurl}}/docs/ux_extension_gallery.html).
 
 ##### Community Forums
-Tableau also has a [Community Forum](https://community.tableau.com/community/developers/extensions-api/overview) for developers to discuss extensions and the Extensions API.
+Tableau also has a [Community Forum](https://community.tableau.com/s/topic/0TO4T000000QFALWA4/extensions-api) for developers to discuss extensions and the Extensions API.
 
 ----- &nbsp;
 

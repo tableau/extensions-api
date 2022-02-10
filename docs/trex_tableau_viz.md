@@ -156,7 +156,7 @@ For specific issues with the current release, see [Tableau Viz - Known Issues]({
 
 `Error: internal-error: {"vizapiErrorMsg":"Invalid Palette Name"}`
 
-Be sure that you use one of the palette names listed for the `color` key under encoding in the `inputSpec`. See [Encoding]({{site.baseurl}}/docs/viz_reference.html#encoding). Note that the palette must be supported by the version of Tableau that you are using, and that the palette colors are subject to change. In addition, there are some palette colors can only be used for continuous or discrete fields, but not for both.
+Be sure that you use one of the palette names listed for the `color` key under encoding in the `inputSpec`. See [Encoding]({{site.baseurl}}/docs/trex_tableau_viz_ref.html#encoding). Note that the palette must be supported by the version of Tableau that you are using, and that the palette colors are subject to change. In addition, there are some palette colors can only be used for continuous or discrete fields, but not for both.
 
 
 #### Encoding column (or row) has invalid type
