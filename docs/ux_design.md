@@ -44,7 +44,7 @@ These guidelines cover the main things you need to know about designing a great 
 ### Deploying your Extension
 
 | ---------| ------- | 
-|[Submitting your Extension to the Extension Gallery]({{site.baseurl}}/docs/ux_extension_gallery.html) | How to style your extension in accordance with the Tableau brand and your personal/company brand.|
+|[Submitting your Extension to the Tableau Exchange]({{site.baseurl}}/docs/ux_extension_gallery.html) | How to style your extension in accordance with the Tableau brand and your personal/company brand.|
 
 
 ---
