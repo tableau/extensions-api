@@ -5,6 +5,8 @@ layout: guide
 
 Fonts and typography are essential to how we communicate with our users. When text is used effectively, it grabs attention, evokes emotion, and emphasizes tone and voice.
 
+> **Note:** Starting with the Dashboard Extensions API v1.7 library, and supported with Tableau 2021.4 or later, you can apply workbook formatting on the HTML elements in your extension. For more information, see [Add Tableau Workbook Formatting]({{site.baseurl}}/docs/trex_format.html).
+
 &nbsp;
 
 **In this section**
