@@ -3,7 +3,7 @@ title: Add Tableau Workbook Formatting
 layout: docs
 ---
 
-To help your dashboard extension match the look and feel of the dashboard in which it is placed, you can apply the formatting styles used in the workbook to the HTML elements in your extension. When the text formatting changes in the workbook, the corresponding styles are updated in your extension.
+To help your dashboard extension match the look and feel of the dashboard in which it is placed, you can apply the formatting styles used in the workbook to the HTML elements in your extension. When the formatting changes in the workbook, the corresponding styles are updated in your extension.
 
 **In this section:**
  
@@ -80,7 +80,7 @@ formattingSheets.forEach(function (formattingSheet) {
 
 ## Set an event listener on workbook format changes
 
-You can set an event listener on changes to the formatting in the workbook. The new event type is `WorkbookFormattingChanged`. The `WorkbookFormattingChanged` event is triggered whenever the workbook text formatting is changed in Tableau authoring mode. This includes changes in the font, the font size, whether it is bold, italic, or underlined, and changes in color. 
+You can set an event listener on changes to the formatting in the workbook. The new event type is `WorkbookFormattingChanged`. The `WorkbookFormattingChanged` event is triggered whenever the workbook formatting is changed in Tableau authoring mode. This includes changes in the font, the font size, whether it is bold, italic, or underlined, and changes in color. 
 
 ```javascript
 
