@@ -24,7 +24,9 @@ See also: [Known Issues]({{site.baseurl}}/docs/trex_known_issues.html)
 
 About this release:
 
-* Minor updates and bug fixes; updated documentation.
+* Minor updates and bug fixes.
+
+* Minor corrections and updates to the documentation. See [Add Tableau Workbook Formatting]({{site.baseurl}}/docs/trex_format.html).
 
 * New versions of the JavaScript library and TypeScript types (`1.8.1`). See [Use TypeScript with the Extensions API]({{site.baseurl}}/docs/trex_typescript.html).
 
