@@ -12,7 +12,26 @@ layout: docs
 See also: [Known Issues]({{site.baseurl}}/docs/trex_known_issues.html)
 
 
+### Tableau Dashboard Extensions API version 1.8.1
 
+*February 2022*
+
+* Tableau Dashboard Extensions API library: `tableau.extensions.1.8.1.js` <br>(download or clone the Extensions API repository on [GitHub](https://github.com/tableau/extensions-api){:target="_blank"}.) <br/>
+
+* Download [Tableau Desktop 2021.4](https://www.tableau.com/support/releases){:target="_blank"} or [Tableau Server 2021.4](https://www.tableau.com/support/releases/server){:target="_blank"}.
+
+* To preview new features and test your extension with the latest version of Tableau in the Developer Sandbox, join the [Tableau Developer Program](http://www.tableau.com/developer){:target="_blank"} and request your own Tableau Online developer site.
+
+About this release:
+
+* Minor updates and bug fixes.
+
+* Minor corrections and updates to the documentation. See [Add Tableau Workbook Formatting]({{site.baseurl}}/docs/trex_format.html).
+
+* New versions of the JavaScript library and TypeScript types (`1.8.1`). See [Use TypeScript with the Extensions API]({{site.baseurl}}/docs/trex_typescript.html).
+
+
+---
 
 
 ### Tableau Dashboard Extensions API version 1.8
