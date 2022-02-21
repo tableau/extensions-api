@@ -1,4 +1,4 @@
-import { ReplaySpeedType } from '@Tableau/extensions-api-types';
+import { ReplaySpeedType } from '@tableau/extensions-api-types';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
