@@ -62,7 +62,7 @@ The following shows an example `inputSpec` that creates a bar chart image.
 ```
 
 ---
-## Descripion of `inputSpec` properties
+## Description of `inputSpec` properties
 
 The following table describes the properties in the `inputSpec`, the JavaScript object that you provide as input to the `createVizImageAsync` method.
 
