@@ -118,13 +118,15 @@
 					<div class="tsd-signature tsd-kind-icon">applied<wbr>Values<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="datavalue.html" class="tsd-signature-type">DataValue</a><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/FilterInterfaces.ts:53</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/FilterInterfaces.ts:55</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<dl class="tsd-comment-tags">
 							<dt>returns</dt>
-							<dd><p>A list of values applied to this categorical filter</p>
+							<dd><p>A list of values applied to this categorical filter. Notice that if this is a
+									dependent filter, the current relavent values can be fetched by calling
+								<code>getDomainAsync(tableau.FilterDomainType.Relevant)</code>.</p>
 							</dd>
 						</dl>
 					</div>
@@ -209,13 +211,13 @@
 					<div class="tsd-signature tsd-kind-icon">is<wbr>Exclude<wbr>Mode<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/FilterInterfaces.ts:58</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/FilterInterfaces.ts:60</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<dl class="tsd-comment-tags">
 							<dt>returns</dt>
-							<dd><p>True if this filter is an exlucde filter, false if include filter.</p>
+							<dd><p>True if this filter is an exclude filter, false if an include filter.</p>
 							</dd>
 						</dl>
 					</div>
@@ -251,7 +253,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/FilterInterfaces.ts:63</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/FilterInterfaces.ts:68</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -263,7 +265,10 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="categoricaldomain.html" class="tsd-signature-type">CategoricalDomain</a><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>a promise containing the categorical domain for the filter</p>
+							<p>a promise containing the categorical domain for the filter. Note if a filter contains
+								multiple fields (such as a filter action with multiple fields), the values array in the returned
+								CategoricalDomain (<a href="categoricaldomain.html#values">CategoricalDomain.values</a>) will be empty. If there are multiple fields
+							in the filter, the results need to be represented by a table, which is not currently supported.</p>
 						</li>
 					</ul>
 				</section>
