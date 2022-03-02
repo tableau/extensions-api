@@ -65,6 +65,7 @@ In addition to the requirements for all extensions to ensure security and usabil
  Dashboard extensions that appear in the Tableau Exchange must also:
 
 * Follow the Design Guidelines for Dashboard Extensions (user interaction and style guidelines for user interface elements).
+
 * Ensure that the information in the extension manifest file (`.trex`) matches the content that you will publish in the Tableau Exchange. For example, the `name`, `description` fields are used to populate the name and description fields in the Tableau Exchange.  The icon you use in the manifest should also be the icon that is used in the Exchange. You need to provide a 280x280 pixel `.png` version of the icon. 
 
 For information about getting your extension into the Tableau Exchange, see [Submitting your Extension to the Tableau Exchange]({{site.baseurl}}/docs/ux_extension_gallery.html){:target="_blank"}.

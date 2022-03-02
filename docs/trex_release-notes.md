@@ -12,7 +12,26 @@ layout: docs
 See also: [Known Issues]({{site.baseurl}}/docs/trex_known_issues.html)
 
 
+### Tableau Dashboard Extensions API version 1.8.1
 
+*February 2022*
+
+* Tableau Dashboard Extensions API library: `tableau.extensions.1.8.1.js` <br>(download or clone the Extensions API repository on [GitHub](https://github.com/tableau/extensions-api){:target="_blank"}.) <br/>
+
+* Download [Tableau Desktop 2021.4](https://www.tableau.com/support/releases){:target="_blank"} or [Tableau Server 2021.4](https://www.tableau.com/support/releases/server){:target="_blank"}.
+
+* To preview new features and test your extension with the latest version of Tableau in the Developer Sandbox, join the [Tableau Developer Program](http://www.tableau.com/developer){:target="_blank"} and request your own Tableau Online developer site.
+
+About this release:
+
+* Minor updates and bug fixes.
+
+* Minor corrections and updates to the documentation. See [Add Tableau Workbook Formatting]({{site.baseurl}}/docs/trex_format.html).
+
+* New versions of the JavaScript library and TypeScript types (`1.8.1`). See [Use TypeScript with the Extensions API]({{site.baseurl}}/docs/trex_typescript.html).
+
+
+---
 
 
 ### Tableau Dashboard Extensions API version 1.8
@@ -92,7 +111,7 @@ About this release:
     </script>
     ```
 
-  You can access the formatting in the Tableau workbook from `tableau.extensions.environment.workbookFormatting`. The property `formattingSheets` contains the array of CSS properties for the workbook, organized by `ClassNameKey`. For more information about using workbook formatting, see the [Formatting](https://github.com/tableau/extensions-api/tree/main/Samples/Formatting){:target="_blank"} sample in the Samples folder.
+  You can access the formatting in the Tableau workbook from `tableau.extensions.environment.workbookFormatting`. The property `formattingSheets` contains the array of CSS properties for the workbook, organized by `ClassNameKey`. For more information about using workbook formatting, see the [Formatting](https://github.com/tableau/extensions-api/tree/main/Samples/Formatting){:target="_blank"} sample in the Samples folder. Also see [Add Tableau Workbook Formatting]({{site.baseurl}}/docs/trex_format.html).
 
 * You can now set an event listener on changes to the dashboard layout and to the dashboard formatting. The new event types are `DashboardLayoutChanged` and `WorkbookFormattingChanged`. 
 
@@ -642,9 +661,9 @@ Error: internal-error: permission-denied: Missing required permission to run get
 Errors that are returned from the Extensions API are custom Tableau Error objects that extends the standard JavaScript error object.
 
 
-The Extensions API wraps the standard error object with an `errorCode` property. Any time you encounter an error when you are developing your extension, you can look at this `errorCode` to determine the cause. See [Error Codes]({{site.baseurl}}/docs/enums/errorcodes.html). 
+The Extensions API wraps the standard error object with an `errorCode` property. Any time you encounter an error when you are developing your extension, you can look at this `errorCode` to determine the cause. See [Error Codes]({{site.baseurl}}/docs/enums/tableau.errorcodes.html).
 
-For an example of how to handle error conditions, see the [UINamepace](https://github.com/tableau/extensions-api/tree/master/Samples/UINamepace?=target="_blank") sample. The sample shows how you could handle the error condition that occurs if a user dismisses a modal dialog box (`DialogClosedByUser`).  The following snippet illustrates this pattern: 
+For an example of how to handle error conditions, see the [UINamespace](https://github.com/tableau/extensions-api/tree/main/Samples/UINamespace?=target="_blank") sample. The sample shows how you could handle the error condition that occurs if a user dismisses a modal dialog box (`DialogClosedByUser`).  The following snippet illustrates this pattern:
 
 ```javascript
 tableau.extensions.ui.displayDialogAsync(args... ).then((args... ) => {

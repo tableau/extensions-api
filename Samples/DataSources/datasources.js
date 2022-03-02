@@ -8,10 +8,10 @@
       // one async call per worksheet to get every dataSource used in this
       // dashboard.  This demonstrates the use of Promise.all to combine
       // promises together and wait for each of them to resolve.
-      let dataSourceFetchPromises = [];
+      const dataSourceFetchPromises = [];
 
       // Maps dataSource id to dataSource so we can keep track of unique dataSources.
-      let dashboardDataSources = {};
+      const dashboardDataSources = {};
 
       // To get dataSource info, first get the dashboard.
       const dashboard = tableau.extensions.dashboardContent.dashboard;
@@ -51,7 +51,7 @@
 
   // Displays a modal dialog with more details about the given dataSource.
   function showModal (dataSource) {
-    let modal = $('#infoModal');
+    const modal = $('#infoModal');
 
     $('#nameDetail').text(dataSource.name);
     $('#idDetail').text(dataSource.id);
@@ -100,21 +100,21 @@
     const dataSourcesTable = $('#dataSourcesTable > tbody')[0];
 
     // Add an entry to the dataSources table for each dataSource.
-    for (let dataSourceId in dataSources) {
+    for (const dataSourceId in dataSources) {
       const dataSource = dataSources[dataSourceId];
 
-      let newRow = dataSourcesTable.insertRow(dataSourcesTable.rows.length);
-      let nameCell = newRow.insertCell(0);
-      let refreshCell = newRow.insertCell(1);
-      let infoCell = newRow.insertCell(2);
+      const newRow = dataSourcesTable.insertRow(dataSourcesTable.rows.length);
+      const nameCell = newRow.insertCell(0);
+      const refreshCell = newRow.insertCell(1);
+      const infoCell = newRow.insertCell(2);
 
-      let refreshButton = document.createElement('button');
+      const refreshButton = document.createElement('button');
       refreshButton.innerHTML = ('Refresh Now');
       refreshButton.type = 'button';
       refreshButton.className = 'btn btn-primary';
       refreshButton.addEventListener('click', function () { refreshDataSource(dataSource); });
 
-      let infoSpan = document.createElement('span');
+      const infoSpan = document.createElement('span');
       infoSpan.className = 'glyphicon glyphicon-info-sign';
       infoSpan.addEventListener('click', function () { showModal(dataSource); });
 

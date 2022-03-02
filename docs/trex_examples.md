@@ -70,7 +70,7 @@ The [Samples-Typescript](https://github.com/tableau/extensions-api/tree/master/S
 
     Shows how you can use Tableau Viz to add visualizations to your dashboard extensions. This sample demonstrates the effects of different mark types and color palettes. For more information about Tableau Viz, see [Add Tableau Viz to Your Dashboard Extensions]({{site.baseurl}}/docs/trex_tableau_viz.html).
 
-**[Formatting](https://github.com/tableau/extensions-api/tree/main/Samples/Formatting?=target="_blank")**
+- **[Formatting](https://github.com/tableau/extensions-api/tree/main/Samples/Formatting?=target="_blank")**
 
    Shows how you can access the CSS formatting in the Tableau workbook and apply it to the HTML elements in your dashboard extension. Create a consistent look and feel across the extension and the dashboard.
 

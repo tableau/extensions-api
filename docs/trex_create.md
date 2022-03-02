@@ -172,18 +172,17 @@ Your web application must include an HTML page. This page should link to the Ext
 
 After you have created the manifest file (`.trex`) and have hosted your web app you can test it in Tableau. It's a good idea to do this even if your application isn't completed.
 
-
 1. Start up your web page or application (or make sure it is running).
 
-2. Start Tableau and open a workbook with a dashboard or create a new dashboard.
-3. In the dashboard, under **Objects**, select **Extension** and drag it on to the dashboard. In the **Choose an Extension** dialog box, click **My Extensions** and browse to directory where you have your manifest file.
+2. Start Tableau and open a workbook with a dashboard, or create a new dashboard.
+
+3. In the dashboard, under **Objects**, select **Extension** and drag it on to the dashboard. In the **Add an Extension** dialog box, click **Access Local Extensions** and browse to directory where you have your manifest file.
 
    After you select the manifest file, your web page should appear in the dashboard zone.
 
    - If not, and you see a 404 error, verify that you specified the correct URL to serve the page in the `.trex` file.
 
    - Tableau parses the `.trex` file when you add the extension to the dashboard. If you make changes to the `.trex` file after you have added it to the dashboard, you need to remove the extension and re-add it. See [What Happens When you Reload an Extension]({{site.baseurl}}/docs/trex_reload.html)
-
 
 ---
 

@@ -5,6 +5,8 @@ layout: guide
 
 Fonts and typography are essential to how we communicate with our users. When text is used effectively, it grabs attention, evokes emotion, and emphasizes tone and voice.
 
+> **Note:** Starting with the Dashboard Extensions API v1.7 library, and supported with Tableau 2021.4 or later, you can apply workbook formatting on the HTML elements in your extension. For more information, see [Add Tableau Workbook Formatting]({{site.baseurl}}/docs/trex_format.html).
+
 &nbsp;
 
 **In this section**
@@ -31,7 +33,7 @@ We recommend that you use a **sans serif font family** in your extension. Here, 
 &nbsp;
 
 #### Benton Sans
-Benton Sans Book is the default font for the Tableau UI elements. <i>Learn more about Tableau font colors at **[Color](6 - Color.md)**.</i>
+Benton Sans Book is the default font for the Tableau UI elements. To learn more about Tableau font colors, see [Color](ux_color.md).
 
 Other weight variations of Benton Sans should be used infrequently. For example, Benton Sans Medium is typically used for section titles in dialogs. Benton Sans Light and Book Italic are used in more specific cases like lightweight captions and should not be overused. 
 
@@ -56,7 +58,7 @@ Using some of these common fonts that are likely available on your user's machin
 
 
 ###### Font Size
-It is important to compensate for OS and device speciﬁc DPI and font rendering. Since these are alternative fonts that aren't directly used in Tableau, you may choose to use different font sizes and weights based on your extension's design needs.
+It is important to compensate for OS and device specific DPI and font rendering. Since these are alternative fonts that aren't directly used in Tableau, you may choose to use different font sizes and weights based on your extension's design needs.
 
 &nbsp;
 

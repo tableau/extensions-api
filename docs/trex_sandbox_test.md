@@ -22,7 +22,7 @@ Tableau supports two types of dashboard extensions:
 
 * **Network Enabled Extensions** - can access resources and applications outside of Tableau. Supported in Tableau 2018.2 and later.
 
-* **Sandboxed Extensions** - run in a Tableau hosted environment and cannot make network calls. Supported in Tableau 2019.4 and later. Available for testing with Tableau 2019.3.
+* **Sandboxed Extensions** - run in a Tableau hosted environment and cannot make network calls. Supported in Tableau 2019.4 and later.
 
 
 ## Create Sandboxed Extensions

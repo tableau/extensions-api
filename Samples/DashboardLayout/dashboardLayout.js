@@ -30,7 +30,7 @@
     const dashboard = tableau.extensions.dashboardContent.dashboard;
 
     // updating dashboard objects and storing the previous dashboard objects for referrence.
-    let oldDashboardObjects = dashboardObjects;
+    const oldDashboardObjects = dashboardObjects;
     dashboardObjects = dashboard.objects;
 
     // An empty dashboard layout change event may be invoked when loading an extension from the manifest.
@@ -45,14 +45,14 @@
     // Updating UI's change list to display information on the current dashboard event.
     dashboardEventDetails.forEach(function (changesMade, dashboardObjectId) {
       // getting dashboard object from its id
-      let dashboardObject = dashboard.getDashboardObjectById(dashboardObjectId);
+      const dashboardObject = dashboard.getDashboardObjectById(dashboardObjectId);
 
       // building a div for the changes made to this dashboard object.
-      let changesDiv = $('<div>');
+      const changesDiv = $('<div>');
 
       // checking if this dashboard object was added as part of the event.
       if (changesMade.includes('added')) {
-        let toAppend = $('<h6/>');
+        const toAppend = $('<h6/>');
         toAppend.text(`Dashboard Object ${dashboardObjectId} added: "${dashboardObject.name}"`);
         changesDiv.append(toAppend);
         $('#dashboard-layout-change-list').append(changesDiv);
@@ -70,7 +70,7 @@
 
       // checking if this dashboard object was removed as part of the event.
       if (changesMade.includes('removed')) {
-        let toAppend = $('<h6/>');
+        const toAppend = $('<h6/>');
         toAppend.text(`Dashboard Object ${dashboardObjectId} removed: "${oldDashboardObject.name}"`);
         changesDiv.append(toAppend);
         $('#dashboard-layout-change-list').append(changesDiv);
@@ -78,46 +78,46 @@
       }
 
       // the following dashboard changes are not mutually exclusive, so we list them together.
-      let h6 = $('<h6/>');
+      const h6 = $('<h6/>');
       h6.text(`Dashboard Object ${dashboardObjectId}: "${dashboardObject.name}"`);
       changesDiv.append(h6);
-      let ul = $('<ul/>');
+      const ul = $('<ul/>');
 
       // checking if the dashboard object had changes to its floating state.
       if (changesMade.includes('is-floating-changed')) {
-        let li = $('<li/>');
+        const li = $('<li/>');
         li.text(`Floating is now ${dashboardObject.isFloating}, was ${oldDashboardObject.isFloating}`);
         ul.append(li);
       }
 
       // checking if the dashbaord object had changes to its visibility.
       if (changesMade.includes('is-visible-changed')) {
-        let li = $('<li/>');
+        const li = $('<li/>');
         li.text(`Visibility is now ${dashboardObject.isVisible}, was ${oldDashboardObject.isVisible}`);
         ul.append(li);
       }
 
       // checking if the dashboard object was repositioned.
       if (changesMade.includes('position-changed')) {
-        let li = $('<li/>');
-        let newPos = dashboardObject.position;
-        let oldPos = oldDashboardObject.position;
+        const li = $('<li/>');
+        const newPos = dashboardObject.position;
+        const oldPos = oldDashboardObject.position;
         li.text(`Position is now (${newPos.x},${newPos.y}), was (${oldPos.x},${oldPos.y})`);
         ul.append(li);
       }
 
       // checking if the dashboard object was resized.
       if (changesMade.includes('size-changed')) {
-        let li = $('<li/>');
-        let newSize = dashboardObject.size;
-        let oldSize = oldDashboardObject.size;
+        const li = $('<li/>');
+        const newSize = dashboardObject.size;
+        const oldSize = oldDashboardObject.size;
         li.text(`Size is now ${newSize.width}x${newSize.height}, was ${oldSize.width}x${oldSize.height}`);
         ul.append(li);
       }
 
       // checking if the dashboard object was renamed.
       if (changesMade.includes('name-changed')) {
-        let li = $('<li/>');
+        const li = $('<li/>');
         li.text(`Name is now "${dashboardObject.name}", was "${oldDashboardObject.name}"`);
         ul.append(li);
       }

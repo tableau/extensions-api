@@ -16,7 +16,7 @@ Use of color is essential for communication. Color is one of the first visual el
 
 ## Color Principles
 
-**Use colors with purpose and clarity.** Your color choices should highlight your extension's content, while also communicating its function. You should be able to justify the colors used on your extension: why did you choose that specific color, and what does it communicate to your user? Color is also an opportunity to showcase your brand. Learn more at **[Branding your Extension](4 - Branding your Extension.md)**.
+**Use colors with purpose and clarity.** Your color choices should highlight your extension's content, while also communicating its function. You should be able to justify the colors used on your extension: why did you choose that specific color, and what does it communicate to your user? Color is also an opportunity to showcase your brand. Learn more at **[Branding your Extension](ux_branding.md)**.
 
 **Less is more.** Refrain from using too many colors, which could blur the focus. Try to avoid using color applied to text, which can make words difficult to distinguish and decrease legibility. 
 

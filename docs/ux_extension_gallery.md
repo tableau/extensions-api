@@ -4,15 +4,19 @@ layout: guide
 ---
 
 
-You may be interested in sharing your extension for others to download and use in their dashboards. To submit to our [Tableau Exchange](https://exchange.tableau.com/) online, make sure you have the following components gathered.
 
-**[Exchange Card](#gallery-card-example)**
+You may be interested in sharing your extension for others to download and use in their dashboards. To submit your extension to the [Tableau Exchange](https://extensiongallery.tableau.com/) online, make sure you have the following components gathered.
+
+**[Exchange Card](#exchange-card-example)**
+
 
 * Extension Name
 * Extension Icon
 * Tagline
 
-**[Exchange Page](#gallery-page-example)**
+
+**[Exchange Page](#exchange-page-example)**
+
 
 * Description
 * Developer Info
@@ -24,8 +28,8 @@ You may be interested in sharing your extension for others to download and use i
 
 ---
 
-## Tableau Exchange Card Example
-This is what an extension looks like to a user while browsing the Tableau Exchange.
+## Exchange Card Example
+This is what an extension looks like to a user while browsing the Tableau Exchange. 
 
 ![exchange card example](imgs/gallery_card_example.png)
 
@@ -53,4 +57,5 @@ Users reach pages like this when they want to know more about a particular exten
 
 ## How to Submit your Extension
 
-After completing your extension, fill out the [Tableau Exchange Submission form](https://tabsoft.co/gallerysubmit){:target="_blank"}{:ref="noopener"} with your information and extension details. The extension name in the template needs to match the name you specified for your extension in the manifest file (`.trex`). The 280x280 pixel `.png` icon that you attach with your submission must look like the icon you included in your manifest file (they just have different dimensions). Our developers from the Developer Platform team at Tableau will let you know the next steps including legal agreements after you submit. If you have any questions about the Tableau Exchange please send them to [extensiongallery@tableau.com](extensiongallery@tableau.com){:target="_blank"}{:ref="noopener"}.
+After completing your extension, fill out the [Tableau Exchange Submission form](https://tabsoft.co/gallerysubmit){:target="_blank"}{:ref="noopener"} with your information and extension details. The extension name in the template needs to match the name you specified for your extension in the manifest file (`.trex`). The 280x280 pixel `.png` icon that you attach with your submission must look like the icon you included in your manifest file (they just have different dimensions). Our developers from the Developer Platform team at Tableau will let you know the next steps including legal agreements after you submit. If you have any questions about the Tableau Exchange please send them to [extensiongallery@tableau.com](mailto:extensiongallery@tableau.com).
+
