@@ -1,43 +1,5 @@
 <!DOCTYPE html>
 <html>
-  <style>
-    .tooltip-header {
-      position: relative;
-      display: block;
-    }
-
-    .tooltip-header .tooltiptext {
-      visibility: hidden;
-      width: 250px;
-      background-color: rgb(223, 221, 233);
-      text-align: center;
-      border-radius: 6px;
-      padding: 5px 0;
-      position: absolute;
-      z-index: 1;
-      bottom: 125%;
-      left: 50%;
-      margin-left: -60px;
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-
-    .tooltip-header .tooltiptext::after {
-      content: '';
-      position: absolute;
-      top: 100%;
-      left: 50%;
-      margin-left: -5px;
-      border-width: 5px;
-      border-style: solid;
-      border-color: rgb(223, 221, 233) transparent transparent transparent;
-    }
-
-    .tooltip-header:hover .tooltiptext {
-      visibility: visible;
-      opacity: 1;
-    }
-  </style>
   <head>
     <title>Tableau Formatting Demo</title>
 
@@ -48,14 +10,88 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <!-- Extensions Library (this will be hosted on a CDN eventually) -->
-    <script src="../../lib/tableau.extensions.1.latest.js"></script>
+    <script src="http://localhost:7755/extensions-api.js"></script>
+
+    <style>
+      .tooltip-header {
+        position: relative;
+        display: block;
+      }
+
+      .tooltip-header .tooltiptext {
+        visibility: hidden;
+        width: 250px;
+        background-color: rgb(223, 221, 233);
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
+        position: absolute;
+        z-index: 1;
+        bottom: 125%;
+        left: 50%;
+        margin-left: -60px;
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+
+      .tooltip-header .tooltiptext::after {
+        content: '';
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: rgb(223, 221, 233) transparent transparent transparent;
+      }
+
+      .tooltip-header:hover .tooltiptext {
+        visibility: visible;
+        opacity: 1;
+      }
+
+      @media (-webkit-max-device-pixel-ratio: 1.99), (max-resolution: 191dpi) {
+        body {
+          font-family: 'Benton Sans Low-DPI', Arial, Helvetica, sans-serif;
+        }
+      }
+
+      @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+        body {
+          font-family: 'Benton Sans', Arial, Helvetica, sans-serif;
+        }
+      }
+
+      input,
+      textarea,
+      button,
+      select {
+        font-family: inherit;
+      }
+
+      .italic-section {
+        font-style: italic;
+      }
+
+      .weight-100-section {
+        font-weight: 100;
+      }
+
+      .weight-bold-section {
+        font-weight: bold;
+      }
+    </style>
   </head>
   <body>
     <div class="container">
       <div>
         <h1>Tableau Formatting Sample</h1>
         <button id="initTableauButton" class="btn btn-primary">Click to Initialize the Extension</button>
+        <hr />
+        <div>Benton Sans (regular) is the default font used for text elements in the Tableau UI.</div>
+        <div class="italic-section">Benton Sans (italic) is used for generated fields.</div>
+        <div class="weight-bold-section">Benton Sans (bold) is used for Tableau headings.</div>
+        <div class="weight-100-section">Benton Sans (100) is a lightweight alternative</div>
         <h2 class="tableau-worksheet-title">Subheader, using tableau-worksheet-title class</h2>
         <text class="tableau-worksheet">Text, using tableau-worksheet class</text>
         <h3 class="tooltip-header">
