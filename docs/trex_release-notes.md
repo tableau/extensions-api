@@ -29,6 +29,15 @@ About this release:
 
 * Added support for [`Worksheet.applyRelativeDateFilterAsync()`]({{site.baseurl}}/docs/interfaces/worksheet.html#applyrelativedatefilterasync).
 
+* Starting with this release, you can now load Benton Sans fonts and Tableau fonts by default during extension initialization. You can set the Tableau and Benton Sans fonts in the style portion of your extension. To see how you can use the fonts in an dashboard extension, see the [Formatting](https://github.com/tableau/extensions-api/tree/master/Samples/Formatting?=target="_blank") sample.
+
+    ```css
+
+    body {
+        font-family: 'Benton Sans', Arial, Helvetica, sans-serif;
+      }
+    ```
+
 ----
 
 ### Tableau Dashboard Extensions API version 1.8.1
