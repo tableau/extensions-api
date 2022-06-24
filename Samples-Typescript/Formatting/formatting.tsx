@@ -45,9 +45,9 @@ import * as ReactDOM from 'react-dom';
       return <>
         <hr />
         <div>Benton Sans (regular) is the default font used for text elements in the Tableau UI.</div>
-        <div className="italic-section">Benton Sans (italic) is used for generated fields.</div>
-        <div className="weight-bold-section">Benton Sans (bold) is used for Tableau headings.</div>
-        <div className="weight-100-section">Benton Sans (100) is a lightweight alternative</div>
+        <div className='italic-section'>Benton Sans (italic) is used for generated fields.</div>
+        <div className='weight-bold-section'>Benton Sans (bold) is used for Tableau headings.</div>
+        <div className='weight-100-section'>Benton Sans (100) is a lightweight alternative</div>
         <h2 className={tableau.ClassNameKey.WorksheetTitle}>Subheader, using tableau-worksheet-title class</h2>
         <text className={tableau.ClassNameKey.Worksheet}>Text, using tableau-worksheet class</text>
         <h3 className='tooltip-header'>Hover to see tooltip text, which is using tableau-tooltip class
