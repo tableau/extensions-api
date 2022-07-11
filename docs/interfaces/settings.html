@@ -146,7 +146,7 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="eventlistenermanager.html">EventListenerManager</a>.<a href="eventlistenermanager.html#addeventlistener">addEventListener</a></p>
+								<p>Inherited from <a href="parameter.html">Parameter</a>.<a href="parameter.html#addeventlistener">addEventListener</a></p>
 								<ul>
 									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/EventInterface.ts:166</li>
 								</ul>
@@ -275,10 +275,7 @@ load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">works
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span>
-								<span class="tsd-signature-symbol"> | </span>
-								<span class="tsd-signature-type">undefined</span>
-							</h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h4>
 							<p>The value or undefined if it does not exist.</p>
 						</li>
 					</ul>
@@ -287,7 +284,7 @@ load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">works
 					<a name="getall" class="tsd-anchor"></a>
 					<h3>get<wbr>All</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>All<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>All<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{}</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -302,7 +299,7 @@ load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">works
 									Modifying this value will have no effect on the class.</p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">object</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">{}</span></h4>
 							<p>All the saved settings keys and values in a dictionary.</p>
 							<ul class="tsd-parameters">
 								<li class="tsd-parameter-index-signature">
@@ -321,7 +318,7 @@ load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">works
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="eventlistenermanager.html">EventListenerManager</a>.<a href="eventlistenermanager.html#removeeventlistener">removeEventListener</a></p>
+								<p>Inherited from <a href="parameter.html">Parameter</a>.<a href="parameter.html#removeeventlistener">removeEventListener</a></p>
 								<ul>
 									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/EventInterface.ts:176</li>
 								</ul>
@@ -352,7 +349,7 @@ load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">works
 					<a name="saveasync" class="tsd-anchor"></a>
 					<h3>save<wbr>Async</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">save<wbr>Async<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">save<wbr>Async<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -367,7 +364,7 @@ load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">works
 									should only be called in authoring mode.</p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>Promise containing the newly saved settings values.</p>
 							<pre><code>tableau.extensions.settings.saveAsync().then(<span class="hljs-function"><span class="hljs-params">result</span> =&gt;</span> {
    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Settings saved.'</span>);
@@ -536,7 +533,7 @@ load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">works
                 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-        ga('create', 'UA-625217-51', '');
+        ga('create', 'UA-625217-51', 'auto');
         ga('send', 'pageview');
     </script>
 </body>

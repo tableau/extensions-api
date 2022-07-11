@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>RangeFilter | Dashboard Extensions</title>
+	<title>HierarchicalFilter | Dashboard Extensions</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="rangefilter.html">RangeFilter</a>
+					<a href="hierarchicalfilter.html">HierarchicalFilter</a>
 				</li>
 			</ul>
-			<h1>Interface RangeFilter</h1>
+			<h1>Interface HierarchicalFilter</h1>
 		</div>
 	</div>
 </header>
@@ -67,8 +67,16 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>A Range Filter</p>
+						<p>A Hierarchical Filter
+							Hierarchical Filters are used when a hierarchical field is used as a filter on a cube database.
+							As an example, assume a hierarchical field in Product, named ByCategory.
+						ByCategory has the following five levels: Family, Category, Subcategory, Brand, Sku.</p>
 					</div>
+					<dl class="tsd-comment-tags">
+						<dt>since</dt>
+						<dd><p>Extensions 1.10.0 and Tableau version 2022.3</p>
+						</dd>
+					</dl>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
@@ -78,7 +86,7 @@
 						<a href="filter.html" class="tsd-signature-type">Filter</a>
 						<ul class="tsd-hierarchy">
 							<li>
-								<span class="target">RangeFilter</span>
+								<span class="target">HierarchicalFilter</span>
 							</li>
 						</ul>
 					</li>
@@ -91,22 +99,24 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="rangefilter.html#fieldid" class="tsd-kind-icon">field<wbr>Id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="rangefilter.html#fieldname" class="tsd-kind-icon">field<wbr>Name</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="rangefilter.html#filtertype" class="tsd-kind-icon">filter<wbr>Type</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="rangefilter.html#includenullvalues" class="tsd-kind-icon">include<wbr>Null<wbr>Values</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="rangefilter.html#maxvalue" class="tsd-kind-icon">max<wbr>Value</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="rangefilter.html#minvalue" class="tsd-kind-icon">min<wbr>Value</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="rangefilter.html#worksheetname" class="tsd-kind-icon">worksheet<wbr>Name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="hierarchicalfilter.html#appliedvalues" class="tsd-kind-icon">applied<wbr>Values</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="hierarchicalfilter.html#dimensionname" class="tsd-kind-icon">dimension<wbr>Name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="hierarchicalfilter.html#fieldid" class="tsd-kind-icon">field<wbr>Id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="hierarchicalfilter.html#fieldname" class="tsd-kind-icon">field<wbr>Name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="hierarchicalfilter.html#filtertype" class="tsd-kind-icon">filter<wbr>Type</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="hierarchicalfilter.html#hierarchycaption" class="tsd-kind-icon">hierarchy<wbr>Caption</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="hierarchicalfilter.html#isallselected" class="tsd-kind-icon">is<wbr>All<wbr>Selected</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="hierarchicalfilter.html#leveldetails" class="tsd-kind-icon">level<wbr>Details</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="hierarchicalfilter.html#numberoflevels" class="tsd-kind-icon">number<wbr>OfLevels</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="hierarchicalfilter.html#worksheetname" class="tsd-kind-icon">worksheet<wbr>Name</a></li>
 							</ul>
 						</section>
-						<section class="tsd-index-section ">
+						<section class="tsd-index-section tsd-is-inherited">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="rangefilter.html#getappliedworksheetsasync" class="tsd-kind-icon">get<wbr>Applied<wbr>Worksheets<wbr>Async</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="rangefilter.html#getdomainasync" class="tsd-kind-icon">get<wbr>Domain<wbr>Async</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="rangefilter.html#getfieldasync" class="tsd-kind-icon">get<wbr>Field<wbr>Async</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="rangefilter.html#setappliedworksheetsasync" class="tsd-kind-icon">set<wbr>Applied<wbr>Worksheets<wbr>Async</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="hierarchicalfilter.html#getappliedworksheetsasync" class="tsd-kind-icon">get<wbr>Applied<wbr>Worksheets<wbr>Async</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="hierarchicalfilter.html#getfieldasync" class="tsd-kind-icon">get<wbr>Field<wbr>Async</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="hierarchicalfilter.html#setappliedworksheetsasync" class="tsd-kind-icon">set<wbr>Applied<wbr>Worksheets<wbr>Async</a></li>
 							</ul>
 						</section>
 					</div>
@@ -114,6 +124,40 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="appliedvalues" class="tsd-anchor"></a>
+					<h3>applied<wbr>Values</h3>
+					<div class="tsd-signature tsd-kind-icon">applied<wbr>Values<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="hierarchicalfilterdatavalue.html" class="tsd-signature-type">HierarchicalFilterDataValue</a><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/FilterInterfaces.ts:131</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<dl class="tsd-comment-tags">
+							<dt>returns</dt>
+							<dd><p>A list of values applied to this hierarchical filter.</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="dimensionname" class="tsd-anchor"></a>
+					<h3>dimension<wbr>Name</h3>
+					<div class="tsd-signature tsd-kind-icon">dimension<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/FilterInterfaces.ts:105</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<dl class="tsd-comment-tags">
+							<dt>returns</dt>
+							<dd><p>The dimension name associated with the filter. In the ByCategory filter example, this would be &#39;Product&#39;</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="fieldid" class="tsd-anchor"></a>
 					<h3>field<wbr>Id</h3>
@@ -170,52 +214,70 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="includenullvalues" class="tsd-anchor"></a>
-					<h3>include<wbr>Null<wbr>Values</h3>
-					<div class="tsd-signature tsd-kind-icon">include<wbr>Null<wbr>Values<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<a name="hierarchycaption" class="tsd-anchor"></a>
+					<h3>hierarchy<wbr>Caption</h3>
+					<div class="tsd-signature tsd-kind-icon">hierarchy<wbr>Caption<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/FilterInterfaces.ts:151</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/FilterInterfaces.ts:110</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<dl class="tsd-comment-tags">
 							<dt>returns</dt>
-							<dd><p>True if null values are included in the filter, false otherwise.</p>
+							<dd><p>The hierarchy caption associated with the filter. In the ByCategory filter example, this would be &#39;[Product].[ByCategory]&#39;</p>
 							</dd>
 						</dl>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="maxvalue" class="tsd-anchor"></a>
-					<h3>max<wbr>Value</h3>
-					<div class="tsd-signature tsd-kind-icon">max<wbr>Value<span class="tsd-signature-symbol">:</span> <a href="datavalue.html" class="tsd-signature-type">DataValue</a></div>
+					<a name="isallselected" class="tsd-anchor"></a>
+					<h3>is<wbr>All<wbr>Selected</h3>
+					<div class="tsd-signature tsd-kind-icon">is<wbr>All<wbr>Selected<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/FilterInterfaces.ts:146</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/FilterInterfaces.ts:126</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<dl class="tsd-comment-tags">
 							<dt>returns</dt>
-							<dd><p>Maximum value, inclusive, applied to the filter.</p>
+							<dd><p>True if all the values are selected for this filter. When &#39;All&#39; is selected,
+								appliedValues returns an empty list.</p>
 							</dd>
 						</dl>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="minvalue" class="tsd-anchor"></a>
-					<h3>min<wbr>Value</h3>
-					<div class="tsd-signature tsd-kind-icon">min<wbr>Value<span class="tsd-signature-symbol">:</span> <a href="datavalue.html" class="tsd-signature-type">DataValue</a></div>
+					<a name="leveldetails" class="tsd-anchor"></a>
+					<h3>level<wbr>Details</h3>
+					<div class="tsd-signature tsd-kind-icon">level<wbr>Details<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="hierarchicalleveldetail.html" class="tsd-signature-type">HierarchicalLevelDetail</a><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/FilterInterfaces.ts:141</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/FilterInterfaces.ts:120</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<dl class="tsd-comment-tags">
 							<dt>returns</dt>
-							<dd><p>Minimum value, inclusive, applied to the filter.</p>
+							<dd><p>Details about each level in the hierarchical filter.</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="numberoflevels" class="tsd-anchor"></a>
+					<h3>number<wbr>OfLevels</h3>
+					<div class="tsd-signature tsd-kind-icon">number<wbr>OfLevels<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/FilterInterfaces.ts:115</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<dl class="tsd-comment-tags">
+							<dt>returns</dt>
+							<dd><p>The number of levels in the hierarchical filter. In the ByCategory filter example, this would be 5</p>
 							</dd>
 						</dl>
 					</div>
@@ -239,7 +301,7 @@
 					</div>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group ">
+			<section class="tsd-panel-group tsd-member-group tsd-is-inherited">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
 					<a name="getappliedworksheetsasync" class="tsd-anchor"></a>
@@ -264,35 +326,6 @@
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>the list of worksheet names that have the filter applied.</p>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
-					<a name="getdomainasync" class="tsd-anchor"></a>
-					<h3>get<wbr>Domain<wbr>Async</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Domain<wbr>Async<span class="tsd-signature-symbol">(</span>domainType<span class="tsd-signature-symbol">?: </span><a href="../enums/tableau.filterdomaintype.html" class="tsd-signature-type">FilterDomainType</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="rangedomain.html" class="tsd-signature-type">RangeDomain</a><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/FilterInterfaces.ts:157</li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> domainType: <a href="../enums/tableau.filterdomaintype.html" class="tsd-signature-type">FilterDomainType</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>the domain type, defaults to relevant</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="rangedomain.html" class="tsd-signature-type">RangeDomain</a><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>a promise containing the domain for the range filter</p>
 						</li>
 					</ul>
 				</section>
@@ -376,40 +409,46 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="rangefilter.html" class="tsd-kind-icon">Range<wbr>Filter</a>
+						<a href="hierarchicalfilter.html" class="tsd-kind-icon">Hierarchical<wbr>Filter</a>
 						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="rangefilter.html#fieldid" class="tsd-kind-icon">field<wbr>Id</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="rangefilter.html#fieldname" class="tsd-kind-icon">field<wbr>Name</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="rangefilter.html#filtertype" class="tsd-kind-icon">filter<wbr>Type</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="hierarchicalfilter.html#appliedvalues" class="tsd-kind-icon">applied<wbr>Values</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="rangefilter.html#includenullvalues" class="tsd-kind-icon">include<wbr>Null<wbr>Values</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="rangefilter.html#maxvalue" class="tsd-kind-icon">max<wbr>Value</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="rangefilter.html#minvalue" class="tsd-kind-icon">min<wbr>Value</a>
+								<a href="hierarchicalfilter.html#dimensionname" class="tsd-kind-icon">dimension<wbr>Name</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="rangefilter.html#worksheetname" class="tsd-kind-icon">worksheet<wbr>Name</a>
+								<a href="hierarchicalfilter.html#fieldid" class="tsd-kind-icon">field<wbr>Id</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="hierarchicalfilter.html#fieldname" class="tsd-kind-icon">field<wbr>Name</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="hierarchicalfilter.html#filtertype" class="tsd-kind-icon">filter<wbr>Type</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="hierarchicalfilter.html#hierarchycaption" class="tsd-kind-icon">hierarchy<wbr>Caption</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="hierarchicalfilter.html#isallselected" class="tsd-kind-icon">is<wbr>All<wbr>Selected</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="hierarchicalfilter.html#leveldetails" class="tsd-kind-icon">level<wbr>Details</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="hierarchicalfilter.html#numberoflevels" class="tsd-kind-icon">number<wbr>OfLevels</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="hierarchicalfilter.html#worksheetname" class="tsd-kind-icon">worksheet<wbr>Name</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-								<a href="rangefilter.html#getappliedworksheetsasync" class="tsd-kind-icon">get<wbr>Applied<wbr>Worksheets<wbr>Async</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="rangefilter.html#getdomainasync" class="tsd-kind-icon">get<wbr>Domain<wbr>Async</a>
+								<a href="hierarchicalfilter.html#getappliedworksheetsasync" class="tsd-kind-icon">get<wbr>Applied<wbr>Worksheets<wbr>Async</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-								<a href="rangefilter.html#getfieldasync" class="tsd-kind-icon">get<wbr>Field<wbr>Async</a>
+								<a href="hierarchicalfilter.html#getfieldasync" class="tsd-kind-icon">get<wbr>Field<wbr>Async</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-								<a href="rangefilter.html#setappliedworksheetsasync" class="tsd-kind-icon">set<wbr>Applied<wbr>Worksheets<wbr>Async</a>
+								<a href="hierarchicalfilter.html#setappliedworksheetsasync" class="tsd-kind-icon">set<wbr>Applied<wbr>Worksheets<wbr>Async</a>
 							</li>
 						</ul>
 					</li>

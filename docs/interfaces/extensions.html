@@ -235,6 +235,15 @@
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
+								<dl class="tsd-comment-tags">
+									<dt>since</dt>
+									<dd><p>1.8.0 and Tableau 2021.4</p>
+										<p>For additional information on using the <code>createVizImageAsync</code> method,
+										see <a href="https://tableau.github.io/extensions-api/docs/trex_tableau_viz.html">Add Tableau Viz to Your Dashboard Extensions</a>.</p>
+										<p>For additional information about setting options in the <code>inputSpec</code> object,
+										see <a href="https://tableau.github.io/extensions-api/docs/trex_tableau_viz_ref.html">Tableau Viz Reference</a>.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -258,17 +267,13 @@
           <span class="hljs-attr">rows:</span> <span class="hljs-string">{</span> <span class="hljs-attr">field:</span> <span class="hljs-string">'Measure'</span><span class="hljs-string">,</span> <span class="hljs-attr">type:</span> <span class="hljs-string">tableau.VizImageEncodingType.Continuous</span> <span class="hljs-string">},</span>
           <span class="hljs-attr">sort:</span> <span class="hljs-string">{</span> <span class="hljs-attr">field:</span> <span class="hljs-string">'Category'</span><span class="hljs-string">,</span> <span class="hljs-attr">'sortby':</span> <span class="hljs-string">'Weather'</span><span class="hljs-string">,</span> <span class="hljs-attr">direction:</span> <span class="hljs-string">tableau.VizImageSortDirectionType.Ascending</span> <span class="hljs-string">}</span>
       <span class="hljs-string">}</span>
- <span class="hljs-string">};</span></code></pre><p> @returns  A promise that when resolved, returns the viz as an svg.</p>
-										<p> Supports sorting by field.
-										@since 1.8.0 and Tableau 2021.4</p>
-										<p>For additional information on using the <code>createVizImageAsync</code> method,
-										see <a href="https://tableau.github.io/extensions-api/docs/trex_tableau_viz.html">Add Tableau Viz to Your Dashboard Extensions</a>.</p>
-										<p>For additional information about setting options in the <code>inputSpec</code> object,
-										see <a href="https://tableau.github.io/extensions-api/docs/trex_tableau_viz_ref.html">Tableau Viz Reference</a>.</p>
+ <span class="hljs-string">};</span></code></pre>
 									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>A promise that when resolved, returns the viz as an svg.</p>
+							<p> Supports sorting by field.</p>
 						</li>
 					</ul>
 				</section>
@@ -276,7 +281,7 @@
 					<a name="initializeasync" class="tsd-anchor"></a>
 					<h3>initialize<wbr>Async</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">initialize<wbr>Async<span class="tsd-signature-symbol">(</span>contextMenuCallbacks<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">initialize<wbr>Async<span class="tsd-signature-symbol">(</span>contextMenuCallbacks<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -294,7 +299,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> contextMenuCallbacks: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">object</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> contextMenuCallbacks: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{}</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>This optional object maps the ids of context menu items to the function
 											to be triggered when that context menu item is selected. The keys listed
@@ -520,7 +525,7 @@
                 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-        ga('create', 'UA-625217-51', '');
+        ga('create', 'UA-625217-51', 'auto');
         ga('send', 'pageview');
     </script>
 </body>
