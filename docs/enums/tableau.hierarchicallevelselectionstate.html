@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>DateRangeType | Dashboard Extensions</title>
+	<title>HierarchicalLevelSelectionState | Dashboard Extensions</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -57,10 +57,10 @@
 					<a href="../modules/tableau.html">Tableau</a>
 				</li>
 				<li>
-					<a href="tableau.daterangetype.html">DateRangeType</a>
+					<a href="tableau.hierarchicallevelselectionstate.html">HierarchicalLevelSelectionState</a>
 				</li>
 			</ul>
-			<h1>Enumeration DateRangeType</h1>
+			<h1>Enumeration HierarchicalLevelSelectionState</h1>
 		</div>
 	</div>
 </header>
@@ -70,8 +70,13 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Valid date ranges for a relative date filter.</p>
+						<p>Enum that represents the selection state of a level in a hierarchical filter</p>
 					</div>
+					<dl class="tsd-comment-tags">
+						<dt>since</dt>
+						<dd><p>Extensions 1.10.0</p>
+						</dd>
+					</dl>
 				</div>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -81,12 +86,10 @@
 						<section class="tsd-index-section ">
 							<h3>Enumeration members</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="tableau.daterangetype.html#current" class="tsd-kind-icon">Current</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="tableau.daterangetype.html#last" class="tsd-kind-icon">Last</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="tableau.daterangetype.html#lastn" class="tsd-kind-icon">LastN</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="tableau.daterangetype.html#next" class="tsd-kind-icon">Next</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="tableau.daterangetype.html#nextn" class="tsd-kind-icon">NextN</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="tableau.daterangetype.html#todate" class="tsd-kind-icon">To<wbr>Date</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="tableau.hierarchicallevelselectionstate.html#allselected" class="tsd-kind-icon">All<wbr>Selected</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="tableau.hierarchicallevelselectionstate.html#noneselected" class="tsd-kind-icon">None<wbr>Selected</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="tableau.hierarchicallevelselectionstate.html#someselected" class="tsd-kind-icon">Some<wbr>Selected</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="tableau.hierarchicallevelselectionstate.html#unknownselected" class="tsd-kind-icon">Unknown<wbr>Selected</a></li>
 							</ul>
 						</section>
 					</div>
@@ -95,62 +98,42 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Enumeration members</h2>
 				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="current" class="tsd-anchor"></a>
-					<h3>Current</h3>
-					<div class="tsd-signature tsd-kind-icon">Current<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;current&quot;</span></div>
+					<a name="allselected" class="tsd-anchor"></a>
+					<h3>All<wbr>Selected</h3>
+					<div class="tsd-signature tsd-kind-icon">All<wbr>Selected<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;all-selected&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Namespaces/Tableau.ts:101</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Namespaces/Tableau.ts:346</li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="last" class="tsd-anchor"></a>
-					<h3>Last</h3>
-					<div class="tsd-signature tsd-kind-icon">Last<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;last&quot;</span></div>
+					<a name="noneselected" class="tsd-anchor"></a>
+					<h3>None<wbr>Selected</h3>
+					<div class="tsd-signature tsd-kind-icon">None<wbr>Selected<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;none-selected&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Namespaces/Tableau.ts:97</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Namespaces/Tableau.ts:347</li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="lastn" class="tsd-anchor"></a>
-					<h3>LastN</h3>
-					<div class="tsd-signature tsd-kind-icon">LastN<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;last-n&quot;</span></div>
+					<a name="someselected" class="tsd-anchor"></a>
+					<h3>Some<wbr>Selected</h3>
+					<div class="tsd-signature tsd-kind-icon">Some<wbr>Selected<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;some-selected&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Namespaces/Tableau.ts:98</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Namespaces/Tableau.ts:348</li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="next" class="tsd-anchor"></a>
-					<h3>Next</h3>
-					<div class="tsd-signature tsd-kind-icon">Next<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;next&quot;</span></div>
+					<a name="unknownselected" class="tsd-anchor"></a>
+					<h3>Unknown<wbr>Selected</h3>
+					<div class="tsd-signature tsd-kind-icon">Unknown<wbr>Selected<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;unknown-selected&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Namespaces/Tableau.ts:99</li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="nextn" class="tsd-anchor"></a>
-					<h3>NextN</h3>
-					<div class="tsd-signature tsd-kind-icon">NextN<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;next-n&quot;</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Namespaces/Tableau.ts:100</li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="todate" class="tsd-anchor"></a>
-					<h3>To<wbr>Date</h3>
-					<div class="tsd-signature tsd-kind-icon">To<wbr>Date<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;to-date&quot;</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Namespaces/Tableau.ts:102</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Namespaces/Tableau.ts:349</li>
 						</ul>
 					</aside>
 				</section>
@@ -190,33 +173,9 @@
 					<li class=" tsd-kind-enum tsd-parent-kind-module">
 						<a href="tableau.datatype.html" class="tsd-kind-icon">Data<wbr>Type</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-enum tsd-parent-kind-module">
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
 						<a href="tableau.daterangetype.html" class="tsd-kind-icon">Date<wbr>Range<wbr>Type</a>
-						<ul>
-							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="tableau.daterangetype.html#current" class="tsd-kind-icon">Current</a>
-							</li>
-							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="tableau.daterangetype.html#last" class="tsd-kind-icon">Last</a>
-							</li>
-							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="tableau.daterangetype.html#lastn" class="tsd-kind-icon">LastN</a>
-							</li>
-							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="tableau.daterangetype.html#next" class="tsd-kind-icon">Next</a>
-							</li>
-							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="tableau.daterangetype.html#nextn" class="tsd-kind-icon">NextN</a>
-							</li>
-							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="tableau.daterangetype.html#todate" class="tsd-kind-icon">To<wbr>Date</a>
-							</li>
-						</ul>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-enum tsd-parent-kind-module">
 						<a href="tableau.encodingtype.html" class="tsd-kind-icon">Encoding<wbr>Type</a>
 					</li>
@@ -247,9 +206,27 @@
 					<li class=" tsd-kind-enum tsd-parent-kind-module">
 						<a href="tableau.filterupdatetype.html" class="tsd-kind-icon">Filter<wbr>Update<wbr>Type</a>
 					</li>
-					<li class=" tsd-kind-enum tsd-parent-kind-module">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-enum tsd-parent-kind-module">
 						<a href="tableau.hierarchicallevelselectionstate.html" class="tsd-kind-icon">Hierarchical<wbr>Level<wbr>Selection<wbr>State</a>
+						<ul>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="tableau.hierarchicallevelselectionstate.html#allselected" class="tsd-kind-icon">All<wbr>Selected</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="tableau.hierarchicallevelselectionstate.html#noneselected" class="tsd-kind-icon">None<wbr>Selected</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="tableau.hierarchicallevelselectionstate.html#someselected" class="tsd-kind-icon">Some<wbr>Selected</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="tableau.hierarchicallevelselectionstate.html#unknownselected" class="tsd-kind-icon">Unknown<wbr>Selected</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-enum tsd-parent-kind-module">
 						<a href="tableau.includedatavaluesoption.html" class="tsd-kind-icon">Include<wbr>Data<wbr>Values<wbr>Option</a>
 					</li>
