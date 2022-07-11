@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ZoneVisibilityType | Dashboard Extensions</title>
+	<title>SharedErrorCodes | Dashboard Extensions</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,31 +54,16 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/tableau.html">Tableau</a>
-				</li>
-				<li>
-					<a href="tableau.zonevisibilitytype.html">ZoneVisibilityType</a>
+					<a href="sharederrorcodes.html">SharedErrorCodes</a>
 				</li>
 			</ul>
-			<h1>Enumeration ZoneVisibilityType</h1>
+			<h1>Enumeration SharedErrorCodes</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Enum that represents the visibility state of a zone.</p>
-					</div>
-					<dl class="tsd-comment-tags">
-						<dt>since</dt>
-						<dd><p>1.1.0</p>
-						</dd>
-					</dl>
-				</div>
-			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
@@ -86,8 +71,12 @@
 						<section class="tsd-index-section ">
 							<h3>Enumeration members</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="tableau.zonevisibilitytype.html#hide" class="tsd-kind-icon">Hide</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="tableau.zonevisibilitytype.html#show" class="tsd-kind-icon">Show</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="sharederrorcodes.html#apiexecutionerror" class="tsd-kind-icon">Api<wbr>Execution<wbr>Error</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="sharederrorcodes.html#implementationerror" class="tsd-kind-icon">Implementation<wbr>Error</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="sharederrorcodes.html#internalerror" class="tsd-kind-icon">Internal<wbr>Error</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="sharederrorcodes.html#invalidparameter" class="tsd-kind-icon">Invalid<wbr>Parameter</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="sharederrorcodes.html#notactivesheet" class="tsd-kind-icon">Not<wbr>Active<wbr>Sheet</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="sharederrorcodes.html#timeout" class="tsd-kind-icon">Timeout</a></li>
 							</ul>
 						</section>
 					</div>
@@ -96,32 +85,92 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Enumeration members</h2>
 				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="hide" class="tsd-anchor"></a>
-					<h3>Hide</h3>
-					<div class="tsd-signature tsd-kind-icon">Hide<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;&quot;hide&quot;</span></div>
+					<a name="apiexecutionerror" class="tsd-anchor"></a>
+					<h3>Api<wbr>Execution<wbr>Error</h3>
+					<div class="tsd-signature tsd-kind-icon">Api<wbr>Execution<wbr>Error<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;api-execution-error&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Namespaces/Tableau.ts:313</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Enums.ts:23</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Used for turning off the visibility of a zone in the dashboard.</p>
+							<p>Can occur when two incompatible calls are triggered together.</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="show" class="tsd-anchor"></a>
-					<h3>Show</h3>
-					<div class="tsd-signature tsd-kind-icon">Show<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;&quot;show&quot;</span></div>
+					<a name="implementationerror" class="tsd-anchor"></a>
+					<h3>Implementation<wbr>Error</h3>
+					<div class="tsd-signature tsd-kind-icon">Implementation<wbr>Error<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;wrong-implementation&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Namespaces/Tableau.ts:310</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Enums.ts:18</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Used for turning on the visibility of a zone in the dashboard.</p>
+							<p>Property or Function is not supported within the Tableau API.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="internalerror" class="tsd-anchor"></a>
+					<h3>Internal<wbr>Error</h3>
+					<div class="tsd-signature tsd-kind-icon">Internal<wbr>Error<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;internal-error&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Enums.ts:5</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>An error occurred within the Tableau API. Contact Tableau Support.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="invalidparameter" class="tsd-anchor"></a>
+					<h3>Invalid<wbr>Parameter</h3>
+					<div class="tsd-signature tsd-kind-icon">Invalid<wbr>Parameter<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;invalid-parameter&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Enums.ts:9</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>A parameter is not the correct data type or format. The name of the parameter is specified in the Error.message field.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="notactivesheet" class="tsd-anchor"></a>
+					<h3>Not<wbr>Active<wbr>Sheet</h3>
+					<div class="tsd-signature tsd-kind-icon">Not<wbr>Active<wbr>Sheet<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;not-active-sheet&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Enums.ts:13</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>An operation was attempted on a sheet that is not active or embedded within the active dashboard.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="timeout" class="tsd-anchor"></a>
+					<h3>Timeout</h3>
+					<div class="tsd-signature tsd-kind-icon">Timeout<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;timeout&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Enums.ts:28</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Can occur when an api call times out.</p>
 						</div>
 					</div>
 				</section>
@@ -133,109 +182,37 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
-					<li class="current tsd-kind-module">
-						<a href="../modules/tableau.html">Tableau</a>
-					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-enum tsd-parent-kind-module">
-						<a href="tableau.analyticsobjecttype.html" class="tsd-kind-icon">Analytics<wbr>Object<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-enum tsd-parent-kind-module">
-						<a href="tableau.columntype.html" class="tsd-kind-icon">Column<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-enum tsd-parent-kind-module">
-						<a href="tableau.dashboardobjecttype.html" class="tsd-kind-icon">Dashboard<wbr>Object<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-enum tsd-parent-kind-module">
-						<a href="tableau.datatype.html" class="tsd-kind-icon">Data<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-enum tsd-parent-kind-module">
-						<a href="tableau.daterangetype.html" class="tsd-kind-icon">Date<wbr>Range<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-enum tsd-parent-kind-module">
-						<a href="tableau.encodingtype.html" class="tsd-kind-icon">Encoding<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-enum tsd-parent-kind-module">
-						<a href="tableau.errorcodes.html" class="tsd-kind-icon">Error<wbr>Codes</a>
-					</li>
-					<li class=" tsd-kind-enum tsd-parent-kind-module">
-						<a href="tableau.extensioncontext.html" class="tsd-kind-icon">Extension<wbr>Context</a>
-					</li>
-					<li class=" tsd-kind-enum tsd-parent-kind-module">
-						<a href="tableau.extensionmode.html" class="tsd-kind-icon">Extension<wbr>Mode</a>
-					</li>
-					<li class=" tsd-kind-enum tsd-parent-kind-module">
-						<a href="tableau.fieldaggregationtype.html" class="tsd-kind-icon">Field<wbr>Aggregation<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-enum tsd-parent-kind-module">
-						<a href="tableau.fieldroletype.html" class="tsd-kind-icon">Field<wbr>Role<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-enum tsd-parent-kind-module">
-						<a href="tableau.filterdomaintype.html" class="tsd-kind-icon">Filter<wbr>Domain<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-enum tsd-parent-kind-module">
-						<a href="tableau.filternulloption.html" class="tsd-kind-icon">Filter<wbr>Null<wbr>Option</a>
-					</li>
-					<li class=" tsd-kind-enum tsd-parent-kind-module">
-						<a href="tableau.filtertype.html" class="tsd-kind-icon">Filter<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-enum tsd-parent-kind-module">
-						<a href="tableau.filterupdatetype.html" class="tsd-kind-icon">Filter<wbr>Update<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-enum tsd-parent-kind-module">
-						<a href="tableau.includedatavaluesoption.html" class="tsd-kind-icon">Include<wbr>Data<wbr>Values<wbr>Option</a>
-					</li>
-					<li class=" tsd-kind-enum tsd-parent-kind-module">
-						<a href="tableau.marktype.html" class="tsd-kind-icon">Mark<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-enum tsd-parent-kind-module">
-						<a href="tableau.parametervaluetype.html" class="tsd-kind-icon">Parameter<wbr>Value<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-enum tsd-parent-kind-module">
-						<a href="tableau.periodtype.html" class="tsd-kind-icon">Period<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-enum tsd-parent-kind-module">
-						<a href="tableau.quicktablecalctype.html" class="tsd-kind-icon">Quick<wbr>Table<wbr>Calc<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-enum tsd-parent-kind-module">
-						<a href="tableau.selectionupdatetype.html" class="tsd-kind-icon">Selection<wbr>Update<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-enum tsd-parent-kind-module">
-						<a href="tableau.sheettype.html" class="tsd-kind-icon">Sheet<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-enum tsd-parent-kind-module">
-						<a href="tableau.sortdirection.html" class="tsd-kind-icon">Sort<wbr>Direction</a>
-					</li>
-					<li class=" tsd-kind-enum tsd-parent-kind-module">
-						<a href="tableau.tableaueventtype.html" class="tsd-kind-icon">Tableau<wbr>Event<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-enum tsd-parent-kind-module">
-						<a href="tableau.trendlinemodeltype.html" class="tsd-kind-icon">Trend<wbr>Line<wbr>Model<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-enum tsd-parent-kind-module">
-						<a href="tableau.vizimageencodingtype.html" class="tsd-kind-icon">Viz<wbr>Image<wbr>Encoding<wbr>Type</a>
-					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-enum tsd-parent-kind-module">
-						<a href="tableau.zonevisibilitytype.html" class="tsd-kind-icon">Zone<wbr>Visibility<wbr>Type</a>
+					<li class="current tsd-kind-enum">
+						<a href="sharederrorcodes.html" class="tsd-kind-icon">Shared<wbr>Error<wbr>Codes</a>
 						<ul>
 							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="tableau.zonevisibilitytype.html#hide" class="tsd-kind-icon">Hide</a>
+								<a href="sharederrorcodes.html#apiexecutionerror" class="tsd-kind-icon">Api<wbr>Execution<wbr>Error</a>
 							</li>
 							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="tableau.zonevisibilitytype.html#show" class="tsd-kind-icon">Show</a>
+								<a href="sharederrorcodes.html#implementationerror" class="tsd-kind-icon">Implementation<wbr>Error</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="sharederrorcodes.html#internalerror" class="tsd-kind-icon">Internal<wbr>Error</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="sharederrorcodes.html#invalidparameter" class="tsd-kind-icon">Invalid<wbr>Parameter</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="sharederrorcodes.html#notactivesheet" class="tsd-kind-icon">Not<wbr>Active<wbr>Sheet</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="sharederrorcodes.html#timeout" class="tsd-kind-icon">Timeout</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-variable tsd-parent-kind-module">
-						<a href="../modules/tableau.html#extensions" class="tsd-kind-icon">extensions</a>
-					</li>
 				</ul>
 			</nav>
 		</div>
@@ -310,7 +287,7 @@
                 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-        ga('create', 'UA-625217-51', '');
+        ga('create', 'UA-625217-51', 'auto');
         ga('send', 'pageview');
     </script>
 </body>

@@ -95,7 +95,9 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="worksheet.html#addeventlistener" class="tsd-kind-icon">add<wbr>Event<wbr>Listener</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="worksheet.html#applyfilterasync" class="tsd-kind-icon">apply<wbr>Filter<wbr>Async</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="worksheet.html#applyhierarchicalfilterasync" class="tsd-kind-icon">apply<wbr>Hierarchical<wbr>Filter<wbr>Async</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="worksheet.html#applyrangefilterasync" class="tsd-kind-icon">apply<wbr>Range<wbr>Filter<wbr>Async</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="worksheet.html#applyrelativedatefilterasync" class="tsd-kind-icon">apply<wbr>Relative<wbr>Date<wbr>Filter<wbr>Async</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="worksheet.html#clearfilterasync" class="tsd-kind-icon">clear<wbr>Filter<wbr>Async</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="worksheet.html#clearselectedmarksasync" class="tsd-kind-icon">clear<wbr>Selected<wbr>Marks<wbr>Async</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="worksheet.html#findparameterasync" class="tsd-kind-icon">find<wbr>Parameter<wbr>Async</a></li>
@@ -201,7 +203,7 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="eventlistenermanager.html">EventListenerManager</a>.<a href="eventlistenermanager.html#addeventlistener">addEventListener</a></p>
+								<p>Inherited from <a href="parameter.html">Parameter</a>.<a href="parameter.html#addeventlistener">addEventListener</a></p>
 								<ul>
 									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/EventInterface.ts:166</li>
 								</ul>
@@ -323,6 +325,58 @@ load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">works
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="applyhierarchicalfilterasync" class="tsd-anchor"></a>
+					<h3>apply<wbr>Hierarchical<wbr>Filter<wbr>Async</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">apply<wbr>Hierarchical<wbr>Filter<wbr>Async<span class="tsd-signature-symbol">(</span>fieldName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, values<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><a href="hierarchicallevels.html" class="tsd-signature-type">HierarchicalLevels</a>, updateType<span class="tsd-signature-symbol">: </span><a href="../enums/tableau.filterupdatetype.html" class="tsd-signature-type">FilterUpdateType</a>, options<span class="tsd-signature-symbol">: </span><a href="filteroptions.html" class="tsd-signature-type">FilterOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:99</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Applies the list of provided hierarchial filter values.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>since</dt>
+									<dd><p>1.10.0 and Tableau 2022.3</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>fieldName: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The name of the field to filter on.</p>
+									</div>
+								</li>
+								<li>
+									<h5>values: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><a href="hierarchicallevels.html" class="tsd-signature-type">HierarchicalLevels</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The list of values or levels to filter on.</p>
+									</div>
+								</li>
+								<li>
+									<h5>updateType: <a href="../enums/tableau.filterupdatetype.html" class="tsd-signature-type">FilterUpdateType</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The update type of this filter (add, all, remove, replace).</p>
+									</div>
+								</li>
+								<li>
+									<h5>options: <a href="filteroptions.html" class="tsd-signature-type">FilterOptions</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>The field name that the filter is applied on.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
 					<a name="applyrangefilterasync" class="tsd-anchor"></a>
 					<h3>apply<wbr>Range<wbr>Filter<wbr>Async</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
@@ -353,6 +407,58 @@ load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">works
 									<div class="tsd-comment tsd-typography">
 										<p>Filter Options: min, max, nullOption. Atleast one of of min and max is required.
 										For applying date filters, UTC Date objects are expected. (i.e., var min = new Date(Date.UTC(1999, 0, 1)))</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>The field name that the filter is applied on.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="applyrelativedatefilterasync" class="tsd-anchor"></a>
+					<h3>apply<wbr>Relative<wbr>Date<wbr>Filter<wbr>Async</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">apply<wbr>Relative<wbr>Date<wbr>Filter<wbr>Async<span class="tsd-signature-symbol">(</span>fieldName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">: </span><a href="relativedatefilteroptions.html" class="tsd-signature-type">RelativeDateFilterOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:128</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Applies a relative date filter.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>since</dt>
+									<dd><p>version 1.9.0 and Tableau 2022.2</p>
+										<p>The following example shows how to apply a relative date filter from a worksheet.</p>
+										<pre><code> worksheet.applyRelativeDateFilterAsync(
+   <span class="hljs-string">'Order Date'</span>,
+   {
+     anchorDate: <span class="hljs-built_in">new</span> <span class="hljs-type">Date</span>(<span class="hljs-type">Date</span>.UTC(<span class="hljs-number">2022</span>, <span class="hljs-number">4</span>, <span class="hljs-number">13</span>)),
+     periodType: PeriodType.Years,
+     range<span class="hljs-keyword">Type</span>: DateRangeType.LastN,
+     rangeN: <span class="hljs-number">1</span>,
+   }
+ );</code></pre></dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>fieldName: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The name of the field to filter on.</p>
+									</div>
+								</li>
+								<li>
+									<h5>options: <a href="relativedatefilteroptions.html" class="tsd-signature-type">RelativeDateFilterOptions</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The relative date filter options (anchorDate, periodType, rangeType, rangeN). When the rangeType is LASTN or NEXTN, the rangeN is required.</p>
 									</div>
 								</li>
 							</ul>
@@ -405,7 +511,7 @@ load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">works
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:323</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:366</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -466,7 +572,7 @@ load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">works
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:110</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:153</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -502,7 +608,7 @@ load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">works
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:118</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:161</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -525,7 +631,7 @@ load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">works
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:126</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:169</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -570,7 +676,7 @@ load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">works
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:149</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:192</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -602,7 +708,7 @@ worksheet.getSelectedMarksAsync().then(<span class="hljs-function"><span class="
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:185</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:228</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -630,7 +736,7 @@ worksheet.getSelectedMarksAsync().then(<span class="hljs-function"><span class="
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:177</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:220</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -685,7 +791,7 @@ worksheet.getSelectedMarksAsync().then(<span class="hljs-function"><span class="
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:217</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:260</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -740,7 +846,7 @@ worksheet.getSelectedMarksAsync().then(<span class="hljs-function"><span class="
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:271</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:314</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -800,7 +906,7 @@ worksheet.getSelectedMarksAsync().then(<span class="hljs-function"><span class="
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:239</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:282</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -838,7 +944,7 @@ worksheet.getUnderlyingTablesAsync().<span class="hljs-keyword">then</span>(<spa
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="eventlistenermanager.html">EventListenerManager</a>.<a href="eventlistenermanager.html#removeeventlistener">removeEventListener</a></p>
+								<p>Inherited from <a href="parameter.html">Parameter</a>.<a href="parameter.html#removeeventlistener">removeEventListener</a></p>
 								<ul>
 									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/EventInterface.ts:176</li>
 								</ul>
@@ -875,7 +981,7 @@ worksheet.getUnderlyingTablesAsync().<span class="hljs-keyword">then</span>(<spa
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:307</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:350</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -948,7 +1054,13 @@ worksheet.getUnderlyingTablesAsync().<span class="hljs-keyword">then</span>(<spa
 								<a href="worksheet.html#applyfilterasync" class="tsd-kind-icon">apply<wbr>Filter<wbr>Async</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="worksheet.html#applyhierarchicalfilterasync" class="tsd-kind-icon">apply<wbr>Hierarchical<wbr>Filter<wbr>Async</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
 								<a href="worksheet.html#applyrangefilterasync" class="tsd-kind-icon">apply<wbr>Range<wbr>Filter<wbr>Async</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="worksheet.html#applyrelativedatefilterasync" class="tsd-kind-icon">apply<wbr>Relative<wbr>Date<wbr>Filter<wbr>Async</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
 								<a href="worksheet.html#clearfilterasync" class="tsd-kind-icon">clear<wbr>Filter<wbr>Async</a>
@@ -1073,7 +1185,7 @@ worksheet.getUnderlyingTablesAsync().<span class="hljs-keyword">then</span>(<spa
                 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-        ga('create', 'UA-625217-51', '');
+        ga('create', 'UA-625217-51', 'auto');
         ga('send', 'pageview');
     </script>
 </body>

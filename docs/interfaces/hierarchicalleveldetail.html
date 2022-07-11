@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>HierarchicalFilterOptions | Dashboard Extensions</title>
+	<title>HierarchicalLevelDetail | Dashboard Extensions</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="hierarchicalfilteroptions.html">HierarchicalFilterOptions</a>
+					<a href="hierarchicalleveldetail.html">HierarchicalLevelDetail</a>
 				</li>
 			</ul>
-			<h1>Interface HierarchicalFilterOptions</h1>
+			<h1>Interface HierarchicalLevelDetail</h1>
 		</div>
 	</div>
 </header>
@@ -67,7 +67,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Todo: To be implemented</p>
+						<p>Details about each level in a hierarchical filter</p>
 					</div>
 				</div>
 			</section>
@@ -75,9 +75,60 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">HierarchicalFilterOptions</span>
+						<span class="target">HierarchicalLevelDetail</span>
 					</li>
 				</ul>
+			</section>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>Properties</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="hierarchicalleveldetail.html#levelselectionstate" class="tsd-kind-icon">level<wbr>Selection<wbr>State</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="hierarchicalleveldetail.html#name" class="tsd-kind-icon">name</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="levelselectionstate" class="tsd-anchor"></a>
+					<h3>level<wbr>Selection<wbr>State</h3>
+					<div class="tsd-signature tsd-kind-icon">level<wbr>Selection<wbr>State<span class="tsd-signature-symbol">:</span> <a href="../enums/tableau.hierarchicallevelselectionstate.html" class="tsd-signature-type">HierarchicalLevelSelectionState</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/FilterInterfaces.ts:293</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<dl class="tsd-comment-tags">
+							<dt>returns</dt>
+							<dd><p>the level selection state</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="name" class="tsd-anchor"></a>
+					<h3>name</h3>
+					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/FilterInterfaces.ts:288</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<dl class="tsd-comment-tags">
+							<dt>returns</dt>
+							<dd><p>the level name. In the ByCategory example, the name could be &#39;Family&#39;, &#39;Category&#39;, &#39;Subcategory&#39;, &#39;Brand&#39;, or &#39;Sku&#39;.</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
 			</section>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -93,7 +144,15 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="hierarchicalfilteroptions.html" class="tsd-kind-icon">Hierarchical<wbr>Filter<wbr>Options</a>
+						<a href="hierarchicalleveldetail.html" class="tsd-kind-icon">Hierarchical<wbr>Level<wbr>Detail</a>
+						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="hierarchicalleveldetail.html#levelselectionstate" class="tsd-kind-icon">level<wbr>Selection<wbr>State</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="hierarchicalleveldetail.html#name" class="tsd-kind-icon">name</a>
+							</li>
+						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
@@ -171,7 +230,7 @@
                 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-        ga('create', 'UA-625217-51', '');
+        ga('create', 'UA-625217-51', 'auto');
         ga('send', 'pageview');
     </script>
 </body>
