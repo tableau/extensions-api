@@ -67,8 +67,13 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Todo: To be implemented</p>
+						<p>Options for Relative Date Filter</p>
 					</div>
+					<dl class="tsd-comment-tags">
+						<dt>since</dt>
+						<dd><p>version 1.9.0 and Tableau 2022.2</p>
+						</dd>
+					</dl>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
@@ -78,6 +83,93 @@
 						<span class="target">RelativeDateFilterOptions</span>
 					</li>
 				</ul>
+			</section>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>Properties</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="relativedatefilteroptions.html#anchordate" class="tsd-kind-icon">anchor<wbr>Date</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="relativedatefilteroptions.html#periodtype" class="tsd-kind-icon">period<wbr>Type</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="relativedatefilteroptions.html#rangen" class="tsd-kind-icon">rangeN</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="relativedatefilteroptions.html#rangetype" class="tsd-kind-icon">range<wbr>Type</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="anchordate" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> anchor<wbr>Date</h3>
+					<div class="tsd-signature tsd-kind-icon">anchor<wbr>Date<span class="tsd-signature-symbol">:</span> <a href="../enums/tableau.datatype.html#date" class="tsd-signature-type">Date</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/FilterInterfaces.ts:211</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<dl class="tsd-comment-tags">
+							<dt>returns</dt>
+							<dd><p>the anchor date of the filter</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="periodtype" class="tsd-anchor"></a>
+					<h3>period<wbr>Type</h3>
+					<div class="tsd-signature tsd-kind-icon">period<wbr>Type<span class="tsd-signature-symbol">:</span> <a href="../enums/tableau.periodtype.html" class="tsd-signature-type">PeriodType</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/FilterInterfaces.ts:216</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<dl class="tsd-comment-tags">
+							<dt>returns</dt>
+							<dd><p>The date period of the filter.</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="rangen" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> rangeN</h3>
+					<div class="tsd-signature tsd-kind-icon">rangeN<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/FilterInterfaces.ts:226</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<dl class="tsd-comment-tags">
+							<dt>returns</dt>
+							<dd><p>When getRange returns LASTN or NEXTN, this is the N value (how many years, months, etc.).</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="rangetype" class="tsd-anchor"></a>
+					<h3>range<wbr>Type</h3>
+					<div class="tsd-signature tsd-kind-icon">range<wbr>Type<span class="tsd-signature-symbol">:</span> <a href="../enums/tableau.daterangetype.html" class="tsd-signature-type">DateRangeType</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/FilterInterfaces.ts:221</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<dl class="tsd-comment-tags">
+							<dt>returns</dt>
+							<dd><p>The range of the date filter (years, months, etc.).</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
 			</section>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -94,6 +186,20 @@
 				<ul class="current">
 					<li class="current tsd-kind-interface">
 						<a href="relativedatefilteroptions.html" class="tsd-kind-icon">Relative<wbr>Date<wbr>Filter<wbr>Options</a>
+						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="relativedatefilteroptions.html#anchordate" class="tsd-kind-icon">anchor<wbr>Date</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="relativedatefilteroptions.html#periodtype" class="tsd-kind-icon">period<wbr>Type</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="relativedatefilteroptions.html#rangen" class="tsd-kind-icon">rangeN</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="relativedatefilteroptions.html#rangetype" class="tsd-kind-icon">range<wbr>Type</a>
+							</li>
+						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
@@ -171,7 +277,7 @@
                 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-        ga('create', 'UA-625217-51', '');
+        ga('create', 'UA-625217-51', 'auto');
         ga('send', 'pageview');
     </script>
 </body>

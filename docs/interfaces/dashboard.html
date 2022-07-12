@@ -102,8 +102,10 @@
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="dashboard.html#addeventlistener" class="tsd-kind-icon">add<wbr>Event<wbr>Listener</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="dashboard.html#applyfilterasync" class="tsd-kind-icon">apply<wbr>Filter<wbr>Async</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="dashboard.html#findparameterasync" class="tsd-kind-icon">find<wbr>Parameter<wbr>Async</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="dashboard.html#getdashboardobjectbyid" class="tsd-kind-icon">get<wbr>Dashboard<wbr>Object<wbr>ById</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="dashboard.html#getfiltersasync" class="tsd-kind-icon">get<wbr>Filters<wbr>Async</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="dashboard.html#getparametersasync" class="tsd-kind-icon">get<wbr>Parameters<wbr>Async</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="dashboard.html#moveandresizedashboardobjectsasync" class="tsd-kind-icon">move<wbr>And<wbr>Resize<wbr>Dashboard<wbr>Objects<wbr>Async</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="dashboard.html#removeeventlistener" class="tsd-kind-icon">remove<wbr>Event<wbr>Listener</a></li>
@@ -141,7 +143,7 @@
 					<div class="tsd-signature tsd-kind-icon">objects<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="dashboardobject.html" class="tsd-signature-type">DashboardObject</a><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:334</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:377</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -194,7 +196,7 @@
 					<div class="tsd-signature tsd-kind-icon">worksheets<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="worksheet.html" class="tsd-signature-type">Worksheet</a><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:358</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:401</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -231,7 +233,7 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="eventlistenermanager.html">EventListenerManager</a>.<a href="eventlistenermanager.html#addeventlistener">addEventListener</a></p>
+								<p>Inherited from <a href="parameter.html">Parameter</a>.<a href="parameter.html#addeventlistener">addEventListener</a></p>
 								<ul>
 									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/EventInterface.ts:166</li>
 								</ul>
@@ -302,6 +304,63 @@ load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">works
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="applyfilterasync" class="tsd-anchor"></a>
+					<h3>apply<wbr>Filter<wbr>Async</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">apply<wbr>Filter<wbr>Async<span class="tsd-signature-symbol">(</span>fieldName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, values<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span>, updateType<span class="tsd-signature-symbol">: </span><a href="../enums/tableau.filterupdatetype.html" class="tsd-signature-type">FilterUpdateType</a>, filterOptions<span class="tsd-signature-symbol">: </span><a href="filteroptions.html" class="tsd-signature-type">FilterOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:549</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Applies a simple categorical filter (non-date) to the dashboard.
+										This method is similar to the method used for worksheets, but applies the filter to all the worksheets in the dashboard that have that same field.
+									Note that the filter is ignored by a worksheet if the worksheet doesn&#39;t have the relevant field in its data source.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>since</dt>
+									<dd><p>1.9.0 and Tableau 2022.2</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>fieldName: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The name of the field to filter on.</p>
+									</div>
+								</li>
+								<li>
+									<h5>values: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The list of values to filter on.</p>
+									</div>
+								</li>
+								<li>
+									<h5>updateType: <a href="../enums/tableau.filterupdatetype.html" class="tsd-signature-type">FilterUpdateType</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The update type of this filter (add, all, remove, replace).</p>
+									</div>
+								</li>
+								<li>
+									<h5>filterOptions: <a href="filteroptions.html" class="tsd-signature-type">FilterOptions</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Advanced filter options (isExcludeMode).</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>The field name that the filter is applied on.</p>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
 					<a name="findparameterasync" class="tsd-anchor"></a>
 					<h3>find<wbr>Parameter<wbr>Async</h3>
@@ -345,7 +404,7 @@ load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">works
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:430</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:473</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -370,11 +429,33 @@ load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">works
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="dashboardobject.html" class="tsd-signature-type">DashboardObject</a>
-								<span class="tsd-signature-symbol"> | </span>
-								<span class="tsd-signature-type">undefined</span>
-							</h4>
+							<h4 class="tsd-returns-title">Returns <a href="dashboardobject.html" class="tsd-signature-type">DashboardObject</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h4>
 							<p>The dashboard object with that id. Returns undefined if the dashboard object is not found.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="getfiltersasync" class="tsd-anchor"></a>
+					<h3>get<wbr>Filters<wbr>Async</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Filters<wbr>Async<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="filter.html" class="tsd-signature-type">Filter</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:534</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<dl class="tsd-comment-tags">
+									<dt>since</dt>
+									<dd><p>1.9.0 and Tableau 2022.2</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="filter.html" class="tsd-signature-type">Filter</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>The collection of filters used on the dashboard</p>
 						</li>
 					</ul>
 				</section>
@@ -409,7 +490,7 @@ load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">works
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:466</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:509</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -464,7 +545,7 @@ load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">works
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="eventlistenermanager.html">EventListenerManager</a>.<a href="eventlistenermanager.html#removeeventlistener">removeEventListener</a></p>
+								<p>Inherited from <a href="parameter.html">Parameter</a>.<a href="parameter.html#removeeventlistener">removeEventListener</a></p>
 								<ul>
 									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/EventInterface.ts:176</li>
 								</ul>
@@ -501,7 +582,7 @@ load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">works
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:485</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:528</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -541,7 +622,7 @@ load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">works
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:413</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:456</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -588,7 +669,7 @@ load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">works
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:389</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:432</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -670,11 +751,17 @@ load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">works
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
 								<a href="dashboard.html#addeventlistener" class="tsd-kind-icon">add<wbr>Event<wbr>Listener</a>
 							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="dashboard.html#applyfilterasync" class="tsd-kind-icon">apply<wbr>Filter<wbr>Async</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
 								<a href="dashboard.html#findparameterasync" class="tsd-kind-icon">find<wbr>Parameter<wbr>Async</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
 								<a href="dashboard.html#getdashboardobjectbyid" class="tsd-kind-icon">get<wbr>Dashboard<wbr>Object<wbr>ById</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="dashboard.html#getfiltersasync" class="tsd-kind-icon">get<wbr>Filters<wbr>Async</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
 								<a href="dashboard.html#getparametersasync" class="tsd-kind-icon">get<wbr>Parameters<wbr>Async</a>
@@ -772,7 +859,7 @@ load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">works
                 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-        ga('create', 'UA-625217-51', '');
+        ga('create', 'UA-625217-51', 'auto');
         ga('send', 'pageview');
     </script>
 </body>

@@ -11,6 +11,34 @@ layout: docs
 ----
 See also: [Known Issues]({{site.baseurl}}/docs/trex_known_issues.html)
 
+### Tableau Dashboard Extensions API version 1.9.0
+
+*June 2022*
+
+* Tableau Dashboard Extensions API library: `tableau.extensions.1.9.0.js` <br>(download or clone the Extensions API repository on [GitHub](https://github.com/tableau/extensions-api){:target="_blank"}.) <br/>
+
+* Download [Tableau Desktop](https://www.tableau.com/support/releases){:target="_blank"} or [Tableau Server](https://www.tableau.com/support/releases/server){:target="_blank"}.
+
+* To preview new features and test your extension with the latest version of Tableau in the Developer Sandbox, join the [Tableau Developer Program](http://www.tableau.com/developer){:target="_blank"} and request your own Tableau Online developer site.
+
+About this release:
+
+* Added support for [`Filter.getAppliedWorksheets()`]({{site.baseurl}}/docs//interfaces/filter.html#getappliedworksheetsasync) and [`Filter.setAppliedWorksheets()`]({{site.baseurl}}/docs/interfaces/filter.html#setappliedworksheetsasync).
+
+* Added support for [`Dashboard.getFiltersAsync()`]({{site.baseurl}}/docs/interfaces/dashboard.html#getfiltersasync) and [`Dashboard.applyFilterAsync()`]({{site.baseurl}}/docs/interfaces/dashboard.html#applyfilterasync).
+
+* Added support for [`Worksheet.applyRelativeDateFilterAsync()`]({{site.baseurl}}/docs/interfaces/worksheet.html#applyrelativedatefilterasync).
+
+* Starting with this release, you can now load Benton Sans fonts and Tableau fonts by default during extension initialization. You can set the Tableau and Benton Sans fonts in the style portion of your extension. To see how you can use the fonts in a dashboard extension, see the [Formatting](https://github.com/tableau/extensions-api/tree/master/Samples/Formatting?=target="_blank") sample.
+
+    ```css
+
+    body {
+        font-family: 'Benton Sans', Arial, Helvetica, sans-serif;
+      }
+    ```
+
+----
 
 ### Tableau Dashboard Extensions API version 1.8.1
 
@@ -30,8 +58,7 @@ About this release:
 
 * New versions of the JavaScript library and TypeScript types (`1.8.1`). See [Use TypeScript with the Extensions API]({{site.baseurl}}/docs/trex_typescript.html).
 
-
----
+----
 
 
 ### Tableau Dashboard Extensions API version 1.8

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>PaginationOptions | Dashboard Extensions</title>
+	<title>HierarchicalFilterDataValue | Dashboard Extensions</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="paginationoptions.html">PaginationOptions</a>
+					<a href="hierarchicalfilterdatavalue.html">HierarchicalFilterDataValue</a>
 				</li>
 			</ul>
-			<h1>Interface PaginationOptions</h1>
+			<h1>Interface HierarchicalFilterDataValue</h1>
 		</div>
 	</div>
 </header>
@@ -67,7 +67,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Option for pagination of the returned data.</p>
+						<p>A selected value in a hierarchical filter</p>
 					</div>
 				</div>
 			</section>
@@ -75,7 +75,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">PaginationOptions</span>
+						<span class="target">HierarchicalFilterDataValue</span>
 					</li>
 				</ul>
 			</section>
@@ -86,8 +86,9 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="paginationoptions.html#pagenumber" class="tsd-kind-icon">page<wbr>Number</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="paginationoptions.html#pagesize" class="tsd-kind-icon">page<wbr>Size</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="hierarchicalfilterdatavalue.html#hierarchicalpath" class="tsd-kind-icon">hierarchical<wbr>Path</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="hierarchicalfilterdatavalue.html#level" class="tsd-kind-icon">level</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="hierarchicalfilterdatavalue.html#value" class="tsd-kind-icon">value</a></li>
 							</ul>
 						</section>
 					</div>
@@ -96,33 +97,56 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="pagenumber" class="tsd-anchor"></a>
-					<h3>page<wbr>Number</h3>
-					<div class="tsd-signature tsd-kind-icon">page<wbr>Number<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<a name="hierarchicalpath" class="tsd-anchor"></a>
+					<h3>hierarchical<wbr>Path</h3>
+					<div class="tsd-signature tsd-kind-icon">hierarchical<wbr>Path<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataTableInterfaces.ts:181</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/FilterInterfaces.ts:273</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The page of data to be returned.</p>
-						</div>
+						<dl class="tsd-comment-tags">
+							<dt>returns</dt>
+							<dd><p>the path to this selected item. In the ByCategory example, the hierarchicalPath for a level 2 item could be
+								&#39;[Outdoor &amp; Sporting].[Bikes].[Kids&#39; Bikes]&#39;.</p>
+							</dd>
+						</dl>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="pagesize" class="tsd-anchor"></a>
-					<h3>page<wbr>Size</h3>
-					<div class="tsd-signature tsd-kind-icon">page<wbr>Size<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<a name="level" class="tsd-anchor"></a>
+					<h3>level</h3>
+					<div class="tsd-signature tsd-kind-icon">level<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataTableInterfaces.ts:176</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/FilterInterfaces.ts:278</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The number of rows in a page.</p>
-						</div>
+						<dl class="tsd-comment-tags">
+							<dt>returns</dt>
+							<dd><p>the level of this selected item. In the ByCategory example, the level could be 0-4.
+								For &#39;[Outdoor &amp; Sporting].[Bikes].[Kids&#39; Bikes]&#39;, the level is 2.</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="value" class="tsd-anchor"></a>
+					<h3>value</h3>
+					<div class="tsd-signature tsd-kind-icon">value<span class="tsd-signature-symbol">:</span> <a href="datavalue.html" class="tsd-signature-type">DataValue</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/FilterInterfaces.ts:268</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<dl class="tsd-comment-tags">
+							<dt>returns</dt>
+							<dd><p>the DataValue of the seleted item</p>
+							</dd>
+						</dl>
 					</div>
 				</section>
 			</section>
@@ -140,13 +164,16 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="paginationoptions.html" class="tsd-kind-icon">Pagination<wbr>Options</a>
+						<a href="hierarchicalfilterdatavalue.html" class="tsd-kind-icon">Hierarchical<wbr>Filter<wbr>Data<wbr>Value</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="paginationoptions.html#pagenumber" class="tsd-kind-icon">page<wbr>Number</a>
+								<a href="hierarchicalfilterdatavalue.html#hierarchicalpath" class="tsd-kind-icon">hierarchical<wbr>Path</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="paginationoptions.html#pagesize" class="tsd-kind-icon">page<wbr>Size</a>
+								<a href="hierarchicalfilterdatavalue.html#level" class="tsd-kind-icon">level</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="hierarchicalfilterdatavalue.html#value" class="tsd-kind-icon">value</a>
 							</li>
 						</ul>
 					</li>
@@ -226,7 +253,7 @@
                 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-        ga('create', 'UA-625217-51', '');
+        ga('create', 'UA-625217-51', 'auto');
         ga('send', 'pageview');
     </script>
 </body>

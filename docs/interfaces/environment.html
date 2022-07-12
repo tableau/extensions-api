@@ -89,6 +89,7 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="environment.html#apiversion" class="tsd-kind-icon">api<wbr>Version</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="environment.html#context" class="tsd-kind-icon">context</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="environment.html#country" class="tsd-kind-icon">country</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="environment.html#language" class="tsd-kind-icon">language</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="environment.html#locale" class="tsd-kind-icon">locale</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="environment.html#mode" class="tsd-kind-icon">mode</a></li>
@@ -137,18 +138,43 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="language" class="tsd-anchor"></a>
-					<h3>language</h3>
-					<div class="tsd-signature tsd-kind-icon">language<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="country" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> country</h3>
+					<div class="tsd-signature tsd-kind-icon">country<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/Namespaces/Environment.ts:22</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/Namespaces/Environment.ts:33</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<dl class="tsd-comment-tags">
 							<dt>returns</dt>
-							<dd><p>The language of the Tableau instance that is running the Extensions.</p>
+							<dd><p>The country of the Tableau instance that is running the Extension.
+									The country is the ISO 3166 country string represented by the user specified language.
+								If the user specified lanugage is Français (Canada), country is CA.</p>
+							</dd>
+							<dt>since</dt>
+							<dd><p>1.9.0 and Tableau 2022.2
+								If running against a Tableau version prior to 2022.2, country will be undefined.</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="language" class="tsd-anchor"></a>
+					<h3>language</h3>
+					<div class="tsd-signature tsd-kind-icon">language<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/Namespaces/Environment.ts:24</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<dl class="tsd-comment-tags">
+							<dt>returns</dt>
+							<dd><p>The language of the Tableau instance that is running the Extension.
+									The language is the ISO 639 language string of the user specified language.
+								If the user specified language is Français (Canada), language is fr.</p>
 							</dd>
 						</dl>
 					</div>
@@ -159,13 +185,16 @@
 					<div class="tsd-signature tsd-kind-icon">locale<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/Namespaces/Environment.ts:38</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/Namespaces/Environment.ts:52</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<dl class="tsd-comment-tags">
 							<dt>returns</dt>
-							<dd><p>The OS locale of the environment in which the Extensions is running.</p>
+							<dd><p>The OS locale of the environment in which the Extension is running.
+									Tableau Server supports both a language and a locale. This is the locale as
+									defined in RFC 5646 in lowercase.
+								If the user specified locale is English (United States), the locale is en-us.</p>
 							</dd>
 						</dl>
 					</div>
@@ -176,7 +205,7 @@
 					<div class="tsd-signature tsd-kind-icon">mode<span class="tsd-signature-symbol">:</span> <a href="../enums/tableau.extensionmode.html" class="tsd-signature-type">ExtensionMode</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/Namespaces/Environment.ts:43</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/Namespaces/Environment.ts:57</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -193,13 +222,13 @@
 					<div class="tsd-signature tsd-kind-icon">operating<wbr>System<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/Namespaces/Environment.ts:48</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/Namespaces/Environment.ts:62</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<dl class="tsd-comment-tags">
 							<dt>returns</dt>
-							<dd><p>The OS in which the Extensions is running.</p>
+							<dd><p>The OS in which Tableau is running.</p>
 							</dd>
 						</dl>
 					</div>
@@ -210,7 +239,7 @@
 					<div class="tsd-signature tsd-kind-icon">tableau<wbr>Version<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/Namespaces/Environment.ts:53</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/Namespaces/Environment.ts:67</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -227,7 +256,7 @@
 					<div class="tsd-signature tsd-kind-icon">workbook<wbr>Formatting<span class="tsd-signature-symbol">:</span> <a href="workbookformatting.html" class="tsd-signature-type">WorkbookFormatting</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/Namespaces/Environment.ts:33</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/Namespaces/Environment.ts:44</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -268,6 +297,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="environment.html#context" class="tsd-kind-icon">context</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="environment.html#country" class="tsd-kind-icon">country</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="environment.html#language" class="tsd-kind-icon">language</a>
@@ -365,7 +397,7 @@
                 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-        ga('create', 'UA-625217-51', '');
+        ga('create', 'UA-625217-51', 'auto');
         ga('send', 'pageview');
     </script>
 </body>
