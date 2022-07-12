@@ -1,6 +1,8 @@
 'use strict';
-let React;
-let ReactDOM;
+/* eslint-disable */
+var React;
+var ReactDOM;
+/* eslint-enable */
 
 // Wrap everything in an anonymous function to avoid polluting the global namespace
 (async () => {
