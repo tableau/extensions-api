@@ -1,6 +1,6 @@
 'use strict';
-var React;
-var ReactDOM;
+let React;
+let ReactDOM;
 
 (async () => {
 // Calls replayAnimationSync to toggle dashboard animation speed (0.5x, 1.0x, 2.0x) using ReplaySpeedType

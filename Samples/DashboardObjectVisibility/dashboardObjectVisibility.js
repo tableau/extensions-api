@@ -1,6 +1,6 @@
 'use strict';
-var React;
-var ReactDOM;
+let React;
+let ReactDOM;
 
 // Wrap everything in an anonymous function to avoid polluting the global namespace
 (async () => {
