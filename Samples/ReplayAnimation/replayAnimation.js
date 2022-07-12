@@ -1,6 +1,8 @@
 'use strict';
-let React;
-let ReactDOM;
+/* eslint-disable */
+var React;
+var ReactDOM;
+/* eslint-enable */
 
 (async () => {
 // Calls replayAnimationSync to toggle dashboard animation speed (0.5x, 1.0x, 2.0x) using ReplaySpeedType
