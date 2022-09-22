@@ -36,6 +36,7 @@ import { MarksSelectedEvent, TableauEvent, Worksheet } from '@tableau/extensions
       this._$('#worksheet-selection').prop('disabled', false);
     }
 
+    // Upon selecting marks, the worksheet will generate annotations replacing the previous ones
     private async onMarksSelectedEvent(event: TableauEvent) {
       const markSelectedEvent = event as MarksSelectedEvent;
       const worksheet = markSelectedEvent.worksheet;
@@ -68,6 +69,7 @@ import { MarksSelectedEvent, TableauEvent, Worksheet } from '@tableau/extensions
       }
     }
 
+    // This function will clear annotations and start listening for marks on the newly selected worksheet.
     private async onMenuSelection() {
       const selectedWorksheet = this.worksheets[this._$('#worksheet-selection option:selected').val() as number];
       if (this.currentWorksheet === selectedWorksheet) {
