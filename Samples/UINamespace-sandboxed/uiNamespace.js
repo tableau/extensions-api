@@ -44,11 +44,9 @@
     const dialogStyleOptions = document.getElementsByName('dialogStyleRadio');
     if (dialogStyleOptions[0].checked) {
       dialogStyle = tableau.DialogStyle.Modal;
-    }
-    else if (dialogStyleOptions[1].checked) {
+    } else if (dialogStyleOptions[1].checked) {
       dialogStyle = tableau.DialogStyle.Modeless;
-    }
-    else {
+    } else {
       dialogStyle = tableau.DialogStyle.Window;
     }
 
