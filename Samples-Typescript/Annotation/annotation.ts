@@ -24,11 +24,11 @@ import { MarksSelectedEvent, TableauEvent, Worksheet } from '@tableau/extensions
         return;
       }
       // populating selection menu with worksheets
-      for (let i = 0; i < this.worksheets.length; i++) {
-        const worksheet = this.worksheets[i];
-        this._$('#worksheet-selection').append(this._$('<option>').val(i).text(worksheet.name));
-      }
-      // selecting the first worksheet for annotation
+      this.worksheets.forEach((worksheet, index) => {
+        const menuOption = this._$('<option>').val(index).text(worksheet.name);
+        this._$('#worksheet-selection').append(menuOption);
+      });
+      // selecting the first worksheet by default
       this.currentWorksheet = this.worksheets[0];
       this.currentWorksheet.addEventListener(tableau.TableauEventType.MarkSelectionChanged, this.onMarksSelectedEvent);
       // adding functionality to selection menu
@@ -56,17 +56,16 @@ import { MarksSelectedEvent, TableauEvent, Worksheet } from '@tableau/extensions
       }
 
       // adding annotations for each of the selected marks
-      for (let i = 0; i < marksInfo.length; i++) {
-        const markInfo = marksInfo[i];
-        const rowData = dataTable.data[i];
+      marksInfo.forEach(async (markInfo, rowIndex) => {
+        // getting data values corresponding to each markInfo
+        const rowData = dataTable.data[rowIndex];
         // building annotation text
         let annotationText = '';
-        for (let j = 0; j < dataTable.columns.length; j++) {
-        // example text: "Country/Region: Canada\n"
-        annotationText += `${dataTable.columns[j].fieldName}: ${rowData[j].formattedValue}\n`;
-        }
+        dataTable.columns.forEach((column, colIndex) => {
+          annotationText += `${column.fieldName}: ${rowData[colIndex].formattedValue}\n`;
+        });
         await worksheet.annotateMarkAsync(markInfo, annotationText);
-      }
+      });
     }
 
     // This function will clear annotations and start listening for marks on the newly selected worksheet.
