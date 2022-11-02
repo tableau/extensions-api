@@ -43,7 +43,7 @@ Dashboard Authors are users that create dashboards and work directly with data i
 On dashboards, authors primarily use **[Configuration Mode](#configuration-mode)** and can access **[Viewing Mode](#viewing-mode)**.
   
 #### Dashboard Viewer
-Dashboard Viewers are users that can only use dashboards with extensions on Tableau Online. Viewers usually don't set up a workbook or extension themselves, so they don’t have editing capability over an extension’s configuration settings.
+Dashboard Viewers are users that can only use dashboards with extensions on {{site.tol}}. Viewers usually don't set up a workbook or extension themselves, so they don’t have editing capability over an extension’s configuration settings.
 
 On dashboards, viewers interact with extensions only in **[Viewing Mode](#viewing-mode)**. 
 
@@ -80,7 +80,7 @@ This dialog is only available to dashboard authors, It is primarily accessible t
 
 
 ## About Extension Dialog
-The about extension dialog exists for dashboard authors to access support and version information about the extension in the dashboard. Currently, this dialog is not available for regular dashboard viewers on Tableau Online. Learn more below at **[Configuration Mode](#configuration-mode)**
+The about extension dialog exists for dashboard authors to access support and version information about the extension in the dashboard. Currently, this dialog is not available for regular dashboard viewers on {{site.tol}}. Learn more below at **[Configuration Mode](#configuration-mode)**
 
 ![about extension dialog](imgs/2-about_dialog.png)
 
@@ -155,12 +155,12 @@ The About Extension Dialog is automatically created using the content from your 
 This mode is available to both dashboard authors and viewers. 
 
 * **Authors** have access to configuration mode and viewing mode in both Tableau Desktop and Online.
-* **Viewers** only have access to viewing mode on Tableau Online. Viewers can't access configuration and about dialogs, but can use an extension as it appears in a dashboard on Tableau Online.
+* **Viewers** only have access to viewing mode on {{site.tol}}. Viewers can't access configuration and about dialogs, but can use an extension as it appears in a dashboard on {{site.tol}}.
 
 #### Extension Container
-Viewers can only interact with dashboard extensions in Tableau Online. When viewing, there are no settings around containers or zones that viewers can access. The extension container appears just as other containers in the dashboard.
+Viewers can only interact with dashboard extensions in {{site.tol}}. When viewing, there are no settings around containers or zones that viewers can access. The extension container appears just as other containers in the dashboard.
 
-However, if viewers have permission to edit the workbook on Tableau Online or download the workbook to their local machine, they can access all of the same settings described above in **[Configuration Mode](#configuration-mode)**. 
+However, if viewers have permission to edit the workbook on {{site.tol}} or download the workbook to their local machine, they can access all of the same settings described above in **[Configuration Mode](#configuration-mode)**. 
 
 
 &nbsp;

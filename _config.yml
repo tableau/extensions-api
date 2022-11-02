@@ -5,6 +5,9 @@ description: Create extensions to extend the functionality of Tableau.
 baseurl: "/extensions-api"
 # permalink: pretty
 
+# product variables
+tol: Tableau Cloud 
+
 defaults:
   -
     scope:
@@ -12,7 +15,9 @@ defaults:
       type: pages
     values:
       layout: "default"
-      permalink: /:path/:basename:output_ext      
+      permalink: /:path/:basename:output_ext
+
+
 
 
 # Build settings
