@@ -6,7 +6,7 @@ layout: docs
 To provide security for customers, Tableau supports a type of dashboard extension that runs in a sandbox. These Sandboxed Extensions are hosted by Tableau and employ W3C standards, such as Content Security Policy (CSP), to ensure the extension can't make network calls outside of the hosting Tableau Server. This means a Sandboxed Extension can query data in the dashboard using the Extensions API, but it can't send that data anywhere outside of the sandbox. This topic provides information to help you get started creating and testing Sandboxed Extensions.
 
 
-<div class="alert alert-info"><b>Note</b> If your extension requires resources of outside services, you should not create a Sandboxed Extension. Dashboard Extensions that don't run in the sandbox environment are called Network Enabled Extensions. While Sandboxed Extensions are allowed to run by default on Tableau Server and Tableau Online, Network Enabled Extensions require server and site administrator approval and need to be added to safe list for a site.
+<div class="alert alert-info"><b>Note</b> If your extension requires resources of outside services, you should not create a Sandboxed Extension. Dashboard Extensions that don't run in the sandbox environment are called Network Enabled Extensions. While Sandboxed Extensions are allowed to run by default on Tableau Server and {{site.tol}}, Network Enabled Extensions require server and site administrator approval and need to be added to safe list for a site.
 </div>
 
 **In this section**

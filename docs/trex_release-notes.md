@@ -12,13 +12,13 @@ layout: docs
 See also: [Known Issues]({{site.baseurl}}/docs/trex_known_issues.html)
 
 
-### Tableau 2022.3
+### ### Tableau Dashboard Extensions API version 1.10.0
 
-*October 2022*
+*December 2022*
 
 * Tableau Dashboard Extensions API library: `tableau.extensions.1.9.0.js` <br>(download or clone the Extensions API repository on [GitHub](https://github.com/tableau/extensions-api){:target="_blank"}.) <br/>
 
-* Download [Tableau Desktop](https://www.tableau.com/support/releases){:target="_blank"} or [Tableau Server](https://www.tableau.com/support/releases/server){:target="_blank"}.
+* Certain features in this release are only available in Tableau 2023.4 or later. Download [Tableau Desktop](https://www.tableau.com/support/releases){:target="_blank"} or [Tableau Server](https://www.tableau.com/support/releases/server){:target="_blank"}.
 
 * To preview new features and test your extension with the latest version of Tableau in the Developer Sandbox, join the [Tableau Developer Program](http://www.tableau.com/developer){:target="_blank"} and request your own {{site.tol}} developer site.
 
