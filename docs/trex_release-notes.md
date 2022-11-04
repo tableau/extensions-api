@@ -3,22 +3,14 @@ title: Release Notes for the Tableau Extensions API
 layout: docs
 --- 
 
-**In this section**
-
-* TOC
-{:toc}
-
 ----
-See also: [Known Issues]({{site.baseurl}}/docs/trex_known_issues.html)
-
-
-### ### Tableau Dashboard Extensions API version 1.10.0
+### Tableau Dashboard Extensions API version 1.10.0
 
 *December 2022*
 
 * Tableau Dashboard Extensions API library: `tableau.extensions.1.9.0.js` <br>(download or clone the Extensions API repository on [GitHub](https://github.com/tableau/extensions-api){:target="_blank"}.) <br/>
 
-* Certain features in this release are only available in Tableau 2023.4 or later. Download [Tableau Desktop](https://www.tableau.com/support/releases){:target="_blank"} or [Tableau Server](https://www.tableau.com/support/releases/server){:target="_blank"}.
+* Certain features in this release are only available in Tableau 2022.4 or later. Download [Tableau Desktop](https://www.tableau.com/support/releases){:target="_blank"} or [Tableau Server](https://www.tableau.com/support/releases/server){:target="_blank"}.
 
 * To preview new features and test your extension with the latest version of Tableau in the Developer Sandbox, join the [Tableau Developer Program](http://www.tableau.com/developer){:target="_blank"} and request your own {{site.tol}} developer site.
 
@@ -28,7 +20,15 @@ This release contains updates for Tableau Viz, an easy way for you to add visual
 
 ![Tableau Viz v2 SVG image]({{site.baseurl }}/assets/vizapiV2.svg)
 
+----
+See also: [Known Issues]({{site.baseurl}}/docs/trex_known_issues.html)
 
+----
+
+**All Releases**
+
+* TOC
+{:toc}
 
 ----
 
