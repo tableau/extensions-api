@@ -16,15 +16,21 @@ Tableau Viz provides a lightweight method for creating visualizations in Tableau
 
 ## What you need to get started
 
-Tableau Viz is integrated with the Tableau Dashboard Extensions API. To add visualizations to your extension requires the following versions of Tableau and the Dashboard Extensions JavaScript library.
+Tableau Viz is integrated with the Tableau Dashboard Extensions API. To add visualizations to your extension requires the following versions of Tableau and the Dashboard Extensions JavaScript library. Tableau Viz version 2 introduces support for [combination charts](https://help.tableau.com/current/pro/desktop/en-us/qs_combo_charts.htm){:target="_blank"},  multiple panes, and dual-axes visualizations.
+
+Tableau Viz (version 1):
 
 * Tableau 2021.3 and later
 
 * Dashboard Extensions API library (version 1.6 and later)
 
+Tableau Viz (version 2):
+
+* Tableau 2022.3 and later
+
+* Dashboard Extensions API library (version 1.9 and later)
 
 ---
-
 
 ## The components of a Tableau Viz
 
@@ -50,8 +56,11 @@ A Tableau Viz is defined by a specification. This is the `inputSpec` that you pa
 
 * information about how to format that data (size of viz, mark type, mark color, encoding)
 
-The `inputSpec` is a structured JavaScript object. The following example shows a specification that creates a simple bar chart. In this example, the data values are statically assigned as part of the specification. In many cases, you would probably programmatically assign the values based upon mark selection in the dashboard or based on some other selection criteria.
+The `inputSpec` is a structured JavaScript object. In these examples, the data values are statically assigned as part of the specification. In many cases, you would probably programmatically assign the values based upon mark selection in the dashboard or based on some other selection criteria.
 
+The following example shows an `inputSpec` for Tableau Viz version 1. This example creates a simple bar chart.
+
+#### Example inputSpec (version 1)
 
 ```javascript
 
@@ -82,13 +91,69 @@ The `inputSpec` is a structured JavaScript object. The following example shows a
 
 ```
 
-For more information about the `inputSpec`, see [Tableau Viz Reference]({{site.baseurl}}/docs/trex_tableau_viz_ref.html).
+For Tableau Viz version 2, an `inputSpec` supports combination charts, multiple mark types in the same visualization. The following example specifies a bar chart and an area chart.
+
+
+#### Example inputSpec (version 2)
+
+```javascript
+
+    const vizInputSpec = {
+        version: 2,
+        description: 'Example QQConcat viz',
+        data: {
+          values: [
+            { Segment: 'Consumer', ShipMode: 'First Class', Category: 'Technology', Profit: 11560.75, Sales: 61089.43 },
+            { Segment: 'Corporate', ShipMode: 'First Class', Category: 'Technology', Profit: 7235.75, Sales: 39201.43 },
+            { Segment: 'Home Office', ShipMode: 'First Class', Category: 'Technology', Profit: 8706.75, Sales: 39074.43 },
+            { Segment: 'Consumer', ShipMode: 'First Class', Category: 'Office Supplies', Profit: 7734.74, Sales: 48200.43 },
+            { Segment: 'Corporate', ShipMode: 'First Class', Category: 'Office Supplies', Profit: 6299.74, Sales: 31579.43 },
+            { Segment: 'Home Office', ShipMode: 'First Class', Category: 'Office Supplies', Profit: 4366.74, Sales: 21552.43 },
+            { Segment: 'Consumer', ShipMode: 'First Class', Category: 'Furniture', Profit: 2078.74, Sales: 49880.43 },
+            { Segment: 'Corporate', ShipMode: 'First Class', Category: 'Furniture', Profit: 929.75, Sales: 35077.43 },
+            { Segment: 'Home Office', ShipMode: 'First Class', Category: 'Furniture', Profit: 58.74, Sales: 25773.43 },
+            { Segment: 'Consumer', ShipMode: 'Second Class', Category: 'Technology', Profit: 14430.75, Sales: 72942.43 },
+            { Segment: 'Corporate', ShipMode: 'Second Class', Category: 'Technology', Profit: 6819.74, Sales: 41912.43 },
+            { Segment: 'Home Office', ShipMode: 'Second Class', Category: 'Technology', Profit: 4902.75, Sales: 27366.43 },
+            { Segment: 'Consumer', ShipMode: 'Second Class', Category: 'Office Supplies', Profit: 9752.74, Sales: 71757.43 },
+            { Segment: 'Corporate', ShipMode: 'Second Class', Category: 'Office Supplies', Profit: 9809.74, Sales: 62810.43 },
+            { Segment: 'Home Office', ShipMode: 'Second Class', Category: 'Office Supplies', Profit: 7506.74, Sales: 26115.43 },
+            { Segment: 'Consumer', ShipMode: 'Second Class', Category: 'Furniture', Profit: 763.74, Sales: 86799.43 },
+            { Segment: 'Corporate', ShipMode: 'Second Class', Category: 'Furniture', Profit: 1596.74, Sales: 41403.43 },
+            { Segment: 'Home Office', ShipMode: 'Second Class', Category: 'Furniture', Profit: 1865.74, Sales: 28086.43 },
+          ],
+        },
+        vizlayout: {
+          title: 'Example QQConcat viz',
+        },
+        columns: [
+          { field: 'ShipMode', type: tableau.VizImageEncodingType.Discrete },
+          { field: 'Sales', type: tableau.VizImageEncodingType.Continuous },
+          { field: 'Profit', type: tableau.VizImageEncodingType.Continuous },
+        ],
+        rows: [{ field: 'Segment', type: tableau.VizImageEncodingType.Discrete }],
+        encodingaxis: 'columns',
+        defaultencoding: { mark: tableau.MarkType.Bar },
+        encodings: [
+          {
+           mark: tableau.MarkType.Bar,
+          },
+          {
+            mark: tableau.MarkType.Area,
+            color: { field: 'Category', type: tableau.VizImageEncodingType.Discrete, palette: { name: 'green_orange_cyan_yellow_10_0' } },
+          },
+        ],
+      };
+
+```
+
+For more information about the `inputSpec` for version 1 and version 2, see [Tableau Viz Reference]({{site.baseurl}}/docs/trex_tableau_viz_ref.html).
 
 ---
 
 ## Call createVizImageAsync
 
-After you create the `inputSpec` you pass it as an argument to the `createVizImageAsync` method. The method returns an SVG image that can be used by the extension. This example takes the `yourEmbeddedDataSpec` that was defined in the previous step, and uses that to describe the chart to create.
+After you create the `inputSpec` you pass it as an argument to the `createVizImageAsync` method. Tableau Viz version 1 and version 2 use this same process. The `createVizImageAsync` method returns an SVG image that can be used by the extension. This example takes the `yourEmbeddedDataSpec` that was defined in the previous step, and uses that to describe the chart to create.
   
  ```javascript
  tableau.extensions.createVizImageAsync(yourEmbeddedDataSpec).then((svg) => {
@@ -118,21 +183,32 @@ The asynchronous method returns an SVG image as the promise. Here is one way of 
             });
 
 ```
- 
-Tableau renders an image that looks something like this:
 
+Tableau renders an image that looks something like this (version 1):
 
 ![Tableau Viz SVG image]({{site.baseurl }}/assets/vizapi_demo3.svg)
 
+---
 
 
-----
+
+---
+
+The following shows what a version 2 `inputSpec` looks like when rendered by the `createVizImageAsync` method.  
+
+![Tableau Viz v2 SVG image]({{site.baseurl }}/assets/vizapiV2.svg)
+
+---
+
+<br/>
+
+---
   
 ## What's next?
 
 Now that you have seen the basic steps for adding a Tableau Viz to a dashboard extension, you can try adding Tableau Viz to your own dashboard extensions, or to one of the samples.
 
-* For information about the Tableau Viz `inputSpec` and all the options for specifying the visualization, see [Tableau Viz Reference]({{site.baseurl}}/docs/trex_tableau_viz_ref.html).
+* For information about the Tableau Viz version 1 and version 2 `inputSpec` and all the options for specifying the visualization, see [Tableau Viz Reference]({{site.baseurl}}/docs/trex_tableau_viz_ref.html).
 
 * Review the [`tableau.extensions.createVizImageAsync`]({{site.baseurl}}/docs/interfaces/extensions.html#createvizimageasync){:target="_blank"} method for information about the API.
 
@@ -142,7 +218,7 @@ Now that you have seen the basic steps for adding a Tableau Viz to a dashboard e
 
 ## Troubleshoot Tableau Viz images in dashboard extensions
 
-You can use the same tools that you use to debug dashboard extensions to debug problems that occur when you use Tableau Viz to create images. For information about debugging your extension, see [Debug Extensions in Tableau Desktop](https://tableau.github.io/extensions-api/docs/trex_debugging.html){:target="_blank"} and [Debug Extensions in Tableau Server and Tableau Online](https://tableau.github.io/extensions-api/docs/trex_debug_server.html){:target="_blank"}.
+You can use the same tools that you use to debug dashboard extensions to debug problems that occur when you use Tableau Viz to create images. For information about debugging your extension, see [Debug Extensions in Tableau Desktop](https://tableau.github.io/extensions-api/docs/trex_debugging.html){:target="_blank"} and [Debug Extensions in Tableau Server and {{site.tol}}](https://tableau.github.io/extensions-api/docs/trex_debug_server.html){:target="_blank"}.
 
 
 

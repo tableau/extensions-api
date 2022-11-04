@@ -22,7 +22,7 @@ This section will take you through the process of setting up your environment to
 
 ----
 *What's in a Tableau extension? <br/>
-A Tableau extension consists of a manifest file (`.trex`), a web page that uses a Tableau-provided JavaScript library, and the JavaScript file (or files) that contain your extension logic. The Tableau extensions are supported on Tableau Desktop, Tableau Server, and Tableau Online.*
+A Tableau extension consists of a manifest file (`.trex`), a web page that uses a Tableau-provided JavaScript library, and the JavaScript file (or files) that contain your extension logic. The Tableau extensions are supported on Tableau Desktop, Tableau Server, and {{site.tol}}.*
 
 ---
 
@@ -42,10 +42,10 @@ Requirements for using dashboard extensions in Tableau:
 
 * Tableau Desktop 2018.2 and later
 * Tableau Server 2018.2 and later
-* Tableau Online
+* {{site.tol}}
 
-To run extensions on Tableau Server or Tableau Online, support for extensions must be enabled, and depending upon the extension and the data access it requires, the extension might need to be added to the safe list for the site. See
- [Manage Dashboard Extensions on Tableau Server](https://onlinehelp.tableau.com/current/server/en-us/dashboard_extensions_server.htm) or [Manage Dashboard Extensions on Tableau Online](https://onlinehelp.tableau.com/current/online/en-us/dashboard_extensions_server.htm) for more information.
+To run extensions on Tableau Server or {{site.tol}}, support for extensions must be enabled, and depending upon the extension and the data access it requires, the extension might need to be added to the safe list for the site. See
+ [Manage Dashboard Extensions on Tableau Server](https://onlinehelp.tableau.com/current/server/en-us/dashboard_extensions_server.htm) or [Manage Dashboard Extensions on {{site.tol}}](https://onlinehelp.tableau.com/current/online/en-us/dashboard_extensions_server.htm) for more information.
 
 ----
 
@@ -181,4 +181,4 @@ You can add multiple instances of an extension to a dashboard or to multiple das
 
 * To get familiar with the programming interface for the Extensions API, see the <a href="{{site.baseurl}}/docs/index.html" target="_blank">API Reference</a>.
 
-* For information about debugging your extension, see [Debug Extensions in Tableau Desktop]({{site.baseurl}}/docs/trex_debugging.html) and [Debug Extensions in Tableau Server and Tableau Online]({{site.baseurl}}/docs/trex_debug_server.html).
+* For information about debugging your extension, see [Debug Extensions in Tableau Desktop]({{site.baseurl}}/docs/trex_debugging.html) and [Debug Extensions in Tableau Server and {{site.tol}}]({{site.baseurl}}/docs/trex_debug_server.html).

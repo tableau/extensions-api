@@ -3,13 +3,34 @@ title: Release Notes for the Tableau Extensions API
 layout: docs
 --- 
 
-**In this section**
+----
+### Tableau Dashboard Extensions API version 1.10.0
+
+*December 2022*
+
+* Tableau Dashboard Extensions API library: `tableau.extensions.1.9.0.js` <br>(download or clone the Extensions API repository on [GitHub](https://github.com/tableau/extensions-api){:target="_blank"}.) <br/>
+
+* Certain features in this release are only available in Tableau 2022.4 or later. Download [Tableau Desktop](https://www.tableau.com/support/releases){:target="_blank"} or [Tableau Server](https://www.tableau.com/support/releases/server){:target="_blank"}.
+
+* To preview new features and test your extension with the latest version of Tableau in the Developer Sandbox, join the [Tableau Developer Program](http://www.tableau.com/developer){:target="_blank"} and request your own {{site.tol}} developer site.
+
+About this release:
+
+This release contains updates for Tableau Viz, an easy way for you to add visualizations to your dashboard extensions using a declarative description. This release includes support for combination charts, charts with multiple mark types in the same visualization. Tableau Viz has a new input specification that support these new visualizations, see the [Tableau Viz v2 inputSpec]({{site.baseurl}}/docs/trex_tableau_viz_ref_v2.html). For information about using Tableau Viz in your extensions, see [Add Tableau Viz to your Dashboard Extensions]({{site.baseurl}}/docs/trex_tableau_viz.html).
+
+![Tableau Viz v2 SVG image]({{site.baseurl }}/assets/vizapiV2.svg)
+
+----
+See also: [Known Issues]({{site.baseurl}}/docs/trex_known_issues.html)
+
+----
+
+**All Releases**
 
 * TOC
 {:toc}
 
 ----
-See also: [Known Issues]({{site.baseurl}}/docs/trex_known_issues.html)
 
 ### Tableau Dashboard Extensions API version 1.9.0
 
@@ -19,7 +40,7 @@ See also: [Known Issues]({{site.baseurl}}/docs/trex_known_issues.html)
 
 * Download [Tableau Desktop](https://www.tableau.com/support/releases){:target="_blank"} or [Tableau Server](https://www.tableau.com/support/releases/server){:target="_blank"}.
 
-* To preview new features and test your extension with the latest version of Tableau in the Developer Sandbox, join the [Tableau Developer Program](http://www.tableau.com/developer){:target="_blank"} and request your own Tableau Online developer site.
+* To preview new features and test your extension with the latest version of Tableau in the Developer Sandbox, join the [Tableau Developer Program](http://www.tableau.com/developer){:target="_blank"} and request your own {{site.tol}} developer site.
 
 About this release:
 
@@ -48,7 +69,7 @@ About this release:
 
 * Download [Tableau Desktop 2021.4](https://www.tableau.com/support/releases){:target="_blank"} or [Tableau Server 2021.4](https://www.tableau.com/support/releases/server){:target="_blank"}.
 
-* To preview new features and test your extension with the latest version of Tableau in the Developer Sandbox, join the [Tableau Developer Program](http://www.tableau.com/developer){:target="_blank"} and request your own Tableau Online developer site.
+* To preview new features and test your extension with the latest version of Tableau in the Developer Sandbox, join the [Tableau Developer Program](http://www.tableau.com/developer){:target="_blank"} and request your own {{site.tol}} developer site.
 
 About this release:
 
@@ -67,11 +88,13 @@ About this release:
 
 * Tableau Dashboard Extensions API library: `tableau.extensions.1.8.0.js` <br>(download or clone the Extensions API repository on [GitHub](https://github.com/tableau/extensions-api){:target="_blank"}.) <br/>
 
-* Certain features in this release are only available in Tableau 2021.4 or later. Preview the features and test your extension with the latest version of Tableau in the Developer Sandbox. To gain access to the Developer Sandbox, join the [Tableau Developer Program](http://www.tableau.com/developer){:target="_blank"} and request your own Tableau Online developer site.
+* Certain features in this release are only available in Tableau 2021.4 or later. Preview the features and test your extension with the latest version of Tableau in the Developer Sandbox. To gain access to the Developer Sandbox, join the [Tableau Developer Program](http://www.tableau.com/developer){:target="_blank"} and request your own {{site.tol}} developer site.
 
 About this release:
 
 This release contains updates for [Tableau Viz]({{site.baseurl}}/docs/trex_tableau_viz.html){:target="_blank"}, including:
+
+
 
 * Added support for setting the size of a bar mark to be manual (`VizImageSizeSettingType.Manual`) or fixed (`VizImageSizeSettingType.Fixed`). If the type is manual, you can set the mark’s size. If the type is fixed, you can set the alignment (`VizImageSizeSettingAlignmentType`).
 
@@ -113,7 +136,7 @@ For more information, see [Tableau Viz Reference]({{site.baseurl}}/docs/trex_tab
 
 * Tableau Dashboard Extensions API library: `tableau.extensions.1.7.0.js` <br>(download or clone the Extensions API repository on [GitHub](https://github.com/tableau/extensions-api){:target="_blank"}.) <br/>
 
-* Certain features in this release are only available in Tableau 2021.4 or later. Preview the features and test your extension with the latest version of Tableau in the Developer Sandbox. To gain access to the Developer Sandbox, join the [Tableau Developer Program](http://www.tableau.com/developer){:target="_blank"} and request your own Tableau Online developer site.
+* Certain features in this release are only available in Tableau 2021.4 or later. Preview the features and test your extension with the latest version of Tableau in the Developer Sandbox. To gain access to the Developer Sandbox, join the [Tableau Developer Program](http://www.tableau.com/developer){:target="_blank"} and request your own {{site.tol}} developer site.
 
 About this release:
 
@@ -386,7 +409,7 @@ Bugs fixed in this release:
 
 New in this release:
 
-- Updated documentation. [Getting Started]({{site.baseurl}}/docs/trex_getstarted.html), [Create a "Hello World" Dashboard Extension]({{site.baseurl}}/docs/trex_create.html), <br/>[Debugging Extensions on Tableau Desktop]({{site.baseurl}}/docs/trex_debugging.html), [Debugging Extensions on Tableau Server and Tableau Online]({{site.baseurl}}/docs/trex_debug_server.html), [Error Codes and Error Handling for Extensions]({{site.baseurl}}/docs/trex_error_handling.html). 
+- Updated documentation. [Getting Started]({{site.baseurl}}/docs/trex_getstarted.html), [Create a "Hello World" Dashboard Extension]({{site.baseurl}}/docs/trex_create.html), <br/>[Debugging Extensions on Tableau Desktop]({{site.baseurl}}/docs/trex_debugging.html), [Debugging Extensions on Tableau Server and {{site.tol}}]({{site.baseurl}}/docs/trex_debug_server.html), [Error Codes and Error Handling for Extensions]({{site.baseurl}}/docs/trex_error_handling.html). 
 
 ---
 
@@ -405,7 +428,7 @@ New in this release:
 - Create extensions with the look-and-feel of Tableau, using the [Tableau UI](https://tableau.github.io/tableau-ui/){:target="_blank"}, a React component library.  
 
 - New and updated documentation. See [Publishing a Dashboard Extension]({{site.baseurl}}/docs/trex_publish.html). <br/>
-For information about developing and running an extension locally on `http://localhost` and testing it on Tableau Online or Tableau Server (over HTTPS), see [Load and view localhost content on sites that use secure connections]({{site.baseurl}}/docs/trex_security.html#load-and-view-localhost-content-on-sites-that-use-secure-connections).
+For information about developing and running an extension locally on `http://localhost` and testing it on {{site.tol}} or Tableau Server (over HTTPS), see [Load and view localhost content on sites that use secure connections]({{site.baseurl}}/docs/trex_security.html#load-and-view-localhost-content-on-sites-that-use-secure-connections).
 
 Bugs fixed in this release:
 
