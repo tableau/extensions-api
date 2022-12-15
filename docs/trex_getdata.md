@@ -3,8 +3,7 @@ title: Get Data from the Dashboard
 layout: docs
 ---
 
-The Extensions API provides methods that you can use to access the data in a dashboard.
-The data you can access includes the summary or aggregated data, that is, the data visible in the worksheet, and also to the underlying data (or full data), which can include data from all fields and tables in the data source. If your extension needs to access the full data, there are security implications and your extension needs to declare its intent, so that users of your extension can choose to allow or deny the extension access. See  [Accessing Underlying Data]({{ site.baseurl }}/docs/trex_data_access.html) for more information.
+The Dashboard Extensions API provides methods that you can use to access the data in a dashboard. The data you can access includes the summary or aggregated data, and also the underlying data (or full data). If your extension needs to access the full data, there are security implications and your extension needs to declare its intent, so that users of your extension can choose to allow or deny the extension access. See  [Accessing Underlying Data]({{ site.baseurl }}/docs/trex_data_access.html) for more information.
 
 <div class="alert alert-info"><p><b>Note</b> Tableau 2020.2 introduced a new data model. To support that model, the Extensions API provides new methods and data structures starting with version 1.4 of the Extensions API library. In the new data model, a data source could have multiple logical tables, and logical tables can contain one or more physical tables. If you have an existing extension that uses one of the deprecated methods to get underlying data, the method call could fail if the data source contains more than one logical table. You should update your extensions to use these new methods. The new methods are backward compatible with previous versions of Tableau.
 
@@ -25,20 +24,22 @@ The Extensions API provides several methods for accessing data from a dashboard.
 
 | Method | Tableau Version | Extensions API Library | Status |
 |:------ | :---------------| :--------------------- |
-| `Worksheet.getSummaryDataAsync()` | Tableau 2018.2 and later | version 1.1 and later | Current |
+| `Worksheet.getSummaryDataReaderAsync()` | Tableau 2022.4 and later |  version 1.10 and later | Current |
+| `Worksheet.getSummaryDataAsync()` | Tableau 2018.2 and later | version 1.1 and later | Deprecated |
 | `Worksheet.getUnderlyingDataAsync()` | Tableau 2018.2 to 2020.1 | version 1.1 to 1.3 | Deprecated |
-| `Worksheet.getUnderlyingTablesAsync` | Tableau 2018.2 and later | version 1.4 and later | Current |
-| `Worksheet.getUnderlyingTableDataAsync` | Tableau 2018.2 and later | version 1.4 and later | Current |
+| `Worksheet.getUnderlyingTablesAsync()` | Tableau 2018.2 and later | version 1.4 and later | Current |
+| `Worksheet.getUnderlyingTableDataAsync()` | Tableau 2018.2 and later | version 1.4 and later | Current |
+| `Worksheet.getUnderlyingTableDataReaderAsync()` | Tableau 2022.4 and later |  version 1.10 and later | Current |
 
-The data is returned in a `DataTable` object. The object contains the columns and data values, and information about the data, whether it is underlying or summary data, and in the case of underlying data, whether there is more data than can be returned.
+The data is returned in a `DataTable` object. The `getSummaryDataReaderAsync` and `getUnderlyingTableDataReaderAsync` methods return a `DataTableReader` object, which you can use to return the pages of `DataTable` objects.  The `DataTable` object contains the columns and data values, and information about the data, whether it is underlying or summary data, and in the case of underlying data, whether there is more data than can be returned.
 
-Starting in Tableau 2020.2, with the introduction of the new data model and logical tables, you need to use the `Worksheet.getUnderlyingTablesAsync` method to first return the array of `LogicalTable` objects. The `LogicalTable` objects returned are determined by the measures in the worksheet.
+Starting in Tableau 2020.2, with the introduction of the new data model and logical tables, you need to use the `Worksheet.getUnderlyingTablesAsync` method to first return the array of `LogicalTable` objects. The `LogicalTable` objects returned are determined by the measures in the worksheet. The `LogicalTable` objects correspond to the tables shown in the default view on the **Data Source** page in Tableau. These tables make up the *logical layer*. You can retrieve the underlying or logical data from each `LogicalTable` in the worksheet or data source.
 
 | Object/Property| Description |
 | :------------  | :---------- |
 | `LogicalTable` |  Object that represents a logical table in a data source, or logical table used in a worksheet |
 | `LogicalTable.caption`  | The name of the logical table as it appears in Tableau. |
-| `LogicalTable.id`       | The identifier used to specify the logical table. Use this value to call `getUnderlyingTableDataAsync`. |
+| `LogicalTable.id`       | The identifier used to specify the logical table. Use this value to call `getUnderlyingTableDataAsync` or `getUnderlyingTableDataReaderAsync`. |
 
 You can also get the data from the selected marks in the worksheet, or the marks that are currently highlighted in the worksheet. The following two functions return a `MarksCollection`, which is an array of `DataTable` objects.
 
@@ -72,15 +73,53 @@ After you have a worksheet object, you can call one of the methods to access the
 
 ## Get summary data from a worksheet
 
+Starting with Tableau 2022.4 and the Dashboard Extensions API library v1.10, you should use the `getSummaryDataReaderAsync()` method to get data from a worksheet. This method returns a `DataTableReader` object that you can use to access the data.
+
+If your summary data is less than 4,000,000 rows (400 pages), you can use the `DataTableReader.getAllPagesAsync()` method to retrieve a single `DataTable` from the `DataTableReader`. The following example shows how to do this.
+
 ```javascript
 
+// Use `await` only inside an `async` method
+
+let vizActiveSheet = viz.workbook.activeSheet;
+if (vizActiveSheet.sheetType === "worksheet") {
+  const dataTableReader = await vizActiveSheet.getSummaryDataReaderAsync();
+  const dataTable = await dataTableReader.getAllPagesAsync();
+  await dataTableReader.releaseAsync();
+  // ... process data table ...
+}
+
+```
+
+If your summary data contains more than 4,000,000 rows (or 400 pages), use the summary `DataTableReader` to iterate through the pages of data for all rows in the worksheet. In this case, you process each `DataTable` sequentially. You can control the page size, using the optional `pageRowCount` parameter when you call `getSummaryDataReaderAsync`. The default page size is 10,000 rows. Using the `DataTableReader` you can create a loop to retrieve each page of summary data, using `DataTableReader.pageCount` or `DataTableReader.totalRowCount` property to determine the number of pages to process. Use the `getPageAsync` method to get the `DataTable` from each page. After you have retrieved all pages of the summary data, call the `releaseAsync` method to free up memory from the `DataTableReader`.
+
+```javascript
+
+// Use `await` only inside an `async` method
+
+let vizActiveSheet = viz.workbook.activeSheet;
+if (vizActiveSheet.sheetType === "worksheet") {
+    const dataTableReader = await vizActiveSheet.getSummaryDataReaderAsync();
+    for (let currentPage = 0; currentPage < dataTableReader.pageCount; currentPage++) {
+        const dataTablePage = await dataTableReader.getPageAsync(currentPage);
+        // ... process current page ....
+    }
+    // free up resources
+    await dataTableReader.releaseAsync();
+}
+
+```
+
+#### Deprecated method
+
+Prior to Tableau 2022.4 and the Dashboard Extensions API library v1.10, you would use the `getSummaryDataAsync` method. This method could fail if there is a large amount of summary data. Use the `getSummaryDataReaderAsync` method if you can instead.
+
+```javascript
  // get the summary data for the sheet
  worksheet.getSummaryDataAsync().then(function (sumdata) {
-
   const worksheetData = sumdata;
   // The getSummaryDataAsync() method returns a DataTable
   // Map the DataTable (worksheetData) into a format for display, etc.
-
  });
 
 ```
@@ -95,7 +134,7 @@ Starting in Tableau 2020.2, and using version 1.4 of the Extensions API v1.4 lib
 
 ### Get full data using the v1.4 library (and later)
 
-Starting in Tableau 2020.2 and later, where the underlying data could include multiple logical tables, you first need to identify the logical table (or tables) you want data from. In previous versions of Tableau, logical tables did not exist. When you use the `getUnderlyingTablesAsync` in Tableau 2020.1 and earlier, the method returns a single table. You can use this single table identifier to call `getUnderlyingTablesAsync`.
+Starting in Tableau 2020.2 and later, where the underlying data could include multiple logical tables, you first need to identify the logical table (or tables) you want data from. In previous versions of Tableau, logical tables did not exist. When you use the `getUnderlyingTablesAsync` in Tableau 2020.1 and earlier, the method returns a single table. You can use this single table identifier to call `getUnderlyingTableDataAsync` and `getUnderlyingTableDataReaderAsync`.
 
 #### 1. Get the logical table(s) using getUnderlyingTablesAsync()
 
@@ -112,14 +151,19 @@ worksheet.getUnderlyingTablesAsync().then(logicalTables => {
   const logicalTableId = logicalTables[0].id;
 
   // Use the logicalTableId to then get worksheet's underlying data
-  // by calling worksheet.getUnderlyingTableDataAsync(logicalTableId)
+  // by calling worksheet.getUnderlyingTableDataAsync(logicalTableId) or
+  // worksheet.getUnderlyingTableDataReaderAsync(logicalTableId)
 
 });
 
 
 ```
 
-#### 2. Get data from the logical table(s) using getUnderlyingTableDataAsync()
+#### 2a. Get data from the logical table(s) (less than 10,000 rows)
+
+If the data doesn't contain more than 10,000 rows, you can use the `getUnderlyingTableDataAsync` method to get data from a worksheet.
+
+Using the `logicalTable.id`, you call the `getUnderlyingTableDataAsync` method to return a `DataTable` containing the underlying data (up to 10,000 rows) for the logical table. Repeat this step for each logical table.
 
 The following example returns data for the first logical table that is used by a worksheet called *"Sale Map"*.  
 
@@ -133,6 +177,51 @@ The following example returns data for the first logical table that is used by a
  });
 
 ```
+
+You can specify the number of rows of data to return by setting `GetUnderlyingDataOptions.maxRows` property. If unspecified (`maxRows == '0'`), the call to `getUnderlyingTableDataAsync` requests all rows in the logical table. Note that the maximum number of rows returned from the `getUnderlyingTableDataAsync` method is limited to 10,000 rows. You can use the `DataTable` property, `isTotalRowCountLimited`, to test whether there is more data. A value of true indicates that the calling function requested more rows than the limit (10,000) and the underlying data source contains more rows than can be returned. If the data contains more than 10,000 rows, use `getUnderlyingTableDataReaderAsync` method instead.
+
+
+#### 2b. Get data from the logical table(s) (more than 10,000 rows)
+
+Starting with Tableau 2022.4 and the Dashboard Extensions API library v1.10, if the data contains more than 10,000 rows, use the `getUnderlyingTableDataReaderAsync` method to get data from a worksheet. In this case, you create a `DataTableReader` to iterate through the pages of data. You process each `DataTable` sequentially. You can control the page size, using the optional `pageRowCount` parameter when you call `getUnderlyingTableDataReaderAsync`. The default page size is 10,000 rows.
+
+The basic steps are as follows:
+
+1. Using the `logicalTable.id`, call the `getUnderlyingTableDataReaderAsync` method to create the `DataTableReader`.
+
+1. Create a loop to retrieve each page of underlying data, using `DataTableReader.pageCount` or `DataTableReader.totalRowCount` property of the `DataTableReader` to determine the number of pages to process.
+
+1. Use the `getPageAsync` method to get the DataTable from each page.
+
+1. After you have retrieved all pages of the summary data, call the `releaseAsync()` method to free up memory from the `DataTableReader`.
+
+```javascript
+
+// assumes this code is in an async method
+
+const worksheet = tableau.extensions.dashboardContent.dashboard.worksheets.find(w => w.name === "Sale Map");
+// Call to get the underlying logical tables used by the worksheet
+const underlyingTablesData = await worksheet.getUnderlyingTablesAsync();
+const logicalTableId = underlyingTablesData[0].id;
+// Use the above logicalTableId to get the underlying data reader on the active sheet
+const dataTableReader = await worksheet.getUnderlyingTableDataReaderAsync(logicalTableId);
+// loop through the pages
+const pageNumber = 0;
+while (pageNumber < dataTableReader.pageCount) {
+  let currentPageDataTable = await dataTableReader.getPageAsync(pageNumber);
+  // process page ...
+  console.log(currentPageDataTable);
+  pageNumber++;
+}
+// free up resources
+await pageReader.releaseAsync();
+
+```
+
+The `getUnderlyingTableDataReaderAsync` method attempts to prepare all the rows of the table to be read as pages. There is a limit to the number of rows that can be prepared to conserve computing resources. The default limit is 1 million rows of data. You can change this default row limit with the Tableau Server, {{site.tol}}, or Tableau Desktop option: `ExtensionsAndEmbeddingReaderRowLimit`. For Tableau Desktop, you can set this with a command line option **`-DExtensionsAndEmbeddingReaderRowLimit=`***value*.
+
+If the underlying table has many columns, `getUnderlyingTableDataReaderAsync` can be sped up by only requesting native data values (`IncludeDataValuesOption.OnlyNativeValues`) in the `GetUnderlyingDataOptions`.
+
 ---
 
 ### Deprecated: Get full data (library v1.3 and earlier)
@@ -144,7 +233,8 @@ If you want your extension to work in all versions of Tableau, you should use th
 
 ```javascript
 
-// the following example uses the Superstore workbook and gets the underlying data // for a specific worksheet.
+// the following example uses the Superstore workbook and gets the underlying data 
+// for a specific worksheet.
 // The example writes the values for a single column (states names) to the console.
 tableau.extensions.dashboardContent.dashboard.worksheets.find(w => w.name === "Sale Map").getUnderlyingDataAsync().then(dataTable => {
   let field = dataTable.columns.find(column => column.fieldName === "State");
@@ -156,8 +246,9 @@ tableau.extensions.dashboardContent.dashboard.worksheets.find(w => w.name === "S
   console.log(values)
 });
 
-
 ```
+
+---
 
 # Get data from a data source 
 
@@ -174,6 +265,7 @@ Just like worksheet methods that access full data, the following methods for the
 | `Datasource.getUnderlyingDataAsync()` | Tableau 2018.2 to 2020.1 | version 1.1 to 1.3 | Deprecated |
 | `Datasource.getLogicalTablesAsync()` | Tableau 2018.2 and later | version 1.4 and later | Current |
 | `Datasource.getLogicalTableDataAsync()` | Tableau 2018.2 and later | version 1.4 and later | Current |
+| `Datasource.getLogicalTableDataReaderAsync()` | Tableau 2022.4 and later | version 1.10 and later | Current |
 
 
 
@@ -188,7 +280,6 @@ tableau.extensions.dashboardContent.dashboard.worksheets.find(w => w.name === "S
   // return dataSource for further processing
 });
 
-
 ```
 
 ## Get full data from a worksheet using the v1.4 library (and later)
@@ -199,7 +290,7 @@ After you have the data source object, you can query the data source for the und
 
 The first step in getting the underlying data is to call the `Datasource.getLogicalTablesAsync` method to return the array of `LogicalTable` objects.
 
-To get the underlying data for each logical table, use the `LogicalTable.id` property of the table to call `Datasource.getLogicalTableDataAsync()`. Note that when you use the `getLogicalTablesAsync` in Tableau 2020.1 and earlier, the method will only return a single table, and that table uses  `single-table-id-sentinel` as the `LogicalTable.id`.
+To get the underlying data for each logical table, use the `LogicalTable.id` property of the table to call `Datasource.getLogicalTableDataAsync()`. Note that when you use the `getLogicalTablesAsync` in Tableau 2020.1 and earlier, the method will only return a single table, and that table uses the `single-table-id-sentinel` as the `LogicalTable.id`.
 
 Example using a single table:
 
@@ -216,7 +307,6 @@ dataSource.getLogicalTablesAsync().then(logicalTables => {
 
 });
 
-
 ```
 
 Example that writes the names of all the logical tables in the data source to the console:
@@ -231,14 +321,15 @@ dataSource.getLogicalTablesAsync().then(logicalTables => {
     });
 });
 
-
 ```
 
-#### 2. Get data from the logical table(s) using getLogicalTableDataAsync()
+#### 2a. Get data from the logical table(s) for less than 10,000 rows
 
-After you have identified the logical tables you want, use the `LogicalTable.id` property of the table to call `Datasource.getLogicalTableDataAsync()`
+If the data doesn't contain more than 10,000 rows, you can use the `getLogicalTableDataAsync` method to get data from a data source.
+
+After you have identified the logical tables you want, use the `LogicalTable.id` property of the table to call `Datasource.getLogicalTableDataAsync()`. You can then process the data for that logical table.  
+
 The following example returns the column names of the first logical table that is in the data source.  
-
 
 ```javascript
 
@@ -256,6 +347,36 @@ The following example returns the column names of the first logical table that i
 
 ```
 
+#### 2b. Get data from the logical table(s) for more than 10,000 rows
+
+Starting with Tableau 2022.4 and the Dashboard Extensions API library v1.10, if the data contains more than 10,000 rows, use the `getLogicalTableDataReaderAsync` method to get data from a data source. In this case, you create a `DataTableReader` to iterate through the pages of data for all rows in the worksheet. You process each `DataTable` sequentially. You can control the page size, using the optional `pageRowCount` parameter when you call `getLogicalTableDataReaderAsync`. The default page size is 10,000 rows.
+
+The basic steps are as follows:
+
+Using the `logicalTable.id`, call the `getLogicalTableDataReaderAsync` method to create the `DataTableReader`.
+Create a loop to retrieve each page of logical data, using `DataTableReader.pageCount` or `DataTableReader.totalRowCount` property of the summary `DataTableReader` to determine the number of pages to process. Use the `getPageAsync()` method to get the `DataTable` from each page. After you have retrieved all pages of the  data, call the `releaseAsync()` method to free up memory from the `DataTableReader`.
+
+```javascript
+
+// assumes this code is in an async method
+
+const pageRowCount = 1000;  // default is 10,000
+const dataSources = await worksheet.getDataSourcesAsync();
+const dataSource = dataSources.find(datasource => datasource.name === "Sample - Superstore");
+const logicalTables = await dataSource.getLogicalTablesAsync()
+const dataTableReader = await dataSource.getLogicalTableDataReaderAsync(logicalTables[0].id, pageRowCount);
+   
+const pageNumber = 0;
+   while (pageNumber < dataTableReader.pageCount) {
+      let currentPageDataTable = await dataTableReader.getPageAsync(pageNumber);
+      // process page ...
+      console.log(currentPageDataTable);
+      pageNumber++;
+    }
+// release resources
+await pageReader.releaseAsync();
+
+```
 
 ## Deprecated: Get data from a data source using the v1.3 library (and earlier)
 
@@ -278,21 +399,26 @@ tableau.extensions.dashboardContent.dashboard.worksheets.find(w => w.name === "S
 
 # Compatibility: methods for accessing underlying data
 
-To support the data model that was introduced in Tableau 2020.2, where a data source can have logical tables, the Tableau Dashboard Extensions API provides new methods for getting data. The new methods are available starting with version 1.4 of the Extensions API library. The following table shows the compatibility between the methods and the different versions of the Extensions API library and Tableau.
+To support the data model that was introduced in Tableau 2020.2, where a data source can have logical tables, the Tableau Dashboard Extensions API provides new methods for getting data. The new methods are available starting with version 1.4 of the Extensions API library. Starting with version 1.10 of the library, there are new methods that provide pagination using a `DataTableReader`.  The following table shows the compatibility between the methods and the different versions of the Extensions API library and Tableau.
 
-If you have an existing Dashboard Extension that accesses underlying data, and you want your extension to work with Tableau 2020.2 or later, you should upgrade to version 1.4 of the library
+If you have an existing Dashboard Extension that accesses underlying data, and you want your extension to work with Tableau 2020.2 or later, you should upgrade to the latest version of the library supported by your version of Tableau.
 
 | Methods |  API Version | Tableau 2020.1 and earlier  | Tableau 2020.2 (single logical table) | Tableau 2020.2 (multiple logical tables) |
 | :-------- | :---------- | :---------- | :--------- | :-------- |
 | `Datasource.getUnderlyingDataAsync` `Worksheet.getUnderlyingDataAsync` | v1.3 and earlier | Works as expected | Works, column order will be different | Fails with an exception: Not Supported (2) |
 | `Datasource.getUnderlyingDataAsync` `Worksheet.getUnderlyingDataAsync` | v1.4  | Works as expected | Works, column order will be different | Fails with an exception: Not Supported (2) |
 | `Datasource.getLogicalTablesAsync` `Datasource.getLogicalTableDataAsync` `Worksheet.getUnderlyingTablesAsync` `Worksheet.getUnderlyingTableDataAsync` | v1.4 and earlier | Works, maps to existing commands  | Works, column order will be different | Works as expected |
+| `Datasource.getLogicalTableDataReaderAsync`, `Worksheet.getUnderlyingTableDataReaderAsync`  | v1.10 and later | -- | -- | Works as expected |
 
 ---
 
 # When there is more data than can be returned
 
-Some data sources can be very large and could contain thousands and thousands of rows. To minimize the impact of requests for data on Tableau performance, the `getUnderlyingDataAsync()`, `Worksheet.getUnderlyingTableDataAsync()`, and `Datasource.getLogicalTableDataAsync` methods are currently limited to returning 10,000 rows. If the method can't return the full number of rows in your data, the `DataTable` property `isTotalRowCountLimited` is set to TRUE. You can use this property to test whether there is more data than can be returned. Note that the limits do not apply to `getSummaryDataAsync()`.
+Some data sources can be very large and could contain thousands and thousands of rows. To minimize the impact of requests for data on Tableau performance, the `getUnderlyingDataAsync()`, `Worksheet.getUnderlyingTableDataAsync()`, and `Datasource.getLogicalTableDataAsync` methods are currently limited to returning 10,000 rows. If the method can't return the full number of rows in your data, the `DataTable` property `isTotalRowCountLimited` is set to TRUE. You can use this property to test whether there is more data than can be returned.
+
+If there are more than 10,000 rows of data, use one of the pagination methods, `Datasource.getLogicalTableDataReaderAsync`, `Worksheet.getUnderlyingTableDataReaderAsync`. These methods return a `DataTableReader` that you can use to page through and retrieve the data.  
+
+Note that the limits do not apply to `getSummaryDataAsync()`. The `getSummaryDataAsync()` method could fail if there is a very large amount of summary data. You should use `getSummaryDataReaderAsync()` instead, the method is available starting with Tableau 2022.4 and the version 1.10 library.
 
 The following table illustrates what happens to calls to `getUnderlyingDataAsync()`, `Worksheet.getUnderlyingTableDataAsync()`, and `Datasource.getLogicalTableDataAsync()` for various sizes of data (shown as **Data Rows**).
 
@@ -323,7 +449,8 @@ The following table illustrates what happens to calls to `getUnderlyingDataAsync
 
 When an extension needs full data access and the user does not have full data permission on the workbook, Tableau currently allows the extension to run, but Tableau will call the promise failure function if the extension calls `getUnderlyingData()`, `Worksheet.getUnderlyingTableDataAsync()`, and `Datasource.getLogicalTableDataAsync()`. This is shown in the following example.
 
-```Javascript
+```javascript
+
 Worksheet.getUnderlyingTableDataAsync(logicalTables[0].id).then(function(success) {
     // called on success
 }, function (err) {

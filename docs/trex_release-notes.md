@@ -3,12 +3,14 @@ title: Release Notes for the Tableau Extensions API
 layout: docs
 --- 
 
+[All Releases](#all-releases)
+
 ----
 ### Tableau Dashboard Extensions API version 1.10.0
 
 *December 2022*
 
-* Tableau Dashboard Extensions API library: `tableau.extensions.1.9.0.js` <br>(download or clone the Extensions API repository on [GitHub](https://github.com/tableau/extensions-api){:target="_blank"}.) <br/>
+* Tableau Dashboard Extensions API library: `tableau.extensions.1.10.0.js` <br>(download or clone the Extensions API repository on [GitHub](https://github.com/tableau/extensions-api){:target="_blank"}.) <br/>
 
 * Certain features in this release are only available in Tableau 2022.4 or later. Download [Tableau Desktop](https://www.tableau.com/support/releases){:target="_blank"} or [Tableau Server](https://www.tableau.com/support/releases/server){:target="_blank"}.
 
@@ -16,16 +18,30 @@ layout: docs
 
 About this release:
 
-This release contains updates for Tableau Viz, an easy way for you to add visualizations to your dashboard extensions using a declarative description. This release includes support for combination charts, charts with multiple mark types in the same visualization. Tableau Viz has a new input specification that support these new visualizations, see the [Tableau Viz v2 inputSpec]({{site.baseurl}}/docs/trex_tableau_viz_ref_v2.html). For information about using Tableau Viz in your extensions, see [Add Tableau Viz to your Dashboard Extensions]({{site.baseurl}}/docs/trex_tableau_viz.html).
+* Updates for Tableau Viz, an easy way for you to add visualizations to your dashboard extensions using a declarative description. This release includes support for combination charts, charts with multiple mark types in the same visualization. Tableau Viz has a new input specification that support these new visualizations, see the [Tableau Viz v2 inputSpec]({{site.baseurl}}/docs/trex_tableau_viz_ref_v2.html). For information about using Tableau Viz in your extensions, see [Add Tableau Viz to your Dashboard Extensions]({{site.baseurl}}/docs/trex_tableau_viz.html).
 
-![Tableau Viz v2 SVG image]({{site.baseurl }}/assets/vizapiV2.svg)
+    ![Tableau Viz v2 SVG image]({{site.baseurl }}/assets/vizapiV2.svg)
+
+----
+
+* Adds support for a [DataTableReader]({{site.baseurl}}/docs/interfaces/datatablereader.html) to support pagination. Created with [Worksheet.getSummaryDataReaderAsync]({{site.baseurl}}/docs/interfaces/worksheet.html#getsummarydatareaderasync),
+[Worksheet.getUnderlyingTableDataReaderAsync]({{site.baseurl}}/docs/interfaces/worksheet.html#getunderlyingtabledatareaderasync), and [DataSource.getLogicalTableDataReaderAsync]({{site.baseurl}}/docs/interfaces/datasource.html#getlogicaltabledatareaderasync).
+For more information, see [Get Data from the View]({{site.baseurl}}/docs/trex_getdata.html).
+
+* Deprecated `getSummaryDataAsync`. Use [Worksheet.getSummaryDataReaderAsync]({{site.baseurl}}/reference/interfaces/worksheet.html#getsummarydatareaderasync) instead.
+
+* The [UI.displayDialogAsync]({{site.baseurl}}docs/interfaces/ui.html#displaydialogasync) now supports different dialog styles (window, modal or modeless dialog boxes).
+
+* Adds support for annotating marks with [Worksheet.annotateMarkAsync]({{site.baseurl}}/docs/interfaces/worksheet.html#annotatemarkasync), [Worksheet.getAnnotationsAsync]({{site.baseurl}}/docs/interfaces/worksheet.html#getannotationsasync), and [Worksheet.removeAnnotationAsync]({{site.baseurl}}/docs/interfaces/worksheet.html#removeannotationasync). See the code sample, [Annotation](https://github.com/tableau/extensions-api/tree/dev/Samples/Annotation) (on GitHub).
+
+
 
 ----
 See also: [Known Issues]({{site.baseurl}}/docs/trex_known_issues.html)
 
 ----
 
-**All Releases**
+#### All Releases
 
 * TOC
 {:toc}
