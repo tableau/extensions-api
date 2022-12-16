@@ -101,7 +101,7 @@ try {
       // ... process current page ....
   }
 } catch (e) {
-          console.error(e);
+  console.error(e);
 } finally {
   // free up resources
   await dataTableReader.releaseAsync();
