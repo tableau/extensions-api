@@ -81,13 +81,10 @@ If your summary data is less than 4,000,000 rows (400 pages), you can use the `D
 
 // Use `await` only inside an `async` method
 
-let vizActiveSheet = viz.workbook.activeSheet;
-if (vizActiveSheet.sheetType === "worksheet") {
-  const dataTableReader = await vizActiveSheet.getSummaryDataReaderAsync();
+  const dataTableReader = await worksheet.getSummaryDataReaderAsync();
   const dataTable = await dataTableReader.getAllPagesAsync();
   await dataTableReader.releaseAsync();
   // ... process data table ...
-}
 
 ```
 
@@ -97,22 +94,24 @@ If your summary data contains more than 4,000,000 rows (or 400 pages), use the s
 
 // Use `await` only inside an `async` method
 
-let vizActiveSheet = viz.workbook.activeSheet;
-if (vizActiveSheet.sheetType === "worksheet") {
-    const dataTableReader = await vizActiveSheet.getSummaryDataReaderAsync();
-    for (let currentPage = 0; currentPage < dataTableReader.pageCount; currentPage++) {
-        const dataTablePage = await dataTableReader.getPageAsync(currentPage);
-        // ... process current page ....
-    }
-    // free up resources
-    await dataTableReader.releaseAsync();
+const dataTableReader = await vizActiveSheet.getSummaryDataReaderAsync();
+try {
+  for (let currentPage = 0; currentPage < dataTableReader.pageCount; currentPage++) {
+      const dataTablePage = await dataTableReader.getPageAsync(currentPage);
+      // ... process current page ....
+  }
+} catch (e) {
+          console.error(e);
+} finally {
+  // free up resources
+  await dataTableReader.releaseAsync();
 }
 
 ```
 
 #### Deprecated method
 
-Prior to Tableau 2022.4 and the Dashboard Extensions API library v1.10, you would use the `getSummaryDataAsync` method. This method could fail if there is a large amount of summary data. Use the `getSummaryDataReaderAsync` method if you can instead.
+Prior to Tableau 2022.4 and the Dashboard Extensions API library v1.10, you would use the `getSummaryDataAsync` method. This method could fail if there is a large amount of summary data. Modify your code to use the `getSummaryDataReaderAsync` method instead.
 
 ```javascript
  // get the summary data for the sheet
@@ -203,18 +202,21 @@ const worksheet = tableau.extensions.dashboardContent.dashboard.worksheets.find(
 // Call to get the underlying logical tables used by the worksheet
 const underlyingTablesData = await worksheet.getUnderlyingTablesAsync();
 const logicalTableId = underlyingTablesData[0].id;
-// Use the above logicalTableId to get the underlying data reader on the active sheet
+// Use the above logicalTableId to get the underlying data reader on the specified worksheet
 const dataTableReader = await worksheet.getUnderlyingTableDataReaderAsync(logicalTableId);
-// loop through the pages
-const pageNumber = 0;
-while (pageNumber < dataTableReader.pageCount) {
-  let currentPageDataTable = await dataTableReader.getPageAsync(pageNumber);
-  // process page ...
-  console.log(currentPageDataTable);
-  pageNumber++;
+try {
+  // loop through and process the pages
+  for (let pageNumber = 0; pageNumber < dataTableReader.pageCount; pageNumber++) {
+    let currentPageDataTable = await dataTableReader.getPageAsync(pageNumber);
+    // process page ...
+    console.log(currentPageDataTable);
+  }
+} catch(e) {
+  console.error(e);
+} finally {
+  // free up resources
+  await pageReader.releaseAsync();
 }
-// free up resources
-await pageReader.releaseAsync();
 
 ```
 
@@ -229,7 +231,6 @@ If the underlying table has many columns, `getUnderlyingTableDataReaderAsync` ca
 If you were using 1.3 version of the Extensions API library (or earlier), you had to use the `getUnderlyingDataAsync` method to get the underlying data from a worksheet in Tableau 2020.1 and earlier. This method has been deprecated, but it shown here for completeness.
 
 If you want your extension to work in all versions of Tableau, you should use the latest library (version 1.4 or later) and the `getUnderlyingTablesAsync` and `getUnderlyingTableDataAsync` methods.
-
 
 ```javascript
 
@@ -292,7 +293,7 @@ The first step in getting the underlying data is to call the `Datasource.getLogi
 
 To get the underlying data for each logical table, use the `LogicalTable.id` property of the table to call `Datasource.getLogicalTableDataAsync()`. Note that when you use the `getLogicalTablesAsync` in Tableau 2020.1 and earlier, the method will only return a single table, and that table uses the `single-table-id-sentinel` as the `LogicalTable.id`.
 
-Example using a single table:
+Example that uses a single table:
 
 ```javascript
 
@@ -341,7 +342,7 @@ The following example returns the column names of the first logical table that i
     for (let col of dataTable.columns) {
       list.push(col.fieldName);
     }
-   console.log(list);
+    console.log(list);
     });
   });
 
@@ -365,16 +366,19 @@ const dataSources = await worksheet.getDataSourcesAsync();
 const dataSource = dataSources.find(datasource => datasource.name === "Sample - Superstore");
 const logicalTables = await dataSource.getLogicalTablesAsync()
 const dataTableReader = await dataSource.getLogicalTableDataReaderAsync(logicalTables[0].id, pageRowCount);
-   
-const pageNumber = 0;
-   while (pageNumber < dataTableReader.pageCount) {
-      let currentPageDataTable = await dataTableReader.getPageAsync(pageNumber);
-      // process page ...
-      console.log(currentPageDataTable);
-      pageNumber++;
-    }
+try {  
+  // loop through and process each page 
+  for (let pageNumber = 0; pageNumber < dataTableReader.pageCount;  pageNumber++;) {
+    let currentPageDataTable = await dataTableReader.getPageAsync(pageNumber);
+    // process page ...
+    console.log(currentPageDataTable);     
+  }
+} catch (e) {
+  console.error(e);
+} finally {
 // release resources
-await pageReader.releaseAsync();
+  await pageReader.releaseAsync();
+}
 
 ```
 
