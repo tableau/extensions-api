@@ -94,7 +94,7 @@ If your summary data contains more than 4,000,000 rows (or 400 pages), use the s
 
 // Use `await` only inside an `async` method
 
-const dataTableReader = await vizActiveSheet.getSummaryDataReaderAsync();
+const dataTableReader = await worksheet.getSummaryDataReaderAsync();
 try {
   for (let currentPage = 0; currentPage < dataTableReader.pageCount; currentPage++) {
       const dataTablePage = await dataTableReader.getPageAsync(currentPage);
