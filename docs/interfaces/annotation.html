@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ConnectionSummary | Dashboard Extensions</title>
+	<title>Annotation | Dashboard Extensions</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="connectionsummary.html">ConnectionSummary</a>
+					<a href="annotation.html">Annotation</a>
 				</li>
 			</ul>
-			<h1>Interface ConnectionSummary</h1>
+			<h1>Interface Annotation</h1>
 		</div>
 	</div>
 </header>
@@ -67,8 +67,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Represents a connection within a datasource (ex: A SQL Server connection).
-						A data source can be composed of one or more connections.</p>
+						<p>Represents an annotation in a worksheet.</p>
 					</div>
 				</div>
 			</section>
@@ -76,7 +75,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">ConnectionSummary</span>
+						<span class="target">Annotation</span>
 					</li>
 				</ul>
 			</section>
@@ -87,10 +86,11 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="connectionsummary.html#id" class="tsd-kind-icon">id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="connectionsummary.html#name" class="tsd-kind-icon">name</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="connectionsummary.html#serveruri" class="tsd-kind-icon">serverURI</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="connectionsummary.html#type" class="tsd-kind-icon">type</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="annotation.html#annotationhtml" class="tsd-kind-icon">annotationHTML</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="annotation.html#annotationid" class="tsd-kind-icon">annotation<wbr>Id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="annotation.html#annotationtext" class="tsd-kind-icon">annotation<wbr>Text</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="annotation.html#annotationtype" class="tsd-kind-icon">annotation<wbr>Type</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="annotation.html#tupleid" class="tsd-kind-icon">tuple<wbr>Id</a></li>
 							</ul>
 						</section>
 					</div>
@@ -99,71 +99,86 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="id" class="tsd-anchor"></a>
-					<h3>id</h3>
-					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="annotationhtml" class="tsd-anchor"></a>
+					<h3>annotationHTML</h3>
+					<div class="tsd-signature tsd-kind-icon">annotationHTML<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataSourceInterfaces.ts:266</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/AnnotationInterfaces.ts:10</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<dl class="tsd-comment-tags">
 							<dt>returns</dt>
-							<dd><p>Unique string representing this connection.</p>
+							<dd><p>The formatted annotation as a HTML string. HTML is currently not accepted when adding an annotation.</p>
 							</dd>
 						</dl>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="name" class="tsd-anchor"></a>
-					<h3>name</h3>
-					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="annotationid" class="tsd-anchor"></a>
+					<h3>annotation<wbr>Id</h3>
+					<div class="tsd-signature tsd-kind-icon">annotation<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataSourceInterfaces.ts:261</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/AnnotationInterfaces.ts:15</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<dl class="tsd-comment-tags">
 							<dt>returns</dt>
-							<dd><p>The name of the connection (i.e. the caption).</p>
+							<dd><p>Unique id representing the annotation.</p>
 							</dd>
 						</dl>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="serveruri" class="tsd-anchor"></a>
-					<h3>serverURI</h3>
-					<div class="tsd-signature tsd-kind-icon">serverURI<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></div>
+					<a name="annotationtext" class="tsd-anchor"></a>
+					<h3>annotation<wbr>Text</h3>
+					<div class="tsd-signature tsd-kind-icon">annotation<wbr>Text<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataSourceInterfaces.ts:278</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/AnnotationInterfaces.ts:20</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<dl class="tsd-comment-tags">
 							<dt>returns</dt>
-							<dd><p>The URI to which the connection is pointing, if applicable.
-									If a data source is a published data source, the URI is returned
-								as <code>localhost</code>.</p>
+							<dd><p>The plain text of the annotation.</p>
 							</dd>
 						</dl>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="type" class="tsd-anchor"></a>
-					<h3>type</h3>
-					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="annotationtype" class="tsd-anchor"></a>
+					<h3>annotation<wbr>Type</h3>
+					<div class="tsd-signature tsd-kind-icon">annotation<wbr>Type<span class="tsd-signature-symbol">:</span> <a href="../enums/tableau.annotationtype.html" class="tsd-signature-type">AnnotationType</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataSourceInterfaces.ts:271</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/AnnotationInterfaces.ts:25</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<dl class="tsd-comment-tags">
 							<dt>returns</dt>
-							<dd><p>The type of the connection (i.e. SQL Server, web data connector).</p>
+							<dd><p>The annotation type.</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="tupleid" class="tsd-anchor"></a>
+					<h3>tuple<wbr>Id</h3>
+					<div class="tsd-signature tsd-kind-icon">tuple<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/AnnotationInterfaces.ts:30</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<dl class="tsd-comment-tags">
+							<dt>returns</dt>
+							<dd><p>Unique tuple representing the mark that is being annotated. The tupleId will be 0 for Area or Point annotations.</p>
 							</dd>
 						</dl>
 					</div>
@@ -183,19 +198,22 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="connectionsummary.html" class="tsd-kind-icon">Connection<wbr>Summary</a>
+						<a href="annotation.html" class="tsd-kind-icon">Annotation</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="connectionsummary.html#id" class="tsd-kind-icon">id</a>
+								<a href="annotation.html#annotationhtml" class="tsd-kind-icon">annotationHTML</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="connectionsummary.html#name" class="tsd-kind-icon">name</a>
+								<a href="annotation.html#annotationid" class="tsd-kind-icon">annotation<wbr>Id</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="connectionsummary.html#serveruri" class="tsd-kind-icon">serverURI</a>
+								<a href="annotation.html#annotationtext" class="tsd-kind-icon">annotation<wbr>Text</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="connectionsummary.html#type" class="tsd-kind-icon">type</a>
+								<a href="annotation.html#annotationtype" class="tsd-kind-icon">annotation<wbr>Type</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="annotation.html#tupleid" class="tsd-kind-icon">tuple<wbr>Id</a>
 							</li>
 						</ul>
 					</li>
