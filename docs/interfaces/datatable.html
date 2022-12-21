@@ -131,11 +131,11 @@
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="issummarydata" class="tsd-anchor"></a>
-					<h3>is<wbr>Summary<wbr>Data</h3>
-					<div class="tsd-signature tsd-kind-icon">is<wbr>Summary<wbr>Data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> is<wbr>Summary<wbr>Data</h3>
+					<div class="tsd-signature tsd-kind-icon">is<wbr>Summary<wbr>Data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataTableInterfaces.ts:84</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataTableInterfaces.ts:85</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -149,23 +149,24 @@
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="istotalrowcountlimited" class="tsd-anchor"></a>
-					<h3>is<wbr>Total<wbr>Row<wbr>Count<wbr>Limited</h3>
-					<div class="tsd-signature tsd-kind-icon">is<wbr>Total<wbr>Row<wbr>Count<wbr>Limited<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> is<wbr>Total<wbr>Row<wbr>Count<wbr>Limited</h3>
+					<div class="tsd-signature tsd-kind-icon">is<wbr>Total<wbr>Row<wbr>Count<wbr>Limited<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataTableInterfaces.ts:78</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataTableInterfaces.ts:79</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<dl class="tsd-comment-tags">
 							<dt>returns</dt>
-							<dd><p>True if the rows returned have been limited to the maximum number of retrievable rows
-									for <code>getUnderlyingDataAsync</code>. (This value is currently set to 10,000.)
-									A value of true indicates that the caller requested more rows than the current limit
+							<dd><p>True if the rows returned have been limited to the maximum number of retrievable rows.
+									A value of true indicates that the caller requested more rows than the limit
 									and the underlying data source contains more rows than can be returned.
-									Note that if <code>maxRows</code> is unspecified (<code>maxRows = 0</code>), the call to <code>getUnderlyingDataAsync</code>
-									requests all rows in the data source.
-								The limit on the maximum number of rows returned does not apply to <code>getSummaryDataAsync</code>.</p>
+									isTotalRowCountLimited can be true in the case of ...
+									<code>getAllPagesAsync</code> with more than 4,000,000 rows in the summary or underlying data.
+									<code>getLogicalTableDataAsync</code> or <code>getUnderlyingTableDataAsync</code> with more than 10,000 rows in the data.
+									In all these cases, limits can be avoided by processing the data in page sized chunks with <code>DataTableReader</code>.
+								isTotalRowCountLimited is always false in the results of DataTableReader.getPageAsync().</p>
 							</dd>
 						</dl>
 					</div>
@@ -181,11 +182,10 @@
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<dl class="tsd-comment-tags">
-							<dt>notimplemented</dt>
-							<dd></dd>
 							<dt>returns</dt>
 							<dd><p>An array of information about marks.  Each mark in the array corresponds
-								to a row in the data of this DataTable.</p>
+									to a row in the data of this DataTable. MarkInfo is only currently
+								available within results from getSelectedMarksAsync / getMarksAsync.</p>
 							</dd>
 						</dl>
 					</div>

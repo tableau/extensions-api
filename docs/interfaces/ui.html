@@ -113,7 +113,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/Namespaces/UI.ts:80</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/Namespaces/UI.ts:84</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -150,7 +150,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/Namespaces/UI.ts:59</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/Namespaces/UI.ts:63</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -187,8 +187,10 @@
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> dialogOptions: <a href="dialogoptions.html" class="tsd-signature-type">DialogOptions</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>Specifies the options for the popup dialog window.
-											The <code>dialogOptions</code> has two properties for width and height (in pixels). You pass these properties
-										to the <code>displayDialogAsync</code> function, as follows: <code>{width:</code> <em>number*<code>, height:</code> *number</em> <code>}</code></p>
+											The <code>dialogOptions</code> has properties for width and height (in pixels) and a property for the dialog&#39;s style.
+											The dialog style can be a window, a modal dialog, or a modeless dialog. If style is not specified, window will be used.
+											You pass these properties to the <code>displayDialogAsync</code> function, as follows:
+										<code>{width:</code> <em>number</em><code>, height:</code> <em>number</em><code>, dialogStyle:</code> <em>DialogStyle</em><code>}</code></p>
 									</div>
 								</li>
 							</ul>

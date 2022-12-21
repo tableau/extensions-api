@@ -67,7 +67,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Options argument for the Worksheet.GetSummaryData API.</p>
+						<p>Options argument for the Worksheet.getUnderlyingTableDataAsync API.</p>
 					</div>
 				</div>
 			</section>
@@ -111,7 +111,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="getsummarydataoptions.html">GetSummaryDataOptions</a>.<a href="getsummarydataoptions.html#columnstoincludebyid">columnsToIncludeById</a></p>
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataTableInterfaces.ts:137</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataTableInterfaces.ts:138</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -133,7 +133,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="getsummarydataoptions.html">GetSummaryDataOptions</a>.<a href="getsummarydataoptions.html#ignorealiases">ignoreAliases</a></p>
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataTableInterfaces.ts:124</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataTableInterfaces.ts:125</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -149,7 +149,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="getsummarydataoptions.html">GetSummaryDataOptions</a>.<a href="getsummarydataoptions.html#ignoreselection">ignoreSelection</a></p>
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataTableInterfaces.ts:129</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataTableInterfaces.ts:130</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -164,7 +164,7 @@
 					<div class="tsd-signature tsd-kind-icon">include<wbr>All<wbr>Columns<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataTableInterfaces.ts:166</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataTableInterfaces.ts:168</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -180,7 +180,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="getsummarydataoptions.html">GetSummaryDataOptions</a>.<a href="getsummarydataoptions.html#includedatavaluesoption">includeDataValuesOption</a></p>
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataTableInterfaces.ts:156</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataTableInterfaces.ts:158</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -203,7 +203,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="getsummarydataoptions.html">GetSummaryDataOptions</a>.<a href="getsummarydataoptions.html#maxrows">maxRows</a></p>
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataTableInterfaces.ts:147</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataTableInterfaces.ts:149</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -216,6 +216,9 @@
 						<dl class="tsd-comment-tags">
 							<dt>since</dt>
 							<dd><p>1.5.0 maxRows is now supported in both <code>GetSummaryDataOptions</code> and <code>GetUnderlyingDataOptions</code>.</p>
+							</dd>
+							<dt>since</dt>
+							<dd><p>1.10.0 maxRows is ignored when getting a DataTableReader</p>
 							</dd>
 						</dl>
 					</div>

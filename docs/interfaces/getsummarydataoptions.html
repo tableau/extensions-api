@@ -67,7 +67,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Options argument for the Worksheet.GetSummaryData API</p>
+						<p>Options argument for the Worksheet.GetSummaryDataAsync API</p>
 					</div>
 				</div>
 			</section>
@@ -109,7 +109,7 @@
 					<div class="tsd-signature tsd-kind-icon">columns<wbr>ToInclude<wbr>ById<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataTableInterfaces.ts:137</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataTableInterfaces.ts:138</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -130,7 +130,7 @@
 					<div class="tsd-signature tsd-kind-icon">ignore<wbr>Aliases<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataTableInterfaces.ts:124</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataTableInterfaces.ts:125</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -145,7 +145,7 @@
 					<div class="tsd-signature tsd-kind-icon">ignore<wbr>Selection<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataTableInterfaces.ts:129</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataTableInterfaces.ts:130</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -160,7 +160,7 @@
 					<div class="tsd-signature tsd-kind-icon">include<wbr>Data<wbr>Values<wbr>Option<span class="tsd-signature-symbol">:</span> <a href="../enums/tableau.includedatavaluesoption.html" class="tsd-signature-type">IncludeDataValuesOption</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataTableInterfaces.ts:156</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataTableInterfaces.ts:158</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -182,7 +182,7 @@
 					<div class="tsd-signature tsd-kind-icon">max<wbr>Rows<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataTableInterfaces.ts:147</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataTableInterfaces.ts:149</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -195,6 +195,9 @@
 						<dl class="tsd-comment-tags">
 							<dt>since</dt>
 							<dd><p>1.5.0 maxRows is now supported in both <code>GetSummaryDataOptions</code> and <code>GetUnderlyingDataOptions</code>.</p>
+							</dd>
+							<dt>since</dt>
+							<dd><p>1.10.0 maxRows is ignored when getting a DataTableReader</p>
 							</dd>
 						</dl>
 					</div>
