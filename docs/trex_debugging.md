@@ -7,7 +7,7 @@ A dashboard extension embeds a web page and runs a Chromium-based browser inside
 
 Debugging an extension involves starting Tableau with a command option to enable remote debugging (over a debug port). You can then run a specific version of the Chromium debugger and connect to Tableau Desktop using the debug port.
 
-<div class="alert alert-info"><b>Note</b> For Tableau Server or Tableau Online, see <a href= "/extensions-api/docs/trex_debug_server.html">Debugging Extensions in Tableau Server and Tableau Online.</a></div>
+<div class="alert alert-info"><b>Note</b> For Tableau Server or {{site.tol}}, see <a href= "/extensions-api/docs/trex_debug_server.html">Debugging Extensions in Tableau Server and {{site.tol}}.</a></div>
 
 ---
 **In this section**

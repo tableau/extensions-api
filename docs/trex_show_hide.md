@@ -10,9 +10,9 @@ Starting with Tableau 2019.1, you can use the `ZoneVisibilityType` enum and `set
 * TOC
 {:toc}
 
-## Requirements for show and hide 
+## Requirements for show and hide
 
-* Tableau 2019.1 or later (Desktop, Server, Online)
+* Tableau 2019.1 or later (Tableau Desktop, Tableau Server, {{site.tol}})
 * Tableau Extensions API library: `tableau-extensions-1.1.0.js` or later
 * The object in the dashboard you want to show and hide must be floating (not tiled)
 

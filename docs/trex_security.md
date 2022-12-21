@@ -12,7 +12,7 @@ A Tableau extension is essentially a web application that runs inside a Tableau 
 * By default, anyone using the extension will be prompted and asked to allow or deny the extension access. The Tableau Server site administrator can control whether the prompt appears for each extension.
 
 
-This section covers options for setting up your extension to use HTTPS. For information about adding an extension to the safe list on Tableau Server or Tableau Online, or how to configure the prompts to allow or deny access, see [Manage Dashboard Extensions on Tableau Server](https://onlinehelp.tableau.com/current/server/en-us/dashboard_extensions_server.htm) or [Manage Dashboard Extensions on Tableau Online](https://onlinehelp.tableau.com/current/online/en-us/dashboard_extensions_server.htm) for more information. 
+This section covers options for setting up your extension to use HTTPS. For information about adding an extension to the safe list on Tableau Server or {{site.tol}}, or how to configure the prompts to allow or deny access, see [Manage Dashboard Extensions on Tableau Server](https://onlinehelp.tableau.com/current/server/en-us/dashboard_extensions_server.htm) or [Manage Dashboard Extensions on {{site.tol}}](https://onlinehelp.tableau.com/current/online/en-us/dashboard_extensions_server.htm) for more information. 
 
 
 
@@ -48,7 +48,7 @@ The requirements are pretty straight-forward. If you are distributing your exten
 
 - Redirects are permitted, but if they redirect to any other origin, other than the URL of the extension, those pages cannot interact with the Extensions API. For example, if the URL of your extension is `https://example.com` and you redirect to `https://myexample.com`, the page you were redirecting to (`https://myexample.com`) cannot interact with the Extensions API. 
 
-- To run on Tableau Server or Tableau Online, your extension must be added to the safe list for the site. Server administrators or site administrators (Tableau Online) can add or remove extensions, and can configure how an extension requests permissions for access to data.  
+- To run on Tableau Server or {{site.tol}}, your extension must be added to the safe list for the site. Server administrators or site administrators ({{site.tol}}) can add or remove extensions, and can configure how an extension requests permissions for access to data.  
 
 ----
 
@@ -137,14 +137,14 @@ Or use site-relative or protocol-agnostic links (that is, where the protocol is 
 
 ## Use HTTP and localhost for development or internal use
 
-While HTTPS is required, during development, you can run a web server on your local computer (`localhost`) to host the extension over HTTP. This exception also applies to Tableau Server and Tableau Online. 
+While HTTPS is required, during development, you can run a web server on your local computer (`localhost`) to host the extension over HTTP. This exception also applies to Tableau Server and {{site.tol}}. 
 
-For example, you can author a workbook in Tableau Desktop that uses an extension (running as `localhost` on same computer as Tableau Desktop). You can then publish that workbook to Tableau Server or Tableau Online. The extension must be running on the same computer as the browser that you are using to connect to Tableau Server. The `localhost` is local to the browser. For example, the source location of an extension might be `http://localhost:8080/extension`. If you publish that extension to Tableau Server, other users can view the dashboard and extension, provided that they also have a local copy of the extension hosted on their computers and the extension is using the same URL. 
+For example, you can author a workbook in Tableau Desktop that uses an extension (running as `localhost` on same computer as Tableau Desktop). You can then publish that workbook to Tableau Server or {{site.tol}}. The extension must be running on the same computer as the browser that you are using to connect to Tableau Server. The `localhost` is local to the browser. For example, the source location of an extension might be `http://localhost:8080/extension`. If you publish that extension to Tableau Server, other users can view the dashboard and extension, provided that they also have a local copy of the extension hosted on their computers and the extension is using the same URL. 
 
 Note the following considerations:
 
 
-- If Tableau Server is using HTTPS, your extension might not load if it is using `http://localhost`. The same situation occurs with Tableau Online. This is because it is generally not a good practice to embed an HTTP `<iframe>` inside of an HTTPS web page, and the default settings of most browsers will consider this as unsafe content. To temporarily allow the extension to run while you are testing, see [Load and view localhost content on sites that use secure connections]({{site.baseurl}}/docs/trex_debug_server.html#load-and-view-localhost-content-on-sites-that-use-secure-connections).
+- If Tableau Server is using HTTPS, your extension might not load if it is using `http://localhost`. The same situation occurs with {{site.tol}}. This is because it is generally not a good practice to embed an HTTP `<iframe>` inside of an HTTPS web page, and the default settings of most browsers will consider this as unsafe content. To temporarily allow the extension to run while you are testing, see [Load and view localhost content on sites that use secure connections]({{site.baseurl}}/docs/trex_debug_server.html#load-and-view-localhost-content-on-sites-that-use-secure-connections).
 
 
 - In the manifest file (`.trex`) for the extension, you must specify the DNS name `localhost` and **not** the IP address (for example, `127.0.0.1`). 
@@ -153,7 +153,7 @@ Note the following considerations:
 
 ### Load and view localhost content on sites that use secure connections
 
-If you want to test your extension (running on `http://localhost`) with Tableau Online, or with Tableau Server that is using HTTPS, the default settings of many browsers will block the extension from loading because the extension is not using a secure connection.
+If you want to test your extension (running on `http://localhost`) with {{site.tol}}, or with Tableau Server that is using HTTPS, the default settings of many browsers will block the extension from loading because the extension is not using a secure connection.
 
 To temporarily get around these safety settings for the session, you can click the shield icon (or lock icon) in the browser's address bar. The alert dialog box will allow you to either load the scripts, or allow you to view the full content of the page. As soon as you load the unsafe scripts or allow the blocked content, the extension will load and will continue to be available for the duration of your session. Be sure to close the browser completely when you are finished testing. The following example shows what you might see in Chrome. 
 <br/>

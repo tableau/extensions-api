@@ -239,7 +239,7 @@ After your extension is installed and showing up in Tableau, you can continue to
    ![alt text]({{site.baseurl}}/assets/extension_reload_menu.png "Shortcut menu showing the Reload option"){:height="25%" width="25%"}
 
 
-For information about debugging your extension, see [Debug Extensions in Tableau Desktop]({{site.baseurl}}/docs/trex_debugging.html) and [Debug Extensions in Tableau Server and Tableau Online]({{site.baseurl}}/docs/trex_debug_server.html).
+For information about debugging your extension, see [Debug Extensions in Tableau Desktop]({{site.baseurl}}/docs/trex_debugging.html) and [Debug Extensions in Tableau Server and {{site.tol}}]({{site.baseurl}}/docs/trex_debug_server.html).
 
 You can also use the Tableau log files to identify issues, see [Use Log files to Troubleshoot Dashboard Extensions]({{site.baseurl}}/docs/trex_logging.html).
 

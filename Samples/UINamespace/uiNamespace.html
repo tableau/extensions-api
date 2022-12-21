@@ -10,8 +10,8 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" >
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" ></script>
 
     <!-- Extensions Library (this will be hosted on a CDN eventually) -->
     <script src="../../lib/tableau.extensions.1.latest.js"></script>
@@ -29,6 +29,27 @@
           Configure extension to proceed.
         </div>
       </p>
+      <div class="container" style="border:1px solid #cecece">
+        <h6>Dialog Style</h6>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="dialogStyleRadio" id="modalStyle" checked>
+          <label class="form-check-label" for="modalStyle">
+            Modal
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="dialogStyleRadio" id="modelessStyle">
+          <label class="form-check-label" for="modelessStyle">
+            Modeless
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="dialogStyleRadio" id="windowStyle">
+          <label class="form-check-label" for="windowStyle">
+            Window
+          </label>
+        </div>
+      </div>
     </div>
   </body>
 </html>

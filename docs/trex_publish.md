@@ -18,33 +18,33 @@ The easiest way to share an extension with others is to share the workbook that 
 ![]({{ site.baseurl }}/assets/frelard_share_twb.png){:height="75%" width="75%"}
 
 
-## Publishing a dashboard extension to Tableau Server or Tableau Online
+## Publishing a dashboard extension to Tableau Server or {{site.tol}}
 
-While you don't exactly publish a dashboard extension to Tableau Server or Tableau Online, you can publish the workbook that contains an extension to Tableau Server. You can also add a dashboard extension to a dashboard on Tableau Server or Tableau Online when you are in authoring mode.
+While you don't exactly publish a dashboard extension to Tableau Server or {{site.tol}}, you can publish the workbook that contains an extension to Tableau Server. You can also add a dashboard extension to a dashboard on Tableau Server or {{site.tol}} when you are in authoring mode.
 
-However, to run on Tableau Server or Tableau Online, your extension must:
+However, to run on Tableau Server or {{site.tol}}, your extension must:
 
 * Be hosted on a web server that uses HTTPS (`localhost` is the exception during development). Note that hosting your extension on the same computer that is running Tableau Server is not recommended.
 * Declare full data access (if the extension calls any functions that access the underlying data in the dashboard). 
-* Be granted permission to run on Tableau Server or Tableau Online. 
+* Be granted permission to run on Tableau Server or {{site.tol}}. 
 
 |---- | 
-|**Note** If you want to test your extension with Tableau Online and you are running an extension on `http://localhost` during development, see [Load and view localhost content on sites that use secure connections]({{site.baseurl}}/docs/trex_security.html#load-and-view-localhost-content-on-sites-that-use-secure-connections)|
+|**Note** If you want to test your extension with {{site.tol}} and you are running an extension on `http://localhost` during development, see [Load and view localhost content on sites that use secure connections]({{site.baseurl}}/docs/trex_security.html#load-and-view-localhost-content-on-sites-that-use-secure-connections)|
 
 
- Tableau Server and Tableau Online have settings that control whether dashboard extensions are allowed to run and whether specific extensions can access the underlying data in a dashboard.
+ Tableau Server and {{site.tol}} have settings that control whether dashboard extensions are allowed to run and whether specific extensions can access the underlying data in a dashboard.
 
 
- To enable a dashboard extension on Tableau Server or Tableau Online, the server administrator or the site administrator (Tableau Online) must allow extensions for the site. The administrators can then choose to enable the default policy that allows *unknown* extensions that only request summary data to run, provided users grant the extension permission. These extensions are unknown in the sense that they have not been explicitly added to the safe list or to the blocked list on Tableau Server or Tableau Online.  
+ To enable a dashboard extension on Tableau Server or {{site.tol}}, the server administrator or the site administrator ({{site.tol}}) must allow extensions for the site. The administrators can then choose to enable the default policy that allows *unknown* extensions that only request summary data to run, provided users grant the extension permission. These extensions are unknown in the sense that they have not been explicitly added to the safe list or to the blocked list on Tableau Server or {{site.tol}}.  
 
  If your extension requires access to full data (underlying data) the server or site administrator must add the URL of your extension to a safe list and must explicitly grant the extension access to full data. The server or site administrator can also configure whether users of your extension will see prompts requesting permission to run.
 
-The following flowchart shows how the settings on Tableau Server or Tableau Online determine whether an extension is allowed or denied permission to run.
+The following flowchart shows how the settings on Tableau Server or {{site.tol}} determine whether an extension is allowed or denied permission to run.
 
- ![alt text]({{site.baseurl}}/assets/Extensions_Safe_List_Block_List_Evaluation_2x.png "Flowchart showing the process that allows or denies an extension to run on Tableau Server or Tableau Online.")
+ ![alt text]({{site.baseurl}}/assets/Extensions_Safe_List_Block_List_Evaluation_2x.png "Flowchart showing the process that allows or denies an extension to run on Tableau Server or {{site.tol}}.")
   
  See
- [Manage Dashboard Extensions on Tableau Server](https://onlinehelp.tableau.com/current/server/en-us/dashboard_extensions_server.htm) or [Manage Dashboard Extensions on Tableau Online](https://onlinehelp.tableau.com/current/online/en-us/dashboard_extensions_server.htm) for more information.
+ [Manage Dashboard Extensions on Tableau Server](https://onlinehelp.tableau.com/current/server/en-us/dashboard_extensions_server.htm) or [Manage Dashboard Extensions on {{site.tol}}](https://onlinehelp.tableau.com/current/online/en-us/dashboard_extensions_server.htm) for more information.
 
 
 

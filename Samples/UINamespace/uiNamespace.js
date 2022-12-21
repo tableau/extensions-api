@@ -40,6 +40,17 @@
     // to be updated if the extension is deployed to a new location.
     const popupUrl = `${window.location.origin}/Samples/UINamespace/uiNamespaceDialog.html`;
 
+    // This checks for the selected dialog style in the radio form.
+    let dialogStyle;
+    const dialogStyleOptions = document.getElementsByName('dialogStyleRadio');
+    if (dialogStyleOptions[0].checked) {
+      dialogStyle = tableau.DialogStyle.Modal;
+    } else if (dialogStyleOptions[1].checked) {
+      dialogStyle = tableau.DialogStyle.Modeless;
+    } else {
+      dialogStyle = tableau.DialogStyle.Window;
+    }
+
     /**
      * This is the API call that actually displays the popup extension to the user.  The
      * popup is always a modal dialog.  The only required parameter is the URL of the popup,
@@ -52,7 +63,7 @@
      * default interval of refresh.
      */
     tableau.extensions.ui
-      .displayDialogAsync(popupUrl, defaultIntervalInMin, { height: 500, width: 500 })
+      .displayDialogAsync(popupUrl, defaultIntervalInMin, { height: 500, width: 500, dialogStyle })
       .then((closePayload) => {
         // The promise is resolved when the dialog has been expectedly closed, meaning that
         // the popup extension has called tableau.extensions.ui.closeDialog.

@@ -94,6 +94,7 @@
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="worksheet.html#addeventlistener" class="tsd-kind-icon">add<wbr>Event<wbr>Listener</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="worksheet.html#annotatemarkasync" class="tsd-kind-icon">annotate<wbr>Mark<wbr>Async</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="worksheet.html#applyfilterasync" class="tsd-kind-icon">apply<wbr>Filter<wbr>Async</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="worksheet.html#applyhierarchicalfilterasync" class="tsd-kind-icon">apply<wbr>Hierarchical<wbr>Filter<wbr>Async</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="worksheet.html#applyrangefilterasync" class="tsd-kind-icon">apply<wbr>Range<wbr>Filter<wbr>Async</a></li>
@@ -101,6 +102,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="worksheet.html#clearfilterasync" class="tsd-kind-icon">clear<wbr>Filter<wbr>Async</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="worksheet.html#clearselectedmarksasync" class="tsd-kind-icon">clear<wbr>Selected<wbr>Marks<wbr>Async</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="worksheet.html#findparameterasync" class="tsd-kind-icon">find<wbr>Parameter<wbr>Async</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="worksheet.html#getannotationsasync" class="tsd-kind-icon">get<wbr>Annotations<wbr>Async</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="worksheet.html#getdatasourcesasync" class="tsd-kind-icon">get<wbr>Data<wbr>Sources<wbr>Async</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="worksheet.html#getfiltersasync" class="tsd-kind-icon">get<wbr>Filters<wbr>Async</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="worksheet.html#gethighlightedmarksasync" class="tsd-kind-icon">get<wbr>Highlighted<wbr>Marks<wbr>Async</a></li>
@@ -108,9 +110,12 @@
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="worksheet.html#getselectedmarksasync" class="tsd-kind-icon">get<wbr>Selected<wbr>Marks<wbr>Async</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="worksheet.html#getsummarycolumnsinfoasync" class="tsd-kind-icon">get<wbr>Summary<wbr>Columns<wbr>Info<wbr>Async</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="worksheet.html#getsummarydataasync" class="tsd-kind-icon">get<wbr>Summary<wbr>Data<wbr>Async</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="worksheet.html#getsummarydatareaderasync" class="tsd-kind-icon">get<wbr>Summary<wbr>Data<wbr>Reader<wbr>Async</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="worksheet.html#getunderlyingdataasync" class="tsd-kind-icon">get<wbr>Underlying<wbr>Data<wbr>Async</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="worksheet.html#getunderlyingtabledataasync" class="tsd-kind-icon">get<wbr>Underlying<wbr>Table<wbr>Data<wbr>Async</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="worksheet.html#getunderlyingtabledatareaderasync" class="tsd-kind-icon">get<wbr>Underlying<wbr>Table<wbr>Data<wbr>Reader<wbr>Async</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="worksheet.html#getunderlyingtablesasync" class="tsd-kind-icon">get<wbr>Underlying<wbr>Tables<wbr>Async</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="worksheet.html#removeannotationasync" class="tsd-kind-icon">remove<wbr>Annotation<wbr>Async</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="worksheet.html#removeeventlistener" class="tsd-kind-icon">remove<wbr>Event<wbr>Listener</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="worksheet.html#selectmarksbyvalueasync" class="tsd-kind-icon">select<wbr>Marks<wbr>ByValue<wbr>Async</a></li>
 							</ul>
@@ -127,7 +132,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="sheet.html">Sheet</a>.<a href="sheet.html#name">name</a></p>
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:22</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:23</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -144,7 +149,7 @@
 					<div class="tsd-signature tsd-kind-icon">parent<wbr>Dashboard<span class="tsd-signature-symbol">:</span> <a href="dashboard.html" class="tsd-signature-type">Dashboard</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:52</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:53</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -162,7 +167,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="sheet.html">Sheet</a>.<a href="sheet.html#sheettype">sheetType</a></p>
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:27</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:28</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -180,7 +185,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="sheet.html">Sheet</a>.<a href="sheet.html#size">size</a></p>
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:40</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:41</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -275,6 +280,54 @@ load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">works
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="annotatemarkasync" class="tsd-anchor"></a>
+					<h3>annotate<wbr>Mark<wbr>Async</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">annotate<wbr>Mark<wbr>Async<span class="tsd-signature-symbol">(</span>mark<span class="tsd-signature-symbol">: </span><a href="markinfo.html" class="tsd-signature-type">MarkInfo</a>, annotationText<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:426</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Add an annotation to the specified mark.
+										This is intended to be passed a MarkInfo object received from a DataTable.
+									MarkInfo can be found in the DataTable returned from getSelectedMarksAsync or getHighlightedMarksAsync.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>since</dt>
+									<dd><p>1.10.0 and Tableau 2022.4</p>
+										<p>The following example shows how you might call this method using a MarkInfo object.</p>
+										<pre><code>   const markCollection = await worksheet.get<span class="hljs-constructor">SelectedMarksAsync()</span>;
+   const markToAnnotate = marksCollection.data<span class="hljs-literal">[<span class="hljs-number">0</span>]</span>.marksInfo<span class="hljs-literal">[<span class="hljs-number">0</span>]</span>;
+   await worksheet.annotate<span class="hljs-constructor">MarkAsync(<span class="hljs-params">markToAnnotate</span>, 'Manufacturing <span class="hljs-params">line</span> #2 <span class="hljs-params">shutdown</span> <span class="hljs-params">triggered</span>')</span>;</code></pre></dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>mark: <a href="markinfo.html" class="tsd-signature-type">MarkInfo</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The mark to annotate.</p>
+									</div>
+								</li>
+								<li>
+									<h5>annotationText: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The text to display in the annotation.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Empty promise that resolves when the annotation is complete.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
 					<a name="applyfilterasync" class="tsd-anchor"></a>
 					<h3>apply<wbr>Filter<wbr>Async</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
@@ -284,7 +337,7 @@ load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">works
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:64</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:65</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -334,7 +387,7 @@ load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">works
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:99</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:101</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -386,13 +439,18 @@ load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">works
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:74</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:76</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Applies a range filter to a quantitative or date field.</p>
 								</div>
+								<dl class="tsd-comment-tags">
+									<dt>since</dt>
+									<dd><p>1.10.0 Errors will now be thrown for invalid fields or values.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -425,7 +483,7 @@ load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">works
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:128</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:130</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -477,7 +535,7 @@ load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">works
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:85</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:87</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -511,7 +569,7 @@ load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">works
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:366</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:404</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -540,7 +598,7 @@ load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">works
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="sheet.html">Sheet</a>.<a href="sheet.html#findparameterasync">findParameterAsync</a></p>
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:35</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:36</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -563,6 +621,36 @@ load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">works
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="getannotationsasync" class="tsd-anchor"></a>
+					<h3>get<wbr>Annotations<wbr>Async</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Annotations<wbr>Async<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="annotation.html" class="tsd-signature-type">Annotation</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:442</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Retrieves a list of the annotations in the worksheet.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>since</dt>
+									<dd><p>1.10.0 and Tableau 2022.4</p>
+										<p>The following example shows how you might call this method.</p>
+										<pre><code>   <span class="hljs-keyword">let</span> annotations = <span class="hljs-keyword">await</span> worksheet.getAnnotationsAsync();
+   <span class="hljs-built_in">console</span>.log(annotations);</code></pre></dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="annotation.html" class="tsd-signature-type">Annotation</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>A list annotations in the worksheet.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
 					<a name="getdatasourcesasync" class="tsd-anchor"></a>
 					<h3>get<wbr>Data<wbr>Sources<wbr>Async</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
@@ -572,7 +660,7 @@ load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">works
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:153</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:155</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -608,7 +696,7 @@ load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">works
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:161</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:163</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -631,7 +719,7 @@ load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">works
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:169</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:171</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -656,7 +744,7 @@ load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">works
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="sheet.html">Sheet</a>.<a href="sheet.html#getparametersasync">getParametersAsync</a></p>
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:45</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:46</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -676,7 +764,7 @@ load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">works
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:192</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:194</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -708,7 +796,7 @@ worksheet.getSelectedMarksAsync().then(<span class="hljs-function"><span class="
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:228</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:256</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -736,35 +824,32 @@ worksheet.getSelectedMarksAsync().then(<span class="hljs-function"><span class="
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:220</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:228</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Gets the summary data table for this worksheet.</p>
+									<p>Gets the summary data table for this worksheet.
+									Warning: getSummaryDataAsync can fail with a worksheet with many rows of data and is now deprecated.</p>
 								</div>
 								<dl class="tsd-comment-tags">
-									<dt>since</dt>
-									<dd><p>1.5.0 You can use the <code>GetSummaryDataOptions.maxRows</code> property to request the number of rows of data
-										to return. If unspecified, the call to <code>getSummaryDataAsync</code> requests all rows.</p>
-									</dd>
-									<dt>since</dt>
-									<dd><p>1.5.0 You can use the <code>GetUnderlyingDataOptions.includeDataValuesOption</code> property to optimize performance
-										by restricting the properties included in the returned DataValues.</p>
-									</dd>
-									<dt>since</dt>
-									<dd><p>1.5.0 You can specify the desired columns by field id with <code>columnsToIncludeById</code>.</p>
-										<p> Example showing the method call to get the summary data from a worksheet.</p>
-										<pre><code><span class="hljs-comment">// After getting the worksheet,</span>
- <span class="hljs-comment">// get the summary data for the sheet</span>
- worksheet.getSummaryDataAsync().then(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(sumdata)</span> </span>{
-
-  <span class="hljs-keyword">const</span> worksheetData = sumdata;
-
-  <span class="hljs-comment">// Map the worksheetData into a format for display, etc.</span>
-
- });
-</code></pre></dd>
+									<dt>deprecated</dt>
+									<dd><p>since 1.10.0 Use getSummaryDataReaderAsync to avoid failures with many rows of data.</p>
+										<p>Example shows how to replace unsafe usage of <code>getSummaryDataAsync</code> with
+											<code>getSummaryDataReaderAsync</code> and <code>getAllPagesAsync</code> assuming less than 4,000,000
+										rows of data.</p>
+										<pre><code><span class="hljs-keyword">const</span> dataTableReader = <span class="hljs-function">await worksheet.<span class="hljs-title">getSummaryDataReaderAsync</span><span class="hljs-params">()</span></span>;
+<span class="hljs-keyword">const</span> dataTable = <span class="hljs-function">await dataTableReader.<span class="hljs-title">getAllPagesAsync</span><span class="hljs-params">()</span></span>;
+<span class="hljs-function">await dataTableReader.<span class="hljs-title">releaseAsync</span><span class="hljs-params">()</span></span>;
+<span class="hljs-comment">// ... process data table ...</span></code></pre><p>Example shows how to replace unsafe usage of <code>getSummaryDataAsync</code> with
+											<code>getSummaryDataReaderAsync</code> and <code>getPageAsync</code> and work with individual
+										pages.</p>
+										<pre><code><span class="hljs-keyword">const</span> dataTableReader = <span class="hljs-keyword">await</span> worksheet.getSummaryDataReaderAsync();
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> currentPage = <span class="hljs-number">0</span>; currentPage &lt; dataTableReader.pageCount; currentPage++) {
+  <span class="hljs-keyword">const</span> dataTablePage = <span class="hljs-keyword">await</span> dataTableReader.getPageAsync(currentPage);
+  <span class="hljs-comment">// ... process current page ....</span>
+}
+<span class="hljs-keyword">await</span> dataTableReader.releaseAsync();</code></pre></dd>
 								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -782,6 +867,52 @@ worksheet.getSelectedMarksAsync().then(<span class="hljs-function"><span class="
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="getsummarydatareaderasync" class="tsd-anchor"></a>
+					<h3>get<wbr>Summary<wbr>Data<wbr>Reader<wbr>Async</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Summary<wbr>Data<wbr>Reader<wbr>Async<span class="tsd-signature-symbol">(</span>pageRowCount<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span>, options<span class="tsd-signature-symbol">?: </span><a href="getsummarydataoptions.html" class="tsd-signature-type">GetSummaryDataOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="datatablereader.html" class="tsd-signature-type">DataTableReader</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:248</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets a summary data table reader for this worksheet.
+									Only one active DataTableReader for summary data is supported.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> pageRowCount: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The number of rows per page. The default and maximum is 10,000 rows.</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <a href="getsummarydataoptions.html" class="tsd-signature-type">GetSummaryDataOptions</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Collection of options to change the behavior of the reader.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="datatablereader.html" class="tsd-signature-type">DataTableReader</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>A data table reader to access the summary data for the worksheet.</p>
+							<p>Example showing the methods to get and use the summary data reader for all rows in a worksheet.</p>
+							<pre><code><span class="hljs-keyword">const</span> dataTableReader = <span class="hljs-keyword">await</span> worksheet.getSummaryDataReaderAsync();
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> currentPage = <span class="hljs-number">0</span>; currentPage &lt; dataTableReader.pageCount; currentPage++) {
+  <span class="hljs-keyword">let</span> dataTablePage = <span class="hljs-keyword">await</span> dataTableReader.getPageAsync(currentPage);
+  <span class="hljs-comment">// ... process current page ....</span>
+}
+<span class="hljs-keyword">await</span> dataTableReader.releaseAsync();</code></pre>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
 					<a name="getunderlyingdataasync" class="tsd-anchor"></a>
 					<h3>get<wbr>Underlying<wbr>Data<wbr>Async</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
@@ -791,7 +922,7 @@ worksheet.getSelectedMarksAsync().then(<span class="hljs-function"><span class="
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:260</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:267</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -800,7 +931,7 @@ worksheet.getSelectedMarksAsync().then(<span class="hljs-function"><span class="
 								</div>
 								<dl class="tsd-comment-tags">
 									<dt>deprecated</dt>
-									<dd><p>since version 1.4.0.  Use Worksheet.getUnderlyingTableDataAsync.</p>
+									<dd><p>Use Worksheet.getUnderlyingTableDataReaderAsync or Worksheet.getUnderlyingTableDataAsync.</p>
 									</dd>
 								</dl>
 							</div>
@@ -815,24 +946,6 @@ worksheet.getSelectedMarksAsync().then(<span class="hljs-function"><span class="
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="datatable.html" class="tsd-signature-type">DataTable</a><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>A data table containing the underlying data for the worksheet.</p>
-							<p>You can use the <code>GetUnderlyingDataOptions.maxRows</code> property to request the number of rows of data to return.
-								If unspecified (maxRows == &#39;0&#39;), the call to <code>getUnderlyingDataAsync</code> requests all rows in the data source.
-								Note that the maximum number of rows returned from the <code>getUnderlyingDataAsync()</code> method is currently limited
-								to 10,000 rows. You can use the <code>DataTable</code> property, <code>isTotalRowCountLimited</code>, to test whether there is
-								more data. A value of true indicates that the calling function requested more rows than the current limit (10,000) and the
-							underlying data source contains more rows than can be returned.</p>
-							<p>In the following example, the <code>getUnderlyingDataAsync()</code> method is used to get the underlying data for
-							a specific column in a workbook.</p>
-							<pre><code>tableau.extensions.dashboardContent.dashboard.worksheets.find(<span class="hljs-function"><span class="hljs-params">w</span> =&gt;</span> w.name === <span class="hljs-string">"Sale Map"</span>).getUnderlyingDataAsync().then(<span class="hljs-function"><span class="hljs-params">dataTable</span> =&gt;</span> {
-  <span class="hljs-keyword">let</span> field = dataTable.columns.find(<span class="hljs-function"><span class="hljs-params">column</span> =&gt;</span> column.fieldName === <span class="hljs-string">"State"</span>);
-  <span class="hljs-keyword">let</span> list = [];
-  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> row <span class="hljs-keyword">of</span> dataTable.data) {
-    list.push(row[field.index].value);
-  }
-  <span class="hljs-keyword">let</span> values = list.filter(<span class="hljs-function">(<span class="hljs-params">el, i, arr</span>) =&gt;</span> arr.indexOf(el) === i);
-  <span class="hljs-built_in">console</span>.log(values)
-});
-</code></pre>
 						</li>
 					</ul>
 				</section>
@@ -846,7 +959,7 @@ worksheet.getSelectedMarksAsync().then(<span class="hljs-function"><span class="
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:314</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:318</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -859,21 +972,21 @@ worksheet.getSelectedMarksAsync().then(<span class="hljs-function"><span class="
 									<dd><p>1.4.0</p>
 										<p>You can use the <code>getUnderlyingDataOptions.maxRows</code> property to request the number of rows of data to return.
 											If unspecified (maxRows == &#39;0&#39;), the call to <code>getUnderlyingTableDataAsync</code> requests all rows in the logical table.
-											Note that the maximum number of rows returned from the <code>getUnderlyingTableDataAsync()</code> method is currently limited
+											Note that the maximum number of rows returned from the <code>getUnderlyingTableDataAsync()</code> method is limited
 											to 10,000 rows. You can use the <code>DataTable</code> property, <code>isTotalRowCountLimited</code>, to test whether there is
-											more data. A value of true indicates that the calling function requested more rows than the current limit (10,000) and the
+											more data. A value of true indicates that the calling function requested more rows than the limit (10,000) and the
 										underlying data source contains more rows than can be returned.</p>
 									</dd>
 									<dt>since</dt>
 									<dd><p>1.5.0 You can use the <code>GetUnderlyingDataOptions.includeDataValuesOption</code> property to optimize performance
 										by restricting the properties included in the returned DataValues.</p>
-										<pre><code> <span class="hljs-keyword">var</span> worksheet = tableau.extensions.dashboardContent.dashboard.worksheets.find(<span class="hljs-function"><span class="hljs-params">w</span> =&gt;</span> w.name === <span class="hljs-string">"Sale Map"</span>);
- worksheet.getUnderlyingTablesAsync().then(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">logicalTables</span>) </span>{
-     worksheet.getUnderlyingTableDataAsync(logicalTables[<span class="hljs-number">0</span>].id).then(<span class="hljs-function">(<span class="hljs-params">dataTable</span>) =&gt;</span> {
-       <span class="hljs-comment">// process the dataTable...</span>
-     });
- });
-</code></pre></dd>
+									</dd>
+									<dt>see</dt>
+									<dd><p>getUnderlyingTableDataReaderAsync to read more than 10,000 rows.</p>
+										<pre><code><span class="hljs-keyword">var</span> worksheet = tableau.extensions.dashboardContent.dashboard.worksheets.find(<span class="hljs-function"><span class="hljs-params">w</span> =&gt;</span> w.name === <span class="hljs-string">"Sale Map"</span>);
+<span class="hljs-keyword">const</span> logicalTables = <span class="hljs-keyword">await</span> worksheet.getUnderlyingTablesAsync();
+<span class="hljs-keyword">const</span> dataTable = <span class="hljs-keyword">await</span> worksheet.getUnderlyingTableDataAsync(logicalTables[<span class="hljs-number">0</span>].id)
+<span class="hljs-comment">// process the dataTable...</span></code></pre></dd>
 								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -897,6 +1010,66 @@ worksheet.getSelectedMarksAsync().then(<span class="hljs-function"><span class="
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="getunderlyingtabledatareaderasync" class="tsd-anchor"></a>
+					<h3>get<wbr>Underlying<wbr>Table<wbr>Data<wbr>Reader<wbr>Async</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Underlying<wbr>Table<wbr>Data<wbr>Reader<wbr>Async<span class="tsd-signature-symbol">(</span>logicalTableId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, pageRowCount<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span>, options<span class="tsd-signature-symbol">?: </span><a href="getunderlyingdataoptions.html" class="tsd-signature-type">GetUnderlyingDataOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="datatablereader.html" class="tsd-signature-type">DataTableReader</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:348</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets a underlying data table reader for the given logical table id.
+										Use the <code>getUnderlyingTablesAsync</code> method to identify the logical tables.
+									Only one active DataTableReader per logical table id is supported.</p>
+								</div>
+								<p><code>getUnderlyingTableDataReaderAsync</code> attempts to prepare all the rows of the underlying table to be read as pages.
+									However, there is a limit to the number of rows that can be prepared. The default limit is 1 million rows of data.
+									You can change the default limit with the Tableau Server (Cloud) or Tableau Desktop option: ExtensionsAndEmbeddingReaderRowLimit.
+									If the underlying table has many columns, <code>getUnderlyingTableDataReaderAsync</code> can be sped up by only requesting
+								native data values in the GetUnderlyingDataOptions.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>logicalTableId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>logical table id.</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> pageRowCount: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The number of rows per page. The default and maximum is 10,000 rows.</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <a href="getunderlyingdataoptions.html" class="tsd-signature-type">GetUnderlyingDataOptions</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Collection of options to change the behavior of the reader.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="datatablereader.html" class="tsd-signature-type">DataTableReader</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>A data table reader to access the underlying data for the given logical table id.</p>
+							<p>The following example shows getting the first page of underlying data.</p>
+							<pre><code><span class="hljs-comment">// Call to get the underlying logical tables used by the worksheet</span>
+<span class="hljs-keyword">const</span> underlyingTablesData = <span class="hljs-function">await worksheet.<span class="hljs-title">getUnderlyingTablesAsync</span><span class="hljs-params">()</span></span>;
+<span class="hljs-keyword">const</span> logicalTableId = underlyingTablesData[<span class="hljs-number">0</span>].id;
+<span class="hljs-comment">// Use the above logicalTableId to get the underlying data reader on the active sheet</span>
+<span class="hljs-keyword">const</span> dataTableReader = <span class="hljs-function">await worksheet.<span class="hljs-title">getUnderlyingTableDataReaderAsync</span><span class="hljs-params">(logicalTableId)</span></span>;
+<span class="hljs-keyword">const</span> page = <span class="hljs-function">await dataTableReader.<span class="hljs-title">getPageAsync</span><span class="hljs-params">(<span class="hljs-number">0</span>)</span></span>;
+<span class="hljs-comment">// ... process first page of data table ...</span>
+<span class="hljs-function">await dataTableReader.<span class="hljs-title">releaseAsync</span><span class="hljs-params">()</span></span>;</code></pre>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
 					<a name="getunderlyingtablesasync" class="tsd-anchor"></a>
 					<h3>get<wbr>Underlying<wbr>Tables<wbr>Async</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
@@ -906,7 +1079,7 @@ worksheet.getSelectedMarksAsync().then(<span class="hljs-function"><span class="
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:282</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:289</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -932,6 +1105,47 @@ worksheet.getUnderlyingTablesAsync().<span class="hljs-keyword">then</span>(<spa
   // <span class="hljs-keyword">by</span> calling worksheet.getUnderlyingTableDataAsync(logicalTableId)
 
 });</code></pre>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="removeannotationasync" class="tsd-anchor"></a>
+					<h3>remove<wbr>Annotation<wbr>Async</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">remove<wbr>Annotation<wbr>Async<span class="tsd-signature-symbol">(</span>annotation<span class="tsd-signature-symbol">: </span><a href="annotation.html" class="tsd-signature-type">Annotation</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:461</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Removes the corresponding annotation from the worksheet it belongs to.
+									This is intended to be passed a Annotation object received from getAnnotationsAsync.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>since</dt>
+									<dd><p>1.10.0 and Tableau 2022.4</p>
+										<p>The following example shows how you might call this method using an annotation.</p>
+										<pre><code>   <span class="hljs-keyword">for</span> (const <span class="hljs-keyword">annotation</span> <span class="hljs-title">of</span> <span class="hljs-title">annotations</span>) {
+     await worksheet.removeAnnotationAsync(<span class="hljs-keyword">annotation</span>);
+   }</code></pre></dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>annotation: <a href="annotation.html" class="tsd-signature-type">Annotation</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The annotation to remove.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Empty promise that resolves when the annotation is removed.</p>
 						</li>
 					</ul>
 				</section>
@@ -981,12 +1195,12 @@ worksheet.getUnderlyingTablesAsync().<span class="hljs-keyword">then</span>(<spa
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:350</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:388</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Selects the marks and returns them. This version selects by value, using the SelectionCriteria interface.
+									<p>Selects the marks specified by value using the SelectionCriteria interface.
 									This is intended for manual construction of the desired selections.</p>
 								</div>
 							</div>
@@ -1051,6 +1265,9 @@ worksheet.getUnderlyingTablesAsync().<span class="hljs-keyword">then</span>(<spa
 								<a href="worksheet.html#addeventlistener" class="tsd-kind-icon">add<wbr>Event<wbr>Listener</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="worksheet.html#annotatemarkasync" class="tsd-kind-icon">annotate<wbr>Mark<wbr>Async</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
 								<a href="worksheet.html#applyfilterasync" class="tsd-kind-icon">apply<wbr>Filter<wbr>Async</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
@@ -1070,6 +1287,9 @@ worksheet.getUnderlyingTablesAsync().<span class="hljs-keyword">then</span>(<spa
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
 								<a href="worksheet.html#findparameterasync" class="tsd-kind-icon">find<wbr>Parameter<wbr>Async</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="worksheet.html#getannotationsasync" class="tsd-kind-icon">get<wbr>Annotations<wbr>Async</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
 								<a href="worksheet.html#getdatasourcesasync" class="tsd-kind-icon">get<wbr>Data<wbr>Sources<wbr>Async</a>
@@ -1093,13 +1313,22 @@ worksheet.getUnderlyingTablesAsync().<span class="hljs-keyword">then</span>(<spa
 								<a href="worksheet.html#getsummarydataasync" class="tsd-kind-icon">get<wbr>Summary<wbr>Data<wbr>Async</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="worksheet.html#getsummarydatareaderasync" class="tsd-kind-icon">get<wbr>Summary<wbr>Data<wbr>Reader<wbr>Async</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
 								<a href="worksheet.html#getunderlyingdataasync" class="tsd-kind-icon">get<wbr>Underlying<wbr>Data<wbr>Async</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
 								<a href="worksheet.html#getunderlyingtabledataasync" class="tsd-kind-icon">get<wbr>Underlying<wbr>Table<wbr>Data<wbr>Async</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="worksheet.html#getunderlyingtabledatareaderasync" class="tsd-kind-icon">get<wbr>Underlying<wbr>Table<wbr>Data<wbr>Reader<wbr>Async</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
 								<a href="worksheet.html#getunderlyingtablesasync" class="tsd-kind-icon">get<wbr>Underlying<wbr>Tables<wbr>Async</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="worksheet.html#removeannotationasync" class="tsd-kind-icon">remove<wbr>Annotation<wbr>Async</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
 								<a href="worksheet.html#removeeventlistener" class="tsd-kind-icon">remove<wbr>Event<wbr>Listener</a>

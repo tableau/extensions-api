@@ -12,7 +12,7 @@ layout: docs
 {:toc}
 
 ## Components of a Tableau dashboard extension 
-A Tableau extension consists of a manifest file (`.trex`), a web page that uses a Tableau-provided JavaScript library, and the JavaScript file (or files) that contain your extension logic. The Tableau extensions are supported on Tableau Desktop, Tableau Server, and Tableau Online.
+A Tableau extension consists of a manifest file (`.trex`), a web page that uses a Tableau-provided JavaScript library, and the JavaScript file (or files) that contain your extension logic. The Tableau extensions are supported on Tableau Desktop, Tableau Server, and {{site.tol}}.
 
 ![]({{site.baseurl}}/assets/extensions_dashboard_diagram.png) 
 
@@ -34,7 +34,7 @@ For more information about how you can use Extensions API, go look at the [Sampl
 
 ## Comparing the Extensions API and the Embedding JavaScript API 
 
-The Extensions API and the Embedding JavaScript API (also known as the [JavaScript API](https://onlinehelp.tableau.com/current/api/js_api/en-us/JavaScriptAPI/js_api.htm){:target="_blank"}) are both JavaScript libraries that allow you to interact with Tableau, but they do so in two fundamental ways:  
+The Dashboard Extensions API and the [Tableau Embedding API v3](https://help.tableau.com/current/api/embedding_api/en-us/index.html){:target="_blank"}) are both JavaScript libraries that allow you to interact with Tableau, but they do so in two fundamental ways:  
 * You can use the Embedding JavaScript API for embedding Tableau dashboards in web pages (for example, blog posts), or in line of business applications.
 * You can use the Extensions API for integrating web applications into zones in Tableau dashboards. 
 

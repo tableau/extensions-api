@@ -1,9 +1,9 @@
 ---
-title: Debug Extensions in Tableau Server and Tableau Online 
+title: Debug Extensions in Tableau Server and Tableau Cloud 
 layout: docs
 ---
 
-A dashboard extension is a web app inside of a dashboard on Tableau Server and Tableau Online. If you add an extension to a dashboard in web authoring, or publish a dashboard that contains a dashboard extension to Tableau Server or Tableau Online, you can debug the extension using the debugging tools that are built into the browser that you are using.
+A dashboard extension is a web app inside of a dashboard on Tableau Server and {{site.tol}}. If you add an extension to a dashboard in web authoring, or publish a dashboard that contains a dashboard extension to Tableau Server or {{site.tol}}, you can debug the extension using the debugging tools that are built into the browser that you are using.
 
 The following section describes how you could debug your extension using Chrome. The same principles generally apply if you are using other browsers and their developer tools. For more information about the Chrome developer tools, see [Chrome DevTools](https://developers.google.com/web/tools/chrome-devtools/){:target="_blank"}. For more information about debugging JavaScript with the DevTools, see [Debug JavaScript](https://developers.google.com/web/tools/chrome-devtools/javascript/).  
 
@@ -21,7 +21,7 @@ The following section describes how you could debug your extension using Chrome.
 
 ## Open the debugging tools in the browser
 
-1. Open the workbook containing the extension in Tableau Server or Tableau Online.
+1. Open the workbook containing the extension in Tableau Server or {{site.tol}}.
    <br/>**Note:** If the extension fails to load and you are using `localhost` to serve your extension, you might encounter the mixed content security setting. To get past this issue, see [Load and view localhost content on sites that use secure connections]({{site.baseurl}}/docs/trex_debug_server.html#load-and-view-localhost-content-on-sites-that-use-secure-connections).
 
 2. Open the debugging tools. <br/>
@@ -71,7 +71,7 @@ For example, entering the following in the Console window (while you are paused 
 
 ## Debugging during initialization
 
-If you need to troubleshoot or debug issues that prevent your extension from loading or initializing on Tableau Server or Tableau Online, you can set breakpoints that trigger when your JavaScript code is loaded.
+If you need to troubleshoot or debug issues that prevent your extension from loading or initializing on Tableau Server or {{site.tol}}, you can set breakpoints that trigger when your JavaScript code is loaded.
 
 1. In the Chrome browser, select **Event Listener Breakpoint > Script > Script First Statement**. <br/>
 After you select the event breakpoint and refresh or reload the browser window, code execution will stop when every script is loaded.
@@ -83,7 +83,7 @@ You might need to click **Continue** many times, as code execution stops for all
 
 In Tableau Desktop, there is a debugging option you can set to pause the extension when it is loading. For more information, see [Debugging loading and initialization issues]({{site.baseurl}}/docs/trex_debugging.html#debugging-loading-and-initialization-issues). 
 
-If your extension fails to load at all on Tableau Server or Tableau Online, check the console window of the debugger to see if there is an error message of some kind. The console messages can give you clues about where to begin investigating when something goes wrong. If the error is caused by mixed content (trying to load an HTTP web page inside of a secure HTTPS server), see [Load and view localhost content on sites that use secure connections]({{site.baseurl}}/docs/trex_debug_server.html#load-and-view-localhost-content-on-sites-that-use-secure-connections).
+If your extension fails to load at all on Tableau Server or {{site.tol}}, check the console window of the debugger to see if there is an error message of some kind. The console messages can give you clues about where to begin investigating when something goes wrong. If the error is caused by mixed content (trying to load an HTTP web page inside of a secure HTTPS server), see [Load and view localhost content on sites that use secure connections]({{site.baseurl}}/docs/trex_debug_server.html#load-and-view-localhost-content-on-sites-that-use-secure-connections).
 
 
 ---
@@ -92,7 +92,7 @@ If your extension fails to load at all on Tableau Server or Tableau Online, chec
 
 *Mixed Content Warning*
 
-If you want to test and debug your extension (running on `http://localhost`) with Tableau Online, or with a Tableau Server site that is using HTTPS, you might find that your extension fails to load. You won't see any error message in the dashboard if this happens. There will just be an empty `iframe` where the extension should appear. The reason for this is that the default settings of many browsers blocks the extension from loading because the extension is not using a secure connection (HTTPS).
+If you want to test and debug your extension (running on `http://localhost`) with {{site.tol}}, or with a Tableau Server site that is using HTTPS, you might find that your extension fails to load. You won't see any error message in the dashboard if this happens. There will just be an empty `iframe` where the extension should appear. The reason for this is that the default settings of many browsers blocks the extension from loading because the extension is not using a secure connection (HTTPS).
 
 To temporarily get around these safety settings for the session, you can click the shield icon (or lock icon) in the browser's address bar. The alert dialog box will allow you to either load the scripts, or allow you to view the full content of the page. As soon as you load the unsafe scripts or allow the blocked content, the extension will load and will continue to be available for the duration of your session. Be sure to close the browser completely when you are finished testing. The following example shows what you might see in Chrome. 
 <br/>
