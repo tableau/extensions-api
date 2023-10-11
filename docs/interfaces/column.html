@@ -121,10 +121,11 @@
 					<div class="tsd-comment tsd-typography">
 						<dl class="tsd-comment-tags">
 							<dt>returns</dt>
-							<dd><p>The fieldId of the field in the column. In summary data, this includes the aggregation.
-									The fieldId is not stable across replacing data sources.
-									For example after replacing the data source [Clipboard_20210305T164000].[sum:Sales:qk] could become
-								[federated.12usuoq1171o1b1ebdyh60fjnev1].[sum:Sales:qk].</p>
+								<dd><p>The fieldId of the field in the column. This is a calculated string that is unique across all fields and datasources in the workbook. 
+								It does not directly correspond to any other object Id - it is a combination of DataSource.id, Field.id, and Field type information. 
+								(When retrieved as summary data, this includes the aggregation.)
+								This means the fieldID will change if the datasource is replaced: for example 
+								[Clipboard_20210305T164000].[sum:Sales:qk] could become [federated.12usuoq1171o1b1ebdyh60fjnev1].[sum:Sales:qk].</p>
 							</dd>
 							<dt>since</dt>
 							<dd><p>1.5.0</p>
@@ -144,8 +145,8 @@
 					<div class="tsd-comment tsd-typography">
 						<dl class="tsd-comment-tags">
 							<dt>returns</dt>
-							<dd><p>The name of the field in the column. In summary data, this includes the aggregation.
-									The summary data field name is not stable across languages.
+							<dd><p>The name of the field in the column. In summary data, this includes the aggregation as localized text, therefore 
+								the summary data field name is not stable across languages.
 								For example, in an English version of Tableau, the field name might be SUM(Sales). In French, this would be SOMME(Sales).</p>
 							</dd>
 						</dl>
