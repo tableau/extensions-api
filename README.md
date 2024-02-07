@@ -70,4 +70,4 @@ Our sample code follows the [Semi-Standard Style](https://github.com/Flet/semist
 [Visit the project website and read the documentation here.](https://tableau.github.io/extensions-api/)
 
 ## Issues
-Use [Issues](https://github.com/tableau/extensions-api/issues) to log any problems or bugs you encounter in the docs or sample code, or to discuss any proposed changes or additions.
+Use [Issues](https://github.com/tableau/extensions-api/issues) to log any problems or bugs you encounter in the docs or sample code, or to discuss any proposed changes or additions. 
