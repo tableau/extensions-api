@@ -8,7 +8,7 @@
     "start-sandbox": "npx tabextsandbox --config sandbox-config.json",
     "lint": "npm run jslint && npm run tslint",
     "jslint": "semistandard ./Samples/*/*.js",
-    "tslint": "./node_modules/.bin/tslint --config ./tslint.json ./Samples-Typescript/*/*.ts*",
+    "tslint": "npx tslint --config ./tslint.json ./Samples-Typescript/*/*.ts*",
     "dev": "concurrently --kill-others \"webpack --watch\" \"npm:start\""
   },
   "repository": {
