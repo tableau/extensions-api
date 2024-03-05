@@ -187,7 +187,11 @@
 					<div class="tsd-comment tsd-typography">
 						<dl class="tsd-comment-tags">
 							<dt>returns</dt>
-							<dd><p>Unique string representing this field in this datasource.</p>
+							<dd><p>String that represents this field uniquely within this datasource. It is in the format 'a:generated-id:b[:c]',
+								where 'generated-id' is based on the first name given to the Field and a/b/c are type information. 
+								To match a  Field to a Column, use [this.DataSource.id][this.id] == Column.id
+								</p>
+							</dd>
 							</dd>
 						</dl>
 					</div>
