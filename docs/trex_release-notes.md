@@ -6,6 +6,50 @@ layout: docs
 [All Releases](#all-releases)
 
 ----
+### Tableau Dashboard Extensions API version 1.11.0
+
+*February 2024*
+
+* Tableau Dashboard Extensions API library: `tableau.extensions.1.11.0.js` <br>(download or clone the Extensions API repository on [GitHub](https://github.com/tableau/extensions-api){:target="_blank"}.) <br/>
+
+* Certain features in this release are only available in Tableau 2024.1 or later. Download [Tableau Desktop](https://www.tableau.com/support/releases){:target="_blank"} or [Tableau Server](https://www.tableau.com/support/releases/server){:target="_blank"}.
+
+* To preview new features and test your extension with the latest version of Tableau in the Developer Sandbox, join the [Tableau Developer Program](http://www.tableau.com/developer){:target="_blank"} and request your own {{site.tol}} developer site.
+
+About this release:
+
+* Adds the `Environment.uniqueUserId` property.
+
+* Adds the `SummaryDataChanged` event type.
+
+* Adds the `Worksheet.getVisualSpecificationAsync` method.
+
+* Adds an attribute, `isGeospatial`, to `Field`.
+
+* Fixes a bug in the `getSelectedMarksAsync` method that would cause `formattedValue` to be incorrect in multi-pane scenarios.
+
+* Fixes a bug to allow a `Field` to have datatype = `DataType.Spatial`.
+
+* Adds experimental features as part of Viz Extensions Pre-Release. See the blog post [Extend Your Visual Analytics with Tableau Viz Extensions](https://www.tableau.com/blog/visual-analytics-tableau-viz-extensions).
+
+    The Viz Extensions API is currently under development. Tableau is working to offer the feature in general availability later in 2024.
+
+    We encourage anyone interested in developing viz extensions to contact Wilson Po at [wpo@salesforce.com](mailto:wpo@salesforce.com). We’re running a program by invitation that focuses on the developer experience for those interested in exploring those tools. An active NDA must be in place to requests access to the preview at this time.
+
+    Sign up to test Tableau Viz Extensions in the [Tableau Beta Preview](https://prerelease.tableau.com/welcome/), as part of the web authoring experience when you register for a Tableau Cloud Beta Site.
+
+----
+See also: [Known Issues]({{site.baseurl}}/docs/trex_known_issues.html)
+
+----
+
+#### All Releases
+
+* TOC
+{:toc}
+
+----
+
 ### Tableau Dashboard Extensions API version 1.10.0
 
 *December 2022*
@@ -33,18 +77,6 @@ For more information, see [Get Data from the View]({{site.baseurl}}/docs/trex_ge
 * The [UI.displayDialogAsync]({{site.baseurl}}docs/interfaces/ui.html#displaydialogasync) now supports different dialog styles (window, modal or modeless dialog boxes).
 
 * Adds support for annotating marks with [Worksheet.annotateMarkAsync]({{site.baseurl}}/docs/interfaces/worksheet.html#annotatemarkasync), [Worksheet.getAnnotationsAsync]({{site.baseurl}}/docs/interfaces/worksheet.html#getannotationsasync), and [Worksheet.removeAnnotationAsync]({{site.baseurl}}/docs/interfaces/worksheet.html#removeannotationasync). See the code sample, [Annotation](https://github.com/tableau/extensions-api/tree/dev/Samples/Annotation) (on GitHub).
-
-
-
-----
-See also: [Known Issues]({{site.baseurl}}/docs/trex_known_issues.html)
-
-----
-
-#### All Releases
-
-* TOC
-{:toc}
 
 ----
 
