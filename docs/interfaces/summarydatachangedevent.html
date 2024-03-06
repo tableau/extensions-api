@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>TableauSheetEvent | Tableau Extensions</title>
+	<title>SummaryDataChangedEvent | Tableau Extensions</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="tableausheetevent.html">TableauSheetEvent</a>
+					<a href="summarydatachangedevent.html">SummaryDataChangedEvent</a>
 				</li>
 			</ul>
-			<h1>Interface TableauSheetEvent</h1>
+			<h1>Interface SummaryDataChangedEvent</h1>
 		</div>
 	</div>
 </header>
@@ -67,23 +67,23 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>An event which is related to a particular Sheet (worksheet, dashboard, story) in the workbook.</p>
+						<p>An event which is raised when summary data is changed for a worksheet or when a worksheet&#39;s data source is refreshed</p>
 					</div>
+					<dl class="tsd-comment-tags">
+						<dt>since</dt>
+						<dd><p>1.11.0 and Tableau 2024.1</p>
+						</dd>
+					</dl>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<a href="tableauevent.html" class="tsd-signature-type">TableauEvent</a>
+						<a href="tableauworksheetevent.html" class="tsd-signature-type">TableauWorksheetEvent</a>
 						<ul class="tsd-hierarchy">
 							<li>
-								<span class="target">TableauSheetEvent</span>
-								<ul class="tsd-hierarchy">
-									<li>
-										<a href="tableauworksheetevent.html" class="tsd-signature-type">TableauWorksheetEvent</a>
-									</li>
-								</ul>
+								<span class="target">SummaryDataChangedEvent</span>
 							</li>
 						</ul>
 					</li>
@@ -93,23 +93,25 @@
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
-						<section class="tsd-index-section ">
+						<section class="tsd-index-section tsd-is-inherited">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="tableausheetevent.html#sheet" class="tsd-kind-icon">sheet</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="tableausheetevent.html#type" class="tsd-kind-icon">type</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="summarydatachangedevent.html#sheet" class="tsd-kind-icon">sheet</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="summarydatachangedevent.html#type" class="tsd-kind-icon">type</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="summarydatachangedevent.html#worksheet" class="tsd-kind-icon">worksheet</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group ">
+			<section class="tsd-panel-group tsd-member-group tsd-is-inherited">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="sheet" class="tsd-anchor"></a>
 					<h3>sheet</h3>
 					<div class="tsd-signature tsd-kind-icon">sheet<span class="tsd-signature-symbol">:</span> <a href="sheet.html" class="tsd-signature-type">Sheet</a></div>
 					<aside class="tsd-sources">
+						<p>Inherited from <a href="tableauworksheetevent.html">TableauWorksheetEvent</a>.<a href="tableauworksheetevent.html#sheet">sheet</a></p>
 						<ul>
 							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/EventInterface.ts:43</li>
 						</ul>
@@ -140,6 +142,24 @@
 						</dl>
 					</div>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="worksheet" class="tsd-anchor"></a>
+					<h3>worksheet</h3>
+					<div class="tsd-signature tsd-kind-icon">worksheet<span class="tsd-signature-symbol">:</span> <a href="worksheet.html" class="tsd-signature-type">Worksheet</a></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="tableauworksheetevent.html">TableauWorksheetEvent</a>.<a href="tableauworksheetevent.html#worksheet">worksheet</a></p>
+						<ul>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/EventInterface.ts:16</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<dl class="tsd-comment-tags">
+							<dt>returns</dt>
+							<dd><p>The worksheet which was the source of this event.</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
 			</section>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -155,13 +175,16 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="tableausheetevent.html" class="tsd-kind-icon">Tableau<wbr>Sheet<wbr>Event</a>
+						<a href="summarydatachangedevent.html" class="tsd-kind-icon">Summary<wbr>Data<wbr>Changed<wbr>Event</a>
 						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="tableausheetevent.html#sheet" class="tsd-kind-icon">sheet</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="summarydatachangedevent.html#sheet" class="tsd-kind-icon">sheet</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="tableausheetevent.html#type" class="tsd-kind-icon">type</a>
+								<a href="summarydatachangedevent.html#type" class="tsd-kind-icon">type</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="summarydatachangedevent.html#worksheet" class="tsd-kind-icon">worksheet</a>
 							</li>
 						</ul>
 					</li>

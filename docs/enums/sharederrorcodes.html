@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>SharedErrorCodes | Dashboard Extensions</title>
+	<title>SharedErrorCodes | Tableau Extensions</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">Dashboard Extensions</a>
+					<a href="../index.html" class="title">Tableau Extensions</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -72,6 +72,8 @@
 							<h3>Enumeration members</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="sharederrorcodes.html#apiexecutionerror" class="tsd-kind-icon">Api<wbr>Execution<wbr>Error</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="sharederrorcodes.html#crosstabcreationerror" class="tsd-kind-icon">Crosstab<wbr>Creation<wbr>Error</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="sharederrorcodes.html#datacreationerror" class="tsd-kind-icon">Data<wbr>Creation<wbr>Error</a></li>
 								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="sharederrorcodes.html#implementationerror" class="tsd-kind-icon">Implementation<wbr>Error</a></li>
 								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="sharederrorcodes.html#internalerror" class="tsd-kind-icon">Internal<wbr>Error</a></li>
 								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="sharederrorcodes.html#invalidaggregationfieldname" class="tsd-kind-icon">Invalid<wbr>Aggregation<wbr>Field<wbr>Name</a></li>
@@ -80,8 +82,11 @@
 								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="sharederrorcodes.html#invalidparameter" class="tsd-kind-icon">Invalid<wbr>Parameter</a></li>
 								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="sharederrorcodes.html#invalidselectiondate" class="tsd-kind-icon">Invalid<wbr>Selection<wbr>Date</a></li>
 								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="sharederrorcodes.html#invalidselectionfieldname" class="tsd-kind-icon">Invalid<wbr>Selection<wbr>Field<wbr>Name</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="sharederrorcodes.html#invalidselectionsheet" class="tsd-kind-icon">Invalid<wbr>Selection<wbr>Sheet</a></li>
 								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="sharederrorcodes.html#invalidselectionvalue" class="tsd-kind-icon">Invalid<wbr>Selection<wbr>Value</a></li>
 								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="sharederrorcodes.html#notactivesheet" class="tsd-kind-icon">Not<wbr>Active<wbr>Sheet</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="sharederrorcodes.html#pdfcreationerror" class="tsd-kind-icon">PDFCreation<wbr>Error</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="sharederrorcodes.html#powerpointcreationerror" class="tsd-kind-icon">Power<wbr>Point<wbr>Creation<wbr>Error</a></li>
 								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="sharederrorcodes.html#servererror" class="tsd-kind-icon">Server<wbr>Error</a></li>
 								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="sharederrorcodes.html#timeout" class="tsd-kind-icon">Timeout</a></li>
 							</ul>
@@ -97,7 +102,7 @@
 					<div class="tsd-signature tsd-kind-icon">Api<wbr>Execution<wbr>Error<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;api-execution-error&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Enums.ts:48</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Enums.ts:66</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -107,12 +112,42 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="crosstabcreationerror" class="tsd-anchor"></a>
+					<h3>Crosstab<wbr>Creation<wbr>Error</h3>
+					<div class="tsd-signature tsd-kind-icon">Crosstab<wbr>Creation<wbr>Error<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;crosstab-creation-error&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Enums.ts:5</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>A CSV or Excel file failed to be created in Viz.exportCrosstabAsync().</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="datacreationerror" class="tsd-anchor"></a>
+					<h3>Data<wbr>Creation<wbr>Error</h3>
+					<div class="tsd-signature tsd-kind-icon">Data<wbr>Creation<wbr>Error<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;data-creation-error&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Enums.ts:9</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>A CSV file failed to be created in Viz.exportDataAsync().</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
 					<a name="implementationerror" class="tsd-anchor"></a>
 					<h3>Implementation<wbr>Error</h3>
 					<div class="tsd-signature tsd-kind-icon">Implementation<wbr>Error<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;wrong-implementation&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Enums.ts:43</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Enums.ts:62</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -127,7 +162,7 @@
 					<div class="tsd-signature tsd-kind-icon">Internal<wbr>Error<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;internal-error&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Enums.ts:30</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Enums.ts:42</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -142,7 +177,7 @@
 					<div class="tsd-signature tsd-kind-icon">Invalid<wbr>Aggregation<wbr>Field<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;invalid-aggregation-field-name&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Enums.ts:6</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Enums.ts:14</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -158,7 +193,7 @@
 					<div class="tsd-signature tsd-kind-icon">Invalid<wbr>Filter<wbr>Field<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;invalid-filter-name&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Enums.ts:10</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Enums.ts:18</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -173,7 +208,7 @@
 					<div class="tsd-signature tsd-kind-icon">Invalid<wbr>Filter<wbr>Field<wbr>Value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;invalid-filter-fieldValue&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Enums.ts:14</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Enums.ts:22</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -188,7 +223,7 @@
 					<div class="tsd-signature tsd-kind-icon">Invalid<wbr>Parameter<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;invalid-parameter&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Enums.ts:34</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Enums.ts:46</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -203,7 +238,7 @@
 					<div class="tsd-signature tsd-kind-icon">Invalid<wbr>Selection<wbr>Date<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;invalid-selection-date&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Enums.ts:18</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Enums.ts:26</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -218,7 +253,7 @@
 					<div class="tsd-signature tsd-kind-icon">Invalid<wbr>Selection<wbr>Field<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;invalid-selection-fieldName&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Enums.ts:22</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Enums.ts:30</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -228,12 +263,27 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="invalidselectionsheet" class="tsd-anchor"></a>
+					<h3>Invalid<wbr>Selection<wbr>Sheet</h3>
+					<div class="tsd-signature tsd-kind-icon">Invalid<wbr>Selection<wbr>Sheet<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;invalid-selection-sheet&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Enums.ts:38</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>A parameter did not include a valid sheet selection for exporting.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
 					<a name="invalidselectionvalue" class="tsd-anchor"></a>
 					<h3>Invalid<wbr>Selection<wbr>Value</h3>
 					<div class="tsd-signature tsd-kind-icon">Invalid<wbr>Selection<wbr>Value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;invalid-selection-value&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Enums.ts:26</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Enums.ts:34</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -248,7 +298,7 @@
 					<div class="tsd-signature tsd-kind-icon">Not<wbr>Active<wbr>Sheet<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;not-active-sheet&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Enums.ts:38</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Enums.ts:58</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -258,12 +308,42 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="pdfcreationerror" class="tsd-anchor"></a>
+					<h3>PDFCreation<wbr>Error</h3>
+					<div class="tsd-signature tsd-kind-icon">PDFCreation<wbr>Error<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;pdf-creation-error&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Enums.ts:50</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>A PDF file failed to be created in Viz.exportPDFAsync().</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="powerpointcreationerror" class="tsd-anchor"></a>
+					<h3>Power<wbr>Point<wbr>Creation<wbr>Error</h3>
+					<div class="tsd-signature tsd-kind-icon">Power<wbr>Point<wbr>Creation<wbr>Error<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;powerpoint-creation-error&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Enums.ts:54</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>A PowerPoint file failed to be created in Viz.exportPowerPointAsync().</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
 					<a name="servererror" class="tsd-anchor"></a>
 					<h3>Server<wbr>Error</h3>
 					<div class="tsd-signature tsd-kind-icon">Server<wbr>Error<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;server-error&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Enums.ts:52</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Enums.ts:70</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -278,7 +358,7 @@
 					<div class="tsd-signature tsd-kind-icon">Timeout<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;timeout&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Enums.ts:56</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Enums.ts:74</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -308,6 +388,12 @@
 								<a href="sharederrorcodes.html#apiexecutionerror" class="tsd-kind-icon">Api<wbr>Execution<wbr>Error</a>
 							</li>
 							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="sharederrorcodes.html#crosstabcreationerror" class="tsd-kind-icon">Crosstab<wbr>Creation<wbr>Error</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="sharederrorcodes.html#datacreationerror" class="tsd-kind-icon">Data<wbr>Creation<wbr>Error</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
 								<a href="sharederrorcodes.html#implementationerror" class="tsd-kind-icon">Implementation<wbr>Error</a>
 							</li>
 							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
@@ -332,10 +418,19 @@
 								<a href="sharederrorcodes.html#invalidselectionfieldname" class="tsd-kind-icon">Invalid<wbr>Selection<wbr>Field<wbr>Name</a>
 							</li>
 							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="sharederrorcodes.html#invalidselectionsheet" class="tsd-kind-icon">Invalid<wbr>Selection<wbr>Sheet</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
 								<a href="sharederrorcodes.html#invalidselectionvalue" class="tsd-kind-icon">Invalid<wbr>Selection<wbr>Value</a>
 							</li>
 							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
 								<a href="sharederrorcodes.html#notactivesheet" class="tsd-kind-icon">Not<wbr>Active<wbr>Sheet</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="sharederrorcodes.html#pdfcreationerror" class="tsd-kind-icon">PDFCreation<wbr>Error</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="sharederrorcodes.html#powerpointcreationerror" class="tsd-kind-icon">Power<wbr>Point<wbr>Creation<wbr>Error</a>
 							</li>
 							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
 								<a href="sharederrorcodes.html#servererror" class="tsd-kind-icon">Server<wbr>Error</a>

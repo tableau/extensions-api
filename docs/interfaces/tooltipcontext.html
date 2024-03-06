@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>TableauSheetEvent | Tableau Extensions</title>
+	<title>TooltipContext | Tableau Extensions</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="tableausheetevent.html">TableauSheetEvent</a>
+					<a href="tooltipcontext.html">TooltipContext</a>
 				</li>
 			</ul>
-			<h1>Interface TableauSheetEvent</h1>
+			<h1>Interface TooltipContext</h1>
 		</div>
 	</div>
 </header>
@@ -67,25 +67,19 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>An event which is related to a particular Sheet (worksheet, dashboard, story) in the workbook.</p>
+						<p>Provides the necessary information for how to display a Tableau tooltip.</p>
 					</div>
+					<dl class="tsd-comment-tags">
+						<dt>experimental</dt>
+						<dd></dd>
+					</dl>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<a href="tableauevent.html" class="tsd-signature-type">TableauEvent</a>
-						<ul class="tsd-hierarchy">
-							<li>
-								<span class="target">TableauSheetEvent</span>
-								<ul class="tsd-hierarchy">
-									<li>
-										<a href="tableauworksheetevent.html" class="tsd-signature-type">TableauWorksheetEvent</a>
-									</li>
-								</ul>
-							</li>
-						</ul>
+						<span class="target">TooltipContext</span>
 					</li>
 				</ul>
 			</section>
@@ -96,8 +90,7 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="tableausheetevent.html#sheet" class="tsd-kind-icon">sheet</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="tableausheetevent.html#type" class="tsd-kind-icon">type</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="tooltipcontext.html#tooltipanchorpoint" class="tsd-kind-icon">tooltip<wbr>Anchor<wbr>Point</a></li>
 							</ul>
 						</section>
 					</div>
@@ -106,38 +99,18 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="sheet" class="tsd-anchor"></a>
-					<h3>sheet</h3>
-					<div class="tsd-signature tsd-kind-icon">sheet<span class="tsd-signature-symbol">:</span> <a href="sheet.html" class="tsd-signature-type">Sheet</a></div>
+					<a name="tooltipanchorpoint" class="tsd-anchor"></a>
+					<h3>tooltip<wbr>Anchor<wbr>Point</h3>
+					<div class="tsd-signature tsd-kind-icon">tooltip<wbr>Anchor<wbr>Point<span class="tsd-signature-symbol">:</span> <a href="point.html" class="tsd-signature-type">Point</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/EventInterface.ts:43</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/SelectionInterfaces.ts:97</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
-						<dl class="tsd-comment-tags">
-							<dt>returns</dt>
-							<dd><p>The sheet which was the source of this event.</p>
-							</dd>
-						</dl>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-					<a name="type" class="tsd-anchor"></a>
-					<h3>type</h3>
-					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <a href="../enums/tableau.tableaueventtype.html" class="tsd-signature-type">TableauEventType</a></div>
-					<aside class="tsd-sources">
-						<p>Inherited from <a href="tableauworksheetevent.html">TableauWorksheetEvent</a>.<a href="tableauworksheetevent.html#type">type</a></p>
-						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/EventInterface.ts:75</li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<dl class="tsd-comment-tags">
-							<dt>returns</dt>
-							<dd><p>The type of event which this class is representing.</p>
-							</dd>
-						</dl>
+						<div class="lead">
+							<p>Indicates where the tooltip should be displayed relative to the top left of the visualization.</p>
+						</div>
 					</div>
 				</section>
 			</section>
@@ -155,13 +128,10 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="tableausheetevent.html" class="tsd-kind-icon">Tableau<wbr>Sheet<wbr>Event</a>
+						<a href="tooltipcontext.html" class="tsd-kind-icon">Tooltip<wbr>Context</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="tableausheetevent.html#sheet" class="tsd-kind-icon">sheet</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="tableausheetevent.html#type" class="tsd-kind-icon">type</a>
+								<a href="tooltipcontext.html#tooltipanchorpoint" class="tsd-kind-icon">tooltip<wbr>Anchor<wbr>Point</a>
 							</li>
 						</ul>
 					</li>
