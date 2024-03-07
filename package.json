@@ -21,7 +21,7 @@
     "http-server": "^14.1.0"
   },
   "devDependencies": {
-    "@tableau/extensions-api-types": "1.10.0",
+    "@tableau/extensions-api-types": "1.11.0",
     "@tableau/tabextsandbox": "^1.10.0",
     "@types/jquery": "^3.3.29",
     "@types/react": "^17.0.2",
