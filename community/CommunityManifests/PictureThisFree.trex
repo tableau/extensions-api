@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest manifest-version="0.1" xmlns="http://www.tableau.com/xml/extension_manifest">
+  <dashboard-extension id="com.tableau.extensions.myawesomeextension" extension-version="0.7.0">
+    <default-locale>PictureThis Free Extension!</default-locale>
+    <name resource-id="name"/>
+    <description>PictureThis Free to view data easily.</description>
+    <author name="Harsh Pandey" email="harshpan01@gmail.com" organization="PictureThis Free" website="https://hp-01.github.io/picture-this-free/"/>
+    <min-api-version>0.9</min-api-version>
+    <source-location>
+      <url>https://hp-01.github.io/picture-this-free/home.html</url>
+    </source-location>
+    <icon></icon>
+    <permissions>
+      <permission>full data</permission>
+    </permissions>
+    <context-menu>
+      <configure-context-menu-item />
+    </context-menu>
+  </dashboard-extension>
+  <resources>
+    <resource id="name">
+      <text locale="en_US">PictureThis Free Configuration</text>
+    </resource>
+  </resources>
+</manifest>
