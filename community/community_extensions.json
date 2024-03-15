@@ -268,5 +268,18 @@
         "description": "An extension of UpSet.js to create interactive set visualizations for more than three sets.",
         "source_code": "",
         "hostedTrexFileName": "UpSetjs.trex"
+    },
+     {
+        "name": "PictureThis Free",
+        "website": "https://hp-01.github.io/picture-this-free/",
+        "author": "Harsh Pandey",
+        "github_username": "hp-01",
+        "tags": [
+            "v_1.0"
+        ],
+        "description": "PictureThis Free extension to visualize images url in card and table format.",
+        "url": "https://github.com/hp-01/hp-01.github.io/tree/main/picture-this-free",
+        "source_code": "https://github.com/hp-01/hp-01.github.io/tree/main/picture-this-free",
+        "hostedTrexFileName": "PictureThisFree.trex"
     }
 ]
