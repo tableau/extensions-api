@@ -24,11 +24,7 @@ About this release:
 
 * Adds the `Worksheet.getVisualSpecificationAsync` method.
 
-* Adds an attribute, `isGeospatial`, to `Field`.
-
 * Fixes a bug in the `getSelectedMarksAsync` method that would cause `formattedValue` to be incorrect in multi-pane scenarios.
-
-* Fixes a bug to allow a `Field` to have datatype = `DataType.Spatial`.
 
 * Adds experimental features as part of Viz Extensions Pre-Release. See the blog post [Extend Your Visual Analytics with Tableau Viz Extensions](https://www.tableau.com/blog/visual-analytics-tableau-viz-extensions).
 
