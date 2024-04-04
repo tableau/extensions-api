@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Extensions | Dashboard Extensions</title>
+	<title>Extensions | Tableau Extensions</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">Dashboard Extensions</a>
+					<a href="../index.html" class="title">Tableau Extensions</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -85,22 +85,32 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Properties</h3>
+							<h3>All Extensions Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="extensions.html#dashboardcontent" class="tsd-kind-icon">dashboard<wbr>Content</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="extensions.html#dashboardobjectid" class="tsd-kind-icon">dashboard<wbr>Object<wbr>Id</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="extensions.html#environment" class="tsd-kind-icon">environment</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="extensions.html#settings" class="tsd-kind-icon">settings</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="extensions.html#ui" class="tsd-kind-icon">ui</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="extensions.html#workbook" class="tsd-kind-icon">workbook</a></li>
 							</ul>
+							<h3>Dashboard Extensions Properties</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="extensions.html#dashboardcontent" class="tsd-kind-icon">dashboard<wbr>Content</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="extensions.html#dashboardobjectid" class="tsd-kind-icon">dashboard<wbr>Object<wbr>Id</a></li>
+							</ul>
+							<h3>Viz Extensions Properties</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="extensions.html#worksheetcontent" class="tsd-kind-icon">worksheet<wbr>Content</a></li>
+							</ul>
 						</section>
 						<section class="tsd-index-section ">
-							<h3>Methods</h3>
+							<h3>All Extensions Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="extensions.html#createvizimageasync" class="tsd-kind-icon">create<wbr>Viz<wbr>Image<wbr>Async</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="extensions.html#initializeasync" class="tsd-kind-icon">initialize<wbr>Async</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="extensions.html#initializedialogasync" class="tsd-kind-icon">initialize<wbr>Dialog<wbr>Async</a></li>
+							</ul>
+							<h3>Dashboard Extensions Methods</h3>
+							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="extensions.html#setclickthroughasync" class="tsd-kind-icon">set<wbr>Click<wbr>Through<wbr>Async</a></li>
 							</ul>
 						</section>
@@ -108,53 +118,14 @@
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="dashboardcontent" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> dashboard<wbr>Content</h3>
-					<div class="tsd-signature tsd-kind-icon">dashboard<wbr>Content<span class="tsd-signature-symbol">:</span> <a href="dashboardcontent.html" class="tsd-signature-type">DashboardContent</a></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/Namespaces/Extensions.ts:61</li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The <code>dashboardContent</code> namespace provides access to the dashboard object.
-								When you have the dashboard object, you have access to all elements in the <a href="./dashboard.html">dashboard</a>
-								including the <a href="./dashboard.html#worksheets">worksheets</a>, <a href=".//markscollection.html">marks</a>,
-								<a href="./filter.html">filters</a>, <a href="./parameter.html">parameters</a>, and <a href="./datasource.html">data sources</a>.
-							To access the objects in this name space, specify <code>tableau.extensions.dashboardContent</code>.</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="dashboardobjectid" class="tsd-anchor"></a>
-					<h3>dashboard<wbr>Object<wbr>Id</h3>
-					<div class="tsd-signature tsd-kind-icon">dashboard<wbr>Object<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/Namespaces/Extensions.ts:93</li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The dashboard object id for the extension that is running.</p>
-						</div>
-						<dl class="tsd-comment-tags">
-							<dt>since</dt>
-							<dd><p>1.7.0</p>
-							</dd>
-						</dl>
-					</div>
-				</section>
+				<h2>All Extensions Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="environment" class="tsd-anchor"></a>
 					<h3>environment</h3>
 					<div class="tsd-signature tsd-kind-icon">environment<span class="tsd-signature-symbol">:</span> <a href="environment.html" class="tsd-signature-type">Environment</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/Namespaces/Extensions.ts:68</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/Namespaces/Extensions.ts:79</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -171,7 +142,7 @@
 					<div class="tsd-signature tsd-kind-icon">settings<span class="tsd-signature-symbol">:</span> <a href="settings.html" class="tsd-signature-type">Settings</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/Namespaces/Extensions.ts:75</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/Namespaces/Extensions.ts:86</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -188,7 +159,7 @@
 					<div class="tsd-signature tsd-kind-icon">ui<span class="tsd-signature-symbol">:</span> <a href="ui.html" class="tsd-signature-type">UI</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/Namespaces/Extensions.ts:81</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/Namespaces/Extensions.ts:92</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -204,7 +175,7 @@
 					<div class="tsd-signature tsd-kind-icon">workbook<span class="tsd-signature-symbol">:</span> <a href="workbook.html" class="tsd-signature-type">Workbook</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/Namespaces/Extensions.ts:87</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/Namespaces/Extensions.ts:98</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -220,7 +191,73 @@
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Methods</h2>
+				<h2>Dashboard Extensions Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="dashboardcontent" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> dashboard<wbr>Content</h3>
+					<div class="tsd-signature tsd-kind-icon">dashboard<wbr>Content<span class="tsd-signature-symbol">:</span> <a href="dashboardcontent.html" class="tsd-signature-type">DashboardContent</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/Namespaces/Extensions.ts:63</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The <code>dashboardContent</code> namespace provides access to the dashboard object when the extension is a dashboard extension.
+								When you have the dashboard object, you have access to all elements in the <a href="./dashboard.html">dashboard</a>
+								including the <a href="./dashboard.html#worksheets">worksheets</a>, <a href="./markscollection.html">marks</a>,
+								<a href="./filter.html">filters</a>, <a href="./parameter.html">parameters</a>, and <a href="./datasource.html">data sources</a>.
+							To access the objects in this name space, specify <code>tableau.extensions.dashboardContent</code>.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="dashboardobjectid" class="tsd-anchor"></a>
+					<h3>dashboard<wbr>Object<wbr>Id</h3>
+					<div class="tsd-signature tsd-kind-icon">dashboard<wbr>Object<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/Namespaces/Extensions.ts:105</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The dashboard object id for the extension that is running.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>since</dt>
+							<dd><p>1.7.0</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Viz Extensions Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="worksheetcontent" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> worksheet<wbr>Content</h3>
+					<div class="tsd-signature tsd-kind-icon">worksheet<wbr>Content<span class="tsd-signature-symbol">:</span> <a href="worksheetcontent.html" class="tsd-signature-type">WorksheetContent</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/Namespaces/Extensions.ts:72</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The <code>worksheetContent</code> namespace provides access to the worksheet when the extension is a worksheet extension.
+								When you have the worksheet object, you have access to all elements in the <a href="./worksheet.html">worksheet</a>
+							To access the objects in this name space, specify <code>tableau.extensions.worksheetContent</code>.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>beta</dt>
+							<dd></dd>
+						</dl>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>All Extensions Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
 					<a name="createvizimageasync" class="tsd-anchor"></a>
 					<h3>create<wbr>Viz<wbr>Image<wbr>Async</h3>
@@ -231,7 +268,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/Namespaces/Extensions.ts:132</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/Namespaces/Extensions.ts:144</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -287,7 +324,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/Namespaces/Extensions.ts:37</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/Namespaces/Extensions.ts:38</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -334,7 +371,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/Namespaces/Extensions.ts:52</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/Namespaces/Extensions.ts:53</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -355,6 +392,9 @@
 						</li>
 					</ul>
 				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Dashboard Extensions Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
 					<a name="setclickthroughasync" class="tsd-anchor"></a>
 					<h3>set<wbr>Click<wbr>Through<wbr>Async</h3>
@@ -365,7 +405,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/Namespaces/Extensions.ts:154</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/Namespaces/Extensions.ts:167</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -434,6 +474,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="extensions.html#workbook" class="tsd-kind-icon">workbook</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="extensions.html#worksheetcontent" class="tsd-kind-icon">worksheet<wbr>Content</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
 								<a href="extensions.html#createvizimageasync" class="tsd-kind-icon">create<wbr>Viz<wbr>Image<wbr>Async</a>

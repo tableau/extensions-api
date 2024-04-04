@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Column | Dashboard Extensions</title>
+	<title>Column | Tableau Extensions</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">Dashboard Extensions</a>
+					<a href="../index.html" class="title">Tableau Extensions</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -121,11 +121,10 @@
 					<div class="tsd-comment tsd-typography">
 						<dl class="tsd-comment-tags">
 							<dt>returns</dt>
-								<dd><p>The fieldId of the field in the column. This is a calculated string that is unique across all fields and datasources in the workbook. 
-								It does not directly correspond to any other object Id - it is a combination of DataSource.id, Field.id, and Field type information. 
-								(When retrieved as summary data, this includes the aggregation.)
-								This means the fieldID will change if the datasource is replaced: for example 
-								[Clipboard_20210305T164000].[sum:Sales:qk] could become [federated.12usuoq1171o1b1ebdyh60fjnev1].[sum:Sales:qk].</p>
+							<dd><p>The fieldId of the field in the column. In summary data, this includes the aggregation.
+									The fieldId is not stable across replacing data sources.
+									For example after replacing the data source [Clipboard_20210305T164000].[sum:Sales:qk] could become
+								[federated.12usuoq1171o1b1ebdyh60fjnev1].[sum:Sales:qk].</p>
 							</dd>
 							<dt>since</dt>
 							<dd><p>1.5.0</p>
@@ -145,8 +144,8 @@
 					<div class="tsd-comment tsd-typography">
 						<dl class="tsd-comment-tags">
 							<dt>returns</dt>
-							<dd><p>The name of the field in the column. In summary data, this includes the aggregation as localized text, therefore 
-								the summary data field name is not stable across languages.
+							<dd><p>The name of the field in the column. In summary data, this includes the aggregation.
+									The summary data field name is not stable across languages.
 								For example, in an English version of Tableau, the field name might be SUM(Sales). In French, this would be SOMME(Sales).</p>
 							</dd>
 						</dl>
