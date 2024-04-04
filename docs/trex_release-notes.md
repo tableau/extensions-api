@@ -8,7 +8,7 @@ layout: docs
 ----
 ### Tableau Dashboard Extensions API version 1.11.0
 
-*February 2024*
+*April 2024*
 
 * Tableau Dashboard Extensions API library: `tableau.extensions.1.11.0.js` <br>(download or clone the Extensions API repository on [GitHub](https://github.com/tableau/extensions-api){:target="_blank"}.) <br/>
 
