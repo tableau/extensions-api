@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>DataSource | Dashboard Extensions</title>
+	<title>DataSource | Tableau Extensions</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">Dashboard Extensions</a>
+					<a href="../index.html" class="title">Tableau Extensions</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -100,7 +100,6 @@
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="datasource.html#getactivetablesasync" class="tsd-kind-icon">get<wbr>Active<wbr>Tables<wbr>Async</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="datasource.html#getconnectionsummariesasync" class="tsd-kind-icon">get<wbr>Connection<wbr>Summaries<wbr>Async</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="datasource.html#getlogicaltabledataasync" class="tsd-kind-icon">get<wbr>Logical<wbr>Table<wbr>Data<wbr>Async</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="datasource.html#getlogicaltabledatareaderasync" class="tsd-kind-icon">get<wbr>Logical<wbr>Table<wbr>Data<wbr>Reader<wbr>Async</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="datasource.html#getlogicaltablesasync" class="tsd-kind-icon">get<wbr>Logical<wbr>Tables<wbr>Async</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="datasource.html#getunderlyingdataasync" class="tsd-kind-icon">get<wbr>Underlying<wbr>Data<wbr>Async</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="datasource.html#refreshasync" class="tsd-kind-icon">refresh<wbr>Async</a></li>
@@ -320,68 +319,6 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
-					<a name="getlogicaltabledatareaderasync" class="tsd-anchor"></a>
-					<h3>get<wbr>Logical<wbr>Table<wbr>Data<wbr>Reader<wbr>Async</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Logical<wbr>Table<wbr>Data<wbr>Reader<wbr>Async<span class="tsd-signature-symbol">(</span>logicalTableId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, pageRowCount<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span>, options<span class="tsd-signature-symbol">?: </span><a href="datasourceunderlyingdataoptions.html" class="tsd-signature-type">DataSourceUnderlyingDataOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="datatablereader.html" class="tsd-signature-type">DataTableReader</a><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataSourceInterfaces.ts:180</li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Gets the underlying data table reader for the given logical table id.
-									Only one active DataTableReader per logical table id is supported.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>logicalTableId: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>logical table id.</p>
-									</div>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> pageRowCount: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The number of rows per page. The default and maximum is 10,000 rows.</p>
-									</div>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <a href="datasourceunderlyingdataoptions.html" class="tsd-signature-type">DataSourceUnderlyingDataOptions</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Collection of options to change the behavior of the reader.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="datatablereader.html" class="tsd-signature-type">DataTableReader</a><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>A data table reader to access the logical table data in the data source.</p>
-							<p><code>getLogicalTableDataReaderAsync</code> attempts to prepare all the rows of the table to be read as pages.
-								There is a limit to the number of rows that can be prepared. The default limit is about 1 million
-								rows of data. However, if the data source has many columns, this number will be adjusted downward.
-								You can change the default limit with the Tableau Server (Cloud) or Tableau Desktop option: ExtensionsAndEmbeddingReaderCellLimit.
-								If the data source has many columns, <code>getLogicalTableDataReaderAsync</code> can be sped up by only requesting
-							native data values in the <code>DataSourceUnderlyingDataOptions</code>.</p>
-							<p>The following example shows use of the <code>getLogicalTableDataReaderAsync</code> and <code>getAllPagesAsync</code> to
-								prepare pages of 10,000 rows each, and then to get a maximum of 150,000 rows of native data from
-							a specific logical table in a data source.</p>
-							<pre><code><span class="hljs-keyword">const</span> dataSources = <span class="hljs-keyword">await</span> worksheet.getDataSourcesAsync();
-<span class="hljs-keyword">const</span> dataSource = dataSources.find(<span class="hljs-function"><span class="hljs-params">datasource</span> =&gt;</span> datasource.name === <span class="hljs-string">"Sample - Superstore"</span>);
-<span class="hljs-keyword">const</span> logicalTables = <span class="hljs-keyword">await</span> dataSource.getLogicalTablesAsync()
-<span class="hljs-keyword">const</span> dataTableReader = <span class="hljs-keyword">await</span> dataSource.getLogicalTableDataReaderAsync(logicalTables[<span class="hljs-number">0</span>].id, <span class="hljs-number">10000</span>,
-    { <span class="hljs-attr">includeDataValuesOption</span>: tableau.IncludeDataValuesOption.OnlyNativeValues });
-<span class="hljs-keyword">const</span> dataTable = <span class="hljs-keyword">await</span> dataTableReader.getAllPagesAsync(<span class="hljs-number">150000</span>);
-<span class="hljs-built_in">console</span>.log(dataTable);
-<span class="hljs-keyword">await</span> dataTableReader.releaseAsync();</code></pre>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
 					<a name="getlogicaltablesasync" class="tsd-anchor"></a>
 					<h3>get<wbr>Logical<wbr>Tables<wbr>Async</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
@@ -538,9 +475,6 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
 								<a href="datasource.html#getlogicaltabledataasync" class="tsd-kind-icon">get<wbr>Logical<wbr>Table<wbr>Data<wbr>Async</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="datasource.html#getlogicaltabledatareaderasync" class="tsd-kind-icon">get<wbr>Logical<wbr>Table<wbr>Data<wbr>Reader<wbr>Async</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
 								<a href="datasource.html#getlogicaltablesasync" class="tsd-kind-icon">get<wbr>Logical<wbr>Tables<wbr>Async</a>

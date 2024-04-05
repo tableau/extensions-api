@@ -17,7 +17,7 @@ the method throws an exception. The following table shows the event types suppor
 
 | object | eventType |
 | ------  | ----- |
-| Worksheet | `FilterChanged` , `MarkSelectionChanged` |
+| Worksheet | `FilterChanged` , `MarkSelectionChanged`, `SummaryDataChanged` |
 | Parameter | `ParameterChanged` |
 | Settings |  `SettingsChanged` |
 | Dashboard |  `DashboardLayoutChanged` , `WorkbookFormattingChanged`   |

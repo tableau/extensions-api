@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Environment | Dashboard Extensions</title>
+	<title>Environment | Tableau Extensions</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">Dashboard Extensions</a>
+					<a href="../index.html" class="title">Tableau Extensions</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -95,6 +95,7 @@
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="environment.html#mode" class="tsd-kind-icon">mode</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="environment.html#operatingsystem" class="tsd-kind-icon">operating<wbr>System</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="environment.html#tableauversion" class="tsd-kind-icon">tableau<wbr>Version</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="environment.html#uniqueuserid" class="tsd-kind-icon">unique<wbr>User<wbr>Id</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="environment.html#workbookformatting" class="tsd-kind-icon">workbook<wbr>Formatting</a></li>
 							</ul>
 						</section>
@@ -251,6 +252,28 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="uniqueuserid" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> unique<wbr>User<wbr>Id</h3>
+					<div class="tsd-signature tsd-kind-icon">unique<wbr>User<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/Namespaces/Environment.ts:77</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<dl class="tsd-comment-tags">
+							<dt>returns</dt>
+							<dd><p>A unique id representing the current user.
+									The id is unique across a Tableau deployment or across a Tableau Cloud Site.
+									When the extension is running in desktop, the uniqueUserId is derived from machine-name/user-name.
+									When the extension is running in server, the uniqueUserId is derived from the user&#39;s login name.
+									There is no mechanism to obtain the actual user name or any additional user information.
+								If running against a Tableau version prior to 2023.2, uniqueUserId will be undefined.</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="workbookformatting" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> workbook<wbr>Formatting</h3>
 					<div class="tsd-signature tsd-kind-icon">workbook<wbr>Formatting<span class="tsd-signature-symbol">:</span> <a href="workbookformatting.html" class="tsd-signature-type">WorkbookFormatting</a></div>
@@ -315,6 +338,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="environment.html#tableauversion" class="tsd-kind-icon">tableau<wbr>Version</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="environment.html#uniqueuserid" class="tsd-kind-icon">unique<wbr>User<wbr>Id</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="environment.html#workbookformatting" class="tsd-kind-icon">workbook<wbr>Formatting</a>
