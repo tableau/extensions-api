@@ -1,0 +1,88 @@
+name: Deploy webpage
+
+# We combine both `gh-pages` and `dev` into a single webpage
+on:
+  push:
+    branches:
+      - 'gh-pages'
+      - 'gh-pages-dev'
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/configure-pages@v3
+        id: setup-pages
+
+      - name: Checkout gh-pages
+        uses: actions/checkout@v3
+        with:
+          ref: gh-pages
+          path: gh-pages
+
+      - name: Checkout gh-pages-dev
+        uses: actions/checkout@v3
+        with:
+          ref: gh-pages-dev
+          path: gh-pages-dev
+
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20.5'
+          cache: yarn
+          cache-dependency-path: |
+            gh-pages/website/yarn.lock
+            gh-pages-dev/website/yarn.lock
+
+      - name: Install dependencies (gh-pages)
+        working-directory: gh-pages/website
+        run: yarn install --frozen-lockfile
+
+
+      - name: Build webpage for `gh-pages` branch
+        working-directory: gh-pages/website
+        run: yarn build
+        env:
+          GITHUB_ORIGIN: ${{ steps.setup-pages.outputs.origin }}
+          GITHUB_BASE_PATH: ${{ steps.setup-pages.outputs.base_path }}
+
+      - name: Install dependencies (gh-pages-dev)
+        working-directory: gh-pages-dev/website
+        run: yarn install --frozen-lockfile
+
+      - name: Build webpage for `gh-pages-dev` branch
+        working-directory: gh-pages-dev/website
+        run: yarn build
+        env:
+          GITHUB_ORIGIN: ${{ steps.setup-pages.outputs.origin }}
+          GITHUB_BASE_PATH: ${{ steps.setup-pages.outputs.base_path }}/gh-pages-dev
+          IS_UPCOMING: '1'
+
+      - name: Combine `gh-pages`, `gh-pages-dev` 
+        run: |
+          mv gh-pages/website/build combined
+          mv gh-pages-dev/website/build combined/dev
+
+
+      - name: Upload webpage artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: 'combined'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2

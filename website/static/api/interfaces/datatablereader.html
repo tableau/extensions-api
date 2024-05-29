@@ -1,0 +1,393 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>DataTableReader | Tableau Extensions</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.js" data-base="..">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="../index.html" class="title">Tableau Extensions</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="../globals.html">Globals</a>
+				</li>
+				<li>
+					<a href="datatablereader.html">DataTableReader</a>
+				</li>
+			</ul>
+			<h1>Interface DataTableReader</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>A DataTableReader allows iteration over summary or underlying data by pages.
+							The page size is established when the DataTableReader is created.
+							(See getLogicalTableDataReaderAsync, getSummaryDataReaderAsync, or getUnderlyingTableDataReaderAsync.)
+						The normal sequence of operations would be to</p>
+						<ol>
+							<li>Create the DataTableReader for the desired DataTable.</li>
+							<li>Use DataTableReader.totalRowCount or DataTableReader.pageCount to discover how many rows or pages are in the desired DataTable.</li>
+							<li>Call DataTableReader.getPageAsync() to get the page(s) desired. Each page is a DataTable for that page.
+							Alternatively, based on the DataTableReader.totalRowCount, DataTableReader.getAllPagesAsync can be used to fetch the entire DataTable.</li>
+							<li>Call DataTableReader.releaseAsync() to free up resources.</li>
+						</ol>
+					</div>
+					<p>Notes for usage of a DataTableReader:</p>
+					<ol>
+						<li>Since DataTableReaders consume server resources, an inactive DataTableReader will be automatically
+						released after 60 minutes of inactivity. (A new DataTableReader can be created at that time, if needed.)</li>
+						<li>Calling getPageAsync() after an explicit or automatic releaseAsync() will throw an exception.</li>
+						<li>Only one active DataTableReader per logical table id is supported.</li>
+						<li>There are still limits on the number of rows supported for underlying and logical data table readers.
+							The default limit is approximately 1 million rows of data for getUnderlyingTableDataReaderAsync,
+							and approximately 32 million cells (rows * columns) for getLogicalTableDataReaderAsync.
+							Administrators may change these limits to better match computing resources with the Tableau Server (Cloud) or Tableau Desktop options:
+							ExtensionsAndEmbeddingReaderRowLimit for getUnderlyingTableDataReaderAsync or
+						ExtensionsAndEmbeddingReaderCellLimit for getLogicalTableDataReaderAsync.</li>
+					</ol>
+					<dl class="tsd-comment-tags">
+						<dt>since</dt>
+						<dd><p>1.10.0 and Tableau 2022.4</p>
+						</dd>
+					</dl>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<span class="target">DataTableReader</span>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>Properties</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="datatablereader.html#pagecount" class="tsd-kind-icon">page<wbr>Count</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="datatablereader.html#totalrowcount" class="tsd-kind-icon">total<wbr>Row<wbr>Count</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Methods</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="datatablereader.html#getallpagesasync" class="tsd-kind-icon">get<wbr>All<wbr>Pages<wbr>Async</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="datatablereader.html#getpageasync" class="tsd-kind-icon">get<wbr>Page<wbr>Async</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="datatablereader.html#releaseasync" class="tsd-kind-icon">release<wbr>Async</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="pagecount" class="tsd-anchor"></a>
+					<h3>page<wbr>Count</h3>
+					<div class="tsd-signature tsd-kind-icon">page<wbr>Count<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataTableInterfaces.ts:205</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<dl class="tsd-comment-tags">
+							<dt>returns</dt>
+							<dd><p>The number of pages in the full data table. The last page could be a partial page.</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="totalrowcount" class="tsd-anchor"></a>
+					<h3>total<wbr>Row<wbr>Count</h3>
+					<div class="tsd-signature tsd-kind-icon">total<wbr>Row<wbr>Count<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataTableInterfaces.ts:200</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<dl class="tsd-comment-tags">
+							<dt>returns</dt>
+							<dd><p>The number of rows in the full data table.</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="getallpagesasync" class="tsd-anchor"></a>
+					<h3>get<wbr>All<wbr>Pages<wbr>Async</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>All<wbr>Pages<wbr>Async<span class="tsd-signature-symbol">(</span>maxRows<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="datatable.html" class="tsd-signature-type">DataTable</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataTableInterfaces.ts:247</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get all the pages of data into a single DataTable.
+										Calls to getAllPagesAsync() after releaseAsync() will throw an exception.
+										To protect against possible browser failure, getAllPagesAsync will cap the data at a maximum of 400 pages.
+									With a default pageRowCount of 10,000 this will give you a maximum of 4,000,000 rows of data.</p>
+								</div>
+								<p>If sizes are larger than this, please process your data in page size chunks.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> maxRows: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Limits the request to maxRows. If maxRows === 0, requests all rows.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="datatable.html" class="tsd-signature-type">DataTable</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>A DataTable containing all the data available to the DataTableReader with the maximum page count above.</p>
+							<pre><code><span class="hljs-comment">// To simplify the example, we assume we have less than 4m rows of data</span>
+<span class="hljs-comment">// Since we are fetching all of the data, use the default page size in getSummaryDataReaderAsync</span>
+<span class="hljs-keyword">const</span> dataTableReader = <span class="hljs-function">await worksheet.<span class="hljs-title">getSummaryDataReaderAsync</span><span class="hljs-params">()</span></span>;
+<span class="hljs-keyword">const</span> dataTable = <span class="hljs-function">await dataTableReader.<span class="hljs-title">getAllPagesAsync</span><span class="hljs-params">()</span></span>;
+<span class="hljs-function">await dataTableReader.<span class="hljs-title">releaseAsync</span><span class="hljs-params">()</span></span>;
+<span class="hljs-comment">// ... process the data table ...</span></code></pre>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="getpageasync" class="tsd-anchor"></a>
+					<h3>get<wbr>Page<wbr>Async</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Page<wbr>Async<span class="tsd-signature-symbol">(</span>pageNumber<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="datatable.html" class="tsd-signature-type">DataTable</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataTableInterfaces.ts:226</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get a page of data. The page is returned as a DataTable.
+									Calls to getPageAsync() after releaseAsync() will throw an exception.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>pageNumber: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The page number (zero-indexed) to fetch. The page number should be treated
+										like an array index with range: 0 &lt;= pageNumber &lt; pageCount.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="datatable.html" class="tsd-signature-type">DataTable</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>A DataTable containing the requested page. The number of rows returned
+							can be less than the page size at the end of the data.</p>
+							<pre><code><span class="hljs-keyword">const</span> pageRowCount = <span class="hljs-number">200</span>;
+<span class="hljs-keyword">const</span> dataTableReader = <span class="hljs-keyword">await</span> worksheet.getSummaryDataReaderAsync(pageRowCount, options);
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> currentPage = <span class="hljs-number">0</span>; currentPage &lt; dataTableReader.pageCount; currentPage++) {
+  <span class="hljs-keyword">const</span> currentPageDataTable = <span class="hljs-keyword">await</span> dataTableReader.getPageAsync(currentPage);
+  <span class="hljs-comment">// ... process current page ...</span>
+}
+<span class="hljs-keyword">await</span> dataTableReader.releaseAsync();</code></pre>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="releaseasync" class="tsd-anchor"></a>
+					<h3>release<wbr>Async</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">release<wbr>Async<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataTableInterfaces.ts:254</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Release all resources held by the DataTableReader.
+										Calling this when done with the DataTableReader is required practice as it frees up resources.
+									Calls to getPageAsync() after releaseAsync() will throw an exception.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="../globals.html"><em>Globals</em></a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-interface">
+						<a href="datatablereader.html" class="tsd-kind-icon">Data<wbr>Table<wbr>Reader</a>
+						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="datatablereader.html#pagecount" class="tsd-kind-icon">page<wbr>Count</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="datatablereader.html#totalrowcount" class="tsd-kind-icon">total<wbr>Row<wbr>Count</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="datatablereader.html#getallpagesasync" class="tsd-kind-icon">get<wbr>All<wbr>Pages<wbr>Async</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="datatablereader.html#getpageasync" class="tsd-kind-icon">get<wbr>Page<wbr>Async</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="datatablereader.html#releaseasync" class="tsd-kind-icon">release<wbr>Async</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="after-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer>
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="overlay"></div>
+<script src="../assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
+<script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-625217-51', 'auto');
+        ga('send', 'pageview');
+    </script>
+</body>
+</html>
