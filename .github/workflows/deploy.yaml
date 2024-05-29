@@ -75,7 +75,7 @@ jobs:
       - name: Combine `gh-pages`, `gh-pages-dev` 
         run: |
           mv gh-pages/website/build combined
-          mv gh-pages-dev/website/build combined/dev
+          mv gh-pages-dev/website/build combined/gh-pages-dev
 
 
       - name: Upload webpage artifact
