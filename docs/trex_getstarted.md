@@ -84,7 +84,7 @@ To use the dashboard extension samples, you need to start up a web server on you
     The start commands uses the npm [http-server](https://www.npmjs.com/package/http-server){:target="_blank"} package, a simple HTTP server that uses Node.js for serving static files to the browser.
 
 
-    | **Note:**  The web server just serves the extension samples, which have URLs similar to the following: `http://localhost:8765/Samples/DataSources/datasources.html` This local web server is not intended to serve the Extensions API Help pages. View the Help on GitHub at [https://tableau.github.io/extensions-api](https://tableau.github.io/extensions-api).
+    | **Note:**  The web server just serves the extension samples, which have URLs similar to the following: `http://localhost:8765/Samples/Dashboard/DataSources/datasources.html` This local web server is not intended to serve the Extensions API Help pages. View the Help on GitHub at [https://tableau.github.io/extensions-api](https://tableau.github.io/extensions-api).
 
 
 
@@ -100,7 +100,7 @@ To use the dashboard extension samples, you need to start up a web server on you
 3. In the **Add an Extension** dialog box, click **Access Local Extensions**.
    Every Tableau extension has a manifest file (`.trex`) that describes the extension and identifies the location of the web application.
 
-4. Browse to the directory where the samples are located. For example, if you downloaded or cloned the GitHub repository, go to `\extensions-api\Samples\DataSources`.
+4. Browse to the directory where the samples are located. For example, if you downloaded or cloned the GitHub repository, go to `\extensions-api\Samples\Dashboard\DataSources`.
 
 5. Open the `DataSources.trex` file.
    The sample extension (web application) appears in the dashboard frame. The DataSources sample finds and displays the data source for each worksheet in the dashboard.
@@ -115,7 +115,7 @@ To use the dashboard extension samples, you need to start up a web server on you
 
 Looking at the files that make up an extension will give you an idea of how an extension is constructed.
 
-1. Browse to the directory where the DataSources sample is located. For example, if you downloaded or cloned the GitHub repository, go to `\extensions-api\Samples\DataSources`.
+1. Browse to the directory where the DataSources sample is located. For example, if you downloaded or cloned the GitHub repository, go to `\extensions-api\Samples\Dashboard\DataSources`.
 
 2. Open the `datasources.html` file in your favorite Text or Code editor. This HTML page provides the interface that users see when they load the extension. This file includes links to the Extensions API library file and to the file that contains all the JavaScript code for the extension.
 
@@ -150,7 +150,7 @@ Looking at the files that make up an extension will give you an idea of how an e
 
     ```xml
     <source-location>
-      <url>http://localhost:8765/Samples/DataSources/datasources.html</url>
+      <url>http://localhost:8765/Samples/Dashboard/DataSources/datasources.html</url>
     </source-loc>
     ```
 

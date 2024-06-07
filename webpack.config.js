@@ -4,16 +4,16 @@ const path = require('path');
 
 module.exports = {
   entry: {
-    annotation: './Samples-Typescript/Annotation/annotation.ts',
-    dashboardLayout: './Samples-Typescript/DashboardLayout/dashboardLayout.ts',
-    datasources: './Samples-Typescript/DataSources/datasources.ts',
-    filtering: './Samples-Typescript/Filtering/filtering.ts',
-    formatting: './Samples-Typescript/Formatting/formatting.tsx',
-    moveAndResize: './Samples-Typescript/MoveAndResize/moveAndResize.tsx',
-    parameters: './Samples-Typescript/Parameters/parameters.ts',
-    dashboardObjectVisibility: './Samples-Typescript/DashboardObjectVisibility/dashboardObjectVisibility.tsx',
-    replayAnimation: './Samples-Typescript/ReplayAnimation/replayAnimation.tsx',
-    vizImage: './Samples-Typescript/VizImage/vizImage.ts'
+    annotation: './Samples-Typescript/Dashboard/Annotation/annotation.ts',
+    dashboardLayout: './Samples-Typescript/Dashboard/DashboardLayout/dashboardLayout.ts',
+    datasources: './Samples-Typescript/Dashboard/DataSources/datasources.ts',
+    filtering: './Samples-Typescript/Dashboard/Filtering/filtering.ts',
+    formatting: './Samples-Typescript/Dashboard/Formatting/formatting.tsx',
+    moveAndResize: './Samples-Typescript/Dashboard/MoveAndResize/moveAndResize.tsx',
+    parameters: './Samples-Typescript/Dashboard/Parameters/parameters.ts',
+    dashboardObjectVisibility: './Samples-Typescript/Dashboard/DashboardObjectVisibility/dashboardObjectVisibility.tsx',
+    replayAnimation: './Samples-Typescript/Dashboard/ReplayAnimation/replayAnimation.tsx',
+    vizImage: './Samples-Typescript/Dashboard/VizImage/vizImage.ts'
   },
   mode: 'production',
   output: {

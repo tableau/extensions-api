@@ -72,7 +72,7 @@ For more information, see [Get Data from the View]({{site.baseurl}}/docs/trex_ge
 
 * The [UI.displayDialogAsync]({{site.baseurl}}docs/interfaces/ui.html#displaydialogasync) now supports different dialog styles (window, modal or modeless dialog boxes).
 
-* Adds support for annotating marks with [Worksheet.annotateMarkAsync]({{site.baseurl}}/docs/interfaces/worksheet.html#annotatemarkasync), [Worksheet.getAnnotationsAsync]({{site.baseurl}}/docs/interfaces/worksheet.html#getannotationsasync), and [Worksheet.removeAnnotationAsync]({{site.baseurl}}/docs/interfaces/worksheet.html#removeannotationasync). See the code sample, [Annotation](https://github.com/tableau/extensions-api/tree/dev/Samples/Annotation) (on GitHub).
+* Adds support for annotating marks with [Worksheet.annotateMarkAsync]({{site.baseurl}}/docs/interfaces/worksheet.html#annotatemarkasync), [Worksheet.getAnnotationsAsync]({{site.baseurl}}/docs/interfaces/worksheet.html#getannotationsasync), and [Worksheet.removeAnnotationAsync]({{site.baseurl}}/docs/interfaces/worksheet.html#removeannotationasync). See the code sample, [Annotation](https://github.com/tableau/extensions-api/tree/dev/Samples/Dashboard/Annotation) (on GitHub).
 
 ----
 
@@ -94,7 +94,7 @@ About this release:
 
 * Added support for [`Worksheet.applyRelativeDateFilterAsync()`]({{site.baseurl}}/docs/interfaces/worksheet.html#applyrelativedatefilterasync).
 
-* Starting with this release, you can now load Benton Sans fonts and Tableau fonts by default during extension initialization. You can set the Tableau and Benton Sans fonts in the style portion of your extension. To see how you can use the fonts in a dashboard extension, see the [Formatting](https://github.com/tableau/extensions-api/tree/master/Samples/Formatting?=target="_blank") sample.
+* Starting with this release, you can now load Benton Sans fonts and Tableau fonts by default during extension initialization. You can set the Tableau and Benton Sans fonts in the style portion of your extension. To see how you can use the fonts in a dashboard extension, see the [Formatting](https://github.com/tableau/extensions-api/tree/master/Samples/Dashboard/Formatting?=target="_blank") sample.
 
     ```css
 
@@ -205,7 +205,7 @@ About this release:
     </script>
     ```
 
-  You can access the formatting in the Tableau workbook from `tableau.extensions.environment.workbookFormatting`. The property `formattingSheets` contains the array of CSS properties for the workbook, organized by `ClassNameKey`. For more information about using workbook formatting, see the [Formatting](https://github.com/tableau/extensions-api/tree/main/Samples/Formatting){:target="_blank"} sample in the Samples folder. Also see [Add Tableau Workbook Formatting]({{site.baseurl}}/docs/trex_format.html).
+  You can access the formatting in the Tableau workbook from `tableau.extensions.environment.workbookFormatting`. The property `formattingSheets` contains the array of CSS properties for the workbook, organized by `ClassNameKey`. For more information about using workbook formatting, see the [Formatting](https://github.com/tableau/extensions-api/tree/main/Samples/Dashboard/Formatting){:target="_blank"} sample in the Samples folder. Also see [Add Tableau Workbook Formatting]({{site.baseurl}}/docs/trex_format.html).
 
 * You can now set an event listener on changes to the dashboard layout and to the dashboard formatting. The new event types are `DashboardLayoutChanged` and `WorkbookFormattingChanged`. 
 
@@ -241,7 +241,7 @@ Starting with version 1.6 of the Dashboard Extensions API library and Tableau 20
 For more information about using Tableau Viz, see: <br/>
   - [Add Tableau Viz to Your Dashboard Extensions]({{site.baseurl}}/docs/trex_tableau_viz.html)
   - [Tableau Viz Reference]({{site.baseurl}}/docs/trex_tableau_viz_ref.html)
-  - [Tableau Viz Sample - VizImage](https://github.com/tableau/extensions-api/tree/main/Samples/VizImage){:target="_blank"}
+  - [Tableau Viz Sample - VizImage](https://github.com/tableau/extensions-api/tree/main/Samples/Dashboard/VizImage){:target="_blank"}
 
 New Dashboard Extension API methods in this release:
 
@@ -618,7 +618,7 @@ Bug fixes:
 
 Updates in this release:
 
-- New *configure feature*, which allows you to register a custom JavaScript callback for a context menu item in the extension zone. See [Adding a configuration dialog box](#adding-a-configuration-menu-item) and the [UINamespace](https://github.com/tableau/extensions-api/tree/master/Samples/UINamespace?=target="_blank") sample.
+- New *configure feature*, which allows you to register a custom JavaScript callback for a context menu item in the extension zone. See [Adding a configuration dialog box](#adding-a-configuration-menu-item) and the [UINamespace](https://github.com/tableau/extensions-api/tree/master/Samples/Dashboard/UINamespace?=target="_blank") sample.
 
 -	A fix for a problem that existed in the 0.9.0 release that caused extension initialization to break on Tableau Server.  
 
@@ -687,7 +687,7 @@ $(document).ready(function () {
     });
   }
 ```
-To better understand how to use the context menu, and to see it in action, check out the updated [UINamespace](https://github.com/tableau/extensions-api/tree/master/Samples/UINamespace?=target="_blank") sample. 
+To better understand how to use the context menu, and to see it in action, check out the updated [UINamespace](https://github.com/tableau/extensions-api/tree/master/Samples/Dashboard/UINamespace?=target="_blank") sample. 
 
 
 --- 
@@ -708,9 +708,9 @@ Updates in this release:
 
 #### Updates to the UI namespace
 
- This preview release introduces more options for the UI namespace. You can now control the initial sizing (height, width) of a modal dialog box (or *popup*). The modal dialog itself is an extension. Using the `displayDialogAsync()` and `closeDialog()` methods you can pass payloads between the calling extension and the extension running in the modal dialog box. For an example of how you can use the UI namespace to create a configuration dialog box, see the [UINamespace](https://github.com/tableau/extensions-api/tree/master/Samples/UINamespace?=target="_blank") sample.  The sample also shows how to use the settings event to capture the new configuration. The sample source code has extensive comments that describe how to use these new features in the Extensions API. 
+ This preview release introduces more options for the UI namespace. You can now control the initial sizing (height, width) of a modal dialog box (or *popup*). The modal dialog itself is an extension. Using the `displayDialogAsync()` and `closeDialog()` methods you can pass payloads between the calling extension and the extension running in the modal dialog box. For an example of how you can use the UI namespace to create a configuration dialog box, see the [UINamespace](https://github.com/tableau/extensions-api/tree/master/Samples/Dashboard/UINamespace?=target="_blank") sample.  The sample also shows how to use the settings event to capture the new configuration. The sample source code has extensive comments that describe how to use these new features in the Extensions API. 
 
-- New sample: [UINamespace](https://github.com/tableau/extensions-api/tree/master/Samples/UINamespace?=target="_blank")
+- New sample: [UINamespace](https://github.com/tableau/extensions-api/tree/master/Samples/Dashboard/UINamespace?=target="_blank")
 
 
 #### Permissions added to access full data
@@ -757,7 +757,7 @@ Errors that are returned from the Extensions API are custom Tableau Error object
 
 The Extensions API wraps the standard error object with an `errorCode` property. Any time you encounter an error when you are developing your extension, you can look at this `errorCode` to determine the cause. See [Error Codes]({{site.baseurl}}/docs/enums/tableau.errorcodes.html).
 
-For an example of how to handle error conditions, see the [UINamespace](https://github.com/tableau/extensions-api/tree/main/Samples/UINamespace?=target="_blank") sample. The sample shows how you could handle the error condition that occurs if a user dismisses a modal dialog box (`DialogClosedByUser`).  The following snippet illustrates this pattern:
+For an example of how to handle error conditions, see the [UINamespace](https://github.com/tableau/extensions-api/tree/main/Samples/Dashboard/UINamespace?=target="_blank") sample. The sample shows how you could handle the error condition that occurs if a user dismisses a modal dialog box (`DialogClosedByUser`).  The following snippet illustrates this pattern:
 
 ```javascript
 tableau.extensions.ui.displayDialogAsync(args... ).then((args... ) => {

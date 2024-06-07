@@ -44,4 +44,4 @@ In most cases, you can create an event listener by chaining the methods to the s
 // ...
 ```  
 
-For more information, check out the sample extension, [Filtering](https://github.com/tableau/extensions-api/tree/main/Samples/Filtering).
+For more information, check out the sample extension, [Filtering](https://github.com/tableau/extensions-api/tree/main/Samples/Dashboard/Filtering).

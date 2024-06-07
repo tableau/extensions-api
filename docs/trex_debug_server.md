@@ -103,7 +103,7 @@ To temporarily get around these safety settings for the session, you can click t
 During the session, anytime you refresh or reload the web page, you will see the extensions dialog box requesting permission to run. And in the debugger console, you might see a warning message about mixed content.
 
 ```
-Mixed Content: The page at 'https:/some_URLs#4' was loaded over HTTPS, but requested an insecure resource 'http://localhost:8765/Samples/Filtering/filtering.html'. This content should also be served over HTTPS.
+Mixed Content: The page at 'https:/some_URLs#4' was loaded over HTTPS, but requested an insecure resource 'http://localhost:8765/Samples/Dashboard/Filtering/filtering.html'. This content should also be served over HTTPS.
 
 ```
 
