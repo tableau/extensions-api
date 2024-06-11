@@ -95,6 +95,6 @@ For more information about using event listeners, see [Events and Event Handling
 
 ## What's Next
 
-* To see a working sample dashboard extension that uses workbook formatting, see the JavaScript [Formatting](https://github.com/tableau/extensions-api/tree/main/Samples/Dashboard/Formatting){:target="_blank"} sample in the Samples folder, or the TypeScript [Formatting](https://github.com/tableau/extensions-api/tree/main/Samples-Typescript/Dashboard/Formatting){:target="_blank"} sample in the Samples-Typescript folder.
+* To see a working sample dashboard extension that uses workbook formatting, see the JavaScript [Formatting](https://github.com/tableau/extensions-api/tree/main/Samples/Formatting){:target="_blank"} sample in the Samples folder, or the TypeScript [Formatting](https://github.com/tableau/extensions-api/tree/main/Samples-Typescript/Formatting){:target="_blank"} sample in the Samples-Typescript folder.
 
 * For information about accessing the formatting styles in a workbook, see [workbookFormatting]({{site.baseurl}}/docs/interfaces/environment.html#workbookformatting){:target="_blank"} in the API reference documentation.

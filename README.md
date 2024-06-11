@@ -29,7 +29,7 @@ The Extensions API lets you do more without leaving Tableau. Build Tableau exten
 
 5. Launch Tableau and try the sample extensions in a dashboard. The samples are located in the `Samples` folder.
 
- >**Note** The local web server you start just serves to host the extension samples and extensions used in the tutorial, which have URLs similar to the following: `http://localhost:8765/Samples/Dashboard/DataSources/datasources.html` or `http://localhost:8765/Samples-Typescript/Dashboard/DataSources/datasources.html`
+ >**Note** The local web server you start just serves to host the extension samples and extensions used in the tutorial, which have URLs similar to the following: `http://localhost:8765/Samples/DataSources/datasources.html` or `http://localhost:8765/Samples-Typescript/DataSources/datasources.html`
  >   This local web server is not intended to serve the Extensions API Help pages. 
  >   View the Help on GitHub at [https://tableau.github.io/extensions-api](https://tableau.github.io/extensions-api).
 

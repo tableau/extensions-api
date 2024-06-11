@@ -116,5 +116,5 @@ In your code to close the popup window, you must pass a string value (or empty s
 
 ```
 
-To better understand how to use the context menu, and to see it in action, check out the [UINamespace](https://github.com/tableau/extensions-api/tree/master/Samples/Dashboard/UINamespace?=target="_blank") sample. 
+To better understand how to use the context menu, and to see it in action, check out the [UINamespace](https://github.com/tableau/extensions-api/tree/master/Samples/UINamespace?=target="_blank") sample. 
 

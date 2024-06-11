@@ -20,7 +20,7 @@ As you create your extension, you want to be sure to catch potential error condi
 
 ## Handle extensions.ui dialog box errors
 
-For an example of how to handle an extension dialog box error, see the [UINamespace](https://github.com/tableau/extensions-api/tree/master/Samples/Dashboard/UINamespace) sample. The sample shows how you could handle the error condition that occurs if a user dismisses a modal dialog box (`DialogClosedByUser`). In this extension, the user is expected to click the **Start Auto Refresh** button, which saves the configuration settings and closes the dialog box, by calling the `tableau.extensions.ui.closeDialog()` method with the return payload. If a user clicks the dialog box control (the **X** in the upper-right corner) instead, the error occurs. The following snippet illustrates how you could handle this error: 
+For an example of how to handle an extension dialog box error, see the [UINamespace](https://github.com/tableau/extensions-api/tree/master/Samples/UINamespace) sample. The sample shows how you could handle the error condition that occurs if a user dismisses a modal dialog box (`DialogClosedByUser`). In this extension, the user is expected to click the **Start Auto Refresh** button, which saves the configuration settings and closes the dialog box, by calling the `tableau.extensions.ui.closeDialog()` method with the return payload. If a user clicks the dialog box control (the **X** in the upper-right corner) instead, the error occurs. The following snippet illustrates how you could handle this error: 
 
 ```javascript
 
