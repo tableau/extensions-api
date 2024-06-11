@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tableau Formatting Demo</title>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script src="../../../lib/tableau.extensions.1.latest.js"></script>
+    <style>
+      .tooltip-header {
+        position: relative;
+        display: block;
+      }
+
+      .tooltip-header .tooltiptext {
+        visibility: hidden;
+        width: 250px;
+        background-color: rgb(223, 221, 233);
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
+        position: absolute;
+        z-index: 1;
+        bottom: 125%;
+        left: 50%;
+        margin-left: -60px;
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+
+      .tooltip-header .tooltiptext::after {
+        content: '';
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: rgb(223, 221, 233) transparent transparent transparent;
+      }
+
+      .tooltip-header:hover .tooltiptext {
+        visibility: visible;
+        opacity: 1;
+      }
+
+      @media (-webkit-max-device-pixel-ratio: 1.99), (max-resolution: 191dpi) {
+        body {
+          font-family: 'Benton Sans Low-DPI', Arial, Helvetica, sans-serif;
+        }
+      }
+
+      @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+        body {
+          font-family: 'Benton Sans', Arial, Helvetica, sans-serif;
+        }
+      }
+
+      input,
+      textarea,
+      button,
+      select {
+        font-family: inherit;
+      }
+
+      .italic-section {
+        font-style: italic;
+      }
+
+      .weight-100-section {
+        font-weight: 100;
+      }
+
+      .weight-bold-section {
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div>
+        <h1>Tableau Formatting Sample</h1>
+        <button id="initTableauButton" class="btn btn-primary">Click to Initialize the Extension</button>
+        <hr />
+        <div>Benton Sans (regular) is the default font used for text elements in the Tableau UI.</div>
+        <div class="italic-section">Benton Sans (italic) is used for generated fields.</div>
+        <div class="weight-bold-section">Benton Sans (bold) is used for Tableau headings.</div>
+        <div class="weight-100-section">Benton Sans (100) is a lightweight alternative</div>
+        <h2 class="tableau-worksheet-title">Subheader, using tableau-worksheet-title class</h2>
+        <text class="tableau-worksheet">Text, using tableau-worksheet class</text>
+        <h3 class="tooltip-header">
+          Hover to see tooltip text, which is using tableau-tooltip class
+          <span class="tooltiptext tableau-tooltip">Tooltip text, using tableau-tooltip class</span>
+        </h3>
+        <li class="tableau-story-title">Bullet Point, using tableau-story-title class</li>
+        <text id="dashboardTitle" class="tableau-dashboard-title">Text, using tableau-dashboard-title class</text>
+        <br />
+        <button id="toggleFormattingButton" class="btn">Currently tableau-worksheet-title below</button>
+        <br />
+        <text id="toggleTitle" class="tableau-worksheet-title">Text, using tableau-worksheet-title class</text>
+        <br />
+        <br />
+        <div id="initializeExtensionComment" style="color: blue">
+          You will not see Tableau formatting until you have initialized the extension.
+        </div>
+        <div id="formattingUpdatedComment" style="color: blue"></div>
+      </div>
+    </div>
+  </body>
+  <script>
+    $('#initTableauButton').click(function () {
+      tableau.extensions.initializeAsync().then(
+        function () {
+          console.log('initializeAsync finished');
+          const dashboard = tableau.extensions.dashboardContent.dashboard;
+          console.log(dashboard);
+          if (tableau.extensions.environment.workbookFormatting) {
+            console.log(tableau.extensions.environment.workbookFormatting.formattingSheets);
+            $('#initializeExtensionComment').hide();
+            dashboard.addEventListener(tableau.TableauEventType.WorkbookFormattingChanged, (event) => {
+              console.log(event.formatting);
+              $('#formattingUpdatedComment').text('Workbook formatting updated');
+            });
+          } else {
+            $('#initializeExtensionComment').text('Tableau formatting information for extensions is missing from this version of Tableau');
+          }
+          $('#initTableauButton').text('Extension Initialized');
+        },
+        function (err) {
+          console.error('Error during initializeAsync: ' + err);
+        },
+      );
+    });
+    function toggleClassAndText(newClass) {
+      $('#toggleTitle').removeClass();
+      $('#toggleTitle').addClass(newClass);
+      $('#toggleTitle').text('Text, using ' + newClass + ' class');
+      $('#toggleFormattingButton').text('Currently ' + newClass + ' below');
+    }
+    $('#toggleFormattingButton').click(function () {
+      if ($('#toggleFormattingButton').text().includes(tableau.ClassNameKey.WorksheetTitle)) {
+        toggleClassAndText(tableau.ClassNameKey.DashboardTitle);
+      } else {
+        toggleClassAndText(tableau.ClassNameKey.WorksheetTitle);
+      }
+    });
+  </script>
+</html>

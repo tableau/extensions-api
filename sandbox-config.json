@@ -3,7 +3,7 @@
 
     "extensions": {
         "uinamespace": {
-            "path": "./Samples/UINamespace-sandboxed"
+            "path": "./Samples/Dashboard/UINamespace-sandboxed"
         }
     }
 }
