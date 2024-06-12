@@ -129,8 +129,6 @@ Your web application must include an HTML page. This page should link to the Ext
 
    ```
 
-<a name="safelist"></a>
-
 ##### Location, Location, Location
 
 For this exercise, it makes your life easier if you place your own extensions in the Samples folder.
@@ -172,7 +170,7 @@ Keeping your own extensions in the Samples folder has two advantages.
 After you have created the manifest file (`.trex`) and have hosted your web app you can test it in Tableau. It's a good idea to do this even if your application isn't completed.
 
 :::note
-If you are using Tableau Cloud or Tableau Server, you need to make sure you've added the URL of your extension to the allow list. See this [note about location](#safelist).
+If you are using Tableau Cloud or Tableau Server, you need to make sure you've added the URL of your extension to the allow list. See this [note about location](#location-location-location).
 :::
 
 1. Start up your web page or application (or make sure it is running).
