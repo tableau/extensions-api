@@ -16,7 +16,7 @@ The Extensions API lets you do more without leaving Tableau. Build Tableau dashb
 
 * Build dashboard extensions to add new features and functionality to Tableau that users can access through the dashboard.
 
-    <img src="./Tutorial/assets/Part_3.gif" width="200" height="100">
+    <img src="./Tutorial/Dashboard/assets/Part_3.gif" width="200" height="100">
 
 
 ## Setup and Running Samples
@@ -41,7 +41,7 @@ The Extensions API lets you do more without leaving Tableau. Build Tableau dashb
 
    **npm start**
 
-5. Launch Tableau and try a dashboard sample extension in a dashboard, or a viz extension in a worksheet. The dashboard and viz extension  samples are located in the `Samples` folder.
+5. Launch Tableau and try a dashboard sample extension in a dashboard, or a viz extension in a worksheet. The dashboard and viz extension samples are located in the `Samples` folder.
 
  >**Note** The local web server you start just serves to host the extension samples and dashboard extensions used in the tutorial. These extensions have URLs similar to the following: `http://localhost:8765/Samples/Dashboard/DataSources/datasources.html`.
  >   This local web server is not intended to serve the Extensions API Help pages.
@@ -66,7 +66,7 @@ Tableau is introducing development support for Sandboxed Extensions with Tableau
 
     **npm run start-sandbox**
 
-2. Launch Tableau (Tableau 2019.3 and later) and try the sample Sandboxed dashboard extension in a dashboard. You can find the `.trex` file and sample code in the `Samples\UINamespace-sandboxed` folder.
+2. Launch Tableau (Tableau 2019.3 and later) and try the sample Sandboxed dashboard extension in a dashboard. You can find the `.trex` file and sample code in the `Samples\Dashboard\UINamespace-sandboxed` folder.
 
 For more information, see [Create and Test Sandboxed Extensions](https://tableau.github.io/extensions-api/docs/security/trex_sandbox_test).
 
@@ -78,7 +78,7 @@ See the LICENSE file for current open-source licensing and use information.
 Before we can accept pull requests from contributors, we require a signed [Contributor License Agreement (CLA)](https://tableau.github.io/contributing.html). To submit a contribution, please fork the repository then submit a pull request to the `main` branch.
 
 ## Code Style
-Our sample code follows the [Semi-Standard Style](https://github.com/Flet/semistandard) for JavaScript samples linting and [tslint](https://palantir.github.io/tslint/) for TypeScript.  If you add your own extension code to the Samples or Samples-Typescript directories, you can run `npm run lint` to validate the style of your code.  Please run this command before submitting any pull requests for Sample code.
+Our sample code follows the [Semi-Standard Style](https://github.com/Flet/semistandard) for JavaScript samples linting and [tslint](https://palantir.github.io/tslint/) for TypeScript.  If you add your own extension code to the Samples or Samples-Typescript directories, you can run `npm run lint` to validate the style of your code. Please run this command before submitting any pull requests for Sample code.
 
 `npx semistandard --fix` to fix linting issues which can be fixed automatically.
 
