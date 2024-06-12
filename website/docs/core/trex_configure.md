@@ -80,7 +80,7 @@ $(document).ready(function () {
     // This uses the window.location.origin property to retrieve the scheme, hostname, and
     // port where the parent extension is currently running, so this string doesn't have
     // to be updated if the extension is deployed to a new location.
-    const popupUrl = `${window.location.origin}/Samples/UINamespace/uiNamespaceDialog.html`;
+    const popupUrl = `${window.location.origin}/Samples/Dashboard/UINamespace/uiNamespaceDialog.html`;
     // 
     // ...
     // initial payload string value, `defaultIntervalInMin` set 
@@ -135,4 +135,4 @@ In your code to close the popup window, you must pass a *non-empty* string value
 
 ```
 
-To better understand how to use the context menu or configuration window, and to see it in action, check out the [UINamespace](https://github.com/tableau/extensions-api/tree/master/Samples/UINamespace?=target="_blank") sample.
+To better understand how to use the context menu or configuration window, and to see it in action, check out the [UINamespace](https://github.com/tableau/extensions-api/tree/master/Samples/Dashboard/UINamespace?=target="_blank") sample.
