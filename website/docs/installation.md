@@ -18,7 +18,7 @@ This section will take you through the process of setting up your environment to
 :::info
 
 **What's in a Tableau extension?**
-A Tableau extension consists of an XML manifest file (`.trex`), an web page (`.html`) that uses a Tableau-provided JavaScript library, and the JavaScript file (`.js`) (or files) that contain your extension logic. The Tableau dashboard and viz extensions are supported on Tableau Server and Tableau Cloud. Tableau dashboard extensions are also supported in Tableau Desktop.
+A Tableau extension consists of an XML manifest file (`.trex`), an web page (`.html`) that uses a Tableau-provided JavaScript library, and the JavaScript file (`.js`) (or files) that contain your extension logic. The Tableau dashboard and viz extensions are supported on Tableau Server, Tableau Cloud, and Tableau Desktop.
 
 :::
 
@@ -31,7 +31,7 @@ If you want to create an extension or work with the sample code, make sure you h
 * [Git](https://git-scm.com/downloads)
 * [Node.js and npm](https://nodejs.org/en/download/) 
 
-You need Node.js and npm to run the viz extension demos. Node.js is a JavaScript runtime. npm is a package manager for Node.js and is installed when you install Node.js.
+You need Node.js and npm to run the viz and dashboard extension demos. Node.js is a JavaScript runtime. npm is a package manager for Node.js and is installed when you install Node.js.
 
 ---
 
@@ -78,7 +78,7 @@ SSH
 
 ### Requirements for using extensions in Tableau
 
-To use Tableau dashboard and viz extensions in Tableau, you need the following versions of Tableau.
+To use Tableau dashboard and viz extensions in Tableau, you need one of the following versions of Tableau.
 
 For dashboard extensions:
 
@@ -88,8 +88,10 @@ For dashboard extensions:
 
 For viz extensions:
 
+* Tableau Desktop 2024.1 and later
+* Tableau Server 2024.1 and later
 * Tableau Cloud
-* Tableau Server 2024.1
+
 
 
 ### Security requirements
