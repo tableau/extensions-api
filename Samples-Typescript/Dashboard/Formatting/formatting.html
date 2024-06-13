@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tableau Formatting Demo</title>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- Extensions Library (this will be hosted on a CDN eventually) -->
+    <script src="../../../lib/tableau.extensions.1.latest.js"></script>
+
+    <!-- Our webpack'd extension's code -->
+    <script src="../../../dist/formatting.js"></script>
+
+    <style>
+      .tooltip-header {
+        position: relative;
+        display: block;
+      }
+
+      .tooltip-header .tooltiptext {
+        visibility: hidden;
+        width: 250px;
+        background-color: rgb(223, 221, 233);
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
+        position: absolute;
+        z-index: 1;
+        bottom: 125%;
+        left: 50%;
+        margin-left: -60px;
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+
+      .tooltip-header .tooltiptext::after {
+        content: '';
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: rgb(223, 221, 233) transparent transparent transparent;
+      }
+
+      .tooltip-header:hover .tooltiptext {
+        visibility: visible;
+        opacity: 1;
+      }
+      @media (-webkit-max-device-pixel-ratio: 1.99), (max-resolution: 191dpi) {
+        body {
+          font-family: 'Benton Sans Low-DPI', Arial, Helvetica, sans-serif;
+        }
+      }
+
+      @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+        body {
+          font-family: 'Benton Sans', Arial, Helvetica, sans-serif;
+        }
+      }
+
+      input,
+      textarea,
+      button,
+      select {
+        font-family: inherit;
+      }
+
+      .italic-section {
+        font-style: italic;
+      }
+
+      .weight-100-section {
+        font-weight: 100;
+      }
+
+      .weight-bold-section {
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div>
+        <h1>Tableau Formatting Sample</h1>
+        <div id="formattingExample"></div>
+      </div>
+    </div>
+  </body>
+</html>

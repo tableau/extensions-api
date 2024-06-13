@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Settings Sample</title>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" >
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" ></script>
+
+    <!-- Extensions Library (this will be hosted on a CDN eventually) -->
+    <script src="../../../lib/tableau.extensions.1.latest.js"></script>
+
+    <!-- Our extension's code -->
+    <script src="./uiNamespace.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <p id="mainContent">
+        <div id="active" style="display: none;">
+          Refreshing <b><span id="datasourceCount">0</span></b> datasource(s) every <b><span id="interval">5</span></b> minutes.
+        </div>
+        <div id="inactive">
+          Configure extension to proceed.
+        </div>
+      </p>
+      <div class="container" style="border:1px solid #cecece">
+        <h6>Dialog Style</h6>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="dialogStyleRadio" id="modalStyle" checked>
+          <label class="form-check-label" for="modalStyle">
+            Modal
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="dialogStyleRadio" id="modelessStyle">
+          <label class="form-check-label" for="modelessStyle">
+            Modeless
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="dialogStyleRadio" id="windowStyle">
+          <label class="form-check-label" for="windowStyle">
+            Window
+          </label>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
