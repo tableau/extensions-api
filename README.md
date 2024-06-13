@@ -43,7 +43,7 @@ The Extensions API lets you do more without leaving Tableau. Build Tableau dashb
 
 5. Launch Tableau and try a dashboard sample extension in a dashboard, or a viz extension in a worksheet. The dashboard and viz extension samples are located in the `Samples` folder.
 
- >**Note** The local web server you start just serves to host the extension samples and dashboard extensions used in the tutorial. These extensions have URLs similar to the following: `http://localhost:8765/Samples/Dashboard/DataSources/datasources.html`.
+ >**Note** The local web server you start just serves to host the extension samples and tutorial. These extensions have URLs similar to the following: `http://localhost:8765/Samples/Dashboard/DataSources/datasources.html`.
  >   This local web server is not intended to serve the Extensions API Help pages.
  >   View the Help on GitHub at [https://tableau.github.io/extensions-api](https://tableau.github.io/extensions-api).
 
