@@ -125,7 +125,9 @@
 							</ul>
 							<h3>Viz Extensions Methods</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="worksheet.html#gettooltiptextasync" class="tsd-kind-icon">get<wbr>Tooltip<wbr>Text<wbr>Async</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="worksheet.html#hovertupleasync" class="tsd-kind-icon">hover<wbr>Tuple<wbr>Async</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="worksheet.html#leavemarknavigationasync" class="tsd-kind-icon">leave<wbr>Mark<wbr>Navigation<wbr>Async</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="worksheet.html#selecttuplesasync" class="tsd-kind-icon">select<wbr>Tuples<wbr>Async</a></li>
 							</ul>
 						</section>
@@ -1310,23 +1312,94 @@ worksheet.getUnderlyingTablesAsync().<span class="hljs-keyword">then</span>(<spa
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Viz Extensions Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
-					<a name="hovertupleasync" class="tsd-anchor"></a>
-					<h3>hover<wbr>Tuple<wbr>Async</h3>
+					<a name="gettooltiptextasync" class="tsd-anchor"></a>
+					<h3>get<wbr>Tooltip<wbr>Text<wbr>Async</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">hover<wbr>Tuple<wbr>Async<span class="tsd-signature-symbol">(</span>hoveredTuple<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, tooltip<span class="tsd-signature-symbol">?: </span><a href="tooltipcontext.html" class="tsd-signature-type">TooltipContext</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Tooltip<wbr>Text<wbr>Async<span class="tsd-signature-symbol">(</span>tupleId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">String</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:532</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:615</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Method to get the text of the tooltip that would be displayed for a given tuple id. Currently supported for web only.</p>
+								</div>
+								<p>You can find the tuple id for a row of data by subtracting the index of the row from the total number of rows.
+								For example, if you have 10 rows, and want to know the tuple id associated with the third row, it will be 7 (10 - 3 = 7). The last row of data will always have the tuple id of 1.</p>
+								<p>Passing in an invalid tuple id will not throw.
+								<br/></p>
+								<pre><code><span class="hljs-keyword">let</span> navigatedTuple = <span class="hljs-number">-1</span>;
+<span class="hljs-keyword">let</span> updateScreenReaderElement = <span class="hljs-function">(<span class="hljs-params">screenReadertext</span>) =&gt;</span> {
+  <span class="hljs-comment">// updates an element to be read out by screen readers</span>
+};
+
+<span class="hljs-keyword">let</span> updateNavigatedTuple = <span class="hljs-function">(<span class="hljs-params">keyboardEvent</span>) =&gt;</span> {
+  <span class="hljs-keyword">switch</span> (keyboardEvent.key) {
+    <span class="hljs-keyword">case</span> <span class="hljs-string">'ArrowLeft'</span>:
+      navigatedTuple = navigatedTuple - <span class="hljs-number">1</span>;
+      <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">case</span> <span class="hljs-string">'ArrowRight'</span>:
+      navigatedTuple = navigatedTuple + <span class="hljs-number">1</span>;
+      <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">default</span>:
+      <span class="hljs-keyword">break</span>;
+  }
+  <span class="hljs-comment">// do any work to show visual indication of a mark being navigated to</span>
+};
+
+svg.on(<span class="hljs-string">'keydown'</span>, <span class="hljs-function">(<span class="hljs-params">keyboardEvent</span>) =&gt;</span> {
+  updateNavigatedTuple(keyboardEvent);
+  tableau.extensions.worksheetContent.worksheet
+    .getTooltipTextAsync(navigatedTuple)
+    .then(<span class="hljs-function">(<span class="hljs-params">response</span>) =&gt;</span> {
+      <span class="hljs-built_in">console</span>.log(response.result);
+      updateScreenReaderElement(response.result);
+    })
+    .catch(<span class="hljs-function">(<span class="hljs-params">error</span>) =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Failed to get tooltip text because of: '</span>, error));
+});</code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>since</dt>
+									<dd><p>1.12.0 and Tableau 2024.2</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>tupleId: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">String</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Returns promise that resolves to a string describing the tooltip text for a given tuple id and rejects on error</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="hovertupleasync" class="tsd-anchor"></a>
+					<h3>hover<wbr>Tuple<wbr>Async</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">hover<wbr>Tuple<wbr>Async<span class="tsd-signature-symbol">(</span>hoveredTuple<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, tooltip<span class="tsd-signature-symbol">?: </span><a href="tooltipcontext.html" class="tsd-signature-type">TooltipContext</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span>, allowHoverActions<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:538</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Method to execute hover actions and render tooltip for a given tuple representing a mark in the visualization.
-									If the tooltip parameter is included it will show the tooltip when the mark is hovered over. If not, no tooltip is shown.</p>
+										If the tooltip parameter is included it will show the tooltip when the mark is hovered over.
+										If null or no tooltip parameter is passed, no tooltip is shown.
+									Hover actions are run by default, but passing false for the allowHoverActions parameter will prevent their execution.</p>
 								</div>
+								<p>The <code>hoveredTuple</code> parameter is a tuple id. You can find the tuple id for a row of data by subtracting the index of the row from the total number of rows.
+								For example, if you have 10 rows, and want to know the tuple id associated with the third row, it will be 7 (10 - 3 = 7). The last row of data will always have the tuple id of 1.</p>
 								<p>Passing in an invalid tuple id will not throw and will clear the tooltip.
 								<br/></p>
 								<pre><code>svg.<span class="hljs-literal">on</span>(<span class="hljs-string">'mousemove'</span>, <span class="hljs-function"><span class="hljs-params">(mouseEvent)</span> =&gt;</span> {
@@ -1336,8 +1409,9 @@ worksheet.getUnderlyingTablesAsync().<span class="hljs-keyword">then</span>(<spa
    .<span class="hljs-keyword">catch</span>(<span class="hljs-function"><span class="hljs-params">(error)</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Failed to hover because of: '</span>, error));
  });</code></pre>
 								<dl class="tsd-comment-tags">
-									<dt>experimental</dt>
-									<dd></dd>
+									<dt>since</dt>
+									<dd><p>1.12.0 and Tableau 2024.2</p>
+									</dd>
 								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1346,9 +1420,51 @@ worksheet.getUnderlyingTablesAsync().<span class="hljs-keyword">then</span>(<spa
 									<h5>hoveredTuple: <span class="tsd-signature-type">number</span></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> tooltip: <a href="tooltipcontext.html" class="tsd-signature-type">TooltipContext</a></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> tooltip: <a href="tooltipcontext.html" class="tsd-signature-type">TooltipContext</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> allowHoverActions: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></h5>
 								</li>
 							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Returns empty promise that resolves when the extension host has successfully been informed of the request and rejects on error</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="leavemarknavigationasync" class="tsd-anchor"></a>
+					<h3>leave<wbr>Mark<wbr>Navigation<wbr>Async</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">leave<wbr>Mark<wbr>Navigation<wbr>Async<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:637</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Notifies the scene of a desire to leave mark-level keyboard navigation and return to scene-level keyboard navigation.
+										Used when implementing <a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/keyboard-operation.html">keyboard navigation</a> within a visualization, an integral part of building accessibility into a visualization.
+										Currently supported for the web only.
+									<br/></p>
+								</div>
+								<pre><code>svg.<span class="hljs-literal">on</span>(<span class="hljs-string">'keyup'</span>, <span class="hljs-function"><span class="hljs-params">(keyboardEvent)</span> =&gt;</span> {
+  <span class="hljs-keyword">if</span> (keyboardEvent.key == <span class="hljs-string">"Escape"</span>) {
+    tableau.extensions.worksheetContent.worksheet
+      .leaveMarkNavigationAsync()
+      .<span class="hljs-keyword">then</span>(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Done'</span>))
+      .<span class="hljs-keyword">catch</span>(<span class="hljs-function"><span class="hljs-params">(error)</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Failed to leave mark-level keyboard navigation because of: '</span>, error));
+  }
+});</code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>since</dt>
+									<dd><p>1.12.0 and Tableau 2024.2</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>Returns empty promise that resolves when the extension host has successfully been informed of the request and rejects on error</p>
 						</li>
@@ -1364,7 +1480,7 @@ worksheet.getUnderlyingTablesAsync().<span class="hljs-keyword">then</span>(<spa
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:559</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:568</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1372,6 +1488,8 @@ worksheet.getUnderlyingTablesAsync().<span class="hljs-keyword">then</span>(<spa
 									<p>Method to modify selection, execute select actions, and render tooltip for a given list of tuples representing a mark or marks in the visualization.
 									If the tooltip parameter is included it will show the tooltip when the mark or marks are selected. If not, no tooltip is shown.</p>
 								</div>
+								<p>The <code>selectedTuples</code> parameter is an array of tuple ids. You can find the tuple id for a row of data by subtracting the index of the row from the total number of rows.
+								For example, if you have 10 rows, and want to know the tuple id associated with the third row, it will be 7 (10 - 3 = 7). The last row of data will always have the tuple id of 1.</p>
 								<p>Passing in an invalid tuple id will not throw and will clear the tooltip.
 								<br/></p>
 								<pre><code>svg.<span class="hljs-literal">on</span>(<span class="hljs-string">'click'</span>, <span class="hljs-function"><span class="hljs-params">(mouseEvent)</span> =&gt;</span> {
@@ -1384,8 +1502,9 @@ tableau.extensions.worksheetContent.worksheet.selectTuplesAsync(myClickedTuples,
    .<span class="hljs-keyword">catch</span>(<span class="hljs-function"><span class="hljs-params">(error)</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Failed to select because of: '</span>, error));
 });</code></pre>
 								<dl class="tsd-comment-tags">
-									<dt>experimental</dt>
-									<dd></dd>
+									<dt>since</dt>
+									<dd><p>1.12.0 and Tableau 2024.2</p>
+									</dd>
 								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1489,6 +1608,9 @@ tableau.extensions.worksheetContent.worksheet.selectTuplesAsync(myClickedTuples,
 								<a href="worksheet.html#getsummarydatareaderasync" class="tsd-kind-icon">get<wbr>Summary<wbr>Data<wbr>Reader<wbr>Async</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="worksheet.html#gettooltiptextasync" class="tsd-kind-icon">get<wbr>Tooltip<wbr>Text<wbr>Async</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
 								<a href="worksheet.html#getunderlyingdataasync" class="tsd-kind-icon">get<wbr>Underlying<wbr>Data<wbr>Async</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
@@ -1505,6 +1627,9 @@ tableau.extensions.worksheetContent.worksheet.selectTuplesAsync(myClickedTuples,
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
 								<a href="worksheet.html#hovertupleasync" class="tsd-kind-icon">hover<wbr>Tuple<wbr>Async</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="worksheet.html#leavemarknavigationasync" class="tsd-kind-icon">leave<wbr>Mark<wbr>Navigation<wbr>Async</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
 								<a href="worksheet.html#removeannotationasync" class="tsd-kind-icon">remove<wbr>Annotation<wbr>Async</a>
