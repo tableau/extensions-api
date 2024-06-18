@@ -199,7 +199,7 @@ To add custom encoding, you provide definitions for the encoding in the manifest
 
 These encodings are rendered on the Marks card as tiles, with the X, Y and Text icons.
 
-![](../assets/viz_ext_marks.png)
+![](../assets/viz_ext_marks_icon.png)
 
 :::note
 
@@ -422,7 +422,7 @@ The following table shows the list of icons you can use.
 </tr>
 <tr class="odd">
 <td>edge</td>
-<td><iMarkEdgeIconSvg alt="edge primitive"/></td>
+<td><MarkEdgeIconSvg alt="edge primitive"/></td>
 <td>&nbsp;</td>
 <td>digit-2</td>
 <td><Digit2IconSvg alt="digit 2"/></td>

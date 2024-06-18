@@ -57,7 +57,7 @@ The dashboard extension is one type of extension in the Tableau extensions names
 
 ```
 
-After the extension is initialized, it provides access to the objects in the dashboard, but also has access to the namespaces that are common to all extensions. For example, you can use the `tableau.extensions.environment` to query the environment the dashboard is running in, or `tableau.extensions.settings` to set or get key-value pairs associated with the extension. The `tableau.extensions.settings` can be saved with the workbook, so you can configure the dashboard and the extension in specific ways and then share that configuration with others. 
+After the extension is initialized, it provides access to the objects in the dashboard, but also has access to the namespaces that are common to all extensions. For example, you can use the `tableau.extensions.environment` to query the environment the dashboard is running in, or `tableau.extensions.settings` to set or get key-value pairs associated with a specific instance of the extension. That is, an extension that has been added to one dashboard can have different settings from another instance of the extension in another dashboard. The `tableau.extensions.settings` can be saved with the workbook, so you can configure the dashboard and the extension in specific ways and then share that configuration with others. 
 
 To access the objects in the dashboard, you specify the namespace reserved for dashboard extensions `dashboardContent`, which then gives you access to the dashboard object. For example, the following code snippet gets the array of worksheets in the dashboard.
 
@@ -86,7 +86,7 @@ The viz extension is another type of extension in the Tableau extensions namespa
 
 ```
 
-After the viz extension is initialized, it provides access to the objects in the worksheet, but also has access to the namespaces that are common to all extensions. For example, you can use the `tableau.extensions.environment` to query the environment the extension is running in, or `tableau.extensions.settings` to set or get key-value pairs associated with the extension. The `tableau.extensions.settings` can be saved with the workbook, so you can configure the viz extension in specific ways and then share that configuration with others.
+After the viz extension is initialized, it provides access to the objects in the worksheet, but also has access to the namespaces that are common to all extensions. For example, you can use the `tableau.extensions.environment` to query the environment the extension is running in, or `tableau.extensions.settings` to set or get key-value pairs associated with the extension. That is, an extension that has been added to one worksheet can have different settings from another instance of the extension in another worksheet. The `tableau.extensions.settings` can be saved with the workbook, so you can configure the viz extension in specific ways and then share that configuration with others.
 
 To access the properties and methods in the worksheet, you specify the namespace used by viz extensions, `worksheetContent`, which then gives you access to the worksheet object. For example, the following code snippet gets the worksheet in the dashboard.
 

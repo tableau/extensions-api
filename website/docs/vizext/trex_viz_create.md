@@ -21,7 +21,7 @@ To create a Tableau viz extension you need the following components.
 
 These instructions assume that you have already cloned or download the Extensions API SDK. For information about setting up your environment and the Tableau requirements, see [Get Started](./trex_viz_getstarted).
 
-For convenience, you might want to create a folder for your "Hello World" viz extension in the same location where you installed or cloned the GitHub repository. Create your folder, for example, **HelloVizExtension** in the Samples folder, under `/extensions-api-preview`. That way, you can use the same web server (`http-server`) that is used for the samples.
+For convenience, you might want to create a folder for your "Hello World" viz extension in the same location where you installed or cloned the GitHub repository. Create your folder, for example, **HelloVizExtension** in the Samples folder, under `/extensions-api/Samples`. That way, you can use the same web server (`http-server`) that is used for the samples.
 
 ---
 
@@ -63,7 +63,7 @@ Name the manifest file for your extension (for example, `HelloVizExtension` and 
 
 - In this file, you need to provide values for a few elements. Some key pieces are:
 - For `<worksheet-extension id=" ">` use reverse domain name notation to uniquely identify the extension (`com.example.extension.hello.demo`)
-- For `<source-location>` make sure that this specifies the URL of your web application. You must use the HTTPS protocol. The exception to this requirement is `localhost`, where you can use HTTP. For example, if you created a `HelloVizDemo` folder and want to host the file locally on your computer using port 8765, you might use: `http://localhost:8765/HelloVizDemo/HelloVizExtension.html`
+- For `<source-location>` make sure that this specifies the URL of your web application. You must use the HTTPS protocol. The exception to this requirement is `localhost`, where you can use HTTP. For example, if you created a `HelloVizDemo` folder and want to host the file locally on your computer using port 8765, you might use: `http://localhost:8765/Samples/HelloVizDemo/HelloVizExtension.html`
 - The `<min-api-version>` element that specifies the minimum version of the Extensions API library that is required to run the extension.
 - The `<icon>` element currently isn't implemented for viz extensions. This metadata is used to provide branding for the extension, as would be shown in an About dialog box.
 - Provide the `name` for your extension (`Hello Viz Extensions!`). The manifest file can be localized, so provide the name (or names) in the appropriate `<text>` elements in the `<resources>` section.  
@@ -79,14 +79,13 @@ Name the manifest file for your extension (for example, `HelloVizExtension` and 
 
 The web app you create provides the code to create the visualization interacts with the Tableau worksheet to get data and the encoding. The web app consists of an HTML file and the supporting JavaScript code that initializes and accesses the worksheet using the Extensions API. You host this web app on a web server (the server specified in the manifest file). In this case, we are using a web server running on your local computer.
 
-
 #### Create the HTML page
 
 Your web application must include an HTML page. This page should link to the Extensions API JavaScript library and to any other JavaScript, CSS, or HTML resources your web app requires. You could add the JavaScript code to initialize and call Extensions API functions directly in the HTML page. However, in most cases you want to keep this code in a separate file.
 
 1. In the `HelloVizExtensions` folder (or wherever you put your `.trex` file), create a file called `HelloVizExtension.html`.
 
-1. You can copy and paste the following code into your file. This code creates a very simple page that displays a single line of text. This HTML code assumes that you copied or cloned the `extensions-api-preview` repository and are creating your extension in a HelloVizExtension folder, under Samples.
+1. You can copy and paste the following code into your file. This code creates a very simple page that displays a single line of text. This HTML code assumes that you copied or cloned the `extensions-api` repository and are creating your extension in a HelloVizExtension folder, under Samples.
 
   ```html
    <!DOCTYPE html>
@@ -130,15 +129,23 @@ Your web application must include an HTML page. This page should link to the Ext
 
    ```
 
-**Note**:
-For this developer preview, it makes your life easier if you place your own extensions in the Samples folder. The first reason is that you can host the extensions using the same web server you started with `npm start` command described in the Get Started with Viz Extensions topic. The second reason is that the Tableau preview test site has been configured so that all extensions that use the path `http://localhost:8765/Samples` are included on the safe list (or allowlist). Because the extension is running on your local computer (`http://localhost`) and uses the URL that is allowed on the site, you are good to go. In general, when you are creating your own viz extensions, you will need to ensure that that the extension URL has been added to the safe list for the Tableau site. For more information, see
-[Add extensions to the safe list and configure user prompts](https://help.tableau.com/current/online/en-us/dashboard_extensions_server.htm#add-extensions-to-the-safe-list-and-configure-user-prompts).
+##### Location, Location, Location
+
+For this exercise, it makes your life easier if you place your own extensions in the Samples folder.
+Keeping your own extensions in the Samples folder has two advantages.
+
+* You can host the extensions using the same web server you started with `npm start` command.
+
+* If you've already configured your Tableau Cloud or Tableau Server site to allow all extensions under the path `http://localhost:8765/Samples`, you don't need to specifically add each extension. 
+
+  For example, if you add the following URL and wildcard to the allow list: `http://localhost:.*/Samples/.*`, the URL allows all extensions (on any port) under the Samples folder. Because the extension is running on your local computer (`http://localhost`) and uses the URL that is allowed on the site, you're good to go. In general, when you’re creating your own viz extensions, you must ensure that the extension URL has been added to the allow list. For more information, see [Add extensions to the safe list and configure user prompts](https://help.tableau.com/current/online/en-us/dashboard_extensions_server.htm#add-extensions-to-the-safe-list-and-configure-user-prompts).
+
 
 ---
 
 #### Start the web service to host the extension
 
-1. Start the web service to verify you have the web app and files configured. <br/> The URL of the server must match the `SERVER` in the manifest file for the extension. Be sure to include the `http://` or `https://` in the URL. If you are using your `localhost` for development work, you might want to use the same lightweight web server that is used for the Extensions API samples and tutorial. Assuming that you've cloned or downloaded the repository, and that you've created a folder under `/extensions-api-preview`, you can start the server by using the `npm start` command. Or if you need to use a different port and location, you can install and start the `http-server` yourself (replacing PORT with the port you need and that matches the port you specified in the manifest file):
+1. Start the web service to verify you have the web app and files configured. <br/> The URL of the server must match the `SERVER` in the manifest file for the extension. Be sure to include the `http://` or `https://` in the URL. If you are using your `localhost` for development work, you might want to use the same lightweight web server that is used for the Extensions API samples and tutorial. Assuming that you've cloned or downloaded the repository, and that you've created a folder under `/extensions-api`, you can start the server by using the `npm start` command. Or if you need to use a different port and location, you can install and start the `http-server` yourself (replacing PORT with the port you need and that matches the port you specified in the manifest file):
 
    ```bash
 
@@ -162,9 +169,13 @@ For this developer preview, it makes your life easier if you place your own exte
 
 After you have created the manifest file (`.trex`) and have hosted your web app you can test it in Tableau. It's a good idea to do this even if your application isn't completed.
 
+:::note
+If you are using Tableau Cloud or Tableau Server, you need to make sure you've added the URL of your extension to the allow list. See this [note about location](#location-location-location).
+:::
+
 1. Start up your web page or application (or make sure it is running).
 
-1. Log on to Tableau Cloud [https://us-west-2a.online.tableau.com](https://us-west-2a.online.tableau.com) and open a workbook, for example, Superstore. Click **Edit** and create a new worksheet (from the Worksheet menu, select **New Worksheet**), or open a new workbook in your Personal Space and connect to the **Superstore Datasource**.
+1. Start Tableau Desktop, or log on to Tableau Cloud or Tableau Server and open a workbook, for example, Superstore. Click **Edit** and create a new worksheet (from the Worksheet menu, select **New Worksheet**), or open a new workbook in your Personal Space and connect to the **Superstore Datasource**.
 
 1. On the **Marks** card, expand the Mark Type drop-down menu. Under Viz Extensions, select **Add Extensions**.
 
@@ -181,7 +192,6 @@ After you have created the manifest file (`.trex`) and have hosted your web app 
 1. The message "Drag a field on to the tile labeled Drop on the Marks card." should appear. Close the worksheet without publishing (from the File menu, select **Close**).
 
 ---
-
 
 ### Add code to initialize the extension and call Tableau Extensions API functions
 
@@ -268,7 +278,7 @@ The next step is to create the JavaScript that calls the Extensions API. In your
 
 1. In the Add an Extension dialog box that appears, select **Access Local Extensions**.
 
-1. Browse to the directory where your extension is located. For example, if you downloaded or cloned the GitHub repository, go to `\extensions-api-preview\Samples\HelloVizExtension` and select the `HelloVizExtension.trex file`.
+1. Browse to the directory where your extension is located. For example, if you downloaded or cloned the GitHub repository, go to `\extensions-api\Samples\HelloVizExtension` and select the `HelloVizExtension.trex` file.
 
 1. Drag some fields on to the **Drop** tile on the Marks card. The name of the fields that you've added to the Marks card are displayed in the worksheet. Every time you add or remove a field, the names are updated.
 
@@ -308,7 +318,7 @@ Our sample code follows the [Semi-Standard Style](https://github.com/Flet/semist
 
 ## What's next?
 
-- For more information about how you can use the Extensions API, go look at the [Samples](https://github.com/tableau/extensions-api-preview/tree/main/Samples/). Study the sample, connectedScatterPlot, to see a full implementation of a viz extension.
+- For more information about how you can use the Extensions API, go look at the [Samples](https://github.com/tableau/extensions-api/tree/main/Samples/). Study the sample, connectedScatterPlot, to see a full implementation of a viz extension.
 
 - Get familiar with the programming interface of the Extensions API, see [API Reference](pathname:///api/).
 

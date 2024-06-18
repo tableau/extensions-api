@@ -75,7 +75,7 @@ The Extensions API GitHub project provides an example of a Sandboxed Extension. 
 
 2. In the dashboard, under **Objects**, select **Extension** and drag it on to the dashboard.  
 
-3. In the **Choose an Extension** dialog box, click **My Extensions**, and then navigate to the `Extensions API\Samples\UINamespace-sandboxed` folder. Open the `uiNamespace.trex` file.  
+3. In the **Choose an Extension** dialog box, click **My Extensions**, and then navigate to the `Extensions API\Samples\Dashboard\UINamespace-sandboxed` folder. Open the `uiNamespace.trex` file.  
 
     The sample extension (web application) appears in the dashboard frame. The UINamespace-sandboxed sample finds and displays the data source for each worksheet in the dashboard and lets you configure the refresh rate. The **UINamespace-sandboxed** sample is a *sandboxed* version of the Network Enabled Extension, UINamespace sample.  You can compare the source files for both extensions to better understand the differences and to see what it takes to port existing extensions (Network Enabled) to be Sandboxed Extensions. The sample extension makes use of a popup dialog box for configuration.
 
@@ -101,7 +101,7 @@ If you have an extension that is ready to test in the sandbox, follow these inst
 
         "extensions": {
             "uinamespace": {
-                "path": "./Samples/UINamespace-sandboxed"
+                "path": "./Samples/Dashboard/UINamespace-sandboxed"
             }
         }
     }
@@ -128,7 +128,7 @@ If you have an extension that is ready to test in the sandbox, follow these inst
 
     For example, the default value for port is `8765`. If the name of the extension is `uninamespace`, that name becomes part of the URL that you specify in the `.trex` file: `http://localhost:8765/sandbox/uinamespace/`. Note that in the `.trex` file the full URL also includes the name of the web page in the URL. An implied `index.html` does not work.
 
-    For the `"path"` value, provide the relative or absolute path to the folder on your computer that contains your extension web page and source files. The path is relative to the `extensions-api` parent folder. For example, the `uinamespace` sample is in the `.\Samples\UINamespace-sandboxed` folder.
+    For the `"path"` value, provide the relative or absolute path to the folder on your computer that contains your extension web page and source files. The path is relative to the `extensions-api` parent folder. For example, the `uinamespace` sample is in the `.\Samples\Dashboard\UINamespace-sandboxed` folder.
 
     The following example adds an extension called `helloworld` that has its source files in the `./mySamples/HelloWorld` folder. You can enter multiple extensions. Be sure to separate each entry with a comma (,).
 
@@ -138,7 +138,7 @@ If you have an extension that is ready to test in the sandbox, follow these inst
 
         "extensions": {
             "uinamespace": {
-                "path": "./Samples/UINamespace-sandboxed"
+                "path": "./Samples/Dashboard/UINamespace-sandboxed"
             },
             "helloworld": {
                 "path": "./mySamples/HelloWorld"

@@ -89,10 +89,10 @@ In the HTML code for the extensions, the JavaScript files are referenced. The fo
 
 ```html
 <!-- Extensions Library (this will be hosted on a CDN eventually) -->
-<script src="../../lib/tableau.extensions.1.latest.js"></script>
+<script src="../../../lib/tableau.extensions.1.latest.js"></script>
 
 <!-- The  extension code (webpack) -->
-<script src="../../dist/datasources.js"></script>
+<script src="../../../dist/datasources.js"></script>
 ```
 
 ## Related resources
