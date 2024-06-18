@@ -1,7 +1,6 @@
 /* global d3 */
 /* global tinycolor */
 
-// TODO: Get background color from Tableau when the API is available
 const backgroundColor = tinycolor('white');
 
 async function Sankey (encodedData, encodingMap, width, height, selectedTupleIds, styles) {
@@ -325,7 +324,6 @@ async function onMouseMove (e, hoveredTupleIds, linksPerTupleId, hoveringLayer) 
 
   if (elem && tupleId !== null && tupleId !== undefined) {
     hoveredTupleIds.set(tupleId);
-    // TODO: We shouldn't trigger a hover dashboar action on each mouse move
     getWorksheet().hoverTupleAsync(parseInt(tupleId), { tooltipAnchorPoint: { x: e.pageX, y: e.pageY } });
   } else if (hadHoveredTupleBefore) { getWorksheet().hoverTupleAsync(parseInt(tupleId), { tooltipAnchorPoint: { x: e.pageX, y: e.pageY } }); }
 
