@@ -95,13 +95,15 @@
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="fieldinstance.html#aggregation" class="tsd-kind-icon">aggregation</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="fieldinstance.html#columntype" class="tsd-kind-icon">column<wbr>Type</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="fieldinstance.html#columntype" class="tsd-kind-icon">column<wbr>Type</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="fieldinstance.html#datatype" class="tsd-kind-icon">data<wbr>Type</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="fieldinstance.html#description" class="tsd-kind-icon">description</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="fieldinstance.html#fieldid" class="tsd-kind-icon">field<wbr>Id</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="fieldinstance.html#iscalculatedfield" class="tsd-kind-icon">is<wbr>Calculated<wbr>Field</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="fieldinstance.html#iscombinedfield" class="tsd-kind-icon">is<wbr>Combined<wbr>Field</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="fieldinstance.html#isgenerated" class="tsd-kind-icon">is<wbr>Generated</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="fieldinstance.html#isgeospatial" class="tsd-kind-icon">is<wbr>Geospatial</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="fieldinstance.html#ishidden" class="tsd-kind-icon">is<wbr>Hidden</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="fieldinstance.html#ispresentonpublisheddatasource" class="tsd-kind-icon">is<wbr>Present<wbr>OnPublished<wbr>Datasource</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="fieldinstance.html#name" class="tsd-kind-icon">name</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="fieldinstance.html#role" class="tsd-kind-icon">role</a></li>
@@ -119,7 +121,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="fieldinstance.html">FieldInstance</a>.<a href="fieldinstance.html#aggregation">aggregation</a></p>
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataSourceInterfaces.ts:229</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataSourceInterfaces.ts:215</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -130,19 +132,20 @@
 						</dl>
 					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="columntype" class="tsd-anchor"></a>
 					<h3>column<wbr>Type</h3>
 					<div class="tsd-signature tsd-kind-icon">column<wbr>Type<span class="tsd-signature-symbol">:</span> <a href="../enums/tableau.columntype.html" class="tsd-signature-type">ColumnType</a></div>
 					<aside class="tsd-sources">
+						<p>Inherited from <a href="fieldinstance.html">FieldInstance</a>.<a href="fieldinstance.html#columntype">columnType</a></p>
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/VisualModelInterface.ts:50</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataSourceInterfaces.ts:220</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<dl class="tsd-comment-tags">
 							<dt>returns</dt>
-							<dd><p>The type of the column, either discrete or continuous.</p>
+							<dd><p>The type of the column, either discrete or continuous. Could hold value &#39;Unknown&#39;.</p>
 							</dd>
 						</dl>
 					</div>
@@ -210,7 +213,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="fieldinstance.html">FieldInstance</a>.<a href="fieldinstance.html#iscalculatedfield">isCalculatedField</a></p>
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataSourceInterfaces.ts:224</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataSourceInterfaces.ts:225</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -228,7 +231,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="fieldinstance.html">FieldInstance</a>.<a href="fieldinstance.html#iscombinedfield">isCombinedField</a></p>
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataSourceInterfaces.ts:234</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataSourceInterfaces.ts:230</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -246,7 +249,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="fieldinstance.html">FieldInstance</a>.<a href="fieldinstance.html#isgenerated">isGenerated</a></p>
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataSourceInterfaces.ts:219</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataSourceInterfaces.ts:239</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -262,13 +265,49 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="isgeospatial" class="tsd-anchor"></a>
+					<h3>is<wbr>Geospatial</h3>
+					<div class="tsd-signature tsd-kind-icon">is<wbr>Geospatial<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="fieldinstance.html">FieldInstance</a>.<a href="fieldinstance.html#isgeospatial">isGeospatial</a></p>
+						<ul>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataSourceInterfaces.ts:244</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<dl class="tsd-comment-tags">
+							<dt>returns</dt>
+							<dd><p>True if this role has a semantic type of geospatial: e.g latitude, longitude, zipcode, City name...</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="ishidden" class="tsd-anchor"></a>
+					<h3>is<wbr>Hidden</h3>
+					<div class="tsd-signature tsd-kind-icon">is<wbr>Hidden<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="fieldinstance.html">FieldInstance</a>.<a href="fieldinstance.html#ishidden">isHidden</a></p>
+						<ul>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataSourceInterfaces.ts:249</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<dl class="tsd-comment-tags">
+							<dt>returns</dt>
+							<dd><p>True if this field is hidden, false otherwise.</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="ispresentonpublisheddatasource" class="tsd-anchor"></a>
 					<h3>is<wbr>Present<wbr>OnPublished<wbr>Datasource</h3>
 					<div class="tsd-signature tsd-kind-icon">is<wbr>Present<wbr>OnPublished<wbr>Datasource<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="fieldinstance.html">FieldInstance</a>.<a href="fieldinstance.html#ispresentonpublisheddatasource">isPresentOnPublishedDatasource</a></p>
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataSourceInterfaces.ts:239</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataSourceInterfaces.ts:254</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -335,7 +374,7 @@
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 								<a href="fieldinstance.html#aggregation" class="tsd-kind-icon">aggregation</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 								<a href="fieldinstance.html#columntype" class="tsd-kind-icon">column<wbr>Type</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
@@ -355,6 +394,12 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 								<a href="fieldinstance.html#isgenerated" class="tsd-kind-icon">is<wbr>Generated</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="fieldinstance.html#isgeospatial" class="tsd-kind-icon">is<wbr>Geospatial</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="fieldinstance.html#ishidden" class="tsd-kind-icon">is<wbr>Hidden</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 								<a href="fieldinstance.html#ispresentonpublisheddatasource" class="tsd-kind-icon">is<wbr>Present<wbr>OnPublished<wbr>Datasource</a>
