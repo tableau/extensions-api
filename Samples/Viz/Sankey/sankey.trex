@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest manifest-version="0.1" xmlns="http://www.tableau.com/xml/extension_manifest">
+  <worksheet-extension id="com.tableau.extension.demo.connected.sankey" extension-version="1.0.0">
+    <default-locale>en_US</default-locale>
+    <name resource-id="name"/>
+    <description>Sankey</description>
+    <author name="tableau" email="github@tableau.com" organization="tableau" website="https://www.tableau.com"/>
+    <min-api-version>1.11</min-api-version>
+    <source-location>
+      <url>http://localhost:8765/Samples/Viz/Sankey/sankey.html</url>
+    </source-location>
+    <icon/>
+    <encoding id="level">
+      <display-name>Level</display-name>
+      <role-spec>
+        <role-type>discrete-dimension</role-type>
+        <role-type>discrete-measure</role-type>
+      </role-spec>
+      <fields max-count="5"/>
+    </encoding>
+    <encoding id="edge">
+      <display-name>Edge</display-name>
+      <role-spec>
+        <role-type>continuous-measure</role-type>
+        <role-type>continuous-dimension</role-type>
+      </role-spec>
+      <fields max-count="1"/>
+    </encoding>
+  </worksheet-extension>
+  <resources>
+    <resource id="name">
+      <text locale="en_US">Sankey</text>
+    </resource>
+  </resources>
+</manifest>

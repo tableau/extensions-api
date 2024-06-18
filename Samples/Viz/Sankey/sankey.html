@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <title>Sankey</title>
+
+  <!-- d3 -->
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+
+  <!-- d3-sankey -->
+  <script src="https://cdn.jsdelivr.net/npm/d3-sankey@0.12.3/dist/d3-sankey.min.js"></script>
+
+  <!-- tinycolor2 -->
+  <script src="https://cdn.jsdelivr.net/npm/tinycolor2@1.6.0/cjs/tinycolor.min.js"></script>
+
+  <!-- Extensions Library (this will be hosted on a CDN eventually) -->
+  <script src="../../../lib/tableau.extensions.1.latest.min.js"></script>
+
+  <!-- Our extension's code -->
+  <script src="./sankey.js"></script>
+
+  <style>
+    .selection {
+      fill: #4e79a7;
+      fill-opacity: 1;
+      cursor: pointer;
+    }
+
+    .selectionOutline {
+      stroke-width: 4; /* Double the with since we will only see the outside part of the stroke */
+      stroke: black;
+      fill: none;
+    }
+
+    .highlighting {
+      fill: none;
+      stroke-width: 1;
+      stroke: black;
+      cursor: pointer;
+    }
+  </style>
+
+</head>
+<body class="tableau-worksheet">
+  <div style='width: 100%; height: 100%; position: fixed' id='content'></div>
+</body>
+</html>
