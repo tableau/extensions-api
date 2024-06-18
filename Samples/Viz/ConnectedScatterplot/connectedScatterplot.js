@@ -1,4 +1,5 @@
 'use strict';
+/* global d3 */
 
 // Wrap everything in an anonymous function to avoid polluting the global namespace
 (function () {

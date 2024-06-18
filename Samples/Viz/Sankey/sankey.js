@@ -1,3 +1,6 @@
+/* global d3 */
+/* global tinycolor */
+
 // TODO: Get background color from Tableau when the API is available
 const backgroundColor = tinycolor('white');
 
