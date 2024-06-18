@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest manifest-version="0.1" xmlns="http://www.tableau.com/xml/extension_manifest">
+  <worksheet-extension id="com.tableau.extension.demo.connected.scatter" extension-version="1.0.0">
+    <default-locale>en_US</default-locale>
+    <name resource-id="name"/>
+    <description>Connected Scatterplot</description>
+    <author name="tableau" email="github@tableau.com" organization="tableau" website="https://www.tableau.com"/>
+    <min-api-version>1.11</min-api-version>
+    <source-location>
+      <url>http://localhost:8765/Samples/Viz/ConnectedScatterplot/connectedScatterplot.html</url>
+    </source-location>
+    <icon/>
+    <encoding id="x">
+      <display-name>X</display-name>
+      <data-spec>
+        <data-type>numeric</data-type>
+      </data-spec>
+      <role-spec>
+        <role-type>continuous-measure</role-type>
+      </role-spec>
+      <fields max-count="1"/>
+      <encoding-icon token="letter-x" />
+      <tooltip resource-id="tooltip-x-id">Default tooltip text for X encoding</tooltip>
+    </encoding>
+    <encoding id="y">
+      <display-name>Y</display-name>
+      <data-spec>
+        <data-type>numeric</data-type>
+      </data-spec>
+      <role-spec>
+        <role-type>continuous-measure</role-type>
+      </role-spec>
+      <fields max-count="1"/>
+      <encoding-icon token="letter-y" />
+      <tooltip resource-id="tooltip-x-id">Default tooltip text for Y encoding</tooltip>
+    </encoding>
+    <encoding id="text">
+      <display-name>Text</display-name>
+      <fields max-count="1"/>
+      <encoding-icon token="text" />
+      <tooltip resource-id="tooltip-x-id">Default tooltip text for Text encoding</tooltip>
+    </encoding>
+  </worksheet-extension>
+  <resources>
+    <resource id="name">
+      <text locale="en_US">Connected Scatterplot</text>
+    </resource>
+  </resources>
+</manifest>

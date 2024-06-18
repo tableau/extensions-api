@@ -1,14 +1,14 @@
 {
   "name": "extensions-api-sdk",
-  "version": "1.11.0",
+  "version": "1.12.0",
   "description": "Sample code and documentation for the Tableau Extensions API.",
   "scripts": {
     "build": "npm install && npm run lint && webpack --config webpack.config.js",
     "start": "node node_modules/http-server/bin/http-server -p 8765 -c-1",
     "start-sandbox": "npx tabextsandbox --config sandbox-config.json",
     "lint": "npm run jslint && npm run tslint",
-    "jslint": "semistandard ./Samples/*/*.js",
-    "tslint": "./node_modules/.bin/tslint --config ./tslint.json ./Samples-Typescript/*/*.ts*",
+    "jslint": "semistandard ./Samples/*/*/*.js",
+    "tslint": "./node_modules/.bin/tslint --config ./tslint.json ./Samples-Typescript/*/*/*.ts*",
     "dev": "concurrently --kill-others \"webpack --watch\" \"npm:start\""
   },
   "repository": {
@@ -21,8 +21,8 @@
     "http-server": "^14.1.0"
   },
   "devDependencies": {
-    "@tableau/extensions-api-types": "1.11.0",
-    "@tableau/tabextsandbox": "^1.11.0",
+    "@tableau/extensions-api-types": "1.12.0",
+    "@tableau/tabextsandbox": "^1.12.0",
     "@types/jquery": "^3.3.29",
     "@types/react": "^17.0.2",
     "@types/react-dom": "^17.0.2",

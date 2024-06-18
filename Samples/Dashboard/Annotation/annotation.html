@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Annotation Sample</title>
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <!-- Extensions Library -->
+  <script src="../../../lib/tableau.extensions.1.latest.js"></script>
+
+  <!-- Our extension's code -->
+  <script src="./annotation.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h2>Annotation Sample</h2>
+    <p>Select marks to generate annotations.</p>
+    <div>
+      <p style="display: inline">Worksheet To Annotate:</p>
+      <!-- Options to select will be populated by the Extension -->
+      <select id="worksheet-selection" class="form-select" aria-label="Default select example" style="display: inline" disabled></select>
+    </div>
+  </div>
+</body>
+</html>
