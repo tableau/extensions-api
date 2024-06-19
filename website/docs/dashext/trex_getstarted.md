@@ -36,29 +36,30 @@ To use the dashboard extension samples, you need to start up a web server on you
 
 1. Navigate to the `extensions-api-main` or `extensions-api` directory.
 
-1. Navigate to the `extensions-api` directory.
-
-2. To install the web server components, run the following npm commands to install the package:
-
+2. To install the web server components, run the following npm command:
 
    **npm run build**
 
-  
 3. To start the web server, run the following npm command:
- 
+
    **npm start**
 
     The start command runs a script to start the web server over port `8765`. You only need to install the web server components the first time. Subsequently, you can just start the web server, using **npm start**.
     The start commands uses the npm [http-server](https://www.npmjs.com/package/http-server) package, a simple HTTP server that uses Node.js for serving static files to the browser.
 
 
-    | **Note:**  The web server just serves the extension samples, which have URLs similar to the following: `http://localhost:8765/Samples/DataSources/datasources.html` This local web server is not intended to serve the Extensions API Help pages. View the Help on GitHub at [https://tableau.github.io/extensions-api](https://tableau.github.io/extensions-api).
+    | **Note:**  The web server just serves the extension samples, which have URLs similar to the following: `http://localhost:8765/Samples/Dashboard/DataSources/datasources.html` This local web server is not intended to serve the Extensions API Help pages. View the Help on GitHub at [https://tableau.github.io/extensions-api](https://tableau.github.io/extensions-api).
 
 ----
 
 ### Start Tableau and add an extension to the dashboard
 
-1. Start Tableau and open a workbook that has a dashboard, or open a workbook and create a new dashboard. For example, you could use one of the Tableau sample workbooks like Superstore to start with.
+1. Start Tableau Desktop, or sign in to Tableau Cloud or Tableau Server, and open a workbook that has a dashboard, or open a workbook and create a new dashboard. For example, you could use one of the Tableau sample workbooks like Superstore to start with.
+
+   :::note
+   If you are using Tableau Cloud or Tableau Server to view the samples, you'll need to make sure that the extension is on the Allow list (safe list) for Tableau Server or Tableau Cloud. See [Add extensions to the safe list and configure user prompts](https://help.tableau.com/current/online/en-us/dashboard_extensions_server.htm#add-extensions-to-the-safe-list-and-configure-user-prompts) (Tableau Cloud) or [Add extensions to the safe list and configure user prompts](https://help.tableau.com/current/server/en-us/dashboard_extensions_server.htm#add-extensions-to-the-safe-list-and-configure-user-prompts) (Tableau Server). So you can use all the sample extensions, use the following URL and wildcard: `http://localhost:.*/Samples/.*`
+   :::
+
 
 2. In the dashboard, under **Objects**, select **Extension** and drag it on to the dashboard.
 
@@ -67,7 +68,7 @@ To use the dashboard extension samples, you need to start up a web server on you
 3. In the **Add an Extension** dialog box, click **Access Local Extensions**.
    Every Tableau extension has a manifest file (`.trex`) that describes the extension and identifies the location of the web application.
 
-4. Browse to the directory where the samples are located. For example, if you downloaded or cloned the GitHub repository, go to `\extensions-api\Samples\DataSources`.
+4. Browse to the directory where the samples are located. For example, if you downloaded or cloned the GitHub repository, go to `\extensions-api\Samples\Dashboard\DataSources`.
 
 5. Open the `DataSources.trex` file.
    The sample extension (web application) appears in the dashboard frame. The DataSources sample finds and displays the data source for each worksheet in the dashboard.
@@ -82,7 +83,7 @@ To use the dashboard extension samples, you need to start up a web server on you
 
 Looking at the files that make up an extension will give you an idea of how an extension is constructed.
 
-1. Browse to the directory where the DataSources sample is located. For example, if you downloaded or cloned the GitHub repository, go to `\extensions-api\Samples\DataSources`.
+1. Browse to the directory where the DataSources sample is located. For example, if you downloaded or cloned the GitHub repository, go to `\extensions-api\Samples\Dashboard\DataSources`.
 
 2. Open the `datasources.html` file in your favorite Text or Code editor. This HTML page provides the interface that users see when they load the extension. This file includes links to the Extensions API library file and to the file that contains all the JavaScript code for the extension.
 
@@ -117,7 +118,7 @@ Looking at the files that make up an extension will give you an idea of how an e
 
     ```xml
     <source-location>
-      <url>http://localhost:8765/Samples/DataSources/datasources.html</url>
+      <url>http://localhost:8765/Samples/Dashboard/DataSources/datasources.html</url>
     </source-loc>
     ```
 
@@ -125,7 +126,7 @@ Looking at the files that make up an extension will give you an idea of how an e
 
     ```xml
     <source-location>
-      <url>http://localhost:8765/_your-new-folder-here_/DataSources/datasources.html</url>
+      <url>http://localhost:8765/Samples/_your-new-folder-here_/DataSources/datasources.html</url>
     </source-loc>
     ```
 
@@ -140,9 +141,9 @@ You can add multiple instances of an extension to a dashboard or to multiple das
   
 ## What's next?
 
-* Start developing your extension by modifying an existing sample. See [samples (GitHub)](https://github.com/tableau/extensions-api/tree/master/Samples/). If you cloned or downloaded the repository, create a copy of the Samples directory. For example, if you make the copy in `\extensions-api\` directory, and call it `MySamples`, you just need to modify the URL in the `.trex` files so that you host the extensions using the same web server you created with `npm start` command.
+* Start developing your extension by modifying an existing dashboard sample. See [samples (GitHub)](https://github.com/tableau/extensions-api/tree/master/Samples/Dashboard/). If you cloned or downloaded the repository, create a copy of the Samples directory. For example, if you make the copy in `\extensions-api\` directory, and call it `MySamples`, you just need to modify the URL in the `.trex` files so that you host the extensions using the same web server you created with `npm start` command.
 
-* Follow the [Tutorial (GitHub)](https://github.com/tableau/extensions-api/tree/master/Tutorial) and learn how to build a dashboard extension, step by step. If you downloaded or cloned the repository, look in the `Tutorial` folder on your computer.
+* Follow the [Tutorial (GitHub)](https://github.com/tableau/extensions-api/tree/master/Tutorial/Dashboard) and learn how to build a dashboard extension, step by step. If you downloaded or cloned the repository, look in the `Tutorial` folder on your computer.
 
 * For information about creating a simple "Hello World" Tableau extension, see [Create a "Hello World" Dashboard Extension](./trex_create).
 

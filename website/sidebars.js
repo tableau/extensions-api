@@ -98,7 +98,7 @@ const sidebars = {
       label: 'Reference',
    /*   link: { href: "https://github.com/tableau/hyper-api-samples" }, */
       items: [
-      { type: 'link', label: "Samples", href: "https://github.com/tableau/extensions-api-preview/tree/main/Samples" },
+      { type: 'link', label: "Samples", href: "https://github.com/tableau/extensions-api/tree/main/Samples" },
       { type: 'link', label: "API Reference",  href: 'pathname:///api' },
       {
         type: 'category',

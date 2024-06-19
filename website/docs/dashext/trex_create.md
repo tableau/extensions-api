@@ -28,7 +28,7 @@ For convenience, you might want to create a folder for your "Hello World" dashbo
 The manifest file (`EXTENSION-NAME.trex`) is an XML file that describes the extension and provides information to register the extension with Tableau. For a description of the contents of this file, see [Elements of the manifest file](trex_manifest#elements-of-the-manifest-file).
 
 1. In the `HelloDemo` folder (or where ever you want to put your files), create a manifest file for your extension.
-Name the manifest file for your extension (for example, `HelloExtension` and save it with the file name extension `.trex`.
+Name the manifest file for your extension (for example, `HelloExtension`) and save it with the file name extension `.trex`.
 
 2. Copy the following XML code into your new file. Make sure that the `<?xml ...>` declaration appears as the first element in the file (line 1, column 1). Any blank spaces in front of the declaration will cause an error when you load the extension.  
 
@@ -123,7 +123,7 @@ Your web application must include an HTML page. This page should link to the Ext
 
    The sample code includes a link to the JavaScript library (`tableau.extensions.1.latest.js`), which is available in the `/lib` folder. The sample code also includes links to jQuery and Bootstrap libraries. 
 
-3. If necessary, adjust the relative path to the Extensions API JavaScript library (`tableau.extensions.1.latest.js`), which is available in the `/lib` folder. 
+3. If necessary, adjust the relative path to the Extensions API JavaScript library (`tableau.extensions.1.latest.js`), which is available in the `/lib` folder.
 
    ```html
 
@@ -242,8 +242,8 @@ You can also use the Tableau log files to identify issues, see [Use Log files to
 
 ## What's next?
 
-- For more information about how you can use the Extensions API, go look at the [Samples](https://github.com/tableau/extensions-api/tree/master/Samples/) or follow the [Tutorial](https://github.com/tableau/extensions-api/tree/master/Tutorial/) and learn how to build a dashboard extension, step by step.
+- For more information about how you can use the Extensions API to create dashboard extensions, go look at the [Samples](https://github.com/tableau/extensions-api/tree/master/Samples/Dashboard/) or follow the [Tutorial](https://github.com/tableau/extensions-api/tree/master/Tutorial/Dashboard) and learn how to build a dashboard extension, step by step.
 
-- Get familiar with the programming interface of the Extensions API, see <a href="../docs/index.html" target="_blank">API Reference</a>.
+- Get familiar with the programming interface of the Extensions API, see [API Reference](pathname:///api/).
 
 
