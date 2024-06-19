@@ -41,5 +41,5 @@ As soon as your pull request to https://github.com/tableau/test-extensions-api i
 
 | Branch | URL |
 |---- |---- |
-| `dev` | [https://tableau.github.io/test-extensions-api/dev](https://d45.github.io/extensions-api/dev) |
-| `main` | [https://tableau.github.io/test-extensions-api](https://d45.github.io/extensions-api/)  |
+| `dev` | [https://tableau.github.io/extensions-api/dev](https://d45.github.io/extensions-api/dev) |
+| `main` | [https://tableau.github.io/textensions-api](https://d45.github.io/extensions-api/)  |
