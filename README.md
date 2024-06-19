@@ -35,11 +35,11 @@ Changes or updates should first be checked into the `gh-pages-dev` branch and th
 
 ### Deployment
 
-As soon as your pull request to https://github.com/tableau/test-extensions-api is merged to `gh-pages`, the new web page will be deployed automatically within a couple of minutes.
+As soon as your pull request to https://github.com/tableau/extensions-api is merged to `gh-pages`, the new web page will be deployed automatically within a couple of minutes.
 
 ### View the docs
 
 | Branch | URL |
 |---- |---- |
-| `dev` | [https://tableau.github.io/extensions-api/gh-pages-dev](https://d45.github.io/extensions-api/gh-pages-dev) |
-| `main` | [https://tableau.github.io/textensions-api](https://d45.github.io/extensions-api/)  |
+| `dev` | [https://tableau.github.io/extensions-api/gh-pages-dev](https://tableau.github.io/extensions-api/gh-pages-dev) |
+| `main` | [https://tableau.github.io/textensions-api](https://tableau.github.io/extensions-api/)  |
