@@ -30,16 +30,16 @@ Github Actions are configured to automatically test for changes.
 For simple typo or wording fixes, you don't need a peer review - feel free to just go ahead and merge.
 For actual new content, we encourage to get at least one peer review.
 
-The released or production documentation is served from the `main` branch.
-Changes or updates should first be checked into the `dev` branch and then merged to `main` when ready for public release.
+The released or production documentation is served from the `gh-pages` branch.
+Changes or updates should first be checked into the `gh-pages-dev` branch and then merged to `gh-pages` when ready for public release.
 
 ### Deployment
 
-As soon as your pull request to https://github.com/tableau/test-extensions-api is merged to `main`, the new web page will be deployed automatically within a couple of minutes.
+As soon as your pull request to https://github.com/tableau/test-extensions-api is merged to `gh-pages`, the new web page will be deployed automatically within a couple of minutes.
 
 ### View the docs
 
 | Branch | URL |
 |---- |---- |
-| `dev` | [https://d45.github.io/test-extensions-api/dev](https://d45.github.io/test-extensions-api/dev) |
-| `main` | [https://d45.github.io/test-extensions-api](https://d45.github.io/test-extensions-api/)  |
+| `dev` | [https://tableau.github.io/test-extensions-api/dev](https://d45.github.io/extensions-api/dev) |
+| `main` | [https://tableau.github.io/test-extensions-api](https://d45.github.io/extensions-api/)  |
