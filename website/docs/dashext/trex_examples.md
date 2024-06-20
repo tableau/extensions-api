@@ -7,12 +7,12 @@ The best way to learn how to build your own extensions is to look at the sample 
 
 - To download the Extensions API SDK, if you have not already done so, see [Get Started](./trex_getstarted).
 
-- You can browse the sample code for the dashboard extensions in the [Samples](https://github.com/tableau/extensions-api/tree/master/Samples/Dashboard?=target="_blank") and the [Tutorial](https://github.com/tableau/extensions-api/tree/master/Tutorial/Dashboard?=target="_blank") folders on GitHub.
+- You can browse the sample code for the dashboard extensions in the [Samples](https://github.com/tableau/extensions-api/tree/main/Samples/Dashboard?=target="_blank") and the [Tutorial](https://github.com/tableau/extensions-api/tree/main/Tutorial/Dashboard#Readme?=target="_blank") folders on GitHub.
 
-- You can also create dashboard extensions using TypeScript. See the TypeScript dashboard sample code in [Samples-TypeScript](https://github.com/tableau/extensions-api/tree/master/Samples-Typescript/Dashboard?=target="_blank") on GitHub.
+- You can also create dashboard extensions using TypeScript. See the TypeScript dashboard sample code in [Samples-TypeScript](https://github.com/tableau/extensions-api/tree/main/Samples-Typescript/Dashboard?=target="_blank") on GitHub.
 
-- You can also check out the dashboard extensions from the community, see [Community Extensions](pathname:///community/).
-
+<!-- - You can also check out the dashboard extensions from the community, see [Community Extensions](pathname:///community/).
+-->
 ---
 
 The following instructions assume that you have already downloaded and extracted the files or have cloned the Extensions API SDK to your desktop.
