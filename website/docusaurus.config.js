@@ -99,12 +99,12 @@ const getConfig = async () => {
             },
             {
               label: 'Tutorial',
-              href:  'https://github.com/tableau/extensions-api/blob/main/Tutorial/readme.md',
+              href:  'https://github.com/tableau/extensions-api/blob/main/Tutorial/Dashboard/readme.md',
             },
-            {
+      /*      {
               label: 'Community Extensions',
               href: 'https://tableau.github.io/extensions-api/community/',
-            }
+            }   */
          /*   {
               type: 'docSidebar',
               position: 'left',
@@ -151,7 +151,7 @@ const getConfig = async () => {
                 },
                 {
                   label: 'Tutorial',
-                  href: 'https://github.com/tableau/extensions-api/blob/main/Tutorial/readme.md',
+                  href: 'https://github.com/tableau/extensions-api/blob/main/Tutorial/Dashboard/readme.md',
                 },
 
               ],
@@ -167,10 +167,10 @@ const getConfig = async () => {
                   label: 'Slack',
                   href: 'https://join.slack.com/t/tableau-datadev/shared_invite/zt-1q4rrimsh-lHHKzrhid1MR4aMOkrnAFQ',
                 },
-                {
+       /*         {
                   label: 'Community Extensions',
                   href: 'https://tableau.github.io/extensions-api/community/',
-                },
+                }, */
               ],
             },
             {
