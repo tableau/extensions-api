@@ -7,7 +7,7 @@ description: Contribute your extension to the Community
 portal to share your work with other developers. To make it easier for others to use your extension,
 we ask that you include a link to a hosted version of your extension.  -->
 
-Submit your extension to the [Community Extension](https://github.com/tableau/extensions-api/tree/main/community)
+Submit your extension to the [Community Extension](pathname:///community)
 portal to share your work with other developers. To make it easier for others to use your extension,
 we ask that you include a link to a hosted version of your extension.
 

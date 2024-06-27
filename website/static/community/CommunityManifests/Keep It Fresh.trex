@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest manifest-version="0.1" 
+    xmlns="http://www.tableau.com/xml/extension_manifest">
+    <dashboard-extension id="com.theinformationlab.extensions.keepitfresh" extension-version="2.0.0">
+        <default-locale>en_US</default-locale>
+        <name resource-id="name"/>
+        <description>Refresh your data source(s) on a a timer</description>
+        <author name="Andre de Vries" email="andre.devries@theinformationlab.co.uk" organization="The Information Lab" website="https://www.theinformationlab.co.uk"/>
+        <min-api-version>1.0</min-api-version>
+        <source-location>
+            <url>https://keepitfresh-extension.theinformationlab.io/</url>
+        </source-location>
+        <icon>PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDIzLjAuNCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCAyNTggMjU3LjciIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDI1OCAyNTcuNzsiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8c3R5bGUgdHlwZT0idGV4dC9jc3MiPgoJLnN0MHtmaWxsOiNFOTdEMzM7fQoJLnN0MXtmaWxsOiNDOTVGMTc7fQoJLnN0MntmaWxsOiNGRkZGRkY7fQo8L3N0eWxlPgo8cGF0aCBjbGFzcz0ic3QwIiBkPSJNMTI4LjgsMC43QzU4LDAuNywwLjcsNTgsMC43LDEyOC44UzU4LDI1NywxMjguOCwyNTdTMjU3LDE5OS42LDI1NywxMjguOFMxOTkuNiwwLjcsMTI4LjgsMC43eiIvPgo8ZyBpZD0iTGF5ZXJfMiI+Cgk8cGF0aCBjbGFzcz0ic3QxIiBkPSJNNjEuOCwxMTUuNUwxMTIsNzRsMC41LTguOGw0Mi40LTI1LjRMMjUyLDk1YzEuNyw2LjMsMTYuNiw2NS4xLTIyLjcsMTE0LjNjLTMxLjMsMzkuMi03NS41LDQ1LjUtODQuOCw0Ni43CgkJYzAsMC02Ni45LTU2LTY0LjQtNTUuMiIvPgoJPHBhdGggY2xhc3M9InN0MSIgZD0iTTY4LjMsMTQyLjMiLz4KPC9nPgo8Y2lyY2xlIGNsYXNzPSJzdDEiIGN4PSIxNzkuMiIgY3k9IjE4NS40IiByPSI0Mi4zIi8+CjxnPgoJPGc+CgkJPHBhdGggY2xhc3M9InN0MiIgZD0iTTEyOSwyMTguM2MtNDIuMywwLTc2LjctMzQuMy03Ni43LTc2LjVjMC05LjEsMS42LTE4LDQuNy0yNi41YzMtOCw3LjMtMTUuNSwxMi44LTIyLjFsLTcuOC03LjcKCQkJYy0xLjItMS4yLTEuOC0yLjctMS44LTQuM2MwLTEuNiwwLjYtMy4yLDEuOC00LjNsNy4yLTcuMmMyLjQtMi40LDYuMy0yLjQsOC43LDBsOC41LDguNWMxMi42LTguNCwyNy4yLTEyLjgsNDIuNC0xMi44CgkJCWM0Mi4zLDAsNzYuNywzNC4zLDc2LjcsNzYuNUMyMDUuNywxODQsMTcxLjMsMjE4LjMsMTI5LDIxOC4zeiBNMTI5LDgxLjRjLTMzLjQsMC02MC42LDI3LjEtNjAuNiw2MC40YzAsMzMuMywyNy4yLDYwLjQsNjAuNiw2MC40CgkJCWMzMy40LDAsNjAuNi0yNy4xLDYwLjYtNjAuNEMxODkuNiwxMDguNSwxNjIuNCw4MS40LDEyOSw4MS40eiIvPgoJPC9nPgoJPGc+CgkJPHBhdGggY2xhc3M9InN0MiIgZD0iTTEyOS40LDIwMC42Yy0zMi4zLDAtNTguNS0yNi4yLTU4LjUtNTguNGMwLTMyLjIsMjYuMy01OC40LDU4LjUtNTguNGMzMi4zLDAsNTguNSwyNi4yLDU4LjUsNTguNAoJCQlDMTg3LjksMTc0LjQsMTYxLjcsMjAwLjYsMTI5LjQsMjAwLjZ6IE0xMjkuNCw4OC41Yy0yOS42LDAtNTMuOCwyNC4xLTUzLjgsNTMuN2MwLDI5LjYsMjQuMSw1My43LDUzLjgsNTMuNwoJCQljMjkuNiwwLDUzLjgtMjQuMSw1My44LTUzLjdDMTgzLjEsMTEyLjYsMTU5LDg4LjUsMTI5LjQsODguNXoiLz4KCTwvZz4KCTxnPgoJCTxwYXRoIGNsYXNzPSJzdDIiIGQ9Ik05MC41LDE3NC4xbC0yLjUtMi45bDMwLjUtMzAuNGMwLjctNS41LDUuMy05LjYsMTAuOC05LjZjNiwwLDEwLjksNC45LDEwLjksMTFjMCw2LjEtNC45LDExLTEwLjksMTEKCQkJYy0wLjgsMC0xLjctMC4xLTIuNS0wLjNMOTAuNSwxNzQuMXogTTEyOS40LDE1Mi4yIE0xMTkuNSwxNDEuMSIvPgoJPC9nPgoJPGc+CgkJPHBhdGggY2xhc3M9InN0MiIgZD0iTTE0Ni43LDY1LjRsLTAuNi0wLjFjLTUuNi0xLjMtMTEuMy0xLjktMTcuMS0xLjljLTUuNCwwLTEwLjcsMC42LTE2LDEuN2wtMC42LDAuMXYtNy44aC02LjcKCQkJYy0yLjgsMC01LTIuMi01LTV2LTcuOWMwLTIuOCwyLjMtNSw1LTVIMTUzYzIuOCwwLDUsMi4yLDUsNXY3LjljMCwyLjgtMi4zLDUtNSw1aC02LjNWNjUuNHogTTEwMS43LDUyLjMiLz4KCTwvZz4KPC9nPgo8L3N2Zz4K</icon>
+        <context-menu>
+            <configure-context-menu-item />
+        </context-menu>
+    </dashboard-extension>
+    <resources>
+        <resource id="name">
+            <text locale="en_US">Keep It Fresh</text>
+        </resource>
+    </resources>
+</manifest>

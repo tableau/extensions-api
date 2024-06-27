@@ -101,10 +101,10 @@ const getConfig = async () => {
               label: 'Tutorial',
               href:  'https://github.com/tableau/extensions-api/blob/main/Tutorial/Dashboard/readme.md',
             },
-      /*      {
+           {
               label: 'Community Extensions',
-              href: 'https://tableau.github.io/extensions-api/community/',
-            }   */
+              to: 'pathname:///community',
+            }  
          /*   {
               type: 'docSidebar',
               position: 'left',
@@ -167,10 +167,10 @@ const getConfig = async () => {
                   label: 'Slack',
                   href: 'https://join.slack.com/t/tableau-datadev/shared_invite/zt-1q4rrimsh-lHHKzrhid1MR4aMOkrnAFQ',
                 },
-       /*         {
+                {
                   label: 'Community Extensions',
-                  href: 'https://tableau.github.io/extensions-api/community/',
-                }, */
+                  to: 'pathname:///community',
+                }, 
               ],
             },
             {
@@ -216,6 +216,34 @@ const getConfig = async () => {
             anonymizeIP: true,
           },
         ],
+
+     /*   [
+          '@docusaurus/plugin-client-redirects',
+          {
+            redirects: [
+              // /docs/oldDoc -> /docs/newDoc
+              // publish folder
+              {
+                to: '/docs/publish/trex_publish',
+                from: '/docs/trex_publish',
+              },
+              {
+                to: '/docs/publish/trex_contributing',
+                from: '/docs/trex_contributing',
+              },
+              {
+                to: '/docs/publish/trex_sandbox_publish',
+                from: '/docs/trex_sandbox_publish',
+              },
+              //  dashext folder
+              {
+                to: '/docs/dashext/trex_getstarted',
+                from: '/docs/trex_getstarted', 
+              },
+            ],
+          },
+        ],  */
+
       //    '@cmfcmf/docusaurus-search-local',
       /*  [
           require.resolve("@easyops-cn/docusaurus-search-local"),
