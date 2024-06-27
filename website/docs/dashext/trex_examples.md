@@ -11,8 +11,8 @@ The best way to learn how to build your own extensions is to look at the sample 
 
 - You can also create dashboard extensions using TypeScript. See the TypeScript dashboard sample code in [Samples-TypeScript](https://github.com/tableau/extensions-api/tree/main/Samples-Typescript/Dashboard?=target="_blank") on GitHub.
 
-<!-- - You can also check out the dashboard extensions from the community, see [Community Extensions](pathname:///community/).
--->
+You can also check out the dashboard extensions from the community, see [Community Extensions](pathname:///community/).
+
 ---
 
 The following instructions assume that you have already downloaded and extracted the files or have cloned the Extensions API SDK to your desktop.

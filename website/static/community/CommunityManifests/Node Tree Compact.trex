@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest manifest-version="0.1" xmlns="http://www.tableau.com/xml/extension_manifest">
+   <dashboard-extension id="com.vizEpic.extensions.nodeTreeCompact-generator" extension-version="1.0.0">
+    <default-locale>en_US</default-locale>
+    <name resource-id="NTRC"/>
+    <description>Generate a node compact tree based on an internal node hierarchy</description>
+    <author name="Jeff Strauss" email="jeffstrauss18@gmail.com" organization="vizEpic" website="https://www.vizepic.com"/>
+    <min-api-version>1.0</min-api-version>
+    <source-location>
+      <url>https://vizepic.github.io/TREX/nodeTreeCompact</url>
+    </source-location>
+    <icon>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</icon>
+    <permissions>
+      <permission>full data</permission>
+    </permissions>
+    <context-menu>
+      <configure-context-menu-item/>
+    </context-menu>
+  </dashboard-extension>
+  <resources>
+    <resource id="NTRC">
+      <text locale="en_US">Node tree compact generator</text>
+    </resource>
+  </resources>
+</manifest>
