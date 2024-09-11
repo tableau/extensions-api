@@ -268,5 +268,17 @@
         "description": "An extension of UpSet.js to create interactive set visualizations for more than three sets.",
         "source_code": "",
         "hostedTrexFileName": "UpSetjs.trex"
-    }
+    },
+    {
+        "name": "MultiSelect Parameter",
+        "website": "https://biplovkarna017.github.io/tableau-multiselect-parameter/",
+        "author": "Biplov Karna",
+        "github_username": "biplovkarna017",
+        "tags": [
+            "v_1.0"
+        ],
+        "description": "Concatenates selected values from a filter and assigns the result, delimited by '|', to a parameter.",
+        "source_code": "https://github.com/biplovkarna017/tableau-multiselect-parameter",
+        "hostedTrexFileName": "MultiSelectParameter.trex"
+    },
 ]
