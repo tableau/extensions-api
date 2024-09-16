@@ -42,4 +42,4 @@ As soon as your pull request to https://github.com/tableau/extensions-api is mer
 | Branch | URL |
 |---- |---- |
 | `dev` | [https://tableau.github.io/extensions-api/gh-pages-dev](https://tableau.github.io/extensions-api/gh-pages-dev) |
-| `main` | [https://tableau.github.io/textensions-api](https://tableau.github.io/extensions-api/)  |
+| `main` | [https://tableau.github.io/extensions-api](https://tableau.github.io/extensions-api/)  |
