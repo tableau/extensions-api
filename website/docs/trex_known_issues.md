@@ -5,7 +5,7 @@ description: Lists the known issues about the Tableau Extensions API
 
 The following section describes some issues in the current release of the Extensions API where the API or the platform does not behave as expected.
 
-For information about what is new or has changed in each release, see the [Release Notes for the Tableau Extensions API](./trex_release-notes).
+For information about what is new or has changed in each release, see the [Release Notes for the Tableau Extensions API](./trex_release-notes.md).
 
 
 ### Tableau Viz - Known Issues
@@ -15,11 +15,11 @@ Tableau Viz provides a way to create visualizations in dashboard extensions. The
 * The vertical header text appears slightly cropped in the SVG output.
 * Tableau fonts are not available in the SVG output.
 
-For information about Tableau Viz, see [Add Tableau Viz to Your Dashboard Extension](./core/trex_tableau_viz).
+For information about Tableau Viz, see [Add Tableau Viz to Your Dashboard Extension](./core/trex_tableau_viz.md).
 
 ### Unable to debug extensions using Chrome version 80 or later
 
-Because of incompatibilities between Chrome and the internal Chromium-based browser used in Tableau, you can't use Chrome version 80 or later to debug your extensions. If you are using Tableau Desktop 2019.1 or later, you can debug extensions using Chrome version 79 or Chromium version 79. If you are using Tableau Desktop versions 2018.2 or 2018.3, you can use Chromium version 47. For more information about debugging extensions and using the Chromium browser, see [Debug Extensions in Tableau Desktop](./debug/trex_debugging) and [Download the Chromium Browser](./debug/trex_debugging#download-the-chromium-browser).
+Because of incompatibilities between Chrome and the internal Chromium-based browser used in Tableau, you can't use Chrome version 80 or later to debug your extensions. If you are using Tableau Desktop 2019.1 or later, you can debug extensions using Chrome version 79 or Chromium version 79. If you are using Tableau Desktop versions 2018.2 or 2018.3, you can use Chromium version 47. For more information about debugging extensions and using the Chromium browser, see [Debug Extensions in Tableau Desktop](./debug/trex_debugging.md) and [Download the Chromium Browser](./debug/trex_debugging.md#download-the-chromium-browser).
 
 ### Unable to run dashboard extension using self-signed certificates {#unable_self_signed_cert}
 
@@ -58,7 +58,7 @@ If your extension uses the `getDataSourcesAsync()` method, calling this method m
 
 ### Full data access and permission errors
 
-When an extension needs full data access and the user does not have full data permission on the workbook, Tableau currently allows the extension to run. However, Tableau will throw a console error when the extension calls `getUnderlyingData()` method. See [Handle full data access and permission errors](./core/trex_getdata#handle-full-data-access-and-permission-errors).
+When an extension needs full data access and the user does not have full data permission on the workbook, Tableau currently allows the extension to run. However, Tableau will throw a console error when the extension calls `getUnderlyingData()` method. See [Handle full data access and permission errors](./core/trex_getdata.md#handle-full-data-access-and-permission-errors).
 
 
 ### Tableau Extensions API library version 1.0.0

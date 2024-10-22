@@ -8,7 +8,7 @@ The `createVizImageAsync` method takes a single argument, the `inputSpec`, a Jav
 Starting with Tableau 2022.3, you can use version 2 of the `inputSpec` to create combination charts and dual-axis visualizations. 
 Version 2 of the `inputSpec` allows you to specify different mark types for the measures along the encoding axis (either rows or columns). 
 
-For versions of Tableau prior to 2022.3, you can use the Tableau Viz v1 `inputSpec`. The Tableau Viz v1 is supported in Tableau 2021.3 (and later). See the [Tableau Viz v1 inputSpec](./trex_tableau_viz_ref_v1).
+For versions of Tableau prior to 2022.3, you can use the Tableau Viz v1 `inputSpec`. The Tableau Viz v1 is supported in Tableau 2021.3 (and later). See the [Tableau Viz v1 inputSpec](./trex_tableau_viz_ref_v1.md).
 
 ---
 

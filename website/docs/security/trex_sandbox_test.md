@@ -35,7 +35,7 @@ To port an existing extension, make sure all resources and libraries are local t
 
 * Resources should be placed in the same folder as your extension web page(s), or in a sub-folder of that directory. All references must be relative.
 
-* Review the suggested guidelines that all extensions should follow to reduce XSS vulnerabilities, see [Cross-Site Scripting and Extension Security](./trex_xss_guidance).
+* Review the suggested guidelines that all extensions should follow to reduce XSS vulnerabilities, see [Cross-Site Scripting and Extension Security](./trex_xss_guidance.md).
 
 * Sandboxed Extensions cannot connect to sites outside of the sandbox and cannot transfer data. For example, a Sandboxed extension cannot transfer data to be processed by other applications. If you need to connect to outside services or resources, you can create a Network Enabled extension. Network Enabled extensions can't run in the local sandbox environment or in the Tableau Hosting Cloud Service for Sandboxed Extensions.
 
@@ -47,7 +47,7 @@ To port an existing extension, make sure all resources and libraries are local t
 
 ## Sandboxed Extensions development environment
 
-The Extensions API SDK provides a local development environment that replicates the Tableau Hosting Cloud Service for Sandboxed Extensions. You can test your Sandboxed extensions locally with the same sandbox policies before submitting the extension to Tableau for publication. See [Publish Sandboxed Extensions](../publish/trex_sandbox_publish) for information about making your extension available to others in the cloud service for Sandboxed Extensions. The local development environment can't be used to deploy or publish your extension.
+The Extensions API SDK provides a local development environment that replicates the Tableau Hosting Cloud Service for Sandboxed Extensions. You can test your Sandboxed extensions locally with the same sandbox policies before submitting the extension to Tableau for publication. See [Publish Sandboxed Extensions](../publish/trex_sandbox_publish.md) for information about making your extension available to others in the cloud service for Sandboxed Extensions. The local development environment can't be used to deploy or publish your extension.
 
 ---
 
@@ -167,13 +167,13 @@ The `<url>` for `<source-location>` must use the name of local server (`localhos
 
 After you update the `.trex` file to point to the sandboxed instance, you can start the local sandbox sever (**npm run start-sandbox**), and then open Tableau and try it out.
 
-For information about making your Sandboxed Extension available to others, see [Publish Sandboxed Extensions](../publish/trex_sandbox_publish).
+For information about making your Sandboxed Extension available to others, see [Publish Sandboxed Extensions](../publish/trex_sandbox_publish.md).
 The local development environment can't be used to deploy or publish your extension.
 
 
 ## Troubleshoot the test environment
 
-To troubleshoot issues with your Sandboxed Extension in the test environment, you should start a debugger so you can observe if there are any problems with your setup, such as missing files and resources, and to see if there are any instances where your extension generates any CSP errors and warnings. For information about using debugging tools, see [Debug Extensions in Tableau Desktop](../debug/trex_debugging).
+To troubleshoot issues with your Sandboxed Extension in the test environment, you should start a debugger so you can observe if there are any problems with your setup, such as missing files and resources, and to see if there are any instances where your extension generates any CSP errors and warnings. For information about using debugging tools, see [Debug Extensions in Tableau Desktop](../debug/trex_debugging.md).
 
 Error `Cannot find extension with id: <xxxxxx>`
 

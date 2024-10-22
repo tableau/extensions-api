@@ -30,6 +30,8 @@ const getConfig = async () => {
     // indexed by search engines
     noIndex: isUpcomingVersion || isInofficial,
 
+    trailingSlash: 'false',
+
     // We want all issues to be reported as build errors
     onBrokenLinks: 'throw',
     onBrokenMarkdownLinks: 'throw',

@@ -16,7 +16,7 @@ We've provided examples of controls that are used in Tableau. Using the exact st
 * [Tooltips](#tooltips)
 
 
-The controls described here use Tableau branding, accessible from the **[Color](../Style_Guidelines/ux_color)** and **[Fonts](../Style_Guidelines/ux_fonts)** sections of these design guidelines.
+The controls described here use Tableau branding, accessible from the **[Color](../Style_Guidelines/ux_color.md)** and **[Fonts](../Style_Guidelines/ux_fonts.md)** sections of these design guidelines.
 
 *At this time, we are only able to provide surface-level usage and design specifications for controls. We are working to make code for Tableau controls accessible to developers in the future.*
 
@@ -63,7 +63,7 @@ A button communicates what happens when a user touches it. Button labels can con
 
 | Button | How to use |
 |----|:-----|
-| **Call-to-Action  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;**  | These buttons are primarily used in dialogues to indicate an action. Use colors to communicate function–for example, green is commonly used for confirmation buttons. Learn more about color usage at **[Colors](../Style_Guidelines/ux_color)**.<br/>You may also want to utilize branding practices on buttons. Learn more at **[Branding your Extension](../Style_Guidelines/ux_branding)**. |
+| **Call-to-Action  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;**  | These buttons are primarily used in dialogues to indicate an action. Use colors to communicate function–for example, green is commonly used for confirmation buttons. Learn more about color usage at **[Colors](../Style_Guidelines/ux_color.md)**.<br/>You may also want to utilize branding practices on buttons. Learn more at **[Branding your Extension](../Style_Guidelines/ux_branding.md)**. |
 | **Greyscale** | Greyscale buttons are used either to indicate a secondary action, or a button that has been disabled and a particular action needs to be taken before proceeding. |
 | **Text Button &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;** | This is a low-attention button, and should only be used to provide a secondary option in the case that the user wants to perform an action that isn’t the primary action. |
 | **Icon** | Buttons can have icons to add a helpful visual. If you use icons, include a text label or a help tag that is activated on hover. |
@@ -102,7 +102,7 @@ Primary buttons apply only to Call-to-Action buttons.
 
 ## Dialogs
 
-A dialog is a “conversation” between the system and the user, which often requests information or action from the user. For info about the extension configuration dialog, learn more at **[Extension Components and Modes](ux_components_modes)**.
+A dialog is a “conversation” between the system and the user, which often requests information or action from the user. For info about the extension configuration dialog, learn more at **[Extension Components and Modes](ux_components_modes.md)**.
 
 ### Standard Dialog
 These dialogs are non-modal, meaning they can be used when the requested information is not essential to continue. The dialog can be left open while the user interacts with other components in the extension. 
