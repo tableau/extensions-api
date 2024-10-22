@@ -30,7 +30,8 @@ const getConfig = async () => {
     // indexed by search engines
     noIndex: isUpcomingVersion || isInofficial,
 
-    trailingSlash: 'false',
+   // trailing slashes cause relative links to break with URL links
+   // trailingSlash: 'false',
 
     // We want all issues to be reported as build errors
     onBrokenLinks: 'throw',
