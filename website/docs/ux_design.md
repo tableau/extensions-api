@@ -21,26 +21,26 @@ These guidelines cover the main things you need to know about designing a great 
 
 |  See      |     For information about   |
 |:--------- |:------- |
-|[Build, Test, Share](./Interaction_Guidelines/ux_build_test) | The developer's roadmap for how to get started developing and designing extensions.|
-|[Extension Components and Modes](./Interaction_Guidelines/ux_components_modes)| The main user-facing components of an extension to create content for. Learn about modes for configuring extensions, viewing extensions, and dashboard user types. |
-| [Controls and UI Patterns](./Interaction_Guidelines/ux_controls_ui_patterns)| Usage and design specifications for user interface controls and patterns in your extension. |
+|[Build, Test, Share](./Interaction_Guidelines/ux_build_test.md) | The developer's roadmap for how to get started developing and designing extensions.|
+|[Extension Components and Modes](./Interaction_Guidelines/ux_components_modes.md)| The main user-facing components of an extension to create content for. Learn about modes for configuring extensions, viewing extensions, and dashboard user types. |
+| [Controls and UI Patterns](./Interaction_Guidelines/ux_controls_ui_patterns.md)| Usage and design specifications for user interface controls and patterns in your extension. |
 
 
 ### Style Guidelines
 
 | See   |  For information about |
 | :---------| :------- |
-|[Branding your Extension](./Style_Guidelines/ux_branding) | How to style your extension in accordance with the Tableau brand and your personal/company brand.|
-|[Layout](./Style_Guidelines/ux_layout)| Details about dashboard containers and spacing in the extension container. |
-|[Color](./Style_Guidelines/ux_color)| Use color effectively in your extension, and an opportunity to use Tableau's colors. |
-|[Fonts](./Style_Guidelines/ux_fonts)| Guidelines for using fonts in extensions. |
+|[Branding your Extension](./Style_Guidelines/ux_branding.md) | How to style your extension in accordance with the Tableau brand and your personal/company brand.|
+|[Layout](./Style_Guidelines/ux_layout.md)| Details about dashboard containers and spacing in the extension container. |
+|[Color](./Style_Guidelines/ux_color.md)| Use color effectively in your extension, and an opportunity to use Tableau's colors. |
+|[Fonts](./Style_Guidelines/ux_fonts.md)| Guidelines for using fonts in extensions. |
 
 
 ### Deploying your Extension
 
 | See       | For information about |
 | :---------| :------- |
-|[Submitting your Extension to the Tableau Exchange](ux_extension_gallery) | How to style your extension in accordance with the Tableau brand and your personal/company brand.|
+|[Submitting your Extension to the Tableau Exchange](ux_extension_gallery.md) | How to style your extension in accordance with the Tableau brand and your personal/company brand.|
 
 
 ---

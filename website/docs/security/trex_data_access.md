@@ -61,7 +61,7 @@ The `<permissions>` element you add looks like the following:
 </dashboard-extension>
 ```
 
-The `<permissions>` element must be added under `<dashboard-extension>` immediately following the `<icon>` element. For a complete description of the manifest, see the [Tableau Dashboard Extensions Manifest File](../dashext/trex_manifest) and the [Tableau Viz Extensions Manifest File](../vizext/trex_viz_manifest).
+The `<permissions>` element must be added under `<dashboard-extension>` immediately following the `<icon>` element. For a complete description of the manifest, see the [Tableau Dashboard Extensions Manifest File](../dashext/trex_manifest.md) and the [Tableau Viz Extensions Manifest File](../vizext/trex_viz_manifest.md).
 
 If full data is not declared in the manifest file, and the extensions calls one of the APIs that accesses any underlying data or data source information, the API call fails. In addition, an error is written to the Tableau log file (`log.txt`). If you are debugging the extension with the Chromium web browser, an error is reported the console pane. The error message would look similar to the following:
 

@@ -10,7 +10,7 @@ The following section describes how you could debug your extension using Chrome.
 
 :::note
 
-For Tableau Desktop, see [Debugging Extensions in Tableau Desktop](./trex_debugging).
+For Tableau Desktop, see [Debugging Extensions in Tableau Desktop](./trex_debugging.md).
 
 :::
 
@@ -90,7 +90,7 @@ After you select the event breakpoint and refresh or reload the browser window, 
 3. In the debugger, click **Continue** to get to your JavaScript code.<br/>
 You might need to click **Continue** many times, as code execution stops for all the scripts in the dashboard. If you are just looking to debug general initialization problems and haven't tested your extension in Tableau Desktop, you might want to start there first.
 
-In Tableau Desktop, there is a debugging option you can set to pause the extension when it is loading. For more information, see [Debugging loading and initialization issues](./trex_debugging#debugging-loading-and-initialization-issues).
+In Tableau Desktop, there is a debugging option you can set to pause the extension when it is loading. For more information, see [Debugging loading and initialization issues](./trex_debugging.md#debugging-loading-and-initialization-issues).
 
 If your extension fails to load at all on Tableau Server or Tableau Cloud, check the console window of the debugger to see if there is an error message of some kind. The console messages can give you clues about where to begin investigating when something goes wrong. If the error is caused by mixed content (trying to load an HTTP web page inside of a secure HTTPS server), see [Load and view localhost content on sites that use secure connections](#load-and-view-localhost-content-on-sites-that-use-secure-connections).
 

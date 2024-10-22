@@ -141,7 +141,7 @@ For Tableau Viz version 2, an `inputSpec` supports combination charts, multiple 
 
 ```
 
-For more information about the `inputSpec` for version 1 and version 2, see [Tableau Viz Reference](../trex_tableau_viz_ref).
+For more information about the `inputSpec` for version 1 and version 2, see [Tableau Viz Reference](../trex_tableau_viz_ref.md).
 
 ---
 
@@ -194,7 +194,7 @@ The following shows what a version 2 `inputSpec` looks like when rendered by the
 
 Now that you have seen the basic steps for adding a Tableau Viz to a dashboard extension, you can try adding Tableau Viz to your own dashboard extensions, or to one of the samples.
 
-* For information about the Tableau Viz version 1 and version 2 `inputSpec` and all the options for specifying the visualization, see [Tableau Viz Reference](../trex_tableau_viz_ref).
+* For information about the Tableau Viz version 1 and version 2 `inputSpec` and all the options for specifying the visualization, see [Tableau Viz Reference](../trex_tableau_viz_ref.md).
 
 * Review the [`tableau.extensions.createVizImageAsync`](pathname:///api/interfaces/extensions#createvizimageasync) method for information about the API.
 
@@ -204,14 +204,14 @@ Now that you have seen the basic steps for adding a Tableau Viz to a dashboard e
 
 ## Troubleshoot Tableau Viz images in dashboard extensions
 
-You can use the same tools that you use to debug dashboard extensions to debug problems that occur when you use Tableau Viz to create images. For information about debugging your extension, see [Debug Extensions in Tableau Desktop](../debug/trex_debugging) and [Debug Extensions in Tableau Server and Tableau Cloud](../debug/trex_debug_server).
+You can use the same tools that you use to debug dashboard extensions to debug problems that occur when you use Tableau Viz to create images. For information about debugging your extension, see [Debug Extensions in Tableau Desktop](../debug/trex_debugging.md) and [Debug Extensions in Tableau Server and Tableau Cloud](../debug/trex_debug_server.md).
 
 
 ### Tableau Viz Error Messages
 
 The following is a list of common error messages that you might encounter and includes steps for fixing those errors. The error messages appear in the Console window when you use the Chrome or Chromium debugging tools.
 
-For specific issues with the current release, see [Tableau Viz - Known Issues](../trex_known_issues#tableau-viz---known-issues).
+For specific issues with the current release, see [Tableau Viz - Known Issues](../trex_known_issues.md#tableau-viz---known-issues).
 
 #### Invalid Palette Name
 
@@ -229,4 +229,4 @@ When you encode the fields in the `inputSpec`, you need to make sure that the di
 
 #### Invalid JSON
 
-The `inputSpec` is a JavaScript object that Tableau converts to JSON for processing. The `inputSpec` needs to be in the correct format and must include all required elements. You must encode columns and fields. For the list of required elements, see [Tableau Viz Reference](../trex_tableau_viz_ref).
+The `inputSpec` is a JavaScript object that Tableau converts to JSON for processing. The `inputSpec` needs to be in the correct format and must include all required elements. You must encode columns and fields. For the list of required elements, see [Tableau Viz Reference](../trex_tableau_viz_ref.md).

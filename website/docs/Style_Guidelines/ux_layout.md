@@ -41,10 +41,10 @@ It is common for extensions to take up a smaller size due to most of the functio
 
 ## Spacing
 
-Specifications about spacing have been detailed in **[Controls and UI Patterns](../Interaction_Guidelines/ux_controls_ui_patterns)** and **[Branding your Extension](ux_branding)**.
+Specifications about spacing have been detailed in **[Controls and UI Patterns](../Interaction_Guidelines/ux_controls_ui_patterns.md)** and **[Branding your Extension](ux_branding.md)**.
 
 Here are some links to specific parts of your extension that you may need spacing guidance on:
 
-* [**Dialogs** (Controls and UI Patterns)](../Interaction_Guidelines/ux_controls_ui_patterns#dialogs)
-* [**Configuration Dialog** (Branding your Extension)](../Style_Guidelines/ux_branding#configuration-dialog)
-* [**Extension Container** (Branding your Extension)](../Style_Guidelines/ux_branding#extension-container)
+* [**Dialogs** (Controls and UI Patterns)](../Interaction_Guidelines/ux_controls_ui_patterns.md#dialogs)
+* [**Configuration Dialog** (Branding your Extension)](../Style_Guidelines/ux_branding.md#configuration-dialog)
+* [**Extension Container** (Branding your Extension)](../Style_Guidelines/ux_branding.md#extension-container)
