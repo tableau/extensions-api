@@ -85,7 +85,7 @@ dashboard.addEventListener(tableau.TableauEventType.WorkbookFormattingChanged, (
 
 ```
 
-For more information about using event listeners, see [Events and Event Handling](./trex_events).
+For more information about using event listeners, see [Events and Event Handling](./trex_events.md).
 
 ## What's Next
 

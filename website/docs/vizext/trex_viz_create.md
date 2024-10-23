@@ -19,7 +19,7 @@ To create a Tableau viz extension you need the following components.
 
 ### What you need to get started
 
-These instructions assume that you have already cloned or download the Extensions API SDK. For information about setting up your environment and the Tableau requirements, see [Get Started](./trex_viz_getstarted).
+These instructions assume that you have already cloned or download the Extensions API SDK. For information about setting up your environment and the Tableau requirements, see [Get Started](./trex_viz_getstarted.md).
 
 For convenience, you might want to create a folder for your "Hello World" viz extension in the same location where you installed or cloned the GitHub repository. Create your folder, for example, **HelloVizExtension** in the Samples folder, under `/extensions-api/Samples`. That way, you can use the same web server (`http-server`) that is used for the samples.
 
@@ -27,7 +27,7 @@ For convenience, you might want to create a folder for your "Hello World" viz ex
 
 ### Create a manifest file
 
-The manifest file (`EXTENSION-NAME.trex`) is an XML file that describes the extension and provides information to register the extension with Tableau. For a description of the contents of this file, see [Elements of the viz manifest file](./trex_viz_manifest#elements-of-the-viz-manifest-file).
+The manifest file (`EXTENSION-NAME.trex`) is an XML file that describes the extension and provides information to register the extension with Tableau. For a description of the contents of this file, see [Elements of the viz manifest file](./trex_viz_manifest.md#elements-of-the-viz-manifest-file).
 
 1. In the HelloVizExtension folder, create a manifest file for your extension.
 Name the manifest file for your extension (for example, `HelloVizExtension` and save it with the file name extension `.trex`).
@@ -70,7 +70,7 @@ Name the manifest file for your extension (for example, `HelloVizExtension` and 
 
 - After you have created the HTML and JavaScript files for your extension, you use this `.trex` file to add the extension to a Tableau worksheet. To do that, open a worksheet, on the **Marks** card, expand the Mark Type drop-down menu. Under Viz Extensions, select **Add Extensions**. In the **Add an Extension** dialog box that appears, select **Access Local Extensions**. Browse to the location where you put the manifest file you just created, for example, the `HelloVizExtension` folder and select the `HelloVizExtensions.trex` file.
 
-- For information about the manifest file and about adding version information, see the [Tableau Viz Extension Manifest](./trex_viz_manifest).
+- For information about the manifest file and about adding version information, see the [Tableau Viz Extension Manifest](./trex_viz_manifest.md).
 
 
 ---
@@ -306,7 +306,7 @@ This example illustrates some of the components that are common need to include 
 
 ### Debugging and testing your extension in Tableau
 
-For information about debugging your extension, see [Debug Extensions in Tableau Server and Tableau Cloud](../debug/trex_debug_server).
+For information about debugging your extension, see [Debug Extensions in Tableau Server and Tableau Cloud](../debug/trex_debug_server.md).
 
 ### Code Style
 

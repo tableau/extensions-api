@@ -30,6 +30,9 @@ const getConfig = async () => {
     // indexed by search engines
     noIndex: isUpcomingVersion || isInofficial,
 
+   // trailing slashes cause relative links to break with URL links
+   // trailingSlash: 'false',
+
     // We want all issues to be reported as build errors
     onBrokenLinks: 'throw',
     onBrokenMarkdownLinks: 'throw',
@@ -104,7 +107,7 @@ const getConfig = async () => {
            {
               label: 'Community Extensions',
               to: 'pathname:///community',
-            }  
+            },  
          /*   {
               type: 'docSidebar',
               position: 'left',
@@ -212,7 +215,8 @@ const getConfig = async () => {
         [
           '@docusaurus/plugin-google-gtag',
           {
-            trackingID: 'UA-625217-51',
+            // trackingID: 'UA-625217-51',
+            trackingID: '376609887',
             anonymizeIP: true,
           },
         ],
@@ -244,27 +248,9 @@ const getConfig = async () => {
           },
         ],  */
 
-      //    '@cmfcmf/docusaurus-search-local',
-      /*  [
-          require.resolve("@easyops-cn/docusaurus-search-local"),
-         // /** @type {import("@easyops-cn/docusaurus-search-local").PluginOptions} 
-          ({
-            // ... Your options.
-            // `hashed` is recommended as long-term-cache of index file is possible.
-            hashed: true,
-            // For Docs using Chinese, The `language` is recommended to set to:
-            // ```
-            // language: ["en", "zh"],
-            // ```
-          }),  
-          ], */
       ],
 
-      markdown: {
-
-        mermaid: true,
-
-      },
+  
       themes: [
         
         '@docusaurus/theme-mermaid',
@@ -285,7 +271,13 @@ const getConfig = async () => {
           // ```
         }),
         ],
-      ]
+      ],
+      
+      markdown: {
+
+        mermaid: true,
+
+      },
   };
 }
 

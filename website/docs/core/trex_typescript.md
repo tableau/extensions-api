@@ -7,7 +7,7 @@ The Extensions API is a JavaScript library. If you author in TypeScript, Tableau
 
 :::note
 
-If you want to examine and use TypeScript versions of several of the sample extensions in the `Samples` folder, see [Samples-Typescript (GitHub)](https://github.com/tableau/extensions-api/tree/main/Samples-Typescript) and follow the instructions to [Use the TypeScript Samples](../dashext/trex_examples#use-the-typescript-samples).
+If you want to examine and use TypeScript versions of several of the sample extensions in the `Samples` folder, see [Samples-Typescript (GitHub)](https://github.com/tableau/extensions-api/tree/main/Samples-Typescript) and follow the instructions to [Use the TypeScript Samples](../dashext/trex_examples.md#use-the-typescript-samples).
 
 :::
 

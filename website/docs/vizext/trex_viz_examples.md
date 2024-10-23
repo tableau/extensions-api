@@ -5,7 +5,7 @@ description: Information about using the Tableau viz extension samples
 
 The best way to learn how to build your own extensions is to look at the sample code. To examine the sample source files to see how Tableau viz extensions work, you can clone or download the [Extensions API](https://github.com/tableau/extensions-api) SDK on GitHub and run the samples.
 
-- To download the Extensions API SDK, if you have not already done so, see [Get Started](./trex_viz_getstarted).
+- To download the Extensions API SDK, if you have not already done so, see [Get Started](./trex_viz_getstarted.md).
 
 <!--- Update the path with the viz extension sample on the release site -->
 - You can browse the sample code for the extensions in the [Samples](https://github.com/tableau/extensions-api/tree/master/Samples?=target="_blank") folder on GitHub.
@@ -50,7 +50,7 @@ The viz extension samples are in the `Samples\Viz` folder.
 
 -   **[VizImage](https://github.com/tableau/extensions-api/tree/main/Samples/Viz/VizImage?=target="_blank")**
 
-    Shows how you can use Tableau Viz to add visualizations to your extensions. This sample demonstrates the effects of different mark types and color palettes. For more information about Tableau Viz, see [Add Tableau Viz to Your Extensions](../core/trex_tableau_viz).
+    Shows how you can use Tableau Viz to add visualizations to your extensions. This sample demonstrates the effects of different mark types and color palettes. For more information about Tableau Viz, see [Add Tableau Viz to Your Extensions](../core/trex_tableau_viz.md).
 
 ---
 ### Start a web server to host the sample viz extensions

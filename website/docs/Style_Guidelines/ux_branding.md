@@ -49,8 +49,8 @@ Your extension can be branded through two components: the **configuration dialog
 
 <i>Links to review component usage and controls specifications</i>:
 
-* **[Extension Components and Modes](../Interaction_Guidelines/ux_components_modes)**
-* **[Controls and UI Patterns](../Interaction_Guidelines/ux_controls_ui_patterns)**
+* **[Extension Components and Modes](../Interaction_Guidelines/ux_components_modes.md)**
+* **[Controls and UI Patterns](../Interaction_Guidelines/ux_controls_ui_patterns.md)**
 
 &nbsp;
 

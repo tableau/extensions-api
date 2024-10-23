@@ -86,7 +86,7 @@ file: Example.trex
 
 ```
 
-For more information, see [Use Log files to Troubleshoot Dashboard Extensions](../debug/trex_logging).
+For more information, see [Use Log files to Troubleshoot Dashboard Extensions](../debug/trex_logging.md).
 
 ## Avoid mixed content - use HTTPS or site-relative paths for resources
 
@@ -129,7 +129,7 @@ For example, you can author a workbook in Tableau Desktop that uses an extension
 
 Note the following considerations:
 
-- If Tableau Server is using HTTPS, your extension might not load if it is using `http://localhost`. The same situation occurs with Tableau Cloud. This is because it is generally not a good practice to embed an HTTP `<iframe>` inside of an HTTPS web page, and the default settings of most browsers will consider this as unsafe content. To temporarily allow the extension to run while you are testing, see [Load and view localhost content on sites that use secure connections](../debug/trex_debug_server#load-and-view-localhost-content-on-sites-that-use-secure-connections).
+- If Tableau Server is using HTTPS, your extension might not load if it is using `http://localhost`. The same situation occurs with Tableau Cloud. This is because it is generally not a good practice to embed an HTTP `<iframe>` inside of an HTTPS web page, and the default settings of most browsers will consider this as unsafe content. To temporarily allow the extension to run while you are testing, see [Load and view localhost content on sites that use secure connections](../debug/trex_debug_server.md#load-and-view-localhost-content-on-sites-that-use-secure-connections).
 
 - In the manifest file (`.trex`) for the extension, you must specify the DNS name `localhost` and **not** the IP address (for example, `127.0.0.1`). 
 
