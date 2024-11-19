@@ -10,14 +10,14 @@ The following sections describe the components and syntax of the `inputSpec` for
 
 For Tableau 2021.3 and later and the Tableau Dashboard Extensions API v1.6 (and later)
 
-* See [Tableau Viz inputSpec v1](./trex_tableau_viz_ref_v1)
+* See [Tableau Viz inputSpec v1](./trex_tableau_viz_ref_v1.md)
 
 ---
 
 For Tableau 2022.3 (and later) and the Tableau Dashboard Extensions API v1.9 (and later)
 
-* See [Tableau Viz inputSpec v2](./trex_tableau_viz_ref_v2)
+* See [Tableau Viz inputSpec v2](./trex_tableau_viz_ref_v2).md
 
 ---
 
-For information about how to add a Tableau Viz, see [Add Tableau Viz to your Dashboard Extensions](./core/trex_tableau_viz).
+For information about how to add a Tableau Viz, see [Add Tableau Viz to your Dashboard Extensions](./core/trex_tableau_viz.md).

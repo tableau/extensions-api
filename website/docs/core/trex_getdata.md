@@ -3,7 +3,7 @@ title: Getting Data from the Workbook
 description: How to access data in the workbook
 ---
 
-The Tableau Extensions API provides methods that you can use to access the data in a workbook. The data you can access includes the summary or aggregated data, and also the underlying data (or full data). If your extension needs to access the full data, there are security implications and your extension needs to declare its intent, so that users of your extension can choose to allow or deny the extension access. See  [Accessing Underlying Data](../security/trex_data_access) for more information.
+The Tableau Extensions API provides methods that you can use to access the data in a workbook. The data you can access includes the summary or aggregated data, and also the underlying data (or full data). If your extension needs to access the full data, there are security implications and your extension needs to declare its intent, so that users of your extension can choose to allow or deny the extension access. See  [Accessing Underlying Data](../security/trex_data_access.md) for more information.
 
 ::::note
 
@@ -65,7 +65,7 @@ The first step for accessing data of any kind is to get the worksheet object (or
 
 ```
 
-After you have a worksheet object, you can call one of the methods to access the data for that worksheet. For summary data, or the data from the selected or highlighted marks, the steps are straight forward. If you want access the underlying data (or full data), there are additional steps and considerations. See [Accessing Underlying Data](../security/trex_data_access).
+After you have a worksheet object, you can call one of the methods to access the data for that worksheet. For summary data, or the data from the selected or highlighted marks, the steps are straight forward. If you want access the underlying data (or full data), there are additional steps and considerations. See [Accessing Underlying Data](../security/trex_data_access.md).
 
 ## Get summary data from a worksheet
 
@@ -121,7 +121,7 @@ Prior to Tableau 2022.4 and the Dashboard Extensions API library v1.10, you woul
 
 ## Get full data from a worksheet
 
-If your extension uses one of the functions that can access full data, you need to add an element to the manifest file (`.trex`) that declares that the extension requires `full data` permission. If the manifest file does not have this element, the extension can run, but the method to access full data will fail. See [Add permissions to access full data to manifest file](../security/trex_data_access#add-permissions-to-access-full-data-to-manifest-file).
+If your extension uses one of the functions that can access full data, you need to add an element to the manifest file (`.trex`) that declares that the extension requires `full data` permission. If the manifest file does not have this element, the extension can run, but the method to access full data will fail. See [Add permissions to access full data to manifest file](../security/trex_data_access.md#add-permissions-to-access-full-data-to-manifest-file).
 
 Note whoever uses your extension must have the appropriate download permissions (Download Full Data) so that extension can run.
 
@@ -250,7 +250,7 @@ tableau.extensions.dashboardContent.dashboard.worksheets.find(w => w.name === "S
 
 You can also get the underlying data from the data sources for the worksheet. To do that, you must acquire the data sources for the worksheet with a call to the `getDataSourcesAsync()` method, which returns an array of the primary and all the secondary data sources of a worksheet. Once you have the data source object, you can access the underlying data and access information about the data source, such as the names of tables and fields and information about the connection.
 
-Just like worksheet methods that access full data, the following methods for the data source also require that your extension specifies `full data` permissions in the `trex` file. See [Add permissions to access full data to manifest file](../security/trex_data_access#add-permissions-to-access-full-data-to-manifest-file).
+Just like worksheet methods that access full data, the following methods for the data source also require that your extension specifies `full data` permissions in the `trex` file. See [Add permissions to access full data to manifest file](../security/trex_data_access.md#add-permissions-to-access-full-data-to-manifest-file).
 
 
 | Method | Tableau Version | Extensions API Library | Status |

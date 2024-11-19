@@ -31,11 +31,13 @@ For more information about how you can use the Extensions API, go look at the da
 
 ## Comparing the Tableau Extensions API and the Tableau Embedding API
 
-The Dashboard Extensions API and the [Tableau Embedding API v3](https://help.tableau.com/current/api/embedding_api/en-us/index.html) are both JavaScript libraries that allow you to interact with Tableau, but they do so in two different fundamental ways:  
+The Dashboard Extensions API and the [Tableau Embedding API v3](https://help.tableau.com/current/api/embedding_api/en-us/index.html) are both JavaScript libraries that allow you to interact with Tableau, but they do so in two different fundamental ways:
+
 * You can use the Embedding API for embedding Tableau dashboards in web pages (for example, blog posts), or in line of business applications.
+
 * You can use the Extensions API for integrating web applications into zones in Tableau dashboards.
 
-The Extensions API and Embedding JavaScript API share a similar programming model, but there are differences. 
+The Extensions API and Embedding JavaScript API share a similar programming model, but there are differences.
 
 | Embedding API | Extensions API |
 |------------| ---------------|

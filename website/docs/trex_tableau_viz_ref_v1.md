@@ -6,7 +6,7 @@ description: Input specification for creating Tableau Viz v1 images in dashboard
 The `createVizImageAsync` method takes a single argument, the `inputSpec`, a JavaScript object, and returns the SVG description of that image.
 
 Note that you can use the Tableau Viz v1 `inputSpec` with Tableau 2021.3 (and later). 
-To create combination charts and dual-axis visualizations, you need to use version 2 of the `inputSpec`, available in Tableau 2022.3 and later. See the [Tableau Viz v2 inputSpec](./trex_tableau_viz_ref_v2).
+To create combination charts and dual-axis visualizations, you need to use version 2 of the `inputSpec`, available in Tableau 2022.3 and later. See the [Tableau Viz v2 inputSpec](./trex_tableau_viz_ref_v2.md).
 
 
 ## The createVizImageAsync method

@@ -60,7 +60,7 @@ This is where authors can access the dropdown menu for more options, such as con
 
 ![extension container](./imgs/2-chrome_menu.png)
 
-*Learn more about branding your extension container at [Branding your Extension](../Style_Guidelines/ux_branding#extension-container).*
+*Learn more about branding your extension container at [Branding your Extension](../Style_Guidelines/ux_branding.md#extension-container).*
 
 &nbsp;
 
@@ -73,7 +73,7 @@ This dialog is only available to dashboard authors, It is primarily accessible t
 
 ![configuration dialog](./imgs/2-config_dialog.png)
 
-*Learn more about branding your configuration dialog at [Branding your Extension](../Style_Guidelines/ux_branding#configuration-dialog).*
+*Learn more about branding your configuration dialog at [Branding your Extension](../Style_Guidelines/ux_branding.md#configuration-dialog).*
 
 &nbsp;
 
@@ -122,7 +122,7 @@ The configuration dialog allows dashboard authors to customize extensions in the
 | **Tagline**  | The tagline is one sentence in the help tag that explains what the extension does. The maximum character limit is 96 characters.|
 | **Confirmation** | Make sure there is a clear way for users to apply changes made while configuring the extension. |
 
-Learn more about [Controls and UI Patterns](ux_controls_ui_patterns) to use in your configuration dialog.
+Learn more about [Controls and UI Patterns](./ux_controls_ui_patterns.md) to use in your configuration dialog.
 
 &nbsp;
 
@@ -134,7 +134,7 @@ Many extensions require an author to configure the extension before using it in 
 
 While this is optional, **we strongly recommend using this popup pattern** because when an author is configuring the extension for the first time, there often isn't any content present in the extension container until the extension has been configured. Using this popup pattern will allow authors to start configuring the extension right away.
 
-*Learn more about how to implement this popup at [Add a Configuration Popup Dialog (Extensions API Documentation)](../core/trex_configure).*
+*Learn more about how to implement this popup at [Add a Configuration Popup Dialog (Extensions API Documentation)](../core/trex_configure.md).*
 
 &nbsp;
 
@@ -144,7 +144,7 @@ The About Extension Dialog is automatically created using the content from your 
 
 ![about extension dialog](./imgs/2-about_dialog_annotated.png)
 
-*Learn more about the dashboard extension manifest file at [Tableau Extension Manifest File (Extensions API Documentation)](../dashext/trex_manifest)*.
+*Learn more about the dashboard extension manifest file at [Tableau Extension Manifest File (Extensions API Documentation)](../dashext/trex_manifest.md)*.
 
 
 

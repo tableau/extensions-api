@@ -26,7 +26,7 @@ A Tableau extension consists of a manifest file (`.trex`), a web page that uses 
 
 ### What you need to get started
 
-If you want to create an extension or work with the sample code, make sure you have followed the instructions for [installation](../installation).
+If you want to create an extension or work with the sample code, make sure you have followed the instructions for [installation](../installation.md).
 
 ----
 
@@ -145,8 +145,8 @@ You can add multiple instances of an extension to a dashboard or to multiple das
 
 * Follow the [Tutorial (GitHub)](https://github.com/tableau/extensions-api/tree/master/Tutorial/Dashboard) and learn how to build a dashboard extension, step by step. If you downloaded or cloned the repository, look in the `Tutorial` folder on your computer.
 
-* For information about creating a simple "Hello World" Tableau extension, see [Create a "Hello World" Dashboard Extension](./trex_create).
+* For information about creating a simple "Hello World" Tableau extension, see [Create a "Hello World" Dashboard Extension](./trex_create.md).
 
 * To get familiar with the programming interface for the Extensions API, see the [Tableau Extensions API Reference](pathname:///api).
 
-* For information about debugging your extension, see [Debug Extensions in Tableau Desktop](../debug/trex_debugging) and [Debug Extensions in Tableau Server and Tableau Cloud](../debug/trex_debug_server).
+* For information about debugging your extension, see [Debug Extensions in Tableau Desktop](../debug/trex_debugging.md) and [Debug Extensions in Tableau Server and Tableau Cloud](../debug/trex_debug_server.md).

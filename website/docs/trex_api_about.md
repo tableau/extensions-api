@@ -50,7 +50,7 @@ classDiagram
 
 ## Registering and accessing dashboard extensions
 
-The dashboard extension is one type of extension in the Tableau extensions namespace (and it is accessed using `tableau.extensions`). To register the extension, you declare the type of extension in the manifest file (`.trex`). For more information about what goes in the file, see [Tableau Manifest File](./dashext/trex_manifest).
+The dashboard extension is one type of extension in the Tableau extensions namespace (and it is accessed using `tableau.extensions`). To register the extension, you declare the type of extension in the manifest file (`.trex`). For more information about what goes in the file, see [Tableau Manifest File](./dashext/trex_manifest.md).
 
 ```xml
 <dashboard-extension id="com.example.extensions.name" extension-version="0.1.0">
@@ -79,7 +79,7 @@ window.onload = tableau.extensions.initializeAsync().then(async () => {
 
 ## Registering and accessing viz extensions
 
-The viz extension is another type of extension in the Tableau extensions namespace (and it is accessed using `tableau.extensions`). To register the viz extension, you specify the extension as a `worksheet-extension` in the manifest file (`.trex`). For more information about what goes in the file, see [Tableau Viz Manifest File](./vizext/trex_viz_manifest).
+The viz extension is another type of extension in the Tableau extensions namespace (and it is accessed using `tableau.extensions`). To register the viz extension, you specify the extension as a `worksheet-extension` in the manifest file (`.trex`). For more information about what goes in the file, see [Tableau Viz Manifest File](./vizext/trex_viz_manifest.md).
 
 ```xml
 <worksheet-extension id="com.example.extensions.name" extension-version="0.1.0">
@@ -167,7 +167,6 @@ classDiagram
      class worksheet
 
 ```
-
 
 
 

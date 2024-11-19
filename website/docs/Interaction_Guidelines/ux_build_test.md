@@ -35,7 +35,7 @@ The Extensions API includes all the information you need to build an extension.
 
 Ensure that your extension works properly for different test cases. Try it on your own dashboards, test it with others, and uncover possible edge cases. 
 
-Consider that dashboard extensions can be both **configured** and **viewed** in Tableau. These terms refer to two usage modes we recommend for extensions. To read about these modes and their audiences, learn more at **[Extension Components and Modes](ux_components_modes)**.
+Consider that dashboard extensions can be both **configured** and **viewed** in Tableau. These terms refer to two usage modes we recommend for extensions. To read about these modes and their audiences, learn more at **[Extension Components and Modes](./ux_components_modes.md)**.
 
  
 &nbsp; 
@@ -47,7 +47,7 @@ After you've completed making your extension, you may want to share your extensi
 
 #### Tableau Exchange
 
-Tableau has created the [Tableau Exchange](https://exchange.tableau.com/), a place to explore and download some extensions that our partners have created. If you would like to share your extension on the Tableau Exchange, see [Submitting your Extension to the Tableau Exchange](../ux_extension_gallery).
+Tableau has created the [Tableau Exchange](https://exchange.tableau.com/), a place to explore and download some extensions that our partners have created. If you would like to share your extension on the Tableau Exchange, see [Submitting your Extension to the Tableau Exchange](../ux_extension_gallery.md).
 
 #### Community Forums
 

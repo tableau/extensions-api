@@ -27,7 +27,7 @@ A Tableau extension consists of an XML manifest file (`.trex`), a web page (`.ht
 
 ### What you need to get started
 
-If you want to create an extension or work with the sample code, make sure you have followed the instructions for [installation](../installation).
+If you want to create an extension or work with the sample code, make sure you have followed the instructions for [installation](../installation.md).
 
 ### Start a web server to host the sample viz extensions
 
@@ -78,7 +78,7 @@ To use the viz extension samples, you need to start up a web server on your comp
 
    ![](../assets/viz_ext_addlocal.png)
 
-    Every Tableau extension has a manifest file (.trex) that describes the extension and identifies the location of the web application. For more information on creating a `.trex` manifest file, see [Tableau Viz Extension Manifest File](./trex_viz_manifest).
+    Every Tableau extension has a manifest file (.trex) that describes the extension and identifies the location of the web application. For more information on creating a `.trex` manifest file, see [Tableau Viz Extension Manifest File](./trex_viz_manifest.md).
 
 1. Navigate to the directory where the connectedScatterplot manifest file (`.trex`) is located
 `\extensions-api\Samples\Viz\ConnectedScatterplot`.
@@ -120,7 +120,7 @@ Some slight modifications have been made to make it able to be used with Workboo
 
    Keeping your own extensions in the Samples folder has two advantages. The first is that you can host the extensions using the same web server you started with `npm start` command. The second advantage is that you won't need to add your extension to the allow list (or safe list) if you configured your Tableau Cloud or Tableau Server site so that all extensions under the path `http://localhost:8765/Samples`. For example, if you added this URL and wildcard to the safe list: `http://localhost:.*/Samples/.*`, the URL allows all extensions (on any port) under the Samples folder.  Because the extension is running on your local computer (`http://localhost`) and uses the URL that is allowed on the site, you are good to go. In general, when you are creating your own viz extensions, you will need to ensure that that the extension URL has been added to the safe list. For more information, see [Add extensions to the safe list and configure user prompts](https://help.tableau.com/current/online/en-us/dashboard_extensions_server.htm#add-extensions-to-the-safe-list-and-configure-user-prompts).
 
-* For information about creating a simple "Hello World" Tableau viz extension, see [Create a "Hello World" Viz Extension](./trex_viz_create).
+* For information about creating a simple "Hello World" Tableau viz extension, see [Create a "Hello World" Viz Extension](./trex_viz_create.md).
 
 
 * To get familiar with the programming interface for the Extensions API, see the [API Reference](pathname:///api/).
