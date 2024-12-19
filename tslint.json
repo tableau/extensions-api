@@ -21,6 +21,10 @@
             }
         ],
         "only-arrow-functions": false,
+        "variable-name": [
+            true,
+            "allow-leading-underscore"
+        ],
         // extension-api-types submodules are subject to change. import only from "@tableau/extensions-api-types".
         "import-blacklist": [true, ["@tableau/extensions-api-types/.*"]]
     },
