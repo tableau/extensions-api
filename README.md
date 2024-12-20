@@ -56,7 +56,25 @@ If you want to use TypeScript to write your extensions, you can run a script tha
 
     **npm run dev**
 
+* To automatically build the TypeScript samples whenever code change.
+
+   **npm run build-watch**
+
 For more information, see [Use TypeScript with the Extensions API](https://tableau.github.io/extensions-api/docs/core/trex_typescript).
+
+#### Typescript Development in PdfViewer Sample
+
+* To run tests for the PdfViewer sample.
+
+    **npm run test**
+
+* To automatically run tests for the PdfViewer sample whenever code changes.
+
+    **npm run test-watch**
+
+* To run test code coverage for the PdfViewer sample.
+
+    **npm run test-coverage**
 
 ### Sandboxed Extension Development Environment
 
