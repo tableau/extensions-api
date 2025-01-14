@@ -231,12 +231,12 @@ const getConfig = async () => {
           '@docusaurus/plugin-google-gtag',
           {
             // trackingID: 'UA-625217-51',
-            trackingID: '376609887',
+            trackingID: '469571326',
             anonymizeIP: true,
           },
         ],
 
-     /*   [
+        [
           '@docusaurus/plugin-client-redirects',
           {
             redirects: [
@@ -247,21 +247,52 @@ const getConfig = async () => {
                 from: '/docs/trex_publish',
               },
               {
-                to: '/docs/publish/trex_contributing',
-                from: '/docs/trex_contributing',
-              },
-              {
                 to: '/docs/publish/trex_sandbox_publish',
                 from: '/docs/trex_sandbox_publish',
               },
-              //  dashext folder
+              //  (portal page fix)
               {
-                to: '/docs/dashext/trex_getstarted',
+                to: '/docs',
                 from: '/docs/trex_getstarted', 
               },
+              //   (dev portal page fix)
+              {
+                to: '/docs/publish/trex_contributing',
+                from: '/docs/trex_contributing', 
+              },
+              //   (dev portal page fix)
+              {
+                to: '/docs/security/trex_security',
+                from: '/docs/trex_security', 
+              },
+              //  dev portal page fix
+              {
+                to: '/docs/debug/trex_debugging',
+                from: '/docs/trex_debugging', 
+              },   
+              //  dev portal page fix
+              {
+                to: '/docs/debug/trex_debug_server',
+                from: '/docs/trex_debug_server', 
+              }, 
+              //  dev portal page fix
+              {
+                to: '/docs/debug/trex_logging',
+                from: '/docs/trex_logging', 
+              }, 
+              //  dev portal page fix
+              {
+                to: '/docs/security/trex_xss_guidance',
+                from: '/docs/trex_xss_guidance', 
+              }, 
+              //  dev portal page fix
+              {
+                to: '/docs/security/trex_sandbox_test',
+                from: '/docs/trex_sandbox_test', 
+              },                                                                                                                                                                                        
             ],
           },
-        ],  */
+        ],  
 
       ],
 

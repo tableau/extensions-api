@@ -39,6 +39,11 @@ The [Samples-Typescript](https://github.com/tableau/extensions-api/tree/master/S
      
     Finds and displays all the parameters in the dashboard and then sets an event listener that waits for a parameter to change, which triggers a refresh. 
 
+-   **[PdfViewer (Typescript)](https://github.com/tableau/extensions-api/tree/master/Samples-Typescript/Dashboard/PdfViewer?=target="_blank")**
+     
+    Demonstrates how to use Extensions API features, such as settings, configuration, and parameters in a Typescript application. The sample allows PDF files to be viewed in a networked dashboard extension.
+
+
 -   **[Settings](https://github.com/tableau/extensions-api/tree/master/Samples/Dashboard/Settings?=target="_blank")**
  
      Uses the `settings` namespace to save settings (key-value pairs) for the extension. Demonstrates how you can save settings for each instance of an extension, which enables sharing common views of a workbook.  
