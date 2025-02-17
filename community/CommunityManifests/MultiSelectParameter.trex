@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest manifest-version="0.1" xmlns="http://www.tableau.com/xml/extension_manifest">
+  <dashboard-extension id="io.github.biplovkarna017.multiselectparameter" extension-version="0.1.0">
+    <default-locale>en_US</default-locale>
+    <name resource-id="name"/>
+    <description>MultiSelect Parameter</description>
+    <author name="Biplov Karna" email="karnabiplov@gmail.com" organization="personal" website="https://www.linkedin.com/in/biplovkarna"/>
+    <min-api-version>1.6</min-api-version>
+    <source-location>
+      <url>https://biplovkarna017.github.io/tableau-multiselect-parameter/MultiSelectParameter.html</url>
+    </source-location>
+    <icon>AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAACUWAAAlFgAAAAAAAAAAAADXyrz/2cu+/9jLvf/Zy77/2cu9/9jLvf/Zy77/2cu+/9jLvf/Zy73/2cu9/9jLvv/Zy77/2cu+/9jLvf/Zy73/18m7/9jKvP/Yyrz/2Mq8/9jLvf/Yyrz/2Mq8/9jLvf/Yyrz/2Mq8/9jLvf/Yyrz/2Mq8/9jLvf/Yyrz/2Mq9/9fKu//ZzL3/2Mu8/9jLvP/Yy73/18q8/9fKvP/Yy73/18q8/9jKvP/Yy73/2Mq9/9jLvP/ZzL3/2Mu8/9nLvv/Xybv/2cu9/9fKvP/Txrr/zcG1/8u/sv/Lv7L/y7+y/8u/sv/Lv7L/y7+y/8y/s//Txrn/2Mq8/9jKvP/Zy73/18m7/9jLvP/Xyrz/zsG1/83Duv/g3Nb/4d3Y/+Hd1//h3df/4d3X/+Hd2P/i3tj/497X/9nNwf/Xyrz/2Mq9/9fKvP/ZzL3/18q8/83BtP/UzMT/7Ovp/+jj4f/s6ef/7uzp/+3q5//s6OX/6+jl//Py7//c0cb/2Mq8/9nLvv/Xyrv/18q8/9PGuf/LvrL/z8a+/93Y1v/VzMj/2tPO/+Pd2f/l39v/5uDc/+Xg3P/y7+z/3NHG/9fKvP/Yy73/18m8/9PGuv/Huq//ubGo/7m3tf/Dwcb/x8DC/9jPyv/e1dH/39jU/+DZ1f/i3dn/8u/s/9zRxv/Xyrz/2Mq9/9fKvP/Ux7r/ubaw/2yx0/9Zndj/aHnL/3uJ0P/Fwcv/3NPM/9XNx/+9tK3/wbiy/+3p5v/d0cb/18q8/9nLvf/Xybz/18q8/8DCvf9iv+n/Tqbr/2B53f92iuP/x8fb/+ji3f/c1dH/tq2m/7atpv/p5eL/3dLH/9fKvP/Yy73/18m8/9jLvP/Wyr3/u8K//7XF0P/M0+//zdHp//Px8v/39fT/8/Du/9/a1f/g3Nf/9PPw/9zRxv/Wyrv/2Mq9/9fKvP/ZzL3/2Mu9/9THuf/b0cf/9PLt//Pw7P/08u//9vPx//Ty7//u6+j/7+3p//Px7f/b0MX/18q8/9nLvf/Xyrv/2cu9/9jKvP/Wyrz/18u//9rQxf/b0cX/29HF/9vRxf/b0cX/29LG/9vSxv/a0MT/18q9/9jKvP/Zy73/18m7/9jLvP/Yyrz/2Mq8/9fKvP/Xyrv/18q7/9fKvP/Xyrv/18q7/9fKvP/Xyrv/18q7/9jKvP/Yyrz/2Mq9/9fKvP/ZzL3/2Mu8/9nLvf/ZzL3/2Mu9/9nLvf/ZzL3/2Mu8/9nLvf/ZzL3/2Mu9/9nLvf/ZzL3/2Mu8/9nLvv/Xyrz/2cu+/9jLvf/Zy73/2cu+/9jKvf/Zy73/2cu9/9jKvf/Yy73/2cu+/9jKvf/Zy77/2cu+/9jLvf/Zy77/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</icon>
+    <context-menu>
+      <configure-context-menu-item />
+    </context-menu>
+  </dashboard-extension>
+  <resources>
+    <resource id="name">
+      <text locale="en_US">MultiSelect Parameter</text>
+    </resource>
+  </resources>
+</manifest>

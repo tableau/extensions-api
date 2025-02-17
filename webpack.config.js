@@ -11,6 +11,8 @@ module.exports = {
     formatting: './Samples-Typescript/Dashboard/Formatting/formatting.tsx',
     moveAndResize: './Samples-Typescript/Dashboard/MoveAndResize/moveAndResize.tsx',
     parameters: './Samples-Typescript/Dashboard/Parameters/parameters.ts',
+    pdfViewer: './Samples-Typescript/Dashboard/PdfViewer/pdfViewer.tsx',
+    pdfViewerDialog: './Samples-Typescript/Dashboard/PdfViewer/pdfViewerDialog.tsx',
     dashboardObjectVisibility: './Samples-Typescript/Dashboard/DashboardObjectVisibility/dashboardObjectVisibility.tsx',
     replayAnimation: './Samples-Typescript/Dashboard/ReplayAnimation/replayAnimation.tsx',
     vizImage: './Samples-Typescript/Dashboard/VizImage/vizImage.ts'
