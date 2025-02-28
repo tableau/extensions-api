@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Be Free Sample</title>
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <!-- Extensions Library (this will be hosted on a CDN eventually) -->
+  <script src="../../../lib/tableau.extensions.1.latest.beta.js"></script>
+
+  <!-- Our extension's code -->
+  <script src="./beFree.js"></script>
+
+  <style>
+    .form {
+      display: grid;
+      grid-gap: 10px;
+      grid-template-columns: [label] auto [input] 1fr;
+      margin-top: 2rem;
+    }
+
+    input {
+      grid-column: input;
+      align-self: center;
+    }
+
+    label {
+      grid-column: label;
+      text-align: right;
+    }
+
+    textarea {
+      resize: vertical;
+      font-family: monospace;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Be Free Sample</h1>
+    <button id="execute-command-btn" class="btn btn-primary" disabled="true">Execute Command</button>
+    <div class="form">
+      <label for="namespace">Namespace: </label>
+      <input type="text" id="namespace" name="namespace" value="tabdoc" />
+      <label for=" command">Command: </label>
+      <input type="text" id="command" name="command" value="add-object-to-dashboard" />
+
+      <label for="input">Input: </label>
+      <textarea id="input" rows="4">{
+  "add-as-floating": "false",
+  "dashboard": "Overview",
+  "drop-location": { "x": 137, "y": 358 },
+  "formatted-text": "<formatted-text><run bold='true' fontsize='36'>Hello World</run></formatted-text>",
+  "is-horizontal": "false",
+  "zone-type": "text"
+}</textarea>
+      <label for="output">Output: </label>
+      <pre id="output"></pre>
+    </div>
+  </div>
+</body>
+
+</html>
