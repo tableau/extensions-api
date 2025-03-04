@@ -14,10 +14,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: '20.5'
           cache: yarn
@@ -33,7 +33,7 @@ jobs:
 
       - name: Setup Pages
         id: setup-pages
-        uses: actions/configure-pages@v3
+        uses: actions/configure-pages@v4
 
       - name: Build webpage
         working-directory: website
@@ -43,6 +43,6 @@ jobs:
           GITHUB_BASE_PATH: ${{ steps.setup-pages.outputs.base_path }}
 
       - name: Upload webpage artifact
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v4
         with:
           path: 'website/build'
