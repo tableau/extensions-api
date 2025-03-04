@@ -91,6 +91,7 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="getunderlyingdataoptions.html#applyworksheetformatting" class="tsd-kind-icon">apply<wbr>Worksheet<wbr>Formatting</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="getunderlyingdataoptions.html#columnstoincludebyid" class="tsd-kind-icon">columns<wbr>ToInclude<wbr>ById</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="getunderlyingdataoptions.html#ignorealiases" class="tsd-kind-icon">ignore<wbr>Aliases</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="getunderlyingdataoptions.html#ignoreselection" class="tsd-kind-icon">ignore<wbr>Selection</a></li>
@@ -104,6 +105,28 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="applyworksheetformatting" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> apply<wbr>Worksheet<wbr>Formatting</h3>
+					<div class="tsd-signature tsd-kind-icon">apply<wbr>Worksheet<wbr>Formatting<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="getsummarydataoptions.html">GetSummaryDataOptions</a>.<a href="getsummarydataoptions.html#applyworksheetformatting">applyWorksheetFormatting</a></p>
+						<ul>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataTableInterfaces.ts:166</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Specifies whether to apply worksheet level formatting to numbers and dates
+							Note that this is different from the global field formatting degined in the Schema Viewer</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>since</dt>
+							<dd><p>1.13.0 and Tableau 2025.1</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="columnstoincludebyid" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> columns<wbr>ToInclude<wbr>ById</h3>
@@ -164,7 +187,7 @@
 					<div class="tsd-signature tsd-kind-icon">include<wbr>All<wbr>Columns<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataTableInterfaces.ts:168</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataTableInterfaces.ts:176</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -240,6 +263,9 @@
 					<li class="current tsd-kind-interface">
 						<a href="getunderlyingdataoptions.html" class="tsd-kind-icon">Get<wbr>Underlying<wbr>Data<wbr>Options</a>
 						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="getunderlyingdataoptions.html#applyworksheetformatting" class="tsd-kind-icon">apply<wbr>Worksheet<wbr>Formatting</a>
+							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 								<a href="getunderlyingdataoptions.html#columnstoincludebyid" class="tsd-kind-icon">columns<wbr>ToInclude<wbr>ById</a>
 							</li>
@@ -336,7 +362,7 @@
                 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-        ga('create', 'UA-625217-51', 'auto');
+        ga('create', '469571326', 'auto');
         ga('send', 'pageview');
     </script>
 </body>

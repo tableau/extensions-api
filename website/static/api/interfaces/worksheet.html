@@ -92,6 +92,11 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="worksheet.html#parentdashboard" class="tsd-kind-icon">parent<wbr>Dashboard</a></li>
 							</ul>
+							<h3>Viz Extensions Properties</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="worksheet.html#backgroundcolor" class="tsd-kind-icon">background<wbr>Color</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="worksheet.html#formatting" class="tsd-kind-icon">formatting</a></li>
+							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>All Extensions Methods</h3>
@@ -143,7 +148,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="sheet.html">Sheet</a>.<a href="sheet.html#name">name</a></p>
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:25</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:27</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -161,7 +166,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="sheet.html">Sheet</a>.<a href="sheet.html#sheettype">sheetType</a></p>
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:30</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:32</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -179,7 +184,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="sheet.html">Sheet</a>.<a href="sheet.html#size">size</a></p>
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:43</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:45</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -199,13 +204,50 @@
 					<div class="tsd-signature tsd-kind-icon">parent<wbr>Dashboard<span class="tsd-signature-symbol">:</span> <a href="dashboard.html" class="tsd-signature-type">Dashboard</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:56</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:58</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<dl class="tsd-comment-tags">
 							<dt>returns</dt>
 							<dd><p>The dashboard object to which this worksheet belongs.</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Viz Extensions Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="backgroundcolor" class="tsd-anchor"></a>
+					<h3>background<wbr>Color</h3>
+					<div class="tsd-signature tsd-kind-icon">background<wbr>Color<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:64</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<dl class="tsd-comment-tags">
+							<dt>returns</dt>
+							<dd><p>The background color of the worksheet.</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="formatting" class="tsd-anchor"></a>
+					<h3>formatting</h3>
+					<div class="tsd-signature tsd-kind-icon">formatting<span class="tsd-signature-symbol">:</span> <a href="../globals.html#worksheetformatting" class="tsd-signature-type">WorksheetFormatting</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:70</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<dl class="tsd-comment-tags">
+							<dt>returns</dt>
+							<dd><p>Worksheet level formatting.</p>
 							</dd>
 						</dl>
 					</div>
@@ -224,7 +266,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="parameter.html">Parameter</a>.<a href="parameter.html#addeventlistener">addEventListener</a></p>
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/EventInterface.ts:175</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/EventInterface.ts:187</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -242,7 +284,7 @@
 									</thead>
 									<tbody><tr>
 											<td><a href="worksheet.html">Worksheet</a></td>
-											<td><code>FilterChanged</code> , <code>MarkSelectionChanged</code>, <code>SummaryDataChanged</code></td>
+											<td><code>FilterChanged</code> , <code>MarkSelectionChanged</code>, <code>SummaryDataChanged</code>, <code>WorksheetFormattingChanged</code></td>
 										</tr>
 										<tr>
 											<td><a href="parameter.html">Parameter</a></td>
@@ -303,7 +345,7 @@ load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">works
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:464</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:478</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -351,7 +393,7 @@ load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">works
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:68</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:82</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -401,7 +443,7 @@ load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">works
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:104</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:118</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -453,7 +495,7 @@ load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">works
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:79</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:93</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -497,7 +539,7 @@ load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">works
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:133</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:147</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -549,7 +591,7 @@ load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">works
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:90</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:104</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -583,7 +625,7 @@ load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">works
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:442</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:456</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -612,7 +654,7 @@ load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">works
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="sheet.html">Sheet</a>.<a href="sheet.html#findparameterasync">findParameterAsync</a></p>
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:38</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:40</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -644,7 +686,7 @@ load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">works
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:480</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:494</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -674,7 +716,7 @@ load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">works
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:158</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:172</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -710,7 +752,7 @@ load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">works
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:166</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:180</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -733,7 +775,7 @@ load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">works
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:174</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:188</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -758,7 +800,7 @@ load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">works
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="sheet.html">Sheet</a>.<a href="sheet.html#getparametersasync">getParametersAsync</a></p>
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:48</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:50</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -778,7 +820,7 @@ load<span class="hljs-constructor">SelectedMarks(<span class="hljs-params">works
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:197</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:211</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -810,7 +852,7 @@ worksheet.getSelectedMarksAsync().then(<span class="hljs-function"><span class="
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:277</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:291</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -838,7 +880,7 @@ worksheet.getSelectedMarksAsync().then(<span class="hljs-function"><span class="
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:242</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:256</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -899,7 +941,7 @@ worksheet.getSelectedMarksAsync().then(<span class="hljs-function"><span class="
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:269</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:283</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -951,7 +993,7 @@ worksheet.getSelectedMarksAsync().then(<span class="hljs-function"><span class="
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:288</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:302</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -988,7 +1030,7 @@ worksheet.getSelectedMarksAsync().then(<span class="hljs-function"><span class="
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:346</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:360</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1054,7 +1096,7 @@ worksheet.getSelectedMarksAsync().then(<span class="hljs-function"><span class="
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:384</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:398</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1121,7 +1163,7 @@ worksheet.getSelectedMarksAsync().then(<span class="hljs-function"><span class="
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:310</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:324</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1160,7 +1202,7 @@ worksheet.getUnderlyingTablesAsync().<span class="hljs-keyword">then</span>(<spa
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:509</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:523</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1189,7 +1231,7 @@ worksheet.getUnderlyingTablesAsync().<span class="hljs-keyword">then</span>(<spa
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:499</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:513</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1231,7 +1273,7 @@ worksheet.getUnderlyingTablesAsync().<span class="hljs-keyword">then</span>(<spa
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="parameter.html">Parameter</a>.<a href="parameter.html#removeeventlistener">removeEventListener</a></p>
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/EventInterface.ts:185</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/EventInterface.ts:197</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1266,7 +1308,7 @@ worksheet.getUnderlyingTablesAsync().<span class="hljs-keyword">then</span>(<spa
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:426</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:440</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1321,7 +1363,7 @@ worksheet.getUnderlyingTablesAsync().<span class="hljs-keyword">then</span>(<spa
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:615</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:665</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1388,7 +1430,7 @@ svg.on(<span class="hljs-string">'keydown'</span>, <span class="hljs-function">(
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:538</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:588</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1441,7 +1483,7 @@ svg.on(<span class="hljs-string">'keydown'</span>, <span class="hljs-function">(
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:637</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:687</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1480,7 +1522,7 @@ svg.on(<span class="hljs-string">'keydown'</span>, <span class="hljs-function">(
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:568</li>
+									<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:618</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1541,6 +1583,12 @@ tableau.extensions.worksheetContent.worksheet.selectTuplesAsync(myClickedTuples,
 					<li class="current tsd-kind-interface">
 						<a href="worksheet.html" class="tsd-kind-icon">Worksheet</a>
 						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="worksheet.html#backgroundcolor" class="tsd-kind-icon">background<wbr>Color</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="worksheet.html#formatting" class="tsd-kind-icon">formatting</a>
+							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 								<a href="worksheet.html#name" class="tsd-kind-icon">name</a>
 							</li>
@@ -1721,7 +1769,7 @@ tableau.extensions.worksheetContent.worksheet.selectTuplesAsync(myClickedTuples,
                 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-        ga('create', 'UA-625217-51', 'auto');
+        ga('create', '469571326', 'auto');
         ga('send', 'pageview');
     </script>
 </body>

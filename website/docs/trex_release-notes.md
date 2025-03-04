@@ -8,6 +8,30 @@ description: What's new for each release of the Tableau Extensions API
 
 ---
 
+### Tableau Extensions API version 1.13.0
+
+*March 2025*
+
+* Tableau Dashboard Extensions API library: `tableau.extensions.1.13.0.js` <br />(download or clone the Extensions API repository on [GitHub](https://github.com/tableau/extensions-api)) <br/>
+
+* Certain features in this release are only available in Tableau 2025.1 or later. Download [Tableau Desktop](https://www.tableau.com/support/releases) or [Tableau Server](https://www.tableau.com/support/releases/server).
+
+* To preview new features and test your extension with the latest version of Tableau in the Developer Sandbox, join the [Tableau Developer Program](http://www.tableau.com/developer) and request your own Tableau Cloud developer site.
+
+What's new in this release:
+
+* (Viz Extensions) Added the [`WorksheetFormattingChanged`](pathname:///api/interfaces/worksheetformattingchangedevent.html) event to the [`worksheet`](pathname:///api/interfaces/worksheet.html). Use this event to take action whenever the worksheet's formatting changes. Note that this event is also raised when the workbook's formatting changes.
+
+* Added [`backgroundColor`](pathname:///api/interfaces/worksheet.html#backgroundcolor) and [`formatting`](pathname:///api/interfaces/worksheet.html#formatting) properties to the [`worksheet`](pathname:///api/interfaces/worksheet.html). These properties return the background color and formatting of the worksheet (that is, the formatting sheets that contain the CSS properties).
+
+* Added `applyWorksheetFormatting` as a property of [`GetSummaryDataOptions`](pathname:///api/interfaces/getsummarydataoptions.html#applyworksheetformatting) and [`GetUnderlyingDataOptions`](pathname:///api/interfaces/getunderlyingdataoptions.html#applyworksheetformatting). This property specifies whether to apply worksheet-level formatting to numbers and dates. You can use this option with the get summary and get underlying data APIs (such as, [`getSummaryDataReaderAsync`](pathname:///api/interfaces/worksheet.html#getsummarydatareaderasync), [`getUnderlyingTableDataReaderAsync`](pathname:///api/interfaces/worksheet.html#getunderlyingtabledatareaderasync)).
+
+
+---
+
+## Previous Releases
+
+---
 
 ### Tableau Extensions API version 1.12.0
 
@@ -57,10 +81,6 @@ Also in this release:
 * Fixed a bug to allow a Field to have `datatype = DataType.Spatial`.
 
 * Added an attribute `isGeospatial` to `Field`.
-
----
-
-## Previous Releases
 
 ---
 

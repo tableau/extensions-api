@@ -90,6 +90,7 @@
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="encoding.html#field" class="tsd-kind-icon">field</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="encoding.html#fieldencodingid" class="tsd-kind-icon">field<wbr>Encoding<wbr>Id</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="encoding.html#id" class="tsd-kind-icon">id</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="encoding.html#type" class="tsd-kind-icon">type</a></li>
 							</ul>
@@ -105,9 +106,37 @@
 					<div class="tsd-signature tsd-kind-icon">field<span class="tsd-signature-symbol">:</span> <a href="fieldinstance.html" class="tsd-signature-type">FieldInstance</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/VisualModelInterface.ts:31</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/VisualModelInterface.ts:49</li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<dl class="tsd-comment-tags">
+							<dt>returns</dt>
+							<dd><p>Field and its properties</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="fieldencodingid" class="tsd-anchor"></a>
+					<h3>field<wbr>Encoding<wbr>Id</h3>
+					<div class="tsd-signature tsd-kind-icon">field<wbr>Encoding<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/VisualModelInterface.ts:39</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<dl class="tsd-comment-tags">
+							<dt>returns</dt>
+							<dd><p>The unique representation of the encodings,
+								This allows to identify the duplicate fields that are added to encodings.</p>
+							</dd>
+							<dt>since</dt>
+							<dd><p>1.13.0</p>
+							</dd>
+						</dl>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="id" class="tsd-anchor"></a>
@@ -115,9 +144,16 @@
 					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/VisualModelInterface.ts:29</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/VisualModelInterface.ts:32</li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<dl class="tsd-comment-tags">
+							<dt>returns</dt>
+							<dd><p>inbuilt encoding type or the custom encoding</p>
+							</dd>
+						</dl>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="type" class="tsd-anchor"></a>
@@ -125,9 +161,16 @@
 					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <a href="../enums/tableau.encodingtype.html" class="tsd-signature-type">EncodingType</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/VisualModelInterface.ts:30</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/VisualModelInterface.ts:44</li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<dl class="tsd-comment-tags">
+							<dt>returns</dt>
+							<dd><p>type of the encoding</p>
+							</dd>
+						</dl>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -148,6 +191,9 @@
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="encoding.html#field" class="tsd-kind-icon">field</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="encoding.html#fieldencodingid" class="tsd-kind-icon">field<wbr>Encoding<wbr>Id</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="encoding.html#id" class="tsd-kind-icon">id</a>
@@ -233,7 +279,7 @@
                 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-        ga('create', 'UA-625217-51', 'auto');
+        ga('create', '469571326', 'auto');
         ga('send', 'pageview');
     </script>
 </body>
