@@ -24,23 +24,23 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/configure-pages@v3
+      - uses: actions/configure-pages@v4
         id: setup-pages
 
       - name: Checkout gh-pages
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: gh-pages
           path: gh-pages
 
       - name: Checkout gh-pages-dev
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: gh-pages-dev
           path: gh-pages-dev
 
       - name: Setup node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: '20.5'
           cache: yarn
