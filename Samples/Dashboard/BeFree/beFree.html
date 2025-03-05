@@ -43,28 +43,87 @@
       font-family: monospace;
     }
 
-    .examples {
+    .examples,
+    .themes {
       display: flex;
       flex-direction: column;
       gap: 1rem;
       margin-bottom: 2rem;
+    }
+
+    #custom-theme {
+      display: none;
+    }
+
+    video {
+      width: 427px;
+      height: 240px;
     }
   </style>
 </head>
 
 <body>
   <div class="container">
-    <h1>Be Free Sample</h1>
     <div>
-      <button id="execute-command-btn" class="btn btn-primary" disabled="true">Execute Command</button>
-      <div class="form">
-        <label for="namespace">Namespace: </label>
-        <input type="text" id="namespace" name="namespace" value="tabdoc" />
-        <label for=" command">Command: </label>
-        <input type="text" id="command" name="command" value="add-object-to-dashboard" />
+      <div>
+        <h2>Examples</h2>
+        <div class="examples">
+          <select id="examples">
+            <option value="grid">grid</option>
+          </select>
+          <button id="execute-example-btn" class="btn btn-primary" disabled="true">Execute Example</button>
+        </div>
 
-        <label for="input">Input: </label>
-        <textarea id="input" rows="4">{
+      </div>
+      <hr />
+      <div>
+        <h2>Themes</h2>
+        <div class="themes">
+          <select id="themes">
+            <option value="default">Default</option>
+            <option value="previous">Previous</option>
+            <option value="modern">Modern</option>
+            <option value="classic">Classic</option>
+            <option value="custom">Custom</option>
+          </select>
+          <textarea id="custom-theme" rows="8">{
+  "version": "1.0.0",
+  "base-theme": "smooth",
+  "styles": {
+    "all": {
+      "font-color": "#d16302",
+      "font-family": "Arial"
+    },
+    "worksheet": {
+      "font-color": "#003399",
+      "font-family": "Arial",
+      "font-size": 14
+    },
+    "worksheet-title": {
+      "font-color": "#003366",
+      "font-family": "Tableau Bold",
+      "font-size": 14
+    },
+    "view": {
+      "background-color": "#99eeff"
+    }
+  }
+}</textarea>
+          <button id="execute-theme-btn" class="btn btn-primary" disabled="true">Apply theme</button>
+        </div>
+      </div>
+      <hr />
+      <div>
+        <h2>Custom command</h2>
+        <button id="execute-command-btn" class="btn btn-primary" disabled="true">Execute Command</button>
+        <div class="form">
+          <label for="namespace">Namespace: </label>
+          <input type="text" id="namespace" name="namespace" value="tabdoc" />
+          <label for=" command">Command: </label>
+          <input type="text" id="command" name="command" value="add-object-to-dashboard" />
+
+          <label for="input">Input: </label>
+          <textarea id="input" rows="4">{
   "add-as-floating": "false",
   "dashboard": "Overview",
   "drop-location": { "x": 137, "y": 358 },
@@ -72,18 +131,19 @@
   "is-horizontal": "false",
   "zone-type": "text"
 }</textarea>
-        <label for="output">Output: </label>
-        <pre id="output"></pre>
-      </div>
-      <div>
-        <h2>Examples</h2>
-
-        <div class="examples">
-          <select id="examples">
-            <option value="grid">grid</option>
-          </select>
-          <button id="execute-example-btn" class="btn btn-primary" disabled="true">Execute Example</button>
+          <label for="output">Output: </label>
+          <pre id="output"></pre>
         </div>
+      </div>
+      <hr />
+      <div>
+        <h2>Video</h2>
+        <video controls autoplay>
+          <source
+            src="//upload.wikimedia.org/wikipedia/commons/transcoded/a/a7/How_to_make_video.webm/How_to_make_video.webm.480p.vp9.webm"
+            type="video/webm; codecs=&quot;vp9, opus&quot;" data-transcodekey="480p.vp9.webm" data-width="854"
+            data-height="480" res="480" label="SD 480p">
+        </video>
       </div>
     </div>
   </div>
