@@ -139,6 +139,7 @@
 								<li class="tsd-kind-interface"><a href="interfaces/workbookformatting.html" class="tsd-kind-icon">Workbook<wbr>Formatting</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/workbookformattingchangedevent.html" class="tsd-kind-icon">Workbook<wbr>Formatting<wbr>Changed<wbr>Event</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/worksheet.html" class="tsd-kind-icon">Worksheet</a></li>
+								<li class="tsd-kind-interface"><a href="interfaces/worksheetformattingchangedevent.html" class="tsd-kind-icon">Worksheet<wbr>Formatting<wbr>Changed<wbr>Event</a></li>
 							</ul>
 							<h3>Dashboard Extensions Interfaces</h3>
 							<ul class="tsd-index-list">
@@ -160,6 +161,7 @@
 								<li class="tsd-kind-type-alias"><a href="globals.html#categoricalvalue" class="tsd-kind-icon">Categorical<wbr>Value</a></li>
 								<li class="tsd-kind-type-alias"><a href="globals.html#tableaueventhandlerfn" class="tsd-kind-icon">Tableau<wbr>Event<wbr>Handler<wbr>Fn</a></li>
 								<li class="tsd-kind-type-alias"><a href="globals.html#tableaueventunregisterfn" class="tsd-kind-icon">Tableau<wbr>Event<wbr>Unregister<wbr>Fn</a></li>
+								<li class="tsd-kind-type-alias"><a href="globals.html#worksheetformatting" class="tsd-kind-icon">Worksheet<wbr>Formatting</a></li>
 							</ul>
 							<h3>Dashboard Extensions Type aliases</h3>
 							<ul class="tsd-index-list">
@@ -195,7 +197,7 @@
 					<div class="tsd-signature tsd-kind-icon">Tableau<wbr>Event<wbr>Handler<wbr>Fn<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><a href="interfaces/tableauevent.html" class="tsd-signature-type">TableauEvent</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/EventInterface.ts:124</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/EventInterface.ts:136</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -236,7 +238,7 @@
 					<div class="tsd-signature tsd-kind-icon">Tableau<wbr>Event<wbr>Unregister<wbr>Fn<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/EventInterface.ts:132</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/EventInterface.ts:144</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -266,6 +268,16 @@
 						</ul>
 					</div>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias">
+					<a name="worksheetformatting" class="tsd-anchor"></a>
+					<h3>Worksheet<wbr>Formatting</h3>
+					<div class="tsd-signature tsd-kind-icon">Worksheet<wbr>Formatting<span class="tsd-signature-symbol">:</span> <a href="interfaces/workbookformatting.html" class="tsd-signature-type">WorkbookFormatting</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/WorkbookFormattingInterfaces.ts:3</li>
+						</ul>
+					</aside>
+				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Dashboard Extensions Type aliases</h2>
@@ -275,7 +287,7 @@
 					<div class="tsd-signature tsd-kind-icon">Dashboard<wbr>Layout<wbr>Change<wbr>Details<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="enums/tableau.dashboardlayoutchange.html" class="tsd-signature-type">DashboardLayoutChange</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/EventInterface.ts:117</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/EventInterface.ts:129</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -290,7 +302,7 @@
 					<div class="tsd-signature tsd-kind-icon">Dashboard<wbr>Object<wbr>Position<wbr>And<wbr>Size<wbr>Update<wbr>Array<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="interfaces/dashboardobjectpositionandsizeupdate.html" class="tsd-signature-type">DashboardObjectPositionAndSizeUpdate</a><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:853</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:913</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -305,7 +317,7 @@
 					<div class="tsd-signature tsd-kind-icon">Dashboard<wbr>Object<wbr>Visibility<wbr>Map<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span><a href="enums/tableau.dashboardobjectvisibilitytype.html" class="tsd-signature-type">DashboardObjectVisibilityType</a><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:847</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:907</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -320,7 +332,7 @@
 					<div class="tsd-signature tsd-kind-icon">Zone<wbr>Visibility<wbr>Map<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span><a href="modules/tableau.html#zonevisibilitytype" class="tsd-signature-type">ZoneVisibilityType</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:841</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/SheetInterfaces.ts:901</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -549,6 +561,9 @@
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/worksheetcontent.html" class="tsd-kind-icon">Worksheet<wbr>Content</a>
 					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/worksheetformattingchangedevent.html" class="tsd-kind-icon">Worksheet<wbr>Formatting<wbr>Changed<wbr>Event</a>
+					</li>
 					<li class=" tsd-kind-type-alias">
 						<a href="globals.html#categoricalvalue" class="tsd-kind-icon">Categorical<wbr>Value</a>
 					</li>
@@ -566,6 +581,9 @@
 					</li>
 					<li class=" tsd-kind-type-alias">
 						<a href="globals.html#tableaueventunregisterfn" class="tsd-kind-icon">Tableau<wbr>Event<wbr>Unregister<wbr>Fn</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#worksheetformatting" class="tsd-kind-icon">Worksheet<wbr>Formatting</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
 						<a href="globals.html#zonevisibilitymap" class="tsd-kind-icon">Zone<wbr>Visibility<wbr>Map</a>
@@ -644,7 +662,7 @@
                 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-        ga('create', 'UA-625217-51', 'auto');
+        ga('create', '469571326', 'auto');
         ga('send', 'pageview');
     </script>
 </body>

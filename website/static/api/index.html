@@ -6,7 +6,7 @@
 	<title>Tableau Extensions</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="./assets/css/main.css">
+	<link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
 <header>
@@ -67,9 +67,9 @@
 				</a>
 				<p>The Tableau Extensions API is a JavaScript library that is organized into namespaces that contain
 					the classes and methods for communicating with Tableau components. The Tableau Extensions API
-					library supports both dashboard extensions and viz extensions, although not
+					library supports both dashboard extensions and viz extensions (only available in beta), although not
 					all interfaces and methods apply to both extensions. For an overview of how the API is organized,
-				see <a href="../docs/trex_api_about">Tableau Extensions API Basics</a>.</p>
+				see <a href="./trex_api_about.html">Tableau Extensions API Basics</a>.</p>
 				<div class="alert alert-info">
 					<b>Note:</b> To see all the methods and properties for the Extensions API interfaces, select the <b>Inherited</b> option in the upper-right corner of your browser window. This option shows any methods and properties inherited from base classes.
 				</div>
@@ -94,7 +94,7 @@
 						</tr>
 						<tr>
 							<td align="left"><a href="./interfaces/worksheetcontent.html">WorksheetContent</a></td>
-							<td align="left"><strong>(Available to viz extensions only)</strong> The <code>worksheetContent</code> provides access to the worksheet object. When you have the worksheet object, you have access to all elements in the <a href="./interfaces/worksheet.html">worksheet</a>, including the <a href="./interfaces/dashboard.html#worksheets">worksheets</a>, <a href="./interfaces/markscollection.html">marks</a>, <a href="./interfaces/filter.html">filters</a>, <a href="./interfaces/parameter.html">parameters</a>, and <a href="./interfaces/datasource.html">data sources</a>. For example, to access the worksheet in a workbook (after initialization), you might have a line of code that looks like the following: <br> <code>const worksheet = tableau.extensions.worksheetContent.worksheet</code></td>
+							<td align="left"><strong>(Available to viz extensions beta only)</strong> The <code>worksheetContent</code> provides access to the worksheet object. When you have the worksheet object, you have access to all elements in the <a href="./interfaces/worksheet.html">worksheet</a>, including the <a href="./interfaces/dashboard.html#worksheets">worksheets</a>, <a href="./interfaces/markscollection.html">marks</a>, <a href="./interfaces/filter.html">filters</a>, <a href="./interfaces/parameter.html">parameters</a>, and <a href="./interfaces/datasource.html">data sources</a>. For example, to access the worksheet in a workbook (after initialization), you might have a line of code that looks like the following: <br> <code>const worksheet = tableau.extensions.worksheetContent</code></td>
 						</tr>
 						<tr>
 							<td align="left"><a href="./interfaces/settings.html">Settings</a></td>
@@ -113,15 +113,29 @@
 					<h2>Dashboard extensions</h2>
 				</a>
 				<p>The following diagram shows the relationship between the extensions namespace and the worksheets in
-				the dashboard. For more information, see <a href="../docs/trex_api_about">Tableau Extensions API Basics</a>.</p>
-				<p><img src="assets/tab_ext_class_worksheet.png" alt="Extensions API namespace hierarchy"></p>
+				the dashboard. For more information, see <a href="./trex_api_about.html">Tableau Extensions API Basics</a>.</p>
+				<p><img src="../assets/tab_ext_class_worksheet.png" alt="Extensions API namespace hierarchy"></p>
 				<hr>
 				<a href="#viz-extensions-available-in-beta-only" id="viz-extensions-available-in-beta-only" style="color: inherit; text-decoration: none;">
-					<h2>Viz extensions</h2>
+					<h2>Viz extensions (available in beta only)</h2>
 				</a>
 				<p>The following diagram shows the relationship between the extensions namespace and the worksheets in
-				the workbook. For more information, see <a href="../docs/trex_api_about">Tableau Extensions API Basics</a>.</p>
-				<p><img src="assets/tab_viz_ext_class_worksheet.png" alt="Viz Extensions API namespace hierarchy"></p>
+				the workbook. For more information, see <a href="./trex_api_about.html">Tableau Extensions API Basics</a>.</p>
+				<p><img src="../assets/tab_viz_ext_class_worksheet.png" alt="Viz Extensions API namespace hierarchy"></p>
+				<!-- Copyright and build date -->
+				<hr>
+				<div style="text-align:center">
+					<style>
+
+.copyRight {
+  font-size: 12px;
+
+}
+</style>
+					<p class="copyRight">&copy; Copyright <script>document.write(new Date().getFullYear())</script> Salesforce, Inc. <a href="https://www.salesforce.com/company/legal/tmcusageguidelines/">All rights reserved.</a> Various trademarks held by their respective owners.
+					Salesforce, Inc. Salesforce Tower, 415 Mission Street, 3rd Floor, San Francisco, CA 94105, United States</p>
+					<p><sub>Documentation last generated on: <script>document.write(new Date().toLocaleString())</script></sub></p>
+				</div>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -338,6 +352,9 @@
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/worksheetcontent.html" class="tsd-kind-icon">Worksheet<wbr>Content</a>
 					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/worksheetformattingchangedevent.html" class="tsd-kind-icon">Worksheet<wbr>Formatting<wbr>Changed<wbr>Event</a>
+					</li>
 					<li class=" tsd-kind-type-alias">
 						<a href="globals.html#categoricalvalue" class="tsd-kind-icon">Categorical<wbr>Value</a>
 					</li>
@@ -355,6 +372,9 @@
 					</li>
 					<li class=" tsd-kind-type-alias">
 						<a href="globals.html#tableaueventunregisterfn" class="tsd-kind-icon">Tableau<wbr>Event<wbr>Unregister<wbr>Fn</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#worksheetformatting" class="tsd-kind-icon">Worksheet<wbr>Formatting</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
 						<a href="globals.html#zonevisibilitymap" class="tsd-kind-icon">Zone<wbr>Visibility<wbr>Map</a>
@@ -433,7 +453,7 @@
                 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-        ga('create', 'UA-625217-51', 'auto');
+        ga('create', '469571326', 'auto');
         ga('send', 'pageview');
     </script>
 </body>
