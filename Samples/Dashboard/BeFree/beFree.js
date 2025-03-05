@@ -52,8 +52,10 @@
     switch (sample) {
       case "grid":
         return createGridlayout();
-        case "remove-chart-lines":
-          return removeChartLines();
+      case "remove-chart-lines":
+        return removeChartLines();
+      case "toggle-animations":
+        return toggleAnimations();
     }
   }
 
@@ -132,10 +134,19 @@
     for (const { name } of sheetListItems) {
       await api.workbook.executeCommandAsync("tabdoc", "set-sheet-formatting", {
         sheet: name,
-        "pane-formattings": {"*****":"*****"},
-        "sheet-formatting": "<style><style-rule element=\"axis\"><format attr=\"stroke-size\" value=\"0\" /><format attr=\"line-visibility\" value=\"off\" /><format attr=\"tick-color\" value=\"#00000000\" /></style-rule><style-rule element=\"header\"><format attr=\"border-width\" data-class=\"total\" scope=\"rows\" value=\"0\" /><format attr=\"border-style\" data-class=\"total\" scope=\"rows\" value=\"none\" /><format attr=\"band-color\" scope=\"rows\" value=\"#00000000\" /><format attr=\"band-color\" scope=\"cols\" value=\"#00000000\" /><format attr=\"border-width\" data-class=\"subtotal\" value=\"0\" /><format attr=\"border-style\" data-class=\"subtotal\" value=\"none\" /></style-rule><style-rule element=\"pane\"><format attr=\"border-width\" data-class=\"total\" scope=\"rows\" value=\"0\" /><format attr=\"border-style\" data-class=\"total\" scope=\"rows\" value=\"none\" /><format attr=\"border-width\" data-class=\"total\" scope=\"cols\" value=\"0\" /><format attr=\"border-style\" data-class=\"total\" scope=\"cols\" value=\"none\" /><format attr=\"band-color\" scope=\"rows\" value=\"#00000000\" /><format attr=\"band-color\" scope=\"cols\" value=\"#00000000\" /><format attr=\"border-width\" data-class=\"subtotal\" value=\"0\" /><format attr=\"border-style\" data-class=\"subtotal\" value=\"none\" /></style-rule><style-rule element=\"table\"><format attr=\"band-size\" scope=\"rows\" value=\"1\" /><format attr=\"band-size\" scope=\"cols\" value=\"1\" /></style-rule><style-rule element=\"dropline\"><format attr=\"stroke-size\" value=\"0\" /><format attr=\"line-visibility\" value=\"off\" /></style-rule><style-rule element=\"refline\"><format attr=\"stroke-size\" value=\"0\" /><format attr=\"line-visibility\" value=\"off\" /></style-rule><style-rule element=\"gridline\"><format attr=\"line-pattern-only\" scope=\"cols\" value=\"dashed\" /><format attr=\"line-visibility\" scope=\"cols\" value=\"off\" /><format attr=\"stroke-size\" value=\"0\" /></style-rule><style-rule element=\"zeroline\"><format attr=\"line-pattern-only\" scope=\"rows\" value=\"solid\" /><format attr=\"line-pattern-only\" scope=\"cols\" value=\"solid\" /><format attr=\"stroke-size\" scope=\"cols\" value=\"0\" /><format attr=\"line-visibility\" scope=\"cols\" value=\"off\" /><format attr=\"stroke-size\" scope=\"rows\" value=\"0\" /><format attr=\"line-visibility\" scope=\"rows\" value=\"off\" /></style-rule><style-rule element=\"table-div\"><format attr=\"div-level\" scope=\"rows\" value=\"0\" /><format attr=\"stroke-size\" scope=\"rows\" value=\"0\" /><format attr=\"line-visibility\" scope=\"rows\" value=\"off\" /><format attr=\"stroke-size\" scope=\"cols\" value=\"0\" /><format attr=\"line-visibility\" scope=\"cols\" value=\"off\" /></style-rule></style>"
+        "pane-formattings": { "*****": "*****" },
+        "sheet-formatting":
+          '<style><style-rule element="axis"><format attr="stroke-size" value="0" /><format attr="line-visibility" value="off" /><format attr="tick-color" value="#00000000" /></style-rule><style-rule element="header"><format attr="border-width" data-class="total" scope="rows" value="0" /><format attr="border-style" data-class="total" scope="rows" value="none" /><format attr="band-color" scope="rows" value="#00000000" /><format attr="band-color" scope="cols" value="#00000000" /><format attr="border-width" data-class="subtotal" value="0" /><format attr="border-style" data-class="subtotal" value="none" /></style-rule><style-rule element="pane"><format attr="border-width" data-class="total" scope="rows" value="0" /><format attr="border-style" data-class="total" scope="rows" value="none" /><format attr="border-width" data-class="total" scope="cols" value="0" /><format attr="border-style" data-class="total" scope="cols" value="none" /><format attr="band-color" scope="rows" value="#00000000" /><format attr="band-color" scope="cols" value="#00000000" /><format attr="border-width" data-class="subtotal" value="0" /><format attr="border-style" data-class="subtotal" value="none" /></style-rule><style-rule element="table"><format attr="band-size" scope="rows" value="1" /><format attr="band-size" scope="cols" value="1" /></style-rule><style-rule element="dropline"><format attr="stroke-size" value="0" /><format attr="line-visibility" value="off" /></style-rule><style-rule element="refline"><format attr="stroke-size" value="0" /><format attr="line-visibility" value="off" /></style-rule><style-rule element="gridline"><format attr="line-pattern-only" scope="cols" value="dashed" /><format attr="line-visibility" scope="cols" value="off" /><format attr="stroke-size" value="0" /></style-rule><style-rule element="zeroline"><format attr="line-pattern-only" scope="rows" value="solid" /><format attr="line-pattern-only" scope="cols" value="solid" /><format attr="stroke-size" scope="cols" value="0" /><format attr="line-visibility" scope="cols" value="off" /><format attr="stroke-size" scope="rows" value="0" /><format attr="line-visibility" scope="rows" value="off" /></style-rule><style-rule element="table-div"><format attr="div-level" scope="rows" value="0" /><format attr="stroke-size" scope="rows" value="0" /><format attr="line-visibility" scope="rows" value="off" /><format attr="stroke-size" scope="cols" value="0" /><format attr="line-visibility" scope="cols" value="off" /></style-rule></style>',
       });
     }
+  }
+
+  async function toggleAnimations() {
+    const pm = await api.workbook.executeCommandAsync("tabdoc", "get-animation-side-pane-pres-model", {});
+    const areAnimationsOn = pm.animationSidePane.animationWorkbookStyleSettings.animationOn === "ao-on";
+    await api.workbook.executeCommandAsync("tabdoc", "set-animation-on", {
+      "animation-on": areAnimationsOn ? "ao-off" : "ao-on",
+    });
   }
 
   async function applyTheme(theme) {
@@ -147,7 +158,7 @@
   async function applyThemeJson(json) {
     await api.workbook.executeCommandAsync("tabdoc", "apply-theme", {
       "file-contents": json,
-      "file-name": "Custom theme from Be Free extension",
+      "file-name": "My Custom Theme",
       "should-clear": true,
     });
   }
