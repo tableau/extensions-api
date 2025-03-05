@@ -23,7 +23,7 @@
 
     .form {
       display: grid;
-      grid-gap: 10px;
+      grid-gap: 1rem;
       grid-template-columns: [label] auto [input] 1fr;
       margin-top: 2rem;
     }
@@ -42,21 +42,29 @@
       resize: vertical;
       font-family: monospace;
     }
+
+    .examples {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
   </style>
 </head>
 
 <body>
   <div class="container">
     <h1>Be Free Sample</h1>
-    <button id="execute-command-btn" class="btn btn-primary" disabled="true">Execute Command</button>
-    <div class="form">
-      <label for="namespace">Namespace: </label>
-      <input type="text" id="namespace" name="namespace" value="tabdoc" />
-      <label for=" command">Command: </label>
-      <input type="text" id="command" name="command" value="add-object-to-dashboard" />
+    <div>
+      <button id="execute-command-btn" class="btn btn-primary" disabled="true">Execute Command</button>
+      <div class="form">
+        <label for="namespace">Namespace: </label>
+        <input type="text" id="namespace" name="namespace" value="tabdoc" />
+        <label for=" command">Command: </label>
+        <input type="text" id="command" name="command" value="add-object-to-dashboard" />
 
-      <label for="input">Input: </label>
-      <textarea id="input" rows="4">{
+        <label for="input">Input: </label>
+        <textarea id="input" rows="4">{
   "add-as-floating": "false",
   "dashboard": "Overview",
   "drop-location": { "x": 137, "y": 358 },
@@ -64,8 +72,19 @@
   "is-horizontal": "false",
   "zone-type": "text"
 }</textarea>
-      <label for="output">Output: </label>
-      <pre id="output"></pre>
+        <label for="output">Output: </label>
+        <pre id="output"></pre>
+      </div>
+      <div>
+        <h2>Examples</h2>
+
+        <div class="examples">
+          <select id="examples">
+            <option value="grid">grid</option>
+          </select>
+          <button id="execute-example-btn" class="btn btn-primary" disabled="true">Execute Example</button>
+        </div>
+      </div>
     </div>
   </div>
 </body>
