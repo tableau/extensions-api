@@ -28,19 +28,19 @@ jobs:
         id: setup-pages
 
       - name: Checkout gh-pages
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: gh-pages
           path: gh-pages
 
       - name: Checkout gh-pages-dev
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: gh-pages-dev
           path: gh-pages-dev
 
       - name: Setup node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: '20.5'
           cache: yarn
@@ -79,10 +79,10 @@ jobs:
 
 
       - name: Upload webpage artifact
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v3
         with:
           path: 'combined'
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v4
