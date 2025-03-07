@@ -2,7 +2,7 @@
 <html>
 
 <head>
-      <meta charset="utf-8">
+  <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -15,10 +15,10 @@
   <link rel="stylesheet" href="./assets/css/main.css">
   <link rel="stylesheet" href="./assets/css/github-highlight.css">
 
- <!-- <script src="/extensions-api/assets/js/redirect-to-search.js"></script> -->
+  <!-- <script src="/extensions-api/assets/js/redirect-to-search.js"></script> -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
- <!--- <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <!--- <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
   <script>
     mermaid.initialize({
       startOnLoad:true,
@@ -27,7 +27,8 @@
   </script>  -->
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-625217-51"></script>
-  <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","UA-625217-51",{anonymize_ip:!0})</script><link rel="stylesheet" href="/assets/css/styles.0a67471e.css">
+  <script>function gtag() { dataLayer.push(arguments) } window.dataLayer = window.dataLayer || [], gtag("js", new Date), gtag("config", "UA-625217-51", { anonymize_ip: !0 })</script>
+  <link rel="stylesheet" href="/assets/css/styles.0a67471e.css">
 
 
 </head>
@@ -38,26 +39,34 @@
       <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
           <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+              aria-expanded="false" aria-controls="navbar">
               <span class="sr-only">Toggle navigation</span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand navbar-brand-logo" href="https://tableau.github.io/extensions-api/">Tableau Extensions API</a>
+            <a class="navbar-brand navbar-brand-logo" href="https://tableau.github.io/extensions-api/">Tableau
+              Extensions API</a>
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
               <li><a href="../docs">Docs</a></li>
               <li><a href="../docs/ux_design" target="_blank">Design Guidelines</a></li>
               <li><a href="../api/index.html" target="_blank">API Reference</a></li>
-              <li><a target="_blank" href="https://community.tableau.com/s/topic/0TO4T000000QFALWA4/extensions-api">Forum</a></li>
+              <li><a target="_blank"
+                  href="https://community.tableau.com/s/topic/0TO4T000000QF8eWAG/developers-apis">Developer Community</a></li>
               <li><a href="../docs/trex_release-notes">Release Notes</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-              <li class="tableauIcon"><a target="_blank" href="http://tableau.com/developer"><img src="./assets/logo.png" alt="Tableau Developers" class="logo" /></a></li>
-              <li><a target="_blank" href="https://github.com/tableau/extensions-api"><span class="icon icon--github" title="Extensions API on GitHub" alt="Extensions API on GitHub"><svg viewBox="0 0 16 16"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
-  </span></a></li>
+              <li class="tableauIcon"><a target="_blank" href="http://tableau.com/developer"><img
+                    src="./assets/logo.png" alt="Tableau Developers" class="logo" /></a></li>
+              <li><a target="_blank" href="https://github.com/tableau/extensions-api"><span class="icon icon--github"
+                    title="Extensions API on GitHub" alt="Extensions API on GitHub"><svg viewBox="0 0 16 16">
+                      <path fill="#828282"
+                        d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z" />
+                    </svg>
+                  </span></a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -67,7 +76,7 @@
 
 
   <div class="container">
-<!---   <header class="site-header">
+    <!---   <header class="site-header">
   <div class="wrapper">
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
@@ -101,34 +110,55 @@
   </div>
 </header>  -->
 
-        <header id="community-jumbo" class="jumbotron hero-spacer">
-            <h2>Community Portal</h2>
-            <p>The following extensions have been written by the Tableau Community and made available to use. Click to download the manifest file (<code class="language-plaintext highlighter-rouge">.trex</code>) file for the extension, or click the link to the source code and follow the instructions for the extension there.</p>
+    <header id="community-jumbo" class="jumbotron hero-spacer">
+      <h2>Community Portal</h2>
+      <p>The following extensions have been written by the Tableau Community and made available to use. Click to
+        download the manifest file (<code class="language-plaintext highlighter-rouge">.trex</code>) file for the
+        extension, or click the link to the source code and follow the instructions for the extension there.</p>
 
-<p>To use the extensions in Tableau, add an extension object to the dashboard, click <strong>Access Local Extensions</strong> and select the <code class="language-plaintext highlighter-rouge">.trex</code> file for the extension. If you write an extension, <a href="../docs/publish/trex_contributing">please contribute!</a></p>
+      <p>To use the extensions in Tableau, add an extension object to the dashboard, click <strong>Access Local
+          Extensions</strong> and select the <code class="language-plaintext highlighter-rouge">.trex</code> file for
+        the extension. If you write an extension, <a href="../docs/publish/trex_contributing">please contribute!</a></p>
 
-<p><strong>Important:</strong> These extensions are not written by or supported by Tableau.  If you encounter an issue with one of the extensions here, please reach out to the developer.</p>
+      <p><strong>Important:</strong> These extensions are not written by or supported by Tableau. If you encounter an
+        issue with one of the extensions here, please reach out to the developer.</p>
 
-        </header>
-        <div class="row">
-            <div id="grid" data-columns>
-                <!-- dynamically loaded from community/community_extensions.json -->
-            </div>
-        </div>
-
-        <script src="./assets/js/salvattore.min.js"></script>
-        <script src="./assets/js/community_extensions.js"></script>
-        <!-- Footer -->
-<footer>
+    </header>
     <div class="row">
-            <hr class="footer-hr">
-            <p>This site is open source. Suggestions and pull requests are welcome on our <a href="https://github.com/tableau/extensions-api">GitHub page</a>.</p>
-            <p><a href="https://www.tableau.com/en-us/legal" class="aLegal">LEGAL</a> <a href="https://www.salesforce.com/company/privacy" class="aLegal">PRIVACY</a> &copy; 2003&ndash;<script>document.write(new Date().getFullYear())</script> SALESFORCE, INC. ALL RIGHTS RESERVED</p>
-            <sub>Documentation last generated on: 2024-06-24 10:44:01 -0700</sub>
+      <div id="grid" data-columns>
+        <!-- dynamically loaded from community/community_extensions.json -->
+      </div>
     </div>
-</footer>
 
-    </div>
+    <script src="./assets/js/salvattore.min.js"></script>
+    <script src="./assets/js/community_extensions.js"></script>
+    <!-- Footer -->
+    <footer>
+      <div class="row">
+        <hr class="footer-hr">
+        <p>This site is open source. Suggestions and pull requests are welcome on our <a
+            href="https://github.com/tableau/extensions-api">GitHub page</a>.</p>
+        <p><a href="https://www.tableau.com/en-us/legal" class="aLegal">LEGAL</a> <a
+            href="https://www.salesforce.com/company/privacy" class="aLegal">PRIVACY</a> &copy; 2003&ndash;
+          <script>document.write(new Date().getFullYear())</script> SALESFORCE, INC. ALL RIGHTS RESERVED
+        </p>
+        <sub>Documentation last generated on: <span id="build-date"></span></sub>
+      </div>
+    </footer>
+
+    <script>
+      const buildDate = new Date();
+      const formattedDate = buildDate.toLocaleDateString();
+      const dateElement = document.getElementById('build-date');
+
+      if (dateElement) {
+        dateElement.innerHTML = formattedDate;
+      } else {
+        console.error('Element with ID "build-date" not found.');
+      }
+    </script>
+
+  </div>
 </body>
 
 </html>
