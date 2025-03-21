@@ -57,7 +57,7 @@ const getConfig = async () => {
             // Please change this to your repo.
             // Remove this to remove the "edit this page" links.
             editUrl:
-              'https://github.dev/tableau/extensions-api/blob/main/website/',
+              'https://github.com/tableau/extensions-api/blob/gh-pages-dev/website',
             remarkPlugins: [remarkDefList],
             sidebarCollapsed: true,
           },
