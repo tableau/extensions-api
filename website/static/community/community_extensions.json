@@ -280,5 +280,5 @@
         "description": "Concatenates selected values from a filter and assigns the result, delimited by '|', to a parameter.",
         "source_code": "https://github.com/biplovkarna017/tableau-multiselect-parameter",
         "hostedTrexFileName": "MultiSelectParameter.trex"
-    },
+    }
 ]
