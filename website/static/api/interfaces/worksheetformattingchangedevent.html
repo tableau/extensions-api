@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ReplaySpeedType | Tableau Extensions</title>
+	<title>WorksheetFormattingChangedEvent | Tableau Extensions</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,13 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/tableau.html">Tableau</a>
-				</li>
-				<li>
-					<a href="tableau.replayspeedtype.html">ReplaySpeedType</a>
+					<a href="worksheetformattingchangedevent.html">WorksheetFormattingChangedEvent</a>
 				</li>
 			</ul>
-			<h1>Enumeration ReplaySpeedType</h1>
+			<h1>Interface WorksheetFormattingChangedEvent</h1>
 		</div>
 	</div>
 </header>
@@ -70,75 +67,116 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Enum that represents the replay speed of an animation.</p>
+						<p>An event raised when the worksheet&#39;s formatting changes.
+						Note that this event is also raised when the workbook&#39;s formatting changes.</p>
 					</div>
 					<dl class="tsd-comment-tags">
 						<dt>since</dt>
-						<dd><p>1.7.0</p>
+						<dd><p>1.13 and Tableau 2025.1</p>
 						</dd>
 					</dl>
 				</div>
+			</section>
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<a href="tableauworksheetevent.html" class="tsd-signature-type">TableauWorksheetEvent</a>
+						<ul class="tsd-hierarchy">
+							<li>
+								<span class="target">WorksheetFormattingChangedEvent</span>
+							</li>
+						</ul>
+					</li>
+				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Enumeration members</h3>
+							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="tableau.replayspeedtype.html#fast" class="tsd-kind-icon">Fast</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="tableau.replayspeedtype.html#normal" class="tsd-kind-icon">Normal</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="tableau.replayspeedtype.html#slow" class="tsd-kind-icon">Slow</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="worksheetformattingchangedevent.html#formatting" class="tsd-kind-icon">formatting</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="worksheetformattingchangedevent.html#sheet" class="tsd-kind-icon">sheet</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="worksheetformattingchangedevent.html#type" class="tsd-kind-icon">type</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="worksheetformattingchangedevent.html#worksheet" class="tsd-kind-icon">worksheet</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Enumeration members</h2>
-				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="fast" class="tsd-anchor"></a>
-					<h3>Fast</h3>
-					<div class="tsd-signature tsd-kind-icon">Fast<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;fast&quot;</span></div>
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="formatting" class="tsd-anchor"></a>
+					<h3>formatting</h3>
+					<div class="tsd-signature tsd-kind-icon">formatting<span class="tsd-signature-symbol">:</span> <a href="../globals.html#worksheetformatting" class="tsd-signature-type">WorksheetFormatting</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Namespaces/Tableau.ts:386</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/EventInterface.ts:77</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Used for setting the replay speed of an animation to 2.0x.</p>
-						</div>
+						<dl class="tsd-comment-tags">
+							<dt>returns</dt>
+							<dd><p>The new formatting</p>
+							</dd>
+						</dl>
 					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="normal" class="tsd-anchor"></a>
-					<h3>Normal</h3>
-					<div class="tsd-signature tsd-kind-icon">Normal<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;normal&quot;</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="sheet" class="tsd-anchor"></a>
+					<h3>sheet</h3>
+					<div class="tsd-signature tsd-kind-icon">sheet<span class="tsd-signature-symbol">:</span> <a href="sheet.html" class="tsd-signature-type">Sheet</a></div>
 					<aside class="tsd-sources">
+						<p>Inherited from <a href="tableauworksheetevent.html">TableauWorksheetEvent</a>.<a href="tableauworksheetevent.html#sheet">sheet</a></p>
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Namespaces/Tableau.ts:383</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/EventInterface.ts:43</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Used for setting the replay speed of an animation to 1.0x.</p>
-						</div>
+						<dl class="tsd-comment-tags">
+							<dt>returns</dt>
+							<dd><p>The sheet which was the source of this event.</p>
+							</dd>
+						</dl>
 					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="slow" class="tsd-anchor"></a>
-					<h3>Slow</h3>
-					<div class="tsd-signature tsd-kind-icon">Slow<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;slow&quot;</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="type" class="tsd-anchor"></a>
+					<h3>type</h3>
+					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <a href="../enums/tableau.tableaueventtype.html" class="tsd-signature-type">TableauEventType</a></div>
 					<aside class="tsd-sources">
+						<p>Inherited from <a href="tableauworksheetevent.html">TableauWorksheetEvent</a>.<a href="tableauworksheetevent.html#type">type</a></p>
 						<ul>
-							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/Namespaces/Tableau.ts:380</li>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/EventInterface.ts:87</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Used for setting the replay speed of an animation to 0.5x.</p>
-						</div>
+						<dl class="tsd-comment-tags">
+							<dt>returns</dt>
+							<dd><p>The type of event which this class is representing.</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="worksheet" class="tsd-anchor"></a>
+					<h3>worksheet</h3>
+					<div class="tsd-signature tsd-kind-icon">worksheet<span class="tsd-signature-symbol">:</span> <a href="worksheet.html" class="tsd-signature-type">Worksheet</a></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="tableauworksheetevent.html">TableauWorksheetEvent</a>.<a href="tableauworksheetevent.html#worksheet">worksheet</a></p>
+						<ul>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/EventInterface.ts:16</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<dl class="tsd-comment-tags">
+							<dt>returns</dt>
+							<dd><p>The worksheet which was the source of this event.</p>
+							</dd>
+						</dl>
 					</div>
 				</section>
 			</section>
@@ -149,26 +187,26 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
-					<li class="current tsd-kind-module">
-						<a href="../modules/tableau.html">Tableau</a>
-					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-enum tsd-parent-kind-module">
-						<a href="tableau.replayspeedtype.html" class="tsd-kind-icon">Replay<wbr>Speed<wbr>Type</a>
+					<li class="current tsd-kind-interface">
+						<a href="worksheetformattingchangedevent.html" class="tsd-kind-icon">Worksheet<wbr>Formatting<wbr>Changed<wbr>Event</a>
 						<ul>
-							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="tableau.replayspeedtype.html#fast" class="tsd-kind-icon">Fast</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="worksheetformattingchangedevent.html#formatting" class="tsd-kind-icon">formatting</a>
 							</li>
-							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="tableau.replayspeedtype.html#normal" class="tsd-kind-icon">Normal</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="worksheetformattingchangedevent.html#sheet" class="tsd-kind-icon">sheet</a>
 							</li>
-							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="tableau.replayspeedtype.html#slow" class="tsd-kind-icon">Slow</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="worksheetformattingchangedevent.html#type" class="tsd-kind-icon">type</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="worksheetformattingchangedevent.html#worksheet" class="tsd-kind-icon">worksheet</a>
 							</li>
 						</ul>
 					</li>
