@@ -3,10 +3,10 @@ title:  Create and Test Sandboxed Extensions
 description: Create and test sandboxed extensions
 --- 
 
-To provide security for customers, Tableau supports a type of dashboard or viz extension that runs in a sandbox. These Sandboxed Extensions are hosted by Tableau and employ W3C standards, such as Content Security Policy (CSP), to ensure the extension can't make network calls outside of the hosting Tableau Server. This means a Sandboxed Extension can query data in the workbook using the Extensions API, but it can't send that data anywhere outside of the sandbox. This topic provides information to help you get started creating and testing Sandboxed Extensions.
+To provide security for customers, Tableau supports a type of dashboard or viz extension that runs in a sandbox. These Sandboxed Extensions are hosted by Tableau and use W3C standards, such as Content Security Policy (CSP), to ensure the extension can't make network calls outside the hosting Tableau Server. This means a Sandboxed Extension can query data in the workbook using the Extensions API, but it can't send that data anywhere outside the sandbox. The results of the query are on the client computer (in the browser) and can't be sent anywhere. This topic provides information to help you get started creating and testing Sandboxed Extensions.
 
 :::note
-If your extension requires resources of outside services, you should not create a Sandboxed Extension. Dashboard and viz extensions that don't run in the sandbox environment are called Network Enabled Extensions. While Sandboxed Extensions are allowed to run by default on Tableau Server and Tableau Cloud, Network Enabled Extensions require server and site administrator approval and need to be added to safe list for a site.
+If your extension requires resources of outside services, you shouldn't create a Sandboxed Extension. Dashboard and viz extensions that don't run in the sandbox environment are called Network Enabled Extensions. While Sandboxed Extensions are allowed to run by default on Tableau Server and Tableau Cloud, Network Enabled Extensions require server and site administrator approval and must be added to safe list for a site.
 :::
 
 ---
