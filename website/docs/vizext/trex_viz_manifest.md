@@ -13,6 +13,12 @@ For details about a manifest or its fields, see the [Sample Manifest File](#samp
 
 The versioning of the manifest is designed to be semantically simple and support compatibility. The version follows the [Major].[Minor] format. Minor upgrades are backwards compatible while major upgrades involve breaking changes.
 
+:::note
+
+Each extension must be uniquely identified. If multiple extensions in a workbook share the same combination of URL, ID, and version number, the extension zones will not load properly. As a best practice, use unique identifiers for each viz or dashboard extension when creating the manifest file (.trex). For example, for viz extensions, make sure that the same `<worksheet-extension>` `id` and `extension-version`, and the `<source-location>` `url` aren't all used in other extensions.
+
+:::
+
 ## Error Reporting
 
 At start up, Tableau checks the manifest file. If any errors are found while parsing the file, Tableau writes these errors to the `log.txt` file in the `My Tableau Repository/Logs` folder. This is the same location that Tableau Desktop uses to report other errors and activity.
@@ -262,13 +268,32 @@ The following table lists the elements and values you can use to add encoding ti
 
 ## Icons
 
-Custom encodings can be assigned a specific icon by using the <code>&lt;encoding-icon&gt;</code> XML tag inside each <code>&lt;extension&gt;</code> entry in the `.trex` manifest file.
+Custom encodings can be assigned a specific icon by using the <code>&lt;encoding-icon&gt;</code> XML tag inside each <code>&lt;encoding&gt;</code> entry in the `.trex` manifest file.
 
 ```xml
 
 <encoding-icon token="letter-x" />
 
 ```
+
+Note that the `<encoding-icon>` keywords ("`letter-x`", for example) are ids in Tableau associated with specific icons. You should define your own friendly encoding names using the `<display-name>` tag. To help your users, the names you choose for the encoding icons should be related to the viz extension and viz type you are creating. For example, the following snippet uses the encoding icon `token="edge"` (<MarkEdgeIconSvg alt="edge primitive"/>), but labels the icon "Link" to reflect its role in a Sankey visualization.
+
+```xml
+
+<encoding id="edge">
+  <display-name resource-id="edge-id">Link</display-name>
+  <role-spec>
+    <role-type>continuous-measure</role-type>
+    <role-type>continuous-dimension</role-type>
+  </role-spec>
+  <fields max-count="1"/>
+  <encoding-icon token="edge" />
+  <tooltip resource-id="edge-id">Edge</tooltip>
+</encoding>
+
+```
+
+
 
 import MarkColorIconSvg from '../assets/icons/MarkColorIcon_16px.svg';
 import LetterAIconSvg from '../assets/icons/LetterAIcon_16px.svg';
@@ -280,6 +305,7 @@ import MarkLineTypeIconSvg from '../assets/icons/MarkLineTypeIcon_16px.svg';
 import LetterDIconSvg from '../assets/icons/LetterDIcon_16px.svg';
 import MarkShapeBaseIconSvg from '../assets/icons/MarkShapeBaseIcon_16px.svg';
 import LetterEIconSvg from '../assets/icons/LetterEIcon_16px.svg';
+import LetterFIconSvg from '../assets/icons/LetterFIcon_16px.svg';
 import MarkAngleBaseIconSvg from '../assets/icons/MarkAngleBaseIcon_16px.svg';
 import DetailBaseIconSvg from '../assets/icons/DetailBaseIcon_16px.svg';
 import LetterZIconSvg from '../assets/icons/LetterZIcon_16px.svg';
@@ -330,9 +356,8 @@ import NavigationArrowRightIconSvg from '../assets/icons/NavigationArrowRightIco
 import ThumbnailEvenIconSvg from '../assets/icons/ThumbnailEvenIcon_16px.svg';
 
 
-
-
-The following table shows the list of icons you can use.
+The table shows the list of icons you can use. 
+Note that the icons and keywords for the letters "f" through "y" follow the same pattern as the other letters (`token="letter-f"` <LetterFIconSvg alt="letter f"/>). For brevity, they aren't shown in this table.
 
 <table>
 <colgroup>
@@ -388,14 +413,14 @@ The following table shows the list of icons you can use.
 <td><LetterEIconSvg alt="letter e"/></td>
 </tr>
 <tr class="odd">
-<td>angle</td>
+<td>wedge</td>
 <td><MarkAngleBaseIconSvg alt="angle primitive"/></td>
 <td>&nbsp;</td>
 <td>...</td>
 <td>..</td>
 </tr>
 <tr class="odd">
-<td>detail</td>
+<td>level-of-detail</td>
 <td><DetailBaseIconSvg alt="detail primitive"/></td>
 <td>&nbsp;</td>
 <td>letter-z</td>
