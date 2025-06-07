@@ -15,6 +15,12 @@ To create a new manifest file (`.trex`) for your extension the easy way, use the
 
 The versioning of the manifest is designed to be semantically simple and support compatibility. The version follows the [Major].[Minor] format. Minor upgrades are backwards compatible while major upgrades involve breaking changes.
 
+:::note
+
+Each extension must be uniquely identified. If multiple extensions in a workbook share the same combination of URL, ID, and version number, the extension zones will not load properly. As a best practice, use unique identifiers for each viz or dashboard extension when creating the manifest file (.trex). For example, for dashboard extensions, make sure that the same `<dashboard-extension>` `id` and `extension-version`, and the `<source-location>` `url` aren't all used together in other extensions.
+
+:::
+
 ## Error Reporting
 
 At start up, Tableau checks the manifest file. If any errors are found while parsing the file, Tableau writes these errors to the `log.txt` file in the `My Tableau Repository/Logs` folder. This is the same location that Tableau Desktop uses to report other errors and activity.
