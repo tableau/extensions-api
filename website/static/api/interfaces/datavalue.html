@@ -79,7 +79,9 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="datavalue.html#aliasvalue" class="tsd-kind-icon">alias<wbr>Value</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="datavalue.html#formattedvalue" class="tsd-kind-icon">formatted<wbr>Value</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="datavalue.html#hasalias" class="tsd-kind-icon">has<wbr>Alias</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="datavalue.html#nativevalue" class="tsd-kind-icon">native<wbr>Value</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="datavalue.html#value" class="tsd-kind-icon">value</a></li>
 							</ul>
@@ -89,6 +91,23 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="aliasvalue" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> alias<wbr>Value</h3>
+					<div class="tsd-signature tsd-kind-icon">alias<wbr>Value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataTableInterfaces.ts:120</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<dl class="tsd-comment-tags">
+							<dt>returns</dt>
+							<dd><p>The alias of a value only if <code>hasAlias</code> is true.</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="formattedvalue" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> formatted<wbr>Value</h3>
@@ -103,6 +122,24 @@
 							<dt>returns</dt>
 							<dd><p>The value formatted according to the locale and the
 								formatting applied to the field or parameter.</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="hasalias" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> has<wbr>Alias</h3>
+					<div class="tsd-signature tsd-kind-icon">has<wbr>Alias<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Shared/DataTableInterfaces.ts:126</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<dl class="tsd-comment-tags">
+							<dt>returns</dt>
+							<dd><p>Indicates if the DataValue contains an alias (for DataValues of Parameters with domain restriction type
+								<code>ParameterValueType.List</code>).</p>
 							</dd>
 						</dl>
 					</div>
@@ -173,7 +210,13 @@
 						<a href="datavalue.html" class="tsd-kind-icon">Data<wbr>Value</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="datavalue.html#aliasvalue" class="tsd-kind-icon">alias<wbr>Value</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="datavalue.html#formattedvalue" class="tsd-kind-icon">formatted<wbr>Value</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="datavalue.html#hasalias" class="tsd-kind-icon">has<wbr>Alias</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="datavalue.html#nativevalue" class="tsd-kind-icon">native<wbr>Value</a>
