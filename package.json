@@ -24,7 +24,7 @@
     "http-server": "^14.1.0"
   },
   "devDependencies": {
-    "@tableau/extensions-api-types": "1.13.0",
+    "@tableau/extensions-api-types": "1.14.0",
     "@tableau/tabextsandbox": "1.13.0",
     "@tableau/tableau-ui": "3.10",
     "@testing-library/jest-dom": "^5.11.0",
