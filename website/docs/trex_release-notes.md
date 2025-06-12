@@ -8,6 +8,28 @@ description: What's new for each release of the Tableau Extensions API
 
 ---
 
+### Tableau Extensions API version 1.14.0
+
+*June 2025*
+
+* Tableau Dashboard Extensions API library: `tableau.extensions.1.14.0.js` <br />(download or clone the Extensions API repository on [GitHub](https://github.com/tableau/extensions-api)). <br />
+
+* Certain features in this release are only available in Tableau Cloud and Tableau Desktop 2025.2 or later. Download [Tableau Desktop](https://www.tableau.com/support/releases).
+
+What's new in this release:
+
+* Added `hasAlias` and `aliasValue` attributes to [DataValue](pathname:///api/interfaces/datavalue.html).
+
+* Fixed a bug that caused an error when calling the `getAllDataSourcesAsync` method on a workbook with no worksheets.
+
+* Fixed a bug that caused an error when calling the `applyRangeFilterAsync` method with a `max` or `min` value of `0`.
+
+---
+
+## Previous Releases
+
+---
+
 ### Tableau Extensions API version 1.13.0
 
 *March 2025*
@@ -27,11 +49,7 @@ What's new in this release:
 * Added `applyWorksheetFormatting` as a property of [`GetSummaryDataOptions`](pathname:///api/interfaces/getsummarydataoptions.html#applyworksheetformatting) and [`GetUnderlyingDataOptions`](pathname:///api/interfaces/getunderlyingdataoptions.html#applyworksheetformatting). This property specifies whether to apply worksheet-level formatting to numbers and dates. You can use this option with the get summary and get underlying data APIs (such as, [`getSummaryDataReaderAsync`](pathname:///api/interfaces/worksheet.html#getsummarydatareaderasync), [`getUnderlyingTableDataReaderAsync`](pathname:///api/interfaces/worksheet.html#getunderlyingtabledatareaderasync)).
 
 
----
 
-## Previous Releases
-
----
 
 ### Tableau Extensions API version 1.12.0
 
