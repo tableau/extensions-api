@@ -298,7 +298,7 @@ This example illustrates some of the components that are common need to include 
 
    This is the code that draws the viz based on the current encodings and data. This example is extremely simplified and just uses the method called to retrieve the encoding, `worksheet.getVisualSpecificationAsync()`. From the `visualSpec`, the list of encodings is collected from the Marks card. The HelloVizExtensions example just has one encoding tile labeled "Drop..." The list of fields that are dropped on the tile are displayed in the content area of the worksheet. In real life, you would use multiple encodings that would correspond to the coordinates in your visualization (for example, x, y, and r). 
 
-   The other missing piece from this code example is the data. To retrieve the data from the worksheet, you call the `worksheet.getSummaryDataReaderAsync()` method. This method returns a `DataTableReader`, which you use to page through the summary data in the worksheet, to extract the rows of data. See the conncecteScatterplot viz extension sample to see an example of how this is done. 
+   The other missing piece from this code example is the data. To retrieve the data from the worksheet, you call the `worksheet.getSummaryDataReaderAsync()` method. This method returns a `DataTableReader`, which you use to page through the summary data in the worksheet, to extract the rows of data. See the ConnectedScatterplot viz extension sample to see an example of how this is done. 
 
   Finally, after you have the data and the map of encodings to fields you can pass this to code that can generate a scatterplot, a Sankey diagram, or network visualization. This example just prints the fields to the content area of the worksheet. But it's a start.
 
@@ -318,7 +318,7 @@ Our sample code follows the [Semi-Standard Style](https://github.com/Flet/semist
 
 ## What's next?
 
-- For more information about how you can use the Extensions API, go look at the [Samples](https://github.com/tableau/extensions-api/tree/main/Samples/). Study the sample, connectedScatterPlot, to see a full implementation of a viz extension.
+- For more information about how you can use the Extensions API, go look at the [Samples](https://github.com/tableau/extensions-api/tree/main/Samples/). Study the sample, ConnectedScatterPlot, to see a full implementation of a viz extension.
 
 - Get familiar with the programming interface of the Extensions API, see [API Reference](pathname:///api/).
 

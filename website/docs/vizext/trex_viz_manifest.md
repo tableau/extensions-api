@@ -15,7 +15,7 @@ The versioning of the manifest is designed to be semantically simple and support
 
 :::note
 
-Each extension must be uniquely identified. If multiple extensions in a workbook share the same combination of URL, ID, and version number, the extension zones will not load properly. As a best practice, use unique identifiers for each viz or dashboard extension when creating the manifest file (.trex). For example, for viz extensions, make sure that the same `<worksheet-extension>` `id` and `extension-version`, and the `<source-location>` `url` aren't all used in other extensions.
+Each extension must be uniquely identified. If multiple extensions in a workbook share the same combination of URL, ID, and version number, the extension zones will not load properly. As a best practice, use unique identifiers for each viz or dashboard extension when creating the manifest file (.trex). For example, for viz extensions, make sure that the same `<worksheet-extension>` `id` and `extension-version`, and the `<source-location>` `url` aren't all used together in other extensions.
 
 :::
 
