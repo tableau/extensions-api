@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>TableauEvent | Tableau Extensions</title>
+	<title>DialogMessageEvent | Tableau Extensions</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="tableauevent.html">TableauEvent</a>
+					<a href="dialogmessageevent.html">DialogMessageEvent</a>
 				</li>
 			</ul>
-			<h1>Interface TableauEvent</h1>
+			<h1>Interface DialogMessageEvent</h1>
 		</div>
 	</div>
 </header>
@@ -67,8 +67,10 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>An event object represents a notification that some sort of state has changed.
-						This is the base event interface. All events will inherit this type.</p>
+						<p>An event which is raised when the dialog has a message for the underlying extension (sent using <code>tableau.extensions.ui.sendDialogMessageAsync</code>), or vice versa.
+							Should be listened for directly from the <code>tableau.extensions.ui</code> object.
+							For example, when the dialog sends a message to the extension using <code>tableau.extensions.ui.sendDialogMessageAsync</code> method,
+						the extension should be listening for this event and handling it.</p>
 					</div>
 				</div>
 			</section>
@@ -76,25 +78,10 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">TableauEvent</span>
+						<a href="tableauevent.html" class="tsd-signature-type">TableauEvent</a>
 						<ul class="tsd-hierarchy">
 							<li>
-								<a href="tableausheetevent.html" class="tsd-signature-type">TableauSheetEvent</a>
-							</li>
-							<li>
-								<a href="workbookformattingchangedevent.html" class="tsd-signature-type">WorkbookFormattingChangedEvent</a>
-							</li>
-							<li>
-								<a href="parameterchangedevent.html" class="tsd-signature-type">ParameterChangedEvent</a>
-							</li>
-							<li>
-								<a href="settingschangedevent.html" class="tsd-signature-type">SettingsChangedEvent</a>
-							</li>
-							<li>
-								<a href="dashboardlayoutchangedevent.html" class="tsd-signature-type">DashboardLayoutChangedEvent</a>
-							</li>
-							<li>
-								<a href="dialogmessageevent.html" class="tsd-signature-type">DialogMessageEvent</a>
+								<span class="target">DialogMessageEvent</span>
 							</li>
 						</ul>
 					</li>
@@ -107,7 +94,8 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="tableauevent.html#type" class="tsd-kind-icon">type</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="dialogmessageevent.html#message" class="tsd-kind-icon">message</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="dialogmessageevent.html#type" class="tsd-kind-icon">type</a></li>
 							</ul>
 						</section>
 					</div>
@@ -116,10 +104,28 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="message" class="tsd-anchor"></a>
+					<h3>message</h3>
+					<div class="tsd-signature tsd-kind-icon">message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/EventInterface.ts:135</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<dl class="tsd-comment-tags">
+							<dt>returns</dt>
+							<dd><p>the message that was sent to/from the dialog.</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="type" class="tsd-anchor"></a>
 					<h3>type</h3>
 					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <a href="../enums/tableau.tableaueventtype.html" class="tsd-signature-type">TableauEventType</a></div>
 					<aside class="tsd-sources">
+						<p>Inherited from <a href="tableauworksheetevent.html">TableauWorksheetEvent</a>.<a href="tableauworksheetevent.html#type">type</a></p>
 						<ul>
 							<li>Defined in packages/api-external-contract-js/src/ExternalContract/Extensions/EventInterface.ts:87</li>
 						</ul>
@@ -147,10 +153,13 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="tableauevent.html" class="tsd-kind-icon">Tableau<wbr>Event</a>
+						<a href="dialogmessageevent.html" class="tsd-kind-icon">Dialog<wbr>Message<wbr>Event</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="tableauevent.html#type" class="tsd-kind-icon">type</a>
+								<a href="dialogmessageevent.html#message" class="tsd-kind-icon">message</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="dialogmessageevent.html#type" class="tsd-kind-icon">type</a>
 							</li>
 						</ul>
 					</li>
