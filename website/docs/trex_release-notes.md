@@ -18,7 +18,7 @@ description: What's new for each release of the Tableau Extensions API
 
 What's new in this release:
 
-* Added `Cloud`, `PublicWeb`, and `PublicDesktop` as environment context values.
+* Added `Cloud`, `PublicWeb`, and `PublicDesktop` as `Environment.context` values (`ExtensionContext`). The value indicates in which context the extension is currently running.
 
 * Added `sendDialogMessageAsync` method and `DialogMessageReceived` event to the UI namespace.
 
