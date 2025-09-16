@@ -44,15 +44,14 @@ Latest maintenance release of 2020.2.7+, 2020.3.6+, 2020.4.2+ | 87.0.4280 | Chro
 
 ## Start Tableau Desktop and enable debugging (Windows)
 
-
-1. Exit Tableau if it is already running on your computer. 
+1. Exit Tableau if it is already running on your computer.
 2. Open a Command Prompt window.
 2. Start Tableau using the following command.
 <br/>Replace `<version>` with the version of Tableau you are using (for example, `Tableau 2018.3`).
 
 ```cli
 
-"C:\Program Files\Tableau\Tableau <version>\bin\tableau.exe" --remote-debugging-port=8696
+"C:\Program Files\Tableau\Tableau <version>\bin\tableau.exe" --webEngineArgs --remote-debugging-port=8696
 
 ```
 
@@ -72,9 +71,9 @@ For convenience, you could also create a shortcut for Tableau and add the remote
 
 1. Select Tableau from the **Start** menu, and then right-click and select **Properties** or select **Open file location**.<br/>
 If you open the file location, you can create a new shortcut to `Tableau.exe` (call it something like *Tableau - Debug* ). Right click the shortcut to open the Properties dialog box.
-3. In the Properties dialog box, append `-remote-debugging-port=8696` at the end of the command in the **Target** text box. The debugging option goes after the closing quotation mark for `"Tableau.exe"`.
+3. In the Properties dialog box, append `--webEngineArgs -remote-debugging-port=8696` at the end of the command in the **Target** text box. The debugging option goes after the closing quotation mark for `"Tableau.exe"`.
 
-![Debug Shortcut](../assets/Tableau_shortcut_debug.png)
+![Debug Shortcut](../assets/Tableau_shortcut_debug2.png)
 
 ---
 ## Start Tableau Desktop and enable debugging (macOS)
@@ -85,7 +84,7 @@ If you open the file location, you can create a new shortcut to `Tableau.exe` (c
 
 ```cli
 
-open /Applications/Tableau\ Desktop\ <version>.app --args --remote-debugging-port=8696
+open /Applications/Tableau\ Desktop\ <version>.app --args --webEngineArgs --remote-debugging-port=8696
 
 ```
 
@@ -161,8 +160,7 @@ The debugger will pause each time the first statement of a script runs, allowing
 
 While you are debugging your extension, there are times you might want to reload or refresh your web page to execute and debug different parts of your code. However, when you click **Reload** from the shortcut menu to reload your extension, the remote debugger loses the connection with the extension. The reason for this is that **Reload** option tears down and re-creates the browser control, which means you'll need to establish a new debugging session.
 
-
-Note that you do not need to close and reopen the Chromium browser every time you click **Reload**. You can start another debugging session by entering the URL (`http://localhost:8696`) in the Chromium address bar and selecting the extension from the page selector.
+Note that you don't need to close and reopen the Chromium browser every time you click **Reload**. You can start another debugging session by entering the URL (`http://localhost:8696`) in the Chromium address bar and selecting the extension from the page selector.
 
 For more information, see [What Happens When You Reload an Extension](./trex_reload.md).
 

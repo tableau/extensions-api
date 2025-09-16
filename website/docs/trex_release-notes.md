@@ -8,6 +8,36 @@ description: What's new for each release of the Tableau Extensions API
 
 ---
 
+### Tableau Extensions API version 1.15.0
+
+*September 2025*
+
+* Tableau Dashboard Extensions API library: `tableau.extensions.1.15.0.js` <br />(download or clone the Extensions API repository on [GitHub](https://github.com/tableau/extensions-api)). <br />
+
+* Certain features in this release are only available in Tableau Cloud and Tableau Desktop 2025.3 or later. Download [Tableau Desktop](https://www.tableau.com/support/releases).
+
+What's new in this release:
+
+* Added `Cloud`, `PublicWeb`, and `PublicDesktop` as environment context values.
+
+* Added `sendDialogMessageAsync` method and `DialogMessageReceived` event to the UI namespace.
+
+* The `closeDialog` method can now be called from the extension frame to forcefully close the dialog.
+
+* If you use Tableau Desktop for debugging your extension, there is a new command line argument you need to include when you launch Tableau in debug mode. You need to add `--webEngineArgs` in front of the remote debugging port option. For example, on Windows the command would look something like the following:
+
+```cli
+"C:\Program Files\Tableau\Tableau <version>\bin\tableau.exe" --webEngineArgs --remote-debugging-port=8696
+```
+
+For more information, see [Debug Extensions in Tableau Desktop](./debug/trex_debugging.md).
+
+---
+
+## Previous Releases
+
+---
+
 ### Tableau Extensions API version 1.14.0
 
 *June 2025*
@@ -23,10 +53,6 @@ What's new in this release:
 * Fixed a bug that caused an error when calling the `getAllDataSourcesAsync` method on a workbook with no worksheets.
 
 * Fixed a bug that caused an error when calling the `applyRangeFilterAsync` method with a `max` or `min` value of `0`.
-
----
-
-## Previous Releases
 
 ---
 
