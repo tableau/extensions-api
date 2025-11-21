@@ -1,6 +1,6 @@
 {
   "name": "extensions-api-sdk",
-  "version": "1.14.0",
+  "version": "1.15.0",
   "description": "Sample code and documentation for the Tableau Extensions API.",
   "scripts": {
     "build": "npm install && npm run lint && webpack --config webpack.config.js",
@@ -24,8 +24,8 @@
     "http-server": "^14.1.0"
   },
   "devDependencies": {
-    "@tableau/extensions-api-types": "1.14.0",
-    "@tableau/tabextsandbox": "1.14.0",
+    "@tableau/extensions-api-types": "1.15.0",
+    "@tableau/tabextsandbox": "1.15.0",
     "@tableau/tableau-ui": "3.10",
     "@testing-library/jest-dom": "^5.11.0",
     "@testing-library/react": "^11.1.0",
