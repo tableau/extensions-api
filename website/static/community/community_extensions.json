@@ -280,5 +280,13 @@
         "description": "Concatenates selected values from a filter and assigns the result, delimited by '|', to a parameter.",
         "source_code": "https://github.com/biplovkarna017/tableau-multiselect-parameter",
         "hostedTrexFileName": "MultiSelectParameter.trex"
+    },
+    {
+        "name": "Autom8",
+        "website": "https://autom8.biztory.com",
+        "author": "Biztory",
+        "github_username": "biztory",
+        "description": "Autom8 allows you to drive and automate _any_ action taken in Tableau, by wiring it up with your n8n workflow(s).",
+        "hostedTrexFileName": "autom8.trex"
     }
 ]

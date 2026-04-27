@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest manifest-version="0.1" xmlns="http://www.tableau.com/xml/extension_manifest">
+  <dashboard-extension id="com.biztory.extensions.autom8" extension-version="1.0.0">
+    <default-locale>en_US</default-locale>
+    <name resource-id="name"/>
+    <description>Autom8 allows you to drive and automate _any_ action taken in Tableau, by wiring it up with your n8n workflow(s).</description>
+    <author name="Biztory" email="extensions@biztory.com" organization="Biztory" website="https://www.biztory.com"/>
+    <min-api-version>0.8</min-api-version>
+    <source-location>
+      <url>https://biztory-tableau-extensions.web.app/extensions/autom8/autom8.html</url>
+    </source-location>
+    <icon>iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAAAXNSR0IB2cksfwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAW5QTFRFAAAAXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEXCfEp3yTfwAAAHp0Uk5TAF7Ml3b/vQMSICZRgMUBFkKNyN7s8oSKLJni/CSg8Q+G6Ce3+zPP/irTGcYIov1b+BfYfd1auRrmOGqWsbtmtH9O6ii8DdffnY+LNfRAvsoMR/f6Vq0L5TT5bAIGkgmTnhCH6e5yOrK6BBFcwmUUUJzg5Et1lHkHU3EiQrMLAAAB10lEQVR4nO3Wy0tCQRQG8PkgsEUoSdAmCQRJU5CKiB5iz0UFUhC0KMh14L5/oW2bllEUVEQFQREaFdlDpaKigoggsDdEj43QJovUvB6dGe/2ntW9n3N+4r04c8CoAshYfGWBBmiABmiABvyWDj9FrY3xAT3+6plYW/rKA3TFiVbjUx6APv71D3/X+QDlQDQZ5wGYgdtULA9YgJt/sTRgxXVaLAtU4io9lgQcwKUqwIlzRSwHVOFMGcsBNV+XylgKMFhOMmIpoPY+858jA+icx5mxDFCHQ3VA/cttZiwDNESIWAZoDKsEmkIqAdcBEVcVEmGMeF1xwL1HxOIFmB5VAs27KoGWoOha1w4JtJ2+ifXbS7ZJoAObYkArNkiAdQbEAKvJTwPdWBfpt5vCWfYDh3lNBOjCfrYtrRcr/H4PFrLuiQ7bMh9wG+ezb+tW5yKv39A+m+Nc0H/2cn5EHzCT62gbDBYQ21KqbE5M5T5cewwBaqhJ9FdjgnGO9w7TkfJ4S5anaO53vMo9YDiMlim6fwjv84wPMN0QNogHYWu4KxtnIgBjw8CS4knYogMYS9zwxzxm8AKrqVHH56+4iH4kbwWA+Avd6gemf67MjZGQb/T/ZyOTBOD9BrwCizG1hi1JAAAAAElFTkSuQmCC</icon>
+    <context-menu>
+      <configure-context-menu-item />
+    </context-menu>
+  </dashboard-extension>
+  <resources>
+    <resource id="name">
+      <text locale="en_US">Autom8</text>
+    </resource>
+  </resources>
+</manifest>
