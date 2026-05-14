@@ -35,6 +35,18 @@
         "hostedTrexFileName": "React Annotation.trex"
     },
     {
+        "name": "County Pulse",
+        "website": "https://gbuckleyjr.github.io/county-pulse-extension/",
+        "author": "Greg Buckley",
+        "github_username": "gbuckleyjr",
+        "tags": [
+            "v_1.1"
+        ],
+        "description": "County Pulse is a Tableau Viz Extension for animated U.S. county pulse maps driven by Marks card encodings. It maps 5-digit county FIPS codes and signed county-level measures to positive and negative county pulses.",
+        "source_code": "https://github.com/gbuckleyjr/county-pulse-extension",
+        "hostedTrexFileName": "CountyPulse.trex"
+    },
+    {
         "name": "D3 Projections",
         "website": "https://github.com/demartsc/tableau-tc18-extending-tableau",
         "author": "Chris DeMartini",
