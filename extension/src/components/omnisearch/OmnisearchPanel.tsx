@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { getBuildLabel } from '../../buildInfo';
 import { listAllFields } from '../../metadata/fieldIndex';
 import { useFieldIndex } from '../../hooks/useFieldIndex';
 import { useWorkbookMetadata } from '../../hooks/useWorkbookMetadata';
@@ -31,6 +32,14 @@ const statusStyle: React.CSSProperties = {
   color: '#666',
 };
 
+const buildVersionStyle: React.CSSProperties = {
+  fontSize: '10px',
+  color: '#888',
+  marginLeft: 'auto',
+  fontFamily: 'monospace',
+  whiteSpace: 'nowrap',
+};
+
 const errorStyle: React.CSSProperties = {
   color: '#c00',
   marginBottom: '8px',
@@ -54,6 +63,9 @@ export function OmnisearchPanel(): JSX.Element {
             : index
               ? `${fields.length} field${fields.length === 1 ? '' : 's'}`
               : 'No metadata loaded. Click Refresh to load workbook JSON.'}
+        </span>
+        <span style={buildVersionStyle} title={`Build ${getBuildLabel()}`}>
+          v{getBuildLabel()}
         </span>
       </div>
 
