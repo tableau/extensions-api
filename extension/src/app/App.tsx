@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { MetadataViewer } from '../components/MetadataViewer';
+import { OmnisearchPanel } from '../components/omnisearch/OmnisearchPanel';
 import { useExtensionContext } from '../tableau/ExtensionContext';
 
 const headerStyle: React.CSSProperties = {
@@ -7,18 +7,18 @@ const headerStyle: React.CSSProperties = {
   borderBottom: '1px solid #ddd',
   fontWeight: 'bold',
   fontSize: '13px',
-  flexShrink: 0
+  flexShrink: 0,
 };
 
 const appStyle: React.CSSProperties = {
   display: 'flex',
   flexDirection: 'column',
-  height: '100%'
+  height: '100%',
 };
 
 const contentStyle: React.CSSProperties = {
   flex: 1,
-  overflow: 'hidden'
+  overflow: 'hidden',
 };
 
 export function App(): JSX.Element {
@@ -30,9 +30,9 @@ export function App(): JSX.Element {
 
   return (
     <div style={appStyle}>
-      <div style={headerStyle}>Authoring Extension</div>
+      <div style={headerStyle}>Tableau Poweruser</div>
       <div style={contentStyle}>
-        <MetadataViewer />
+        <OmnisearchPanel />
       </div>
     </div>
   );

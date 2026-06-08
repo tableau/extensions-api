@@ -1,4 +1,5 @@
 import { WorkbookNode } from '../metadata/types';
+import { normalizeWorkbookRoot } from '../metadata/normalize';
 
 export interface TableauBridge {
   getWorkbookMetadata(): Promise<WorkbookNode>;
@@ -22,7 +23,7 @@ export class LiveTableauBridge implements TableauBridge {
       const text = typeof result.text === 'string'
         ? result.text
         : JSON.stringify(result.text ?? result);
-      return JSON.parse(text) as WorkbookNode;
+      return normalizeWorkbookRoot(JSON.parse(text));
     } catch (error) {
       throw this.normalizeError('tabui', 'save-underlying-metadata', error);
     }

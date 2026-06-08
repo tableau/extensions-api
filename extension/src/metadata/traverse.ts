@@ -25,7 +25,7 @@ export function findByType(node: WorkbookNode, type: string): WorkbookNode[] {
 
 export function findWorksheetByName(node: WorkbookNode, name: string): WorkbookNode | undefined {
   return findByType(node, 'worksheet').find(
-    (worksheet) => worksheet.attrs.name === name
+    (worksheet) => worksheet.attrs?.name === name
   );
 }
 
