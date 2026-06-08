@@ -124,3 +124,70 @@ Living record of what was built, key decisions, and Tableau versions tested.
 - Formula/set reference parsing edge cases (blends, LODs, table calcs) — partial coverage
 - Field cleanup rule catalog (post-v1)
 - Totals formatting node location in metadata (post-v1)
+
+---
+
+## 2026-06-09 — M1.1: Catalog hygiene + `used` flag
+
+### What was built
+
+- Excluded dashboard action auto-columns (`user:auto-column: sheet_link`) from field catalog
+- Added `used: boolean` on `FieldRecord`, computed at index build time
+- Parameter `source-field` scanning (Segment Parameter → `[Segment]`)
+- Dashboard action reference scanning (`field-captions`, link expressions)
+- **Used** column in `FieldTable`
+
+### Key decisions
+
+- Action auto-columns are not author-facing fields; ~32 groups removed from catalog in fixture
+- `used` is boolean in M1.1; may become a location list in M2
+- Parameter domain binding uses `source-field` attr, not `calculation.formula`
+- `used` signals: downstream deps, sheet usage, action refs, parameter source-field
+
+### Modules
+
+- `extension/src/metadata/fieldCatalog.ts` — action group exclusion
+- `extension/src/metadata/fieldUsage.ts` — `buildParameterSourceRefs`, `buildActionRefs`, `computeUsedFields`
+- `extension/src/metadata/fieldIndex.ts` — wires `computeUsedFields`
+- `extension/src/metadata/types.ts` — `FieldRecord.used`
+- `extension/src/components/omnisearch/FieldTable.tsx` — Used column
+- `docs/milestones/M1.1-catalog-and-used.md`
+
+### Tableau version tested
+
+- Fixture build: `main.26.0531.2046`
+- Extension Desktop smoke test: _pending_
+
+### Dev note (port 8765 vs 8766)
+
+Custom Tableau Desktop (authoring build) binds `localhost:8765` and returns `{"error":"UNAUTHORIZED"}` for unauthenticated requests. Workspace extension manifest uses `http://localhost:8766/extension/index.html`; run `npm run serve` from `extension/` alongside `npm run dev`.
+
+---
+
+## 2026-06-09 — M1.2: Field display attributes
+
+### What was built
+
+- `FieldRecord` fields: `sourceFieldId`, `sourceFieldCaption`, `numberFormat`, `defaultAggregation`
+- Column attr extraction in `fieldCatalog.ts` (`default-format`, `visual-totals`)
+- Second-pass parameter `source-field` resolution after full catalog build
+- `FieldTable` columns: Source field, Format, Aggregation (`null` → **default** for format/aggregation)
+- Golden tests for Segment Parameter source, Profit per Order attrs, search by format
+
+### Key decisions
+
+- Aggregation from column `visual-totals` only — no worksheet or `column-instance` inference
+- `FieldRecord` stores `null` for absent attrs; UI label **default** matches Tableau implicit defaults
+- Parameter source field shown as resolved caption; non-parameters show `—`
+
+### Modules
+
+- `extension/src/metadata/types.ts`
+- `extension/src/metadata/fieldCatalog.ts`
+- `extension/src/components/omnisearch/FieldTable.tsx`
+- `docs/milestones/M1.2-field-attributes.md`
+
+### Tableau version tested
+
+- Fixture build: `main.26.0531.2046`
+- Extension Desktop smoke test: _pending_

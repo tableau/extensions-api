@@ -2,7 +2,7 @@
 
 Living requirements document for the **Tableau Poweruser** extension. Captures scoping decisions from planning sessions. Expect additions and changes before implementation begins.
 
-**Status:** M1 complete — M1.1 scoped — M2 next (search bar + polish)  
+**Status:** M1.2 complete — M2 next (search bar + polish)  
 **Last updated:** 2026-06-09
 
 ---
@@ -140,7 +140,8 @@ All field-like objects:
 |---|-----------|-------------|--------|
 | **M0** | Smoke test | Extension loads on custom Desktop; raw metadata visible | Export captured; Desktop smoke pending |
 | **M1** | Schema + index + field table | Field index, usage/graph backend, table listing all fields (no search bar) | **Done** — see implementation log |
-| **M1.1** | Catalog + `used` | Exclude action auto-columns; `used` boolean per field (incl. parameter `source-field`) | Scoped — see `docs/milestones/M1.1-catalog-and-used.md` |
+| **M1.1** | Catalog + `used` | Exclude action auto-columns; `used` boolean per field (incl. parameter `source-field`) | **Done** — see implementation log |
+| **M1.2** | Field display attrs | Parameter `source-field` on record + table; column `default-format` + `visual-totals`; null → **default** in table | **Done** — see implementation log |
 | **M2** | Search + polish | Search-as-you-type bar, facet filters, usage column, selected-row detail | Not started |
 | **M3** | Interactive DAG | 2-up / 2-down graph for selected field | Not started |
 | **M4** | **v1 ship** | Omnisearch complete, read-only | Not started |

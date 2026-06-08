@@ -43,19 +43,20 @@ docs/
 
 ## Dev commands
 
-From repo root (serves SDK samples + extension on port 8765):
+From repo root (serves SDK samples on port 8765):
 
 ```bash
 npm install
 npm start
 ```
 
-From `extension/` (watch + test):
+From `extension/` (authoring workspace extension — use **8766**; Tableau Desktop alpha binds 8765):
 
 ```bash
 cd extension
 npm install
-npm run dev      # webpack watch
+npm run dev      # webpack watch (terminal 1)
+npm run serve    # http-server on port 8766 (terminal 2)
 npm test
 npm run lint
 npm run build

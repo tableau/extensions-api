@@ -94,6 +94,8 @@ Primary representation for dimensions, measures, calculated fields, and paramete
 - **attrs (common):** `name`, `caption`, `role` (`dimension` | `measure`), `datatype`, `type` (`nominal` | `ordinal` | `quantitative`), `hidden` (`"true"` when hidden)
 - **attrs (parameters):** `param-domain-type` (`range` | `list`), `value`
 - **attrs (field-fed list parameter):** `source-field` — qualified `[datasource].[field]`; parameter domain values come from that column (not from `calculation.formula`). Example in fixture: **Segment Parameter** → `source-field: "[federated.10nnk8d1vgmw8q17yu76u06pnbcj].[Segment]"`; child `calculation` holds only the default value (`"Consumer"`).
+- **attrs (number format):** `default-format` — raw Tableau format string on the column (e.g. `p0.00%`, `c"$"#,##0;("$"#,##0)`). Absent → Tableau implicit default.
+- **attrs (default aggregation):** `visual-totals` — column-level default aggregation (e.g. Profit per Order → `Avg`). Absent → Tableau implicit default. **Do not** infer from worksheet `column-instance` derivations.
 - **children:** `calculation` (formula), `range`, `members`, `aliases`, …
 - **Formula location:** child node `type: "calculation"` → `attrs.formula`, `attrs.class` (e.g. `"tableau"`)
 - **Hidden example:** `[Product ID]` with `"hidden": "true"`
@@ -187,7 +189,42 @@ Field-fed list parameters declare their domain source via `source-field` on the 
 
 **Not covered by formula parsing:** the parameter's `calculation` child typically contains only the default member string, not a `[Field]` reference. Index `source-field` separately in `buildParameterSourceRefs()` (see M1.1 brief).
 
-**Fixture:** `Segment Parameter` (`[Parameter 0837838388154369]`) → `source-field` → `[Segment]`. Segment Parameter is not yet referenced in any calc or sheet in the fixture.
+**Fixture:** `Segment Parameter` (`[Parameter 3225702770847745]`) → `source-field` → `[Segment]`. Segment Parameter is not yet referenced in any calc or sheet in the fixture.
+
+**M1.2 storage:** `FieldRecord.sourceFieldId` / `sourceFieldName` on the parameter; displayed in Omnisearch field table.
+
+---
+
+## Field display attributes (M1.2)
+
+Indexed from **column definition attrs only** (not worksheet `column-instance`).
+
+| `FieldRecord` field | Column attr | UI when null |
+|---------------------|-------------|--------------|
+| `fieldName` | `caption` | fallback to stripped `fieldId` |
+| `fieldId` | `name` | — |
+| `fieldType` | classified from node | — |
+| `value` | `calculation.formula` | empty |
+| `numberFormat` | `default-format` | `default` |
+| `defaultAggregation` | `visual-totals` | `default` |
+| `sourceFieldId` / `sourceFieldName` | `source-field` (parameters) | `—` |
+
+**Fixture:** Profit per Order → `numberFormat: "p0.00%"`, `defaultAggregation: "Avg"`. Sales has `default-format` only; Segment has neither.
+
+---
+
+## Field `used` flag (M1.1)
+
+`FieldRecord.used` is a boolean summary: is this field referenced anywhere downstream?
+
+| Signal | Implementation |
+|--------|----------------|
+| Calc / set / group dependency | `downstream` map (formula + groupfilter levels) |
+| Worksheet / dashboard | `usages` map |
+| Dashboard action | `buildActionRefs()` — `field-captions` params, link `expression`, etc. |
+| Parameter domain source | `buildParameterSourceRefs()` — `source-field` attr |
+
+**Catalog exclusion (M1.1):** `group` nodes with `user:auto-column: "sheet_link"` (dashboard action auto-columns) are omitted from the field catalog.
 
 ---
 
