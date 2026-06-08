@@ -1,4 +1,6 @@
-import { findFieldByFieldId } from './fieldCatalog';
+import { findFieldByFieldId } from './fieldLookup';
+import type { FieldLookup } from './fieldLookup';
+import { attrString } from './nodeUtils';
 import { FieldRecord, makeFieldId, WorkbookNode } from './types';
 
 const PARAM_REF_PATTERN = /\[Parameters\]\.\[([^\]]+)\]/g;
@@ -10,11 +12,6 @@ export interface WorksheetRefContext {
   sheetType: 'worksheet' | 'dashboard';
   datasource: string | null;
   instanceToColumn: Map<string, string>;
-}
-
-function attrString(node: WorkbookNode, key: string): string | null {
-  const value = node.attrs[key];
-  return typeof value === 'string' ? value : null;
 }
 
 export function parseParameterReferences(formula: string): string[] {
@@ -83,7 +80,8 @@ export function parseGroupFilterReferences(
 function resolveQualifiedReference(
   ref: string,
   fields: Map<string, FieldRecord>,
-  context: WorksheetRefContext | null
+  context: WorksheetRefContext | null,
+  lookup: FieldLookup
 ): string | null {
   const qualifiedMatch = ref.match(/^\[([^\]]+)\]\.\[([^\]]+)\]$/);
   if (!qualifiedMatch) {
@@ -106,14 +104,15 @@ function resolveQualifiedReference(
     return direct;
   }
 
-  const byInstanceColumn = findFieldByFieldId(fields, instanceOrName, datasource);
+  const byInstanceColumn = findFieldByFieldId(lookup, fields, instanceOrName, datasource);
   return byInstanceColumn?.id ?? null;
 }
 
 function resolveSimpleReference(
   ref: string,
   fields: Map<string, FieldRecord>,
-  context: WorksheetRefContext | null
+  context: WorksheetRefContext | null,
+  lookup: FieldLookup
 ): string | null {
   const nameMatch = ref.match(/^\[([^\]]+)\]$/);
   if (!nameMatch) {
@@ -138,14 +137,15 @@ function resolveSimpleReference(
     }
   }
 
-  const found = findFieldByFieldId(fields, name);
+  const found = findFieldByFieldId(lookup, fields, name);
   return found?.id ?? null;
 }
 
 export function resolveReferenceString(
   ref: string,
   fields: Map<string, FieldRecord>,
-  context: WorksheetRefContext | null
+  context: WorksheetRefContext | null,
+  lookup: FieldLookup
 ): string | null {
   const trimmed = ref.trim();
   if (!trimmed) {
@@ -153,17 +153,18 @@ export function resolveReferenceString(
   }
 
   if (trimmed.includes('].[')) {
-    return resolveQualifiedReference(trimmed, fields, context);
+    return resolveQualifiedReference(trimmed, fields, context, lookup);
   }
 
   const bracketed = trimmed.startsWith('[') ? trimmed : `[${trimmed}]`;
-  return resolveSimpleReference(bracketed, fields, context);
+  return resolveSimpleReference(bracketed, fields, context, lookup);
 }
 
 export function extractReferencesFromText(
   text: string,
   fields: Map<string, FieldRecord>,
-  context: WorksheetRefContext | null
+  context: WorksheetRefContext | null,
+  lookup: FieldLookup
 ): string[] {
   const refs: string[] = [];
 
@@ -179,7 +180,7 @@ export function extractReferencesFromText(
   const qualifiedPattern = new RegExp(QUALIFIED_REF_PATTERN.source, 'g');
   while ((match = qualifiedPattern.exec(text)) !== null) {
     const full = `[${match[1]}].[${match[2]}]`;
-    const resolved = resolveReferenceString(full, fields, context);
+    const resolved = resolveReferenceString(full, fields, context, lookup);
     if (resolved) {
       refs.push(resolved);
     }
@@ -193,7 +194,7 @@ export function extractReferencesFromText(
     if (match[1] === 'Parameters') {
       continue;
     }
-    const resolved = resolveReferenceString(`[${match[1]}]`, fields, context);
+    const resolved = resolveReferenceString(`[${match[1]}]`, fields, context, lookup);
     if (resolved) {
       refs.push(resolved);
     }

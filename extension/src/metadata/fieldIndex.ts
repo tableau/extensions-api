@@ -1,10 +1,10 @@
-import { listFieldsSorted } from './fieldCatalog';
+import { buildFieldCatalog, listFieldsSorted } from './fieldCatalog';
 import {
   addGroupDependencies,
   buildDependencyEdges,
   getDependencySubgraph,
 } from './dependencyGraph';
-import { buildFieldCatalog } from './fieldCatalog';
+import { buildFieldLookup } from './fieldLookup';
 import { buildUsageMap, computeUsedFields } from './fieldUsage';
 import { normalizeWorkbookRoot } from './normalize';
 import {
@@ -21,13 +21,15 @@ export function buildFieldIndex(raw: unknown): FieldIndex {
 
 export function buildFieldIndexFromWorkbook(workbook: WorkbookNode): FieldIndex {
   const fields = buildFieldCatalog(workbook);
+  const lookup = buildFieldLookup(fields);
   const { upstream, downstream } = buildDependencyEdges(fields);
   addGroupDependencies(workbook, fields, upstream, downstream);
-  const usages = buildUsageMap(workbook, fields);
-  computeUsedFields(fields, downstream, usages, workbook);
+  const usages = buildUsageMap(workbook, fields, lookup);
+  computeUsedFields(fields, downstream, usages, workbook, lookup);
 
   return {
     fields,
+    lookup,
     usages,
     upstream,
     downstream,

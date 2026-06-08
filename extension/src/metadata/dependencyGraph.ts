@@ -1,7 +1,8 @@
 import {
   parseGroupFilterReferences,
+  parseFormulaFieldIds,
 } from './fieldReferences';
-import { parseFormulaFieldIds } from './fieldReferences';
+import { attrString } from './nodeUtils';
 import {
   DependencySubgraph,
   FieldEdge,
@@ -9,11 +10,6 @@ import {
   makeFieldId,
   WorkbookNode,
 } from './types';
-
-function attrString(node: WorkbookNode, key: string): string | null {
-  const value = node.attrs[key];
-  return typeof value === 'string' ? value : null;
-}
 
 export function buildDependencyEdges(
   fields: Map<string, FieldRecord>
@@ -130,19 +126,6 @@ function bfs(
   return { visited, truncated };
 }
 
-function invertAdjacency(upstream: Map<string, string[]>): Map<string, string[]> {
-  const inverted = new Map<string, string[]>();
-  for (const [fieldId, deps] of upstream.entries()) {
-    for (const dep of deps) {
-      const list = inverted.get(dep) ?? [];
-      if (!list.includes(fieldId)) {
-        inverted.set(dep, [...list, fieldId]);
-      }
-    }
-  }
-  return inverted;
-}
-
 export function getDependencySubgraph(
   fields: Map<string, FieldRecord>,
   upstream: Map<string, string[]>,
@@ -159,7 +142,7 @@ export function getDependencySubgraph(
     };
   }
 
-  const upResult = bfs(fieldId, invertAdjacency(upstream), maxDepth);
+  const upResult = bfs(fieldId, upstream, maxDepth);
   const downResult = bfs(fieldId, downstream, maxDepth);
 
   const nodeIds = new Set<string>([fieldId, ...upResult.visited, ...downResult.visited]);
@@ -186,11 +169,4 @@ export function getDependencySubgraph(
     truncatedUpstream: upResult.truncated,
     truncatedDownstream: downResult.truncated,
   };
-}
-
-export function getFieldByFieldName(
-  fields: Map<string, FieldRecord>,
-  fieldName: string
-): FieldRecord | undefined {
-  return Array.from(fields.values()).find((field) => field.fieldName === fieldName);
 }

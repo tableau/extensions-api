@@ -4,15 +4,11 @@ import {
   resolveReferenceString,
   WorksheetRefContext,
 } from './fieldReferences';
+import { findFieldByCaption, findFieldByFieldId } from './fieldLookup';
+import type { FieldLookup } from './fieldLookup';
+import { attrString } from './nodeUtils';
 import { FieldIndex, FieldRecord, FieldUsage, WorkbookNode } from './types';
 import { walkTree } from './traverse';
-
-const PARAMETERS_DATASOURCE = 'Parameters';
-
-function attrString(node: WorkbookNode, key: string): string | null {
-  const value = node.attrs[key];
-  return typeof value === 'string' ? value : null;
-}
 
 const USAGE_NODE_TYPES = new Set([
   'filter',
@@ -50,10 +46,11 @@ function recordReferencesInText(
   fields: Map<string, FieldRecord>,
   context: WorksheetRefContext,
   usages: Map<string, FieldUsage[]>,
-  usageContext: string
+  usageContext: string,
+  lookup: FieldLookup
 ): void {
   const cleaned = stripQuotes(text);
-  const refs = extractReferencesFromText(cleaned, fields, context);
+  const refs = extractReferencesFromText(cleaned, fields, context, lookup);
   for (const fieldId of refs) {
     addUsage(usages, fieldId, {
       sheet: context.sheetName,
@@ -68,12 +65,13 @@ function recordReference(
   fields: Map<string, FieldRecord>,
   context: WorksheetRefContext,
   usages: Map<string, FieldUsage[]>,
-  usageContext: string
+  usageContext: string,
+  lookup: FieldLookup
 ): void {
   if (!ref) {
     return;
   }
-  const fieldId = resolveReferenceString(stripQuotes(ref), fields, context);
+  const fieldId = resolveReferenceString(stripQuotes(ref), fields, context, lookup);
   if (!fieldId) {
     return;
   }
@@ -86,7 +84,8 @@ function recordReference(
 
 export function buildUsageMap(
   workbook: WorkbookNode,
-  fields: Map<string, FieldRecord>
+  fields: Map<string, FieldRecord>,
+  lookup: FieldLookup
 ): Map<string, FieldUsage[]> {
   const usages = new Map<string, FieldUsage[]>();
   for (const field of fields.values()) {
@@ -114,24 +113,24 @@ export function buildUsageMap(
 
       if (node.type === 'rows' || node.type === 'cols') {
         if (typeof node.content === 'string') {
-          recordReferencesInText(node.content, fields, context, usages, node.type);
+          recordReferencesInText(node.content, fields, context, usages, node.type, lookup);
         }
         return;
       }
 
       if (node.type === 'encoding') {
-        recordReference(attrString(node, 'field'), fields, context, usages, 'encoding');
+        recordReference(attrString(node, 'field'), fields, context, usages, 'encoding', lookup);
         return;
       }
 
       if (node.type === 'filter' || node.type === 'manual-sort' || node.type === 'shelf-sort') {
-        recordReference(attrString(node, 'column'), fields, context, usages, node.type);
+        recordReference(attrString(node, 'column'), fields, context, usages, node.type, lookup);
         return;
       }
 
       if (node.type === 'groupfilter') {
-        recordReference(attrString(node, 'member'), fields, context, usages, 'groupfilter');
-        recordReference(attrString(node, 'level'), fields, context, usages, 'groupfilter');
+        recordReference(attrString(node, 'member'), fields, context, usages, 'groupfilter', lookup);
+        recordReference(attrString(node, 'level'), fields, context, usages, 'groupfilter', lookup);
       }
     });
   }
@@ -151,6 +150,7 @@ function markUsed(usedIds: Set<string>, fieldId: string | null | undefined): voi
 
 function resolveFieldNameToken(
   token: string,
+  lookup: FieldLookup,
   fields: Map<string, FieldRecord>
 ): string | null {
   const trimmed = token.trim();
@@ -158,67 +158,35 @@ function resolveFieldNameToken(
     return null;
   }
 
-  const byFieldName = Array.from(fields.values()).find(
-    (field) => field.fieldName === trimmed
-  );
-  if (byFieldName) {
-    return byFieldName.id;
+  const byCaption = findFieldByCaption(lookup, fields, trimmed);
+  if (byCaption) {
+    return byCaption.id;
   }
 
   const bracketed = trimmed.startsWith('[') ? trimmed : `[${trimmed}]`;
-  const byFieldId = Array.from(fields.values()).find((field) => field.fieldId === bracketed);
+  const byFieldId = findFieldByFieldId(lookup, fields, bracketed);
   if (byFieldId) {
     return byFieldId.id;
   }
 
-  return resolveReferenceString(bracketed, fields, null);
+  return resolveReferenceString(bracketed, fields, null, lookup);
 }
 
 function recordActionReferencesInText(
   text: string,
   fields: Map<string, FieldRecord>,
-  usedIds: Set<string>
+  usedIds: Set<string>,
+  lookup: FieldLookup
 ): void {
-  for (const fieldId of extractReferencesFromText(text, fields, null)) {
+  for (const fieldId of extractReferencesFromText(text, fields, null, lookup)) {
     markUsed(usedIds, fieldId);
   }
 }
 
-export function buildParameterSourceRefs(
-  workbook: WorkbookNode,
-  fields: Map<string, FieldRecord>
-): Set<string> {
-  const usedIds = new Set<string>();
-  const datasourcesNode = workbook.children?.find((child) => child.type === 'datasources');
-  if (!datasourcesNode?.children) {
-    return usedIds;
-  }
-
-  const parametersDs = datasourcesNode.children.find(
-    (child) =>
-      child.type === 'datasource' && child.attrs.name === PARAMETERS_DATASOURCE
-  );
-  if (!parametersDs) {
-    return usedIds;
-  }
-
-  for (const child of parametersDs.children ?? []) {
-    if (child.type !== 'column') {
-      continue;
-    }
-    const sourceField = attrString(child, 'source-field');
-    if (!sourceField) {
-      continue;
-    }
-    markUsed(usedIds, resolveReferenceString(sourceField, fields, null));
-  }
-
-  return usedIds;
-}
-
 export function buildActionRefs(
   workbook: WorkbookNode,
-  fields: Map<string, FieldRecord>
+  fields: Map<string, FieldRecord>,
+  lookup: FieldLookup
 ): Set<string> {
   const usedIds = new Set<string>();
   const actionsNode = workbook.children?.find((child) => child.type === 'actions');
@@ -232,7 +200,7 @@ export function buildActionRefs(
       const value = attrString(node, 'value');
       if (paramName === 'field-captions' && value) {
         for (const token of value.split(',')) {
-          markUsed(usedIds, resolveFieldNameToken(token, fields));
+          markUsed(usedIds, resolveFieldNameToken(token, lookup, fields));
         }
       }
       return;
@@ -241,7 +209,7 @@ export function buildActionRefs(
     if (node.type === 'link') {
       const expression = attrString(node, 'expression');
       if (expression) {
-        recordActionReferencesInText(expression, fields, usedIds);
+        recordActionReferencesInText(expression, fields, usedIds, lookup);
       }
       return;
     }
@@ -249,13 +217,13 @@ export function buildActionRefs(
     if (node.attrs) {
       for (const [key, value] of Object.entries(node.attrs)) {
         if (typeof value === 'string' && (key === 'expression' || key === 'value' || key === 'column')) {
-          recordActionReferencesInText(value, fields, usedIds);
+          recordActionReferencesInText(value, fields, usedIds, lookup);
         }
       }
     }
 
     if (typeof node.content === 'string') {
-      recordActionReferencesInText(node.content, fields, usedIds);
+      recordActionReferencesInText(node.content, fields, usedIds, lookup);
     }
   });
 
@@ -266,7 +234,8 @@ export function computeUsedFields(
   fields: Map<string, FieldRecord>,
   downstream: Map<string, string[]>,
   usages: Map<string, FieldUsage[]>,
-  workbook: WorkbookNode
+  workbook: WorkbookNode,
+  lookup: FieldLookup
 ): void {
   const usedIds = new Set<string>();
 
@@ -277,13 +246,12 @@ export function computeUsedFields(
     if ((usages.get(field.id) ?? []).length > 0) {
       usedIds.add(field.id);
     }
+    if (field.sourceFieldId) {
+      usedIds.add(field.sourceFieldId);
+    }
   }
 
-  for (const fieldId of buildParameterSourceRefs(workbook, fields)) {
-    usedIds.add(fieldId);
-  }
-
-  for (const fieldId of buildActionRefs(workbook, fields)) {
+  for (const fieldId of buildActionRefs(workbook, fields, lookup)) {
     usedIds.add(fieldId);
   }
 

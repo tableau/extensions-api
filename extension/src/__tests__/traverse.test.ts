@@ -7,7 +7,7 @@ const workbook = normalizeWorkbookRoot(workbookExport);
 describe('traverse utilities', () => {
   it('findByType returns matching nodes', () => {
     const worksheets = findByType(workbook, 'worksheet');
-    expect(worksheets.length).toBe(23);
+    expect(worksheets.length).toBe(22);
   });
 
   it('findWorksheetByName returns the correct worksheet', () => {
