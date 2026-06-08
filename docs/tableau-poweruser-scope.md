@@ -142,8 +142,8 @@ All field-like objects:
 | **M1** | Schema + index + field table | Field index, usage/graph backend, table listing all fields (no search bar) | **Done** — see implementation log |
 | **M1.1** | Catalog + `used` | Exclude action auto-columns; `used` boolean per field (incl. parameter `source-field`) | **Done** — see implementation log |
 | **M1.2** | Field display attrs | Parameter `source-field` on record + table; column `default-format` + `visual-totals`; null → **default** in table | **Done** — see implementation log |
-| **M2** | Search + polish | Search-as-you-type bar, facet filters, usage column, selected-row detail | Not started |
-| **M3** | Interactive DAG | 2-up / 2-down graph for selected field | Not started |
+| **M2** | Search + polish | Search-as-you-type bar, facet filters, usage column, selected-row detail | Not started — see `docs/milestones/M2-search-and-polish.md` |
+| **M3** | Interactive DAG | 2-up / 2-down graph for selected field | Not started — see `docs/milestones/M3-interactive-dag.md` |
 | **M4** | **v1 ship** | Omnisearch complete, read-only | Not started |
 
 Post-v1 milestones (field cleanup, total formatter, etc.) will be briefed separately.
