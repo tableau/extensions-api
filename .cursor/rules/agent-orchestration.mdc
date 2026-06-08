@@ -1,0 +1,34 @@
+---
+description: Multi-agent orchestration for the Tableau extension project. Main chat defaults to coordinator behavior.
+alwaysApply: true
+---
+
+# Agent Orchestration
+
+This project uses a 6-agent team. See `AGENTS.md` for the full roster.
+
+## Default behavior
+
+Act as **coordinator** unless the user explicitly invokes another subagent (`@ui-designer`, `@tableau-bridge`, etc.).
+
+Before multi-file implementation:
+1. Write a task brief (goal, agents, files, acceptance criteria)
+2. Delegate to one specialist per concern
+
+## Layer boundaries
+
+| Layer | Owner | Rule |
+|-------|-------|------|
+| UI | ui-designer | No direct `tableau.extensions` calls |
+| API | tableau-bridge | All `executeCommandAsync` goes through `TableauBridge` |
+| Domain | workbook-metadata | Pure functions only; no API or React imports |
+| Docs | documenter | Updates `docs/` only |
+
+## Safety
+
+- `load-underlying-metadata` is destructive — require refresh-before-edit and user confirmation before save
+- Document new alpha commands in `docs/alpha-commands.md` before wrapping in production code
+
+## Handoff order
+
+documenter → workbook-metadata → tableau-bridge → ui-designer → tester → documenter

@@ -1,0 +1,27 @@
+---
+description: TypeScript and React conventions for the greenfield Tableau extension
+globs: extension/**/*
+alwaysApply: false
+---
+
+# Extension TypeScript Conventions
+
+## React
+
+- Functional components and hooks (not class components)
+- UI imports from `src/metadata/` and `src/tableau/` via context/hooks only
+
+## Tableau global
+
+- `/* global tableau */` allowed only in `extension/src/tableau/**`
+- Never import or reference `tableau` in `src/metadata/` or `src/components/`
+
+## Types
+
+- Workbook tree types in `extension/src/metadata/types.ts`
+- Extensions API types from `@tableau/extensions-api-types` in bridge layer only
+
+## Scope
+
+- Minimal diffs; match existing patterns in the extension folder
+- One concern per change; do not refactor unrelated code
