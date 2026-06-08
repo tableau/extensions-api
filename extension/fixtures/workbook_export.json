@@ -29,9 +29,6 @@
 							"type": "ExplainData_NullValueExplanation"
 						},
 						{
-							"type": "Extensions"
-						},
-						{
 							"type": "MapboxVectorStylesAndLayers"
 						},
 						{
@@ -57,9 +54,6 @@
 						},
 						{
 							"type": "SortTagCleanup"
-						},
-						{
-							"type": "VizExtensions"
 						},
 						{
 							"type": "VizInTooltipHideWorksheet"
@@ -259,28 +253,6 @@
 								{
 									"type": "column",
 									"attrs": {
-										"name": "[Parameter 0837838388154369]",
-										"role": "measure",
-										"datatype": "string",
-										"type": "nominal",
-										"caption": "Segment Parameter",
-										"param-domain-type": "list",
-										"value": "\"Consumer\"",
-										"source-field": "[federated.10nnk8d1vgmw8q17yu76u06pnbcj].[Segment]"
-									},
-									"children": [
-										{
-											"type": "calculation",
-											"attrs": {
-												"formula": "\"Consumer\"",
-												"class": "tableau"
-											}
-										}
-									]
-								},
-								{
-									"type": "column",
-									"attrs": {
 										"name": "[Parameter 1 1]",
 										"role": "measure",
 										"datatype": "string",
@@ -381,6 +353,28 @@
 											}
 										}
 									]
+								},
+								{
+									"type": "column",
+									"attrs": {
+										"name": "[Parameter 3225702770847745]",
+										"role": "measure",
+										"datatype": "string",
+										"type": "nominal",
+										"caption": "Segment Parameter",
+										"param-domain-type": "list",
+										"value": "\"Consumer\"",
+										"source-field": "[federated.10nnk8d1vgmw8q17yu76u06pnbcj].[Segment]"
+									},
+									"children": [
+										{
+											"type": "calculation",
+											"attrs": {
+												"formula": "\"Consumer\"",
+												"class": "tableau"
+											}
+										}
+									]
 								}
 							]
 						},
@@ -412,13 +406,13 @@
 														{
 															"type": "connection",
 															"attrs": {
-																"server": "",
-																"interpretationMode": "0",
 																"class": "excel-direct",
+																"interpretationMode": "0",
+																"server": "",
 																"cleaning": "no",
 																"compat": "no",
 																"dataRefreshTime": "",
-																"filename": "C:/Users/alexa/AppData/Local/Temp/TableauTemp/3244982624/Data/Superstore/Sales Target.xlsx",
+																"filename": "C:/Users/alexa/AppData/Local/Temp/TableauTemp/076bulz1dfai5w15ceome0xfcanm/Data/Superstore/Sales Target.xlsx",
 																"password": "",
 																"validate": "no"
 															}
@@ -595,7 +589,7 @@
 														{
 															"type": "collation",
 															"attrs": {
-																"name": "LEN_RNZ_S2",
+																"name": "LEN_RUS_S2",
 																"flag": "1"
 															}
 														},
@@ -724,7 +718,7 @@
 														{
 															"type": "collation",
 															"attrs": {
-																"name": "LEN_RNZ_S2",
+																"name": "LEN_RUS_S2",
 																"flag": "1"
 															}
 														},
@@ -933,6 +927,1023 @@
 						{
 							"type": "datasource",
 							"attrs": {
+								"name": "federated.0a01cod1oxl83l1f5yves1cfciqo",
+								"caption": "Sales Commission",
+								"version": "18.1",
+								"inline": "true"
+							},
+							"children": [
+								{
+									"type": "connection",
+									"attrs": {
+										"class": "federated"
+									},
+									"children": [
+										{
+											"type": "named-connections",
+											"children": [
+												{
+													"type": "named-connection",
+													"attrs": {
+														"name": "textscan.0bdqfzt0f0ynar1egmoso1fglwo7",
+														"caption": "Sales Commission"
+													},
+													"children": [
+														{
+															"type": "connection",
+															"attrs": {
+																"server": "",
+																"class": "textscan",
+																"directory": "C:/Users/alexa/AppData/Local/Temp/TableauTemp/076bulz1dfai5w15ceome0xfcanm/Data/Superstore",
+																"filename": "Sales Commission.csv",
+																"password": ""
+															}
+														}
+													]
+												}
+											]
+										},
+										{
+											"type": "relation",
+											"attrs": {
+												"type": "table",
+												"name": "Sales Commission.csv",
+												"table": "[Sales Commission#csv]",
+												"connection": "textscan.0bdqfzt0f0ynar1egmoso1fglwo7"
+											},
+											"children": [
+												{
+													"type": "columns",
+													"attrs": {
+														"character-set": "UTF-8",
+														"separator": ",",
+														"locale": "en_US",
+														"header": "yes"
+													},
+													"children": [
+														{
+															"type": "column",
+															"attrs": {
+																"datatype": "datetime",
+																"name": "Order Date",
+																"ordinal": "0"
+															}
+														},
+														{
+															"type": "column",
+															"attrs": {
+																"datatype": "string",
+																"name": "Region",
+																"ordinal": "1"
+															}
+														},
+														{
+															"type": "column",
+															"attrs": {
+																"datatype": "string",
+																"name": "Sales Person",
+																"ordinal": "2"
+															}
+														},
+														{
+															"type": "column",
+															"attrs": {
+																"datatype": "integer",
+																"name": "Sales",
+																"ordinal": "3"
+															}
+														}
+													]
+												}
+											]
+										},
+										{
+											"type": "metadata-records",
+											"children": [
+												{
+													"type": "metadata-record",
+													"attrs": {
+														"class": "capability"
+													},
+													"children": [
+														{
+															"type": "remote-name"
+														},
+														{
+															"type": "remote-type",
+															"content": "0"
+														},
+														{
+															"type": "parent-name",
+															"content": "[Sales Commission.csv]"
+														},
+														{
+															"type": "remote-alias"
+														},
+														{
+															"type": "aggregation",
+															"content": "Count"
+														},
+														{
+															"type": "contains-null",
+															"content": "true"
+														},
+														{
+															"type": "attributes",
+															"children": [
+																{
+																	"type": "attribute",
+																	"attrs": {
+																		"name": "character-set",
+																		"datatype": "string"
+																	},
+																	"content": "\"UTF-8\""
+																},
+																{
+																	"type": "attribute",
+																	"attrs": {
+																		"name": "collation",
+																		"datatype": "string"
+																	},
+																	"content": "\"en_US\""
+																},
+																{
+																	"type": "attribute",
+																	"attrs": {
+																		"name": "field-delimiter",
+																		"datatype": "string"
+																	},
+																	"content": "\",\""
+																},
+																{
+																	"type": "attribute",
+																	"attrs": {
+																		"name": "header-row",
+																		"datatype": "string"
+																	},
+																	"content": "\"true\""
+																},
+																{
+																	"type": "attribute",
+																	"attrs": {
+																		"name": "locale",
+																		"datatype": "string"
+																	},
+																	"content": "\"en_US\""
+																},
+																{
+																	"type": "attribute",
+																	"attrs": {
+																		"name": "single-char",
+																		"datatype": "string"
+																	},
+																	"content": "\"\""
+																}
+															]
+														}
+													]
+												},
+												{
+													"type": "metadata-record",
+													"attrs": {
+														"class": "column"
+													},
+													"children": [
+														{
+															"type": "remote-name",
+															"content": "Order Date"
+														},
+														{
+															"type": "remote-type",
+															"content": "135"
+														},
+														{
+															"type": "local-name",
+															"content": "[Order Date]"
+														},
+														{
+															"type": "parent-name",
+															"content": "[Sales Commission.csv]"
+														},
+														{
+															"type": "remote-alias",
+															"content": "Order Date"
+														},
+														{
+															"type": "ordinal",
+															"content": "0"
+														},
+														{
+															"type": "local-type",
+															"content": "datetime"
+														},
+														{
+															"type": "aggregation",
+															"content": "Year"
+														},
+														{
+															"type": "contains-null",
+															"content": "true"
+														}
+													]
+												},
+												{
+													"type": "metadata-record",
+													"attrs": {
+														"class": "column"
+													},
+													"children": [
+														{
+															"type": "remote-name",
+															"content": "Region"
+														},
+														{
+															"type": "remote-type",
+															"content": "129"
+														},
+														{
+															"type": "local-name",
+															"content": "[Region]"
+														},
+														{
+															"type": "parent-name",
+															"content": "[Sales Commission.csv]"
+														},
+														{
+															"type": "remote-alias",
+															"content": "Region"
+														},
+														{
+															"type": "ordinal",
+															"content": "1"
+														},
+														{
+															"type": "local-type",
+															"content": "string"
+														},
+														{
+															"type": "aggregation",
+															"content": "Count"
+														},
+														{
+															"type": "scale",
+															"content": "1"
+														},
+														{
+															"type": "width",
+															"content": "1073741823"
+														},
+														{
+															"type": "contains-null",
+															"content": "true"
+														},
+														{
+															"type": "collation",
+															"attrs": {
+																"name": "LEN_RUS",
+																"flag": "0"
+															}
+														}
+													]
+												},
+												{
+													"type": "metadata-record",
+													"attrs": {
+														"class": "column"
+													},
+													"children": [
+														{
+															"type": "remote-name",
+															"content": "Sales Person"
+														},
+														{
+															"type": "remote-type",
+															"content": "129"
+														},
+														{
+															"type": "local-name",
+															"content": "[Sales Person]"
+														},
+														{
+															"type": "parent-name",
+															"content": "[Sales Commission.csv]"
+														},
+														{
+															"type": "remote-alias",
+															"content": "Sales Person"
+														},
+														{
+															"type": "ordinal",
+															"content": "2"
+														},
+														{
+															"type": "local-type",
+															"content": "string"
+														},
+														{
+															"type": "aggregation",
+															"content": "Count"
+														},
+														{
+															"type": "scale",
+															"content": "1"
+														},
+														{
+															"type": "width",
+															"content": "1073741823"
+														},
+														{
+															"type": "contains-null",
+															"content": "true"
+														},
+														{
+															"type": "collation",
+															"attrs": {
+																"name": "LEN_RUS",
+																"flag": "0"
+															}
+														}
+													]
+												},
+												{
+													"type": "metadata-record",
+													"attrs": {
+														"class": "column"
+													},
+													"children": [
+														{
+															"type": "remote-name",
+															"content": "Sales"
+														},
+														{
+															"type": "remote-type",
+															"content": "20"
+														},
+														{
+															"type": "local-name",
+															"content": "[Sales]"
+														},
+														{
+															"type": "parent-name",
+															"content": "[Sales Commission.csv]"
+														},
+														{
+															"type": "remote-alias",
+															"content": "Sales"
+														},
+														{
+															"type": "ordinal",
+															"content": "3"
+														},
+														{
+															"type": "local-type",
+															"content": "integer"
+														},
+														{
+															"type": "aggregation",
+															"content": "Sum"
+														},
+														{
+															"type": "contains-null",
+															"content": "true"
+														}
+													]
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "aliases",
+									"attrs": {
+										"enabled": "yes"
+									}
+								},
+								{
+									"type": "column",
+									"attrs": {
+										"name": "[Achievement (copy)]",
+										"role": "measure",
+										"datatype": "integer",
+										"type": "quantitative",
+										"default-format": "C1033%",
+										"caption": "Achievement (estimated)"
+									},
+									"children": [
+										{
+											"type": "calculation",
+											"attrs": {
+												"formula": "[Sales]",
+												"class": "tableau",
+												"scope-isolation": "false"
+											}
+										}
+									]
+								},
+								{
+									"type": "column",
+									"attrs": {
+										"name": "[Achievement (variable) (copy)]",
+										"role": "measure",
+										"datatype": "string",
+										"type": "nominal",
+										"caption": "Achieved Quota"
+									},
+									"children": [
+										{
+											"type": "calculation",
+											"attrs": {
+												"formula": "if SUM([Achievement (copy)]) >= [Parameters].[New Quota] then \"100% +\"\r\nelseif SUM([Achievement (copy)]) >= 0.75 * [Parameters].[New Quota] then \"75-100%\"\r\nelseif SUM([Achievement (copy)]) >= 0.5 * [Parameters].[New Quota] then \"50-75%\"\r\nelse \"Below 50%\" end",
+												"class": "tableau"
+											}
+										}
+									]
+								},
+								{
+									"type": "column",
+									"attrs": {
+										"name": "[Base (Variable)]",
+										"role": "measure",
+										"datatype": "integer",
+										"type": "quantitative",
+										"default-format": "C1033%"
+									},
+									"children": [
+										{
+											"type": "calculation",
+											"attrs": {
+												"formula": "[Parameters].[Base Salary]",
+												"class": "tableau"
+											}
+										}
+									]
+								},
+								{
+									"type": "column",
+									"attrs": {
+										"name": "[Calculation_0440925131659539]",
+										"role": "measure",
+										"datatype": "real",
+										"type": "quantitative",
+										"default-format": "p0%",
+										"caption": "% of quota achieved"
+									},
+									"children": [
+										{
+											"type": "calculation",
+											"attrs": {
+												"formula": "AVG([Achievement (copy)])/[Parameters].[New Quota]",
+												"class": "tableau",
+												"scope-isolation": "false"
+											}
+										}
+									]
+								},
+								{
+									"type": "column",
+									"attrs": {
+										"name": "[Calculation_4120925132203686]",
+										"role": "measure",
+										"datatype": "real",
+										"type": "quantitative",
+										"caption": "Rank over 3"
+									},
+									"children": [
+										{
+											"type": "calculation",
+											"attrs": {
+												"formula": "ROUND(INDEX() / 3 - 0.6,0) + 1",
+												"class": "tableau"
+											},
+											"children": [
+												{
+													"type": "table-calc",
+													"attrs": {
+														"ordering-type": "Rows"
+													}
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "column",
+									"attrs": {
+										"name": "[Calculation_8140925133029303]",
+										"role": "measure",
+										"datatype": "real",
+										"type": "ordinal",
+										"caption": "Sort by field"
+									},
+									"children": [
+										{
+											"type": "calculation",
+											"attrs": {
+												"formula": "if [Parameters].[Parameter 1 1]=\"Names\" then 0\r\nelseif [Parameters].[Parameter 1 1]=\"% quota descending\" then -[Calculation_0440925131659539]\r\nelse [Calculation_0440925131659539] end",
+												"class": "tableau"
+											}
+										}
+									]
+								},
+								{
+									"type": "column",
+									"attrs": {
+										"name": "[Commission (Variable)]",
+										"role": "measure",
+										"datatype": "real",
+										"type": "quantitative",
+										"default-format": "C1033%"
+									},
+									"children": [
+										{
+											"type": "calculation",
+											"attrs": {
+												"formula": "([Parameters].[Commission Rate]*[Sales])/100",
+												"class": "tableau",
+												"scope-isolation": "false"
+											}
+										}
+									]
+								},
+								{
+									"type": "column",
+									"attrs": {
+										"name": "[Estimate Compensation label]",
+										"role": "dimension",
+										"datatype": "string",
+										"type": "nominal"
+									},
+									"children": [
+										{
+											"type": "calculation",
+											"attrs": {
+												"formula": "\"Estimated Compensation:\"",
+												"class": "tableau"
+											}
+										},
+										{
+											"type": "aliases",
+											"children": [
+												{
+													"type": "alias",
+													"attrs": {
+														"key": "\"Estimated Compensation:\"",
+														"value": "Estimated total compensation"
+													}
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "column",
+									"attrs": {
+										"name": "[OTE (Variable)]",
+										"role": "measure",
+										"datatype": "real",
+										"type": "quantitative",
+										"default-format": "C1033%"
+									},
+									"children": [
+										{
+											"type": "calculation",
+											"attrs": {
+												"formula": "[Parameters].[Base Salary] + ([Parameters].[Commission Rate]*[Parameters].[New Quota])/100",
+												"class": "tableau"
+											}
+										}
+									]
+								},
+								{
+									"type": "column",
+									"attrs": {
+										"name": "[Sales]",
+										"role": "measure",
+										"datatype": "integer",
+										"type": "quantitative",
+										"default-format": "c\"$\"#,##0.00;(\"$\"#,##0.00)"
+									}
+								},
+								{
+									"type": "column",
+									"attrs": {
+										"name": "[Total Compensation]",
+										"role": "measure",
+										"datatype": "real",
+										"type": "quantitative",
+										"default-format": "C1033%"
+									},
+									"children": [
+										{
+											"type": "calculation",
+											"attrs": {
+												"formula": "MIN([Base (Variable)]) + SUM([Commission (Variable)])",
+												"class": "tableau"
+											}
+										}
+									]
+								},
+								{
+									"type": "column",
+									"attrs": {
+										"name": "[Total Sales label]",
+										"role": "dimension",
+										"datatype": "string",
+										"type": "nominal"
+									},
+									"children": [
+										{
+											"type": "calculation",
+											"attrs": {
+												"formula": "\"Total Sales:\"",
+												"class": "tableau"
+											}
+										},
+										{
+											"type": "aliases",
+											"children": [
+												{
+													"type": "alias",
+													"attrs": {
+														"key": "\"Total Sales:\"",
+														"value": "Total"
+													}
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "column",
+									"attrs": {
+										"name": "[__tableau_internal_object_id__].[Sales Commission.csv_4F66D485F1F148A299B285539B88B015]",
+										"role": "measure",
+										"datatype": "table",
+										"type": "quantitative",
+										"caption": "Sales Commission"
+									}
+								},
+								{
+									"type": "column-instance",
+									"attrs": {
+										"name": "[min:Base (Variable):qk]",
+										"column": "[Base (Variable)]",
+										"pivot": "key",
+										"type": "quantitative",
+										"derivation": "Min"
+									}
+								},
+								{
+									"type": "column-instance",
+									"attrs": {
+										"name": "[sum:Commission (Variable):qk]",
+										"column": "[Commission (Variable)]",
+										"pivot": "key",
+										"type": "quantitative",
+										"derivation": "Sum"
+									}
+								},
+								{
+									"type": "column-instance",
+									"attrs": {
+										"name": "[usr:Achievement (variable) (copy):nk]",
+										"column": "[Achievement (variable) (copy)]",
+										"pivot": "key",
+										"type": "nominal",
+										"derivation": "User"
+									}
+								},
+								{
+									"type": "layout",
+									"attrs": {
+										"common-percentage": "0.690808",
+										"parameter-percentage": "0.309192",
+										"user-set-layout-v2": "true",
+										"measure-ordering": "alphabetic",
+										"dim-ordering": "alphabetic",
+										"show-structure": "true"
+									}
+								},
+								{
+									"type": "style",
+									"children": [
+										{
+											"type": "style-rule",
+											"attrs": {
+												"element": "mark"
+											},
+											"children": [
+												{
+													"type": "encoding",
+													"attrs": {
+														"type": "palette",
+														"attr": "color",
+														"field": "[:Measure Names]"
+													},
+													"children": [
+														{
+															"type": "map",
+															"attrs": {
+																"to": "#5f9ed1"
+															},
+															"children": [
+																{
+																	"type": "bucket",
+																	"content": "\"[federated.0a01cod1oxl83l1f5yves1cfciqo].[sum:Commission (Variable):qk]\""
+																}
+															]
+														},
+														{
+															"type": "map",
+															"attrs": {
+																"to": "#898989"
+															},
+															"children": [
+																{
+																	"type": "bucket",
+																	"content": "\"[federated.0a01cod1oxl83l1f5yves1cfciqo].[min:Base (Variable):qk]\""
+																}
+															]
+														}
+													]
+												},
+												{
+													"type": "encoding",
+													"attrs": {
+														"type": "palette",
+														"attr": "color",
+														"field": "[usr:Achievement (variable) (copy):nk]"
+													},
+													"children": [
+														{
+															"type": "map",
+															"attrs": {
+																"to": "#4e79a7"
+															},
+															"children": [
+																{
+																	"type": "bucket",
+																	"content": "\"50-75\\%\""
+																}
+															]
+														},
+														{
+															"type": "map",
+															"attrs": {
+																"to": "#59a14f"
+															},
+															"children": [
+																{
+																	"type": "bucket",
+																	"content": "\"Below 50\\%\""
+																}
+															]
+														},
+														{
+															"type": "map",
+															"attrs": {
+																"to": "#76b7b2"
+															},
+															"children": [
+																{
+																	"type": "bucket",
+																	"content": "\"100\\% +\""
+																}
+															]
+														},
+														{
+															"type": "map",
+															"attrs": {
+																"to": "#f28e2b"
+															},
+															"children": [
+																{
+																	"type": "bucket",
+																	"content": "\"75-100\\%\""
+																}
+															]
+														}
+													]
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "semantic-values",
+									"children": [
+										{
+											"type": "semantic-value",
+											"attrs": {
+												"key": "[Country].[Name]",
+												"value": "\"United States\""
+											}
+										}
+									]
+								},
+								{
+									"type": "datasource-dependencies",
+									"attrs": {
+										"datasource": "Parameters"
+									},
+									"children": [
+										{
+											"type": "column",
+											"attrs": {
+												"name": "[Base Salary]",
+												"role": "measure",
+												"datatype": "integer",
+												"type": "quantitative",
+												"default-format": "c\"$\"#,##0;(\"$\"#,##0)",
+												"caption": "Base Salary",
+												"param-domain-type": "range",
+												"value": "50000"
+											},
+											"children": [
+												{
+													"type": "calculation",
+													"attrs": {
+														"formula": "50000",
+														"class": "tableau"
+													}
+												},
+												{
+													"type": "range",
+													"attrs": {
+														"min": "0",
+														"granularity": "1000"
+													}
+												}
+											]
+										},
+										{
+											"type": "column",
+											"attrs": {
+												"name": "[Commission Rate]",
+												"role": "measure",
+												"datatype": "real",
+												"type": "quantitative",
+												"default-format": "n#,##0.0\"%\";-#,##0.0\"%\"",
+												"caption": "Commission Rate",
+												"param-domain-type": "range",
+												"value": "18.399999999999999"
+											},
+											"children": [
+												{
+													"type": "calculation",
+													"attrs": {
+														"formula": "18.399999999999999",
+														"class": "tableau"
+													}
+												},
+												{
+													"type": "range",
+													"attrs": {
+														"min": "1.0",
+														"max": "100.0",
+														"granularity": "0.10000000000000001"
+													}
+												}
+											]
+										},
+										{
+											"type": "column",
+											"attrs": {
+												"name": "[New Quota]",
+												"role": "measure",
+												"datatype": "integer",
+												"type": "quantitative",
+												"default-format": "c\"$\"#,##0,K;(\"$\"#,##0,K)",
+												"caption": "New Quota",
+												"param-domain-type": "range",
+												"value": "500000"
+											},
+											"children": [
+												{
+													"type": "calculation",
+													"attrs": {
+														"formula": "500000",
+														"class": "tableau"
+													}
+												},
+												{
+													"type": "range",
+													"attrs": {
+														"min": "100000",
+														"granularity": "25000"
+													}
+												}
+											]
+										},
+										{
+											"type": "column",
+											"attrs": {
+												"name": "[Parameter 1 1]",
+												"role": "measure",
+												"datatype": "string",
+												"type": "nominal",
+												"caption": "Sort by",
+												"param-domain-type": "list",
+												"value": "\"Names\""
+											},
+											"children": [
+												{
+													"type": "calculation",
+													"attrs": {
+														"formula": "\"Names\"",
+														"class": "tableau"
+													}
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "object-graph",
+									"children": [
+										{
+											"type": "objects",
+											"children": [
+												{
+													"type": "object",
+													"attrs": {
+														"id": "Sales Commission.csv_4F66D485F1F148A299B285539B88B015",
+														"caption": "Sales Commission"
+													},
+													"children": [
+														{
+															"type": "properties",
+															"attrs": {
+																"context": ""
+															},
+															"children": [
+																{
+																	"type": "relation",
+																	"attrs": {
+																		"type": "table",
+																		"name": "Sales Commission.csv",
+																		"table": "[Sales Commission#csv]",
+																		"connection": "textscan.0bdqfzt0f0ynar1egmoso1fglwo7"
+																	},
+																	"children": [
+																		{
+																			"type": "columns",
+																			"attrs": {
+																				"character-set": "UTF-8",
+																				"separator": ",",
+																				"locale": "en_US",
+																				"header": "yes"
+																			},
+																			"children": [
+																				{
+																					"type": "column",
+																					"attrs": {
+																						"datatype": "datetime",
+																						"name": "Order Date",
+																						"ordinal": "0"
+																					}
+																				},
+																				{
+																					"type": "column",
+																					"attrs": {
+																						"datatype": "string",
+																						"name": "Region",
+																						"ordinal": "1"
+																					}
+																				},
+																				{
+																					"type": "column",
+																					"attrs": {
+																						"datatype": "string",
+																						"name": "Sales Person",
+																						"ordinal": "2"
+																					}
+																				},
+																				{
+																					"type": "column",
+																					"attrs": {
+																						"datatype": "integer",
+																						"name": "Sales",
+																						"ordinal": "3"
+																					}
+																				}
+																			]
+																		}
+																	]
+																}
+															]
+														}
+													]
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "datasource",
+							"attrs": {
 								"name": "federated.10nnk8d1vgmw8q17yu76u06pnbcj",
 								"caption": "Sample - Superstore",
 								"version": "18.1",
@@ -964,7 +1975,7 @@
 																"cleaning": "no",
 																"compat": "no",
 																"dataRefreshTime": "",
-																"filename": "C:/Users/alexa/AppData/Local/Temp/TableauTemp/3244982624/Data/Superstore/Sample - Superstore.xlsx",
+																"filename": "C:/Users/alexa/AppData/Local/Temp/TableauTemp/076bulz1dfai5w15ceome0xfcanm/Data/Superstore/Sample - Superstore.xlsx",
 																"password": "",
 																"validate": "no"
 															}
@@ -1464,7 +2475,7 @@
 																		"name": "context",
 																		"datatype": "integer"
 																	},
-																	"content": "1"
+																	"content": "3"
 																},
 																{
 																	"type": "attribute",
@@ -1598,7 +2609,7 @@
 																		"name": "context",
 																		"datatype": "integer"
 																	},
-																	"content": "0"
+																	"content": "2"
 																},
 																{
 																	"type": "attribute",
@@ -3703,8 +4714,9 @@
 										"name": "[Sales per Customer (copy)]",
 										"role": "measure",
 										"datatype": "real",
+										"visual-totals": "Avg",
 										"type": "quantitative",
-										"default-format": "C1033%",
+										"default-format": "p0.00%",
 										"caption": "Profit per Order"
 									},
 									"children": [
@@ -3714,6 +4726,20 @@
 												"formula": "Sum([Profit])/countD([Order ID])",
 												"class": "tableau"
 											}
+										},
+										{
+											"type": "desc",
+											"children": [
+												{
+													"type": "formatted-text",
+													"children": [
+														{
+															"type": "run",
+															"content": "This is the profit per order"
+														}
+													]
+												}
+											]
 										}
 									]
 								},
@@ -5101,44 +6127,6 @@
 								{
 									"type": "group",
 									"attrs": {
-										"name": "[Segment Set]",
-										"name-style": "unqualified",
-										"caption": "Segment Set",
-										"user:ui-builder": "filter-group"
-									},
-									"children": [
-										{
-											"type": "groupfilter",
-											"attrs": {
-												"user:ui-enumeration": "inclusive",
-												"user:ui-domain": "database",
-												"user:ui-marker": "enumerate",
-												"function": "union"
-											},
-											"children": [
-												{
-													"type": "groupfilter",
-													"attrs": {
-														"function": "member",
-														"member": "\"Corporate\"",
-														"level": "[Segment]"
-													}
-												},
-												{
-													"type": "groupfilter",
-													"attrs": {
-														"function": "member",
-														"member": "\"Home Office\"",
-														"level": "[Segment]"
-													}
-												}
-											]
-										}
-									]
-								},
-								{
-									"type": "group",
-									"attrs": {
 										"name": "[Tooltip (Country/Region,State/Province)]",
 										"name-style": "unqualified",
 										"caption": "Tooltip (Country/Region,State/Province)",
@@ -5255,8 +6243,8 @@
 								{
 									"type": "layout",
 									"attrs": {
-										"common-percentage": "0.828767",
-										"parameter-percentage": "0.171233",
+										"common-percentage": "0.81178",
+										"parameter-percentage": "0.18822",
 										"user-set-layout-v2": "true",
 										"measure-ordering": "alphabetic",
 										"dim-ordering": "alphabetic",
@@ -6030,1039 +7018,6 @@
 									]
 								}
 							]
-						},
-						{
-							"type": "datasource",
-							"attrs": {
-								"name": "federated.0a01cod1oxl83l1f5yves1cfciqo",
-								"caption": "Sales Commission",
-								"version": "18.1",
-								"inline": "true"
-							},
-							"children": [
-								{
-									"type": "connection",
-									"attrs": {
-										"class": "federated"
-									},
-									"children": [
-										{
-											"type": "named-connections",
-											"children": [
-												{
-													"type": "named-connection",
-													"attrs": {
-														"name": "textscan.0bdqfzt0f0ynar1egmoso1fglwo7",
-														"caption": "Sales Commission"
-													},
-													"children": [
-														{
-															"type": "connection",
-															"attrs": {
-																"class": "textscan",
-																"server": "",
-																"directory": "C:/Users/alexa/AppData/Local/Temp/TableauTemp/3244982624/Data/Superstore",
-																"filename": "Sales Commission.csv",
-																"password": ""
-															}
-														}
-													]
-												}
-											]
-										},
-										{
-											"type": "relation",
-											"attrs": {
-												"type": "table",
-												"name": "Sales Commission.csv",
-												"table": "[Sales Commission#csv]",
-												"connection": "textscan.0bdqfzt0f0ynar1egmoso1fglwo7"
-											},
-											"children": [
-												{
-													"type": "columns",
-													"attrs": {
-														"character-set": "UTF-8",
-														"header": "yes",
-														"locale": "en_US",
-														"separator": ","
-													},
-													"children": [
-														{
-															"type": "column",
-															"attrs": {
-																"datatype": "datetime",
-																"name": "Order Date",
-																"ordinal": "0"
-															}
-														},
-														{
-															"type": "column",
-															"attrs": {
-																"datatype": "string",
-																"name": "Region",
-																"ordinal": "1"
-															}
-														},
-														{
-															"type": "column",
-															"attrs": {
-																"datatype": "string",
-																"name": "Sales Person",
-																"ordinal": "2"
-															}
-														},
-														{
-															"type": "column",
-															"attrs": {
-																"datatype": "integer",
-																"name": "Sales",
-																"ordinal": "3"
-															}
-														}
-													]
-												}
-											]
-										},
-										{
-											"type": "metadata-records",
-											"children": [
-												{
-													"type": "metadata-record",
-													"attrs": {
-														"class": "capability"
-													},
-													"children": [
-														{
-															"type": "remote-name"
-														},
-														{
-															"type": "remote-type",
-															"content": "0"
-														},
-														{
-															"type": "parent-name",
-															"content": "[Sales Commission.csv]"
-														},
-														{
-															"type": "remote-alias"
-														},
-														{
-															"type": "aggregation",
-															"content": "Count"
-														},
-														{
-															"type": "contains-null",
-															"content": "true"
-														},
-														{
-															"type": "attributes",
-															"children": [
-																{
-																	"type": "attribute",
-																	"attrs": {
-																		"name": "character-set",
-																		"datatype": "string"
-																	},
-																	"content": "\"UTF-8\""
-																},
-																{
-																	"type": "attribute",
-																	"attrs": {
-																		"name": "collation",
-																		"datatype": "string"
-																	},
-																	"content": "\"en_US\""
-																},
-																{
-																	"type": "attribute",
-																	"attrs": {
-																		"name": "field-delimiter",
-																		"datatype": "string"
-																	},
-																	"content": "\",\""
-																},
-																{
-																	"type": "attribute",
-																	"attrs": {
-																		"name": "header-row",
-																		"datatype": "string"
-																	},
-																	"content": "\"true\""
-																},
-																{
-																	"type": "attribute",
-																	"attrs": {
-																		"name": "locale",
-																		"datatype": "string"
-																	},
-																	"content": "\"en_US\""
-																},
-																{
-																	"type": "attribute",
-																	"attrs": {
-																		"name": "single-char",
-																		"datatype": "string"
-																	},
-																	"content": "\"\""
-																}
-															]
-														}
-													]
-												},
-												{
-													"type": "metadata-record",
-													"attrs": {
-														"class": "column"
-													},
-													"children": [
-														{
-															"type": "remote-name",
-															"content": "Order Date"
-														},
-														{
-															"type": "remote-type",
-															"content": "135"
-														},
-														{
-															"type": "local-name",
-															"content": "[Order Date]"
-														},
-														{
-															"type": "parent-name",
-															"content": "[Sales Commission.csv]"
-														},
-														{
-															"type": "remote-alias",
-															"content": "Order Date"
-														},
-														{
-															"type": "ordinal",
-															"content": "0"
-														},
-														{
-															"type": "local-type",
-															"content": "datetime"
-														},
-														{
-															"type": "aggregation",
-															"content": "Year"
-														},
-														{
-															"type": "contains-null",
-															"content": "true"
-														},
-														{
-															"type": "object-id",
-															"content": "[Sales Commission.csv_4F66D485F1F148A299B285539B88B015]"
-														}
-													]
-												},
-												{
-													"type": "metadata-record",
-													"attrs": {
-														"class": "column"
-													},
-													"children": [
-														{
-															"type": "remote-name",
-															"content": "Region"
-														},
-														{
-															"type": "remote-type",
-															"content": "129"
-														},
-														{
-															"type": "local-name",
-															"content": "[Region]"
-														},
-														{
-															"type": "parent-name",
-															"content": "[Sales Commission.csv]"
-														},
-														{
-															"type": "remote-alias",
-															"content": "Region"
-														},
-														{
-															"type": "ordinal",
-															"content": "1"
-														},
-														{
-															"type": "local-type",
-															"content": "string"
-														},
-														{
-															"type": "aggregation",
-															"content": "Count"
-														},
-														{
-															"type": "scale",
-															"content": "1"
-														},
-														{
-															"type": "width",
-															"content": "1073741823"
-														},
-														{
-															"type": "contains-null",
-															"content": "true"
-														},
-														{
-															"type": "collation",
-															"attrs": {
-																"name": "LEN_RUS",
-																"flag": "0"
-															}
-														},
-														{
-															"type": "object-id",
-															"content": "[Sales Commission.csv_4F66D485F1F148A299B285539B88B015]"
-														}
-													]
-												},
-												{
-													"type": "metadata-record",
-													"attrs": {
-														"class": "column"
-													},
-													"children": [
-														{
-															"type": "remote-name",
-															"content": "Sales Person"
-														},
-														{
-															"type": "remote-type",
-															"content": "129"
-														},
-														{
-															"type": "local-name",
-															"content": "[Sales Person]"
-														},
-														{
-															"type": "parent-name",
-															"content": "[Sales Commission.csv]"
-														},
-														{
-															"type": "remote-alias",
-															"content": "Sales Person"
-														},
-														{
-															"type": "ordinal",
-															"content": "2"
-														},
-														{
-															"type": "local-type",
-															"content": "string"
-														},
-														{
-															"type": "aggregation",
-															"content": "Count"
-														},
-														{
-															"type": "scale",
-															"content": "1"
-														},
-														{
-															"type": "width",
-															"content": "1073741823"
-														},
-														{
-															"type": "contains-null",
-															"content": "true"
-														},
-														{
-															"type": "collation",
-															"attrs": {
-																"name": "LEN_RUS",
-																"flag": "0"
-															}
-														},
-														{
-															"type": "object-id",
-															"content": "[Sales Commission.csv_4F66D485F1F148A299B285539B88B015]"
-														}
-													]
-												},
-												{
-													"type": "metadata-record",
-													"attrs": {
-														"class": "column"
-													},
-													"children": [
-														{
-															"type": "remote-name",
-															"content": "Sales"
-														},
-														{
-															"type": "remote-type",
-															"content": "20"
-														},
-														{
-															"type": "local-name",
-															"content": "[Sales]"
-														},
-														{
-															"type": "parent-name",
-															"content": "[Sales Commission.csv]"
-														},
-														{
-															"type": "remote-alias",
-															"content": "Sales"
-														},
-														{
-															"type": "ordinal",
-															"content": "3"
-														},
-														{
-															"type": "local-type",
-															"content": "integer"
-														},
-														{
-															"type": "aggregation",
-															"content": "Sum"
-														},
-														{
-															"type": "contains-null",
-															"content": "true"
-														},
-														{
-															"type": "object-id",
-															"content": "[Sales Commission.csv_4F66D485F1F148A299B285539B88B015]"
-														}
-													]
-												}
-											]
-										}
-									]
-								},
-								{
-									"type": "aliases",
-									"attrs": {
-										"enabled": "yes"
-									}
-								},
-								{
-									"type": "column",
-									"attrs": {
-										"name": "[Achievement (copy)]",
-										"role": "measure",
-										"datatype": "integer",
-										"type": "quantitative",
-										"default-format": "C1033%",
-										"caption": "Achievement (estimated)"
-									},
-									"children": [
-										{
-											"type": "calculation",
-											"attrs": {
-												"formula": "[Sales]",
-												"class": "tableau",
-												"scope-isolation": "false"
-											}
-										}
-									]
-								},
-								{
-									"type": "column",
-									"attrs": {
-										"name": "[Achievement (variable) (copy)]",
-										"role": "measure",
-										"datatype": "string",
-										"type": "nominal",
-										"caption": "Achieved Quota"
-									},
-									"children": [
-										{
-											"type": "calculation",
-											"attrs": {
-												"formula": "if SUM([Achievement (copy)]) >= [Parameters].[New Quota] then \"100% +\"\r\nelseif SUM([Achievement (copy)]) >= 0.75 * [Parameters].[New Quota] then \"75-100%\"\r\nelseif SUM([Achievement (copy)]) >= 0.5 * [Parameters].[New Quota] then \"50-75%\"\r\nelse \"Below 50%\" end",
-												"class": "tableau"
-											}
-										}
-									]
-								},
-								{
-									"type": "column",
-									"attrs": {
-										"name": "[Base (Variable)]",
-										"role": "measure",
-										"datatype": "integer",
-										"type": "quantitative",
-										"default-format": "C1033%"
-									},
-									"children": [
-										{
-											"type": "calculation",
-											"attrs": {
-												"formula": "[Parameters].[Base Salary]",
-												"class": "tableau"
-											}
-										}
-									]
-								},
-								{
-									"type": "column",
-									"attrs": {
-										"name": "[Calculation_0440925131659539]",
-										"role": "measure",
-										"datatype": "real",
-										"type": "quantitative",
-										"default-format": "p0%",
-										"caption": "% of quota achieved"
-									},
-									"children": [
-										{
-											"type": "calculation",
-											"attrs": {
-												"formula": "AVG([Achievement (copy)])/[Parameters].[New Quota]",
-												"class": "tableau",
-												"scope-isolation": "false"
-											}
-										}
-									]
-								},
-								{
-									"type": "column",
-									"attrs": {
-										"name": "[Calculation_4120925132203686]",
-										"role": "measure",
-										"datatype": "real",
-										"type": "quantitative",
-										"caption": "Rank over 3"
-									},
-									"children": [
-										{
-											"type": "calculation",
-											"attrs": {
-												"formula": "ROUND(INDEX() / 3 - 0.6,0) + 1",
-												"class": "tableau"
-											},
-											"children": [
-												{
-													"type": "table-calc",
-													"attrs": {
-														"ordering-type": "Rows"
-													}
-												}
-											]
-										}
-									]
-								},
-								{
-									"type": "column",
-									"attrs": {
-										"name": "[Calculation_8140925133029303]",
-										"role": "measure",
-										"datatype": "real",
-										"type": "ordinal",
-										"caption": "Sort by field"
-									},
-									"children": [
-										{
-											"type": "calculation",
-											"attrs": {
-												"formula": "if [Parameters].[Parameter 1 1]=\"Names\" then 0\r\nelseif [Parameters].[Parameter 1 1]=\"% quota descending\" then -[Calculation_0440925131659539]\r\nelse [Calculation_0440925131659539] end",
-												"class": "tableau"
-											}
-										}
-									]
-								},
-								{
-									"type": "column",
-									"attrs": {
-										"name": "[Commission (Variable)]",
-										"role": "measure",
-										"datatype": "real",
-										"type": "quantitative",
-										"default-format": "C1033%"
-									},
-									"children": [
-										{
-											"type": "calculation",
-											"attrs": {
-												"formula": "([Parameters].[Commission Rate]*[Sales])/100",
-												"class": "tableau",
-												"scope-isolation": "false"
-											}
-										}
-									]
-								},
-								{
-									"type": "column",
-									"attrs": {
-										"name": "[Estimate Compensation label]",
-										"role": "dimension",
-										"datatype": "string",
-										"type": "nominal"
-									},
-									"children": [
-										{
-											"type": "calculation",
-											"attrs": {
-												"formula": "\"Estimated Compensation:\"",
-												"class": "tableau"
-											}
-										},
-										{
-											"type": "aliases",
-											"children": [
-												{
-													"type": "alias",
-													"attrs": {
-														"key": "\"Estimated Compensation:\"",
-														"value": "Estimated total compensation"
-													}
-												}
-											]
-										}
-									]
-								},
-								{
-									"type": "column",
-									"attrs": {
-										"name": "[OTE (Variable)]",
-										"role": "measure",
-										"datatype": "real",
-										"type": "quantitative",
-										"default-format": "C1033%"
-									},
-									"children": [
-										{
-											"type": "calculation",
-											"attrs": {
-												"formula": "[Parameters].[Base Salary] + ([Parameters].[Commission Rate]*[Parameters].[New Quota])/100",
-												"class": "tableau"
-											}
-										}
-									]
-								},
-								{
-									"type": "column",
-									"attrs": {
-										"name": "[Sales]",
-										"role": "measure",
-										"datatype": "integer",
-										"type": "quantitative",
-										"default-format": "c\"$\"#,##0.00;(\"$\"#,##0.00)"
-									}
-								},
-								{
-									"type": "column",
-									"attrs": {
-										"name": "[Total Compensation]",
-										"role": "measure",
-										"datatype": "real",
-										"type": "quantitative",
-										"default-format": "C1033%"
-									},
-									"children": [
-										{
-											"type": "calculation",
-											"attrs": {
-												"formula": "MIN([Base (Variable)]) + SUM([Commission (Variable)])",
-												"class": "tableau"
-											}
-										}
-									]
-								},
-								{
-									"type": "column",
-									"attrs": {
-										"name": "[Total Sales label]",
-										"role": "dimension",
-										"datatype": "string",
-										"type": "nominal"
-									},
-									"children": [
-										{
-											"type": "calculation",
-											"attrs": {
-												"formula": "\"Total Sales:\"",
-												"class": "tableau"
-											}
-										},
-										{
-											"type": "aliases",
-											"children": [
-												{
-													"type": "alias",
-													"attrs": {
-														"key": "\"Total Sales:\"",
-														"value": "Total"
-													}
-												}
-											]
-										}
-									]
-								},
-								{
-									"type": "column",
-									"attrs": {
-										"name": "[__tableau_internal_object_id__].[Sales Commission.csv_4F66D485F1F148A299B285539B88B015]",
-										"role": "measure",
-										"datatype": "table",
-										"type": "quantitative",
-										"caption": "Sales Commission"
-									}
-								},
-								{
-									"type": "column-instance",
-									"attrs": {
-										"name": "[min:Base (Variable):qk]",
-										"column": "[Base (Variable)]",
-										"pivot": "key",
-										"type": "quantitative",
-										"derivation": "Min"
-									}
-								},
-								{
-									"type": "column-instance",
-									"attrs": {
-										"name": "[sum:Commission (Variable):qk]",
-										"column": "[Commission (Variable)]",
-										"pivot": "key",
-										"type": "quantitative",
-										"derivation": "Sum"
-									}
-								},
-								{
-									"type": "column-instance",
-									"attrs": {
-										"name": "[usr:Achievement (variable) (copy):nk]",
-										"column": "[Achievement (variable) (copy)]",
-										"pivot": "key",
-										"type": "nominal",
-										"derivation": "User"
-									}
-								},
-								{
-									"type": "layout",
-									"attrs": {
-										"common-percentage": "0.690808",
-										"parameter-percentage": "0.309192",
-										"user-set-layout-v2": "true",
-										"measure-ordering": "alphabetic",
-										"dim-ordering": "alphabetic",
-										"show-structure": "true"
-									}
-								},
-								{
-									"type": "style",
-									"children": [
-										{
-											"type": "style-rule",
-											"attrs": {
-												"element": "mark"
-											},
-											"children": [
-												{
-													"type": "encoding",
-													"attrs": {
-														"type": "palette",
-														"attr": "color",
-														"field": "[:Measure Names]"
-													},
-													"children": [
-														{
-															"type": "map",
-															"attrs": {
-																"to": "#5f9ed1"
-															},
-															"children": [
-																{
-																	"type": "bucket",
-																	"content": "\"[federated.0a01cod1oxl83l1f5yves1cfciqo].[sum:Commission (Variable):qk]\""
-																}
-															]
-														},
-														{
-															"type": "map",
-															"attrs": {
-																"to": "#898989"
-															},
-															"children": [
-																{
-																	"type": "bucket",
-																	"content": "\"[federated.0a01cod1oxl83l1f5yves1cfciqo].[min:Base (Variable):qk]\""
-																}
-															]
-														}
-													]
-												},
-												{
-													"type": "encoding",
-													"attrs": {
-														"type": "palette",
-														"attr": "color",
-														"field": "[usr:Achievement (variable) (copy):nk]"
-													},
-													"children": [
-														{
-															"type": "map",
-															"attrs": {
-																"to": "#4e79a7"
-															},
-															"children": [
-																{
-																	"type": "bucket",
-																	"content": "\"50-75\\%\""
-																}
-															]
-														},
-														{
-															"type": "map",
-															"attrs": {
-																"to": "#59a14f"
-															},
-															"children": [
-																{
-																	"type": "bucket",
-																	"content": "\"Below 50\\%\""
-																}
-															]
-														},
-														{
-															"type": "map",
-															"attrs": {
-																"to": "#76b7b2"
-															},
-															"children": [
-																{
-																	"type": "bucket",
-																	"content": "\"100\\% +\""
-																}
-															]
-														},
-														{
-															"type": "map",
-															"attrs": {
-																"to": "#f28e2b"
-															},
-															"children": [
-																{
-																	"type": "bucket",
-																	"content": "\"75-100\\%\""
-																}
-															]
-														}
-													]
-												}
-											]
-										}
-									]
-								},
-								{
-									"type": "semantic-values",
-									"children": [
-										{
-											"type": "semantic-value",
-											"attrs": {
-												"key": "[Country].[Name]",
-												"value": "\"United States\""
-											}
-										}
-									]
-								},
-								{
-									"type": "datasource-dependencies",
-									"attrs": {
-										"datasource": "Parameters"
-									},
-									"children": [
-										{
-											"type": "column",
-											"attrs": {
-												"name": "[Base Salary]",
-												"role": "measure",
-												"datatype": "integer",
-												"type": "quantitative",
-												"default-format": "c\"$\"#,##0;(\"$\"#,##0)",
-												"caption": "Base Salary",
-												"param-domain-type": "range",
-												"value": "50000"
-											},
-											"children": [
-												{
-													"type": "calculation",
-													"attrs": {
-														"formula": "50000",
-														"class": "tableau"
-													}
-												},
-												{
-													"type": "range",
-													"attrs": {
-														"min": "0",
-														"granularity": "1000"
-													}
-												}
-											]
-										},
-										{
-											"type": "column",
-											"attrs": {
-												"name": "[Commission Rate]",
-												"role": "measure",
-												"datatype": "real",
-												"type": "quantitative",
-												"default-format": "n#,##0.0\"%\";-#,##0.0\"%\"",
-												"caption": "Commission Rate",
-												"param-domain-type": "range",
-												"value": "18.399999999999999"
-											},
-											"children": [
-												{
-													"type": "calculation",
-													"attrs": {
-														"formula": "18.399999999999999",
-														"class": "tableau"
-													}
-												},
-												{
-													"type": "range",
-													"attrs": {
-														"min": "1.0",
-														"max": "100.0",
-														"granularity": "0.10000000000000001"
-													}
-												}
-											]
-										},
-										{
-											"type": "column",
-											"attrs": {
-												"name": "[New Quota]",
-												"role": "measure",
-												"datatype": "integer",
-												"type": "quantitative",
-												"default-format": "c\"$\"#,##0,K;(\"$\"#,##0,K)",
-												"caption": "New Quota",
-												"param-domain-type": "range",
-												"value": "500000"
-											},
-											"children": [
-												{
-													"type": "calculation",
-													"attrs": {
-														"formula": "500000",
-														"class": "tableau"
-													}
-												},
-												{
-													"type": "range",
-													"attrs": {
-														"min": "100000",
-														"granularity": "25000"
-													}
-												}
-											]
-										},
-										{
-											"type": "column",
-											"attrs": {
-												"name": "[Parameter 1 1]",
-												"role": "measure",
-												"datatype": "string",
-												"type": "nominal",
-												"caption": "Sort by",
-												"param-domain-type": "list",
-												"value": "\"Names\""
-											},
-											"children": [
-												{
-													"type": "calculation",
-													"attrs": {
-														"formula": "\"Names\"",
-														"class": "tableau"
-													}
-												}
-											]
-										}
-									]
-								},
-								{
-									"type": "object-graph",
-									"children": [
-										{
-											"type": "objects",
-											"children": [
-												{
-													"type": "object",
-													"attrs": {
-														"id": "Sales Commission.csv_4F66D485F1F148A299B285539B88B015",
-														"caption": "Sales Commission"
-													},
-													"children": [
-														{
-															"type": "properties",
-															"attrs": {
-																"context": ""
-															},
-															"children": [
-																{
-																	"type": "relation",
-																	"attrs": {
-																		"type": "table",
-																		"name": "Sales Commission.csv",
-																		"table": "[Sales Commission#csv]",
-																		"connection": "textscan.0bdqfzt0f0ynar1egmoso1fglwo7"
-																	},
-																	"children": [
-																		{
-																			"type": "columns",
-																			"attrs": {
-																				"character-set": "UTF-8",
-																				"header": "yes",
-																				"locale": "en_US",
-																				"separator": ","
-																			},
-																			"children": [
-																				{
-																					"type": "column",
-																					"attrs": {
-																						"datatype": "datetime",
-																						"name": "Order Date",
-																						"ordinal": "0"
-																					}
-																				},
-																				{
-																					"type": "column",
-																					"attrs": {
-																						"datatype": "string",
-																						"name": "Region",
-																						"ordinal": "1"
-																					}
-																				},
-																				{
-																					"type": "column",
-																					"attrs": {
-																						"datatype": "string",
-																						"name": "Sales Person",
-																						"ordinal": "2"
-																					}
-																				},
-																				{
-																					"type": "column",
-																					"attrs": {
-																						"datatype": "integer",
-																						"name": "Sales",
-																						"ordinal": "3"
-																					}
-																				}
-																			]
-																		}
-																	]
-																}
-															]
-														}
-													]
-												}
-											]
-										}
-									]
-								}
-							]
 						}
 					]
 				},
@@ -7334,111 +7289,7 @@
 						{
 							"type": "action",
 							"attrs": {
-								"name": "[Action11_9C8937F1DAE84990855E25E2B00E4E86]",
-								"caption": "Filter Product Sales 1"
-							},
-							"children": [
-								{
-									"type": "activation",
-									"attrs": {
-										"type": "on-select",
-										"auto-clear": "true"
-									}
-								},
-								{
-									"type": "source",
-									"attrs": {
-										"type": "sheet",
-										"worksheet": "ProductView",
-										"dashboard": "Product"
-									}
-								},
-								{
-									"type": "command",
-									"attrs": {
-										"command": "tsc:tsl-filter"
-									},
-									"children": [
-										{
-											"type": "param",
-											"attrs": {
-												"name": "special-fields",
-												"value": "all"
-											}
-										},
-										{
-											"type": "param",
-											"attrs": {
-												"name": "target",
-												"value": "Product"
-											}
-										}
-									]
-								}
-							]
-						},
-						{
-							"type": "action",
-							"attrs": {
 								"name": "[Action11_AF915869FB4D4490BE0E4360C949F608]",
-								"caption": "State/Province Filter 1"
-							},
-							"children": [
-								{
-									"type": "activation",
-									"attrs": {
-										"type": "on-select",
-										"auto-clear": "true"
-									}
-								},
-								{
-									"type": "source",
-									"attrs": {
-										"type": "sheet",
-										"worksheet": "Sale Map",
-										"dashboard": "Overview"
-									}
-								},
-								{
-									"type": "link",
-									"attrs": {
-										"caption": "State/Province Filter 1",
-										"url-escape": "true",
-										"expression": "tsl:Overview?%5Bfederated.10nnk8d1vgmw8q17yu76u06pnbcj%5D.%5BState%2FProvince%5D~s0=<[State/Province]~na>",
-										"multi-select": "true",
-										"delimiter": ",",
-										"escape": "\\",
-										"include-null": "true"
-									}
-								},
-								{
-									"type": "command",
-									"attrs": {
-										"command": "tsc:tsl-filter"
-									},
-									"children": [
-										{
-											"type": "param",
-											"attrs": {
-												"name": "exclude",
-												"value": "Sale Map"
-											}
-										},
-										{
-											"type": "param",
-											"attrs": {
-												"name": "target",
-												"value": "Overview"
-											}
-										}
-									]
-								}
-							]
-						},
-						{
-							"type": "action",
-							"attrs": {
-								"name": "[Action12_58B942EEA45F4F8182516E164AF39155]",
 								"caption": "State/Province Filter 1"
 							},
 							"children": [
@@ -7622,132 +7473,6 @@
 						{
 							"type": "action",
 							"attrs": {
-								"name": "[Action13_CF67F0F173494171B2A9DE8B1F85D5DE]",
-								"caption": "Month Highlight 1"
-							},
-							"children": [
-								{
-									"type": "activation",
-									"attrs": {
-										"type": "on-select",
-										"auto-clear": "true"
-									}
-								},
-								{
-									"type": "source",
-									"attrs": {
-										"type": "sheet",
-										"dashboard": "Overview"
-									},
-									"children": [
-										{
-											"type": "exclude-sheet",
-											"attrs": {
-												"name": "Sale Map"
-											}
-										}
-									]
-								},
-								{
-									"type": "command",
-									"attrs": {
-										"command": "tsc:brush"
-									},
-									"children": [
-										{
-											"type": "param",
-											"attrs": {
-												"name": "exclude",
-												"value": "Sale Map"
-											}
-										},
-										{
-											"type": "param",
-											"attrs": {
-												"name": "field-captions",
-												"value": "MONTH(Order Date),Order Profitable?"
-											}
-										},
-										{
-											"type": "param",
-											"attrs": {
-												"name": "target",
-												"value": "Overview"
-											}
-										}
-									]
-								}
-							]
-						},
-						{
-							"type": "action",
-							"attrs": {
-								"name": "[Action14_76C9223CF2C84E78A529F687B3312950]",
-								"caption": "State/Province Highlight (map) 1"
-							},
-							"children": [
-								{
-									"type": "activation",
-									"attrs": {
-										"type": "on-select",
-										"auto-clear": "true"
-									}
-								},
-								{
-									"type": "source",
-									"attrs": {
-										"type": "sheet",
-										"dashboard": "Overview"
-									},
-									"children": [
-										{
-											"type": "exclude-sheet",
-											"attrs": {
-												"name": "Sales by Product"
-											}
-										},
-										{
-											"type": "exclude-sheet",
-											"attrs": {
-												"name": "Sales by Segment"
-											}
-										}
-									]
-								},
-								{
-									"type": "command",
-									"attrs": {
-										"command": "tsc:brush"
-									},
-									"children": [
-										{
-											"type": "param",
-											"attrs": {
-												"name": "exclude",
-												"value": "Sales by Product,Sales by Segment"
-											}
-										},
-										{
-											"type": "param",
-											"attrs": {
-												"name": "field-captions",
-												"value": "State/Province"
-											}
-										},
-										{
-											"type": "param",
-											"attrs": {
-												"name": "target",
-												"value": "Overview"
-											}
-										}
-									]
-								}
-							]
-						},
-						{
-							"type": "action",
-							"attrs": {
 								"name": "[Action14_F8610F43EC9042B4B10A413BDFB9FECC]",
 								"caption": "Filter Product Sales 1"
 							},
@@ -7795,66 +7520,6 @@
 							"type": "action",
 							"attrs": {
 								"name": "[Action15_439B3916560D46D790CBFA2B6580CCFE]",
-								"caption": "Highlight Customer Name (Hover) 1"
-							},
-							"children": [
-								{
-									"type": "activation",
-									"attrs": {
-										"type": "on-hover",
-										"auto-clear": "true"
-									}
-								},
-								{
-									"type": "source",
-									"attrs": {
-										"type": "sheet",
-										"dashboard": "Customers"
-									},
-									"children": [
-										{
-											"type": "exclude-sheet",
-											"attrs": {
-												"name": "CustomerOverview"
-											}
-										}
-									]
-								},
-								{
-									"type": "command",
-									"attrs": {
-										"command": "tsc:brush"
-									},
-									"children": [
-										{
-											"type": "param",
-											"attrs": {
-												"name": "exclude",
-												"value": "CustomerOverview"
-											}
-										},
-										{
-											"type": "param",
-											"attrs": {
-												"name": "field-captions",
-												"value": "Customer Name"
-											}
-										},
-										{
-											"type": "param",
-											"attrs": {
-												"name": "target",
-												"value": "Customers"
-											}
-										}
-									]
-								}
-							]
-						},
-						{
-							"type": "action",
-							"attrs": {
-								"name": "[Action15_BDFD0342719D43D8AC247DE2D4FABC22]",
 								"caption": "Highlight Customer Name (Hover) 1"
 							},
 							"children": [
@@ -7972,66 +7637,6 @@
 						{
 							"type": "action",
 							"attrs": {
-								"name": "[Action16_C38D37E5C7F24027A93DCCA0CEDDB168]",
-								"caption": "Highlight 1 (generated) 1"
-							},
-							"children": [
-								{
-									"type": "activation",
-									"attrs": {
-										"type": "on-select",
-										"auto-clear": "true"
-									}
-								},
-								{
-									"type": "source",
-									"attrs": {
-										"type": "sheet",
-										"dashboard": "Customers"
-									},
-									"children": [
-										{
-											"type": "exclude-sheet",
-											"attrs": {
-												"name": "CustomerOverview"
-											}
-										}
-									]
-								},
-								{
-									"type": "command",
-									"attrs": {
-										"command": "tsc:brush"
-									},
-									"children": [
-										{
-											"type": "param",
-											"attrs": {
-												"name": "exclude",
-												"value": "CustomerOverview"
-											}
-										},
-										{
-											"type": "param",
-											"attrs": {
-												"name": "special-fields",
-												"value": "all"
-											}
-										},
-										{
-											"type": "param",
-											"attrs": {
-												"name": "target",
-												"value": "Customers"
-											}
-										}
-									]
-								}
-							]
-						},
-						{
-							"type": "action",
-							"attrs": {
 								"name": "[Action17_9DDBE16F055F42D999EBCCD14822697B]",
 								"caption": "Highlight 1 (generated) 1"
 							},
@@ -8083,117 +7688,6 @@
 											"attrs": {
 												"name": "target",
 												"value": "Customers"
-											}
-										}
-									]
-								}
-							]
-						},
-						{
-							"type": "action",
-							"attrs": {
-								"name": "[Action17_F70F745AE6C64BDCBA1B67BAA46523BD]",
-								"caption": "Filter Region 1"
-							},
-							"children": [
-								{
-									"type": "activation",
-									"attrs": {
-										"type": "on-select",
-										"auto-clear": "true"
-									}
-								},
-								{
-									"type": "source",
-									"attrs": {
-										"type": "sheet",
-										"worksheet": "CustomerOverview",
-										"dashboard": "Customers"
-									}
-								},
-								{
-									"type": "link",
-									"attrs": {
-										"caption": "Filter Region 1",
-										"url-escape": "true",
-										"expression": "tsl:Customers?%5Bfederated.10nnk8d1vgmw8q17yu76u06pnbcj%5D.%5BRegion%5D~s0=<[Region]~na>",
-										"multi-select": "true",
-										"delimiter": ",",
-										"escape": "\\",
-										"include-null": "true"
-									}
-								},
-								{
-									"type": "command",
-									"attrs": {
-										"command": "tsc:tsl-filter"
-									},
-									"children": [
-										{
-											"type": "param",
-											"attrs": {
-												"name": "exclude",
-												"value": "CustomerOverview"
-											}
-										},
-										{
-											"type": "param",
-											"attrs": {
-												"name": "target",
-												"value": "Customers"
-											}
-										}
-									]
-								}
-							]
-						},
-						{
-							"type": "action",
-							"attrs": {
-								"name": "[Action18_A63CD65FB1164E8DAC2309CB7C77977F]",
-								"caption": "Filter Details 1"
-							},
-							"children": [
-								{
-									"type": "activation",
-									"attrs": {
-										"type": "on-select",
-										"auto-clear": "true"
-									}
-								},
-								{
-									"type": "source",
-									"attrs": {
-										"type": "sheet",
-										"worksheet": "ShippingTrend",
-										"dashboard": "Shipping"
-									}
-								},
-								{
-									"type": "command",
-									"attrs": {
-										"command": "tsc:tsl-filter"
-									},
-									"children": [
-										{
-											"type": "param",
-											"attrs": {
-												"name": "exclude",
-												"value": "ShipSummary"
-											}
-										},
-										{
-											"type": "param",
-											"attrs": {
-												"name": "special-fields",
-												"value": "all"
-											}
-										},
-										{
-											"type": "param",
-											"attrs": {
-												"name": "target",
-												"value": "Shipping"
 											}
 										}
 									]
@@ -8256,52 +7750,6 @@
 						{
 							"type": "action",
 							"attrs": {
-								"name": "[Action19_A2100BB462D24F5898DE9948F6F8A57A]",
-								"caption": "Filter 1 (generated) 1"
-							},
-							"children": [
-								{
-									"type": "activation",
-									"attrs": {
-										"type": "on-select",
-										"auto-clear": "true"
-									}
-								},
-								{
-									"type": "source",
-									"attrs": {
-										"type": "sheet",
-										"worksheet": "ShipSummary",
-										"dashboard": "Shipping"
-									}
-								},
-								{
-									"type": "command",
-									"attrs": {
-										"command": "tsc:tsl-filter"
-									},
-									"children": [
-										{
-											"type": "param",
-											"attrs": {
-												"name": "special-fields",
-												"value": "all"
-											}
-										},
-										{
-											"type": "param",
-											"attrs": {
-												"name": "target",
-												"value": "Shipping"
-											}
-										}
-									]
-								}
-							]
-						},
-						{
-							"type": "action",
-							"attrs": {
 								"name": "[Action19_C26090812FA443EEB2F32C67F44BC898]",
 								"caption": "Filter 1 (generated) 1"
 							},
@@ -8339,58 +7787,6 @@
 											"attrs": {
 												"name": "target",
 												"value": "Shipping"
-											}
-										}
-									]
-								}
-							]
-						},
-						{
-							"type": "action",
-							"attrs": {
-								"name": "[Action20_800E136CA52A4D92B75B0C43B6BACA0C]",
-								"caption": "Highlight 3 (generated) 1"
-							},
-							"children": [
-								{
-									"type": "activation",
-									"attrs": {
-										"type": "on-select",
-										"auto-clear": "true"
-									}
-								},
-								{
-									"type": "source",
-									"attrs": {
-										"type": "sheet",
-										"dashboard": "Commission Model"
-									}
-								},
-								{
-									"type": "command",
-									"attrs": {
-										"command": "tsc:brush"
-									},
-									"children": [
-										{
-											"type": "param",
-											"attrs": {
-												"name": "exclude",
-												"value": "OTE,Sales"
-											}
-										},
-										{
-											"type": "param",
-											"attrs": {
-												"name": "field-captions",
-												"value": "Sales Person"
-											}
-										},
-										{
-											"type": "param",
-											"attrs": {
-												"name": "target",
-												"value": "Commission Model"
 											}
 										}
 									]
@@ -11018,8 +10414,8 @@
 														{
 															"type": "groupfilter",
 															"attrs": {
-																"user:ui-action-filter": "[Action8]",
 																"user:ui-enumeration": "all",
+																"user:ui-action-filter": "[Action8]",
 																"user:ui-marker": "enumerate",
 																"function": "level-members",
 																"level": "[Region]"
@@ -11792,8 +11188,8 @@
 														{
 															"type": "groupfilter",
 															"attrs": {
-																"user:ui-action-filter": "[Action8]",
 																"user:ui-enumeration": "all",
+																"user:ui-action-filter": "[Action8]",
 																"user:ui-marker": "enumerate",
 																"function": "level-members",
 																"level": "[Region]"
@@ -12757,8 +12153,8 @@
 														{
 															"type": "groupfilter",
 															"attrs": {
-																"user:ui-action-filter": "[Action4]",
 																"user:ui-enumeration": "all",
+																"user:ui-action-filter": "[Action4]",
 																"user:ui-marker": "enumerate",
 																"function": "level-members",
 																"level": "[Calculation_6401103171259723]"
@@ -12776,8 +12172,8 @@
 														{
 															"type": "groupfilter",
 															"attrs": {
-																"user:ui-action-filter": "[Action2]",
 																"user:ui-enumeration": "all",
+																"user:ui-action-filter": "[Action2]",
 																"user:ui-marker": "enumerate",
 																"function": "crossjoin"
 															},
@@ -16754,40 +16150,11 @@
 										},
 										{
 											"type": "rows",
-											"attrs": {
-												"total": "true",
-												"onTop": "true"
-											},
 											"content": "([federated.10nnk8d1vgmw8q17yu76u06pnbcj].[none:Order ID:nk] / ([federated.10nnk8d1vgmw8q17yu76u06pnbcj].[none:Customer Name:nk] / ([federated.10nnk8d1vgmw8q17yu76u06pnbcj].[none:Order Date:ok] / ([federated.10nnk8d1vgmw8q17yu76u06pnbcj].[none:Ship Date:ok] / [federated.10nnk8d1vgmw8q17yu76u06pnbcj].[none:Ship Mode:nk]))))"
 										},
 										{
 											"type": "cols",
-											"attrs": {
-												"total": "true",
-												"onLeft": "true"
-											},
 											"content": "[federated.10nnk8d1vgmw8q17yu76u06pnbcj].[:Measure Names]"
-										},
-										{
-											"type": "subtotals",
-											"children": [
-												{
-													"type": "column",
-													"content": "[federated.10nnk8d1vgmw8q17yu76u06pnbcj].[none:Customer Name:nk]"
-												},
-												{
-													"type": "column",
-													"content": "[federated.10nnk8d1vgmw8q17yu76u06pnbcj].[none:Order Date:ok]"
-												},
-												{
-													"type": "column",
-													"content": "[federated.10nnk8d1vgmw8q17yu76u06pnbcj].[none:Order ID:nk]"
-												},
-												{
-													"type": "column",
-													"content": "[federated.10nnk8d1vgmw8q17yu76u06pnbcj].[none:Ship Date:ok]"
-												}
-											]
 										}
 									]
 								},
@@ -17075,8 +16442,8 @@
 														{
 															"type": "groupfilter",
 															"attrs": {
-																"user:ui-action-filter": "[Action3]",
 																"user:ui-enumeration": "all",
+																"user:ui-action-filter": "[Action3]",
 																"user:ui-marker": "enumerate",
 																"function": "crossjoin"
 															},
@@ -22763,30 +22130,8 @@
 														{
 															"type": "mark",
 															"attrs": {
-																"class": "VizExtension"
+																"class": "Automatic"
 															}
-														},
-														{
-															"type": "add-in",
-															"attrs": {
-																"add-in-id": "com.tableau.extension.poweruser",
-																"instance-id": "35D5FB11F6E4427BA06B3528B6BF4F46",
-																"extension-version": "1.0.0",
-																"extension-url": "http://localhost:8765/poweruser/poweruser.html"
-															},
-															"children": [
-																{
-																	"type": "instance-settings"
-																},
-																{
-																	"type": "type-settings",
-																	"children": [
-																		{
-																			"type": "worksheet"
-																		}
-																	]
-																}
-															]
 														}
 													]
 												}
@@ -22803,7 +22148,7 @@
 								{
 									"type": "simple-id",
 									"attrs": {
-										"uuid": "{8135D636-DDAA-438D-ABCD-8D84DE5EB1DD}"
+										"uuid": "{AC8B1BBB-B55B-4A6F-8165-27B8ED9B7774}"
 									}
 								}
 							]
@@ -23864,8 +23209,8 @@
 														{
 															"type": "groupfilter",
 															"attrs": {
-																"user:ui-action-filter": "[Action4]",
 																"user:ui-enumeration": "all",
+																"user:ui-action-filter": "[Action4]",
 																"user:ui-marker": "enumerate",
 																"function": "level-members",
 																"level": "[Calculation_6401103171259723]"
@@ -24506,9 +23851,9 @@
 														{
 															"type": "groupfilter",
 															"attrs": {
+																"user:ui-marker": "enumerate",
 																"user:ui-action-filter": "[Action - Tooltip: Profit Ratio by City]",
 																"user:ui-enumeration": "all",
-																"user:ui-marker": "enumerate",
 																"function": "crossjoin"
 															},
 															"children": [
@@ -25165,8 +24510,9 @@
 																"name": "[Sales per Customer (copy)]",
 																"role": "measure",
 																"datatype": "real",
+																"visual-totals": "Avg",
 																"type": "quantitative",
-																"default-format": "C1033%",
+																"default-format": "p0.00%",
 																"caption": "Profit per Order"
 															},
 															"children": [
@@ -25176,6 +24522,20 @@
 																		"formula": "Sum([Profit])/countD([Order ID])",
 																		"class": "tableau"
 																	}
+																},
+																{
+																	"type": "desc",
+																	"children": [
+																		{
+																			"type": "formatted-text",
+																			"children": [
+																				{
+																					"type": "run",
+																					"content": "This is the profit per order"
+																				}
+																			]
+																		}
+																	]
 																}
 															]
 														},
@@ -27084,24 +26444,24 @@
 														{
 															"type": "zone",
 															"attrs": {
-																"h": "3516",
-																"id": "62",
 																"type-v2": "title",
-																"w": "98860",
-																"x": "570",
-																"y": "724"
+																"id": "62",
+																"h": "3540",
+																"w": "99180",
+																"x": "410",
+																"y": "774"
 															}
 														},
 														{
 															"type": "zone",
 															"attrs": {
-																"x": "570",
+																"x": "410",
 																"is-fixed": "true",
-																"y": "4240",
-																"w": "98860",
+																"y": "4314",
+																"w": "99180",
 																"type-v2": "layout-flow",
 																"id": "54",
-																"h": "75181",
+																"h": "75886",
 																"param": "horz",
 																"fixed-size": "727"
 															},
@@ -27109,13 +26469,13 @@
 																{
 																	"type": "zone",
 																	"attrs": {
-																		"x": "570",
+																		"x": "410",
 																		"is-fixed": "true",
-																		"y": "4240",
-																		"w": "98860",
+																		"y": "4314",
+																		"w": "99180",
 																		"type-v2": "layout-flow",
 																		"id": "2",
-																		"h": "75181",
+																		"h": "75886",
 																		"param": "vert",
 																		"fixed-size": "1004"
 																	},
@@ -27123,12 +26483,12 @@
 																		{
 																			"type": "zone",
 																			"attrs": {
-																				"h": "2586",
-																				"id": "4",
 																				"type-v2": "text",
-																				"w": "98860",
-																				"x": "570",
-																				"y": "4240"
+																				"id": "4",
+																				"h": "2765",
+																				"w": "99180",
+																				"x": "410",
+																				"y": "4314"
 																			},
 																			"children": [
 																				{
@@ -27196,12 +26556,12 @@
 																		{
 																			"type": "zone",
 																			"attrs": {
-																				"x": "570",
-																				"y": "6826",
+																				"x": "410",
+																				"y": "7079",
 																				"is-fixed": "true",
-																				"w": "98860",
+																				"w": "99180",
 																				"fixed-size": "57",
-																				"h": "6722",
+																				"h": "7190",
 																				"id": "72",
 																				"type-v2": "layout-basic"
 																			},
@@ -27209,10 +26569,10 @@
 																				{
 																					"type": "zone",
 																					"attrs": {
-																						"x": "570",
-																						"y": "7240",
-																						"w": "40696",
-																						"h": "5894",
+																						"x": "410",
+																						"y": "7521",
+																						"w": "40828",
+																						"h": "6306",
 																						"id": "5",
 																						"type-v2": "layout-flow",
 																						"param": "horz"
@@ -27221,15 +26581,15 @@
 																						{
 																							"type": "zone",
 																							"attrs": {
-																								"custom-title": "true",
-																								"mode": "type_in",
 																								"param": "[Parameters].[New Quota]",
-																								"h": "5894",
-																								"id": "9",
+																								"mode": "type_in",
+																								"custom-title": "true",
 																								"type-v2": "paramctrl",
-																								"w": "20348",
-																								"x": "570",
-																								"y": "7240"
+																								"h": "6306",
+																								"id": "9",
+																								"w": "20414",
+																								"x": "410",
+																								"y": "7521"
 																							},
 																							"children": [
 																								{
@@ -27283,15 +26643,15 @@
 																						{
 																							"type": "zone",
 																							"attrs": {
-																								"custom-title": "true",
-																								"mode": "type_in",
 																								"param": "[Parameters].[Base Salary]",
-																								"h": "5894",
-																								"id": "10",
+																								"mode": "type_in",
+																								"custom-title": "true",
 																								"type-v2": "paramctrl",
-																								"w": "20348",
-																								"x": "20918",
-																								"y": "7240"
+																								"h": "6306",
+																								"id": "10",
+																								"w": "20414",
+																								"x": "20824",
+																								"y": "7521"
 																							},
 																							"children": [
 																								{
@@ -27347,17 +26707,17 @@
 																				{
 																					"type": "zone",
 																					"attrs": {
-																						"custom-title": "true",
-																						"mode": "compact",
 																						"param": "[Parameters].[Parameter 1 1]",
+																						"mode": "compact",
+																						"custom-title": "true",
 																						"fixed-size": "175",
-																						"h": "5894",
-																						"id": "57",
 																						"type-v2": "paramctrl",
+																						"h": "6306",
+																						"id": "57",
 																						"is-fixed": "true",
-																						"w": "14534",
-																						"x": "41266",
-																						"y": "7240"
+																						"w": "14581",
+																						"x": "41238",
+																						"y": "7521"
 																					},
 																					"children": [
 																						{
@@ -27418,12 +26778,12 @@
 																				{
 																					"type": "zone",
 																					"attrs": {
-																						"h": "5894",
-																						"id": "76",
 																						"type-v2": "empty",
-																						"w": "29102",
-																						"x": "70328",
-																						"y": "7240"
+																						"id": "76",
+																						"h": "6306",
+																						"w": "29196",
+																						"x": "70394",
+																						"y": "7521"
 																					},
 																					"children": [
 																						{
@@ -27464,15 +26824,15 @@
 																				{
 																					"type": "zone",
 																					"attrs": {
-																						"custom-title": "true",
-																						"mode": "slider",
 																						"param": "[Parameters].[Commission Rate]",
-																						"h": "5894",
-																						"id": "11",
+																						"mode": "slider",
+																						"custom-title": "true",
 																						"type-v2": "paramctrl",
-																						"w": "14528",
-																						"x": "55800",
-																						"y": "7240"
+																						"h": "6306",
+																						"id": "11",
+																						"w": "14575",
+																						"x": "55819",
+																						"y": "7521"
 																					},
 																					"children": [
 																						{
@@ -27568,10 +26928,10 @@
 																		{
 																			"type": "zone",
 																			"attrs": {
-																				"x": "570",
-																				"y": "13548",
-																				"w": "98860",
-																				"h": "65873",
+																				"x": "410",
+																				"y": "14269",
+																				"w": "99180",
+																				"h": "65931",
 																				"id": "64",
 																				"type-v2": "layout-flow",
 																				"layout-strategy-id": "distribute-evenly",
@@ -27581,11 +26941,11 @@
 																				{
 																					"type": "zone",
 																					"attrs": {
-																						"x": "570",
-																						"y": "13547",
-																						"w": "49471",
+																						"x": "410",
+																						"y": "14270",
+																						"w": "49619",
 																						"name": "QuotaAttainment",
-																						"h": "65874",
+																						"h": "65929",
 																						"id": "82"
 																					},
 																					"children": [
@@ -27635,11 +26995,11 @@
 																				{
 																					"type": "zone",
 																					"attrs": {
-																						"x": "50041",
-																						"y": "13547",
-																						"w": "49389",
+																						"x": "50029",
+																						"y": "14270",
+																						"w": "49561",
 																						"name": "CommissionProjection",
-																						"h": "65874",
+																						"h": "65929",
 																						"id": "83"
 																					},
 																					"children": [
@@ -27695,12 +27055,12 @@
 														{
 															"type": "zone",
 															"attrs": {
-																"x": "570",
-																"y": "79421",
-																"w": "98860",
+																"x": "410",
+																"y": "80200",
+																"w": "99180",
 																"type-v2": "layout-flow",
 																"id": "85",
-																"h": "4240",
+																"h": "4535",
 																"layout-strategy-id": "distribute-evenly",
 																"param": "horz",
 																"is-fixed": "true",
@@ -27711,16 +27071,16 @@
 																	"type": "zone",
 																	"attrs": {
 																		"friendly-name": "Color Legend",
-																		"h": "2999",
-																		"id": "84",
 																		"type-v2": "color",
-																		"w": "49471",
+																		"h": "3208",
+																		"id": "84",
+																		"w": "49619",
 																		"name": "QuotaAttainment",
-																		"pane-specification-id": "0",
 																		"show-title": "false",
+																		"pane-specification-id": "0",
 																		"param": "[federated.0a01cod1oxl83l1f5yves1cfciqo].[usr:Achievement (variable) (copy):nk]",
-																		"x": "570",
-																		"y": "80455"
+																		"x": "410",
+																		"y": "81305"
 																	},
 																	"children": [
 																		{
@@ -27762,17 +27122,17 @@
 																	"type": "zone",
 																	"attrs": {
 																		"friendly-name": "Color Legend",
-																		"h": "2999",
+																		"h": "3208",
 																		"id": "86",
 																		"leg-item-layout": "horz",
-																		"w": "49389",
+																		"w": "49561",
 																		"name": "CommissionProjection",
-																		"pane-specification-id": "0",
 																		"show-title": "false",
+																		"pane-specification-id": "0",
 																		"param": "[federated.0a01cod1oxl83l1f5yves1cfciqo].[:Measure Names]",
 																		"type-v2": "color",
-																		"x": "50041",
-																		"y": "80455"
+																		"x": "50029",
+																		"y": "81305"
 																	},
 																	"children": [
 																		{
@@ -27869,12 +27229,12 @@
 														{
 															"type": "zone",
 															"attrs": {
-																"x": "570",
-																"y": "83661",
-																"w": "98860",
+																"x": "410",
+																"y": "84735",
+																"w": "99180",
 																"type-v2": "layout-flow",
 																"id": "77",
-																"h": "13547",
+																"h": "14491",
 																"layout-strategy-id": "distribute-evenly",
 																"param": "horz",
 																"is-fixed": "true",
@@ -27884,11 +27244,11 @@
 																{
 																	"type": "zone",
 																	"attrs": {
-																		"x": "978",
-																		"y": "84178",
-																		"w": "49063",
+																		"x": "702",
+																		"y": "85288",
+																		"w": "49327",
 																		"name": "Sales",
-																		"h": "12513",
+																		"h": "13385",
 																		"id": "80"
 																	},
 																	"children": [
@@ -27939,11 +27299,11 @@
 																{
 																	"type": "zone",
 																	"attrs": {
-																		"x": "50041",
-																		"y": "84178",
-																		"w": "48981",
+																		"x": "50029",
+																		"y": "85288",
+																		"w": "49269",
 																		"name": "OTE",
-																		"h": "12513",
+																		"h": "13385",
 																		"id": "81"
 																	},
 																	"children": [
@@ -29130,10 +28490,10 @@
 												{
 													"type": "zone",
 													"attrs": {
-														"x": "570",
-														"y": "724",
-														"w": "98860",
-														"h": "98552",
+														"x": "410",
+														"y": "774",
+														"w": "99180",
+														"h": "98452",
 														"id": "34",
 														"type-v2": "layout-flow",
 														"param": "horz"
@@ -29142,10 +28502,10 @@
 														{
 															"type": "zone",
 															"attrs": {
-																"x": "570",
-																"y": "724",
-																"w": "98860",
-																"h": "98552",
+																"x": "410",
+																"y": "774",
+																"w": "99180",
+																"h": "98452",
 																"id": "32",
 																"type-v2": "layout-basic"
 															},
@@ -29153,21 +28513,21 @@
 																{
 																	"type": "zone",
 																	"attrs": {
-																		"h": "6600",
-																		"id": "9",
 																		"type-v2": "title",
-																		"w": "98860",
-																		"x": "570",
-																		"y": "724"
+																		"id": "9",
+																		"h": "6594",
+																		"w": "99180",
+																		"x": "410",
+																		"y": "774"
 																	}
 																},
 																{
 																	"type": "zone",
 																	"attrs": {
-																		"x": "570",
-																		"y": "22251",
-																		"w": "88108",
-																		"h": "77025",
+																		"x": "410",
+																		"y": "22280",
+																		"w": "88394",
+																		"h": "76946",
 																		"id": "29",
 																		"type-v2": "layout-flow",
 																		"layout-strategy-id": "distribute-evenly",
@@ -29177,11 +28537,11 @@
 																		{
 																			"type": "zone",
 																			"attrs": {
-																				"x": "570",
-																				"y": "22234",
-																				"w": "44092",
+																				"x": "410",
+																				"y": "22235",
+																				"w": "44236",
 																				"name": "CustomerScatter",
-																				"h": "77042",
+																				"h": "76991",
 																				"id": "3"
 																			},
 																			"children": [
@@ -29232,11 +28592,11 @@
 																		{
 																			"type": "zone",
 																			"attrs": {
-																				"x": "44662",
-																				"y": "22234",
-																				"w": "44010",
+																				"x": "44646",
+																				"y": "22235",
+																				"w": "44178",
 																				"name": "CustomerRank",
-																				"h": "77042",
+																				"h": "76991",
 																				"id": "8"
 																			},
 																			"children": [
@@ -29289,11 +28649,11 @@
 																{
 																	"type": "zone",
 																	"attrs": {
-																		"x": "570",
-																		"y": "7324",
-																		"w": "98860",
+																		"x": "410",
+																		"y": "7368",
+																		"w": "99180",
 																		"name": "CustomerOverview",
-																		"h": "14927",
+																		"h": "14912",
 																		"id": "1",
 																		"show-title": "false"
 																	},
@@ -29345,10 +28705,10 @@
 																{
 																	"type": "zone",
 																	"attrs": {
-																		"x": "88678",
-																		"y": "22251",
-																		"w": "10752",
-																		"h": "77025",
+																		"x": "88804",
+																		"y": "22280",
+																		"w": "10786",
+																		"h": "76946",
 																		"id": "39",
 																		"type-v2": "layout-flow",
 																		"param": "vert"
@@ -29357,15 +28717,15 @@
 																		{
 																			"type": "zone",
 																			"attrs": {
-																				"h": "5377",
+																				"type-v2": "filter",
+																				"h": "5752",
 																				"id": "35",
-																				"type-v2": "filter",
-																				"mode": "checkdropdown",
 																				"param": "[federated.10nnk8d1vgmw8q17yu76u06pnbcj].[yr:Order Date:ok]",
+																				"mode": "checkdropdown",
 																				"name": "CustomerScatter",
-																				"w": "9448",
-																				"x": "89330",
-																				"y": "23079"
+																				"w": "9850",
+																				"x": "89272",
+																				"y": "23164"
 																			},
 																			"children": [
 																				{
@@ -29413,14 +28773,14 @@
 																		{
 																			"type": "zone",
 																			"attrs": {
-																				"h": "11168",
+																				"type-v2": "filter",
 																				"id": "36",
-																				"type-v2": "filter",
+																				"h": "11947",
+																				"w": "9850",
 																				"name": "CustomerScatter",
-																				"w": "9448",
 																				"param": "[federated.10nnk8d1vgmw8q17yu76u06pnbcj].[none:Category:nk]",
-																				"x": "89330",
-																				"y": "28456"
+																				"x": "89272",
+																				"y": "28916"
 																			},
 																			"children": [
 																				{
@@ -29468,14 +28828,14 @@
 																		{
 																			"type": "zone",
 																			"attrs": {
-																				"h": "11168",
-																				"id": "37",
 																				"type-v2": "filter",
+																				"id": "37",
+																				"h": "11947",
+																				"w": "9850",
 																				"name": "CustomerScatter",
-																				"w": "9448",
 																				"param": "[federated.10nnk8d1vgmw8q17yu76u06pnbcj].[none:Segment:nk]",
-																				"x": "89330",
-																				"y": "39624"
+																				"x": "89272",
+																				"y": "40863"
 																			},
 																			"children": [
 																				{
@@ -29523,15 +28883,15 @@
 																		{
 																			"type": "zone",
 																			"attrs": {
-																				"h": "6722",
-																				"id": "38",
 																				"type-v2": "color",
+																				"h": "7190",
+																				"id": "38",
 																				"name": "CustomerScatter",
-																				"w": "9448",
+																				"w": "9850",
 																				"pane-specification-id": "0",
 																				"param": "[federated.10nnk8d1vgmw8q17yu76u06pnbcj].[usr:Calculation_9921103144103743:qk]",
-																				"x": "89330",
-																				"y": "50792"
+																				"x": "89272",
+																				"y": "52810"
 																			},
 																			"children": [
 																				{
@@ -31021,12 +30381,12 @@
 														{
 															"type": "zone",
 															"attrs": {
-																"h": "3723",
-																"id": "17",
 																"type-v2": "title",
-																"w": "98860",
-																"x": "570",
-																"y": "724"
+																"id": "17",
+																"h": "3982",
+																"w": "99180",
+																"x": "410",
+																"y": "774"
 															},
 															"children": [
 																{
@@ -31067,10 +30427,10 @@
 														{
 															"type": "zone",
 															"attrs": {
-																"x": "570",
-																"y": "4447",
-																"w": "98860",
-																"h": "94829",
+																"x": "410",
+																"y": "4756",
+																"w": "99180",
+																"h": "94470",
 																"id": "7",
 																"type-v2": "layout-flow",
 																"param": "horz"
@@ -31079,10 +30439,10 @@
 																{
 																	"type": "zone",
 																	"attrs": {
-																		"x": "570",
-																		"y": "4447",
-																		"w": "98860",
-																		"h": "94829",
+																		"x": "410",
+																		"y": "4756",
+																		"w": "99180",
+																		"h": "94470",
 																		"id": "5",
 																		"type-v2": "layout-flow",
 																		"param": "vert"
@@ -31091,13 +30451,13 @@
 																		{
 																			"type": "zone",
 																			"attrs": {
-																				"x": "570",
+																				"x": "410",
 																				"is-fixed": "true",
-																				"y": "4447",
-																				"w": "98860",
+																				"y": "4756",
+																				"w": "99180",
 																				"type-v2": "layout-flow",
 																				"id": "10",
-																				"h": "6412",
+																				"h": "6858",
 																				"param": "horz",
 																				"fixed-size": "62"
 																			},
@@ -31105,15 +30465,15 @@
 																				{
 																					"type": "zone",
 																					"attrs": {
-																						"h": "6412",
-																						"id": "19",
 																						"type-v2": "filter",
 																						"values": "context",
+																						"h": "6858",
+																						"id": "19",
 																						"name": "Product Detail Sheet",
-																						"w": "33660",
+																						"w": "52370",
 																						"param": "[federated.10nnk8d1vgmw8q17yu76u06pnbcj].[none:Order Date:qk]",
-																						"x": "570",
-																						"y": "4447"
+																						"x": "410",
+																						"y": "4756"
 																					},
 																					"children": [
 																						{
@@ -31154,15 +30514,15 @@
 																				{
 																					"type": "zone",
 																					"attrs": {
-																						"h": "6412",
+																						"type-v2": "filter",
+																						"h": "6858",
 																						"id": "14",
-																						"type-v2": "filter",
-																						"mode": "checkdropdown",
 																						"param": "[federated.10nnk8d1vgmw8q17yu76u06pnbcj].[none:Region:nk]",
+																						"mode": "checkdropdown",
 																						"name": "Product Detail Sheet",
-																						"w": "13040",
-																						"x": "34230",
-																						"y": "4447"
+																						"w": "9362",
+																						"x": "52780",
+																						"y": "4756"
 																					},
 																					"children": [
 																						{
@@ -31203,16 +30563,16 @@
 																				{
 																					"type": "zone",
 																					"attrs": {
-																						"h": "6412",
+																						"type-v2": "filter",
+																						"values": "relevant",
+																						"h": "6858",
 																						"id": "15",
-																						"type-v2": "filter",
-																						"values": "relevant",
-																						"mode": "checkdropdown",
 																						"param": "[federated.10nnk8d1vgmw8q17yu76u06pnbcj].[none:State/Province:nk]",
+																						"mode": "checkdropdown",
 																						"name": "Product Detail Sheet",
-																						"w": "13040",
-																						"x": "47270",
-																						"y": "4447"
+																						"w": "9362",
+																						"x": "62142",
+																						"y": "4756"
 																					},
 																					"children": [
 																						{
@@ -31253,16 +30613,16 @@
 																				{
 																					"type": "zone",
 																					"attrs": {
-																						"h": "6412",
+																						"type-v2": "filter",
+																						"values": "relevant",
+																						"h": "6858",
 																						"id": "16",
-																						"type-v2": "filter",
-																						"values": "relevant",
-																						"mode": "checkdropdown",
 																						"param": "[federated.10nnk8d1vgmw8q17yu76u06pnbcj].[none:City:nk]",
+																						"mode": "checkdropdown",
 																						"name": "Product Detail Sheet",
-																						"w": "13040",
-																						"x": "60310",
-																						"y": "4447"
+																						"w": "9362",
+																						"x": "71504",
+																						"y": "4756"
 																					},
 																					"children": [
 																						{
@@ -31303,16 +30663,16 @@
 																				{
 																					"type": "zone",
 																					"attrs": {
-																						"h": "6412",
+																						"type-v2": "filter",
+																						"values": "relevant",
+																						"h": "6858",
 																						"id": "8",
-																						"type-v2": "filter",
-																						"values": "relevant",
-																						"mode": "checkdropdown",
 																						"param": "[federated.10nnk8d1vgmw8q17yu76u06pnbcj].[none:Category:nk]",
+																						"mode": "checkdropdown",
 																						"name": "Product Detail Sheet",
-																						"w": "13040",
-																						"x": "73350",
-																						"y": "4447"
+																						"w": "9362",
+																						"x": "80866",
+																						"y": "4756"
 																					},
 																					"children": [
 																						{
@@ -31353,16 +30713,16 @@
 																				{
 																					"type": "zone",
 																					"attrs": {
-																						"h": "6412",
-																						"id": "9",
 																						"type-v2": "filter",
 																						"values": "relevant",
-																						"mode": "checkdropdown",
+																						"h": "6858",
+																						"id": "9",
 																						"param": "[federated.10nnk8d1vgmw8q17yu76u06pnbcj].[none:Segment:nk]",
+																						"mode": "checkdropdown",
 																						"name": "Product Detail Sheet",
-																						"w": "13040",
-																						"x": "86390",
-																						"y": "4447"
+																						"w": "9362",
+																						"x": "90228",
+																						"y": "4756"
 																					},
 																					"children": [
 																						{
@@ -31405,10 +30765,10 @@
 																		{
 																			"type": "zone",
 																			"attrs": {
-																				"x": "570",
-																				"y": "10859",
-																				"w": "98860",
-																				"h": "88417",
+																				"x": "410",
+																				"y": "11614",
+																				"w": "99180",
+																				"h": "87612",
 																				"id": "3",
 																				"type-v2": "layout-basic"
 																			},
@@ -31416,11 +30776,11 @@
 																				{
 																					"type": "zone",
 																					"attrs": {
-																						"x": "570",
-																						"y": "10859",
-																						"w": "98860",
+																						"x": "410",
+																						"y": "11614",
+																						"w": "99180",
 																						"name": "Product Detail Sheet",
-																						"h": "88417",
+																						"h": "87612",
 																						"id": "1"
 																					}
 																				}
@@ -31547,7 +30907,7 @@
 																"y": "0",
 																"w": "100000",
 																"h": "100000",
-																"id": "55",
+																"id": "61",
 																"type-v2": "layout-basic"
 															},
 															"children": [
@@ -31558,7 +30918,7 @@
 																		"y": "8000",
 																		"w": "84000",
 																		"h": "84000",
-																		"id": "54",
+																		"id": "60",
 																		"type-v2": "layout-flow",
 																		"param": "vert"
 																	},
@@ -31566,12 +30926,12 @@
 																		{
 																			"type": "zone",
 																			"attrs": {
-																				"type-v2": "title",
+																				"h": "3982",
 																				"id": "17",
-																				"h": "3723",
-																				"w": "98860",
-																				"x": "570",
-																				"y": "724"
+																				"type-v2": "title",
+																				"w": "99180",
+																				"x": "410",
+																				"y": "774"
 																			},
 																			"children": [
 																				{
@@ -31619,15 +30979,15 @@
 																		{
 																			"type": "zone",
 																			"attrs": {
-																				"id": "19",
-																				"h": "6412",
 																				"values": "context",
 																				"type-v2": "filter",
-																				"w": "33660",
+																				"id": "19",
+																				"h": "6858",
+																				"w": "52370",
 																				"name": "Product Detail Sheet",
 																				"param": "[federated.10nnk8d1vgmw8q17yu76u06pnbcj].[none:Order Date:qk]",
-																				"x": "570",
-																				"y": "4447"
+																				"x": "410",
+																				"y": "4756"
 																			},
 																			"children": [
 																				{
@@ -31682,15 +31042,15 @@
 																		{
 																			"type": "zone",
 																			"attrs": {
+																				"type-v2": "filter",
 																				"id": "14",
-																				"h": "6412",
-																				"type-v2": "filter",
-																				"mode": "checkdropdown",
+																				"h": "6858",
 																				"param": "[federated.10nnk8d1vgmw8q17yu76u06pnbcj].[none:Region:nk]",
-																				"w": "13040",
+																				"mode": "checkdropdown",
+																				"w": "9362",
 																				"name": "Product Detail Sheet",
-																				"x": "34230",
-																				"y": "4447"
+																				"x": "52780",
+																				"y": "4756"
 																			},
 																			"children": [
 																				{
@@ -31745,16 +31105,16 @@
 																		{
 																			"type": "zone",
 																			"attrs": {
+																				"values": "relevant",
+																				"type-v2": "filter",
 																				"id": "15",
-																				"h": "6412",
-																				"values": "relevant",
-																				"type-v2": "filter",
-																				"mode": "checkdropdown",
+																				"h": "6858",
 																				"param": "[federated.10nnk8d1vgmw8q17yu76u06pnbcj].[none:State/Province:nk]",
-																				"w": "13040",
+																				"mode": "checkdropdown",
+																				"w": "9362",
 																				"name": "Product Detail Sheet",
-																				"x": "47270",
-																				"y": "4447"
+																				"x": "62142",
+																				"y": "4756"
 																			},
 																			"children": [
 																				{
@@ -31809,16 +31169,16 @@
 																		{
 																			"type": "zone",
 																			"attrs": {
+																				"values": "relevant",
+																				"type-v2": "filter",
 																				"id": "16",
-																				"h": "6412",
-																				"values": "relevant",
-																				"type-v2": "filter",
-																				"mode": "checkdropdown",
+																				"h": "6858",
 																				"param": "[federated.10nnk8d1vgmw8q17yu76u06pnbcj].[none:City:nk]",
-																				"w": "13040",
+																				"mode": "checkdropdown",
+																				"w": "9362",
 																				"name": "Product Detail Sheet",
-																				"x": "60310",
-																				"y": "4447"
+																				"x": "71504",
+																				"y": "4756"
 																			},
 																			"children": [
 																				{
@@ -31873,16 +31233,16 @@
 																		{
 																			"type": "zone",
 																			"attrs": {
+																				"values": "relevant",
+																				"type-v2": "filter",
 																				"id": "8",
-																				"h": "6412",
-																				"values": "relevant",
-																				"type-v2": "filter",
-																				"mode": "checkdropdown",
+																				"h": "6858",
 																				"param": "[federated.10nnk8d1vgmw8q17yu76u06pnbcj].[none:Category:nk]",
-																				"w": "13040",
+																				"mode": "checkdropdown",
+																				"w": "9362",
 																				"name": "Product Detail Sheet",
-																				"x": "73350",
-																				"y": "4447"
+																				"x": "80866",
+																				"y": "4756"
 																			},
 																			"children": [
 																				{
@@ -31937,16 +31297,16 @@
 																		{
 																			"type": "zone",
 																			"attrs": {
-																				"id": "9",
-																				"h": "6412",
 																				"values": "relevant",
 																				"type-v2": "filter",
-																				"mode": "checkdropdown",
+																				"id": "9",
+																				"h": "6858",
 																				"param": "[federated.10nnk8d1vgmw8q17yu76u06pnbcj].[none:Segment:nk]",
-																				"w": "13040",
+																				"mode": "checkdropdown",
+																				"w": "9362",
 																				"name": "Product Detail Sheet",
-																				"x": "86390",
-																				"y": "4447"
+																				"x": "90228",
+																				"y": "4756"
 																			},
 																			"children": [
 																				{
@@ -32001,13 +31361,13 @@
 																		{
 																			"type": "zone",
 																			"attrs": {
-																				"x": "570",
-																				"y": "10859",
+																				"x": "410",
+																				"y": "11614",
 																				"is-fixed": "true",
-																				"w": "98860",
+																				"w": "99180",
 																				"name": "Product Detail Sheet",
 																				"fixed-size": "280",
-																				"h": "88417",
+																				"h": "87612",
 																				"id": "1"
 																			},
 																			"children": [
@@ -32291,13 +31651,13 @@
 																{
 																	"type": "zone",
 																	"attrs": {
-																		"x": "570",
-																		"y": "724",
+																		"x": "700",
+																		"y": "736",
 																		"is-fixed": "true",
-																		"w": "98860",
+																		"w": "98600",
 																		"name": "Total Sales",
 																		"fixed-size": "117",
-																		"h": "12099",
+																		"h": "12303",
 																		"id": "32"
 																	},
 																	"children": [
@@ -32346,13 +31706,13 @@
 																{
 																	"type": "zone",
 																	"attrs": {
-																		"x": "570",
+																		"x": "700",
 																		"is-fixed": "true",
-																		"y": "12823",
-																		"w": "98860",
+																		"y": "13039",
+																		"w": "98600",
 																		"type-v2": "layout-flow",
 																		"id": "26",
-																		"h": "34850",
+																		"h": "35436",
 																		"param": "horz",
 																		"fixed-size": "337"
 																	},
@@ -32360,10 +31720,10 @@
 																		{
 																			"type": "zone",
 																			"attrs": {
-																				"x": "570",
-																				"y": "12823",
-																				"w": "98860",
-																				"h": "34850",
+																				"x": "700",
+																				"y": "13039",
+																				"w": "98600",
+																				"h": "35436",
 																				"id": "44",
 																				"type-v2": "layout-flow",
 																				"param": "horz"
@@ -32372,11 +31732,11 @@
 																				{
 																					"type": "zone",
 																					"attrs": {
-																						"x": "570",
-																						"y": "12823",
-																						"w": "84435",
+																						"x": "700",
+																						"y": "13039",
+																						"w": "80900",
 																						"name": "Sale Map",
-																						"h": "34850",
+																						"h": "35436",
 																						"id": "1",
 																						"show-title": "false"
 																					},
@@ -32428,13 +31788,13 @@
 																				{
 																					"type": "zone",
 																					"attrs": {
-																						"x": "85005",
+																						"x": "81600",
 																						"is-fixed": "true",
-																						"y": "12823",
-																						"w": "14425",
+																						"y": "13039",
+																						"w": "17700",
 																						"type-v2": "layout-flow",
 																						"id": "37",
-																						"h": "34850",
+																						"h": "35436",
 																						"param": "vert",
 																						"fixed-size": "169"
 																					},
@@ -32442,15 +31802,15 @@
 																						{
 																							"type": "zone",
 																							"attrs": {
-																								"h": "5377",
+																								"type-v2": "filter",
+																								"h": "5468",
 																								"id": "41",
-																								"type-v2": "filter",
-																								"mode": "dropdown",
 																								"param": "[federated.10nnk8d1vgmw8q17yu76u06pnbcj].[none:Region:nk]",
+																								"mode": "dropdown",
 																								"name": "Sale Map",
-																								"w": "13121",
-																								"x": "85657",
-																								"y": "13651"
+																								"w": "16100",
+																								"x": "82400",
+																								"y": "13881"
 																							},
 																							"children": [
 																								{
@@ -32498,14 +31858,14 @@
 																						{
 																							"type": "zone",
 																							"attrs": {
-																								"h": "7135",
+																								"type-v2": "filter",
 																								"id": "40",
-																								"type-v2": "filter",
+																								"h": "7255",
+																								"w": "16100",
 																								"name": "Sale Map",
-																								"w": "13121",
 																								"param": "[federated.10nnk8d1vgmw8q17yu76u06pnbcj].[none:Order Date:qk]",
-																								"x": "85657",
-																								"y": "19028"
+																								"x": "82400",
+																								"y": "19349"
 																							},
 																							"children": [
 																								{
@@ -32553,14 +31913,14 @@
 																						{
 																							"type": "zone",
 																							"attrs": {
-																								"h": "7135",
-																								"id": "42",
 																								"type-v2": "filter",
+																								"id": "42",
+																								"h": "7255",
+																								"w": "16100",
 																								"name": "Sale Map",
-																								"w": "13121",
 																								"param": "[federated.10nnk8d1vgmw8q17yu76u06pnbcj].[usr:Calculation_9921103144103743:qk]",
-																								"x": "85657",
-																								"y": "26163"
+																								"x": "82400",
+																								"y": "26604"
 																							},
 																							"children": [
 																								{
@@ -32608,15 +31968,15 @@
 																						{
 																							"type": "zone",
 																							"attrs": {
-																								"h": "6722",
-																								"id": "43",
 																								"type-v2": "color",
+																								"h": "6835",
+																								"id": "43",
 																								"name": "Sale Map",
-																								"w": "13121",
+																								"w": "16100",
 																								"pane-specification-id": "2",
 																								"param": "[federated.10nnk8d1vgmw8q17yu76u06pnbcj].[usr:Calculation_9921103144103743:qk]",
-																								"x": "85657",
-																								"y": "33298"
+																								"x": "82400",
+																								"y": "33859"
 																							},
 																							"children": [
 																								{
@@ -32710,10 +32070,10 @@
 																{
 																	"type": "zone",
 																	"attrs": {
-																		"x": "570",
-																		"y": "47673",
-																		"w": "98860",
-																		"h": "51603",
+																		"x": "700",
+																		"y": "48475",
+																		"w": "98600",
+																		"h": "50789",
 																		"id": "22",
 																		"type-v2": "layout-flow",
 																		"param": "horz"
@@ -32722,11 +32082,11 @@
 																		{
 																			"type": "zone",
 																			"attrs": {
-																				"x": "896",
-																				"y": "48087",
-																				"w": "48941",
+																				"x": "1100",
+																				"y": "48896",
+																				"w": "48700",
 																				"name": "Sales by Segment",
-																				"h": "50775",
+																				"h": "49947",
 																				"id": "8"
 																			},
 																			"children": [
@@ -32777,11 +32137,11 @@
 																		{
 																			"type": "zone",
 																			"attrs": {
-																				"x": "49837",
-																				"y": "48087",
-																				"w": "49267",
+																				"x": "49800",
+																				"y": "48896",
+																				"w": "49100",
 																				"name": "Sales by Product",
-																				"h": "50775",
+																				"h": "49947",
 																				"id": "10"
 																			},
 																			"children": [
@@ -33663,10 +33023,10 @@
 												{
 													"type": "zone",
 													"attrs": {
-														"x": "570",
-														"y": "724",
-														"w": "98860",
-														"h": "98552",
+														"x": "410",
+														"y": "774",
+														"w": "99180",
+														"h": "98452",
 														"id": "31",
 														"type-v2": "layout-flow",
 														"param": "horz"
@@ -33675,10 +33035,10 @@
 														{
 															"type": "zone",
 															"attrs": {
-																"x": "570",
-																"y": "724",
-																"w": "98860",
-																"h": "98552",
+																"x": "410",
+																"y": "774",
+																"w": "99180",
+																"h": "98452",
 																"id": "29",
 																"type-v2": "layout-basic"
 															},
@@ -33686,10 +33046,10 @@
 																{
 																	"type": "zone",
 																	"attrs": {
-																		"x": "570",
-																		"y": "724",
-																		"w": "98860",
-																		"h": "49253",
+																		"x": "410",
+																		"y": "774",
+																		"w": "99180",
+																		"h": "49204",
 																		"id": "16",
 																		"type-v2": "layout-flow",
 																		"param": "horz"
@@ -33698,10 +33058,10 @@
 																		{
 																			"type": "zone",
 																			"attrs": {
-																				"x": "570",
-																				"y": "724",
-																				"w": "98860",
-																				"h": "49253",
+																				"x": "410",
+																				"y": "774",
+																				"w": "99180",
+																				"h": "49204",
 																				"id": "10",
 																				"type-v2": "layout-flow",
 																				"param": "vert"
@@ -33710,12 +33070,12 @@
 																				{
 																					"type": "zone",
 																					"attrs": {
-																						"h": "3930",
-																						"id": "9",
 																						"type-v2": "title",
-																						"w": "98860",
-																						"x": "570",
-																						"y": "724"
+																						"id": "9",
+																						"h": "4203",
+																						"w": "99180",
+																						"x": "410",
+																						"y": "774"
 																					},
 																					"children": [
 																						{
@@ -33756,10 +33116,10 @@
 																				{
 																					"type": "zone",
 																					"attrs": {
-																						"x": "570",
-																						"y": "4654",
-																						"w": "98860",
-																						"h": "45323",
+																						"x": "410",
+																						"y": "4977",
+																						"w": "99180",
+																						"h": "45001",
 																						"id": "5",
 																						"type-v2": "layout-flow",
 																						"param": "horz"
@@ -33768,10 +33128,10 @@
 																						{
 																							"type": "zone",
 																							"attrs": {
-																								"x": "570",
-																								"y": "4654",
-																								"w": "98860",
-																								"h": "45323",
+																								"x": "410",
+																								"y": "4977",
+																								"w": "99180",
+																								"h": "45001",
 																								"id": "3",
 																								"type-v2": "layout-basic"
 																							},
@@ -33779,11 +33139,11 @@
 																								{
 																									"type": "zone",
 																									"attrs": {
-																										"x": "570",
-																										"y": "4654",
-																										"w": "87703",
+																										"x": "410",
+																										"y": "4977",
+																										"w": "87987",
 																										"name": "ProductView",
-																										"h": "45323",
+																										"h": "45001",
 																										"id": "1"
 																									},
 																									"children": [
@@ -33825,10 +33185,10 @@
 																								{
 																									"type": "zone",
 																									"attrs": {
-																										"x": "88273",
-																										"y": "4654",
-																										"w": "11157",
-																										"h": "45323",
+																										"x": "88397",
+																										"y": "4977",
+																										"w": "11193",
+																										"h": "45001",
 																										"id": "28",
 																										"type-v2": "layout-flow",
 																										"param": "vert"
@@ -33837,15 +33197,15 @@
 																										{
 																											"type": "zone",
 																											"attrs": {
-																												"h": "13133",
-																												"id": "32",
 																												"type-v2": "filter",
-																												"mode": "radiolist",
+																												"h": "14049",
+																												"id": "32",
 																												"param": "[federated.10nnk8d1vgmw8q17yu76u06pnbcj].[none:Region:nk]",
+																												"mode": "radiolist",
 																												"name": "ProductView",
-																												"w": "9853",
-																												"x": "88925",
-																												"y": "5482"
+																												"w": "10257",
+																												"x": "88865",
+																												"y": "5861"
 																											},
 																											"children": [
 																												{
@@ -33893,15 +33253,15 @@
 																										{
 																											"type": "zone",
 																											"attrs": {
-																												"h": "6722",
-																												"id": "33",
 																												"type-v2": "color",
+																												"h": "7190",
+																												"id": "33",
 																												"name": "ProductView",
-																												"w": "9853",
+																												"w": "10257",
 																												"pane-specification-id": "0",
 																												"param": "[federated.10nnk8d1vgmw8q17yu76u06pnbcj].[sum:Sales:qk]",
-																												"x": "88925",
-																												"y": "18615"
+																												"x": "88865",
+																												"y": "19910"
 																											},
 																											"children": [
 																												{
@@ -33942,15 +33302,15 @@
 																										{
 																											"type": "zone",
 																											"attrs": {
-																												"h": "6722",
-																												"id": "34",
 																												"type-v2": "color",
+																												"h": "7190",
+																												"id": "34",
 																												"name": "ProductDetails",
-																												"w": "9853",
+																												"w": "10257",
 																												"pane-specification-id": "0",
 																												"param": "[federated.10nnk8d1vgmw8q17yu76u06pnbcj].[usr:Calculation_9921103144103743:qk]",
-																												"x": "88925",
-																												"y": "25337"
+																												"x": "88865",
+																												"y": "27100"
 																											},
 																											"children": [
 																												{
@@ -34048,11 +33408,11 @@
 																{
 																	"type": "zone",
 																	"attrs": {
-																		"x": "570",
-																		"y": "49977",
-																		"w": "98860",
+																		"x": "410",
+																		"y": "49978",
+																		"w": "99180",
 																		"name": "ProductDetails",
-																		"h": "49299",
+																		"h": "49248",
 																		"id": "8"
 																	}
 																}
@@ -34649,10 +34009,10 @@
 												{
 													"type": "zone",
 													"attrs": {
-														"x": "570",
-														"y": "724",
-														"w": "98860",
-														"h": "98552",
+														"x": "410",
+														"y": "774",
+														"w": "99180",
+														"h": "98452",
 														"id": "39",
 														"type-v2": "layout-flow",
 														"param": "horz"
@@ -34661,10 +34021,10 @@
 														{
 															"type": "zone",
 															"attrs": {
-																"x": "570",
-																"y": "724",
-																"w": "98860",
-																"h": "98552",
+																"x": "410",
+																"y": "774",
+																"w": "99180",
+																"h": "98452",
 																"id": "37",
 																"type-v2": "layout-basic"
 															},
@@ -34672,10 +34032,10 @@
 																{
 																	"type": "zone",
 																	"attrs": {
-																		"x": "570",
-																		"y": "8124",
-																		"w": "86654",
-																		"h": "91152",
+																		"x": "410",
+																		"y": "8167",
+																		"w": "86935",
+																		"h": "91059",
 																		"id": "35",
 																		"type-v2": "layout-flow",
 																		"param": "vert"
@@ -34684,14 +34044,14 @@
 																		{
 																			"type": "zone",
 																			"attrs": {
-																				"x": "570",
+																				"x": "410",
 																				"is-fixed": "true",
-																				"y": "8124",
+																				"y": "8167",
 																				"fixed-size": "53",
 																				"name": "ShipSummary",
-																				"w": "86654",
+																				"w": "86935",
 																				"id": "19",
-																				"h": "6308",
+																				"h": "6748",
 																				"show-title": "false"
 																			},
 																			"children": [
@@ -34747,14 +34107,14 @@
 																		{
 																			"type": "zone",
 																			"attrs": {
-																				"x": "570",
+																				"x": "410",
 																				"is-fixed": "true",
-																				"y": "14432",
+																				"y": "14915",
 																				"fixed-size": "296",
 																				"name": "ShippingTrend",
-																				"w": "86654",
+																				"w": "86935",
 																				"id": "1",
-																				"h": "30610",
+																				"h": "32743",
 																				"show-title": "false"
 																			},
 																			"children": [
@@ -34771,11 +34131,11 @@
 																		{
 																			"type": "zone",
 																			"attrs": {
-																				"x": "570",
-																				"y": "45042",
-																				"w": "86654",
+																				"x": "410",
+																				"y": "47658",
+																				"w": "86935",
 																				"name": "DaystoShip",
-																				"h": "54234",
+																				"h": "51568",
 																				"id": "3"
 																			},
 																			"children": [
@@ -34794,24 +34154,24 @@
 																{
 																	"type": "zone",
 																	"attrs": {
-																		"h": "7400",
-																		"id": "10",
 																		"type-v2": "title",
-																		"w": "98860",
-																		"x": "570",
-																		"y": "724"
+																		"id": "10",
+																		"h": "7393",
+																		"w": "99180",
+																		"x": "410",
+																		"y": "774"
 																	}
 																},
 																{
 																	"type": "zone",
 																	"attrs": {
-																		"x": "87224",
+																		"x": "87345",
 																		"is-fixed": "true",
-																		"y": "8140",
-																		"w": "12206",
+																		"y": "8183",
+																		"w": "12245",
 																		"type-v2": "layout-flow",
 																		"id": "38",
-																		"h": "91136",
+																		"h": "91043",
 																		"param": "vert",
 																		"fixed-size": "160"
 																	},
@@ -34819,18 +34179,18 @@
 																		{
 																			"type": "zone",
 																			"attrs": {
-																				"h": "11168",
+																				"h": "11947",
 																				"id": "40",
-																				"mode": "radiolist",
 																				"param": "[federated.10nnk8d1vgmw8q17yu76u06pnbcj].[yr:Order Date:ok]",
-																				"w": "10902",
+																				"mode": "radiolist",
+																				"w": "11309",
 																				"name": "ShippingTrend",
-																				"show-all": "false",
 																				"show-search": "false",
+																				"show-all": "false",
 																				"show-exclude": "false",
 																				"type-v2": "filter",
-																				"x": "87876",
-																				"y": "8968"
+																				"x": "87813",
+																				"y": "9067"
 																			},
 																			"children": [
 																				{
@@ -34878,18 +34238,18 @@
 																		{
 																			"type": "zone",
 																			"attrs": {
-																				"h": "11168",
-																				"id": "41",
 																				"values": "relevant",
 																				"type-v2": "filter",
-																				"mode": "radiolist",
+																				"h": "11947",
+																				"id": "41",
 																				"param": "[federated.10nnk8d1vgmw8q17yu76u06pnbcj].[qr:Order Date:ok]",
-																				"w": "10902",
+																				"mode": "radiolist",
+																				"w": "11309",
 																				"name": "ShippingTrend",
 																				"show-search": "false",
 																				"show-all": "false",
-																				"x": "87876",
-																				"y": "20136"
+																				"x": "87813",
+																				"y": "21014"
 																			},
 																			"children": [
 																				{
@@ -34937,18 +34297,18 @@
 																		{
 																			"type": "zone",
 																			"attrs": {
-																				"h": "5377",
-																				"id": "42",
 																				"show-filter-state": "false",
-																				"mode": "checkdropdown",
+																				"h": "5752",
+																				"id": "42",
 																				"param": "[federated.10nnk8d1vgmw8q17yu76u06pnbcj].[none:Region:nk]",
-																				"w": "10902",
+																				"mode": "checkdropdown",
+																				"w": "11309",
 																				"name": "ShippingTrend",
 																				"show-search": "false",
 																				"show-all": "false",
 																				"type-v2": "filter",
-																				"x": "87876",
-																				"y": "31304"
+																				"x": "87813",
+																				"y": "32961"
 																			},
 																			"children": [
 																				{
@@ -34996,15 +34356,15 @@
 																		{
 																			"type": "zone",
 																			"attrs": {
-																				"h": "5377",
-																				"id": "43",
 																				"type-v2": "filter",
-																				"mode": "checkdropdown",
+																				"h": "5752",
+																				"id": "43",
 																				"param": "[federated.10nnk8d1vgmw8q17yu76u06pnbcj].[none:Ship Mode:nk]",
+																				"mode": "checkdropdown",
 																				"name": "ShippingTrend",
-																				"w": "10902",
-																				"x": "87876",
-																				"y": "36681"
+																				"w": "11309",
+																				"x": "87813",
+																				"y": "38713"
 																			},
 																			"children": [
 																				{
@@ -36396,77 +35756,6 @@
 													"attrs": {
 														"type": "fit-width"
 													}
-												},
-												{
-													"type": "selection-collection",
-													"children": [
-														{
-															"type": "node-selection",
-															"attrs": {
-																"select-tuples": "false"
-															},
-															"children": [
-																{
-																	"type": "oriented-node-reference",
-																	"attrs": {
-																		"orientation": "vertical"
-																	},
-																	"children": [
-																		{
-																			"type": "node-reference",
-																			"children": [
-																				{
-																					"type": "fields",
-																					"children": [
-																						{
-																							"type": "field",
-																							"content": "[federated.10nnk8d1vgmw8q17yu76u06pnbcj].[none:Order ID:nk]"
-																						},
-																						{
-																							"type": "field",
-																							"content": "[federated.10nnk8d1vgmw8q17yu76u06pnbcj].[none:Customer Name:nk]"
-																						},
-																						{
-																							"type": "field",
-																							"content": "[federated.10nnk8d1vgmw8q17yu76u06pnbcj].[none:Order Date:ok]"
-																						},
-																						{
-																							"type": "field",
-																							"content": "[federated.10nnk8d1vgmw8q17yu76u06pnbcj].[none:Ship Date:ok]"
-																						}
-																					]
-																				},
-																				{
-																					"type": "multibucket",
-																					"children": [
-																						{
-																							"type": "bucket",
-																							"content": "\"CA-2023-153738\""
-																						},
-																						{
-																							"type": "bucket",
-																							"content": "\"Alejandro Grove\""
-																						},
-																						{
-																							"type": "bucket",
-																							"content": "#2023-09-20#"
-																						},
-																						{
-																							"type": "bucket",
-																							"content": "#2023-09-22#"
-																						}
-																					]
-																				}
-																			]
-																		},
-																		{
-																			"type": "page-reference"
-																		}
-																	]
-																}
-															]
-														}
-													]
 												}
 											]
 										}
@@ -36475,7 +35764,7 @@
 								{
 									"type": "active",
 									"attrs": {
-										"id": "1"
+										"id": "-1"
 									}
 								},
 								{
@@ -36798,8 +36087,8 @@
 														{
 															"type": "card",
 															"attrs": {
-																"mode": "slider",
 																"param": "[Parameters].[Parameter 1]",
+																"mode": "slider",
 																"type": "parameter"
 															}
 														},
@@ -36886,7 +36175,8 @@
 							"type": "window",
 							"attrs": {
 								"name": "Sheet 22",
-								"class": "worksheet"
+								"class": "worksheet",
+								"maximized": "true"
 							},
 							"children": [
 								{
@@ -36981,7 +36271,7 @@
 								{
 									"type": "simple-id",
 									"attrs": {
-										"uuid": "{2B465504-0768-41CE-BF59-8219D507BEEB}"
+										"uuid": "{51F0A4EF-622E-4D86-82AB-85A093D5CBE8}"
 									}
 								}
 							]
@@ -36990,7 +36280,8 @@
 							"type": "window",
 							"attrs": {
 								"name": "CommissionProjection",
-								"class": "worksheet"
+								"class": "worksheet",
+								"hidden": "true"
 							},
 							"children": [
 								{
@@ -37137,7 +36428,8 @@
 							"type": "window",
 							"attrs": {
 								"name": "CustomerOverview",
-								"class": "worksheet"
+								"class": "worksheet",
+								"hidden": "true"
 							},
 							"children": [
 								{
@@ -37285,7 +36577,7 @@
 							"attrs": {
 								"name": "CustomerRank",
 								"class": "worksheet",
-								"maximized": "true"
+								"hidden": "true"
 							},
 							"children": [
 								{
@@ -37402,7 +36694,8 @@
 							"type": "window",
 							"attrs": {
 								"name": "CustomerScatter",
-								"class": "worksheet"
+								"class": "worksheet",
+								"hidden": "true"
 							},
 							"children": [
 								{
@@ -37565,7 +36858,8 @@
 							"type": "window",
 							"attrs": {
 								"name": "DaystoShip",
-								"class": "worksheet"
+								"class": "worksheet",
+								"hidden": "true"
 							},
 							"children": [
 								{
@@ -37732,7 +37026,8 @@
 							"type": "window",
 							"attrs": {
 								"name": "OTE",
-								"class": "worksheet"
+								"class": "worksheet",
+								"hidden": "true"
 							},
 							"children": [
 								{
@@ -37867,7 +37162,8 @@
 							"type": "window",
 							"attrs": {
 								"name": "Product Detail Sheet",
-								"class": "worksheet"
+								"class": "worksheet",
+								"hidden": "true"
 							},
 							"children": [
 								{
@@ -38040,7 +37336,8 @@
 							"type": "window",
 							"attrs": {
 								"name": "ProductDetails",
-								"class": "worksheet"
+								"class": "worksheet",
+								"hidden": "true"
 							},
 							"children": [
 								{
@@ -38201,7 +37498,8 @@
 							"type": "window",
 							"attrs": {
 								"name": "ProductView",
-								"class": "worksheet"
+								"class": "worksheet",
+								"hidden": "true"
 							},
 							"children": [
 								{
@@ -38350,7 +37648,8 @@
 							"type": "window",
 							"attrs": {
 								"name": "QuotaAttainment",
-								"class": "worksheet"
+								"class": "worksheet",
+								"hidden": "true"
 							},
 							"children": [
 								{
@@ -38477,7 +37776,8 @@
 							"type": "window",
 							"attrs": {
 								"name": "Sale Map",
-								"class": "worksheet"
+								"class": "worksheet",
+								"hidden": "true"
 							},
 							"children": [
 								{
@@ -38632,7 +37932,8 @@
 							"type": "window",
 							"attrs": {
 								"name": "Sales",
-								"class": "worksheet"
+								"class": "worksheet",
+								"hidden": "true"
 							},
 							"children": [
 								{
@@ -38767,7 +38068,8 @@
 							"type": "window",
 							"attrs": {
 								"name": "Sales by Product",
-								"class": "worksheet"
+								"class": "worksheet",
+								"hidden": "true"
 							},
 							"children": [
 								{
@@ -38904,7 +38206,8 @@
 							"type": "window",
 							"attrs": {
 								"name": "Sales by Segment",
-								"class": "worksheet"
+								"class": "worksheet",
+								"hidden": "true"
 							},
 							"children": [
 								{
@@ -39049,7 +38352,8 @@
 							"type": "window",
 							"attrs": {
 								"name": "ShipSummary",
-								"class": "worksheet"
+								"class": "worksheet",
+								"hidden": "true"
 							},
 							"children": [
 								{
@@ -39192,7 +38496,8 @@
 							"type": "window",
 							"attrs": {
 								"name": "ShippingTrend",
-								"class": "worksheet"
+								"class": "worksheet",
+								"hidden": "true"
 							},
 							"children": [
 								{
@@ -39339,7 +38644,8 @@
 							"type": "window",
 							"attrs": {
 								"name": "Tooltip: Profit Ratio by City",
-								"class": "worksheet"
+								"class": "worksheet",
+								"hidden": "true"
 							},
 							"children": [
 								{
@@ -39486,7 +38792,8 @@
 							"type": "window",
 							"attrs": {
 								"name": "Total Sales",
-								"class": "worksheet"
+								"class": "worksheet",
+								"hidden": "true"
 							},
 							"children": [
 								{
@@ -39608,111 +38915,6 @@
 									"attrs": {
 										"uuid": "{1BFA0A62-FAED-436B-A65C-1ED60E6D8FCD}"
 									}
-								}
-							]
-						}
-					]
-				},
-				{
-					"type": "referenced-extensions",
-					"children": [
-						{
-							"type": "referenced-extension",
-							"children": [
-								{
-									"type": "manifest",
-									"attrs": {
-										"manifest-version": "0.1"
-									},
-									"children": [
-										{
-											"type": "worksheet-extension",
-											"attrs": {
-												"id": "com.tableau.extension.poweruser",
-												"extension-version": "1.0.0"
-											},
-											"children": [
-												{
-													"type": "default-locale",
-													"content": "en_US"
-												},
-												{
-													"type": "name",
-													"attrs": {
-														"resource-id": "name"
-													}
-												},
-												{
-													"type": "description",
-													"content": "Power User"
-												},
-												{
-													"type": "author",
-													"attrs": {
-														"name": "Tableau",
-														"email": "github@tableau.com",
-														"organization": "Tableau",
-														"website": "https://www.tableau.com/support"
-													}
-												},
-												{
-													"type": "min-api-version",
-													"content": "1.12"
-												},
-												{
-													"type": "source-location",
-													"children": [
-														{
-															"type": "url",
-															"content": "http://localhost:8765/poweruser/poweruser.html"
-														}
-													]
-												},
-												{
-													"type": "icon"
-												}
-											]
-										},
-										{
-											"type": "resources",
-											"children": [
-												{
-													"type": "resource",
-													"attrs": {
-														"id": "name"
-													},
-													"children": [
-														{
-															"type": "text",
-															"attrs": {
-																"locale": "en_US"
-															},
-															"content": "Power User Extension"
-														}
-													]
-												}
-											]
-										}
-									]
-								},
-								{
-									"type": "referenced-views",
-									"children": [
-										{
-											"type": "referenced-view",
-											"attrs": {
-												"viewId": "Sheet 22",
-												"instances": "1"
-											}
-										},
-										{
-											"type": "referenced-view",
-											"attrs": {
-												"viewId": "fake sheet name",
-												"instances": "1"
-											}
-										}
-									]
 								}
 							]
 						}

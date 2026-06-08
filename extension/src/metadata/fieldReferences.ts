@@ -1,4 +1,4 @@
-import { findFieldByName } from './fieldCatalog';
+import { findFieldByFieldId } from './fieldCatalog';
 import { FieldRecord, makeFieldId, WorkbookNode } from './types';
 
 const PARAM_REF_PATTERN = /\[Parameters\]\.\[([^\]]+)\]/g;
@@ -106,7 +106,7 @@ function resolveQualifiedReference(
     return direct;
   }
 
-  const byInstanceColumn = findFieldByName(fields, instanceOrName, datasource);
+  const byInstanceColumn = findFieldByFieldId(fields, instanceOrName, datasource);
   return byInstanceColumn?.id ?? null;
 }
 
@@ -138,7 +138,7 @@ function resolveSimpleReference(
     }
   }
 
-  const found = findFieldByName(fields, name);
+  const found = findFieldByFieldId(fields, name);
   return found?.id ?? null;
 }
 

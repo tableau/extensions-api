@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack --config webpack.config.js",
     "dev": "webpack --watch --config webpack.config.js",
-    "serve": "node ../node_modules/http-server/bin/http-server .. -p 8765 -c-1",
+    "serve": "node ../node_modules/http-server/bin/http-server .. -p 8766 -c-1",
     "test": "jest",
     "test-watch": "jest --watch",
     "lint": "tsc --noEmit"

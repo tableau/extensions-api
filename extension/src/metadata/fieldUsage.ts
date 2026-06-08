@@ -7,6 +7,8 @@ import {
 import { FieldIndex, FieldRecord, FieldUsage, WorkbookNode } from './types';
 import { walkTree } from './traverse';
 
+const PARAMETERS_DATASOURCE = 'Parameters';
+
 function attrString(node: WorkbookNode, key: string): string | null {
   const value = node.attrs[key];
   return typeof value === 'string' ? value : null;
@@ -139,4 +141,153 @@ export function buildUsageMap(
 
 export function getUsages(index: FieldIndex, fieldId: string): FieldUsage[] {
   return index.usages.get(fieldId) ?? [];
+}
+
+function markUsed(usedIds: Set<string>, fieldId: string | null | undefined): void {
+  if (fieldId) {
+    usedIds.add(fieldId);
+  }
+}
+
+function resolveFieldNameToken(
+  token: string,
+  fields: Map<string, FieldRecord>
+): string | null {
+  const trimmed = token.trim();
+  if (!trimmed) {
+    return null;
+  }
+
+  const byFieldName = Array.from(fields.values()).find(
+    (field) => field.fieldName === trimmed
+  );
+  if (byFieldName) {
+    return byFieldName.id;
+  }
+
+  const bracketed = trimmed.startsWith('[') ? trimmed : `[${trimmed}]`;
+  const byFieldId = Array.from(fields.values()).find((field) => field.fieldId === bracketed);
+  if (byFieldId) {
+    return byFieldId.id;
+  }
+
+  return resolveReferenceString(bracketed, fields, null);
+}
+
+function recordActionReferencesInText(
+  text: string,
+  fields: Map<string, FieldRecord>,
+  usedIds: Set<string>
+): void {
+  for (const fieldId of extractReferencesFromText(text, fields, null)) {
+    markUsed(usedIds, fieldId);
+  }
+}
+
+export function buildParameterSourceRefs(
+  workbook: WorkbookNode,
+  fields: Map<string, FieldRecord>
+): Set<string> {
+  const usedIds = new Set<string>();
+  const datasourcesNode = workbook.children?.find((child) => child.type === 'datasources');
+  if (!datasourcesNode?.children) {
+    return usedIds;
+  }
+
+  const parametersDs = datasourcesNode.children.find(
+    (child) =>
+      child.type === 'datasource' && child.attrs.name === PARAMETERS_DATASOURCE
+  );
+  if (!parametersDs) {
+    return usedIds;
+  }
+
+  for (const child of parametersDs.children ?? []) {
+    if (child.type !== 'column') {
+      continue;
+    }
+    const sourceField = attrString(child, 'source-field');
+    if (!sourceField) {
+      continue;
+    }
+    markUsed(usedIds, resolveReferenceString(sourceField, fields, null));
+  }
+
+  return usedIds;
+}
+
+export function buildActionRefs(
+  workbook: WorkbookNode,
+  fields: Map<string, FieldRecord>
+): Set<string> {
+  const usedIds = new Set<string>();
+  const actionsNode = workbook.children?.find((child) => child.type === 'actions');
+  if (!actionsNode?.children) {
+    return usedIds;
+  }
+
+  walkTree(actionsNode, (node) => {
+    if (node.type === 'param') {
+      const paramName = attrString(node, 'name');
+      const value = attrString(node, 'value');
+      if (paramName === 'field-captions' && value) {
+        for (const token of value.split(',')) {
+          markUsed(usedIds, resolveFieldNameToken(token, fields));
+        }
+      }
+      return;
+    }
+
+    if (node.type === 'link') {
+      const expression = attrString(node, 'expression');
+      if (expression) {
+        recordActionReferencesInText(expression, fields, usedIds);
+      }
+      return;
+    }
+
+    if (node.attrs) {
+      for (const [key, value] of Object.entries(node.attrs)) {
+        if (typeof value === 'string' && (key === 'expression' || key === 'value' || key === 'column')) {
+          recordActionReferencesInText(value, fields, usedIds);
+        }
+      }
+    }
+
+    if (typeof node.content === 'string') {
+      recordActionReferencesInText(node.content, fields, usedIds);
+    }
+  });
+
+  return usedIds;
+}
+
+export function computeUsedFields(
+  fields: Map<string, FieldRecord>,
+  downstream: Map<string, string[]>,
+  usages: Map<string, FieldUsage[]>,
+  workbook: WorkbookNode
+): void {
+  const usedIds = new Set<string>();
+
+  for (const field of fields.values()) {
+    if ((downstream.get(field.id) ?? []).length > 0) {
+      usedIds.add(field.id);
+    }
+    if ((usages.get(field.id) ?? []).length > 0) {
+      usedIds.add(field.id);
+    }
+  }
+
+  for (const fieldId of buildParameterSourceRefs(workbook, fields)) {
+    usedIds.add(fieldId);
+  }
+
+  for (const fieldId of buildActionRefs(workbook, fields)) {
+    usedIds.add(fieldId);
+  }
+
+  for (const field of fields.values()) {
+    field.used = usedIds.has(field.id);
+  }
 }

@@ -29,8 +29,8 @@ export function buildDependencyEdges(
   for (const field of fields.values()) {
     const deps: string[] = [];
 
-    if (field.formula) {
-      deps.push(...parseFormulaFieldIds(field.formula, field.datasource));
+    if (field.value) {
+      deps.push(...parseFormulaFieldIds(field.value, field.datasource));
     }
 
     const resolvedDeps = [...new Set(deps.filter((depId) => fields.has(depId)))];
@@ -172,7 +172,7 @@ export function getDependencySubgraph(
     for (const toId of upstream.get(fromId) ?? []) {
       if (nodeIds.has(toId)) {
         const via =
-          fields.get(fromId)?.kind === 'set' || fields.get(fromId)?.kind === 'group'
+          fields.get(fromId)?.fieldType === 'set' || fields.get(fromId)?.fieldType === 'group'
             ? 'set-definition'
             : 'formula';
         edges.push({ from: fromId, to: toId, via });
@@ -188,9 +188,9 @@ export function getDependencySubgraph(
   };
 }
 
-export function getFieldByCaption(
+export function getFieldByFieldName(
   fields: Map<string, FieldRecord>,
-  caption: string
+  fieldName: string
 ): FieldRecord | undefined {
-  return Array.from(fields.values()).find((field) => field.caption === caption);
+  return Array.from(fields.values()).find((field) => field.fieldName === fieldName);
 }

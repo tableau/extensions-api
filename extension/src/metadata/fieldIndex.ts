@@ -5,7 +5,7 @@ import {
   getDependencySubgraph,
 } from './dependencyGraph';
 import { buildFieldCatalog } from './fieldCatalog';
-import { buildUsageMap } from './fieldUsage';
+import { buildUsageMap, computeUsedFields } from './fieldUsage';
 import { normalizeWorkbookRoot } from './normalize';
 import {
   DependencySubgraph,
@@ -24,6 +24,7 @@ export function buildFieldIndexFromWorkbook(workbook: WorkbookNode): FieldIndex 
   const { upstream, downstream } = buildDependencyEdges(fields);
   addGroupDependencies(workbook, fields, upstream, downstream);
   const usages = buildUsageMap(workbook, fields);
+  computeUsedFields(fields, downstream, usages, workbook);
 
   return {
     fields,

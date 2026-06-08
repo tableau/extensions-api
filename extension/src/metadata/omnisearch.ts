@@ -11,8 +11,8 @@ export function searchFields(
 
   let results = Array.from(index.fields.values());
 
-  if (filters.kinds?.length) {
-    results = results.filter((field) => filters.kinds!.includes(field.kind));
+  if (filters.fieldTypes?.length) {
+    results = results.filter((field) => filters.fieldTypes!.includes(field.fieldType));
   }
 
   if (filters.roles?.length) {
