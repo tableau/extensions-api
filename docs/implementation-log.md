@@ -80,3 +80,47 @@ Living record of what was built, key decisions, and Tableau versions tested.
 - Field cleanup rule catalog (post-v1)
 - Totals formatting node location in metadata (post-v1)
 - `traverse.test.ts` still imports removed `minimal-workbook.json` — update when M1 starts
+
+---
+
+## 2026-06-08 — M1: Field index + Omnisearch field table
+
+### What was built
+
+- Metadata field index pipeline: normalize, catalog, references, dependency graph, usage map, search function
+- Omnisearch UI: `OmnisearchPanel` + `FieldTable` listing all indexed fields (read-only, Refresh only)
+- Jest golden tests against `workbook_export.json`
+- `TableauBridge.getWorkbookMetadata()` normalizes export wrapper to workbook root
+
+### Key decisions
+
+- Field ID: `{datasource}::{fieldName}` (e.g. `Parameters::[Parameter 1]`)
+- Exclude `metadata-record` from catalog
+- Usage scanning includes `groupfilter` member/level attrs with quote stripping
+- Search bar deferred to M2; `searchFields()` implemented and tested only
+- Replaced raw JSON viewer in `App.tsx` with field table
+
+### Modules
+
+- `extension/src/metadata/normalize.ts`
+- `extension/src/metadata/fieldCatalog.ts`
+- `extension/src/metadata/fieldReferences.ts`
+- `extension/src/metadata/dependencyGraph.ts`
+- `extension/src/metadata/fieldUsage.ts`
+- `extension/src/metadata/fieldIndex.ts`
+- `extension/src/metadata/omnisearch.ts`
+- `extension/src/hooks/useFieldIndex.ts`
+- `extension/src/components/omnisearch/OmnisearchPanel.tsx`
+- `extension/src/components/omnisearch/FieldTable.tsx`
+
+### Tableau version tested
+
+- Fixture build: `main.26.0531.2046`
+- Extension Desktop smoke test: _pending_
+
+### Open questions
+
+- Exact beta Extensions API library version required for metadata commands
+- Formula/set reference parsing edge cases (blends, LODs, table calcs) — partial coverage
+- Field cleanup rule catalog (post-v1)
+- Totals formatting node location in metadata (post-v1)

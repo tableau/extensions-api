@@ -63,7 +63,8 @@ npm run build
 
 **Tableau Desktop:** beta extensions must be enabled. Alpha metadata commands may require a beta Extensions API library — document the tested Desktop build in `docs/implementation-log.md`.
 
-**Load extension:** add dashboard extension object → select `extension/manifest.trex`.
+**Load extension (custom Desktop build):** register as a **workspace extension** → select `extension/manifest.trex`.  
+(Uses `<workspace-extension>` in the manifest — not dashboard or viz extension. BeFree uses `<dashboard-extension>` and is for standard SDK samples only.)
 
 ## Handoff workflow
 

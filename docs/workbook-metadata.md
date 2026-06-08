@@ -93,6 +93,7 @@ Primary representation for dimensions, measures, calculated fields, and paramete
 
 - **attrs (common):** `name`, `caption`, `role` (`dimension` | `measure`), `datatype`, `type` (`nominal` | `ordinal` | `quantitative`), `hidden` (`"true"` when hidden)
 - **attrs (parameters):** `param-domain-type` (`range` | `list`), `value`
+- **attrs (field-fed list parameter):** `source-field` — qualified `[datasource].[field]`; parameter domain values come from that column (not from `calculation.formula`). Example in fixture: **Segment Parameter** → `source-field: "[federated.10nnk8d1vgmw8q17yu76u06pnbcj].[Segment]"`; child `calculation` holds only the default value (`"Consumer"`).
 - **children:** `calculation` (formula), `range`, `members`, `aliases`, …
 - **Formula location:** child node `type: "calculation"` → `attrs.formula`, `attrs.class` (e.g. `"tableau"`)
 - **Hidden example:** `[Product ID]` with `"hidden": "true"`
@@ -159,9 +160,34 @@ Used for action/hierarchy groups **and** sets.
 
 ---
 
-## Usage locations (TBD — M1)
+## Usage locations (M1)
 
-Field usage in worksheets/dashboards is encoded in shelf/encoding/filter nodes. Reference patterns and indexing strategy to be documented during M1 implementation against `workbook_export.json`.
+Field usage is indexed by scanning worksheets and dashboards for reference-bearing nodes. Implemented in `extension/src/metadata/fieldUsage.ts`.
+
+| Node type | Attribute / content | Notes |
+|-----------|---------------------|-------|
+| `rows`, `cols` | `content` string | Bracket tokens extracted (best-effort) |
+| `encoding` | `attrs.field` | Direct or internal calc name |
+| `filter`, `manual-sort`, `shelf-sort` | `attrs.column` | Often qualified `[datasource].[instance]` |
+| `groupfilter` | `attrs.member`, `attrs.level` | Quoted member strings stripped before resolve |
+
+**Resolution:** Worksheet `datasource-dependencies` → `column-instance` maps instance names (e.g. `[sum:Calculation_…:qk]`) to base columns (e.g. `[Calculation_…]`). Qualified refs resolved via `extension/src/metadata/fieldReferences.ts`.
+
+**Limitations:** Title `run` content and dashboard-indirect usage not fully indexed in M1.
+
+---
+
+## Parameter source fields (M1.1)
+
+Field-fed list parameters declare their domain source via `source-field` on the parameter `column` node in the `Parameters` datasource.
+
+| Attr | Resolves to | `used` impact |
+|------|-------------|---------------|
+| `source-field` | Base column in named datasource (e.g. `[Segment]`) | Source field → `used: true` |
+
+**Not covered by formula parsing:** the parameter's `calculation` child typically contains only the default member string, not a `[Field]` reference. Index `source-field` separately in `buildParameterSourceRefs()` (see M1.1 brief).
+
+**Fixture:** `Segment Parameter` (`[Parameter 0837838388154369]`) → `source-field` → `[Segment]`. Segment Parameter is not yet referenced in any calc or sheet in the fixture.
 
 ---
 
