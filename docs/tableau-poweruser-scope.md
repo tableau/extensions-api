@@ -146,7 +146,7 @@ All field-like objects:
 | **M3** | Interactive DAG | 2-up / 2-down graph for selected field | Not started — see `docs/milestones/M3-interactive-dag.md` |
 | **M4** | **v1 ship** | Omnisearch complete, read-only | Not started |
 
-Post-v1 milestones (field cleanup, total formatter, etc.) will be briefed separately.
+Post-v1 milestones (field cleanup, total formatter, etc.) will be briefed separately. Additional tool ideas — including **aggregation checker** — live in `docs/downstream-features.md`.
 
 ---
 
