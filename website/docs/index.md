@@ -1,6 +1,6 @@
 # Tableau Extensions API
 
-The Tableau Extensions API allows developers to create dashboard extensions and viz extensions for Tableau. Tableau extensions are web applications that can interact and communicate with Tableau. A dashboard extension can be placed in the dashboard like any other dashboard object. A Tableau viz extension creates new viz types that Tableau users can access through the worksheet Marks card.
+The Tableau Extensions API allows developers to create dashboard extensions, viz extensions, and workspace extensions for Tableau. Tableau extensions are web applications that can interact and communicate with Tableau. A dashboard extension can be placed in the dashboard like any other dashboard object. A Tableau viz extension creates new viz types that Tableau users can access through the worksheet Marks card. A workspace extension runs at the workspace level and stays available as you open, close, and switch between workbooks.
 
 :::note
 
@@ -8,7 +8,7 @@ If you are looking for information about how to extend Tableau calculations to i
 
 :::
 
-The Tableau Extensions API is a JavaScript library that is organized into namespaces that contain the classes and methods for communicating with Tableau components. The Tableau Extensions API library supports both dashboard extensions and viz extensions, although not all interfaces and methods apply to both extensions. For an overview of how the API is organized, see [Tableau Extensions API Basics](./trex_api_about.md).
+The Tableau Extensions API is a JavaScript library that is organized into namespaces that contain the classes and methods for communicating with Tableau components. The Tableau Extensions API library supports dashboard extensions, viz extensions, and workspace extensions, although not all interfaces and methods apply to every extension type. For an overview of how the API is organized, see [Tableau Extensions API Basics](./trex_api_about.md).
 
 Details on the supported platforms and hardware requirements can be found in the [Installation instructions](installation.md).
 
@@ -19,3 +19,5 @@ Details on the supported platforms and hardware requirements can be found in the
 * [Get Started with Viz Extensions](./vizext/trex_viz_getstarted.md)
 
 * [Get Started with Dashboard Extensions](./dashext/trex_getstarted.md)
+
+* [Get Started with Workspace Extensions](./workspaceext/trex_workspace_getstarted.md)

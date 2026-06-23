@@ -31,6 +31,18 @@ const sidebars = {
         'dashext/trex_examples', 
       ],
     }, 
+    {
+      type: 'category',
+      label: 'Workspace Extensions',
+      link: { type: 'doc', id: 'workspaceext/index' },
+      items: [
+        'workspaceext/trex_workspace_getstarted',
+        'workspaceext/trex_workspace_create',
+        'workspaceext/trex_workspace_overview',
+        'workspaceext/trex_workspace_manifest',
+        'workspaceext/trex_workspace_examples',
+      ],
+    },
    /* { 
       type: 'category',
       label: 'Basic Concepts',

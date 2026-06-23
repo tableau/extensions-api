@@ -10,6 +10,7 @@ The Tableau Extensions API is organized by namespaces. The type of extension you
 | ----- | ------- |
 | Dashboard extensions | For example, if you create and register a dashboard extension, the extension will have access to the `dashboardContent` namespace, which provides access to the dashboard object. When you have the dashboard object, you have access to all elements in the dashboard, including the worksheets, marks, filters, parameters, and data sources. |
 | Viz extensions | If you create and register a viz extension, the extension will have access to the `worksheetContent` namespace, which provides access to the worksheet object. When you have the worksheet object, you have access to all elements in the worksheet, including the marks, filters, parameters, and data sources.|
+| Workspace extensions | If you create and register a workspace extension, the extension runs at the workspace level rather than inside a single workbook. It can access information about the currently active workbook (which can be empty when no workbook is open) and is notified when the active workbook changes. |
 
 ## Navigating the top-level `tableau` and `extensions` namespaces
 
@@ -18,6 +19,14 @@ The [Extensions API Reference](pathname:///api) namespaces are like containers t
 The `extensions` namespace is the namespace for Tableau extensions. A dashboard extension is one type of extension. When a extension is registered as a dashboard extension, it has access to the `dashboardContent` namespace, and all of the objects and classes of the dashboard.
 
 A viz extension is another type of extension. When a extension is registered as a viz extension, it has access to the `worksheetContent` namespace, and all of the objects and classes of the worksheet. A viz extension does not have access to the `dashboardContent`.
+
+A workspace extension is another type of extension. A workspace extension runs at the workspace level instead of inside a single workbook, so it is not bound to a specific dashboard or worksheet. It can access information about the currently active workbook and is notified when the active workbook changes.
+
+:::warning[TODO: REVIEW]
+<mark>Confirm the namespace a workspace extension uses to access workspace and workbook content (for example, <code>tableau.extensions.workspace</code>).</mark>
+
+Flagged because: the source material is inconsistent about the workspace namespace name and notes it may not be finalized. The canonical namespace needs to be confirmed.
+:::
 
 The type of extension you have registered determines what namespaces will be available. Some namespaces, like the `settings`, `environment`, and `ui` are available to all extensions.  
 
@@ -33,6 +42,7 @@ classDiagram
         class extensions
         class dashboardContent
         class worksheetContent
+        class workspace
         class environment
         class settings
         class ui
@@ -41,12 +51,19 @@ classDiagram
     class extensions
     extensions ..> dashboardContent
     extensions ..> worksheetContent
+    extensions ..> workspace
     extensions ..> environment
     extensions ..> settings
     extensions ..> ui
     extensions: initializeAsync()
 
 ```
+
+:::warning[TODO: REVIEW]
+<mark>Confirm the workspace namespace name shown in the diagram above (currently <code>workspace</code>).</mark>
+
+Flagged because: the source material is inconsistent about the workspace namespace name. Update the diagram once the canonical name is confirmed.
+:::
 
 ## Registering and accessing dashboard extensions
 
@@ -101,6 +118,24 @@ window.onload = tableau.extensions.initializeAsync().then(async () => {
 
 ```
 
+## Registering and accessing workspace extensions
+
+The workspace extension is another type of extension in the Tableau extensions namespace (and it is accessed using `tableau.extensions`). To register the workspace extension, you specify the extension as a `workspace-extension` in the manifest file (`.trex`). For more information about what goes in the file, see [Tableau Workspace Extension Manifest File](./workspaceext/trex_workspace_manifest.md).
+
+```xml
+
+<workspace-extension id="com.example.extensions.name" extension-version="0.1.0">
+
+```
+
+Unlike dashboard and viz extensions, a workspace extension runs at the workspace level and is not bound to a single workbook. After it is initialized, it has access to the namespaces that are common to all extensions, such as `tableau.extensions.environment` and `tableau.extensions.settings`. It can also access information about the currently active workbook, which can be empty when no workbook is open, and is notified when the active workbook changes.
+
+:::warning[TODO: REVIEW]
+<mark>Confirm the workspace extension initialization call and the namespace used to access workspace and workbook content.</mark>
+
+Flagged because: the source material shows initialization with a `context: 'workspace'` option and is inconsistent about the workspace namespace name, and notes both may not be finalized. These need to be confirmed before adding a code sample here.
+:::
+
 ## Using properties and methods in the `dashboard` and `worksheet` namespace
 
 The Tableau Extensions API is similar to the Tableau Embedding API. The `dashboard` and `worksheet` class or namespace inherit from an abstract `sheet` class. You can use the [Extensions API Reference](pathname:///api/) to find the properties and methods that are available for dashboard and worksheet objects.
@@ -126,6 +161,7 @@ classDiagram
         class extensions
         class dashboardContent
         class worksheetContent
+        class workspace
         class worksheet
         class dashboard
         class environment
@@ -137,6 +173,7 @@ classDiagram
     class extensions
     extensions ..> dashboardContent
     extensions ..> worksheetContent
+    extensions ..> workspace
     extensions ..> environment
     extensions ..> settings
     extensions ..> ui

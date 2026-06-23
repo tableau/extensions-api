@@ -92,6 +92,14 @@ For viz extensions:
 * Tableau Server 2024.1 and later
 * Tableau Cloud
 
+For workspace extensions:
+
+:::warning[TODO: REVIEW]
+<mark>Add the Tableau version requirements for workspace extensions (Tableau Desktop, Server, and Cloud).</mark>
+
+Flagged because: supported environments and minimum versions for workspace extensions are release information and are not yet confirmed.
+:::
+
 
 
 ### Security requirements
