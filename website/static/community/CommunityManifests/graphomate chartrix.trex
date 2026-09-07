@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest manifest-version="0.1" xmlns="http://www.tableau.com/xml/extension_manifest">
+    <worksheet-extension id="com.graphomate.viz.chatrix.latest" extension-version="1.0.0">
+        <default-locale>en_US</default-locale>
+        <name resource-id="name"/>
+        <description>graphomate chartrix</description>
+        <author name="graphomate GmbH" email="info@graphomate.com" organization="graphomate GmbH" website="https://www.graphomate.com"/>
+        <min-api-version>1.11</min-api-version>
+        <source-location>
+            <url>https://content.graphomate.com/tableau/chartrix/latest/index.html</url>
+        </source-location> <icon>iVBORw0KGgoAAAANSUhEUgAAAEYAAABGCAYAAABxLuKEAAAFwGlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4KPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNS41LjAiPgogPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIgogICAgeG1sbnM6cGhvdG9zaG9wPSJodHRwOi8vbnMuYWRvYmUuY29tL3Bob3Rvc2hvcC8xLjAvIgogICAgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIgogICAgeG1sbnM6ZXhpZj0iaHR0cDovL25zLmFkb2JlLmNvbS9leGlmLzEuMC8iCiAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyIKICAgIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIgogICAgeG1sbnM6c3RFdnQ9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZUV2ZW50IyIKICAgeG1wOkNyZWF0ZURhdGU9IjIwMjYtMDgtMzFUMTQ6MTA6MTErMDIwMCIKICAgeG1wOk1vZGlmeURhdGU9IjIwMjYtMDgtMzFUMTQ6MzA6MzIrMDI6MDAiCiAgIHhtcDpNZXRhZGF0YURhdGU9IjIwMjYtMDgtMzFUMTQ6MzA6MzIrMDI6MDAiCiAgIHBob3Rvc2hvcDpEYXRlQ3JlYXRlZD0iMjAyNi0wOC0zMVQxNDoxMDoxMSswMjAwIgogICBwaG90b3Nob3A6Q29sb3JNb2RlPSIzIgogICBwaG90b3Nob3A6SUNDUHJvZmlsZT0ic1JHQiBJRUM2MTk2Ni0yLjEi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
+    </icon>
+        <permissions>
+            <permission>full data</permission>
+        </permissions>
+        <context-menu>
+            <configure-context-menu-item />
+        </context-menu>
+        <encoding id="measures">
+            <display-name>Measures</display-name>
+            <data-spec>
+                <data-type>numeric</data-type>
+            </data-spec>
+            <role-spec>
+                <role-type>continuous-measure</role-type>
+            </role-spec>
+            <encoding-icon token="letter-m" />
+        </encoding>
+        <encoding id="ROWS">
+            <display-name>Categories</display-name>
+            <data-spec>
+                <data-type>string</data-type>
+                <data-type>temporal</data-type>
+                <data-type>numeric</data-type>
+                <data-type>boolean</data-type>
+            </data-spec>
+            <role-spec>
+                <role-type>discrete-dimension</role-type>
+            </role-spec>
+            <encoding-icon token="letter-c" />
+        </encoding>
+        <encoding id="COLUMNS">
+            <display-name>Series</display-name>
+            <data-spec>
+                <data-type>string</data-type>
+                <data-type>temporal</data-type>
+                <data-type>numeric</data-type>
+                <data-type>boolean</data-type>
+            </data-spec>
+            <role-spec>
+                <role-type>discrete-dimension</role-type>
+            </role-spec>
+            <encoding-icon token="letter-s" />
+        </encoding>
+    </worksheet-extension>
+    <resources>
+        <resource id="name">
+            <text locale="en_US">graphomate chartrix</text>
+            <text locale="fr_BE">graphomate chartrix</text>
+            <text locale="de_DE">graphomate chartrix</text>
+        </resource>
+    </resources>
+</manifest>
