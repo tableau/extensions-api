@@ -119,6 +119,18 @@
         "hostedTrexFileName": "GordonData Data Visualisation.trex"
     },
     {
+        "name": "graphomate chartrix",
+        "website": "https://www.graphomate.com/en/produkte/graphomate-chartrix/",
+        "author": "graphomate GmbH",
+        "github_username": "",
+        "tags": [
+            "v_1.0"
+        ],
+        "description": "Anyone who builds dashboards needs intuitive, powerful and flexible tools. With graphomate chartrix, we combine our many years of experience as one of the leading visualisation providers in the field of business intelligence with state-of-the-art software technology and contemporary usability to support you in this task.",
+        "source_code": "",
+        "hostedTrexFileName": "graphomate chartrix.trex"
+    },
+    {
         "name": "Hierarchy Navigator",
         "url": "https://github.com/tableau/extension-hierarchy-navigator-sandboxed",
         "author": "Russ Goldin",
