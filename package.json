@@ -57,5 +57,9 @@
       "/docs",
       "tableau.extensions.*.latest.js"
     ]
+  },
+  "allowScripts": {
+    "core-js-pure@3.50.0": true,
+    "fsevents@2.3.3": true
   }
 }
