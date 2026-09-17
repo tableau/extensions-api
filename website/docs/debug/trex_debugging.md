@@ -74,6 +74,12 @@ The remote debugging port (for example, `8696`) must match the port address you 
 
 :::
 
+:::important
+
+If using the `QTWEBENGINE_REMOTE_DEBUGGING` environment variable to enable remote debugging, **unset it when done**. Leaving this variable set allows unauthenticated remote access to your extension’s runtime, creating a remote code execution vulnerability.
+
+:::
+
 ---
 
 #### Optional - Create a Tableau shortcut for debugging (Windows)
