@@ -10,6 +10,19 @@ The Tableau Extensions API is organized by namespaces. The type of extension you
 | ----- | ------- |
 | Dashboard extensions | For example, if you create and register a dashboard extension, the extension will have access to the `dashboardContent` namespace, which provides access to the dashboard object. When you have the dashboard object, you have access to all elements in the dashboard, including the worksheets, marks, filters, parameters, and data sources. |
 | Viz extensions | If you create and register a viz extension, the extension will have access to the `worksheetContent` namespace, which provides access to the worksheet object. When you have the worksheet object, you have access to all elements in the worksheet, including the marks, filters, parameters, and data sources.|
+| [Data apps (Cloud-only Beta)](./dataapps/trex_dataapp_overview.md) | Data apps are available only on Tableau Cloud during the beta. They combine a custom web interface with Tableau hosting and runtime access to Tableau data. The app's Dashboard or Viz Extension registration determines access to `dashboardContent` or `worksheetContent`. In supported environments, the `workbook` namespace provides access to workbook data sources, which the app can query using `queryAsync()`. See [Get Started with data apps](./dataapps/trex_dataapp_getstarted.md) for setup guidance. |
+
+## Methods added for Data Apps
+
+The data apps beta is available only on Tableau Cloud. Three methods added to the Extensions API for this release support data apps:
+
+| Method | Purpose |
+| --- | --- |
+| `queryAsync()` | Gets data from the configured data source asynchronously. |
+| `readMetadata()` | Gets a data source's metadata. |
+| `fetch()` | Makes a curated set of Tableau REST API requests, subject to the site's allowed API access and the viewing user's permissions. |
+
+See [Manage data apps](./dataapps/trex_dataapp_manage.md) and [data app security](./dataapps/trex_dataapp_security.md) for the controls that apply to these requests.
 
 ## Navigating the top-level `tableau` and `extensions` namespaces
 
@@ -21,7 +34,7 @@ A viz extension is another type of extension. When a extension is registered as 
 
 The type of extension you have registered determines what namespaces will be available. Some namespaces, like the `settings`, `environment`, and `ui` are available to all extensions.  
 
-The `extensions` namespace has one method `initializeAsync()` that is used to initialize the extension. When this method is called, it also triggers Tableau to configure the Extensions API. Like the Tableau JavaScript API, the Extensions API follows the [CommonJS Promises/A standard](http://wiki.commonjs.org/wiki/Promises/A) for asynchronous method calls.
+Call `tableau.extensions.initializeAsync()` to initialize the extension before using the Extensions API. When this method is called, it also triggers Tableau to configure the Extensions API. Like the Tableau JavaScript API, the Extensions API follows the [CommonJS Promises/A standard](http://wiki.commonjs.org/wiki/Promises/A) for asynchronous method calls.
 
 <!-- ![]({{site.baseurl}}/assets/tab_ext_class.png) -->
 
@@ -167,7 +180,6 @@ classDiagram
      class worksheet
 
 ```
-
 
 
 
