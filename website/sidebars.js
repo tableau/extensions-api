@@ -27,7 +27,6 @@ const sidebars = {
         'dataapps/trex_dataapp_getstarted',
         'dataapps/trex_dataapp_overview',
         'dataapps/trex_dataapp_details',
-        'dataapps/delet-this-trex_dataapp_manifest',
         'dataapps/trex_dataapp_manage',
         'dataapps/trex_dataapp_security',
         'dataapps/trex_dataapp_examples',

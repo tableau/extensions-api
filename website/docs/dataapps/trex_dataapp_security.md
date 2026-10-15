@@ -60,5 +60,5 @@ Verify that missing permissions and failed queries produce useful messages witho
 ## Related guidance
 
 - [Manage data apps](./trex_dataapp_manage.md)
-- [Tableau data app Manifests](./delet-this-trex_dataapp_manifest.md)
+- [Data App Details](./trex_dataapp_details.md)
 - [Get Started with data apps](./trex_dataapp_getstarted.md)

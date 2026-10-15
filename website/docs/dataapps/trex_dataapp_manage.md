@@ -103,4 +103,4 @@ Coordinate with the workbook owner when disabling a package so they can address 
 
 - [Data app security](./trex_dataapp_security.md)
 - [Get Started with data apps](./trex_dataapp_getstarted.md)
-- [Tableau data app Manifests](./delet-this-trex_dataapp_manifest.md)
+- [Data App Details](./trex_dataapp_details.md)

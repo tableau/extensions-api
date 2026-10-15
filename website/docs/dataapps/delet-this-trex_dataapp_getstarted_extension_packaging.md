@@ -36,7 +36,7 @@ See [data app security](./trex_dataapp_security.md) for guidance on data permiss
 
 ## Package and publish
 
-Include the extension manifest, entry page, Extensions API library, and all required JavaScript, CSS, images, and other resources in the workbook package. Check that the entry page's resource paths resolve inside the package. See [Tableau data app Manifests](./delet-this-trex_dataapp_manifest.md) for the package layout and manifest examples.
+Include the extension manifest, entry page, Extensions API library, and all required JavaScript, CSS, images, and other resources in the workbook package. Check that the entry page's resource paths resolve inside the package. See [Data App Details](./trex_dataapp_details.md) for the package layout and manifest examples.
 
 Use the packaging workflow available in your beta environment, then publish the packaged workbook to a location where the intended viewers have access. Tableau serves the packaged front-end resources; any external services the app uses still need to be available and approved.
 
