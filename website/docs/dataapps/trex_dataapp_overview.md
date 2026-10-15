@@ -5,7 +5,7 @@ description: Learn how Data Apps combine custom web applications with Tableau ho
 
 The data Apps beta is available only on Tableau Cloud.
 
-A **data app** is a purpose-built interactive application built with code to help users explore data, make a decision, or complete a workflow. A data App gives your custom viz or dashboard extension runtime access to governed Tableau data sources through Extensions API and Tableau REST API methods. 
+A **data app** is a purpose-built interactive application built with code to help users explore data, make a decision, or complete a workflow. A data App gives your custom viz or dashboard extension runtime access to governed Tableau data sources through Extensions API and Tableau REST API methods.
 
 Data apps also host your extension's web resources on Tableau service. You build the interface using the Tableau Extensions API and bundle its HTML, JavaScript, CSS, and images inside a packaged workbook (`.twbx`). These resources are embedded in the workbook and published with it. Tableau hosts and serves them when users open the published content, so you do not need a separate web server for the app's front end.
 
