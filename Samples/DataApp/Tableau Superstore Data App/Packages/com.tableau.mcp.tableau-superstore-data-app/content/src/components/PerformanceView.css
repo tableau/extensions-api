@@ -1,0 +1,181 @@
+/* ============================================================================
+   Performance tab styles — the monthly Sales-vs-period-average bar-in-bar
+   small-multiples, and the ranked Sub-Category Sales chart. Linked directly
+   from index.html (no build). All rules written against the shared .viz-root
+   role tokens declared in styles.css, so dark mode follows for free.
+   Namespaced `perf-` to avoid collisions with the other tab stylesheets.
+   ============================================================================ */
+
+/* ---- Panel 1: Sales-performance-vs-average small multiples ---------------- */
+.perf-chart {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.perf-head {
+  display: flex;
+  align-items: flex-end;
+}
+.perf-head-spacer {
+  flex-shrink: 0;
+}
+.perf-col-head {
+  flex-shrink: 0;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  padding-bottom: 4px;
+}
+
+.perf-group {
+  display: flex;
+  align-items: stretch;
+  border-top: 1px solid var(--gridline);
+}
+.perf-group-alt {
+  background: var(--surface-2);
+}
+.perf-month {
+  flex-shrink: 0;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-primary);
+  padding: 6px 6px 6px 2px;
+  white-space: nowrap;
+}
+.perf-seg-rows {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.perf-row {
+  display: flex;
+  align-items: center;
+  height: 20px;
+}
+.perf-seg-label {
+  flex-shrink: 0;
+  font-size: 10px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 4px;
+}
+.perf-cell {
+  flex-shrink: 0;
+  border-left: 1px solid var(--gridline);
+}
+.perf-bar-svg {
+  display: block;
+}
+.perf-rail {
+  fill: var(--surface-2);
+}
+.perf-tick {
+  stroke: var(--baseline);
+  stroke-width: 1.4;
+}
+
+.perf-axis-row {
+  display: flex;
+  border-top: 1px solid var(--gridline);
+}
+.perf-axis-cell {
+  flex-shrink: 0;
+  border-left: 1px solid var(--gridline);
+}
+
+/* ---- above/below-average swatch legend ------------------------------------ */
+.perf-legend-swatches {
+  display: inline-flex;
+  gap: 12px;
+  flex-shrink: 0;
+}
+.perf-swatch-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+.perf-swatch {
+  width: 11px;
+  height: 11px;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+/* ---- Panel 2: ranked Sub-Category Sales ------------------------------------ */
+.perf-rank {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+.perf-rank-group + .perf-rank-group {
+  border-top: 1px solid var(--gridline);
+  padding-top: 8px;
+}
+.perf-rank-cat {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin-bottom: 4px;
+}
+.perf-rank-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 20px;
+}
+.perf-rank-label {
+  flex-shrink: 0;
+  font-size: 11px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.perf-rank-svg {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: block;
+}
+.perf-rank-val {
+  flex-shrink: 0;
+  font-size: 11px;
+  color: var(--text-primary);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- diverging profit-ratio legend (shared shape with the map legend) ----- */
+.perf-ratio-legend {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.perf-ratio-legend-lbl {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+.perf-ratio-legend-bar {
+  width: 96px;
+  height: 10px;
+  border-radius: 3px;
+  border: 1px solid var(--border);
+  background: linear-gradient(to right, var(--div-neg), var(--div-mid), var(--div-pos));
+}
+.perf-ratio-legend-ticks {
+  display: inline-flex;
+  gap: 6px;
+  font-size: 10px;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
