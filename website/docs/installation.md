@@ -78,7 +78,7 @@ SSH
 
 ### Requirements for using extensions in Tableau
 
-To use Tableau dashboard and viz extensions in Tableau, you need one of the following versions of Tableau.
+To use Tableau dashboard extensions, viz extensions, or data apps in Tableau, you need one of the following versions of Tableau. The data apps beta is available only on Tableau Cloud.
 
 For dashboard extensions:
 
@@ -92,6 +92,9 @@ For viz extensions:
 * Tableau Server 2024.1 and later
 * Tableau Cloud
 
+For data apps (Cloud-only Beta):
+
+* Tableau Cloud
 
 
 ### Security requirements
@@ -99,4 +102,4 @@ For viz extensions:
 To run extensions on Tableau Server or Tableau Cloud, support for extensions must be enabled, and depending upon the extension and the data access it requires, the extension might need to be added to the safe list for the site. See
  [Manage Dashboard Extensions on Tableau Server](https://onlinehelp.tableau.com/current/server/en-us/dashboard_extensions_server.htm) or [Manage Dashboard Extensions on Tableau Cloud](https://onlinehelp.tableau.com/current/online/en-us/dashboard_extensions_server.htm) for more information.
 
-
+Special care must be taken for data apps, available only on Tableau Cloud during the beta, to ensure that security concerns are addressed. See [Manage data apps](./dataapps/trex_dataapp_manage.md) and [data app security](./dataapps/trex_dataapp_security.md) for more information.

@@ -9,6 +9,31 @@ const sidebars = {
     'trex_tableau_help',
     {
       type: 'category',
+      label: 'Dashboard Extensions',
+      link: { type: 'doc', id: 'dashext/index' },
+      items: [
+        'dashext/trex_getstarted',
+        'dashext/trex_create',
+        'dashext/trex_overview',
+        'dashext/trex_manifest',
+        'dashext/trex_examples',
+      ],
+    },
+    {
+      type: 'category',
+      label: '(Cloud-only Beta) Data Apps',
+      link: { type: 'doc', id: 'dataapps/index' },
+      items: [
+        'dataapps/trex_dataapp_getstarted',
+        'dataapps/trex_dataapp_overview',
+        'dataapps/trex_dataapp_details',
+        'dataapps/trex_dataapp_manage',
+        'dataapps/trex_dataapp_security',
+        'dataapps/trex_dataapp_examples',
+      ],
+    },
+    {
+      type: 'category',
       label: 'Viz Extensions',
       link: { type: 'doc', id: 'vizext/index' },
       items: [
@@ -18,19 +43,7 @@ const sidebars = {
         'vizext/trex_viz_manifest',
         'vizext/trex_viz_examples',
       ],
-    }, 
-    {
-      type: 'category',
-      label: 'Dashboard Extensions',
-      link: { type: 'doc', id: 'dashext/index' }, 
-      items: [
-        'dashext/trex_getstarted',
-        'dashext/trex_create',
-        'dashext/trex_overview',
-        'dashext/trex_manifest',
-        'dashext/trex_examples', 
-      ],
-    }, 
+    },
    /* { 
       type: 'category',
       label: 'Basic Concepts',
@@ -109,7 +122,7 @@ const sidebars = {
       'trex_release-notes',
       'trex_known_issues',
       ],
-    }, 
+    },
 
 
   ],

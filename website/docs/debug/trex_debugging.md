@@ -185,7 +185,7 @@ While you are debugging your extension, there are times you might want to reload
 
 Note that you don't need to close and reopen the Chromium browser every time you click **Reload**. You can start another debugging session by entering the URL (`http://localhost:8696`) in the Chromium address bar and selecting the extension from the page selector.
 
-For more information, see [What Happens When You Reload an Extension](./trex_reload.md).
+For more information, see [What Happens When You Reload an Extension?](./trex_reload.md).
 
 
 

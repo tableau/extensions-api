@@ -1,5 +1,5 @@
 ---
-title: What is a Tableau Dashboard Extension
+title: What is a Tableau Dashboard Extension?
 description: What is a dashboard extension and what can you do with it
 ---
 
