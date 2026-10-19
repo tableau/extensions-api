@@ -3,11 +3,11 @@ title: What are Tableau Data Apps?
 description: Learn how Data Apps combine custom web applications with Tableau hosting and governed data.
 ---
 
-The data Apps beta is available only on Tableau Cloud.
+_The data Apps beta is available only on Tableau Cloud._
 
-A **data app** is a purpose-built interactive application built with code to help users explore data, make a decision, or complete a workflow. A data App gives your custom viz or dashboard extension runtime access to governed Tableau data sources through Extensions API and Tableau REST API methods.
+A **data app** is a purpose-built, interactive application built with code to help users explore data, make a decision, or complete a workflow. A data App gives your custom viz or dashboard extension runtime access to governed Tableau data sources through Extensions API and Tableau REST API methods.
 
-Data apps also host your extension's web resources on Tableau service. You build the interface using the Tableau Extensions API and bundle its HTML, JavaScript, CSS, and images inside a packaged workbook (`.twbx`). These resources are embedded in the workbook and published with it. Tableau hosts and serves them when users open the published content, so you do not need a separate web server for the app's front end.
+Data apps also host your extension's web resources on Tableau. You build the interface using the Tableau Extensions API and bundle its HTML, JavaScript, CSS, and images inside a packaged workbook (`.twbx`). These resources are embedded in the workbook and published with it. Tableau hosts and serves them when users open the published content, so you do not need a separate web server for the app's front end.
 
 Your data app appears as a workbook in the Tableau Interface. A workbook can contain more than one data app.
 
@@ -26,7 +26,7 @@ A data app includes:
 - The Tableau Extensions API JavaScript library, which connects the application to Tableau.
 - A package that contains the extension and its resources, bundled with the workbook.
 
-A Tableau Package (`.tpkg`) is a container for application resources and metadata. The package supplies the resources; the data dpp combines them with Tableau data to provide the user experience.
+A Tableau Package (`.tpkg`) is a container for application resources and metadata. The package supplies the resources; the data app combines them with Tableau data to provide the user experience.
 
 ## What can you do with a Data App?
 
@@ -60,7 +60,6 @@ To create a data app, you need:
 - At least Creator or Explorer (can publish) role for the site containing the data app
 - Publish and Overwrite (to republish) access to the project for the data app
 - View, Connect and API access to each published data source the data app uses
-- Administrator site configuration allowing any Tableau REST API paths/methods the data app calls
 
 ## How do Data Apps differ from Dashboard and Viz Extensions?
 

@@ -4,7 +4,7 @@ description: Find administration and security guidance for Tableau data apps.
 sidebar_label: Administration and Security
 ---
 
-The data apps beta is available only on Tableau Cloud.
+_The data apps beta is available only on Tableau Cloud._
 
 Administration and security guidance is available on two pages:
 
