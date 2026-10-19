@@ -4,7 +4,7 @@ description: Package and publish a working Viz or Dashboard Extension as a Table
 tags: [Getting started]
 ---
 
-The data apps beta is available only on Tableau Cloud.
+_The data apps beta is available only on Tableau Cloud._
 
 Start with a working Viz or Dashboard Extension. To create one, follow [Get Started with Viz Extensions](../vizext/trex_viz_getstarted.md) or [Get Started with Dashboard Extensions](../dashext/trex_getstarted.md).
 

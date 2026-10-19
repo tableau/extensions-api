@@ -3,7 +3,7 @@ title: Data App Samples
 description: Explore application ideas and extension samples to learn patterns for Tableau data apps.
 ---
 
-The data apps beta is available only on Tableau Cloud.
+_The data apps beta is available only on Tableau Cloud._
 
 Start with a small application and inspect how it loads resources, initializes the Extensions API, and gets data. Then add the interactions needed for your users' workflow.
 
@@ -20,6 +20,8 @@ The following are application ideas you can build on Tableau data:
 These scenarios illustrate design patterns; they are not downloadable data app samples.
 
 ## Learn from Dashboard and Viz Extension samples
+
+
 
 The existing Extensions API samples demonstrate useful patterns for data access, filtering, parameters, and event handling:
 
