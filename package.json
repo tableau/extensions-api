@@ -25,7 +25,8 @@
   },
   "overrides": {
     "argparse": "^2.0.1",
-    "@tootallnate/once": "^2.0.1"
+    "@tootallnate/once": "^2.0.1",
+    "@types/node": "24.0.0"
   },
   "auditNotes": {
     "GHSA-vfj7-8cjw-p6xm": "braces stack-exhaustion DoS (via jest/ts-loader's micromatch dependency) has no upstream fix as of 2026-10-20 (first_patched_version: null; 3.0.3 is both installed and latest). Dev/test tooling only, not exposed to attacker-controlled input. Revisit when braces publishes a patch."
