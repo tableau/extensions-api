@@ -1,0 +1,123 @@
+/* ============================================================================
+   Shipping tab styles — the On-Time Shipment Trends header bar + monthly area
+   chart, and the per-Ship-Mode breakdown rows. Linked directly from
+   index.html (no build). All rules written against the shared .viz-root role
+   tokens declared in styles.css, so dark mode follows for free. Reuses (does
+   not redefine) the shared .series-legend/.grid/.y-lbl/.x-lbl/.crosshair/.hit
+   rules already declared in styles.css.
+   ============================================================================ */
+
+/* ---- Early / On Time / Late percent bar ----------------------------------- */
+.ship-bar {
+  display: flex;
+  width: 100%;
+  height: 22px;
+  border-radius: 5px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.ship-bar-big {
+  height: 40px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+.ship-bar-seg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: default;
+  transition: opacity 0.1s ease;
+}
+.ship-bar-seg:hover {
+  opacity: 0.85;
+}
+
+.ship-seg-early {
+  background: var(--div-pos);
+  color: #fff;
+}
+.ship-seg-ontime {
+  background: var(--div-mid);
+  color: var(--text-primary);
+}
+.ship-seg-late {
+  background: var(--div-neg);
+  color: #fff;
+}
+
+.ship-bar-text {
+  font-size: 12px;
+  padding: 0 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ship-bar-text strong {
+  font-size: 14px;
+  margin-right: 4px;
+}
+
+/* ---- monthly stacked-area trend -------------------------------------------- */
+.ship-chart {
+  width: 100%;
+}
+.ship-chart-svg {
+  display: block;
+  width: 100%;
+}
+
+.ship-area-early {
+  fill: var(--div-pos);
+  opacity: 0.75;
+  stroke: none;
+}
+.ship-area-ontime {
+  fill: var(--div-mid);
+  opacity: 0.9;
+  stroke: none;
+}
+.ship-area-late {
+  fill: var(--div-neg);
+  opacity: 0.75;
+  stroke: none;
+}
+
+/* ---- per-Ship-Mode breakdown ------------------------------------------------ */
+.ship-modes {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.ship-mode-row {
+  display: grid;
+  grid-template-columns: 110px 1fr 190px;
+  align-items: center;
+  gap: 10px;
+}
+.ship-mode-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ship-mode-meta {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-align: right;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+@media (max-width: 700px) {
+  .ship-mode-row {
+    grid-template-columns: 90px 1fr;
+  }
+  .ship-mode-meta {
+    grid-column: 1 / -1;
+    text-align: left;
+  }
+}
