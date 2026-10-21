@@ -1,37 +1,24 @@
 ---
 title: Data App Samples
-description: Explore application ideas and extension samples to learn patterns for Tableau data apps.
+description: The Tableau Superstore Data App sample, a live-query data app in the Extensions API repository.
 ---
 
-The data apps beta is available only on Tableau Cloud.
+_The data apps beta is available only on Tableau Cloud._
 
-Start with a small application and inspect how it loads resources, initializes the Extensions API, and gets data. Then add the interactions needed for your users' workflow.
+The Extensions API repository includes a data app you can open, inspect, and publish.
 
-## Example Data App scenarios
+## Tableau Superstore Data App
 
-The following are application ideas you can build on Tableau data:
+**[Tableau Superstore Data App](https://github.com/tableau/extensions-api/tree/main/Samples/DataApp)** rebuilds Tableau's Superstore sample workbook as a data app. The sample is in the `Samples/DataApp` folder. It is a viz extension written in plain JavaScript, and it queries the workbook's data live with `queryAsync()`.
 
-| Scenario | Application behavior | What to test |
-| --- | --- | --- |
-| Business performance report | Displays custom charts and metrics with controls for region and time period. | Queries return the intended aggregations and respect each viewer's data access. |
-| Customer exploration | Lets users narrow a list of customers and inspect trends for a selected customer. | Selection changes update the results and empty results have a clear explanation. |
-| Existing app migration | Replaces static data in a web app with runtime queries to Tableau data sources. | The published app uses Tableau data and loads its resources from the package. |
+The workbook, the extension package, and the Superstore sample data ship together. The datasource is the Superstore Excel file, stored at `Data/Datasources/Sample - Superstore.xls` and referenced by a relative path, so the workbook publishes to a Tableau Cloud site with its data included.
 
-These scenarios illustrate design patterns; they are not downloadable data app samples.
+The app has five tabs. Region and Order Date filters scope every tab.
 
-## Learn from Dashboard and Viz Extension samples
+- **Overview** shows KPIs, a United States choropleth, monthly sales and profit, and selection-driven scope.
+- **Product** shows a Category by Year heatmap and a Sub-Category by Segment scatter plot.
+- **Customers** shows a region summary, a customer scatter plot, and a ranked customer list.
+- **Shipping** classifies orders as Early, On Time, or Late from Order Date and Ship Date, using an expected-transit time for each Ship Mode.
+- **Performance** shows Sales against the period average as bar-in-bar small multiples, and a ranked Sub-Category view colored by profit ratio.
 
-The existing Extensions API samples demonstrate useful patterns for data access, filtering, parameters, and event handling:
-
-- [Dashboard Extension Samples](../dashext/trex_examples.md) show applications that interact with dashboard content.
-- [Viz Extension Samples](../vizext/trex_viz_examples.md) show custom worksheet visualizations and interactions.
-
-Those samples use their own hosting and installation instructions. To adapt one as a data app, package its web resources with the workbook and use the deployment workflow supported by your beta environment. Review its API usage and dependencies rather than assuming every sample works unchanged.
-
-## Build a minimal example
-
-See [Data App Details](./trex_dataapp_details.md) for an entry page, a runtime data query, and the manifests and workbook connections that support them.
-
-## Review before publishing
-
-Check the application's resource paths, data permissions, declared external origins, and Tableau API access. Test the published workbook as an intended viewer, including loading, empty, and error states.
+The sample requires Tableau 2026.3.1 or later. Publishing steps are in the [sample README](https://github.com/tableau/extensions-api/blob/main/Samples/DataApp/README.md). Publishing uses the [Tableau plugin](https://github.com/tableau/tableau-plugin) and [Tableau MCP](https://github.com/tableau/tableau-mcp).
