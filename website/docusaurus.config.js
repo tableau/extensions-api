@@ -222,6 +222,13 @@ const getConfig = async () => {
 
       plugins: [
         [
+          'docusaurus-plugin-llms',
+          {
+            generateLLMsTxt: true,
+            generateLLMsFullTxt: true,
+          },
+        ],
+        [
           '@docusaurus/plugin-google-tag-manager',
           {
             containerId: 'GTM-BVCN',
