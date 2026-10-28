@@ -1,5 +1,5 @@
 ---
-title: What is a Tableau Viz Extension
+title: What is a Tableau Viz Extension?
 description: Describes a viz extension
 ---
 

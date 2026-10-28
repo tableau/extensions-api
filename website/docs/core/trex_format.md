@@ -87,7 +87,7 @@ dashboard.addEventListener(tableau.TableauEventType.WorkbookFormattingChanged, (
 
 For more information about using event listeners, see [Events and Event Handling](./trex_events.md).
 
-## What's Next
+## What's Next?
 
 * To see a working sample dashboard extension that uses workbook formatting, see the JavaScript [Formatting](https://github.com/tableau/extensions-api/tree/main/Samples/Dashboard/Formatting) sample in the Samples folder, or the TypeScript [Formatting](https://github.com/tableau/extensions-api/tree/main/Samples-Typescript/Dashboard/Formatting) sample in the Samples-Typescript folder.
 

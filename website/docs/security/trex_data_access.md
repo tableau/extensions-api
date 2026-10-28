@@ -14,7 +14,7 @@ Starting in Tableau 2020.2, Tableau introduced a data model that supports flexib
 Because the data model changes the way the underlying data can be stored, some of the existing APIs will no longer work.
 For more information about the data model in Tableau, see [The Tableau Data Model](https://help.tableau.com/current/pro/desktop/en-us/datasource_datamodel.htm).
 
-## What happens when extensions access full data
+## What happens when extensions access full data?
 
 As a developer, you can choose the features and capabilities to implement using the Extensions API. One of these is the ability of the extension to access the underlying data in the dashboard or workbook. The `Worksheet` and `Datasource` interfaces have methods that return (as a promise) data tables containing the underlying data of the workbook or data source. The `Datasource` interface has additional methods, `getLogicalTablesAsync()`, `getActiveTablesAsync()` (Deprecated), and `getConnectionSummariesAsync()` that return the names of the active tables and fields in the data source, and the summary descriptions of the data source connections.
 
@@ -73,7 +73,7 @@ Error: internal-error: permission-denied: Missing required permission to run get
 
 ---
 
-## What happens when users add your extension
+## What happens when users add your extension?
 
 When users add an extension that requires full-data access, Tableau displays a prompt that provides the name of the extension, the URL of the extension, and brief description about the access that the extension has to the data in the workbook. Users can click **Allow** to load the extension. If a user clicks **Cancel**, the extension is not loaded and the user returns to the **Choose an Extension** dialog box.
 
@@ -83,7 +83,7 @@ The name of the extension and its URL come from the values you add to the manife
 
 ---
 
-## What happens when users open a workbook that uses an extension
+## What happens when users open a workbook that uses an extension?
 
 When users open a dashboard that has an extension that requires full-data access, Tableau displays a prompt that lists the names of the all the extensions in the dashboard. Users can click **Allow** to load the dashboard.
 
