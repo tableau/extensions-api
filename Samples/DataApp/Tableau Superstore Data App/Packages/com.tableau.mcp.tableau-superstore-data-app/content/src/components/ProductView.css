@@ -1,0 +1,163 @@
+/* ============================================================================
+   Product tab styles — the Sales-by-Category highlight table and the
+   per-product Sales/Profit strip plot. Linked directly from index.html (no
+   build). All rules written against the shared .viz-root role tokens declared
+   in styles.css, so dark mode follows for free.
+   ============================================================================ */
+
+/* ---- Panel 1: Sales-by-Category highlight table -------------------------- */
+.heat-scroll {
+  overflow-x: auto;
+}
+.heat-table {
+  border-collapse: collapse;
+  width: 100%;
+  font-variant-numeric: tabular-nums;
+}
+.heat-table th,
+.heat-table td {
+  border: 1px solid var(--surface-1);
+}
+.heat-corner {
+  background: transparent;
+  border-color: transparent;
+}
+.heat-col {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-align: center;
+  padding: 2px 5px;
+}
+.heat-cat {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-align: left;
+  vertical-align: top;
+  padding: 4px 8px 4px 2px;
+  white-space: nowrap;
+}
+.heat-year {
+  font-size: 11px;
+  color: var(--text-secondary);
+  text-align: right;
+  padding: 2px 8px 2px 2px;
+}
+.heat-cell {
+  font-size: 10px;
+  text-align: right;
+  padding: 3px 5px;
+  white-space: nowrap;
+  min-width: 46px;
+}
+.heat-empty {
+  background: var(--surface-2);
+}
+
+/* ---- Panel 2: per-product strip plot ------------------------------------- */
+.scatter {
+  width: 100%;
+  overflow-x: auto;
+}
+.scatter-head {
+  display: flex;
+  align-items: flex-end;
+}
+.scatter-head-spacer {
+  flex-shrink: 0;
+}
+.scatter-seg {
+  flex-shrink: 0;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  padding-bottom: 4px;
+}
+.scatter-group {
+  display: flex;
+  align-items: stretch;
+  border-top: 1px solid var(--gridline);
+}
+.scatter-cat {
+  flex-shrink: 0;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-primary);
+  padding: 6px 6px 0 0;
+}
+.scatter-rows {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.scatter-row {
+  display: flex;
+  align-items: center;
+  height: 22px;
+}
+.scatter-sub {
+  flex-shrink: 0;
+  font-size: 11px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 6px;
+}
+.scatter-cell {
+  flex-shrink: 0;
+  border-left: 1px solid var(--gridline);
+}
+.scatter-cell svg {
+  display: block;
+}
+.scatter-med {
+  stroke: var(--baseline);
+  stroke-width: 1;
+}
+.scatter-dot {
+  opacity: 0.85;
+}
+
+.scatter-axis-row {
+  display: flex;
+  border-top: 1px solid var(--gridline);
+}
+.scatter-axis-cell {
+  flex-shrink: 0;
+  border-left: 1px solid var(--gridline);
+}
+.scatter-axis-title {
+  fill: var(--text-muted);
+  font-size: 10px;
+  font-family: inherit;
+}
+
+/* ---- diverging profit-ratio legend (shared shape with the map legend) ---- */
+.scatter-legend {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.scatter-legend-lbl {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+.scatter-legend-bar {
+  width: 96px;
+  height: 10px;
+  border-radius: 3px;
+  border: 1px solid var(--border);
+  background: linear-gradient(to right, var(--div-neg), var(--div-mid), var(--div-pos));
+}
+.scatter-legend-ticks {
+  display: inline-flex;
+  gap: 6px;
+  font-size: 10px;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
