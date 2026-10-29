@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tableau Superstore Data App</title>
+    <!--
+      No build step: this is the shippable artifact, served verbatim. Every app
+      script is a classic <script> (not an ES module; see src/main.js) listed at
+      the end of <body> in dependency order. Each registers its exports on
+      window.SV. The Tableau Extensions API library
+      (src/tableau.extensions.1.latest.min.js) comes from the scaffold-data-app
+      template: keep it at this path, and load it first.
+    -->
+    <link rel="stylesheet" href="src/styles.css" />
+    <link rel="stylesheet" href="src/components/ProductView.css" />
+    <link rel="stylesheet" href="src/components/CustomersView.css" />
+    <link rel="stylesheet" href="src/components/ShippingView.css" />
+    <link rel="stylesheet" href="src/components/PerformanceView.css" />
+  </head>
+  <body>
+    <!-- Placeholder main.js replaces. If it stays up, the scripts never ran. -->
+    <div id="root"><p class="boot">Loading Tableau Superstore Data App…</p></div>
+    <script src="src/tableau.extensions.1.latest.min.js"></script>
+    <script src="src/boot.js"></script>
+    <script src="src/lib/dom.js"></script>
+    <script src="src/lib/constants.js"></script>
+    <script src="src/lib/vds.js"></script>
+    <script src="src/lib/format.js"></script>
+    <script src="src/components/Tooltip.js"></script>
+    <script src="src/components/RegionFilter.js"></script>
+    <script src="src/components/RangeSlider.js"></script>
+    <script src="src/lib/selection.js"></script>
+    <script src="src/components/SelectionChip.js"></script>
+    <script src="src/components/KpiRow.js"></script>
+    <script src="src/data/geo-states.js"></script>
+    <script src="src/lib/color.js"></script>
+    <script src="src/components/ChoroplethMap.js"></script>
+    <script src="src/components/MapLegend.js"></script>
+    <script src="src/components/MonthlyPanel.js"></script>
+    <script src="src/components/OverviewView.js"></script>
+    <script src="src/components/ProductView.js"></script>
+    <script src="src/components/CustomersView.js"></script>
+    <script src="src/components/ShippingView.js"></script>
+    <script src="src/components/PerformanceView.js"></script>
+    <script src="src/components/App.js"></script>
+    <script src="src/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,612 @@
+/* ============================================================================
+   Superstore Data App — Overview styles
+   Palette: validated categorical, sequential, and diverging ramps with light
+   and dark variants. Roles are declared once as CSS custom properties on
+   .viz-root and swapped for dark mode in one place; every rule below is written
+   against roles, never raw hex. Series: Sales = categorical slot 1 (blue),
+   Profit = slot 8 (orange). Map = blue↔red diverging with a gray midpoint.
+   ============================================================================ */
+
+.viz-root {
+  /* surfaces & ink */
+  --surface-1: #fcfcfb; /* card / chart surface */
+  --surface-page: #f9f9f7; /* page plane behind cards */
+  --surface-2: #f2f1ec; /* subtle fills (tile, control) */
+  --text-primary: #0b0b0b;
+  --text-secondary: #52514e;
+  --text-muted: #898781;
+  --gridline: #e1e0d9;
+  --baseline: #c3c2b7;
+  --border: rgba(11, 11, 11, 0.1);
+
+  /* series (categorical slots 1 & 8) */
+  --series-sales: #2a78d6;
+  --series-profit: #eb6834;
+
+  /* sequential Sales ramp (Product highlight table): light tint → deep blue */
+  --heat-sales-lo: #e8f0fb;
+  --heat-sales-hi: #1f5fb0;
+
+  /* diverging pair — blue(+) ↔ gray(0) ↔ red(−) */
+  --div-pos: #2a78d6;
+  --div-mid: #f0efec;
+  --div-neg: #e34948;
+  --state-nodata: #eceae3;
+  --state-stroke: #fcfcfb;
+
+  color: var(--text-primary);
+  background: var(--surface-page);
+  font-family:
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    sans-serif;
+  font-size: 13px;
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (prefers-color-scheme: dark) {
+  .viz-root {
+    --surface-1: #1a1a19;
+    --surface-page: #0d0d0d;
+    --surface-2: #262624;
+    --text-primary: #ffffff;
+    --text-secondary: #c3c2b7;
+    --text-muted: #898781;
+    --gridline: #2c2c2a;
+    --baseline: #383835;
+    --border: rgba(255, 255, 255, 0.1);
+
+    --series-sales: #3987e5;
+    --series-profit: #d95926;
+
+    --heat-sales-lo: #16263a;
+    --heat-sales-hi: #4f97ea;
+
+    --div-pos: #3987e5;
+    --div-mid: #383835;
+    --div-neg: #e66767;
+    --state-nodata: #232321;
+    --state-stroke: #1a1a19;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
+body {
+  background: var(--surface-page);
+}
+
+.viz-root {
+  position: relative; /* positioning context for the absolutely-placed .tip */
+  min-height: 100%;
+  padding: 14px 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.viz-root.is-busy {
+  cursor: progress;
+}
+.viz-root.is-busy .kpis,
+.viz-root.is-busy .mid,
+.viz-root.is-busy .panels {
+  opacity: 0.55;
+  transition: opacity 0.12s ease;
+}
+
+/* ---- header + filters ---------------------------------------------------- */
+.top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 20px;
+}
+.title-wrap {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.title {
+  font-size: 17px;
+  font-weight: 600;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+.title-tag {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 2px 9px;
+}
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+  margin-left: auto;
+}
+.filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+.filter-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+.filter-select {
+  font: inherit;
+  font-size: 12px;
+  color: var(--text-primary);
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 4px 26px 4px 9px;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23898781' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 9px center;
+  cursor: pointer;
+}
+.filter-select:focus-visible {
+  outline: 2px solid var(--series-sales);
+  outline-offset: 1px;
+}
+.filter-value {
+  font-size: 12px;
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- range slider (Order Date / Profit Ratio filters) -------------------- */
+.filter-range {
+  align-items: center;
+}
+.rangeslider {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.rs-val {
+  font-size: 12px;
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  min-width: 30px;
+  text-align: center;
+}
+.rs-track {
+  position: relative;
+  width: 128px;
+  height: 18px;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  touch-action: none; /* drag shouldn't scroll the host */
+}
+.rs-rail {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+}
+.rs-fill {
+  position: absolute;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--series-sales);
+}
+.rs-thumb {
+  position: absolute;
+  top: 50%;
+  width: 14px;
+  height: 14px;
+  margin: 0;
+  padding: 0;
+  border-radius: 50%;
+  background: var(--surface-1);
+  border: 2px solid var(--series-sales);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.18);
+  transform: translate(-50%, -50%);
+  cursor: grab;
+  touch-action: none;
+}
+.rs-thumb.is-drag {
+  cursor: grabbing;
+}
+.rs-thumb:focus-visible {
+  outline: 2px solid var(--series-sales);
+  outline-offset: 2px;
+}
+
+.sel-chip[hidden] {
+  display: none;
+}
+.sel-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 3px 4px 3px 11px;
+}
+.sel-chip-text {
+  color: var(--text-secondary);
+  max-width: 240px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.sel-chip-clear {
+  font: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-primary);
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 2px 9px;
+  cursor: pointer;
+}
+.sel-chip-clear:hover {
+  background: var(--surface-page);
+}
+
+/* ---- in-app tab strip (NOT Tableau workbook sheets) ---------------------- */
+.tabs {
+  display: flex;
+  gap: 2px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 2px;
+}
+.tab {
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 7px 13px 8px;
+  margin-bottom: -1px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.tab:hover {
+  color: var(--text-primary);
+}
+.tab.is-active {
+  color: var(--text-primary);
+  border-bottom-color: var(--series-sales);
+}
+.tab:focus-visible {
+  outline: 2px solid var(--series-sales);
+  outline-offset: -2px;
+  border-radius: 4px;
+}
+
+/* ---- KPI row ------------------------------------------------------------- */
+.kpis {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 8px;
+}
+.kpi {
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 9px 11px 10px;
+  min-width: 0;
+}
+.kpi-label {
+  font-size: 11px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.kpi-value {
+  font-size: 21px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-top: 3px;
+  line-height: 1.1;
+}
+@media (max-width: 900px) {
+  .kpis {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ---- cards --------------------------------------------------------------- */
+.card {
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 14px 14px;
+  min-width: 0;
+}
+.card-title {
+  font-size: 13px;
+  font-weight: 600;
+  margin: 0 0 8px;
+}
+
+/* ---- middle: map + rail -------------------------------------------------- */
+.mid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 210px;
+  gap: 12px;
+  align-items: stretch;
+}
+.map-holder {
+  width: 100%;
+}
+.map-svg {
+  width: 100%;
+  height: auto;
+  max-height: 420px;
+  display: block;
+}
+
+.state {
+  stroke: var(--state-stroke);
+  stroke-width: 0.5;
+  cursor: pointer;
+  transition: opacity 0.1s ease;
+  outline: none;
+}
+.state.is-hover {
+  stroke: var(--text-primary);
+  stroke-width: 1.2;
+}
+.state.is-selected {
+  stroke: var(--text-primary);
+  stroke-width: 1.4;
+}
+.state.is-dim {
+  opacity: 0.32;
+}
+.state:focus-visible {
+  stroke: var(--text-primary);
+  stroke-width: 1.4;
+}
+
+.rail {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.legend {
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 11px 12px 12px;
+}
+.legend-title {
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.legend-bar {
+  height: 12px;
+  border-radius: 3px;
+  border: 1px solid var(--border);
+}
+.legend-ticks {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+  font-size: 10px;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.legend-note {
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin: 10px 0 0;
+  line-height: 1.35;
+}
+
+/* ---- monthly panels ------------------------------------------------------ */
+.panels {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+@media (max-width: 860px) {
+  .mid {
+    grid-template-columns: 1fr;
+  }
+  .panels {
+    grid-template-columns: 1fr;
+  }
+}
+.panel-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+.panel-head .card-title {
+  margin: 0;
+}
+.panel-head .card-title strong {
+  color: var(--text-primary);
+}
+
+.series-legend {
+  display: inline-flex;
+  gap: 12px;
+  flex-shrink: 0;
+}
+.series-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+.series-swatch {
+  width: 11px;
+  height: 11px;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+.facets {
+  display: flex;
+  flex-direction: column;
+}
+.facet {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  align-items: center;
+}
+.facet-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  padding-right: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.plot-cell {
+  min-width: 0;
+}
+.facet-svg,
+.axis-svg {
+  display: block;
+  width: 100%;
+}
+
+.grid {
+  stroke: var(--gridline);
+  stroke-width: 1;
+}
+.grid.zero {
+  stroke: var(--baseline);
+}
+.y-lbl,
+.x-lbl {
+  fill: var(--text-muted);
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+  font-family: inherit;
+}
+
+.area {
+  stroke: none;
+}
+.area-sales {
+  fill: var(--series-sales);
+  opacity: 0.14;
+}
+.area-profit {
+  fill: var(--series-profit);
+  opacity: 0.2;
+}
+.line {
+  fill: none;
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+.line-sales {
+  stroke: var(--series-sales);
+}
+.line-profit {
+  stroke: var(--series-profit);
+}
+
+.crosshair {
+  stroke: var(--text-muted);
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+}
+.cross-dot {
+  stroke: var(--surface-1);
+  stroke-width: 2;
+}
+.hit {
+  cursor: crosshair;
+}
+
+/* ---- tooltip ------------------------------------------------------------- */
+.tip {
+  position: absolute;
+  pointer-events: none;
+  z-index: 20;
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.16);
+  padding: 8px 10px;
+  min-width: 120px;
+  font-size: 12px;
+}
+.tip-head {
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: var(--text-primary);
+}
+.tip-row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 2px;
+}
+.tip-key {
+  width: 9px;
+  height: 9px;
+  border-radius: 2px;
+  flex-shrink: 0;
+  background: var(--baseline);
+}
+.tip-val {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-primary);
+}
+.tip-lbl {
+  color: var(--text-secondary);
+}
+
+/* ---- misc ---------------------------------------------------------------- */
+.muted {
+  color: var(--text-muted);
+  font-size: 12px;
+}
+.error {
+  color: var(--div-neg);
+  font-size: 12px;
+}
+
+/* Boot placeholder + fatal message (index.html / src/boot.js) */
+.boot {
+  padding: 1.5rem;
+  font:
+    13px/1.4 system-ui,
+    sans-serif;
+}

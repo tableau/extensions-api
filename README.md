@@ -88,13 +88,6 @@ Tableau is introducing development support for Sandboxed Extensions with Tableau
 
 For more information, see [Create and Test Sandboxed Extensions](https://tableau.github.io/extensions-api/docs/security/trex_sandbox_test).
 
-## Contributions
-
-Contributions and improvements by the community are welcomed!
-See the LICENSE file for current open-source licensing and use information.
-
-Before we can accept pull requests from contributors, we require a signed [Contributor License Agreement (CLA)](https://tableau.github.io/contributing.html). To submit a contribution, please fork the repository then submit a pull request to the `main` branch.
-
 ## Code Style
 Our sample code follows the [Semi-Standard Style](https://github.com/Flet/semistandard) for JavaScript samples linting and [tslint](https://palantir.github.io/tslint/) for TypeScript.  If you add your own extension code to the Samples or Samples-Typescript directories, you can run `npm run lint` to validate the style of your code. Please run this command before submitting any pull requests for Sample code.
 
@@ -102,6 +95,3 @@ Our sample code follows the [Semi-Standard Style](https://github.com/Flet/semist
 
 ## Documentation
 [Visit the project website and read the documentation here.](https://tableau.github.io/extensions-api/)
-
-## Issues
-Use [Issues](https://github.com/tableau/extensions-api/issues) to log any problems or bugs you encounter in the docs or sample code, or to discuss any proposed changes or additions. 

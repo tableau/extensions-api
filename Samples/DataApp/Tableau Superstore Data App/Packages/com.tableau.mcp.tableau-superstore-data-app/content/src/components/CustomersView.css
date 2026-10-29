@@ -1,0 +1,192 @@
+/* ============================================================================
+   Customers tab styles — Customers-by-Region mini bar strips, the
+   per-customer Sales/Profit scatter, and the scrollable Customer Ranking bar
+   list. Linked directly from index.html (no build). All rules are written
+   against the shared .viz-root role tokens declared in styles.css, so dark
+   mode follows for free. Every class here is prefixed `cust-` to stay
+   collision-safe alongside the sibling tab stylesheets.
+   ============================================================================ */
+
+/* ---- Panel 1: Customers by Region ---------------------------------------- */
+.cust-region-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 12px;
+}
+.cust-region-col {
+  min-width: 0;
+}
+.cust-region-head {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.cust-region-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 22px;
+}
+.cust-region-name {
+  flex-shrink: 0;
+  width: 44px;
+  font-size: 11px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.cust-region-barwrap {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.cust-region-bar {
+  display: block;
+  height: 10px;
+  min-width: 1px;
+  border-radius: 2px;
+  background: var(--series-sales);
+}
+.cust-region-val {
+  flex-shrink: 0;
+  font-size: 11px;
+  color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  text-align: right;
+  min-width: 44px;
+}
+@media (max-width: 900px) {
+  .cust-region-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (max-width: 560px) {
+  .cust-region-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* ---- middle row: scatter + ranking ---------------------------------------- */
+.cust-mid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 12px;
+  align-items: stretch;
+}
+@media (max-width: 860px) {
+  .cust-mid {
+    grid-template-columns: 1fr;
+  }
+}
+.cust-scatter-card,
+.cust-rank-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* ---- shared diverging profit-ratio legend (mirrors the map/product ones) - */
+.cust-legend {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.cust-legend-lbl {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+.cust-legend-bar {
+  width: 96px;
+  height: 10px;
+  border-radius: 3px;
+  border: 1px solid var(--border);
+  background: linear-gradient(to right, var(--div-neg), var(--div-mid), var(--div-pos));
+}
+.cust-legend-ticks {
+  display: inline-flex;
+  gap: 6px;
+  font-size: 10px;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- Panel 2: Sales and Profit by Customer (scatter) ---------------------- */
+.cust-scatter {
+  width: 100%;
+  flex: 1 1 auto;
+}
+.cust-scatter svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.cust-grid {
+  stroke: var(--gridline);
+  stroke-width: 1;
+}
+.cust-zero {
+  stroke: var(--baseline);
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+}
+.cust-axis-lbl {
+  fill: var(--text-muted);
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+  font-family: inherit;
+}
+.cust-axis-title {
+  fill: var(--text-muted);
+  font-size: 10px;
+  font-family: inherit;
+}
+.cust-dot {
+  opacity: 0.8;
+}
+
+/* ---- Panel 3: Customer Ranking (scrollable ranked bar list) --------------- */
+.cust-rank {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+.cust-rank-scroll {
+  max-height: 380px;
+  overflow-y: auto;
+}
+.cust-rank-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 22px;
+  cursor: default;
+}
+.cust-rank-name {
+  flex-shrink: 0;
+  font-size: 11px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.cust-rank-bar {
+  flex-shrink: 0;
+  display: block;
+  height: 12px;
+  min-width: 1px;
+  border-radius: 2px;
+}
+.cust-rank-val {
+  flex-shrink: 0;
+  font-size: 11px;
+  color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
