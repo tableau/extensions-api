@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest manifest-version="0.1" xmlns="http://www.tableau.com/xml/extension_manifest">
+  <worksheet-extension id="io.github.okhammahko.raincloud" extension-version="1.0.0">
+    <default-locale>en_US</default-locale>
+    <name resource-id="name"/>
+    <description>Raincloud plot: density or histogram cloud, box plot, and one dot per record, in a Rows x Columns grid.</description>
+    <author name="OkhammahkO" email="raincloud@example.com" organization="OkhammahkO" website="https://okhammahko.github.io/tableau-viz-extensions/"/>
+    <min-api-version>1.12</min-api-version>
+    <source-location>
+      <url>https://okhammahko.github.io/tableau-viz-extensions/raincloud/raincloud.html</url>
+    </source-location>
+    <icon/>
+    <context-menu>
+      <configure-context-menu-item/>
+    </context-menu>
+    <encoding id="value">
+      <display-name resource-id="value-name">Value</display-name>
+      <role-spec>
+        <role-type>continuous-measure</role-type>
+      </role-spec>
+      <fields max-count="1"/>
+      <encoding-icon token="metric"/>
+      <tooltip resource-id="value-tip">Value - the measure whose distribution is shown.</tooltip>
+    </encoding>
+    <encoding id="rows">
+      <display-name resource-id="rows-name">Rows</display-name>
+      <role-spec>
+        <role-type>discrete-dimension</role-type>
+      </role-spec>
+      <fields max-count="3"/>
+      <encoding-icon token="level"/>
+      <tooltip resource-id="rows-tip">Rows - up to three dimensions; one raincloud per row.</tooltip>
+    </encoding>
+    <encoding id="columns">
+      <display-name resource-id="columns-name">Columns</display-name>
+      <role-spec>
+        <role-type>discrete-dimension</role-type>
+      </role-spec>
+      <fields max-count="2"/>
+      <encoding-icon token="grid"/>
+      <tooltip resource-id="columns-tip">Columns - up to two dimensions; side-by-side panels.</tooltip>
+    </encoding>
+    <encoding id="colour">
+      <display-name resource-id="colour-name">Colour</display-name>
+      <role-spec>
+        <role-type>discrete-dimension</role-type>
+      </role-spec>
+      <fields max-count="1"/>
+      <encoding-icon token="color"/>
+      <tooltip resource-id="colour-tip">Colour - a dimension that colours the dots (sub-categories).</tooltip>
+    </encoding>
+  </worksheet-extension>
+  <resources>
+    <resource id="name"><text locale="en_US">Raincloud</text></resource>
+    <resource id="value-name"><text locale="en_US">Value</text></resource>
+    <resource id="value-tip"><text locale="en_US">Value - the measure whose distribution is shown.</text></resource>
+    <resource id="rows-name"><text locale="en_US">Rows</text></resource>
+    <resource id="rows-tip"><text locale="en_US">Rows - up to three dimensions; one raincloud per row.</text></resource>
+    <resource id="columns-name"><text locale="en_US">Columns</text></resource>
+    <resource id="columns-tip"><text locale="en_US">Columns - up to two dimensions; side-by-side panels.</text></resource>
+    <resource id="colour-name"><text locale="en_US">Colour</text></resource>
+    <resource id="colour-tip"><text locale="en_US">Colour - a dimension that colours the dots (sub-categories).</text></resource>
+  </resources>
+</manifest>
