@@ -280,5 +280,18 @@
         "description": "Concatenates selected values from a filter and assigns the result, delimited by '|', to a parameter.",
         "source_code": "https://github.com/biplovkarna017/tableau-multiselect-parameter",
         "hostedTrexFileName": "MultiSelectParameter.trex"
+    },
+    {
+        "name": "Raincloud",
+        "website": "https://okhammahko.github.io/tableau-viz-extensions/",
+        "author": "OkhammahkO",
+        "github_username": "OkhammahkO",
+        "tags": [
+            "v_1.0"
+        ],
+        "description": "A viz extension (custom mark type) that shows each distribution's shape, summary and every record: a density or histogram cloud, a box plot and one dot per record, in a Rows x Columns grid. Native tooltips and selection, automatic outlier handling, live demo on the website.",
+        "source_code": "https://github.com/OkhammahkO/tableau-viz-extensions",
+        "hostedTrexFileName": "Raincloud.trex"
     }
 ]
+
