@@ -20,3 +20,7 @@ yarn-debug.log*
 yarn-error.log*
 
 .vscode
+
+# Local authoring sources and review artifacts
+.doc_source/
+artifacts/
