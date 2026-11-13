@@ -6,7 +6,7 @@ tags: [Getting started]
 
 _The data apps beta is available only on Tableau Cloud._
 
-Create a data app by describing what you want to an AI coding assistant. You provide details like the audience, questions, data source, interactions, and visual style. The assistant uses Tableau MCP and the Tableau plugin to connect your data, write the application, and package and publish it to Tableau Cloud. You review the app in Tableau and refine it through conversation.
+You can create a data app by describing what you want to an AI coding assistant. You provide details like the audience, questions, data source, interactions, and visual style. The assistant uses [Tableau MCP](https://tableau.github.io/tableau-mcp/docs/getting-started) and the [Tableau plugin](https://github.com/tableau/tableau-plugin) to connect your data, write the application, and package and publish it to Tableau Cloud. You review the app in Tableau and refine it through conversation.
 
 A data app combines a custom web interface with Tableau data access and hosting. For more about how it works, see [What are Tableau data apps?](./trex_dataapp_overview.md).
 
@@ -17,11 +17,11 @@ You need:
 - Access to a Tableau Cloud site that supports the data apps beta.
 - A **Creator** or **Explorer (can publish)** site role and permission to publish to your intended destination.
 - A published Tableau data source that you can access. Have its name or link ready.
-- An AI client that supports MCP connections, the Tableau plugin, and code execution. The assistant needs to work with local files and run the plugin's scripts.
+- An AI client that supports [Tableau MCP](https://tableau.github.io/tableau-mcp/docs/getting-started) connections, the [Tableau plugin](https://github.com/tableau/tableau-plugin), and code execution. The assistant needs to work with local files and run the plugin's scripts.
 
 :::note
 
-Your data app will often make Tableau service API calls to read and modify data and metadata. Your site administrator needs to enable access to each endpoint called for the data app. You may need to prompt your AI coding assistant to list the methods and paths used by the data app and make a request to your administrator.
+If you're using Tableau's hosted MCP server, make sure your agent has network egress access to the blob storage that Tableau MCP uses to temporarily store workbook files. For more information, see [Hosted Tableau MCP](https://tableau.github.io/tableau-mcp/docs/hosted-tableau-mcp).
 
 :::
 
