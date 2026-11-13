@@ -2,6 +2,8 @@
 // Note: type annotations allow type checking and IDEs autocompletion
 
 import {themes as prismThemes} from 'prism-react-renderer';
+import remarkVariables from './src/remark/variables.mjs';
+import { llmsDomains, llmsPluginFiles } from './scripts/llms-domains.mjs';
 
 // const lightCodeTheme = require('prism-react-renderer/themes/github');
 const lightCodeTheme = require('prism-react-renderer').themes.github;
@@ -16,6 +18,20 @@ const getConfig = async () => {
   if (isInofficial) title = 'Unofficial Extensions API';
   else if (isUpcomingVersion) title = 'Pre-Release Extensions API';
 
+  // Site root for this deploy. Official Pages uses /extensions-api/.
+  // llms.txt lives there. llms-full.txt is generated but not linked.
+  // Agents should open one domain file.
+  const baseUrl = (process.env.GITHUB_BASE_PATH ?? '') + '/';
+  const llmsHeadTags = ['llms.txt', ...llmsDomains.map((domain) => domain.filename)].map((file) => ({
+    tagName: 'link',
+    attributes: {
+      rel: 'alternate',
+      type: 'text/plain',
+      href: `${baseUrl}${file}`,
+      title: file,
+    },
+  }));
+
   /** @type {import('@docusaurus/types').Config} */
   return {
     title: title,
@@ -24,7 +40,10 @@ const getConfig = async () => {
 
     // Pick up URL and baseUrl from config parameters set by the Github action runner
     url: process.env.GITHUB_ORIGIN ?? 'http://localhost/',
-    baseUrl: (process.env.GITHUB_BASE_PATH ?? '') + '/',
+    baseUrl,
+
+    // llms.txt links are on every build so a crawler can find them.
+    headTags: llmsHeadTags,
 
     // We don't want to have the preview version or clones of the Github repository
     // indexed by search engines
@@ -58,6 +77,10 @@ const getConfig = async () => {
             // Remove this to remove the "edit this page" links.
             editUrl:
               'https://github.com/tableau/extensions-api/blob/gh-pages-dev/website',
+            // Content variables (`%product_name%`, ...) must run before the
+            // default remark plugins so the built-in link resolver doesn't treat
+            // a `%`-containing slug in a URL as an invalid percent-escape.
+            beforeDefaultRemarkPlugins: [remarkVariables],
             remarkPlugins: [remarkDefList],
             sidebarCollapsed: true,
           },
@@ -156,6 +179,14 @@ const getConfig = async () => {
                   label: 'Tutorial',
                   href: 'https://github.com/tableau/extensions-api/blob/main/Tutorial/Dashboard/readme.md',
                 },
+                {
+                  label: 'llms.txt',
+                  to: 'pathname:///llms.txt',
+                },
+                ...llmsDomains.map((domain) => ({
+                  label: domain.navLabel,
+                  to: `pathname:///${domain.filename}`,
+                })),
 
               ],
             },
@@ -225,7 +256,13 @@ const getConfig = async () => {
           'docusaurus-plugin-llms',
           {
             generateLLMsTxt: true,
+            // Archive of every guide. The postbuild step replaces llms.txt with a
+            // domain map and does not link this file from the site.
             generateLLMsFullTxt: true,
+            generateMarkdownFiles: false,
+            excludeImports: true,
+            removeDuplicateHeadings: true,
+            customLLMFiles: llmsPluginFiles(),
           },
         ],
         [
