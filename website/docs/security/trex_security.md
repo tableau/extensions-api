@@ -11,7 +11,7 @@ A Tableau extension is essentially a web application that runs inside a Tableau 
 
 * By default, anyone using the extension will be prompted and asked to allow or deny the extension access. The Tableau Server site administrator can control whether the prompt appears for each extension.
 
-This section covers options for setting up your extension to use HTTPS. For information about adding an extension to the safe list on Tableau Server or Tableau Cloud, or how to configure the prompts to allow or deny access, see [Manage Dashboard Extensions on Tableau Server](https://onlinehelp.tableau.com/current/server/en-us/dashboard_extensions_server.htm) or [Manage Dashboard Extensions on Tableau Cloud](https://onlinehelp.tableau.com/current/online/en-us/dashboard_extensions_server.htm) for more information.
+This section covers options for setting up your extension to use HTTPS. For information about adding an extension to the safe list on Tableau Server or Tableau Cloud, or how to configure the prompts to allow or deny access, see [Manage Dashboard Extensions on Tableau Server](https://help.tableau.com/current/server/en-us/dashboard_extensions_server.htm) or [Manage Dashboard Extensions on Tableau Cloud](https://help.tableau.com/current/online/en-us/dashboard_extensions_server.htm) for more information.
 
 ---
 ## Why HTTPS?

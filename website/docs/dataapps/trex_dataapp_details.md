@@ -3,7 +3,7 @@ title: Data App Details
 description: The workbook, manifests, web resources, data connections, and runtime access that make up a Tableau data app.
 ---
 
-_The data apps beta is available only on Tableau Cloud._
+_Data apps are available only on Tableau Cloud._
 
 A data app is a Dashboard or Viz Extension whose web resources are packaged with a Tableau workbook. The workbook places the interface and connects its data sources; the package supplies its manifests and front-end code. Tableau serves the bundled resources when a viewer opens the published workbook. Application code runs in the viewer's browser and queries Tableau at runtime.
 
@@ -16,6 +16,10 @@ An unpacked app has this structure:
 ```text
 Regional Sales/
 ├── Regional Sales.twb
+├── Data/
+├── Resources/
+│   └── .agents/
+│       └── README.md 
 └── Packages/
     └── com.example.regional-sales/
         ├── manifest.json
@@ -32,6 +36,7 @@ Regional Sales/
 | Element | Responsibility |
 | --- | --- |
 | `.twb` workbook | Contains the worksheet or dashboard, the extension instance and its settings, and the data-source connections. |
+| `Resources` | Documentation about the context of the app that is available for agents and users in the downloaded `.twbx`. |
 | `manifest.json` | Identifies the package and its version, display name, and author. |
 | `.trex` extension manifest | Declares the extension's identity, placement type, entry page, minimum API version, and permissions. |
 | `content/` | Contains the HTML entry page and all bundled scripts, styles, images, fonts, and other assets. |
@@ -52,7 +57,7 @@ The published `.twbx` is a ZIP archive with the `.twb` and `Packages/` at its ro
 }
 ```
 
-In this single-extension example, the package directory, package ID, and extension ID use the same unique reverse-domain identifier. The package and extension versions are `1.0.0`. A new distributed version needs consistent updated metadata. These fields describe the supplied example format; additional capabilities depend on the supported beta package schema.
+In this single-extension example, the package directory, package ID, and extension ID use the same unique reverse-domain identifier. The package and extension versions are `1.0.0`. A new distributed version needs consistent updated metadata. These fields describe the supplied example format; additional capabilities depend on the supported package schema.
 
 ## Extension manifest and entry page
 
@@ -158,7 +163,7 @@ The workbook's top-level `datasources` contains the published source. This examp
 </datasource>
 ```
 
-The source's content URL is its repository identity; it is distinct from the display caption and REST API LUID. Host, site, repository identity, and field definitions must match the actual published source. Workbook format version `18.1` follows the supplied beta example and must be supported by the target environment.
+The source's content URL is its repository identity; it is distinct from the display caption and REST API LUID. Host, site, repository identity, and field definitions must match the actual published source. Workbook format version `18.1` follows the supplied example and must be supported by the target environment.
 
 The app's worksheet also lists that source and its field dependencies under `worksheet/table/view`:
 

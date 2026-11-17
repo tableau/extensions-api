@@ -1,7 +1,5 @@
 // Domain files for agents. llms.txt is rewritten after the build into a map of
 // these files. llms-full.txt stays on disk as an archive and is not linked.
-// Workspace extensions are omitted: this site has no docs/workspaceext pages,
-// and the plugin does not emit a file when nothing matches.
 
 export const llmsDomains = [
   {
@@ -36,6 +34,15 @@ export const llmsDomains = [
     rootContent:
       'Use this file for Viz Extensions. Do not apply Dashboard, Workspace, or Data Apps instructions.',
     includePatterns: ['docs/vizext/**'],
+  },
+  {
+    filename: 'llms-workspaceext.txt',
+    navLabel: 'Workspace Extensions',
+    title: 'Tableau Workspace Extensions',
+    description: 'Workspace extensions only. Dashboard, viz, and data app guides are out of scope.',
+    rootContent:
+      'Use this file for Workspace Extensions. Do not apply Dashboard, Viz, or Data Apps instructions.',
+    includePatterns: ['docs/workspaceext/**'],
   },
   {
     filename: 'llms-core.txt',

@@ -3,7 +3,7 @@ title: Data App Samples
 description: The Tableau Superstore Data App sample, a live-query data app in the Extensions API repository.
 ---
 
-_The data apps beta is available only on Tableau Cloud._
+_Data apps are available only on Tableau Cloud._
 
 The Extensions API repository includes a data app you can open, inspect, and publish.
 

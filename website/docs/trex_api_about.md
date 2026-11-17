@@ -10,11 +10,12 @@ The Tableau Extensions API is organized by namespaces. The type of extension you
 | ----- | ------- |
 | Dashboard extensions | For example, if you create and register a dashboard extension, the extension will have access to the `dashboardContent` namespace, which provides access to the dashboard object. When you have the dashboard object, you have access to all elements in the dashboard, including the worksheets, marks, filters, parameters, and data sources. |
 | Viz extensions | If you create and register a viz extension, the extension will have access to the `worksheetContent` namespace, which provides access to the worksheet object. When you have the worksheet object, you have access to all elements in the worksheet, including the marks, filters, parameters, and data sources.|
-| [Data apps (Cloud-only Beta)](./dataapps/trex_dataapp_overview.md) | Data apps are available only on Tableau Cloud during the beta. They combine a custom web interface with Tableau hosting and runtime access to Tableau data. The app's Dashboard or Viz Extension registration determines access to `dashboardContent` or `worksheetContent`. In supported environments, the `workbook` namespace provides access to workbook data sources, which the app can query using `queryAsync()`. See [Get Started with data apps](./dataapps/trex_dataapp_getstarted.md) for setup guidance. |
+| Workspace extensions | If you create a workspace extension (a `.trex` in My Tableau Repository, not in a workbook), it runs at the application level. After init it has `tableau.extensions.workspaceContent` (`workbook`, plus `WorkbookChanged` and `ActiveSheetChanged`). It does **not** get `dashboardContent` or `worksheetContent`. |
+| [Data apps (Cloud-only)](./dataapps/trex_dataapp_overview.md) | Data apps are available only on Tableau Cloud. They combine a custom web interface with Tableau hosting and runtime access to Tableau data. The app's Dashboard or Viz Extension registration determines access to `dashboardContent` or `worksheetContent`. In supported environments, the `workbook` namespace provides access to workbook data sources, which the app can query using `queryAsync()`. See [Get Started with data apps](./dataapps/trex_dataapp_getstarted.md) for setup guidance. |
 
 ## Methods added for Data Apps
 
-The data apps beta is available only on Tableau Cloud. Three methods added to the Extensions API for this release support data apps:
+Data apps are available only on Tableau Cloud. Three methods added to the Extensions API for this release support data apps:
 
 | Method | Purpose |
 | --- | --- |
@@ -32,7 +33,9 @@ The `extensions` namespace is the namespace for Tableau extensions. A dashboard 
 
 A viz extension is another type of extension. When a extension is registered as a viz extension, it has access to the `worksheetContent` namespace, and all of the objects and classes of the worksheet. A viz extension does not have access to the `dashboardContent`.
 
-The type of extension you have registered determines what namespaces will be available. Some namespaces, like the `settings`, `environment`, and `ui` are available to all extensions.  
+A workspace extension is the third type. It runs at the application level, so it isn't bound to a dashboard or a worksheet. After you initialize it, use `tableau.extensions.workspaceContent` for the active workbook (or none) and for workbook/sheet lifecycle events. It does not have `dashboardContent` or `worksheetContent`.
+
+The type of extension you have registered determines what namespaces will be available. Some namespaces, like the `settings`, `environment`, and `ui` are available to all extensions. For workspace extensions, `tableau.extensions.settings` is scoped to the extension (values are not saved in a workbook).  
 
 Call `tableau.extensions.initializeAsync()` to initialize the extension before using the Extensions API. When this method is called, it also triggers Tableau to configure the Extensions API. Like the Tableau JavaScript API, the Extensions API follows the [CommonJS Promises/A standard](http://wiki.commonjs.org/wiki/Promises/A) for asynchronous method calls.
 
@@ -46,6 +49,7 @@ classDiagram
         class extensions
         class dashboardContent
         class worksheetContent
+        class workspaceContent
         class environment
         class settings
         class ui
@@ -54,6 +58,7 @@ classDiagram
     class extensions
     extensions ..> dashboardContent
     extensions ..> worksheetContent
+    extensions ..> workspaceContent
     extensions ..> environment
     extensions ..> settings
     extensions ..> ui
@@ -114,6 +119,41 @@ window.onload = tableau.extensions.initializeAsync().then(async () => {
 
 ```
 
+## Registering and accessing workspace extensions
+
+The workspace extension is another type of extension in the Tableau extensions namespace (accessed with `tableau.extensions`). Declare it as `workspace-extension` in the manifest file (`.trex`), and put that file in **My Tableau Repository/Extensions/**. `<entry-points>` add an authoring toolbar button and an authoring menu item. Each one opens a side pane. See [Tableau Workspace Extension Manifest File](./workspaceext/trex_workspace_manifest.md).
+
+```xml
+<entry-points>
+  <authoring-toolbar region="primary">
+    <label resource-id="name"/>
+    <on-click><side-pane/></on-click>
+  </authoring-toolbar>
+  <authoring-menu>
+    <label resource-id="name"/>
+    <on-click><side-pane/></on-click>
+  </authoring-menu>
+</entry-points>
+```
+
+Unlike dashboard and viz extensions, this one isn't bound to a workbook. `initializeAsync()` is the same call as for other types. After init you still get `environment`, `settings`, and `ui`. Settings live with the extension, not the workbook. The active workbook (or none) and lifecycle events are on `tableau.extensions.workspaceContent`. Those events go to every running workspace extension. When a workbook is open, `workbook.activeSheet` is a full sheet. After `ActiveSheetChanged`, read `activeSheet` again before using sheet listeners.
+
+```javascript
+await tableau.extensions.initializeAsync();
+
+const workbook = tableau.extensions.workspaceContent.workbook;
+if (workbook && workbook.activeSheet) {
+  console.log(workbook.name, workbook.activeSheet.name);
+}
+
+tableau.extensions.workspaceContent.addEventListener(
+  tableau.TableauEventType.WorkbookChanged,
+  (event) => {
+    console.log(event.workbook ? event.workbook.name : '(none)');
+  }
+);
+```
+
 ## Using properties and methods in the `dashboard` and `worksheet` namespace
 
 The Tableau Extensions API is similar to the Tableau Embedding API. The `dashboard` and `worksheet` class or namespace inherit from an abstract `sheet` class. You can use the [Extensions API Reference](pathname:///api/) to find the properties and methods that are available for dashboard and worksheet objects.
@@ -139,6 +179,7 @@ classDiagram
         class extensions
         class dashboardContent
         class worksheetContent
+        class workspaceContent
         class worksheet
         class dashboard
         class environment
@@ -150,6 +191,7 @@ classDiagram
     class extensions
     extensions ..> dashboardContent
     extensions ..> worksheetContent
+    extensions ..> workspaceContent
     extensions ..> environment
     extensions ..> settings
     extensions ..> ui

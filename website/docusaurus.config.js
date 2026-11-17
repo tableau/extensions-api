@@ -35,7 +35,7 @@ const getConfig = async () => {
   /** @type {import('@docusaurus/types').Config} */
   return {
     title: title,
-    tagline: 'Create dashboard and viz extensions for Tableau.',
+    tagline: 'Create dashboard, viz, and workspace extensions for Tableau.',
     favicon: 'img/favicon.ico',
 
     // Pick up URL and baseUrl from config parameters set by the Github action runner
