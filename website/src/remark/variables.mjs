@@ -13,6 +13,8 @@ export const VARIABLES = {
     // Upcoming named release. Author `%coming_release%` in prose that names it
     // (never a hardcoded "2026.3.1" or "November 2026 (2026.3.1)").
     coming_release: 'November 2026 (2026.3.1)',
+    // Live Studio Dev guide. Public docs use /current/, not the v0.0 staging path.
+    studio_dev_guide: 'https://help.tableau.com/current/api/studio-dev-guide/en-us/index.html',
 };
 
 const TOKEN = /%([a-zA-Z0-9_]+)%/g;

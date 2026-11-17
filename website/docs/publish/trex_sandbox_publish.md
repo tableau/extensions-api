@@ -12,7 +12,7 @@ Be sure to follow the guidelines and requirements to [Create and Test Sandboxed 
 
 ## Submit your Sandboxed Extension for publication
 
-After you finish developing and testing your Sandboxed Extension, you can submit your extension to the Tableau Exchange. To submit your extension to the Tableau Exchange, you must be added as a contributor on the Exchange. Contact the Tableau Exchange at [extensiongallery@tableau.com](mailto:extensiongallery@tableau.com) and see [Submitting your Extension to the Tableau Exchange](../ux_extension_gallery.md) for more information.
+After you finish developing and testing your Sandboxed Extension, you can submit your extension to the Tableau Exchange. To submit your extension to the Tableau Exchange, you must be added as a contributor on the Exchange. Contributors are required to be approved as a Tableau Technology Partner within the Salesforce ISV program. For Tableau Exchange-specific questions or issues, please reach out at [TableauExchange@salesforce.com](mailto:TableauExchange@salesforce.com). For more information, see [Submitting your Extension to the Tableau Exchange](../ux_extension_gallery.md).
 
 
 

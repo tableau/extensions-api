@@ -4,9 +4,9 @@ description: Vibe code a Tableau data app with Tableau MCP and the Tableau plugi
 tags: [Getting started]
 ---
 
-_The data apps beta is available only on Tableau Cloud._
+_Data apps are available only on Tableau Cloud._
 
-You can create a data app by describing what you want to an AI coding assistant. You provide details like the audience, questions, data source, interactions, and visual style. The assistant uses [Tableau MCP](https://tableau.github.io/tableau-mcp/docs/getting-started) and the [Tableau plugin](https://github.com/tableau/tableau-plugin) to connect your data, write the application, and package and publish it to Tableau Cloud. You review the app in Tableau and refine it through conversation.
+Use [Tableau Studio](%studio_dev_guide%) to create a data app by describing what you want to an AI coding assistant. You provide details like the audience, questions, data source, interactions, and visual style. The assistant uses [Tableau MCP](https://tableau.github.io/tableau-mcp/docs/getting-started) and the [Tableau plugin](https://github.com/tableau/tableau-plugin) to connect your data, write the application, and package and publish it to Tableau Cloud. You review the app in Tableau and refine it through conversation.
 
 A data app combines a custom web interface with Tableau data access and hosting. For more about how it works, see [What are Tableau data apps?](./trex_dataapp_overview.md).
 
@@ -14,18 +14,21 @@ A data app combines a custom web interface with Tableau data access and hosting.
 
 You need:
 
-- Access to a Tableau Cloud site that supports the data apps beta.
-- A **Creator** or **Explorer (can publish)** site role and permission to publish to your intended destination.
-- A published Tableau data source that you can access. Have its name or link ready.
+- Access to a Tableau Cloud site that supports data apps.
+- A user role that can publish content (e.g Creator) to your intended destination.
+- A published Tableau data source that you can access (have view, connect, and API access permissions for). Have its name or link ready.
+  - Alternatively, a local file that can be embedded in the `.twbx` that contains the data app.
 - An AI client that supports [Tableau MCP](https://tableau.github.io/tableau-mcp/docs/getting-started) connections, the [Tableau plugin](https://github.com/tableau/tableau-plugin), and code execution. The assistant needs to work with local files and run the plugin's scripts.
+
+The workflow uses the `scaffold-data-app`, `publish-workbook`, and `request-workbook-upload` MCP tools, along with tools for finding data sources and reading their metadata. Tool availability depends on your Tableau environment and permissions. Ask the assistant to check these capabilities before it starts building.
 
 :::note
 
-If you're using Tableau's hosted MCP server, make sure your agent has network egress access to the blob storage that Tableau MCP uses to temporarily store workbook files. For more information, see [Hosted Tableau MCP](https://tableau.github.io/tableau-mcp/docs/hosted-tableau-mcp).
+Your data app may make REST API calls to Tableau services that read and modify data and metadata. Your site administrator needs to enable access to each REST endpoint called by your data app. To provide them with a list of paths to enable, you can prompt your AI coding assistant to list the the paths of the REST methods called by the app.
+
+If you're using Tableau's hosted MCP server, make sure your agent has network egress access to the blob storage that Tableau MCP uses to temporarily store workbook files. For more information, see the Tableau MCP [Popular Client Integrations](https://tableau.github.io/tableau-mcp/docs/hosted-tableau-mcp/client-integrations#allow-network-egress-to-tableau-file-staging-storage) page.
 
 :::
-
-The workflow uses the `scaffold-data-app`, `publish-workbook`, and `request-workbook-upload` MCP tools, along with tools for finding data sources and reading their metadata. Tool availability depends on your Tableau environment and permissions. Ask the assistant to check these capabilities before it starts building.
 
 ## Connect to Tableau MCP
 
@@ -55,29 +58,79 @@ You can also clone the Tableau MCP repo and host the MCP locally instead of usin
 
 ## Get the Tableau plugin
 
-The [Tableau plugin](https://github.com/tableau/tableau-plugin) supplies the skills and scripts that guide the assistant through building a data app. Its [data app authoring skill](https://github.com/tableau/tableau-plugin/tree/main/src/plugin/skills/tableau-data-app-authoring) covers scaffolding, connecting a published data source, writing the interface, packaging, and publishing. Install the plugin so the assistant has these resources available.
+The [Tableau plugin](https://github.com/tableau/tableau-plugin) gives your assistant the skills and scripts for building a data app. Those skills cover scaffolding, connecting a published data source, writing the interface, packaging, and publishing.
 
-Follow the repository's [installation instructions](https://github.com/tableau/tableau-plugin#install-locally-codex-and-chatgpt-desktop) for your client. For a local installation from source, first clone the repository:
+Codex/ChatGPT, Claude, and Claude Desktop each install a prebuilt branch from that repository. The `main` branch is only the source code.
+
+**Codex/ChatGPT.** One install covers Codex and ChatGPT desktop. It uses the `dist/codex` branch:
+
+```bash
+codex plugin marketplace add tableau/tableau-plugin --ref dist/codex
+codex plugin add Tableau@tableau-plugin
+```
+
+Restart Codex or ChatGPT. Open **Plugins** and select **Authenticate** or **Connect** for Tableau. Start a new Codex or ChatGPT task so the plugin loads.
+
+**Claude.** Clone the `dist/claude` branch, then install it in Claude:
+
+```bash
+git clone --branch dist/claude --single-branch https://github.com/tableau/tableau-plugin.git tableau-plugin-claude
+claude plugin marketplace add ./tableau-plugin-claude
+claude plugin install tableau@tableau-plugin
+```
+
+Start a new Claude session and connect Tableau.
+
+**Claude Desktop.** Clone the `dist-claude-slim` branch:
+
+```bash
+git clone --branch dist-claude-slim --single-branch https://github.com/tableau/tableau-plugin.git tableau-plugin-claude
+```
+
+Compress the `plugins/tableau` folder into a zip file. In Claude Desktop, open **Customize → Plugins → Add → Upload plugin** and select that zip. Open the Tableau plugin's **Connectors** tab and connect Tableau. Turn on code execution in Claude Desktop, then start a new Claude Desktop chat.
+
+For the full Claude Desktop package, clone the `dist/claude` branch instead and upload `plugins/tableau` in Claude Desktop the same way.
+
+**Clone the source.** You can also clone the repository and follow the install instructions in its [README](https://github.com/tableau/tableau-plugin#install-locally-codex-and-chatgpt-desktop). Those instructions cover Codex/ChatGPT, Claude, and Claude Desktop.
 
 ```bash
 git clone https://github.com/tableau/tableau-plugin.git
 cd tableau-plugin
 ```
 
-Then use the installation path for your client:
+## Vibe code your data app
 
-- **Codex or ChatGPT desktop:** Run `./reload-plugin.sh openai`. This builds and installs the plugin, replacing an existing local Tableau plugin installation. Restart the desktop app, open **Plugins**, and select **Authenticate** or **Connect** for Tableau. Start a new task so it loads the plugin and connection.
-- **Claude desktop:** Run `./reload-plugin.sh claude` to build `dist/claude-tableau.zip`. In Claude, open **Customize → Plugins → Add → Upload plugin** and select the ZIP. Open the installed Tableau plugin's **Connectors** tab and connect Tableau. Enable code execution and start a new chat.
+Create your data app by describing what you want to build.
 
-The source installation requires Git and Python 3. The build script prepares its build dependencies. See the repository instructions for updates and other installation options.
-
-## Describe the app you want
+### Your initial prompt
 
 Tell the assistant to use the Tableau data app authoring skill. Include the app's purpose, audience, published data source, key metrics, controls, visual style, and publishing destination. For example:
 
 > Use the Tableau plugin's data app authoring skill to build a data app called Regional Sales Explorer. Use the published Sales data source on my Tableau Cloud site. The audience is regional sales managers who need to compare sales and profit across regions. Include summary metrics, a ranked regional bar chart, and a region filter. Use a clean layout with blue accents and clear labels. Inspect the data source metadata before choosing fields, and query Tableau data at runtime. Publish it as a new workbook in the Sales Analytics project and give me the link.
 
 Replace the example names with your own. If you do not know which data source to use, ask the assistant to find candidates and help you choose one first.
+
+### Refining your data app
+
+Consider these strategies for crafting the data app you want.
+
+#### Use a spec-driven approach
+
+[Spec-driven development](https://en.wikipedia.org/wiki/Specification-driven_development) is the best way to build and iterate on your data app. Using detailed spec.md, design.md, or plan.md as the basis for building your data app is a token efficient way to build your data app while communicating your requirements in detail. These context files also get packaged and published inside the `.twbx` along with your data app, so you can easily refer back to them or share them with your organization.
+
+#### Use sketches or design
+Provide your AI coding assistant with examples of detailed figma or design references for the data app they intend to build.
+
+#### Review and refine in Tableau
+
+Open the published app in Tableau Cloud. Review the layout with real data, try each filter and interaction, and confirm that labels and metrics answer your original questions. Check loading, empty, and error states, and test access as an intended viewer. Visual review happens in Tableau after publishing.
+
+Request specific changes in the same conversation:
+
+> Sort regions by profit instead of sales, add a sales and profit toggle, and use a distinct color for negative profit. Keep the region filter. Update the app and republish it, replacing the workbook we just created.
+
+Before sharing, review the app's code and dependencies and confirm that intended viewers can access both the workbook and its published data source. See [data app security](./trex_dataapp_security.md) for the checks to make before sharing.
+
 
 ## Build and publish with the assistant
 
@@ -91,12 +144,3 @@ The assistant follows this workflow:
 
 You do not need to write the application code or assemble the workbook package yourself. If a required tool is unavailable or publishing fails, have the assistant report the missing capability or returned error so you can resolve it before continuing.
 
-## Review and refine in Tableau
-
-Open the published app in Tableau Cloud. Review the layout with real data, try each filter and interaction, and confirm that labels and metrics answer your original questions. Check loading, empty, and error states, and test access as an intended viewer. Visual review happens in Tableau after publishing.
-
-Request specific changes in the same conversation:
-
-> Sort regions by profit instead of sales, add a sales and profit toggle, and use a distinct color for negative profit. Keep the region filter. Update the app and republish it, replacing the workbook we just created.
-
-Before sharing, review the app's code and dependencies and confirm that intended viewers can access both the workbook and its published data source. See [data app security](./trex_dataapp_security.md) for the checks to make before sharing.

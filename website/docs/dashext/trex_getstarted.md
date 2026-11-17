@@ -9,7 +9,7 @@ This section will take you through the process of setting up your environment to
 
 :::note
 
-If you are looking for information about how to add an extension to a dashboard in Tableau, see [Use Dashboard Extensions](https://onlinehelp.tableau.com/current/pro/desktop/en-us/dashboard_extensions.htm). If you are looking for extensions that you can use, see the [Tableau Exchange](https://exchange.tableau.com/).
+If you are looking for information about how to add an extension to a dashboard in Tableau, see [Use Dashboard Extensions](https://help.tableau.com/current/pro/desktop/en-us/dashboard_extensions.htm). If you are looking for extensions that you can use, see the [Tableau Exchange](https://exchange.tableau.com/).
 
 :::
 
