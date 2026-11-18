@@ -37,7 +37,7 @@ The following flowchart shows how the settings on Tableau Server or Tableau Clou
 
  ![alt text](../assets/Extensions_Safe_List_Block_List_Evaluation_2x.png "Flowchart showing the process that allows or denies an extension to run on Tableau Server or Tableau Cloud.")
   
-See [Manage Dashboard Extensions on Tableau Server](https://onlinehelp.tableau.com/current/server/en-us/dashboard_extensions_server.htm) or [Manage Dashboard Extensions on Tableau Cloud](https://onlinehelp.tableau.com/current/online/en-us/dashboard_extensions_server.htm) for more information.
+See [Manage Dashboard Extensions on Tableau Server](https://help.tableau.com/current/server/en-us/dashboard_extensions_server.htm) or [Manage Dashboard Extensions on Tableau Cloud](https://help.tableau.com/current/online/en-us/dashboard_extensions_server.htm) for more information.
 
 ## Publishing a dashboard extension to the Tableau Exchange
 
@@ -67,9 +67,3 @@ For information about designing an extension, see [Design Guidelines for Dashboa
 
 ![](../assets/trex_gallery.png)
 
-## Publishing or sharing a dashboard extension on the Communities page
-
-Another way to share your work with other developers is to add it to the [Community Portal for Dashboard Extensions](pathname:///community/). You can use the portal to provide links to your source code and you can also provide a `.trex` file for users to download. To make it easier for others to use your extension, we ask that your `.trex` file specifies a link to a hosted version of your extension
-See [Hosting and Contributing to the Community Portal](./trex_contributing.md)
-
-Submit your extension to the [Community Portal for Dashboard Extensions](pathname:////community/)

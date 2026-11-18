@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest manifest-version="0.1" xmlns="http://www.tableau.com/xml/extension_manifest">
+  <workspace-extension id="com.tableau.examples.hello-world" extension-version="0.0.1">
+    <default-locale>en_US</default-locale>
+    <name resource-id="name"/>
+    <description>A minimal workspace extension for Desktop entry-point testing.</description>
+    <author name="Tableau" email="dev@tableau.com" organization="Tableau" website="https://www.tableau.com"/>
+    <min-api-version>1.1</min-api-version>
+    <source-location>
+      <url>https://<YOUR-DOMAIN.com>/hello-world-extension/index.html</url>
+    </source-location>
+    <entry-points>
+      <authoring-toolbar region="primary">
+        <label resource-id="name"/>
+        <icon>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#666666">
+            <path d="M3 4h2v6h4V4h2v16H9v-8H5v8H3V4zm10 0h2l2 11 2-7h2l2 7 2-11h2l-3 16h-2l-3-8-3 8h-2L13 4z"/>
+          </svg>
+        </icon>
+        <on-click><side-pane/></on-click>
+      </authoring-toolbar>
+      <authoring-menu>
+        <label resource-id="name"/>
+        <on-click><side-pane/></on-click>
+      </authoring-menu>
+    </entry-points>
+  </workspace-extension>
+  <resources>
+    <resource id="name"><text locale="en_US">Hello World</text></resource>
+  </resources>
+</manifest>

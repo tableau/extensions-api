@@ -3,11 +3,11 @@ title: Data App security
 description: Understand data app data permissions, hosted resources, external origins, and Tableau API access.
 ---
 
-The data apps beta is available only on Tableau Cloud.
+_Data apps are available only on Tableau Cloud._
 
 Data apps execute custom code in the viewer's browser and query Tableau data at runtime. Review both the code and the access it requires before publishing. Tableau hosting and data permissions provide controls for the app, but app owners still need to review dependencies and how data is used.
 
-:::note Cloud-only Beta
+:::note Cloud-only
 
 Confirm that the required settings are enabled on your Tableau Cloud site. Available controls and supported capabilities depend on your site configuration. Use the settings provided by your site when approving or disabling an app.
 

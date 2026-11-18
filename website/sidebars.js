@@ -21,7 +21,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: '(Cloud-only Beta) Data Apps',
+      label: '(Cloud-only) Data Apps',
       link: { type: 'doc', id: 'dataapps/index' },
       items: [
         'dataapps/trex_dataapp_getstarted',
@@ -42,6 +42,18 @@ const sidebars = {
         'vizext/trex_viz_create',
         'vizext/trex_viz_manifest',
         'vizext/trex_viz_examples',
+      ],
+    },
+    {
+      type: 'category',
+      label: '(Desktop Only) Workspace Extensions',
+      link: { type: 'doc', id: 'workspaceext/index' },
+      items: [
+        'workspaceext/trex_workspace_getstarted',
+        'workspaceext/trex_workspace_create',
+        'workspaceext/trex_workspace_overview',
+        'workspaceext/trex_workspace_manifest',
+        'workspaceext/trex_workspace_examples',
       ],
     },
    /* { 
