@@ -7,7 +7,7 @@ export const llmsDomains = [
     navLabel: 'Data Apps',
     title: 'Tableau Data Apps',
     description:
-      'Tableau Cloud data apps only. Dashboard, viz, and workspace extension guides are out of scope.',
+      'Data apps only. Dashboard, viz, and workspace extension guides are out of scope.',
     rootContent:
       'Use this file for Data Apps. The Dashboard and Viz manifest pages are included only for packaging a data app. Do not apply other Dashboard, Viz, or Workspace extension instructions.',
     includePatterns: [
