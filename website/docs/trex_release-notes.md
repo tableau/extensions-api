@@ -221,7 +221,7 @@ About this release:
 ----
 
 * Adds support for a [DataTableReader](pathname:///api/interfaces/DataTableReader.html) to support pagination. Created with [Worksheet.getSummaryDataReaderAsync](pathname:///api/interfaces/Worksheet.html#getsummarydatareaderasync),
-[Worksheet.getUnderlyingTableDataReaderAsync](pathname:///api/interfaces/Worksheet.html#getunderlyingtabledatareaderasync), and [DataSource.getLogicalTableDataReaderAsync](pathname:///api/interfaces/DataSource.html#getlogicaltabledatareaderasync).
+[Worksheet.getUnderlyingTableDataReaderAsync](pathname:///api/interfaces/Worksheet.html#getunderlyingtabledatareaderasync), and [DataSource.getLogicalTableDataAsync](pathname:///api/interfaces/DataSource.html#getlogicaltabledataasync).
 For more information, see [Get Data from the View](./core/trex_getdata.md).
 
 * Deprecated `getSummaryDataAsync`. Use [Worksheet.getSummaryDataReaderAsync](pathname:///api/interfaces/Worksheet.html#getsummarydatareaderasync) instead.
@@ -365,7 +365,7 @@ About this release:
 
 * You can now set an event listener on changes to the dashboard layout and to the dashboard formatting. The new event types are `DashboardLayoutChanged` and `WorkbookFormattingChanged`. 
 
-  The `DashboardLayoutChanged` event is triggered whenever a dashboard object is added, removed, repositioned or resized, or whenever the floating state, visibility, object name, or dashboard size changes. See the [DashboardLayoutChanged](pathname:///api/interfaces/Dashboard.html#dashboardlayoutchanged). event. 
+  The `DashboardLayoutChanged` event is triggered whenever a dashboard object is added, removed, repositioned or resized, or whenever the floating state, visibility, object name, or dashboard size changes. See the [DashboardLayoutChanged](pathname:///api/enums/TableauEventType.html#dashboardlayoutchanged) event. 
 
   The `WorkbookFormattingChanged` event is triggered whenever the workbook text formatting is changed in Tableau authoring mode. This includes changes in the font, the font size, whether it is bold, italic, or underlined, and the color. For more information about workbook formatting, see [workbookFormatting](pathname:///api/interfaces/Environment.html#workbookformatting).
 
@@ -624,7 +624,7 @@ New in this release:
 - Use the [Design Guidelines for Dashboard Extensions](./ux_design.md) as a roadmap for designing great dashboard extensions.
 
 
-- Create extensions with the look-and-feel of Tableau, using the [Tableau UI](https://tableau.github.io/tableau-ui/.md), a React component library.  
+- Create extensions with the look-and-feel of Tableau, using the [Tableau UI](https://tableau.github.io/tableau-ui/), a React component library.  
 
 - New and updated documentation. See [Publishing a Dashboard Extension](./publish/trex_publish.md). <br/>
 For information about developing and running an extension locally on `http://localhost` and testing it on Tableau Cloud or Tableau Server (over HTTPS), see [Load and view localhost content on sites that use secure connections](./security/trex_security.md#load-and-view-localhost-content-on-sites-that-use-secure-connections).
