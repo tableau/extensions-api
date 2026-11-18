@@ -7,7 +7,7 @@ With the release of dashboard extensions in Tableau 2018.2, we're unleashing the
 
 ### Who is this document for?
 
-This document is focused on guiding developers towards best practices for designing extensions, including both user interaction and visual style guidelines. For more technical information about extensions, refer to our <a href="../dashext/trex_getstarted.html" target="_blank">Extensions API Documentation</a>.
+This document is focused on guiding developers towards best practices for designing extensions, including both user interaction and visual style guidelines. For more technical information about extensions, refer to our <a href="../dashext/trex_getstarted" target="_blank">Extensions API Documentation</a>.
 
 ### What are Dashboard Extensions?
 
