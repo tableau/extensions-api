@@ -11,11 +11,11 @@ The Tableau Extensions API is organized by namespaces. The type of extension you
 | Dashboard extensions | For example, if you create and register a dashboard extension, the extension will have access to the `dashboardContent` namespace, which provides access to the dashboard object. When you have the dashboard object, you have access to all elements in the dashboard, including the worksheets, marks, filters, parameters, and data sources. |
 | Viz extensions | If you create and register a viz extension, the extension will have access to the `worksheetContent` namespace, which provides access to the worksheet object. When you have the worksheet object, you have access to all elements in the worksheet, including the marks, filters, parameters, and data sources.|
 | Workspace extensions | If you create a workspace extension (a `.trex` in My Tableau Repository, not in a workbook), it runs at the application level. After init it has `tableau.extensions.workspaceContent` (`workbook`, plus `WorkbookChanged` and `ActiveSheetChanged`). It does **not** get `dashboardContent` or `worksheetContent`. |
-| [Data apps (Cloud-only)](./dataapps/trex_dataapp_overview.md) | Data apps are available only on Tableau Cloud. They combine a custom web interface with Tableau hosting and runtime access to Tableau data. The app's Dashboard or Viz Extension registration determines access to `dashboardContent` or `worksheetContent`. In supported environments, the `workbook` namespace provides access to workbook data sources, which the app can query using `queryAsync()`. See [Get Started with data apps](./dataapps/trex_dataapp_getstarted.md) for setup guidance. |
+| [Data apps](./dataapps/trex_dataapp_overview.md) | Data apps combine a custom web interface with Tableau hosting and runtime access to Tableau data. The app's Dashboard or Viz Extension registration determines access to `dashboardContent` or `worksheetContent`. In supported environments, the `workbook` namespace provides access to workbook data sources, which the app can query using `queryAsync()`. See [Get Started with data apps](./dataapps/trex_dataapp_getstarted.md) for setup guidance. |
 
 ## Methods added for Data Apps
 
-Data apps are available only on Tableau Cloud. Three methods added to the Extensions API for this release support data apps:
+Three methods added to the Extensions API for this release support data apps:
 
 | Method | Purpose |
 | --- | --- |

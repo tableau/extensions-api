@@ -21,7 +21,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: '(Cloud-only) Data Apps',
+      label: 'Data Apps',
       link: { type: 'doc', id: 'dataapps/index' },
       items: [
         'dataapps/trex_dataapp_getstarted',

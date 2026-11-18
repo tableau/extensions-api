@@ -88,7 +88,7 @@ SSH
 
 ### Requirements for using extensions in Tableau
 
-To use Tableau dashboard, viz, or workspace extensions, or data apps in Tableau, you need one of the following versions of Tableau. Data apps are available only on Tableau Cloud.
+To use Tableau dashboard, viz, or workspace extensions, or data apps in Tableau, you need one of the following versions of Tableau.
 
 For dashboard extensions:
 
@@ -108,7 +108,7 @@ For workspace extensions:
 
   This path is Tableau Desktop.
 
-For data apps (Cloud-only):
+For data apps:
 
 * Tableau Cloud
 
@@ -118,4 +118,4 @@ For data apps (Cloud-only):
 To run extensions on Tableau Server or Tableau Cloud, support for extensions must be enabled, and depending upon the extension and the data access it requires, the extension might need to be added to the safe list for the site. See
  [Manage Dashboard Extensions on Tableau Server](https://help.tableau.com/current/server/en-us/dashboard_extensions_server.htm) or [Manage Dashboard Extensions on Tableau Cloud](https://help.tableau.com/current/online/en-us/dashboard_extensions_server.htm) for more information.
 
-Special care must be taken for data apps, available only on Tableau Cloud, to ensure that security concerns are addressed. See [Manage data apps](./dataapps/trex_dataapp_manage.md) and [data app security](./dataapps/trex_dataapp_security.md) for more information.
+Special care must be taken for data apps to ensure that security concerns are addressed. See [Manage data apps](./dataapps/trex_dataapp_manage.md) and [data app security](./dataapps/trex_dataapp_security.md) for more information.
