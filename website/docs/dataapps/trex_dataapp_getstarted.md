@@ -4,9 +4,7 @@ description: Vibe code a Tableau data app with Tableau MCP and the Tableau plugi
 tags: [Getting started]
 ---
 
-_Data apps are available only on Tableau Cloud._
-
-Use [Tableau Studio](%studio_dev_guide%) to create a data app by describing what you want to an AI coding assistant. You provide details like the audience, questions, data source, interactions, and visual style. The assistant uses [Tableau MCP](https://tableau.github.io/tableau-mcp/docs/getting-started) and the [Tableau plugin](https://github.com/tableau/tableau-plugin) to connect your data, write the application, and package and publish it to Tableau Cloud. You review the app in Tableau and refine it through conversation.
+Use natural language to prompt [Tableau Studio](%studio_dev_guide%) or the AI coding assistant of your choice to create a data app. You provide details like the audience, questions, data source, interactions, and visual style. The assistant uses [Tableau MCP](https://tableau.github.io/tableau-mcp/docs/getting-started) and the [Tableau plugin](https://github.com/tableau/tableau-plugin) to connect your data, write the application, and package and publish it to Tableau Cloud. You review the app in Tableau and refine it through conversation.
 
 A data app combines a custom web interface with Tableau data access and hosting. For more about how it works, see [What are Tableau data apps?](./trex_dataapp_overview.md).
 

@@ -3,8 +3,6 @@ title: Manage Data Apps
 description: Configure data apps for a Tableau Cloud site and manage individual packages in site Settings.
 ---
 
-_Data apps are available only on Tableau Cloud._
-
 As a site administrator, you manage data apps through the **Packages** tab on the site's **Settings** page. Data app enablement is configured **per site**. Review and configure these controls for each site where you want users to run data apps.
 
 Data apps include application resources in packages. The Packages tab lets you control the capabilities allowed for packages across the site and disable individual packages when needed.

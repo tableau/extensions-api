@@ -3,8 +3,6 @@ title: Data App Details
 description: The workbook, manifests, web resources, data connections, and runtime access that make up a Tableau data app.
 ---
 
-_Data apps are available only on Tableau Cloud._
-
 A data app is a Dashboard or Viz Extension whose web resources are packaged with a Tableau workbook. The workbook places the interface and connects its data sources; the package supplies its manifests and front-end code. Tableau serves the bundled resources when a viewer opens the published workbook. Application code runs in the viewer's browser and queries Tableau at runtime.
 
 The examples below describe a worksheet-based app named **Regional Sales**, using a published data source named **Sales** with a **Region** field. The same package model supports Dashboard Extensions, with the corresponding dashboard placement and manifest.

@@ -4,8 +4,6 @@ description: Find administration and security guidance for Tableau data apps.
 sidebar_label: Administration and Security
 ---
 
-_Data apps are available only on Tableau Cloud._
-
 Administration and security guidance is available on two pages:
 
 - [Manage data apps](./trex_dataapp_manage.md) covers site preparation, access review, publishing, and ongoing administration.
