@@ -9,7 +9,7 @@ The Tableau Extensions API provides methods that you can use to access the data 
 
 Tableau 2020.2 introduced a new data model. To support that model, the Extensions API provides new methods and data structures starting with version 1.4 of the Extensions API library. In the new data model, a data source could have multiple logical tables, and logical tables can contain one or more physical tables. If you have an existing extension that uses one of the deprecated methods to get underlying data, the method call could fail if the data source contains more than one logical table. You should update your extensions to use these new methods. The new methods are backward compatible with previous versions of Tableau.
 
-For information about the data model, see [The Tableau Data Model](https://help.tableau.com/v2020.2/pro/desktop/en-us/datasource_datamodel.html).
+For information about the data model, see [The Tableau Data Model](https://help.tableau.com/current/pro/desktop/en-us/datasource_datamodel.htm).
 
 ::::
 
